@@ -58,7 +58,6 @@ export const virtual_tour_excludes: (string)[] = [
 export const report_excludes: (string)[] = [
   "createdAt",
   "updatedAt",
-  "description",
 ];
 
 // Document model excludes
