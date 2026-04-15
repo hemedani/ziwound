@@ -145,6 +145,9 @@ export const createUserTextIndex = async () => {
       "email": "text",
     });
   } catch (error) {
-    console.log("Text index already exists or creation failed:", error.message);
+    console.log(
+      "Text index already exists or creation failed:",
+      (error as Error).message,
+    );
   }
 };

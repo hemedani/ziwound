@@ -3,67 +3,63 @@ import { coreApp, report } from "../../../mod.ts";
 import type { MyContext } from "@lib";
 
 export const updateRelationsFn: ActFn = async (body) => {
-	const {
-		set: { _id, attachments, tags, category },
-		get,
-	} = body.details;
+  const {
+    set: { _id, attachments, tags, category },
+    get,
+  } = body.details;
 
-	const { user }: MyContext = coreApp.contextFns
-		.getContextModel() as MyContext;
+  const { user }: MyContext = coreApp.contextFns
+    .getContextModel() as MyContext;
 
-	const reportId = new ObjectId(_id);
+  const reportId = new ObjectId(_id);
 
-	if (attachments) {
-		await report.addRelation({
-			filters: { _id: reportId },
-			relations: {
-				attachments: {
-					_ids: attachments.map((id: string) => new ObjectId(id)),
-				},
-			},
-			projection: get,
-			replace: true,
-		});
-	}
+  if (attachments) {
+    await report.addRelation({
+      filters: { _id: reportId },
+      relations: {
+        attachments: {
+          _ids: attachments.map((id: string) => new ObjectId(id)),
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
 
-	if (tags) {
-		await report.addRelation({
-			filters: { _id: reportId },
-			relations: {
-				tags: {
-					_ids: tags.map((id: string) => new ObjectId(id)),
-					relatedRelations: {
-						reports: {
-							replace: true,
-						},
-					},
-				},
-			},
-			projection: get,
-			replace: true,
-		});
-	}
+  if (tags) {
+    await report.addRelation({
+      filters: { _id: reportId },
+      relations: {
+        tags: {
+          _ids: tags.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            reports: true,
+          },
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
 
-	if (category) {
-		await report.addRelation({
-			filters: { _id: reportId },
-			relations: {
-				category: {
-					_ids: new ObjectId(category),
-					relatedRelations: {
-						reports: {
-							replace: true,
-						},
-					},
-				},
-			},
-			projection: get,
-			replace: true,
-		});
-	}
+  if (category) {
+    await report.addRelation({
+      filters: { _id: reportId },
+      relations: {
+        category: {
+          _ids: new ObjectId(category),
+          relatedRelations: {
+            reports: true,
+          },
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
 
-	return await report.findOne({
-		filters: { _id: reportId },
-		projection: get,
-	});
+  return await report.findOne({
+    filters: { _id: reportId },
+    projection: get,
+  });
 };
