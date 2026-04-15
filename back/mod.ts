@@ -3,6 +3,7 @@ import {
   categories,
   cities,
   createUserTextIndex,
+  documents,
   files,
   provinces,
   reports,
@@ -27,6 +28,7 @@ export const city = cities();
 export const tag = tags();
 export const category = categories();
 export const report = reports();
+export const document = documents();
 
 export const { setAct, setService, getAtcsWithServices } = coreApp.acts;
 
@@ -50,7 +52,7 @@ coreApp.runServer({
     "http://localhost:3005",
     "http://194.5.192.166:3005",
     "http://localhost:4000",
-    "http://http://185.204.170.27:4000",
-    "http://http://185.204.170.27:3005",
+    "http://185.204.170.27:4000",
+    "http://185.204.170.27:3005",
   ],
 });

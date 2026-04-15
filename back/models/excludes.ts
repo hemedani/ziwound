@@ -53,3 +53,16 @@ export const virtual_tour_excludes: (string)[] = [
   "description",
   "hotspots",
 ];
+
+// Report model excludes
+export const report_excludes: (string)[] = [
+  "createdAt",
+  "updatedAt",
+  "description",
+];
+
+// Document model excludes
+export const document_excludes: (string)[] = [
+  "createdAt",
+  "updatedAt",
+];

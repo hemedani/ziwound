@@ -9,3 +9,4 @@ export * from "./province.ts";
 export * from "./tag.ts";
 export * from "./category.ts";
 export * from "./report.ts";
+export * from "./document.ts";

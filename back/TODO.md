@@ -43,12 +43,12 @@
 
 ## Phase 3: Document Model Implementation
 
-- [ ] **Create Document Model Schema**
-  - [ ] Define Document model in `models/document.ts`
-  - [ ] Fields: title (string, required), description (string, optional), documentFiles (array of file references, multiple), reportRelations (array of report references, multiple relations)
-  - [ ] Add validator schemas with Zod-like syntax
-  - [ ] Add relations setup (many-to-many with Reports)
-  - [ ] Add text indexes for search functionality
+- [x] **Create Document Model Schema**
+  - [x] Define Document model in `models/document.ts`
+  - [x] Fields: title (string, required), description (string, optional), documentFiles (array of file references, multiple), reportRelations (array of report references, multiple relations)
+  - [x] Add validator schemas with Zod-like syntax
+  - [x] Add relations setup (many-to-many with Reports)
+  - [x] Add text indexes for search functionality
 - [ ] **Implement Document CRUD Acts**
   - [ ] Create `src/document/add.ts` - Add new document
   - [ ] Create `src/document/get.ts` - Get single document by ID
@@ -164,6 +164,7 @@
 - [ ] Production deployment preparation
 
 **Known Issues** (from code review):
+
 - ⚠️ Bug: `getUsers` and `countUsers` use `levels` instead of `level` field name
 - ⚠️ Bug: `category.update` doesn't update `color`/`icon` fields
 - ⚠️ Bug: CORS config has malformed URLs with double `http://`
