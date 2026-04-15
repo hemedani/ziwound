@@ -45,16 +45,16 @@
 
 - [x] **Create Document Model Schema**
   - [x] Define Document model in `models/document.ts`
-  - [x] Fields: title (string, required), description (string, optional), documentFiles (array of file references, multiple), reportRelations (array of report references, multiple relations)
+  - [x] Fields: title (string, required), description (string, optional), documentFiles (array of file references, multiple), report (single relation to Report)
   - [x] Add validator schemas with Zod-like syntax
-  - [x] Add relations setup (many-to-many with Reports)
+  - [x] Add relations setup (each document belongs to one report; reports can have many documents)
   - [x] Add text indexes for search functionality
 - [x] **Implement Document CRUD Acts**
   - [x] Create `src/document/add.ts` - Add new document
   - [x] Create `src/document/get.ts` - Get single document by ID
   - [x] Create `src/document/gets.ts` - Get multiple documents with pagination/filtering
   - [x] Create `src/document/update.ts` - Update document
-  - [x] Create `src/document/updateRelations.ts` - Update document relations (link to reports)
+  - [x] Create `src/document/updateRelations.ts` - Update document relations (link to report)
   - [x] Create `src/document/remove.ts` - Delete document
   - [x] Create `src/document/count.ts` - Count documents
 - [ ] **Add Document-Report Relation Management**
