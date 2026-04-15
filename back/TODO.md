@@ -49,14 +49,14 @@
   - [x] Add validator schemas with Zod-like syntax
   - [x] Add relations setup (many-to-many with Reports)
   - [x] Add text indexes for search functionality
-- [ ] **Implement Document CRUD Acts**
-  - [ ] Create `src/document/add.ts` - Add new document
-  - [ ] Create `src/document/get.ts` - Get single document by ID
-  - [ ] Create `src/document/gets.ts` - Get multiple documents with pagination/filtering
-  - [ ] Create `src/document/update.ts` - Update document
-  - [ ] Create `src/document/updateRelations.ts` - Update document relations (link to reports)
-  - [ ] Create `src/document/remove.ts` - Delete document
-  - [ ] Create `src/document/count.ts` - Count documents
+- [x] **Implement Document CRUD Acts**
+  - [x] Create `src/document/add.ts` - Add new document
+  - [x] Create `src/document/get.ts` - Get single document by ID
+  - [x] Create `src/document/gets.ts` - Get multiple documents with pagination/filtering
+  - [x] Create `src/document/update.ts` - Update document
+  - [x] Create `src/document/updateRelations.ts` - Update document relations (link to reports)
+  - [x] Create `src/document/remove.ts` - Delete document
+  - [x] Create `src/document/count.ts` - Count documents
 - [ ] **Add Document-Report Relation Management**
   - [ ] Implement addRelation functionality between Documents and Reports
   - [ ] Implement removeRelation functionality
