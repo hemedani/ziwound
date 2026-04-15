@@ -1,0 +1,54 @@
+version: "3.8"
+
+services:
+  # MongoDB
+  mongo:
+    image: mongo:7
+    restart: unless-stopped
+    volumes:
+      - mongo-data:/data/db
+    networks:
+      - gozarish
+    env_file:
+      - .env.backend
+
+  # Backend (Deno)
+  backend:
+    build:
+      context: ./back
+      target: production
+    restart: unless-stopped
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/gozarish
+      - ENV=production
+      - APP_PORT=1405
+    ports:
+      - "1405:1405"
+    depends_on:
+      - mongo
+    networks:
+      - gozarish
+
+  # Frontend (Next.js)
+  frontend:
+    build:
+      context: ./front
+      target: production
+    restart: unless-stopped
+    environment:
+      - NEXT_PUBLIC_LESAN_URL=http://localhost:1405
+      - LESAN_URL=http://backend:1405
+      - APP_PORT=3005
+    ports:
+      - "3005:3005"
+    depends_on:
+      - backend
+    networks:
+      - gozarish
+
+volumes:
+  mongo-data:
+
+networks:
+  gozarish:
+    driver: bridge

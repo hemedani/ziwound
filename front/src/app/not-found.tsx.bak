@@ -1,0 +1,42 @@
+import { Geist, Geist_Mono } from "next/font/google";
+import Link from "next/link";
+import { FileQuestion, ArrowLeft } from "lucide-react";
+import "./globals.css";
+
+const geistSans = Geist({
+  variable: "--font-geist-sans",
+  subsets: ["latin"],
+});
+
+const geistMono = Geist_Mono({
+  variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+export default function GlobalNotFound() {
+  return (
+    <html lang="en" suppressHydrationWarning>
+      <body
+        suppressHydrationWarning
+        className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased min-h-screen flex items-center justify-center`}
+      >
+        <div className="flex min-h-[70vh] flex-col items-center justify-center text-center px-4">
+          <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-muted">
+            <FileQuestion className="h-12 w-12 text-muted-foreground" />
+          </div>
+          <h1 className="mb-4 text-4xl font-extrabold tracking-tight lg:text-5xl">Page Not Found</h1>
+          <p className="mb-8 max-w-[500px] text-lg text-muted-foreground">
+            Sorry, the page you are looking for does not exist.
+          </p>
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-11 rounded-md px-8"
+          >
+            <ArrowLeft className="h-4 w-4 rtl:rotate-180" />
+            Back to Home
+          </Link>
+        </div>
+      </body>
+    </html>
+  );
+}
