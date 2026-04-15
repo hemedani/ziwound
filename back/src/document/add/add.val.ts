@@ -9,7 +9,7 @@ export const addValidator = () => {
     set: object({
       ...basePure,
       documentFiles: optional(array(string())),
-      reportRelations: optional(array(string())),
+      report: optional(string()),
     }),
     get: selectStruct("document", 1),
   });

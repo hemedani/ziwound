@@ -26,9 +26,9 @@ export const document_relations = {
     excludes: file_excludes,
     relatedRelations: {},
   },
-  reportRelations: {
+  report: {
     schemaName: "report",
-    type: "multiple" as RelationDataType,
+    type: "single" as RelationDataType,
     optional: true,
     excludes: report_excludes,
     relatedRelations: {

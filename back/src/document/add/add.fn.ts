@@ -4,7 +4,7 @@ import { document } from "../../../mod.ts";
 export const addFn: ActFn = async (body) => {
   const { set, get } = body.details;
 
-  const { documentFiles, reportRelations, ...rest } = set;
+  const { documentFiles, report, ...rest } = set;
 
   return await document.insertOne({
     doc: rest,
@@ -14,9 +14,9 @@ export const addFn: ActFn = async (body) => {
           _ids: documentFiles.map((id: string) => new ObjectId(id)),
         }
         : undefined,
-      reportRelations: reportRelations
+      report: report
         ? {
-          _ids: reportRelations.map((id: string) => new ObjectId(id)),
+          _ids: new ObjectId(report),
           relatedRelations: {
             documents: true,
           },

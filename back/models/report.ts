@@ -10,7 +10,6 @@ import { coreApp } from "../mod.ts";
 import { createUpdateAt } from "@lib";
 import {
   comment_excludes,
-  file_excludes,
   shared_relation_excludes,
   user_excludes,
 } from "./excludes.ts";
@@ -51,13 +50,6 @@ export const report_relations = {
         },
       },
     },
-  },
-  attachments: {
-    schemaName: "file",
-    type: "multiple" as RelationDataType,
-    optional: true,
-    excludes: file_excludes,
-    relatedRelations: {},
   },
   tags: {
     schemaName: "tag",

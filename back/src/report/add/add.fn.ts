@@ -7,7 +7,7 @@ export const addFn: ActFn = async (body) => {
   const { user }: MyContext = coreApp.contextFns
     .getContextModel() as MyContext;
 
-  const { attachments, tags, category, ...rest } = set;
+  const { tags, category, ...rest } = set;
 
   return await report.insertOne({
     doc: rest,
@@ -15,11 +15,6 @@ export const addFn: ActFn = async (body) => {
       reporter: {
         _ids: user._id,
       },
-      attachments: attachments
-        ? {
-          _ids: attachments.map((id: string) => new ObjectId(id)),
-        }
-        : undefined,
       tags: tags
         ? {
           _ids: tags.map((id: string) => new ObjectId(id)),
