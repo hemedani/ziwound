@@ -119,10 +119,10 @@
   - [ ] Add featured posts endpoint
   - [ ] Add posts by slug endpoint (for SEO-friendly URLs)
   - [ ] Add related posts endpoint (based on tags/category)
-- [ ] **Generate Type Declarations**
-  - [ ] Run type generation for frontend integration
-  - [ ] Verify declarations/ includes BlogPost model types
-  - [ ] Test type safety with example queries
+- [x] **Generate Type Declarations**
+  - [x] Run type generation for frontend integration
+  - [x] Verify declarations/ includes BlogPost model types
+  - [x] Test type safety with example queries
 
 ## Phase 5: War Crimes Exploration Backend Support
 

@@ -1,10 +1,10 @@
-import { array, enums, object, objectIdValidation, optional, string } from "@deps";
+import { array, boolean, enums, object, objectIdValidation, optional, string } from "@deps";
 
 export const countValidator = () => {
   return object({
     set: object({
       search: optional(string()),
-      isPublished: optional(enums([true, false])),
+      isPublished: optional(boolean()),
       authorId: optional(objectIdValidation),
       tagIds: optional(array(objectIdValidation)),
     }),

@@ -1,5 +1,6 @@
 import { lesan, MongoClient } from "@deps";
 import {
+  blogPostModel,
   categories,
   cities,
   createBlogPostTextIndex,
@@ -30,7 +31,7 @@ export const tag = tags();
 export const category = categories();
 export const report = reports();
 export const document = documents();
-export const blogPost = blogPosts();
+export const blogPost = blogPostModel();
 
 export const { setAct, setService, getAtcsWithServices } = coreApp.acts;
 

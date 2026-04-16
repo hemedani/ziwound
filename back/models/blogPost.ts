@@ -3,6 +3,7 @@ import {
   defaulted,
   optional,
   type RelationDataType,
+  type RelationSortOrderType,
   string,
 } from "@deps";
 import { coreApp } from "../mod.ts";
@@ -54,14 +55,14 @@ export const blogPost_relations = {
         excludes: ["createdAt", "updatedAt"],
         sort: {
           field: "_id",
-          order: "desc",
+          order: "desc" as RelationSortOrderType,
         },
       },
     },
   },
 };
 
-export const blogPosts = () =>
+export const blogPostModel = () =>
   coreApp.odm.newModel("blogPost", blogPost_pure, blogPost_relations, {
     createIndex: {
       indexSpec: {
@@ -74,8 +75,7 @@ export const blogPosts = () =>
   });
 
 export const createBlogPostTextIndex = async () => {
-  const db = coreApp.odm.getDb();
-  const collection = db.collection("blogPost");
+  const collection = coreApp.odm.getCollection("blogPost");
   await collection.createIndex({
     title: "text",
     content: "text",

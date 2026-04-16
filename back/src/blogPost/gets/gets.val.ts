@@ -1,4 +1,4 @@
-import { array, enums, object, objectIdValidation, optional, string } from "@deps";
+import { array, boolean, enums, object, objectIdValidation, optional, string } from "@deps";
 import { selectStruct } from "../../../mod.ts";
 import { pagination } from "@lib";
 
@@ -9,7 +9,7 @@ export const getsValidator = () => {
       // Text search
       search: optional(string()),
       // Filters
-      isPublished: optional(enums([true, false])),
+      isPublished: optional(boolean()),
       authorId: optional(objectIdValidation),
       tagIds: optional(array(objectIdValidation)),
       // Sort options

@@ -1,4 +1,4 @@
-import { type ActFn, ObjectId } from "@deps";
+import { type ActFn, ObjectId, type Document } from "@deps";
 import { blogPost } from "../../../mod.ts";
 
 export const getFn: ActFn = async (body) => {
@@ -21,5 +21,5 @@ export const getFn: ActFn = async (body) => {
       projection: get,
     })
     .toArray()
-    .then((results) => results[0] || null);
+    .then((results: Document[]) => results[0] || null);
 };
