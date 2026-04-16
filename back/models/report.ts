@@ -9,7 +9,8 @@ import {
 import { coreApp } from "../mod.ts";
 import { createUpdateAt } from "@lib";
 import {
-  comment_excludes,
+  document_excludes,
+  report_excludes,
   shared_relation_excludes,
   user_excludes,
 } from "./excludes.ts";
@@ -43,11 +44,23 @@ export const report_relations = {
       reports: {
         type: "multiple" as RelationDataType,
         limit: 100,
-        excludes: comment_excludes,
+        excludes: report_excludes,
         sort: {
           field: "_id",
           order: "desc" as RelationSortOrderType,
         },
+      },
+    },
+  },
+  documents: {
+    schemaName: "document",
+    type: "multiple" as RelationDataType,
+    optional: true,
+    excludes: document_excludes,
+    relatedRelations: {
+      report: {
+        type: "single" as RelationDataType,
+        excludes: report_excludes,
       },
     },
   },
@@ -60,7 +73,7 @@ export const report_relations = {
       reports: {
         type: "multiple" as RelationDataType,
         limit: 50,
-        excludes: comment_excludes,
+        excludes: report_excludes,
         sort: {
           field: "_id",
           order: "desc" as RelationSortOrderType,
@@ -77,7 +90,7 @@ export const report_relations = {
       reports: {
         type: "multiple" as RelationDataType,
         limit: 50,
-        excludes: comment_excludes,
+        excludes: report_excludes,
         sort: {
           field: "_id",
           order: "desc" as RelationSortOrderType,

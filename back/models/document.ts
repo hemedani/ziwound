@@ -1,9 +1,4 @@
-import {
-  optional,
-  type RelationDataType,
-  type RelationSortOrderType,
-  string,
-} from "@deps";
+import { optional, type RelationDataType, string } from "@deps";
 import { coreApp } from "../mod.ts";
 import { createUpdateAt } from "@lib";
 import {
@@ -29,17 +24,12 @@ export const document_relations = {
   report: {
     schemaName: "report",
     type: "single" as RelationDataType,
-    optional: true,
+    optional: false,
     excludes: report_excludes,
     relatedRelations: {
       documents: {
         type: "multiple" as RelationDataType,
-        limit: 50,
         excludes: document_excludes,
-        sort: {
-          field: "_id",
-          order: "desc" as RelationSortOrderType,
-        },
       },
     },
   },

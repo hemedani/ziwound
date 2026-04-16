@@ -4,7 +4,7 @@ import type { MyContext } from "@lib";
 
 export const updateRelationsFn: ActFn = async (body) => {
   const {
-    set: { _id, tags, category },
+    set: { _id, tags, category, documents },
     get,
   } = body.details;
 
@@ -37,6 +37,22 @@ export const updateRelationsFn: ActFn = async (body) => {
           _ids: new ObjectId(category),
           relatedRelations: {
             reports: true,
+          },
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
+
+  if (documents) {
+    await report.addRelation({
+      filters: { _id: reportId },
+      relations: {
+        documents: {
+          _ids: documents.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            report: true,
           },
         },
       },

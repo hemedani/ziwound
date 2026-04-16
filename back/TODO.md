@@ -58,7 +58,7 @@
   - [x] Create `src/document/remove.ts` - Delete document
   - [x] Create `src/document/count.ts` - Count documents
 - [ ] **Add Document-Report Relation Management**
-  - [ ] Implement addRelation functionality between Documents and Reports
+  - [x] Implement addRelation functionality between Documents and Reports
   - [ ] Implement removeRelation functionality
   - [ ] Add specialized gets endpoint that includes related documents
   - [ ] Add specialized gets endpoint that includes related reports
