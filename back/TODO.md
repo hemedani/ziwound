@@ -115,7 +115,7 @@
   - [x] Create `src/blogPost/remove.ts` - Delete blog post
   - [x] Create `src/blogPost/count.ts` - Count blog posts
 - [ ] **Add Advanced Blog Features**
-  - [ ] Add publish/unpublish action endpoints
+  - [x] Add publish/unpublish action endpoints
   - [ ] Add featured posts endpoint
   - [ ] Add posts by slug endpoint (for SEO-friendly URLs)
   - [ ] Add related posts endpoint (based on tags/category)
