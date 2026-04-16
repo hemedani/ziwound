@@ -60,8 +60,8 @@
 - [ ] **Add Document-Report Relation Management**
   - [x] Implement addRelation functionality between Documents and Reports
   - [ ] Implement removeRelation functionality
-  - [ ] Add specialized gets endpoint that includes related documents
-  - [ ] Add specialized gets endpoint that includes related reports
+  - [x] Add specialized gets endpoint that includes related documents
+  - [x] Add specialized gets endpoint that includes related reports
 - [ ] **File Upload Support for Documents**
   - [ ] Extend file upload to support document file types (PDF, DOC, DOCX, XLS, XLSX, TXT, etc.)
   - [ ] Add file type validation

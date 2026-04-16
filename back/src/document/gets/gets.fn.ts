@@ -44,7 +44,7 @@ export const getsFn: ActFn = async (body) => {
   return await document
     .aggregation({
       pipeline,
-      projection: get,
+      projection: { ...get, report: 1 },
     })
     .toArray();
 };

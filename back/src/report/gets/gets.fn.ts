@@ -45,19 +45,27 @@ export const getsFn: ActFn = async (body) => {
   // Category filter (array of IDs)
   categoryIds && categoryIds.length > 0 &&
     pipeline.push({
-      $match: { "category._id": { $in: categoryIds.map((id: string) => new ObjectId(id)) } },
+      $match: {
+        "category._id": {
+          $in: categoryIds.map((id: string) => new ObjectId(id)),
+        },
+      },
     });
 
   // Tag filter (array of IDs)
   tagIds && tagIds.length > 0 &&
     pipeline.push({
-      $match: { "tags._id": { $in: tagIds.map((id: string) => new ObjectId(id)) } },
+      $match: {
+        "tags._id": { $in: tagIds.map((id: string) => new ObjectId(id)) },
+      },
     });
 
   // User/Reporter filter (array of IDs)
   userIds && userIds.length > 0 &&
     pipeline.push({
-      $match: { "reporter._id": { $in: userIds.map((id: string) => new ObjectId(id)) } },
+      $match: {
+        "reporter._id": { $in: userIds.map((id: string) => new ObjectId(id)) },
+      },
     });
 
   // Date range filters
@@ -93,7 +101,7 @@ export const getsFn: ActFn = async (body) => {
   return await report
     .aggregation({
       pipeline,
-      projection: get,
+      projection: { ...get, documents: 1 },
     })
     .toArray();
 };
