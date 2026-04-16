@@ -358,7 +358,13 @@
     "videos": "ویدیوها",
     "documents": "اسناد",
     "filter": "فیلتر",
-    "noFilesFound": "هیچ فایلی یافت نشد"
+    "noFilesFound": "هیچ فایلی یافت نشد",
+    "documentsManagement": "مدیریت اسناد",
+    "documentsManagementDescription": "مشاهده و مدیریت اسناد آپلود شده",
+    "addDocument": "افزودن سند",
+    "linkedReports": "گزارش‌های مرتبط",
+    "noDocuments": "هیچ سندی یافت نشد",
+    "type": "نوع"
   },
   "notFound": {
     "title": "صفحه پیدا نشد",

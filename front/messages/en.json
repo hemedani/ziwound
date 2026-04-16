@@ -363,7 +363,13 @@
     "videos": "Videos",
     "documents": "Documents",
     "filter": "Filter",
-    "noFilesFound": "No files found"
+    "noFilesFound": "No files found",
+    "documentsManagement": "Documents Management",
+    "documentsManagementDescription": "View and manage uploaded documents",
+    "addDocument": "Add Document",
+    "linkedReports": "Linked Reports",
+    "noDocuments": "No documents found",
+    "type": "Type"
   },
   "notFound": {
     "title": "Page Not Found",

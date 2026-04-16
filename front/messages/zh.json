@@ -358,6 +358,12 @@
     "videos": "Videos",
     "documents": "Documents",
     "filter": "Filter",
-    "noFilesFound": "No files found"
+    "noFilesFound": "No files found",
+    "documentsManagement": "文档管理",
+    "documentsManagementDescription": "查看和管理上传的文档",
+    "addDocument": "添加文档",
+    "linkedReports": "关联报告",
+    "noDocuments": "未找到文档",
+    "type": "类型"
   }
 }

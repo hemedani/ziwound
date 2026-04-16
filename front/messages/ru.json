@@ -363,6 +363,12 @@
     "videos": "Videos",
     "documents": "Documents",
     "filter": "Filter",
-    "noFilesFound": "No files found"
+    "noFilesFound": "No files found",
+    "documentsManagement": "Управление документами",
+    "documentsManagementDescription": "Просмотр и управление загруженными документами",
+    "addDocument": "Добавить документ",
+    "linkedReports": "Связанные отчеты",
+    "noDocuments": "Документы не найдены",
+    "type": "Тип"
   }
 }

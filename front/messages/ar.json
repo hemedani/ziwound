@@ -358,6 +358,12 @@
     "videos": "Videos",
     "documents": "Documents",
     "filter": "Filter",
-    "noFilesFound": "No files found"
+    "noFilesFound": "No files found",
+    "documentsManagement": "إدارة الوثائق",
+    "documentsManagementDescription": "عرض وإدارة الوثائق المرفوعة",
+    "addDocument": "إضافة وثيقة",
+    "linkedReports": "التقارير المرتبطة",
+    "noDocuments": "لم يتم العثور على وثائق",
+    "type": "النوع"
   }
 }

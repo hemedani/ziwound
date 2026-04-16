@@ -363,6 +363,12 @@
     "videos": "Videos",
     "documents": "Documents",
     "filter": "Filter",
-    "noFilesFound": "No files found"
+    "noFilesFound": "No files found",
+    "documentsManagement": "Documentbeheer",
+    "documentsManagementDescription": "Bekijk en beheer geüploade documenten",
+    "addDocument": "Document Toevoegen",
+    "linkedReports": "Gekoppelde Rapporten",
+    "noDocuments": "Geen documenten gevonden",
+    "type": "Type"
   }
 }

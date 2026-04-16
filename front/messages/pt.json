@@ -363,6 +363,12 @@
     "videos": "Videos",
     "documents": "Documents",
     "filter": "Filter",
-    "noFilesFound": "No files found"
+    "noFilesFound": "No files found",
+    "documentsManagement": "Gerenciamento de Documentos",
+    "documentsManagementDescription": "Visualizar e gerenciar documentos enviados",
+    "addDocument": "Adicionar Documento",
+    "linkedReports": "Relatórios Vinculados",
+    "noDocuments": "Nenhum documento encontrado",
+    "type": "Tipo"
   }
 }

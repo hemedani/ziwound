@@ -358,6 +358,12 @@
     "videos": "Videos",
     "documents": "Documents",
     "filter": "Filter",
-    "noFilesFound": "No files found"
+    "noFilesFound": "No files found",
+    "documentsManagement": "Belge Yönetimi",
+    "documentsManagementDescription": "Yüklenen belgeleri görüntüle ve yönet",
+    "addDocument": "Belge Ekle",
+    "linkedReports": "Bağlantılı Raporlar",
+    "noDocuments": "Belge bulunamadı",
+    "type": "Tür"
   }
 }

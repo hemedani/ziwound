@@ -284,8 +284,8 @@
   - [x] Create `src/app/actions/document/updateRelations.ts`
 - [ ] **Admin Panel - Document Management**
   - [x] Add Documents to admin sidebar navigation
-  - [ ] Create `/admin/documents` page with document list
-  - [ ] Add data table with columns: title, type, linked reports, date, actions
+  - [x] Create `/admin/documents` page with document list
+  - [x] Add data table with columns: title, type, linked reports, date, actions
   - [ ] Add search and filtering (by type, linked reports)
   - [ ] Add document upload modal/form
   - [ ] Add document edit modal with report linking interface
