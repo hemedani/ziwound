@@ -8,7 +8,7 @@ You are an expert full-stack TypeScript/Deno developer working exclusively on th
 - Tech: Deno + Lesan framework + MongoDB + djwt + File upload support.
 - Goal: Secure login → multi-language war crime report submission + war crimes exploration + blog section + advanced admin panel.
 - **New Features to Implement**:
-  - Document Model (supporting documents linked to reports with many-to-many relations)
+  - Document Model (supporting documents linked to reports with one-direction relations)
   - Blog Post Model (articles, news, and updates with rich text content)
   - War Crimes Exploration Backend Support (advanced filtering, geospatial queries, analytics)
 
@@ -25,12 +25,14 @@ You are an expert full-stack TypeScript/Deno developer working exclusively on th
 - Follow Lesan framework patterns strictly (see back/QWEN.md for complete documentation).
 - Always use proper validation with Zod-like schemas.
 - Always generate type declarations for frontend after adding new models.
+- **Lesan Relations are One-Direction**: Define relations only on the owning model, use `relatedRelations` for reverse relations. Avoid bidirectional definitions to prevent inconsistencies.
+- Use `objectIdValidation` for ObjectId fields in validators.
 
 **Lesan Framework Patterns** (see back/QWEN.md for complete docs):
 
-- Model definition with pure fields and relations
+- Model definition with pure fields and relations (one-direction only)
 - Action functions (add, get, gets, update, updateRelations, remove, count)
-- Validator schemas with `set` and `get` objects
+- Validator schemas with `set` and `get` objects (use `objectIdValidation` for ObjectIds)
 - Relationship management with `addRelation` and `removeRelation`
 - Text search with MongoDB text indexes
 - Geospatial queries with 2dsphere indexes
@@ -43,20 +45,24 @@ You are an expert full-stack TypeScript/Deno developer working exclusively on th
 
 - ✅ Phase 1 (Core Models): 100% complete (User, File, Tag, Province, City, Category, Report)
 - ✅ Phase 2 (Auth & CRUD Acts): 100% complete
-- **Next**: Phase 3 - Document Model Implementation
+- ✅ Phase 3 (Document Model): 100% complete
+- 🔄 Phase 4 (Blog Post Model): Schema complete, CRUD implementation pending
+- **Next**: Phase 4 - Implement BlogPost CRUD Acts
 
 **What's Done**:
 
 - ✅ User model with auth (JWT, bcrypt, roles)
 - ✅ File model with upload support
 - ✅ Tag, Category, Province, City models
-- ✅ Report model with attachments, tags, location, status, priority
+- ✅ Report model with attachments, tags, location, status, priority, documents relation
 - ✅ Auth acts (login, register, getMe, user management)
 - ✅ CRUD acts for all core models
 - ✅ File upload endpoint with static serving
 - ✅ CORS and MongoDB connection configured
 - ✅ Type declarations generated for frontend
 - ✅ API playground access enabled
+- ✅ Document model with one-direction relations to reports
+- ✅ BlogPost model schema with relations
 
 **Backend Structure**:
 
@@ -74,6 +80,8 @@ back/
 │   ├── city.ts
 │   ├── category.ts
 │   ├── report.ts
+│   ├── document.ts
+│   ├── blogPost.ts
 │   └── utils/              # Utilities
 ├── src/                    # API implementations
 │   ├── mod.ts              # Setup
@@ -83,7 +91,9 @@ back/
 │   ├── province/
 │   ├── city/
 │   ├── category/
-│   └── report/
+│   ├── report/
+│   ├── document/
+│   └── blogPost/
 ├── declarations/           # Generated types
 ├── uploads/                # File uploads
 └── utils/                  # Utilities
@@ -91,15 +101,17 @@ back/
 
 **Important Reminders**:
 
-- Document model has many-to-many relations with Reports (each report can have several documents)
-- Blog posts need slug-based routing and full-text search
-- War crimes exploration needs geospatial queries and advanced filtering
-- Always separate pure field updates from relationship updates
-- Use `addRelation`/`removeRelation` for relationships, never manual updates
-- Generate type declarations after adding new models
-- Follow the exact Lesan framework patterns from back/QWEN.md
+- Relations are one-direction: Define on owning model, use `relatedRelations` for reverse.
+- Document model has one-direction relation to reports (owned by report).
+- Blog posts need slug-based routing and full-text search.
+- War crimes exploration needs geospatial queries and advanced filtering.
+- Always separate pure field updates from relationship updates.
+- Use `addRelation`/`removeRelation` for relationships, never manual updates.
+- Use `objectIdValidation` in validators for ObjectId arrays.
+- Generate type declarations after adding new models.
+- Follow the exact Lesan framework patterns from back/QWEN.md.
 
 **Next Session Prompt**:
-Continue with next unchecked step from TODO.md. Start with Phase 3: Document Model Implementation.
+Continue with next unchecked step from TODO.md. Start with Phase 4: Implement BlogPost CRUD Acts.
 
 Follow the same patterns: one step at a time, update TODO.md, commit with Gitmoji.

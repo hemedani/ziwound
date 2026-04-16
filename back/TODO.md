@@ -14,8 +14,13 @@
 - When stuck, ask for clarification in the ZED chat but do not proceed to next step.
 - Use **Deno tasks** for all commands.
 - Follow Lesan framework patterns and best practices from back/QWEN.md.
+- Relations are one-direction: Define relations only on the owning model, use `relatedRelations` for reverse relations. Avoid bidirectional definitions to prevent inconsistencies.
 
 ## Phase 1: Core Models (Already Complete)
+
+## Phase 2: Auth & CRUD Acts (Already Complete)
+
+## Phase 3: Document Model Implementation (Completed)
 
 - [x] User model (with roles: Ghost, Manager, Editor, Ordinary – JWT ready, bcrypt, unique email index)
 - [x] File model (for attachments, type-based directory routing: images/videos/docs)
@@ -72,7 +77,22 @@
   - [x] Verify declarations/ includes Document model types
   - [x] Test type safety with example queries
 
-## Phase 4: Blog Post Model Implementation
+**Lesan Framework Tips**:
+
+- Relations are one-direction: Define relations only on the owning model, use `relatedRelations` for reverse relations. Avoid bidirectional definitions to prevent inconsistencies.
+- Use `objectIdValidation` for ObjectId fields in validators.
+- Always use `addRelation` and `removeRelation` for managing relationships, never manual updates.
+- Separate pure field updates from relation updates in different endpoints.
+
+**Current Status**:
+
+- ✅ Phase 1 (Core Models): 100% complete
+- ✅ Phase 2 (Auth & CRUD Acts): 100% complete
+- ✅ Phase 3 (Document Model): 100% complete
+- 🔄 Phase 4 (Blog Post Model): Schema complete, CRUD implementation pending
+- ⏳ Phase 5-7: Pending
+
+**Next**: Phase 4 - Implement BlogPost CRUD Acts
 
 - [x] **Create BlogPost Model Schema**
   - [x] Define BlogPost model in `models/blogPost.ts`
