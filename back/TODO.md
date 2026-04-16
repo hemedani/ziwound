@@ -62,11 +62,11 @@
   - [x] Implement removeRelation functionality
   - [x] Add specialized gets endpoint that includes related documents
   - [x] Add specialized gets endpoint that includes related reports
-- [ ] **File Upload Support for Documents**
-  - [ ] Extend file upload to support document file types (PDF, DOC, DOCX, XLS, XLSX, TXT, etc.)
-  - [ ] Add file type validation
-  - [ ] Add file size limits configuration
-  - [ ] Update File model to track document file types
+- [x] **File Upload Support for Documents**
+  - [x] Extend file upload to support document file types (PDF, DOC, DOCX, XLS, XLSX, TXT, etc.)
+  - [x] Add file type validation
+  - [x] Add file size limits configuration
+  - [x] Update File model to track document file types
 - [ ] **Generate Type Declarations**
   - [ ] Run type generation for frontend integration
   - [ ] Verify declarations/ includes Document model types

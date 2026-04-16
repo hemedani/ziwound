@@ -3,42 +3,64 @@ import { coreApp, file } from "../../../mod.ts";
 import type { MyContext } from "@lib";
 
 export const uploadFileFn: ActFn = async (body) => {
-	const { user }: MyContext = coreApp.contextFns
-		.getContextModel() as MyContext;
+  const { user }: MyContext = coreApp.contextFns
+    .getContextModel() as MyContext;
 
-	const { formData, type, ...rest } = body.details.set;
+  const { formData, type, ...rest } = body.details.set;
 
-	const fileToUpload: File = formData.get("file") as File;
+  const fileToUpload: File = formData.get("file") as File;
 
-	const fileName = `${new ObjectId()}${
-		fileToUpload.name.slice(
-			fileToUpload.name.lastIndexOf("."),
-			fileToUpload.name.length,
-		)
-	}`;
-	const uploadDir = type === "image"
-		? "./uploads/images"
-		: type === "video"
-		? "./uploads/videos"
-		: "./uploads/docs";
-	await ensureDir(uploadDir);
-	await Deno.writeFile(`${uploadDir}/${fileName}`, fileToUpload.stream());
+  // File size validation (10MB limit)
+  const maxSize = 10 * 1024 * 1024;
+  if (fileToUpload.size > maxSize) {
+    throw new Error("File size exceeds the maximum limit of 10MB");
+  }
 
-	return await file.insertOne({
-		doc: {
-			name: fileName,
-			mimType: fileToUpload.type,
-			size: fileToUpload.size,
-			...rest,
-		},
-		relations: {
-			uploader: {
-				_ids: new ObjectId(user._id),
-				relatedRelations: {
-					uploadedAssets: true,
-				},
-			},
-		},
-		projection: body.details.get,
-	});
+  // File type validation for documents
+  if (type === "docs") {
+    const allowedMimeTypes = [
+      "application/pdf",
+      "application/msword",
+      "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+      "application/vnd.ms-excel",
+      "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+      "text/plain",
+    ];
+    if (!allowedMimeTypes.includes(fileToUpload.type)) {
+      throw new Error("Invalid file type for document upload");
+    }
+  }
+
+  const fileName = `${new ObjectId()}${
+    fileToUpload.name.slice(
+      fileToUpload.name.lastIndexOf("."),
+      fileToUpload.name.length,
+    )
+  }`;
+  const uploadDir = type === "image"
+    ? "./uploads/images"
+    : type === "video"
+    ? "./uploads/videos"
+    : "./uploads/docs";
+  await ensureDir(uploadDir);
+  await Deno.writeFile(`${uploadDir}/${fileName}`, fileToUpload.stream());
+
+  return await file.insertOne({
+    doc: {
+      name: fileName,
+      mimType: fileToUpload.type,
+      size: fileToUpload.size,
+      type,
+      ...rest,
+    },
+    relations: {
+      uploader: {
+        _ids: new ObjectId(user._id),
+        relatedRelations: {
+          uploadedAssets: true,
+        },
+      },
+    },
+    projection: body.details.get,
+  });
 };
