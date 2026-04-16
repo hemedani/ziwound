@@ -1,0 +1,14 @@
+import { array, object, objectIdValidation, optional } from "@deps";
+import { selectStruct } from "../../../mod.ts";
+
+export const updateRelationsValidator = () => {
+  return object({
+    set: object({
+      _id: objectIdValidation,
+      coverImage: optional(objectIdValidation),
+      tags: optional(array(objectIdValidation)),
+      removeTags: optional(array(objectIdValidation)),
+    }),
+    get: selectStruct("blogPost", 2),
+  });
+};
