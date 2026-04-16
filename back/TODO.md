@@ -110,7 +110,7 @@
     - [x] Add filter by tags
     - [x] Add text search functionality
     - [x] Add sorting by publishedAt, createdAt, updatedAt
-  - [ ] Create `src/blogPost/update.ts` - Update blog post
+  - [x] Create `src/blogPost/update.ts` - Update blog post
   - [ ] Create `src/blogPost/updateRelations.ts` - Update blog post relations (tags)
   - [ ] Create `src/blogPost/remove.ts` - Delete blog post
   - [ ] Create `src/blogPost/count.ts` - Count blog posts
