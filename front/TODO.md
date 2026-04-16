@@ -5,6 +5,7 @@
 **Tech stack**: Next.js 16 + TypeScript + Tailwind v4 + shadcn/ui + next-intl + Zustand + React Hook Form + Zod
 
 **New Features**:
+
 - War Crimes Exploration Page (search, filter, map view, timeline)
 - Blog Section (articles, news, updates with rich text display)
 - Document Management (upload, link to reports, display)
@@ -274,13 +275,13 @@
 
 ## Phase 8: Document Management Implementation
 
-- [ ] **Document Server Actions**
-  - [ ] Create `src/app/actions/document/add.ts`
-  - [ ] Create `src/app/actions/document/get.ts`
-  - [ ] Create `src/app/actions/document/gets.ts`
-  - [ ] Create `src/app/actions/document/update.ts`
-  - [ ] Create `src/app/actions/document/remove.ts`
-  - [ ] Create `src/app/actions/document/updateRelations.ts`
+- [x] **Document Server Actions**
+  - [x] Create `src/app/actions/document/add.ts`
+  - [x] Create `src/app/actions/document/get.ts`
+  - [x] Create `src/app/actions/document/gets.ts`
+  - [x] Create `src/app/actions/document/update.ts`
+  - [x] Create `src/app/actions/document/remove.ts`
+  - [x] Create `src/app/actions/document/updateRelations.ts`
 - [ ] **Admin Panel - Document Management**
   - [ ] Add Documents to admin sidebar navigation
   - [ ] Create `/admin/documents` page with document list
