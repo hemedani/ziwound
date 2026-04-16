@@ -19,6 +19,7 @@ export const blogPost_pure = {
   slug: string(),
   content: string(),
   isPublished: defaulted(boolean(), false),
+  isFeatured: defaulted(boolean(), false),
   publishedAt: optional(string()), // Date as string
   ...createUpdateAt,
 };

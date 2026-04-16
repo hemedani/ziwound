@@ -116,7 +116,7 @@
   - [x] Create `src/blogPost/count.ts` - Count blog posts
 - [ ] **Add Advanced Blog Features**
   - [x] Add publish/unpublish action endpoints
-  - [ ] Add featured posts endpoint
+  - [x] Add featured posts endpoint
   - [ ] Add posts by slug endpoint (for SEO-friendly URLs)
   - [ ] Add related posts endpoint (based on tags/category)
 - [x] **Generate Type Declarations**

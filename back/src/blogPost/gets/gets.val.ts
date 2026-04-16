@@ -10,6 +10,7 @@ export const getsValidator = () => {
       search: optional(string()),
       // Filters
       isPublished: optional(boolean()),
+      isFeatured: optional(boolean()),
       authorId: optional(objectIdValidation),
       tagIds: optional(array(objectIdValidation)),
       // Sort options

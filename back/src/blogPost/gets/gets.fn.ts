@@ -9,6 +9,7 @@ export const getsFn: ActFn = async (body) => {
       skip,
       search,
       isPublished,
+      isFeatured,
       authorId,
       tagIds,
       sortBy,
@@ -30,6 +31,13 @@ export const getsFn: ActFn = async (body) => {
   if (isPublished !== undefined) {
     pipeline.push({
       $match: { isPublished },
+    });
+  }
+
+  // isFeatured filter
+  if (isFeatured !== undefined) {
+    pipeline.push({
+      $match: { isFeatured },
     });
   }
 
