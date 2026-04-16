@@ -117,7 +117,7 @@
 - [ ] **Add Advanced Blog Features**
   - [x] Add publish/unpublish action endpoints
   - [x] Add featured posts endpoint
-  - [ ] Add posts by slug endpoint (for SEO-friendly URLs)
+  - [x] Add posts by slug endpoint (for SEO-friendly URLs)
   - [ ] Add related posts endpoint (based on tags/category)
 - [x] **Generate Type Declarations**
   - [x] Run type generation for frontend integration
