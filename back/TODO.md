@@ -67,10 +67,10 @@
   - [x] Add file type validation
   - [x] Add file size limits configuration
   - [x] Update File model to track document file types
-- [ ] **Generate Type Declarations**
-  - [ ] Run type generation for frontend integration
-  - [ ] Verify declarations/ includes Document model types
-  - [ ] Test type safety with example queries
+- [x] **Generate Type Declarations**
+  - [x] Run type generation for frontend integration
+  - [x] Verify declarations/ includes Document model types
+  - [x] Test type safety with example queries
 
 ## Phase 4: Blog Post Model Implementation
 
