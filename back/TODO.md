@@ -103,7 +103,7 @@
   - [x] Add unique index on slug field
 - [ ] **Implement BlogPost CRUD Acts**
   - [x] Create `src/blogPost/add.ts` - Add new blog post
-  - [ ] Create `src/blogPost/get.ts` - Get single blog post by ID or slug
+  - [x] Create `src/blogPost/get.ts` - Get single blog post by ID or slug
   - [ ] Create `src/blogPost/gets.ts` - Get multiple blog posts with pagination/filtering
     - [ ] Add filter by isPublished status
     - [ ] Add filter by author
