@@ -112,7 +112,7 @@
     - [x] Add sorting by publishedAt, createdAt, updatedAt
   - [x] Create `src/blogPost/update.ts` - Update blog post
   - [x] Create `src/blogPost/updateRelations.ts` - Update blog post relations (tags)
-  - [ ] Create `src/blogPost/remove.ts` - Delete blog post
+  - [x] Create `src/blogPost/remove.ts` - Delete blog post
   - [ ] Create `src/blogPost/count.ts` - Count blog posts
 - [ ] **Add Advanced Blog Features**
   - [ ] Add publish/unpublish action endpoints
