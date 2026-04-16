@@ -7,6 +7,7 @@ import { removeSetup } from "./remove/mod.ts";
 import { countSetup } from "./count/mod.ts";
 import { publishSetup } from "./publish/mod.ts";
 import { unpublishSetup } from "./unpublish/mod.ts";
+import { getRelatedSetup } from "./getRelated/mod.ts";
 import { getBySlugSetup } from "./getBySlug/mod.ts";
 
 export const blogPostSetup = () => {
@@ -19,5 +20,6 @@ export const blogPostSetup = () => {
   countSetup();
   publishSetup();
   unpublishSetup();
+  getRelatedSetup();
   getBySlugSetup();
 };

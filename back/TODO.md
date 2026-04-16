@@ -118,7 +118,7 @@
   - [x] Add publish/unpublish action endpoints
   - [x] Add featured posts endpoint
   - [x] Add posts by slug endpoint (for SEO-friendly URLs)
-  - [ ] Add related posts endpoint (based on tags/category)
+  - [x] Add related posts endpoint (based on tags/category)
 - [x] **Generate Type Declarations**
   - [x] Run type generation for frontend integration
   - [x] Verify declarations/ includes BlogPost model types
