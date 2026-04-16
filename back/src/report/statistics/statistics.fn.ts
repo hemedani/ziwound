@@ -23,6 +23,11 @@ export const statisticsFn: ActFn = async (body) => {
         monthlyCounts: [
           { $group: { _id: { $dateToString: { format: "%Y-%m", date: "$createdAt" } }, count: { $sum: 1 } } },
           { $sort: { _id: 1 } }
+        ],
+        geographicCounts: [
+          { $match: { location: { $exists: true } } },
+          { $group: { _id: { lng: { $round: [{ $arrayElemAt: ["$location.coordinates", 0] }, 1] }, lat: { $round: [{ $arrayElemAt: ["$location.coordinates", 1] }, 1] } }, count: { $sum: 1 } } },
+          { $sort: { count: -1 } }
         ]
       }
     }

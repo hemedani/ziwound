@@ -138,17 +138,17 @@
   - [x] Add geospatial query endpoints for map-based exploration
   - [x] Support GeoJSON queries for regions and boundaries
   - [x] Add proximity search (reports near a location)
-  - [ ] Add clustering support for map markers (if needed)
+  - [x] Add clustering support for map markers (if needed)
 - [x] **Aggregation & Analytics Endpoints**
   - [x] Add statistics endpoint (total reports by status, category, location, date)
-  - [ ] Add timeline aggregation (reports over time periods)
-  - [ ] Add geographic distribution data
-  - [ ] Add tag/category distribution
-- [ ] **Export Functionality**
-  - [ ] Add CSV export endpoint for reports
-  - [ ] Add PDF export endpoint for individual reports with documents
-  - [ ] Add bulk export functionality for admin users
-  - [ ] Add data anonymization for sensitive fields in exports
+  - [x] Add timeline aggregation (reports over time periods)
+  - [x] Add geographic distribution data
+  - [x] Add tag/category distribution
+- [x] **Export Functionality**
+  - [x] Add CSV export endpoint for reports
+  - [x] Add PDF export endpoint for individual reports with documents
+  - [x] Add bulk export functionality for admin users
+  - [x] Add data anonymization for sensitive fields in exports
 
 ## Phase 6: Backend Audit & Bug Fixes
 
