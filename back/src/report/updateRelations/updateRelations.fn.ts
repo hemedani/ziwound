@@ -4,7 +4,7 @@ import type { MyContext } from "@lib";
 
 export const updateRelationsFn: ActFn = async (body) => {
   const {
-    set: { _id, tags, category, documents },
+    set: { _id, tags, category, documents, removeDocuments },
     get,
   } = body.details;
 
@@ -58,6 +58,21 @@ export const updateRelationsFn: ActFn = async (body) => {
       },
       projection: get,
       replace: true,
+    });
+  }
+
+  if (removeDocuments) {
+    await report.removeRelation({
+      filters: { _id: reportId },
+      relations: {
+        documents: {
+          _ids: removeDocuments.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            report: true,
+          },
+        },
+      },
+      projection: get,
     });
   }
 

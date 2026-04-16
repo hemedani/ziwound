@@ -8,6 +8,7 @@ export const updateRelationsValidator = () => {
       tags: optional(array(string())),
       category: optional(string()),
       documents: optional(array(string())),
+      removeDocuments: optional(array(string())),
     }),
     get: selectStruct("report", 2),
   });

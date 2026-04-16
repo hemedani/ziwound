@@ -59,7 +59,7 @@
   - [x] Create `src/document/count.ts` - Count documents
 - [ ] **Add Document-Report Relation Management**
   - [x] Implement addRelation functionality between Documents and Reports
-  - [ ] Implement removeRelation functionality
+  - [x] Implement removeRelation functionality
   - [x] Add specialized gets endpoint that includes related documents
   - [x] Add specialized gets endpoint that includes related reports
 - [ ] **File Upload Support for Documents**
