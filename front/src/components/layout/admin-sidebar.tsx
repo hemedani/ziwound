@@ -60,6 +60,11 @@ export function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
       href: "/admin/files",
       icon: FileImage,
     },
+    {
+      name: t("documents"),
+      href: "/admin/documents",
+      icon: FileText,
+    },
   ];
 
   // Filter navigation items based on user level
