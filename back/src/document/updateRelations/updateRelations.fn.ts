@@ -18,7 +18,6 @@ export const updateRelationsFn: ActFn = async (body) => {
         },
       },
       projection: get,
-      replace: true,
     });
   }
 

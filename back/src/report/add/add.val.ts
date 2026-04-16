@@ -1,4 +1,4 @@
-import { array, number, object, optional, string } from "@deps";
+import { array, number, object, objectIdValidation, optional, string } from "@deps";
 import { selectStruct } from "../../../mod.ts";
 import { report_pure } from "@model";
 
@@ -17,6 +17,7 @@ export const addValidator = () => {
       ),
       tags: optional(array(string())),
       category: optional(string()),
+      documents: optional(array(objectIdValidation)),
     }),
     get: selectStruct("report", 1),
   });
