@@ -104,12 +104,12 @@
 - [ ] **Implement BlogPost CRUD Acts**
   - [x] Create `src/blogPost/add.ts` - Add new blog post
   - [x] Create `src/blogPost/get.ts` - Get single blog post by ID or slug
-  - [ ] Create `src/blogPost/gets.ts` - Get multiple blog posts with pagination/filtering
-    - [ ] Add filter by isPublished status
-    - [ ] Add filter by author
-    - [ ] Add filter by tags
-    - [ ] Add text search functionality
-    - [ ] Add sorting by publishedAt, createdAt, updatedAt
+  - [x] Create `src/blogPost/gets.ts` - Get multiple blog posts with pagination/filtering
+    - [x] Add filter by isPublished status
+    - [x] Add filter by author
+    - [x] Add filter by tags
+    - [x] Add text search functionality
+    - [x] Add sorting by publishedAt, createdAt, updatedAt
   - [ ] Create `src/blogPost/update.ts` - Update blog post
   - [ ] Create `src/blogPost/updateRelations.ts` - Update blog post relations (tags)
   - [ ] Create `src/blogPost/remove.ts` - Delete blog post
