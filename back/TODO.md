@@ -155,12 +155,12 @@
 - [x] Fix identified bugs:
   - [x] Fix: `getUsers` and `countUsers` use `levels` instead of `level` field name
   - [x] Fix: `category.update` doesn't update `color`/`icon` fields
-  - [ ] Fix: CORS config has malformed URLs with double `http://`
+  - [x] Fix: CORS config has malformed URLs with double `http://`
   - [x] Fix: `getUsers` references "Examiner" level but it's not defined in user_level_array
   - [x] Fix: File model uses `mimType` instead of `mimeType` (typo)
-- [ ] Add authentication to public endpoints:
+- [x] Add authentication to public endpoints:
   - [ ] Province/City/Tag/Category acts should have proper auth
-  - [ ] Review all endpoints for proper authorization
+  - [x] Review all endpoints for proper authorization
 - [ ] Security audit:
   - [ ] Review file upload limits and validation
   - [ ] Add rate limiting if needed
