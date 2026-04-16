@@ -1,10 +1,10 @@
-import { boolean, object, optional, string } from "@deps";
+import { boolean, object, objectIdValidation, optional, string } from "@deps";
 import { selectStruct } from "../../../mod.ts";
 
 export const removeValidator = () => {
 	return object({
 		set: object({
-			_id: string(),
+			_id: objectIdValidation,
 			hardCascade: optional(boolean()),
 		}),
 		get: selectStruct("report", 1),
