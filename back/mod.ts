@@ -13,6 +13,7 @@ import {
   users,
 } from "@model";
 import { functionsSetup } from "./src/mod.ts";
+import { RateLimiter } from "./utils/rateLimiter.ts";
 
 const MONGO_URI = Deno.env.get("MONGO_URI") || "mongodb://127.0.0.1:27017/";
 const APP_PORT = Deno.env.get("APP_PORT") || 1406;
@@ -32,6 +33,8 @@ export const category = categories();
 export const report = reports();
 export const document = documents();
 export const blogPost = blogPostModel();
+
+export const rateLimiter = new RateLimiter(100, 60 * 1000); // 100 requests per minute
 
 export const { setAct, setService, getAtcsWithServices } = coreApp.acts;
 

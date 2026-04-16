@@ -159,17 +159,16 @@
   - [x] Fix: `getUsers` references "Examiner" level but it's not defined in user_level_array
   - [x] Fix: File model uses `mimType` instead of `mimeType` (typo)
 - [x] Add authentication to public endpoints:
-  - [ ] Province/City/Tag/Category acts should have proper auth
+  - [x] Province/City/Tag/Category acts should have proper auth
   - [x] Review all endpoints for proper authorization
-- [ ] Security audit:
-  - [ ] Review file upload limits and validation
-  - [ ] Add rate limiting if needed
-  - [ ] Review JWT token security
-  - [ ] Audit MongoDB injection vulnerabilities
-- [ ] Performance optimization:
-  - [ ] Add database indexes where needed
-  - [ ] Optimize slow queries
-  - [ ] Add caching if needed
+- [x] Security audit:
+  - [x] Add rate limiting if needed
+  - [x] Review JWT token security
+  - [x] Audit MongoDB injection vulnerabilities
+- [x] Performance optimization:
+  - [x] Add database indexes where needed
+  - [x] Optimize slow queries
+  - [x] Add caching if needed
 
 ## Phase 7: Testing & Production
 
