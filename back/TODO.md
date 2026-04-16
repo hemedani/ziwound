@@ -172,15 +172,15 @@
 
 ## Phase 7: Testing & Production
 
-- [ ] Test all new models and endpoints locally with `deno task bc-dev`
-- [ ] Write integration tests for Document model
-- [ ] Write integration tests for BlogPost model
-- [ ] Test relation management (add/remove relations)
-- [ ] Test file upload for document files
-- [ ] Test advanced filtering and geospatial queries
-- [ ] Test export functionality
-- [ ] Docker build testing
-- [ ] Production deployment preparation
+- [x] Test all new models and endpoints locally with `deno task bc-dev`
+- [x] Write integration tests for Document model
+- [x] Write integration tests for BlogPost model
+- [x] Test relation management (add/remove relations)
+- [x] Test file upload for document files
+- [x] Test advanced filtering and geospatial queries
+- [x] Test export functionality
+- [x] Docker build testing
+- [x] Production deployment preparation
 
 **Known Issues** (from code review):
 

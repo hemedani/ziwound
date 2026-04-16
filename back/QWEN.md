@@ -50,6 +50,65 @@ The backend defines the following core models:
 - Documents - Supporting documents related to reports (title, description, document files (multiple), multiple relations to Reports - each report can have several documents)
 - Blog Posts - Blog articles with title, content, author, cover image, publish status, tags, and publication date
 
+## Recent Implementation Notes
+
+This section documents key features and implementations added in recent development sessions:
+
+### Document Model Implementation
+
+- **Schema**: Title, description, documentFiles (multiple file relations), report relation (single to Report)
+- **CRUD Acts**: add, get, gets, update, updateRelations, remove, count
+- **Features**: Text indexes for search, one-direction relations (owned by Report)
+- **File Support**: Extended file upload to support document types (PDF, DOC, DOCX, XLS, XLSX, TXT)
+
+### BlogPost Model Implementation
+
+- **Schema**: Title, slug (unique), content (markdown/HTML), author (User), coverImage (File), isPublished, publishedAt, tags (multiple)
+- **CRUD Acts**: add, get, gets, update, updateRelations, remove, count
+- **Advanced Features**:
+  - Publish/unpublish actions (separate endpoints)
+  - Get by slug for SEO-friendly URLs
+  - Get related posts based on shared tags
+  - Featured posts filtering
+  - Full-text search on title and content
+  - Unique slug index
+
+### Enhanced Report Exploration
+
+- **Advanced Filtering**: Date range (createdAt), geospatial (bbox, proximity search), status, priority, category, tags, user
+- **Analytics Endpoint**: Statistics with counts by status, category, priority, monthly timeline, geographic distribution
+- **Export Functionality**: CSV export for bulk data, PDF export for individual reports
+- **Geospatial Queries**: Bounding box and radius-based location filtering
+
+### Security & Performance Improvements
+
+- **Rate Limiting**: In-memory rate limiter (100 requests/minute per user/IP) on report submissions
+- **Bug Fixes**: Corrected field names in countUsers, added missing fields in category.update, fixed typos (mimType → mimeType), updated invalid user levels
+- **Authentication**: Added JWT authentication to Province/City/Tag/Category endpoints (previously public)
+- **Indexes**: Text indexes for search, 2dsphere for geospatial, unique constraints
+
+### API Playground & Type Generation
+
+- All new endpoints accessible via playground at `http://localhost:1406/playground`
+- Automatic TypeScript type declarations generated for frontend integration
+- CORS configured for multiple origins including localhost and production domains
+
+### Development Workflow
+
+- **One-step implementation**: Each feature implemented atomically with TODO updates and git commits
+- **Lesan Framework Patterns**: Strict adherence to one-direction relations, separate pure/relation updates, proper validation
+- **Testing**: Server runs successfully with all endpoints functional
+- **Docker Support**: Production-ready containerization with multi-stage build
+
+### Key Technical Decisions
+
+- **Relations**: One-direction only, using `relatedRelations` for reverse access
+- **Validation**: Zod-like schemas with `objectIdValidation` for ObjectIds
+- **File Upload**: Type-based directory routing, size limits (10MB), mime validation
+- **Geospatial**: 2dsphere indexes, GeoJSON Point/MultiPolygon support
+- **Search**: MongoDB text indexes with relevance scoring
+- **Security**: HS512 JWT, bcrypt hashing, role-based access control
+
 ## Project Structure
 
 ```

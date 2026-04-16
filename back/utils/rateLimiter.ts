@@ -1,4 +1,5 @@
-import { type ActFn } from "@deps";
+import { coreApp } from "../mod.ts";
+import { MyContext } from "./context.ts";
 
 export class RateLimiter {
   private requests: Map<string, number[]> = new Map();
@@ -10,7 +11,9 @@ export class RateLimiter {
     const timestamps = this.requests.get(key) || [];
 
     // Filter out timestamps outside the window
-    const validTimestamps = timestamps.filter(timestamp => now - timestamp < this.windowMs);
+    const validTimestamps = timestamps.filter((timestamp) =>
+      now - timestamp < this.windowMs
+    );
 
     if (validTimestamps.length >= this.limit) {
       return false;
@@ -24,12 +27,17 @@ export class RateLimiter {
 }
 
 export const createRateLimitMiddleware = (limiter: RateLimiter) => {
-  return async (body: any) => {
-    // Use user ID if authenticated, otherwise IP or a default key
-    const key = body.context?.user?._id?.toString() || body.context?.ip || 'anonymous';
+  return () => {
+    const { user: { _id } }: MyContext = coreApp.contextFns
+      .getContextModel() as MyContext;
+
+    // should get and set ip in context in future
+    // const key = _id?.toString() || body.context?.ip || 'anonymous';
+
+    const key = _id?.toString() || "anonymous";
 
     if (!limiter.isAllowed(key)) {
-      throw new Error('Rate limit exceeded. Please try again later.');
+      throw new Error("Rate limit exceeded. Please try again later.");
     }
   };
 };
