@@ -1,7 +1,9 @@
 # Ziwound Backend - Deno Application
+
 (adapted from Naghshe backend)
 
 ## Project Overview
+
 Ziwound backend is a Deno + Lesan application for a war crimes documentation system. Models include User, Report (war crime reports with title, description, attachments, tags, location, status, etc.), Document (supporting documents related to reports), Blog (blog posts and articles), File, Tag, and any required extra models.
 
 ### Architecture
@@ -228,6 +230,8 @@ Lesan is a web server and ODM (Object Document Model) framework designed to impl
 
 ### Relationship Management
 
+**Important Note:** In Lesan, relations are one-direction. The model that owns the relation defines it, and the `relatedRelations` property automatically creates and updates the reverse relation on the target model. Do not define bidirectional relations manually, as this can lead to inconsistencies.
+
 #### Types of Relationships:
 
 - **relation**: Defines relationships from the parent document to other documents
@@ -401,22 +405,18 @@ Text indexes enable full-text search capabilities on model fields. Define them i
 
 ```typescript
 export const categories = () =>
-  coreApp.odm.newModel(
-    "category",
-    shared_relation_pure,
-    createSharedRelations(),
-    {
-      createIndex: {
-        indexSpec: {
-          name: "text",
-          description: "text",
-        },
+  coreApp.odm.newModel("category", shared_relation_pure, createSharedRelations(), {
+    createIndex: {
+      indexSpec: {
+        name: "text",
+        description: "text",
       },
     },
-  );
+  });
 ```
 
 **Important Notes:**
+
 - Text indexes support multiple fields in a single index
 - Only one text index per collection is allowed
 - Common fields to index: `name`, `description`, `title`, or any searchable text content
@@ -444,7 +444,7 @@ if (search && (!sortBy || sortBy === "relevance")) {
 }
 
 // 3. Sorting
-const sortField = sortBy === "relevance" ? "textScore" : (sortBy || "_id");
+const sortField = sortBy === "relevance" ? "textScore" : sortBy || "_id";
 const sortDirection = sortOrder === "asc" ? 1 : -1;
 pipeline.push({ $sort: { [sortField]: sortDirection } });
 
@@ -477,11 +477,11 @@ export const getsValidator = () => {
 ```
 
 **Common sortBy values:**
+
 - `createdAt`, `updatedAt` - Timestamp fields
 - `name`, `title` - Text fields
 - `relevance` - Special value for text search score sorting
 - `status`, `priority` - Status/priority fields
-
 
 ### Update and Delete Operations
 
@@ -674,9 +674,9 @@ functionsSetup();
 // 6. Start server
 coreApp.runServer({
   port: Number(APP_PORT),
-  typeGeneration: true,      // Auto-generates TypeScript types
-  playground: true,           // Enable API playground
-  staticPath: ["/uploads"],   // Static file serving
+  typeGeneration: true, // Auto-generates TypeScript types
+  playground: true, // Enable API playground
+  staticPath: ["/uploads"], // Static file serving
   cors: ["http://localhost:3000"],
 });
 ```
@@ -686,6 +686,7 @@ coreApp.runServer({
 ## Model Definition Pattern
 
 Models are defined with three main components:
+
 1. **Pure fields** - Simple data fields with validation using Superstruct
 2. **Relations** - Relationships to other models
 3. **Model registration** - Calling `coreApp.odm.newModel()`
@@ -704,7 +705,12 @@ import {
 } from "@deps";
 import { coreApp } from "../mod.ts";
 import { createUpdateAt } from "@lib";
-import { user_excludes, file_excludes, shared_relation_excludes, comment_excludes } from "./excludes.ts";
+import {
+  user_excludes,
+  file_excludes,
+  shared_relation_excludes,
+  comment_excludes,
+} from "./excludes.ts";
 import { geoJSONStruct } from "./utils/geoJSONStruct.ts";
 
 // 1. Define enums for restricted values
@@ -715,11 +721,11 @@ export const report_status_emums = enums(report_status_array);
 export const report_pure = {
   title: string(),
   description: string(),
-  location: optional(geoJSONStruct("Point")),  // GeoJSON Point
+  location: optional(geoJSONStruct("Point")), // GeoJSON Point
   address: optional(string()),
   status: defaulted(report_status_emums, "Pending"),
   priority: optional(enums(["Low", "Medium", "High"])),
-  ...createUpdateAt,  // Adds createdAt and updatedAt
+  ...createUpdateAt, // Adds createdAt and updatedAt
 };
 
 // 3. Relations - connections to other models
@@ -747,7 +753,7 @@ export const report_relations = {
     type: "multiple" as RelationDataType,
     optional: true,
     excludes: file_excludes,
-    relatedRelations: {},  // No reverse relation
+    relatedRelations: {}, // No reverse relation
   },
   tags: {
     schemaName: "tag",
@@ -780,17 +786,16 @@ export const report_relations = {
 };
 
 // 4. Register the model
-export const reports = () =>
-  coreApp.odm.newModel("report", report_pure, report_relations);
+export const reports = () => coreApp.odm.newModel("report", report_pure, report_relations);
 
 // With indexes and excludes:
 export const users = () =>
   coreApp.odm.newModel("user", user_pure, user_relations, {
     createIndex: {
-      indexSpec: { "email": 1 },
+      indexSpec: { email: 1 },
       options: { unique: true },
     },
-    excludes: ["password"],  // Fields excluded from API responses
+    excludes: ["password"], // Fields excluded from API responses
   });
 ```
 
@@ -798,17 +803,17 @@ export const users = () =>
 
 ```typescript
 coreApp.odm.newModel(
-  "modelName",           // Model name (string)
-  pureFields,            // Object with field validations
-  relations,             // Object with relation definitions
+  "modelName", // Model name (string)
+  pureFields, // Object with field validations
+  relations, // Object with relation definitions
   {
     // Optional configuration
     createIndex: {
-      indexSpec: { "fieldName": 1, "geoField": "2dsphere" },
+      indexSpec: { fieldName: 1, geoField: "2dsphere" },
       options: { unique: true },
     },
-    excludes: ["sensitiveField1", "sensitiveField2"],  // Excluded from API responses
-  }
+    excludes: ["sensitiveField1", "sensitiveField2"], // Excluded from API responses
+  },
 );
 ```
 
@@ -819,6 +824,7 @@ coreApp.odm.newModel(
 ### Relation Types
 
 **Single Relation** (one-to-one or many-to-one):
+
 ```typescript
 category: {
   schemaName: "category",
@@ -838,6 +844,7 @@ category: {
 ```
 
 **Multiple Relations** (one-to-many or many-to-many):
+
 ```typescript
 attachments: {
   schemaName: "file",
@@ -850,15 +857,15 @@ attachments: {
 
 ### Relation Properties
 
-| Property | Type | Description |
-|----------|------|-------------|
-| `schemaName` | string | Target model name |
-| `type` | RelationDataType | "single" or "multiple" |
-| `optional` | boolean | Whether relation is required |
-| `excludes` | string[] | Fields to exclude from response |
-| `relatedRelations` | object | Reverse relations created on target model |
-| `limit` | number | Max embedded docs (multiple relations) |
-| `sort` | object | Sort order for embedded docs |
+| Property           | Type             | Description                               |
+| ------------------ | ---------------- | ----------------------------------------- |
+| `schemaName`       | string           | Target model name                         |
+| `type`             | RelationDataType | "single" or "multiple"                    |
+| `optional`         | boolean          | Whether relation is required              |
+| `excludes`         | string[]         | Fields to exclude from response           |
+| `relatedRelations` | object           | Reverse relations created on target model |
+| `limit`            | number           | Max embedded docs (multiple relations)    |
+| `sort`             | object           | Sort order for embedded docs              |
 
 ### Important Rules
 
@@ -874,6 +881,7 @@ attachments: {
 Each API action follows a consistent three-file pattern:
 
 ### Directory Structure
+
 ```
 src/[model]/[action]/
 ├── mod.ts              # Action setup (registers with Lesan)
@@ -882,6 +890,7 @@ src/[model]/[action]/
 ```
 
 ### 1. Validator (`[action].val.ts`)
+
 Defines input validation and output projection:
 
 ```typescript
@@ -891,26 +900,32 @@ import { report_pure } from "@model";
 
 export const addValidator = () => {
   // Extract fields that need special handling
-  const { location, attachments, tags, category, ...basePure } = report_pure as Record<string, unknown>;
+  const { location, attachments, tags, category, ...basePure } = report_pure as Record<
+    string,
+    unknown
+  >;
 
   return object({
     set: object({
       ...basePure,
       // Override complex fields
-      location: optional(object({
-        type: string(),
-        coordinates: array(number()),
-      })),
+      location: optional(
+        object({
+          type: string(),
+          coordinates: array(number()),
+        }),
+      ),
       attachments: optional(array(string())),
       tags: optional(array(string())),
       category: optional(string()),
     }),
-    get: selectStruct("report", 1),  // Output projection with depth 1
+    get: selectStruct("report", 1), // Output projection with depth 1
   });
 };
 ```
 
 ### 2. Function (`[action].fn.ts`)
+
 Implements the business logic:
 
 ```typescript
@@ -926,24 +941,30 @@ export const addFn: ActFn = async (body) => {
   const { attachments, tags, category, ...rest } = set;
 
   return await report.insertOne({
-    doc: rest,  // Pure fields
+    doc: rest, // Pure fields
     relations: {
-      reporter: { _ids: user._id },  // Auto-set from context
-      attachments: attachments ? {
-        _ids: attachments.map((id: string) => new ObjectId(id)),
-      } : undefined,
-      tags: tags ? {
-        _ids: tags.map((id: string) => new ObjectId(id)),
-        relatedRelations: {
-          reports: { replace: true },
-        },
-      } : undefined,
-      category: category ? {
-        _ids: new ObjectId(category),
-        relatedRelations: {
-          reports: { replace: true },
-        },
-      } : undefined,
+      reporter: { _ids: user._id }, // Auto-set from context
+      attachments: attachments
+        ? {
+            _ids: attachments.map((id: string) => new ObjectId(id)),
+          }
+        : undefined,
+      tags: tags
+        ? {
+            _ids: tags.map((id: string) => new ObjectId(id)),
+            relatedRelations: {
+              reports: { replace: true },
+            },
+          }
+        : undefined,
+      category: category
+        ? {
+            _ids: new ObjectId(category),
+            relatedRelations: {
+              reports: { replace: true },
+            },
+          }
+        : undefined,
     },
     projection: get,
   });
@@ -951,6 +972,7 @@ export const addFn: ActFn = async (body) => {
 ```
 
 ### 3. Setup (`mod.ts`)
+
 Registers the action with Lesan:
 
 ```typescript
@@ -965,9 +987,10 @@ export const addSetup = () =>
     fn: addFn,
     actName: "add",
     preAct: [
-      setTokens,           // Parse JWT tokens
-      setUser,             // Extract user from token
-      grantAccess({        // Authorization check
+      setTokens, // Parse JWT tokens
+      setUser, // Extract user from token
+      grantAccess({
+        // Authorization check
         levels: ["Manager", "Editor", "Ordinary"],
       }),
     ],
@@ -981,6 +1004,7 @@ export const addSetup = () =>
 ## Common CRUD Patterns
 
 ### Add (Create)
+
 ```typescript
 // Extract relations from set
 const { relationField, ...rest } = set;
@@ -998,16 +1022,20 @@ await model.insertOne({
 ```
 
 ### Get (Read One)
+
 ```typescript
 const { _id, get } = body.details;
 
-return await model.aggregation({
-  pipeline: [{ $match: { _id: new ObjectId(_id) } }],
-  projection: get,
-}).toArray();
+return await model
+  .aggregation({
+    pipeline: [{ $match: { _id: new ObjectId(_id) } }],
+    projection: get,
+  })
+  .toArray();
 ```
 
 ### Gets (Read Many with Pagination)
+
 ```typescript
 const { page, limit, ...filters } = body.details;
 const pipeline: Document[] = [];
@@ -1026,6 +1054,7 @@ return await model.aggregation({ pipeline, projection: get }).toArray();
 ```
 
 ### Update (Pure Fields Only)
+
 ```typescript
 const { _id, ...rest } = body.details;
 
@@ -1047,6 +1076,7 @@ return await model.findOneAndUpdate({
 ```
 
 ### Update Relations (Separate Endpoint)
+
 ```typescript
 // Use addRelation/removeRelation for relationship changes
 if (attachments) {
@@ -1054,11 +1084,11 @@ if (attachments) {
     filters: { _id: new ObjectId(_id) },
     relations: {
       attachments: {
-        _ids: attachments.map(id => new ObjectId(id)),
+        _ids: attachments.map((id) => new ObjectId(id)),
       },
     },
     projection: get,
-    replace: true,  // Replaces existing relations
+    replace: true, // Replaces existing relations
   });
 }
 
@@ -1067,7 +1097,7 @@ if (tags) {
     filters: { _id: new ObjectId(_id) },
     relations: {
       tags: {
-        _ids: tags.map(id => new ObjectId(id)),
+        _ids: tags.map((id) => new ObjectId(id)),
         relatedRelations: {
           reports: { replace: true },
         },
@@ -1086,6 +1116,7 @@ return await model.findOne({
 ```
 
 ### Remove (Delete)
+
 ```typescript
 return await model.deleteOne({
   filter: { _id: new ObjectId(_id) },
@@ -1095,6 +1126,7 @@ return await model.deleteOne({
 ```
 
 ### Count
+
 ```typescript
 const { filters } = body.details;
 return await model.countDocument({ filter: filters || {} });
@@ -1105,14 +1137,14 @@ return await model.countDocument({ filter: filters || {} });
 ## Authorization & Context
 
 ### User Context Type Definition
+
 ```typescript
 // utils/context.ts
 import { type Infer, type LesanContenxt, object, type ObjectId } from "@deps";
 import { user_pure } from "../models/user.ts";
 
-type Merge<A, B> =
-  & { [K in keyof A]: K extends keyof B ? B[K] : A[K] }
-  & B extends infer O ? { [K in keyof O]: O[K] }
+type Merge<A, B> = { [K in keyof A]: K extends keyof B ? B[K] : A[K] } & B extends infer O
+  ? { [K in keyof O]: O[K] }
   : never;
 
 const userPureObj = object(user_pure);
@@ -1126,20 +1158,17 @@ export interface MyContext extends LesanContenxt {
 ```
 
 ### User Levels
+
 ```typescript
 export const user_level_array = ["Ghost", "Manager", "Editor", "Ordinary"];
 export const user_level_emums = enums(user_level_array);
 ```
 
 ### Grant Access Middleware
+
 ```typescript
 // utils/grantAccess.ts
-export const grantAccess = (
-  { levels, isOwn }: {
-    levels?: UserLevels[];
-    isOwn?: boolean;
-  },
-) => {
+export const grantAccess = ({ levels, isOwn }: { levels?: UserLevels[]; isOwn?: boolean }) => {
   const checkAccess = () => {
     const { user }: MyContext = coreApp.contextFns.getContextModel() as MyContext;
 
@@ -1166,6 +1195,7 @@ export const grantAccess = (
 ```
 
 ### Accessing User Context
+
 ```typescript
 import type { MyContext } from "@lib";
 import { coreApp } from "../../../mod.ts";
@@ -1175,10 +1205,13 @@ const { user }: MyContext = coreApp.contextFns.getContextModel() as MyContext;
 ```
 
 ### Set User Middleware
+
 ```typescript
 // utils/setUser.ts
 export const setUser = async () => {
-  const { user: { _id } }: MyContext = coreApp.contextFns.getContextModel() as MyContext;
+  const {
+    user: { _id },
+  }: MyContext = coreApp.contextFns.getContextModel() as MyContext;
 
   const userPureProjection = coreApp.schemas.createProjection("user", "Pure");
 
@@ -1198,6 +1231,7 @@ export const setUser = async () => {
 ## Validation Patterns
 
 ### Pure Fields with createUpdateAt
+
 ```typescript
 // utils/createUpdateAt.ts
 import { date, defaulted, optional } from "@deps";
@@ -1213,11 +1247,12 @@ import { createUpdateAt } from "@lib";
 export const model_pure = {
   name: string(),
   description: optional(string()),
-  ...createUpdateAt,  // { createdAt: date(), updatedAt: date() }
+  ...createUpdateAt, // { createdAt: date(), updatedAt: date() }
 };
 ```
 
 ### GeoJSON Validation
+
 ```typescript
 // models/utils/geoJSONStruct.ts
 import { array, literal, number, object, tuple } from "@deps";
@@ -1235,20 +1270,22 @@ location: optional(geoJSONStruct("Point")),
 ```
 
 ### SelectStruct for Projections
+
 ```typescript
 import { selectStruct } from "../../../mod.ts";
 
 // Depth 1: Include immediate relations
-get: selectStruct("report", 1)
+get: selectStruct("report", 1);
 
 // Depth 2: Include nested relations
-get: selectStruct("report", 2)
+get: selectStruct("report", 2);
 
 // Custom depth per relation
-get: selectStruct("report", { reporter: 1, tags: 2 })
+get: selectStruct("report", { reporter: 1, tags: 2 });
 ```
 
 ### Application-Level Filtering
+
 ```typescript
 // ❌ Don't expose MongoDB operators
 { $gte: date, $regex: pattern }
@@ -1269,23 +1306,25 @@ Centralized in `models/excludes.ts` to prevent circular dependencies:
  */
 
 // File model excludes
-export const file_excludes: (string)[] = ["createdAt", "updatedAt", "size"];
+export const file_excludes: string[] = ["createdAt", "updatedAt", "size"];
 
 // User model excludes
-export const user_excludes: (string)[] = [
-  "createdAt", "updatedAt", "father_name", "birth_date", "summary",
+export const user_excludes: string[] = [
+  "createdAt",
+  "updatedAt",
+  "father_name",
+  "birth_date",
+  "summary",
 ];
 
 // Location model excludes
-export const location_excludes: (string)[] = ["area", "center"];
+export const location_excludes: string[] = ["area", "center"];
 
 // Shared relation model excludes
-export const shared_relation_excludes: (string)[] = [
-  "createdAt", "updatedAt", "description",
-];
+export const shared_relation_excludes: string[] = ["createdAt", "updatedAt", "description"];
 
 // Comment model excludes
-export const comment_excludes: (string)[] = ["createdAt", "updatedAt"];
+export const comment_excludes: string[] = ["createdAt", "updatedAt"];
 ```
 
 ---
@@ -1293,6 +1332,7 @@ export const comment_excludes: (string)[] = ["createdAt", "updatedAt"];
 ## Shared Utilities
 
 ### createUpdateAt
+
 ```typescript
 // utils/createUpdateAt.ts
 export const createUpdateAt = {
@@ -1302,13 +1342,14 @@ export const createUpdateAt = {
 ```
 
 ### Shared Relations
+
 ```typescript
 // models/utils/sharedRelations.ts
 export const shared_relation_pure = {
   name: string(),
   description: string(),
-  color: optional(string()),  // E.g., "#FF5733"
-  icon: optional(string()),   // E.g., "museum-icon.svg"
+  color: optional(string()), // E.g., "#FF5733"
+  icon: optional(string()), // E.g., "museum-icon.svg"
   ...createUpdateAt,
 };
 
@@ -1324,6 +1365,7 @@ export const createSharedRelations = () => ({
 ```
 
 ### Reusable Location Fields
+
 ```typescript
 // models/utils/pureLocation.ts
 export const pure_location = {
@@ -1343,6 +1385,7 @@ export const province_pure = { ...pure_location };
 ## MongoDB Indexes
 
 ### 2dsphere Indexes for GeoJSON
+
 ```typescript
 coreApp.odm.newModel("province", province_pure, province_relations, {
   createIndex: {
@@ -1355,10 +1398,11 @@ coreApp.odm.newModel("province", province_pure, province_relations, {
 ```
 
 ### Unique Indexes
+
 ```typescript
 coreApp.odm.newModel("user", user_pure, user_relations, {
   createIndex: {
-    indexSpec: { "email": 1 },
+    indexSpec: { email: 1 },
     options: { unique: true },
   },
   excludes: ["password"],
@@ -1370,14 +1414,19 @@ coreApp.odm.newModel("user", user_pure, user_relations, {
 ## API Request Format
 
 All API calls use POST with this structure:
+
 ```json
 {
   "service": "main",
   "model": "report",
   "act": "add",
   "details": {
-    "set": { /* input data */ },
-    "get": { /* projection */ }
+    "set": {
+      /* input data */
+    },
+    "get": {
+      /* projection */
+    }
   }
 }
 ```
@@ -1406,23 +1455,25 @@ All API calls use POST with this structure:
 
 ## Environment Variables
 
-| Variable | Default | Description |
-|----------|---------|-------------|
+| Variable    | Default                      | Description               |
+| ----------- | ---------------------------- | ------------------------- |
 | `MONGO_URI` | `mongodb://127.0.0.1:27017/` | MongoDB connection string |
-| `APP_PORT` | `1406` | Server port |
-| `ENV` | `development` | Environment mode |
+| `APP_PORT`  | `1406`                       | Server port               |
+| `ENV`       | `development`                | Environment mode          |
 
 ---
 
 ## Running the Application
 
 ### Development
+
 ```bash
 cd back/
 deno task bc-dev  # Auto-reload development
 ```
 
 ### Production
+
 ```bash
 docker build --target production -t gozaresh-backend:production .
 # Or via docker-compose from project root
@@ -1433,24 +1484,24 @@ docker-compose up --build
 
 ## Key Lesan Functions Reference
 
-| Function | Purpose |
-|----------|---------|
-| `coreApp.odm.newModel()` | Create a new data model |
-| `coreApp.odm.setDb()` | Set the database connection |
-| `coreApp.acts.setAct()` | Register an API action |
-| `coreApp.schemas.selectStruct()` | Generate projection schema |
-| `coreApp.schemas.createProjection()` | Create projection for specific fields |
-| `model.insertOne()` | Create a document with relations |
-| `model.findOne()` | Read a single document |
-| `model.find()` | Read multiple documents |
-| `model.findOneAndUpdate()` | Update pure fields |
-| `model.deleteOne()` | Delete a document |
-| `model.countDocument()` | Count matching documents |
-| `model.aggregation()` | Run aggregation pipeline |
-| `model.addRelation()` | Add relationships |
-| `model.removeRelation()` | Remove relationships |
-| `coreApp.contextFns.getContextModel()` | Get request context |
-| `coreApp.contextFns.setContext()` | Set context data |
+| Function                               | Purpose                               |
+| -------------------------------------- | ------------------------------------- |
+| `coreApp.odm.newModel()`               | Create a new data model               |
+| `coreApp.odm.setDb()`                  | Set the database connection           |
+| `coreApp.acts.setAct()`                | Register an API action                |
+| `coreApp.schemas.selectStruct()`       | Generate projection schema            |
+| `coreApp.schemas.createProjection()`   | Create projection for specific fields |
+| `model.insertOne()`                    | Create a document with relations      |
+| `model.findOne()`                      | Read a single document                |
+| `model.find()`                         | Read multiple documents               |
+| `model.findOneAndUpdate()`             | Update pure fields                    |
+| `model.deleteOne()`                    | Delete a document                     |
+| `model.countDocument()`                | Count matching documents              |
+| `model.aggregation()`                  | Run aggregation pipeline              |
+| `model.addRelation()`                  | Add relationships                     |
+| `model.removeRelation()`               | Remove relationships                  |
+| `coreApp.contextFns.getContextModel()` | Get request context                   |
+| `coreApp.contextFns.setContext()`      | Set context data                      |
 
 ---
 
@@ -1458,13 +1509,13 @@ docker-compose up --build
 
 ```typescript
 import {
-  ActFn,                    // Function type for API actions
-  RelationDataType,         // "single" | "multiple"
-  RelationSortOrderType,    // "asc" | "desc"
-  ObjectId,                 // MongoDB ObjectId
-  Infer,                    // Type inference from validators
-  Document,                 // MongoDB document type
+  ActFn, // Function type for API actions
+  RelationDataType, // "single" | "multiple"
+  RelationSortOrderType, // "asc" | "desc"
+  ObjectId, // MongoDB ObjectId
+  Infer, // Type inference from validators
+  Document, // MongoDB document type
 } from "@deps";
 
-import { MyContext } from "@lib";  // Custom context with user info
+import { MyContext } from "@lib"; // Custom context with user info
 ```

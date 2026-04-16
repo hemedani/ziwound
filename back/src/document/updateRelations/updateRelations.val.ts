@@ -7,7 +7,6 @@ export const updateRelationsValidator = () => {
       _id: string(),
       documentFiles: optional(array(string())),
       removeDocumentFiles: optional(array(string())),
-      report: optional(string()),
     }),
     get: selectStruct("document", 2),
   });

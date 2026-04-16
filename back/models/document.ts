@@ -2,9 +2,7 @@ import { optional, type RelationDataType, string } from "@deps";
 import { coreApp } from "../mod.ts";
 import { createUpdateAt } from "@lib";
 import {
-  document_excludes,
   file_excludes,
-  report_excludes,
 } from "./excludes.ts";
 
 export const document_pure = {
@@ -20,18 +18,6 @@ export const document_relations = {
     optional: true,
     excludes: file_excludes,
     relatedRelations: {},
-  },
-  report: {
-    schemaName: "report",
-    type: "single" as RelationDataType,
-    optional: false,
-    excludes: report_excludes,
-    relatedRelations: {
-      documents: {
-        type: "multiple" as RelationDataType,
-        excludes: document_excludes,
-      },
-    },
   },
 };
 

@@ -3,7 +3,7 @@ import { document } from "../../../mod.ts";
 
 export const updateRelationsFn: ActFn = async (body) => {
   const {
-    set: { _id, documentFiles, report, removeDocumentFiles },
+    set: { _id, documentFiles, removeDocumentFiles },
     get,
   } = body.details;
 
@@ -22,21 +22,7 @@ export const updateRelationsFn: ActFn = async (body) => {
     });
   }
 
-  if (report) {
-    await document.addRelation({
-      filters: { _id: documentId },
-      relations: {
-        report: {
-          _ids: new ObjectId(report),
-          relatedRelations: {
-            documents: true,
-          },
-        },
-      },
-      projection: get,
-      replace: true,
-    });
-  }
+
 
   if (removeDocumentFiles) {
     await document.removeRelation({
