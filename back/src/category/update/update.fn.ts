@@ -4,7 +4,7 @@ import { shared_relation_pure } from "@model";
 
 export const updateFn: ActFn = async (body) => {
 	const {
-		set: { _id, name, description },
+		set: { _id, name, description, color, icon },
 		get,
 	} = body.details;
 
@@ -15,6 +15,8 @@ export const updateFn: ActFn = async (body) => {
 
 	name && (updateObj.name = name);
 	description && (updateObj.description = description);
+	color && (updateObj.color = color);
+	icon && (updateObj.icon = icon);
 
 	return await category.findOneAndUpdate({
 		filter: { _id: new ObjectId(_id as string) },

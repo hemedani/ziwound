@@ -7,6 +7,8 @@ export const updateValidator = () => {
 			_id: objectIdValidation,
 			name: optional(string()),
 			description: optional(string()),
+			color: optional(string()),
+			icon: optional(string()),
 		}),
 		get: selectStruct("category", 1),
 	});

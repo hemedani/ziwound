@@ -11,7 +11,7 @@ export const getUserSetup = () =>
       setTokens,
       setUser,
       grantAccess({
-        levels: ["Manager", "Examiner"],
+        levels: ["Manager", "Editor"],
       }),
     ],
     validator: getUserValidator(),

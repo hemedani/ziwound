@@ -8,7 +8,7 @@ export const countUsersFn: ActFn = async (body) => {
   } = body.details;
 
   const filter: Document = {};
-  levels && (filter["levels"] = levels);
+  levels && levels.length > 0 && (filter.level = { $in: levels });
 
   const qty = await user.countDocument({
     filter,

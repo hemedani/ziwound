@@ -152,12 +152,12 @@
 
 ## Phase 6: Backend Audit & Bug Fixes
 
-- [ ] Fix identified bugs:
-  - [ ] Fix: `getUsers` and `countUsers` use `levels` instead of `level` field name
-  - [ ] Fix: `category.update` doesn't update `color`/`icon` fields
+- [x] Fix identified bugs:
+  - [x] Fix: `getUsers` and `countUsers` use `levels` instead of `level` field name
+  - [x] Fix: `category.update` doesn't update `color`/`icon` fields
   - [ ] Fix: CORS config has malformed URLs with double `http://`
-  - [ ] Fix: `getUsers` references "Examiner" level but it's not defined in user_level_array
-  - [ ] Fix: File model uses `mimType` instead of `mimeType` (typo)
+  - [x] Fix: `getUsers` references "Examiner" level but it's not defined in user_level_array
+  - [x] Fix: File model uses `mimType` instead of `mimeType` (typo)
 - [ ] Add authentication to public endpoints:
   - [ ] Province/City/Tag/Category acts should have proper auth
   - [ ] Review all endpoints for proper authorization

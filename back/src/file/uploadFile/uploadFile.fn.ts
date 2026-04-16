@@ -48,7 +48,7 @@ export const uploadFileFn: ActFn = async (body) => {
   return await file.insertOne({
     doc: {
       name: fileName,
-      mimType: fileToUpload.type,
+      mimeType: fileToUpload.type,
       size: fileToUpload.size,
       type,
       ...rest,

@@ -12,7 +12,7 @@ import { user_excludes } from "./excludes.ts";
 
 export const pure_file = {
   name: string(),
-  mimType: string(),
+  mimeType: string(),
   size: number(),
   type: enums(["image", "video", "docs"]),
   alt_text: optional(string()),
