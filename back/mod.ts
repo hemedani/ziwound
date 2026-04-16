@@ -2,6 +2,7 @@ import { lesan, MongoClient } from "@deps";
 import {
   categories,
   cities,
+  createBlogPostTextIndex,
   createUserTextIndex,
   documents,
   files,
@@ -29,6 +30,7 @@ export const tag = tags();
 export const category = categories();
 export const report = reports();
 export const document = documents();
+export const blogPost = blogPosts();
 
 export const { setAct, setService, getAtcsWithServices } = coreApp.acts;
 
@@ -38,6 +40,9 @@ functionsSetup();
 
 // Create text index for user search
 createUserTextIndex();
+
+// Create text index for blog post search
+createBlogPostTextIndex();
 
 console.log(`🚀 Gozarish Backend running on port ${APP_PORT}`);
 console.log(`📊 Environment: ${ENV}`);

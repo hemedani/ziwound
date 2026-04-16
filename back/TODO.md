@@ -74,13 +74,13 @@
 
 ## Phase 4: Blog Post Model Implementation
 
-- [ ] **Create BlogPost Model Schema**
-  - [ ] Define BlogPost model in `models/blogPost.ts`
-  - [ ] Fields: title (string, required), slug (string, unique, required), content (string, required - markdown/HTML), author relation (User reference), coverImage (File reference, optional), isPublished (boolean, default false), tags relation (multiple), publishedAt (Date, optional)
-  - [ ] Add validator schemas with Zod-like syntax
-  - [ ] Add relations setup (author, coverImage, tags)
-  - [ ] Add text indexes for full-text search on title and content
-  - [ ] Add unique index on slug field
+- [x] **Create BlogPost Model Schema**
+  - [x] Define BlogPost model in `models/blogPost.ts`
+  - [x] Fields: title (string, required), slug (string, unique, required), content (string, required - markdown/HTML), author relation (User reference), coverImage (File reference, optional), isPublished (boolean, default false), tags relation (multiple), publishedAt (Date, optional)
+  - [x] Add validator schemas with Zod-like syntax
+  - [x] Add relations setup (author, coverImage, tags)
+  - [x] Add text indexes for full-text search on title and content
+  - [x] Add unique index on slug field
 - [ ] **Implement BlogPost CRUD Acts**
   - [ ] Create `src/blogPost/add.ts` - Add new blog post
   - [ ] Create `src/blogPost/get.ts` - Get single blog post by ID or slug

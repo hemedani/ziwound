@@ -6,6 +6,7 @@ import { tagSetup } from "./tag/mod.ts";
 import { categorySetup } from "./category/mod.ts";
 import { reportSetup } from "./report/mod.ts";
 import { documentSetup } from "./document/mod.ts";
+import { blogPostSetup } from "./blogPost/mod.ts";
 
 export const functionsSetup = () => {
   citySetup();
@@ -16,4 +17,5 @@ export const functionsSetup = () => {
   categorySetup();
   reportSetup();
   documentSetup();
+  blogPostSetup();
 };
