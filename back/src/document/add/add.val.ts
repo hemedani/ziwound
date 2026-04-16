@@ -1,4 +1,4 @@
-import { array, object, optional, string } from "@deps";
+import { array, object, objectIdValidation, optional, string } from "@deps";
 import { selectStruct } from "../../../mod.ts";
 import { document_pure } from "@model";
 
@@ -8,7 +8,7 @@ export const addValidator = () => {
   return object({
     set: object({
       ...basePure,
-      documentFiles: optional(array(string())),
+      documentFiles: optional(array(objectIdValidation)),
     }),
     get: selectStruct("document", 1),
   });

@@ -1,11 +1,11 @@
-import { array, enums, number, object, optional, string } from "@deps";
+import { array, enums, number, object, objectIdValidation, optional, string } from "@deps";
 import { selectStruct } from "../../../mod.ts";
 import { report_status_array } from "@model";
 
 export const updateValidator = () => {
   return object({
     set: object({
-      _id: string(),
+      _id: objectIdValidation,
       title: optional(string()),
       description: optional(string()),
       location: optional(
@@ -17,8 +17,8 @@ export const updateValidator = () => {
       address: optional(string()),
       status: optional(enums(report_status_array)),
       priority: optional(enums(["Low", "Medium", "High"])),
-      tags: optional(array(string())),
-      category: optional(string()),
+      tags: optional(array(objectIdValidation)),
+      category: optional(objectIdValidation),
     }),
     get: selectStruct("report", 2),
   });

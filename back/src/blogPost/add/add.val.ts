@@ -1,4 +1,4 @@
-import { array, object, optional, string } from "@deps";
+import { array, object, objectIdValidation, optional, string } from "@deps";
 import { selectStruct } from "../../../mod.ts";
 import { blogPost_pure } from "@model";
 
@@ -8,8 +8,8 @@ export const addValidator = () => {
   return object({
     set: object({
       ...basePure,
-      coverImage: optional(string()),
-      tags: optional(array(string())),
+      coverImage: optional(objectIdValidation),
+      tags: optional(array(objectIdValidation)),
     }),
     get: selectStruct("blogPost", 1),
   });

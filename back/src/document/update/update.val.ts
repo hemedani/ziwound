@@ -1,10 +1,10 @@
-import { object, optional, string } from "@deps";
+import { object, objectIdValidation, optional, string } from "@deps";
 import { selectStruct } from "../../../mod.ts";
 
 export const updateValidator = () => {
   return object({
     set: object({
-      _id: string(),
+      _id: objectIdValidation,
       title: optional(string()),
       description: optional(string()),
     }),

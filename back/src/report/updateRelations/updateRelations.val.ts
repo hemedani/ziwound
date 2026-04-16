@@ -1,14 +1,14 @@
-import { array, object, optional, string } from "@deps";
+import { array, object, objectIdValidation, optional, string } from "@deps";
 import { selectStruct } from "../../../mod.ts";
 
 export const updateRelationsValidator = () => {
   return object({
     set: object({
-      _id: string(),
-      tags: optional(array(string())),
-      category: optional(string()),
-      documents: optional(array(string())),
-      removeDocuments: optional(array(string())),
+      _id: objectIdValidation,
+      tags: optional(array(objectIdValidation)),
+      category: optional(objectIdValidation),
+      documents: optional(array(objectIdValidation)),
+      removeDocuments: optional(array(objectIdValidation)),
     }),
     get: selectStruct("report", 2),
   });
