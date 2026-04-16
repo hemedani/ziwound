@@ -1,4 +1,4 @@
-import { array, enums, object, objectIdValidation, optional, string, date } from "@deps";
+import { array, enums, object, objectIdValidation, optional, string, date, number } from "@deps";
 import { selectStruct } from "../../../mod.ts";
 import { report_status_array } from "@model";
 import { pagination } from "@lib";
@@ -18,6 +18,11 @@ export const getsValidator = () => {
 			// Date range filters
 			createdAtFrom: optional(date()),
 			createdAtTo: optional(date()),
+			// Geospatial filters
+			nearLng: optional(number()),
+			nearLat: optional(number()),
+			maxDistance: optional(number()), // in meters
+			bbox: optional(array(number())), // [minLng, minLat, maxLng, maxLat]
 			// Sort options
 			sortBy: optional(enums(["createdAt", "updatedAt", "title", "status", "priority"])),
 			sortOrder: optional(enums(["asc", "desc"])),

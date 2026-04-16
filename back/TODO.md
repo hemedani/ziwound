@@ -126,21 +126,21 @@
 
 ## Phase 5: War Crimes Exploration Backend Support
 
-- [ ] **Advanced Report Filtering for Exploration**
-  - [ ] Enhance report.gets with advanced filters:
-    - [ ] Date range filtering (createdAt, incident date if available)
-    - [ ] Geospatial filtering (within bounding box, radius from point)
-    - [ ] Category and tag filtering
-    - [ ] Status filtering (only approved/published reports)
-    - [ ] Severity/priority filtering
-  - [ ] Add sorting options (date, relevance, location)
-- [ ] **Geospatial Queries**
-  - [ ] Add geospatial query endpoints for map-based exploration
-  - [ ] Support GeoJSON queries for regions and boundaries
-  - [ ] Add proximity search (reports near a location)
+- [x] **Advanced Report Filtering for Exploration**
+  - [x] Enhance report.gets with advanced filters:
+    - [x] Date range filtering (createdAt, incident date if available)
+    - [x] Geospatial filtering (within bounding box, radius from point)
+    - [x] Category and tag filtering
+    - [x] Status filtering (only approved/published reports)
+    - [x] Severity/priority filtering
+  - [x] Add sorting options (date, relevance, location)
+- [x] **Geospatial Queries**
+  - [x] Add geospatial query endpoints for map-based exploration
+  - [x] Support GeoJSON queries for regions and boundaries
+  - [x] Add proximity search (reports near a location)
   - [ ] Add clustering support for map markers (if needed)
-- [ ] **Aggregation & Analytics Endpoints**
-  - [ ] Add statistics endpoint (total reports by status, category, location, date)
+- [x] **Aggregation & Analytics Endpoints**
+  - [x] Add statistics endpoint (total reports by status, category, location, date)
   - [ ] Add timeline aggregation (reports over time periods)
   - [ ] Add geographic distribution data
   - [ ] Add tag/category distribution

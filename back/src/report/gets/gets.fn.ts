@@ -16,6 +16,10 @@ export const getsFn: ActFn = async (body) => {
       userIds,
       createdAtFrom,
       createdAtTo,
+      nearLng,
+      nearLat,
+      maxDistance,
+      bbox,
       sortBy,
       sortOrder,
     },
@@ -78,6 +82,32 @@ export const getsFn: ActFn = async (body) => {
     pipeline.push({
       $match: { createdAt: { $lte: createdAtTo } },
     });
+
+  // Geospatial filters
+  if (bbox && bbox.length === 4) {
+    pipeline.push({
+      $match: {
+        location: {
+          $geoWithin: {
+            $box: [[bbox[0], bbox[1]], [bbox[2], bbox[3]]]
+          }
+        }
+      }
+    });
+  }
+
+  if (nearLng !== undefined && nearLat !== undefined) {
+    const centerSphere: any = {
+      $centerSphere: [[nearLng, nearLat], (maxDistance || 10000) / 6378100]  // default 10km, earth radius in meters
+    };
+    pipeline.push({
+      $match: {
+        location: {
+          $geoWithin: centerSphere
+        }
+      }
+    });
+  }
 
   // Add text search score for sorting if search term exists
   if (search && (!sortBy || sortBy === "relevance")) {
