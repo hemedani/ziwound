@@ -364,6 +364,7 @@
     "addDocument": "添加文档",
     "linkedReports": "关联报告",
     "noDocuments": "未找到文档",
-    "type": "类型"
+    "type": "类型",
+    "linkedReportSearch": "按关联报告搜索..."
   }
 }

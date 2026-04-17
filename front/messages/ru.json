@@ -366,9 +366,10 @@
     "noFilesFound": "No files found",
     "documentsManagement": "Управление документами",
     "documentsManagementDescription": "Просмотр и управление загруженными документами",
-    "addDocument": "Добавить документ",
+    "addDocument": "Добавить Документ",
     "linkedReports": "Связанные отчеты",
     "noDocuments": "Документы не найдены",
-    "type": "Тип"
+    "type": "Тип",
+    "linkedReportSearch": "Поиск по связанному отчету..."
   }
 }

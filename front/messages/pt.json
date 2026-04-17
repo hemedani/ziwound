@@ -369,6 +369,7 @@
     "addDocument": "Adicionar Documento",
     "linkedReports": "Relatórios Vinculados",
     "noDocuments": "Nenhum documento encontrado",
-    "type": "Tipo"
+    "type": "Tipo",
+    "linkedReportSearch": "Pesquisar por relatório vinculado..."
   }
 }

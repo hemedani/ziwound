@@ -364,7 +364,8 @@
     "addDocument": "افزودن سند",
     "linkedReports": "گزارش‌های مرتبط",
     "noDocuments": "هیچ سندی یافت نشد",
-    "type": "نوع"
+    "type": "نوع",
+    "linkedReportSearch": "جستجو بر اساس گزارش مرتبط..."
   },
   "notFound": {
     "title": "صفحه پیدا نشد",

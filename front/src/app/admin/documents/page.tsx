@@ -8,7 +8,12 @@ import Link from "next/link";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { MoreHorizontal, Eye, Edit, Trash2 } from "lucide-react";
-import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 import { ReqType } from "@/types/declarations";
 
 export default async function AdminDocumentsPage({
@@ -18,6 +23,7 @@ export default async function AdminDocumentsPage({
     page?: string;
     search?: string;
     type?: string;
+    linkedReportSearch?: string;
     sortBy?: string;
     sortOrder?: string;
   }>;
@@ -27,12 +33,14 @@ export default async function AdminDocumentsPage({
   const page = Number(resolvedSearchParams.page) || 1;
   const search = resolvedSearchParams.search || "";
   const type = resolvedSearchParams.type || "all";
+  const linkedReportSearch = resolvedSearchParams.linkedReportSearch || "";
   const sortBy = resolvedSearchParams.sortBy || "createdAt";
   const sortOrder = resolvedSearchParams.sortOrder || "desc";
 
   const setQuery: ReqType["main"]["document"]["gets"]["set"] = { page, limit: 10 };
   if (search) setQuery.search = search;
   if (type !== "all") setQuery.type = type as ReqType["main"]["document"]["gets"]["set"]["type"];
+  if (linkedReportSearch) setQuery.linkedReportSearch = linkedReportSearch;
   setQuery.sortBy = sortBy as ReqType["main"]["document"]["gets"]["set"]["sortBy"];
   setQuery.sortOrder = sortOrder as ReqType["main"]["document"]["gets"]["set"]["sortOrder"];
 
@@ -63,8 +71,12 @@ export default async function AdminDocumentsPage({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">{t("documentsManagement") || "Documents Management"}</h1>
-          <p className="text-muted-foreground">{t("documentsManagementDescription") || "Manage and view uploaded documents"}</p>
+          <h1 className="text-3xl font-bold tracking-tight">
+            {t("documentsManagement") || "Documents Management"}
+          </h1>
+          <p className="text-muted-foreground">
+            {t("documentsManagementDescription") || "Manage and view uploaded documents"}
+          </p>
         </div>
         <Button asChild>
           <Link href="/admin/documents/new">{t("addDocument") || "Add Document"}</Link>
@@ -95,6 +107,15 @@ export default async function AdminDocumentsPage({
                 <SelectItem value="document">Document</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+          <div className="relative w-full sm:w-64">
+            <Search className="absolute start-2 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Input
+              name="linkedReportSearch"
+              placeholder={t("linkedReportSearch") || "Search by linked report..."}
+              defaultValue={linkedReportSearch}
+              className="ps-8"
+            />
           </div>
           <div className="w-full sm:w-48">
             <Select name="sortBy" defaultValue={sortBy}>
@@ -214,7 +235,7 @@ export default async function AdminDocumentsPage({
         {page > 1 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/documents?page=${page - 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/documents?page=${page - 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${linkedReportSearch ? `&linkedReportSearch=${linkedReportSearch}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("previous") || "Previous"}
             </Link>
@@ -227,7 +248,7 @@ export default async function AdminDocumentsPage({
         {documents.length >= 10 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/documents?page=${page + 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/documents?page=${page + 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${linkedReportSearch ? `&linkedReportSearch=${linkedReportSearch}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("next") || "Next"}
             </Link>

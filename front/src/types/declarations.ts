@@ -8,6 +8,7 @@ export type userInp = {
   province?: number | provinceInp
   city?: number | cityInp
   reports?: number | reportInp
+  blogPosts?: number | blogPostInp
 }
 
 
@@ -28,13 +29,15 @@ export type userSchema = {
   avatar?: {
     _id?: string;
     name: string;
-    mimType: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
     alt_text?: string;
   };
   national_card?: {
     _id?: string;
     name: string;
-    mimType: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
     alt_text?: string;
   };
   province?: {
@@ -63,6 +66,15 @@ export type userSchema = {
     status: ("Pending" | "Approved" | "Rejected" | "InReview");
     priority?: ("Low" | "Medium" | "High");
   }[];
+  blogPosts: {
+    _id?: string;
+    title: string;
+    slug: string;
+    content: string;
+    isPublished: boolean;
+    isFeatured: boolean;
+    publishedAt?: string;
+  }[];
 };
 ;
 
@@ -76,8 +88,9 @@ export type fileInp = {
 export type fileSchema = {
   _id?: string;
   name: string;
-  mimType: string;
+  mimeType: string;
   size: number;
+  type: ("image" | "video" | "docs");
   alt_text?: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -197,6 +210,7 @@ export type citySchema = {
 export type tagInp = {
   registrar?: number | userInp
   reports?: number | reportInp
+  blogPosts?: number | blogPostInp
 }
 
 
@@ -229,6 +243,15 @@ export type tagSchema = {
     address?: string;
     status: ("Pending" | "Approved" | "Rejected" | "InReview");
     priority?: ("Low" | "Medium" | "High");
+  }[];
+  blogPosts: {
+    _id?: string;
+    title: string;
+    slug: string;
+    content: string;
+    isPublished: boolean;
+    isFeatured: boolean;
+    publishedAt?: string;
   }[];
 };
 ;
@@ -274,9 +297,32 @@ export type categorySchema = {
 ;
 
 
+export type documentInp = {
+  documentFiles?: number | fileInp
+
+}
+
+
+export type documentSchema = {
+  _id?: string;
+  title: string;
+  description?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  documentFiles?: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  }[];
+};
+;
+
+
 export type reportInp = {
   reporter?: number | userInp
-  attachments?: number | fileInp
+  documents?: number | documentInp
   tags?: number | tagInp
   category?: number | categoryInp
 
@@ -306,11 +352,10 @@ export type reportSchema = {
     email: string;
     is_verified: boolean;
   };
-  attachments?: {
+  documents?: {
     _id?: string;
-    name: string;
-    mimType: string;
-    alt_text?: string;
+    title: string;
+    description?: string;
   }[];
   tags?: {
     _id?: string;
@@ -324,6 +369,51 @@ export type reportSchema = {
     color?: string;
     icon?: string;
   };
+};
+;
+
+
+export type blogPostInp = {
+  author?: number | userInp
+  coverImage?: number | fileInp
+  tags?: number | tagInp
+
+}
+
+
+export type blogPostSchema = {
+  _id?: string;
+  title: string;
+  slug: string;
+  content: string;
+  isPublished: boolean;
+  isFeatured: boolean;
+  publishedAt?: string;
+  createdAt?: Date;
+  updatedAt?: Date;
+  author: {
+    _id?: string;
+    first_name: string;
+    last_name: string;
+    gender: ("Male" | "Female");
+    address?: string;
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
+    email: string;
+    is_verified: boolean;
+  };
+  coverImage?: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  };
+  tags?: {
+    _id?: string;
+    name: string;
+    color?: string;
+    icon?: string;
+  }[];
 };
 ;
 
@@ -450,13 +540,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -481,6 +573,15 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           province?: {
@@ -547,13 +648,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -578,6 +681,15 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           province?: {
@@ -651,8 +763,9 @@ export type ReqType = {
         get: {
           _id?: (0 | 1);
           name?: (0 | 1);
-          mimType?: (0 | 1);
+          mimeType?: (0 | 1);
           size?: (0 | 1);
+          type?: (0 | 1);
           alt_text?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
@@ -668,13 +781,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -699,6 +814,15 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
@@ -717,8 +841,9 @@ export type ReqType = {
         get: {
           _id?: (0 | 1);
           name?: (0 | 1);
-          mimType?: (0 | 1);
+          mimeType?: (0 | 1);
           size?: (0 | 1);
+          type?: (0 | 1);
           alt_text?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
@@ -734,13 +859,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -765,6 +892,15 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
@@ -779,8 +915,9 @@ export type ReqType = {
         get: {
           _id?: (0 | 1);
           name?: (0 | 1);
-          mimType?: (0 | 1);
+          mimeType?: (0 | 1);
           size?: (0 | 1);
+          type?: (0 | 1);
           alt_text?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
@@ -796,13 +933,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -827,6 +966,15 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
@@ -842,8 +990,9 @@ export type ReqType = {
         get: {
           _id?: (0 | 1);
           name?: (0 | 1);
-          mimType?: (0 | 1);
+          mimeType?: (0 | 1);
           size?: (0 | 1);
+          type?: (0 | 1);
           alt_text?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
@@ -996,13 +1145,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -1027,6 +1178,15 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           cities?: {
@@ -1109,13 +1269,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -1140,6 +1302,15 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           cities?: {
@@ -1258,13 +1429,15 @@ export type ReqType = {
           avatar?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
           };
           national_card?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
           };
           province?: {
@@ -1290,6 +1463,15 @@ export type ReqType = {
             status?: (0 | 1);
             priority?: (0 | 1);
           };
+          blogPosts?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
+          };
         };
       };
 
@@ -1314,7 +1496,8 @@ export type ReqType = {
           avatar?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
             uploader?: {
               _id?: (0 | 1);
@@ -1330,7 +1513,8 @@ export type ReqType = {
           national_card?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
             uploader?: {
               _id?: (0 | 1);
@@ -1418,11 +1602,10 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
-            attachments?: {
+            documents?: {
               _id?: (0 | 1);
-              name?: (0 | 1);
-              mimType?: (0 | 1);
-              alt_text?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
               _id?: (0 | 1);
@@ -1431,6 +1614,38 @@ export type ReqType = {
               icon?: (0 | 1);
             };
             category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+          };
+          blogPosts?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
+            author?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            coverImage?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            tags?: {
               _id?: (0 | 1);
               name?: (0 | 1);
               color?: (0 | 1);
@@ -1462,7 +1677,8 @@ export type ReqType = {
           avatar?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
             uploader?: {
               _id?: (0 | 1);
@@ -1478,7 +1694,8 @@ export type ReqType = {
           national_card?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
             uploader?: {
               _id?: (0 | 1);
@@ -1566,11 +1783,10 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
-            attachments?: {
+            documents?: {
               _id?: (0 | 1);
-              name?: (0 | 1);
-              mimType?: (0 | 1);
-              alt_text?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
               _id?: (0 | 1);
@@ -1579,6 +1795,38 @@ export type ReqType = {
               icon?: (0 | 1);
             };
             category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+          };
+          blogPosts?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
+            author?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            coverImage?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            tags?: {
               _id?: (0 | 1);
               name?: (0 | 1);
               color?: (0 | 1);
@@ -1613,13 +1861,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -1644,6 +1894,15 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
@@ -1681,13 +1940,15 @@ export type ReqType = {
           avatar?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
           };
           national_card?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
           };
           province?: {
@@ -1712,6 +1973,15 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+          };
+          blogPosts?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
           };
         };
       };
@@ -1745,13 +2015,15 @@ export type ReqType = {
           avatar?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
           };
           national_card?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
           };
           province?: {
@@ -1776,6 +2048,15 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+          };
+          blogPosts?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
           };
         };
       };
@@ -1812,13 +2093,15 @@ export type ReqType = {
           avatar?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
           };
           national_card?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
           };
           province?: {
@@ -1843,6 +2126,15 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+          };
+          blogPosts?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
           };
         };
       };
@@ -1878,7 +2170,8 @@ export type ReqType = {
           avatar?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
             uploader?: {
               _id?: (0 | 1);
@@ -1894,7 +2187,8 @@ export type ReqType = {
           national_card?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
             uploader?: {
               _id?: (0 | 1);
@@ -1982,11 +2276,10 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
-            attachments?: {
+            documents?: {
               _id?: (0 | 1);
-              name?: (0 | 1);
-              mimType?: (0 | 1);
-              alt_text?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
               _id?: (0 | 1);
@@ -1995,6 +2288,38 @@ export type ReqType = {
               icon?: (0 | 1);
             };
             category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+          };
+          blogPosts?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
+            author?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            coverImage?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            tags?: {
               _id?: (0 | 1);
               name?: (0 | 1);
               color?: (0 | 1);
@@ -2018,7 +2343,7 @@ export type ReqType = {
 
       countUsers: {
         set: {
-          levels?: ("Ghost" | "Manager" | "Editor" | "Ordinary");
+          levels?: ("Ghost" | "Manager" | "Editor" | "Ordinary")[];
         };
         get: {
           qty: (0 | 1);
@@ -2051,13 +2376,15 @@ export type ReqType = {
           avatar?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
           };
           national_card?: {
             _id?: (0 | 1);
             name?: (0 | 1);
-            mimType?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
             alt_text?: (0 | 1);
           };
           province?: {
@@ -2082,6 +2409,15 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+          };
+          blogPosts?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
           };
         };
       };
@@ -2142,6 +2478,15 @@ export type ReqType = {
             status?: (0 | 1);
             priority?: (0 | 1);
           };
+          blogPosts?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
+          };
         };
       };
 
@@ -2181,6 +2526,15 @@ export type ReqType = {
             status?: (0 | 1);
             priority?: (0 | 1);
           };
+          blogPosts?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
+          };
         };
       };
 
@@ -2209,13 +2563,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -2241,6 +2597,15 @@ export type ReqType = {
               status?: (0 | 1);
               priority?: (0 | 1);
             };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
           };
           reports?: {
             _id?: (0 | 1);
@@ -2260,11 +2625,10 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
-            attachments?: {
+            documents?: {
               _id?: (0 | 1);
-              name?: (0 | 1);
-              mimType?: (0 | 1);
-              alt_text?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
               _id?: (0 | 1);
@@ -2273,6 +2637,38 @@ export type ReqType = {
               icon?: (0 | 1);
             };
             category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+          };
+          blogPosts?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
+            author?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            coverImage?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            tags?: {
               _id?: (0 | 1);
               name?: (0 | 1);
               color?: (0 | 1);
@@ -2312,13 +2708,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -2344,6 +2742,15 @@ export type ReqType = {
               status?: (0 | 1);
               priority?: (0 | 1);
             };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
           };
           reports?: {
             _id?: (0 | 1);
@@ -2363,11 +2770,10 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
-            attachments?: {
+            documents?: {
               _id?: (0 | 1);
-              name?: (0 | 1);
-              mimType?: (0 | 1);
-              alt_text?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
               _id?: (0 | 1);
@@ -2376,6 +2782,38 @@ export type ReqType = {
               icon?: (0 | 1);
             };
             category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+          };
+          blogPosts?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
+            author?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            coverImage?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            tags?: {
               _id?: (0 | 1);
               name?: (0 | 1);
               color?: (0 | 1);
@@ -2458,6 +2896,8 @@ export type ReqType = {
           _id: string;
           name?: string;
           description?: string;
+          color?: string;
+          icon?: string;
         };
         get: {
           _id?: (0 | 1);
@@ -2514,13 +2954,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -2546,6 +2988,15 @@ export type ReqType = {
               status?: (0 | 1);
               priority?: (0 | 1);
             };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
           };
           reports?: {
             _id?: (0 | 1);
@@ -2565,11 +3016,10 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
-            attachments?: {
+            documents?: {
               _id?: (0 | 1);
-              name?: (0 | 1);
-              mimType?: (0 | 1);
-              alt_text?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
               _id?: (0 | 1);
@@ -2617,13 +3067,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -2649,6 +3101,15 @@ export type ReqType = {
               status?: (0 | 1);
               priority?: (0 | 1);
             };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
           };
           reports?: {
             _id?: (0 | 1);
@@ -2668,11 +3129,10 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
-            attachments?: {
+            documents?: {
               _id?: (0 | 1);
-              name?: (0 | 1);
-              mimType?: (0 | 1);
-              alt_text?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
               _id?: (0 | 1);
@@ -2728,9 +3188,9 @@ export type ReqType = {
             type: string;
             coordinates: number[];
           };
-          attachments?: string[];
           tags?: string[];
           category?: string;
+          documents?: string[];
         };
         get: {
           _id?: (0 | 1);
@@ -2752,11 +3212,10 @@ export type ReqType = {
             email?: (0 | 1);
             is_verified?: (0 | 1);
           };
-          attachments?: {
+          documents?: {
             _id?: (0 | 1);
-            name?: (0 | 1);
-            mimType?: (0 | 1);
-            alt_text?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
           };
           tags?: {
             _id?: (0 | 1);
@@ -2800,13 +3259,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -2832,21 +3293,26 @@ export type ReqType = {
               status?: (0 | 1);
               priority?: (0 | 1);
             };
-          };
-          attachments?: {
-            _id?: (0 | 1);
-            name?: (0 | 1);
-            mimType?: (0 | 1);
-            alt_text?: (0 | 1);
-            uploader?: {
+            blogPosts?: {
               _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          documents?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            documentFiles?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
           };
           tags?: {
@@ -2872,6 +3338,15 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           category?: {
@@ -2916,6 +3391,10 @@ export type ReqType = {
           userIds?: string[];
           createdAtFrom?: Date;
           createdAtTo?: Date;
+          nearLng?: number;
+          nearLat?: number;
+          maxDistance?: number;
+          bbox?: number[];
           sortBy?: ("createdAt" | "updatedAt" | "title" | "status" | "priority");
           sortOrder?: ("asc" | "desc");
         };
@@ -2941,13 +3420,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -2973,21 +3454,26 @@ export type ReqType = {
               status?: (0 | 1);
               priority?: (0 | 1);
             };
-          };
-          attachments?: {
-            _id?: (0 | 1);
-            name?: (0 | 1);
-            mimType?: (0 | 1);
-            alt_text?: (0 | 1);
-            uploader?: {
+            blogPosts?: {
               _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          documents?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            documentFiles?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
           };
           tags?: {
@@ -3013,6 +3499,15 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           category?: {
@@ -3056,7 +3551,6 @@ export type ReqType = {
           address?: string;
           status?: ("Pending" | "Approved" | "Rejected" | "InReview");
           priority?: ("Low" | "Medium" | "High");
-          attachments?: string[];
           tags?: string[];
           category?: string;
         };
@@ -3082,13 +3576,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -3114,21 +3610,26 @@ export type ReqType = {
               status?: (0 | 1);
               priority?: (0 | 1);
             };
-          };
-          attachments?: {
-            _id?: (0 | 1);
-            name?: (0 | 1);
-            mimType?: (0 | 1);
-            alt_text?: (0 | 1);
-            uploader?: {
+            blogPosts?: {
               _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          documents?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            documentFiles?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
           };
           tags?: {
@@ -3154,6 +3655,15 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           category?: {
@@ -3188,9 +3698,10 @@ export type ReqType = {
       updateRelations: {
         set: {
           _id: string;
-          attachments?: string[];
           tags?: string[];
           category?: string;
+          documents?: string[];
+          removeDocuments?: string[];
         };
         get: {
           _id?: (0 | 1);
@@ -3214,13 +3725,15 @@ export type ReqType = {
             avatar?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             national_card?: {
               _id?: (0 | 1);
               name?: (0 | 1);
-              mimType?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
               alt_text?: (0 | 1);
             };
             province?: {
@@ -3246,21 +3759,26 @@ export type ReqType = {
               status?: (0 | 1);
               priority?: (0 | 1);
             };
-          };
-          attachments?: {
-            _id?: (0 | 1);
-            name?: (0 | 1);
-            mimType?: (0 | 1);
-            alt_text?: (0 | 1);
-            uploader?: {
+            blogPosts?: {
               _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          documents?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            documentFiles?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
           };
           tags?: {
@@ -3286,6 +3804,15 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           category?: {
@@ -3342,11 +3869,10 @@ export type ReqType = {
             email?: (0 | 1);
             is_verified?: (0 | 1);
           };
-          attachments?: {
+          documents?: {
             _id?: (0 | 1);
-            name?: (0 | 1);
-            mimType?: (0 | 1);
-            alt_text?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
           };
           tags?: {
             _id?: (0 | 1);
@@ -3371,6 +3897,1681 @@ export type ReqType = {
         };
         get: {
           qty?: (0 | 1);
+        };
+      };
+
+
+      statistics: {
+        set: {
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          location?: (0 | 1);
+          address?: (0 | 1);
+          status?: (0 | 1);
+          priority?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          reporter?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+          };
+          documents?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+          };
+          category?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+          };
+        };
+      };
+
+
+      exportCSV: {
+        set: {
+          search?: string;
+          status?: ("Pending" | "Approved" | "Rejected" | "InReview");
+          priority?: ("Low" | "Medium" | "High");
+          categoryIds?: string[];
+          tagIds?: string[];
+          userIds?: string[];
+          createdAtFrom?: Date;
+          createdAtTo?: Date;
+          nearLng?: number;
+          nearLat?: number;
+          maxDistance?: number;
+          bbox?: number[];
+          sortBy?: ("createdAt" | "updatedAt" | "title" | "status" | "priority");
+          sortOrder?: ("asc" | "desc");
+          limit?: number;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          location?: (0 | 1);
+          address?: (0 | 1);
+          status?: (0 | 1);
+          priority?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          reporter?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          documents?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            documentFiles?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          category?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      exportPDF: {
+        set: {
+          _id: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          location?: (0 | 1);
+          address?: (0 | 1);
+          status?: (0 | 1);
+          priority?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          reporter?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          documents?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            documentFiles?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          category?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+    }
+
+
+    document: {
+
+
+      add: {
+        set: {
+          title: string;
+          description?: string;
+          createdAt?: Date;
+          updatedAt?: Date;
+          documentFiles?: string[];
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          documentFiles?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
+        };
+      };
+
+
+      get: {
+        set: {
+          _id: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          documentFiles?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      gets: {
+        set: {
+          page?: number;
+          limit?: number;
+          skip?: number;
+          search?: string;
+          sortBy?: ("createdAt" | "updatedAt" | "title");
+          sortOrder?: ("asc" | "desc");
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          documentFiles?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      update: {
+        set: {
+          _id: string;
+          title?: string;
+          description?: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          documentFiles?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      updateRelations: {
+        set: {
+          _id: string;
+          documentFiles?: string[];
+          removeDocumentFiles?: string[];
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          documentFiles?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      remove: {
+        set: {
+          _id: string;
+          hardCascade?: boolean;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          documentFiles?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
+        };
+      };
+
+
+      count: {
+        set: {
+          search?: string;
+        };
+        get: {
+          qty?: string;
+        };
+      };
+
+
+    }
+
+
+    blogPost: {
+
+
+      add: {
+        set: {
+          title: string;
+          slug: string;
+          content: string;
+          isPublished: boolean;
+          isFeatured: boolean;
+          publishedAt?: string;
+          createdAt?: Date;
+          updatedAt?: Date;
+          coverImage?: string;
+          tags?: string[];
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          author?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+          };
+          coverImage?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+          };
+        };
+      };
+
+
+      get: {
+        set: {
+          _id?: string;
+          slug?: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          author?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          coverImage?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      gets: {
+        set: {
+          page?: number;
+          limit?: number;
+          skip?: number;
+          search?: string;
+          isPublished?: boolean;
+          isFeatured?: boolean;
+          authorId?: string;
+          tagIds?: string[];
+          sortBy?: ("publishedAt" | "createdAt" | "updatedAt" | "title");
+          sortOrder?: ("asc" | "desc");
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          author?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          coverImage?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      update: {
+        set: {
+          _id: string;
+          title?: string;
+          slug?: string;
+          content?: string;
+          isPublished?: boolean;
+          isFeatured?: boolean;
+          publishedAt?: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          author?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          coverImage?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      updateRelations: {
+        set: {
+          _id: string;
+          coverImage?: string;
+          tags?: string[];
+          removeTags?: string[];
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          author?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          coverImage?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      remove: {
+        set: {
+          _id: string;
+          hardCascade?: boolean;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          author?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+          };
+          coverImage?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+          };
+        };
+      };
+
+
+      count: {
+        set: {
+          search?: string;
+          isPublished?: boolean;
+          authorId?: string;
+          tagIds?: string[];
+        };
+        get: {
+          qty?: string;
+        };
+      };
+
+
+      publish: {
+        set: {
+          _id: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          author?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          coverImage?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      unpublish: {
+        set: {
+          _id: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          author?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          coverImage?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      getRelated: {
+        set: {
+          slug: string;
+          limit?: number;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          author?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          coverImage?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      getBySlug: {
+        set: {
+          slug: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          author?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          coverImage?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
         };
       };
 
