@@ -369,8 +369,7 @@
     "addDocument": "Add Document",
     "linkedReports": "Linked Reports",
     "noDocuments": "No documents found",
-    "type": "Type",
-    "linkedReportSearch": "Search by linked report..."
+    "type": "Type"
   },
   "notFound": {
     "title": "Page Not Found",

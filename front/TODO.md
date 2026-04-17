@@ -286,7 +286,7 @@
   - [x] Add Documents to admin sidebar navigation
   - [x] Create `/admin/documents` page with document list
   - [x] Add data table with columns: title, type, linked reports, date, actions
-  - [x] Add search and filtering (by type, linked reports)
+  - [x] Add search and filtering (by type)
   - [ ] Add document upload modal/form
   - [ ] Add document edit modal with report linking interface
   - [ ] Add document delete action with confirmation

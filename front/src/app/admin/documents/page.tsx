@@ -23,7 +23,6 @@ export default async function AdminDocumentsPage({
     page?: string;
     search?: string;
     type?: string;
-    linkedReportSearch?: string;
     sortBy?: string;
     sortOrder?: string;
   }>;
@@ -33,14 +32,12 @@ export default async function AdminDocumentsPage({
   const page = Number(resolvedSearchParams.page) || 1;
   const search = resolvedSearchParams.search || "";
   const type = resolvedSearchParams.type || "all";
-  const linkedReportSearch = resolvedSearchParams.linkedReportSearch || "";
   const sortBy = resolvedSearchParams.sortBy || "createdAt";
   const sortOrder = resolvedSearchParams.sortOrder || "desc";
 
   const setQuery: ReqType["main"]["document"]["gets"]["set"] = { page, limit: 10 };
   if (search) setQuery.search = search;
-  if (type !== "all") setQuery.type = type as ReqType["main"]["document"]["gets"]["set"]["type"];
-  if (linkedReportSearch) setQuery.linkedReportSearch = linkedReportSearch;
+  if (type !== "all") setQuery.documentTypes = [type as "image" | "video" | "docs"];
   setQuery.sortBy = sortBy as ReqType["main"]["document"]["gets"]["set"]["sortBy"];
   setQuery.sortOrder = sortOrder as ReqType["main"]["document"]["gets"]["set"]["sortOrder"];
 
@@ -101,21 +98,11 @@ export default async function AdminDocumentsPage({
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="all">{t("allTypes") || "All Types"}</SelectItem>
-                <SelectItem value="pdf">PDF</SelectItem>
                 <SelectItem value="image">Image</SelectItem>
                 <SelectItem value="video">Video</SelectItem>
-                <SelectItem value="document">Document</SelectItem>
+                <SelectItem value="docs">Document</SelectItem>
               </SelectContent>
             </Select>
-          </div>
-          <div className="relative w-full sm:w-64">
-            <Search className="absolute start-2 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              name="linkedReportSearch"
-              placeholder={t("linkedReportSearch") || "Search by linked report..."}
-              defaultValue={linkedReportSearch}
-              className="ps-8"
-            />
           </div>
           <div className="w-full sm:w-48">
             <Select name="sortBy" defaultValue={sortBy}>
@@ -235,7 +222,7 @@ export default async function AdminDocumentsPage({
         {page > 1 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/documents?page=${page - 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${linkedReportSearch ? `&linkedReportSearch=${linkedReportSearch}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/documents?page=${page - 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("previous") || "Previous"}
             </Link>
@@ -248,7 +235,7 @@ export default async function AdminDocumentsPage({
         {documents.length >= 10 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/documents?page=${page + 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${linkedReportSearch ? `&linkedReportSearch=${linkedReportSearch}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/documents?page=${page + 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("next") || "Next"}
             </Link>

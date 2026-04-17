@@ -364,7 +364,6 @@
     "addDocument": "إضافة وثيقة",
     "linkedReports": "التقارير المرتبطة",
     "noDocuments": "لم يتم العثور على وثائق",
-    "type": "النوع",
-    "linkedReportSearch": "البحث حسب التقرير المرتبط..."
+    "type": "النوع"
   }
 }

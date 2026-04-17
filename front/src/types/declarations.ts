@@ -4317,6 +4317,8 @@ export type ReqType = {
           limit?: number;
           skip?: number;
           search?: string;
+          reportId?: string;
+          documentTypes?: ("image" | "video" | "docs")[];
           sortBy?: ("createdAt" | "updatedAt" | "title");
           sortOrder?: ("asc" | "desc");
         };
