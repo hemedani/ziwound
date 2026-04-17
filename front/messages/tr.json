@@ -364,7 +364,6 @@
     "addDocument": "Belge Ekle",
     "linkedReports": "Bağlantılı Raporlar",
     "noDocuments": "Belge bulunamadı",
-    "type": "Tür",
-    "linkedReportSearch": "Bağlantılı raporla ara..."
+    "type": "Tür"
   }
 }

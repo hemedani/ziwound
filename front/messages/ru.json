@@ -369,7 +369,6 @@
     "addDocument": "Добавить Документ",
     "linkedReports": "Связанные отчеты",
     "noDocuments": "Документы не найдены",
-    "type": "Тип",
-    "linkedReportSearch": "Поиск по связанному отчету..."
+    "type": "Тип"
   }
 }
