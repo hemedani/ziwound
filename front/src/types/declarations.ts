@@ -7,6 +7,7 @@ export type userInp = {
   national_card?: number | fileInp
   province?: number | provinceInp
   city?: number | cityInp
+  uploadedAssets?: number | fileInp
   reports?: number | reportInp
   blogPosts?: number | blogPostInp
 }
@@ -54,6 +55,13 @@ export type userSchema = {
     createdAt?: Date;
     updatedAt?: Date;
   };
+  uploadedAssets: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  }[];
   reports: {
     _id?: string;
     title: string;
@@ -110,6 +118,7 @@ export type fileSchema = {
 
 export type provinceInp = {
   registrar?: number | userInp
+  users?: number | userInp
   cities?: number | cityInp
   capital?: number | cityInp
 }
@@ -139,6 +148,16 @@ export type provinceSchema = {
     email: string;
     is_verified: boolean;
   };
+  users: {
+    _id?: string;
+    first_name: string;
+    last_name: string;
+    gender: ("Male" | "Female");
+    address?: string;
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
+    email: string;
+    is_verified: boolean;
+  }[];
   cities: {
     _id?: string;
     name: string;
@@ -168,7 +187,7 @@ export type provinceSchema = {
 export type cityInp = {
   registrar?: number | userInp
   province?: number | provinceInp
-
+  users?: number | userInp
 }
 
 
@@ -203,6 +222,16 @@ export type citySchema = {
     createdAt?: Date;
     updatedAt?: Date;
   };
+  users: {
+    _id?: string;
+    first_name: string;
+    last_name: string;
+    gender: ("Male" | "Female");
+    address?: string;
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
+    email: string;
+    is_verified: boolean;
+  }[];
 };
 ;
 
@@ -299,7 +328,7 @@ export type categorySchema = {
 
 export type documentInp = {
   documentFiles?: number | fileInp
-
+  report?: number | reportInp
 }
 
 
@@ -315,6 +344,18 @@ export type documentSchema = {
     mimeType: string;
     type: ("image" | "video" | "docs");
     alt_text?: string;
+  }[];
+  report: {
+    _id?: string;
+    title: string;
+    description: string;
+    location?: {
+      type: "Point";
+      coordinates: any[];
+    };
+    address?: string;
+    status: ("Pending" | "Approved" | "Rejected" | "InReview");
+    priority?: ("Low" | "Medium" | "High");
   }[];
 };
 ;
@@ -469,6 +510,16 @@ export type ReqType = {
             createdAt?: (0 | 1);
             updatedAt?: (0 | 1);
           };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+          };
         };
       };
 
@@ -511,6 +562,16 @@ export type ReqType = {
             english_name?: (0 | 1);
             createdAt?: (0 | 1);
             updatedAt?: (0 | 1);
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
         };
       };
@@ -565,6 +626,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -600,6 +668,16 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -615,6 +693,69 @@ export type ReqType = {
               center?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
@@ -673,6 +814,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -708,6 +856,16 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -723,6 +881,69 @@ export type ReqType = {
               center?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
@@ -806,6 +1027,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -884,6 +1112,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -957,6 +1192,13 @@ export type ReqType = {
               english_name?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
               _id?: (0 | 1);
@@ -1049,6 +1291,16 @@ export type ReqType = {
             email?: (0 | 1);
             is_verified?: (0 | 1);
           };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+          };
           cities?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -1092,6 +1344,16 @@ export type ReqType = {
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           registrar?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+          };
+          users?: {
             _id?: (0 | 1);
             first_name?: (0 | 1);
             last_name?: (0 | 1);
@@ -1170,6 +1432,76 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -1212,6 +1544,16 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
           };
           capital?: {
             _id?: (0 | 1);
@@ -1237,6 +1579,16 @@ export type ReqType = {
               english_name?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
         };
@@ -1294,6 +1646,76 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -1336,6 +1758,16 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
           };
           capital?: {
             _id?: (0 | 1);
@@ -1361,6 +1793,16 @@ export type ReqType = {
               english_name?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
         };
@@ -1454,6 +1896,13 @@ export type ReqType = {
             createdAt?: (0 | 1);
             updatedAt?: (0 | 1);
           };
+          uploadedAssets?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
           reports?: {
             _id?: (0 | 1);
             title?: (0 | 1);
@@ -1543,6 +1992,16 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -1582,6 +2041,33 @@ export type ReqType = {
               english_name?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          uploadedAssets?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           reports?: {
@@ -1724,6 +2210,16 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -1763,6 +2259,33 @@ export type ReqType = {
               english_name?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          uploadedAssets?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           reports?: {
@@ -1886,6 +2409,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -1965,6 +2495,13 @@ export type ReqType = {
             createdAt?: (0 | 1);
             updatedAt?: (0 | 1);
           };
+          uploadedAssets?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
           reports?: {
             _id?: (0 | 1);
             title?: (0 | 1);
@@ -2039,6 +2576,13 @@ export type ReqType = {
             english_name?: (0 | 1);
             createdAt?: (0 | 1);
             updatedAt?: (0 | 1);
+          };
+          uploadedAssets?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           reports?: {
             _id?: (0 | 1);
@@ -2117,6 +2661,13 @@ export type ReqType = {
             english_name?: (0 | 1);
             createdAt?: (0 | 1);
             updatedAt?: (0 | 1);
+          };
+          uploadedAssets?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           reports?: {
             _id?: (0 | 1);
@@ -2217,6 +2768,16 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -2256,6 +2817,33 @@ export type ReqType = {
               english_name?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          uploadedAssets?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           reports?: {
@@ -2400,6 +2988,13 @@ export type ReqType = {
             english_name?: (0 | 1);
             createdAt?: (0 | 1);
             updatedAt?: (0 | 1);
+          };
+          uploadedAssets?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           reports?: {
             _id?: (0 | 1);
@@ -2588,6 +3183,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -2732,6 +3334,13 @@ export type ReqType = {
               english_name?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
               _id?: (0 | 1);
@@ -2979,6 +3588,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -3091,6 +3707,13 @@ export type ReqType = {
               english_name?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
               _id?: (0 | 1);
@@ -3284,6 +3907,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -3313,6 +3943,15 @@ export type ReqType = {
               mimeType?: (0 | 1);
               type?: (0 | 1);
               alt_text?: (0 | 1);
+            };
+            report?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
           tags?: {
@@ -3445,6 +4084,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -3474,6 +4120,15 @@ export type ReqType = {
               mimeType?: (0 | 1);
               type?: (0 | 1);
               alt_text?: (0 | 1);
+            };
+            report?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
           tags?: {
@@ -3601,6 +4256,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -3630,6 +4292,15 @@ export type ReqType = {
               mimeType?: (0 | 1);
               type?: (0 | 1);
               alt_text?: (0 | 1);
+            };
+            report?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
           tags?: {
@@ -3750,6 +4421,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -3779,6 +4457,15 @@ export type ReqType = {
               mimeType?: (0 | 1);
               type?: (0 | 1);
               alt_text?: (0 | 1);
+            };
+            report?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
           tags?: {
@@ -4010,6 +4697,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -4039,6 +4733,15 @@ export type ReqType = {
               mimeType?: (0 | 1);
               type?: (0 | 1);
               alt_text?: (0 | 1);
+            };
+            report?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
           tags?: {
@@ -4155,6 +4858,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -4184,6 +4894,15 @@ export type ReqType = {
               mimeType?: (0 | 1);
               type?: (0 | 1);
               alt_text?: (0 | 1);
+            };
+            report?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
           tags?: {
@@ -4276,6 +4995,15 @@ export type ReqType = {
             type?: (0 | 1);
             alt_text?: (0 | 1);
           };
+          report?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+          };
         };
       };
 
@@ -4305,6 +5033,42 @@ export type ReqType = {
               level?: (0 | 1);
               email?: (0 | 1);
               is_verified?: (0 | 1);
+            };
+          };
+          report?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+            reporter?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            documents?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+            };
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
@@ -4345,6 +5109,42 @@ export type ReqType = {
               is_verified?: (0 | 1);
             };
           };
+          report?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+            reporter?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            documents?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+            };
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+          };
         };
       };
 
@@ -4376,6 +5176,42 @@ export type ReqType = {
               level?: (0 | 1);
               email?: (0 | 1);
               is_verified?: (0 | 1);
+            };
+          };
+          report?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+            reporter?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            documents?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+            };
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
@@ -4411,6 +5247,42 @@ export type ReqType = {
               is_verified?: (0 | 1);
             };
           };
+          report?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+            reporter?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            documents?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+            };
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+          };
         };
       };
 
@@ -4432,6 +5304,15 @@ export type ReqType = {
             mimeType?: (0 | 1);
             type?: (0 | 1);
             alt_text?: (0 | 1);
+          };
+          report?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
           };
         };
       };
@@ -4554,6 +5435,13 @@ export type ReqType = {
               english_name?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
               _id?: (0 | 1);
@@ -4689,6 +5577,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -4820,6 +5715,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -4947,6 +5849,13 @@ export type ReqType = {
               english_name?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
               _id?: (0 | 1);
@@ -5128,6 +6037,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -5252,6 +6168,13 @@ export type ReqType = {
               english_name?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
               _id?: (0 | 1);
@@ -5379,6 +6302,13 @@ export type ReqType = {
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
             };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -5503,6 +6433,13 @@ export type ReqType = {
               english_name?: (0 | 1);
               createdAt?: (0 | 1);
               updatedAt?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
               _id?: (0 | 1);

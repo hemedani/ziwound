@@ -45,8 +45,7 @@ export default async function AdminDocumentsPage({
   const response = await getDocuments(setQuery, {
     _id: 1,
     title: 1,
-    type: 1,
-    linkedReports: { _id: 1, title: 1 },
+    report: { _id: 1, title: 1 },
     createdAt: 1,
   });
 
@@ -54,7 +53,7 @@ export default async function AdminDocumentsPage({
     _id: string;
     title: string;
     type: string;
-    linkedReports?: Array<{ _id: string; title: string }>;
+    report?: Array<{ _id: string; title: string }>;
     createdAt: string;
   }> = [];
   let error: string | null = null;
@@ -144,7 +143,7 @@ export default async function AdminDocumentsPage({
               <TableRow>
                 <TableHead>{t("title")}</TableHead>
                 <TableHead>{t("type")}</TableHead>
-                <TableHead>{t("linkedReports") || "Linked Reports"}</TableHead>
+                <TableHead>{t("report") || "Report"}</TableHead>
                 <TableHead>{t("date")}</TableHead>
                 <TableHead className="text-right">{t("actions")}</TableHead>
               </TableRow>
@@ -164,16 +163,16 @@ export default async function AdminDocumentsPage({
                       <Badge variant="secondary">{doc.type}</Badge>
                     </TableCell>
                     <TableCell>
-                      {doc.linkedReports && doc.linkedReports.length > 0 ? (
+                      {doc.report && doc.report.length > 0 ? (
                         <div className="flex flex-wrap gap-1">
-                          {doc.linkedReports.slice(0, 2).map((report) => (
+                          {doc.report.slice(0, 2).map((report) => (
                             <Badge key={report._id} variant="outline" className="text-xs">
                               {report.title}
                             </Badge>
                           ))}
-                          {doc.linkedReports.length > 2 && (
+                          {doc.report.length > 2 && (
                             <Badge variant="outline" className="text-xs">
-                              +{doc.linkedReports.length - 2}
+                              +{doc.report.length - 2}
                             </Badge>
                           )}
                         </div>

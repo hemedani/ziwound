@@ -369,6 +369,7 @@
     "addDocument": "Document Toevoegen",
     "linkedReports": "Gekoppelde Rapporten",
     "noDocuments": "Geen documenten gevonden",
-    "type": "Type"
+    "type": "Type",
+    "report": "Rapport"
   }
 }
