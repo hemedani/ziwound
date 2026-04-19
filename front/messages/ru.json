@@ -370,6 +370,7 @@
     "linkedReports": "Связанные отчеты",
     "noDocuments": "Документы не найдены",
     "type": "Тип",
-    "report": "Отчет"
+    "report": "Отчет",
+    "allReports": "Все отчеты"
   }
 }

@@ -365,6 +365,7 @@
     "linkedReports": "关联报告",
     "noDocuments": "未找到文档",
     "type": "类型",
-    "report": "报告"
+    "report": "报告",
+    "allReports": "所有报告"
   }
 }

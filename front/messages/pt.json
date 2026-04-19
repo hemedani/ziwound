@@ -370,6 +370,7 @@
     "linkedReports": "Relatórios Vinculados",
     "noDocuments": "Nenhum documento encontrado",
     "type": "Tipo",
-    "report": "Relatório"
+    "report": "Relatório",
+    "allReports": "Todos os Relatórios"
   }
 }

@@ -370,6 +370,7 @@
     "linkedReports": "Gekoppelde Rapporten",
     "noDocuments": "Geen documenten gevonden",
     "type": "Type",
-    "report": "Rapport"
+    "report": "Rapport",
+    "allReports": "Alle Rapporten"
   }
 }

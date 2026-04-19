@@ -365,7 +365,8 @@
     "linkedReports": "گزارش‌های مرتبط",
     "noDocuments": "هیچ سندی یافت نشد",
     "type": "نوع",
-    "report": "گزارش"
+    "report": "گزارش",
+    "allReports": "همه گزارش‌ها"
   },
   "notFound": {
     "title": "صفحه پیدا نشد",

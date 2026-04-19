@@ -56,16 +56,16 @@ export function FilesTable({ files, error }: FilesTableProps) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
-  const getFileIcon = (mimType: string) => {
-    if (mimType.startsWith("image/")) return <FileImageIcon className="w-4 h-4 text-blue-500" />;
-    if (mimType.startsWith("video/")) return <FileVideoIcon className="w-4 h-4 text-purple-500" />;
-    if (mimType.includes("pdf") || mimType.includes("document"))
+  const getFileIcon = (mimeType: string) => {
+    if (mimeType.startsWith("image/")) return <FileImageIcon className="w-4 h-4 text-blue-500" />;
+    if (mimeType.startsWith("video/")) return <FileVideoIcon className="w-4 h-4 text-purple-500" />;
+    if (mimeType.includes("pdf") || mimeType.includes("document"))
       return <FileTextIcon className="w-4 h-4 text-red-500" />;
     return <FileIcon className="w-4 h-4 text-gray-500" />;
   };
 
-  const getFileTypeBadge = (mimType: string) => {
-    if (mimType.startsWith("image/"))
+  const getFileTypeBadge = (mimeType: string) => {
+    if (mimeType.startsWith("image/"))
       return (
         <Badge
           variant="secondary"
@@ -74,7 +74,7 @@ export function FilesTable({ files, error }: FilesTableProps) {
           {t("image") || "Image"}
         </Badge>
       );
-    if (mimType.startsWith("video/"))
+    if (mimeType.startsWith("video/"))
       return (
         <Badge
           variant="secondary"
@@ -111,13 +111,13 @@ export function FilesTable({ files, error }: FilesTableProps) {
             <TableRow key={file._id}>
               <TableCell className="font-medium">
                 <div className="flex items-center gap-2">
-                  {getFileIcon(file.mimType)}
+                  {getFileIcon(file.mimeType)}
                   <span className="truncate max-w-[200px]" title={file.name}>
                     {file.name}
                   </span>
                 </div>
               </TableCell>
-              <TableCell>{getFileTypeBadge(file.mimType)}</TableCell>
+              <TableCell>{getFileTypeBadge(file.mimeType)}</TableCell>
               <TableCell className="text-muted-foreground whitespace-nowrap">
                 {formatFileSize(file.size)}
               </TableCell>

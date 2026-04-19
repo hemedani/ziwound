@@ -365,6 +365,7 @@
     "linkedReports": "Bağlantılı Raporlar",
     "noDocuments": "Belge bulunamadı",
     "type": "Tür",
-    "report": "Rapor"
+    "report": "Rapor",
+    "allReports": "Tüm Raporlar"
   }
 }

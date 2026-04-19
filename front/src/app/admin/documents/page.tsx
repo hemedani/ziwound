@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { gets as getDocuments } from "@/app/actions/document/gets";
+import { gets as getReports } from "@/app/actions/report/gets";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -15,6 +16,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ReqType } from "@/types/declarations";
+import { DeleteDocumentMenuItem } from "./_components/delete-document-button";
 
 export default async function AdminDocumentsPage({
   searchParams,
@@ -23,6 +25,7 @@ export default async function AdminDocumentsPage({
     page?: string;
     search?: string;
     type?: string;
+    report?: string;
     sortBy?: string;
     sortOrder?: string;
   }>;
@@ -32,14 +35,25 @@ export default async function AdminDocumentsPage({
   const page = Number(resolvedSearchParams.page) || 1;
   const search = resolvedSearchParams.search || "";
   const type = resolvedSearchParams.type || "all";
+  const report = resolvedSearchParams.report || "all";
   const sortBy = resolvedSearchParams.sortBy || "createdAt";
   const sortOrder = resolvedSearchParams.sortOrder || "desc";
 
   const setQuery: ReqType["main"]["document"]["gets"]["set"] = { page, limit: 10 };
   if (search) setQuery.search = search;
   if (type !== "all") setQuery.documentTypes = [type as "image" | "video" | "docs"];
+  if (report !== "all") setQuery.reportId = report;
   setQuery.sortBy = sortBy as ReqType["main"]["document"]["gets"]["set"]["sortBy"];
   setQuery.sortOrder = sortOrder as ReqType["main"]["document"]["gets"]["set"]["sortOrder"];
+
+  // Fetch reports for filter
+  const reportsResponse = await getReports({ page: 1, limit: 100 }, { _id: 1, title: 1 });
+  let reports: { _id: string; title: string }[] = [];
+  if (reportsResponse?.success) {
+    reports = Array.isArray(reportsResponse.body)
+      ? reportsResponse.body
+      : reportsResponse.body?.list || [];
+  }
 
   // Fetch documents
   const response = await getDocuments(setQuery, {
@@ -82,7 +96,7 @@ export default async function AdminDocumentsPage({
       <div className="flex flex-col gap-4 mb-6">
         <form method="GET" className="flex flex-wrap gap-4 w-full items-start sm:items-center">
           <div className="relative w-full sm:w-64">
-            <Search className="absolute start-2 top-2.5 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute inset-s-2 top-2.5 h-4 w-4 text-muted-foreground" />
             <Input
               name="search"
               placeholder={t("searchPlaceholder") || "Search documents..."}
@@ -100,6 +114,21 @@ export default async function AdminDocumentsPage({
                 <SelectItem value="image">Image</SelectItem>
                 <SelectItem value="video">Video</SelectItem>
                 <SelectItem value="docs">Document</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="w-full sm:w-48">
+            <Select name="report" defaultValue={report}>
+              <SelectTrigger>
+                <SelectValue placeholder={t("report") || "Report"} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t("allReports") || "All Reports"}</SelectItem>
+                {reports.map((rep) => (
+                  <SelectItem key={rep._id} value={rep._id}>
+                    {rep.title}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -202,10 +231,7 @@ export default async function AdminDocumentsPage({
                               {t("edit")}
                             </Link>
                           </DropdownMenuItem>
-                          <DropdownMenuItem className="text-destructive">
-                            <Trash2 className="mr-2 h-4 w-4" />
-                            {t("delete")}
-                          </DropdownMenuItem>
+                          <DeleteDocumentMenuItem id={doc._id} />
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </TableCell>
@@ -221,7 +247,7 @@ export default async function AdminDocumentsPage({
         {page > 1 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/documents?page=${page - 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/documents?page=${page - 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${report !== "all" ? `&report=${report}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("previous") || "Previous"}
             </Link>
@@ -234,7 +260,7 @@ export default async function AdminDocumentsPage({
         {documents.length >= 10 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/documents?page=${page + 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/documents?page=${page + 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${report !== "all" ? `&report=${report}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("next") || "Next"}
             </Link>

@@ -370,7 +370,8 @@
     "linkedReports": "Linked Reports",
     "noDocuments": "No documents found",
     "type": "Type",
-    "report": "Report"
+    "report": "Report",
+    "allReports": "All Reports"
   },
   "notFound": {
     "title": "Page Not Found",

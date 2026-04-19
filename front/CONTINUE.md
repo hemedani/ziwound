@@ -52,8 +52,9 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - ✅ Phase 7 (Testing & Production Readiness): 100% complete
 - **New Phases Added**:
   - Phase 8: Document Management Implementation
-  - Phase 9: Blog Section Implementation
-  - Phase 10: War Crimes Exploration Page
+  - Phase 9: Dashboard Pages Update with New Document and Report Models
+  - Phase 10: Blog Section Implementation
+  - Phase 11: War Crimes Exploration Page
 - **Next**: Phase 8 - Document Management Implementation (or continue with any remaining unchecked steps)
 
 **What's Done**:

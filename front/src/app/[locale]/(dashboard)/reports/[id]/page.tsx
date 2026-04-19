@@ -12,6 +12,7 @@ import { format } from "date-fns";
 import Image from "next/image";
 import { get as getReport } from "@/app/actions/report/get";
 import dynamic from "next/dynamic";
+import { documentSchema, reportSchema } from "@/types/declarations";
 
 const ReadonlyMap = dynamic(
   () => import("@/components/map/readonly-map").then((mod) => mod.ReadonlyMap),
@@ -21,26 +22,8 @@ const ReadonlyMap = dynamic(
   },
 );
 
-interface Report {
-  _id: string;
-  title: string;
-  description: string;
-  status: "Pending" | "Approved" | "Rejected" | "InReview";
-  priority: "Low" | "Medium" | "High";
-  address?: string;
-  location?: {
-    type?: string;
-    coordinates?: number[];
-  };
-  tags?: Array<{ _id: string; name: string }>;
-  category?: { _id: string; name: string };
-  attachments?: Array<{
-    _id: string;
-    name: string;
-    mimType: string;
-  }>;
-  createdAt: string;
-  updatedAt?: string;
+interface Report extends Omit<reportSchema, "documents"> {
+  documents?: documentSchema[];
 }
 
 export default function ReportDetailPage() {
@@ -70,7 +53,7 @@ export default function ReportDetailPage() {
             updatedAt: 1,
             category: { _id: 1, name: 1 },
             tags: { _id: 1, name: 1 },
-            attachments: { _id: 1, name: 1, mimType: 1 },
+            documents: { _id: 1, title: 1, documentFiles: { name: 1, mimeType: 1, type: 1 } },
           },
         );
 
@@ -245,23 +228,27 @@ export default function ReportDetailPage() {
       )}
 
       {/* Attachments */}
-      {report.attachments && report.attachments.length > 0 && (
+      {report.documents && report.documents.length > 0 && (
         <Card>
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Paperclip className="h-5 w-5" />
-              {t("attachments")} ({report.attachments.length})
+              {t("attachments")} ({report.documents.length})
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 sm:grid-cols-2">
-              {report.attachments.map((file) => (
-                <div key={file._id} className="flex items-center gap-3 rounded-lg border p-4">
-                  {isImage(file.mimType || "") ? (
+              {report.documents.map((doc) => (
+                <div key={doc._id} className="flex items-center gap-3 rounded-lg border p-4">
+                  {isImage(doc.documentFiles?.[0]?.mimeType || "") ? (
                     <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
                       <Image
-                        src={file.name ? `/uploads/${file.name}` : "https://placehold.co/400x400.png"}
-                        alt={file.name || "Attachment"}
+                        src={
+                          doc.documentFiles?.[0]?.name
+                            ? `/uploads/${doc.documentFiles[0].name}`
+                            : "https://placehold.co/400x400.png"
+                        }
+                        alt={doc.documentFiles?.[0]?.name || doc.title || "Attachment"}
                         fill
                         className="object-cover"
                       />
@@ -272,10 +259,17 @@ export default function ReportDetailPage() {
                     </div>
                   )}
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium">{file.name}</p>
+                    <p className="truncate text-sm font-medium">
+                      {doc.title || doc.documentFiles?.[0]?.name}
+                    </p>
                   </div>
                   <Button variant="ghost" size="icon" asChild>
-                    <a href={file.name ? `/uploads/${file.name}` : "#"} download={file.name}>
+                    <a
+                      href={
+                        doc.documentFiles?.[0]?.name ? `/uploads/${doc.documentFiles[0].name}` : "#"
+                      }
+                      download={doc.documentFiles?.[0]?.name}
+                    >
                       <Download className="h-4 w-4" />
                     </a>
                   </Button>

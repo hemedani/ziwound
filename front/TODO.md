@@ -286,11 +286,11 @@
   - [x] Add Documents to admin sidebar navigation
   - [x] Create `/admin/documents` page with document list
   - [x] Add data table with columns: title, type, linked reports, date, actions
-  - [x] Add search and filtering (by type)
-  - [ ] Add document upload modal/form
-  - [ ] Add document edit modal with report linking interface
-  - [ ] Add document delete action with confirmation
-  - [ ] Add document preview functionality
+  - [x] Add search and filtering (by type, linked reports)
+  - [x] Add document upload modal/form
+  - [x] Add document edit modal with report linking interface
+  - [x] Add document delete action with confirmation
+  - [x] Add document preview functionality
 - [ ] **Report Integration**
   - [ ] Update report submission page to allow document uploads/links
   - [ ] Update report detail page to show associated documents
@@ -301,7 +301,29 @@
   - [ ] Add document download with proper permissions check
   - [ ] Display document metadata and linked reports
 
-## Phase 9: Blog Section Implementation
+## Phase 9: Dashboard Pages Update with New Document and Report Models
+
+- [ ] **Update Server Actions to Use Lesan Framework**
+  - [ ] Update `src/app/actions/report/actions.ts` to use the standard Lesan action pattern from QWEN.md
+  - [ ] Update `src/app/actions/report/gets.ts` to use Lesan API
+  - [ ] Update `src/app/actions/report/get.ts` to use Lesan API
+  - [ ] Ensure all report actions follow the pattern: cookieStore, token, result with service, model, act, details
+- [ ] **Update Dashboard Pages to Use New Models**
+  - [ ] Update `src/app/[locale]/(dashboard)/reports/new/page.tsx` to use updated createReport action and match reportSchema
+  - [ ] Update `src/app/[locale]/(dashboard)/reports/my/page.tsx` to use updated getReports action and match reportSchema
+  - [ ] Update `src/app/[locale]/(dashboard)/reports/[id]/page.tsx` to fully align with reportSchema and documentSchema
+  - [ ] Ensure all interfaces in dashboard pages extend or match the schemas from declarations.ts
+- [ ] **Integrate Document Management in Dashboard**
+  - [ ] Update report creation to properly handle documents via the new Document model
+  - [ ] Ensure attachments in new report form create Document records
+  - [ ] Update report detail page to display documents correctly using documentSchema
+- [ ] **Test and Validate Dashboard Functionality**
+  - [ ] Test report creation with attachments (ensure documents are created)
+  - [ ] Test report listing and filtering
+  - [ ] Test report detail view with documents
+  - [ ] Ensure all pages work with the new Lesan API responses
+
+## Phase 10: Blog Section Implementation
 
 - [ ] **Blog Server Actions**
   - [ ] Create `src/app/actions/blogPost/add.ts`
@@ -348,7 +370,7 @@
   - [ ] Translate blog UI elements (labels, buttons, placeholders, etc.)
   - [ ] Test blog pages in RTL (fa, ar) and LTR (en, zh, etc.) layouts
 
-## Phase 10: War Crimes Exploration Page
+## Phase 11: War Crimes Exploration Page
 
 - [ ] **War Crimes Server Actions** (extend existing report actions)
   - [ ] Enhance `src/app/actions/report/gets.ts` with advanced filters:
