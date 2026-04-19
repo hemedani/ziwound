@@ -1,5 +1,5 @@
-import type { ActFn, Document } from "@deps";
-import { ObjectId } from "@deps";
+import type { ActFn, Document } from "lesan";
+import { ObjectId } from "lesan";
 import { report } from "../../../mod.ts";
 
 export const getsFn: ActFn = async (body) => {

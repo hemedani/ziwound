@@ -1,4 +1,4 @@
-import { type ActFn, ObjectId, type TInsertRelations } from "@deps";
+import { type ActFn, ObjectId, type TInsertRelations } from "lesan";
 import { user } from "../../../mod.ts";
 import type { user_relations } from "@model";
 

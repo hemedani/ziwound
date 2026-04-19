@@ -1,4 +1,4 @@
-import { type ActFn, ObjectId } from "@deps";
+import { type ActFn, ObjectId } from "lesan";
 import { report } from "../../../mod.ts";
 
 function arrayToCSV(data: any[]): string {

@@ -1,4 +1,4 @@
-import { enums, number, object, optional, string } from "@deps";
+import { enums, number, object, optional, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 
 export const getFilesValidator = () => {

@@ -1,4 +1,4 @@
-import { array, enums, number, object, optional, string } from "@deps";
+import { array, enums, number, object, optional, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { user_level_array } from "@model";
 import { pagination } from "@lib";

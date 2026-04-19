@@ -1,4 +1,4 @@
-import type { ActFn, Document } from "@deps";
+import type { ActFn, Document } from "lesan";
 import { file } from "../../../mod.ts";
 
 export const getsFn: ActFn = async (body) => {

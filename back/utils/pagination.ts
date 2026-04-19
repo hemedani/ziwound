@@ -1,4 +1,4 @@
-import { defaulted, number, optional } from "@deps";
+import { defaulted, number, optional } from "lesan";
 
 export const pagination = {
 	page: optional(defaulted(number(), () => 1)),

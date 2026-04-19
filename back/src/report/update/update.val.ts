@@ -1,4 +1,4 @@
-import { array, enums, number, object, objectIdValidation, optional, string } from "@deps";
+import { array, enums, number, object, objectIdValidation, optional, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { report_status_array } from "@model";
 

@@ -5,7 +5,7 @@ import {
   type RelationDataType,
   type RelationSortOrderType,
   string,
-} from "@deps";
+} from "lesan";
 import { coreApp } from "../mod.ts";
 import { createUpdateAt } from "@lib";
 import {

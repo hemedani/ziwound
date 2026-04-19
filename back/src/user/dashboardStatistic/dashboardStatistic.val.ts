@@ -1,4 +1,4 @@
-import { enums, object, optional } from "@deps";
+import { enums, object, optional } from "lesan";
 
 export const dashboardStatisticValidator = () => {
   return object({

@@ -1,4 +1,4 @@
-import { enums, instance, object } from "@deps";
+import { enums, instance, object } from "lesan";
 import { coreApp } from "../../../mod.ts";
 import { createUpdateAt } from "@lib";
 

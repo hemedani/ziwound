@@ -1,4 +1,4 @@
-import type { ActFn } from "@deps";
+import type { ActFn } from "lesan";
 import { province } from "../../../mod.ts";
 
 export const getsFn: ActFn = async (body) => {

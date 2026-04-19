@@ -1,4 +1,4 @@
-import { number, object, objectIdValidation, optional, string } from "@deps";
+import { number, object, objectIdValidation, optional, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { geoJSONStruct } from "@model";
 

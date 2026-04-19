@@ -1,4 +1,4 @@
-import { boolean, object, objectIdValidation } from "@deps";
+import { boolean, object, objectIdValidation } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { city_pure } from "@model";
 

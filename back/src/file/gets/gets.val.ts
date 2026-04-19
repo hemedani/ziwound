@@ -1,4 +1,4 @@
-import { enums, object, optional, string } from "@deps";
+import { enums, object, optional, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { pagination } from "@lib";
 

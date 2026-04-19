@@ -1,10 +1,11 @@
-import { type ActFn, ensureDir, ObjectId } from "@deps";
+import { type ActFn, ObjectId } from "lesan";
+import { ensureDir } from "@std/fs/ensure-dir";
 import { coreApp, file } from "../../../mod.ts";
 import type { MyContext } from "@lib";
 
 export const uploadFileFn: ActFn = async (body) => {
   const { user }: MyContext = coreApp.contextFns
-    .getContextModel() as MyContext;
+    .getContextModel() as unknown as MyContext;
 
   const { formData, type, ...rest } = body.details.set;
 

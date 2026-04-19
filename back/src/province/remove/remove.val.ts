@@ -1,4 +1,4 @@
-import { boolean, enums, object, objectIdValidation, optional, string } from "@deps";
+import { boolean, enums, object, objectIdValidation, optional, string } from "lesan";
 
 export const removeValidator = () => {
   return object({

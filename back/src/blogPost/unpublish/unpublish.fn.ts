@@ -1,4 +1,4 @@
-import { type ActFn, ObjectId } from "@deps";
+import { type ActFn, ObjectId } from "lesan";
 import { blogPost } from "../../../mod.ts";
 
 export const unpublishFn: ActFn = async (body) => {

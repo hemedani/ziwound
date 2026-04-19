@@ -1,4 +1,4 @@
-import { array, enums, object, optional } from "@deps";
+import { array, enums, object, optional } from "lesan";
 import { user_level_emums } from "@model";
 
 export const countUsersValidator = () => {

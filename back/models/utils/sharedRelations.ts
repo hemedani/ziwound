@@ -1,4 +1,4 @@
-import { optional, RelationDataType, string } from "@deps";
+import { optional, RelationDataType, string } from "lesan";
 import { createUpdateAt } from "../../utils/createUpdateAt.ts";
 import { user_excludes } from "../excludes.ts";
 

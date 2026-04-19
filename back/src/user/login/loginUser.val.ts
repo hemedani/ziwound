@@ -1,4 +1,4 @@
-import { enums, object, optional, size, string } from "@deps";
+import { enums, object, optional, size, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { emailPattern } from "../../../models/user.ts";
 

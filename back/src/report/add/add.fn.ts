@@ -1,11 +1,11 @@
-import { type ActFn, ObjectId } from "@deps";
+import { type ActFn, ObjectId } from "lesan";
 import { coreApp, report } from "../../../mod.ts";
 import type { MyContext } from "@lib";
 
 export const addFn: ActFn = async (body) => {
   const { set, get } = body.details;
   const { user }: MyContext = coreApp.contextFns
-    .getContextModel() as MyContext;
+    .getContextModel() as unknown as MyContext;
 
   const { tags, category, documents, ...rest } = set;
 
@@ -33,11 +33,11 @@ export const addFn: ActFn = async (body) => {
         : undefined,
       documents: documents
         ? {
-            _ids: documents.map((id: string) => new ObjectId(id)),
-            relatedRelations: {
-              report: true,
-            },
-          }
+          _ids: documents.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            report: true,
+          },
+        }
         : undefined,
     },
     projection: get,

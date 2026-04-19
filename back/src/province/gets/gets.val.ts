@@ -1,4 +1,4 @@
-import { number, object, optional, string } from "@deps";
+import { number, object, optional, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 
 export const getsValidator = () => {

@@ -1,4 +1,4 @@
-import { optional, type RelationDataType, string } from "@deps";
+import { optional, type RelationDataType, string } from "lesan";
 import { coreApp } from "../mod.ts";
 import { createUpdateAt } from "@lib";
 import {

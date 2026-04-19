@@ -1,4 +1,4 @@
-import { object, objectIdValidation, optional } from "@deps";
+import { object, objectIdValidation, optional } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 
 export const updateUserRelationsValidator = () => {

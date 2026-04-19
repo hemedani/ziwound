@@ -1,4 +1,4 @@
-import { object } from "@deps";
+import { object } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { shared_relation_pure } from "@model";
 

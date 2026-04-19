@@ -1,4 +1,4 @@
-import type { Infer } from "@deps";
+import type { Infer } from "lesan";
 import {
 	grantAccess,
 	type MyContext,

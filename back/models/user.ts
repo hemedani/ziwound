@@ -13,7 +13,7 @@ import {
   type RelationSortOrderType,
   string,
   union,
-} from "@deps";
+} from "lesan";
 import { createUpdateAt, isValidNationalNumber } from "@lib";
 import { file_excludes, location_excludes, user_excludes } from "./excludes.ts";
 

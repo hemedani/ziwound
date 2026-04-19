@@ -1,4 +1,4 @@
-import { object, string } from "@deps";
+import { object, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 
 export const getBySlugValidator = () => {

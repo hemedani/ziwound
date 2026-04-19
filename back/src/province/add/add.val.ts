@@ -1,4 +1,4 @@
-import { object } from "@deps";
+import { object } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { province_pure } from "@model";
 

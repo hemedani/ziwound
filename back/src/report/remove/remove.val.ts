@@ -1,4 +1,4 @@
-import { boolean, object, objectIdValidation, optional, string } from "@deps";
+import { boolean, object, objectIdValidation, optional, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 
 export const removeValidator = () => {

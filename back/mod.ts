@@ -1,4 +1,4 @@
-import { lesan, MongoClient } from "@deps";
+import { lesan, MongoClient } from "lesan";
 import {
   blogPostModel,
   categories,

@@ -1,4 +1,4 @@
-import { date, defaulted, optional } from "@deps";
+import { date, defaulted, optional } from "lesan";
 
 export const createUpdateAt = {
 	createdAt: optional(defaulted(date(), () => new Date())),

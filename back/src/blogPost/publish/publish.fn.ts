@@ -1,4 +1,4 @@
-import { type ActFn, ObjectId } from "@deps";
+import { type ActFn, ObjectId } from "lesan";
 import { blogPost } from "../../../mod.ts";
 
 export const publishFn: ActFn = async (body) => {
@@ -14,7 +14,7 @@ export const publishFn: ActFn = async (body) => {
 
   // Check if publishedAt is already set, if not, set it
   const existingPost = await blogPost.findOne({
-    filter: { _id: new ObjectId(_id) },
+    filters: { _id: new ObjectId(_id) },
     projection: { publishedAt: 1 },
   });
 

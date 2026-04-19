@@ -1,4 +1,4 @@
-import { string } from "@deps";
+import { string } from "lesan";
 import { geoJSONStruct } from "@model";
 import { createUpdateAt } from "../../utils/createUpdateAt.ts";
 

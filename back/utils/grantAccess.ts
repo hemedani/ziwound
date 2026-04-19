@@ -1,4 +1,4 @@
-import type { Infer } from "@deps";
+import type { Infer } from "lesan";
 import type { user_level_emums } from "@model";
 import { throwError } from "./throwError.ts";
 import type { MyContext } from "@lib";

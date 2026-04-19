@@ -29,7 +29,7 @@ export class RateLimiter {
 export const createRateLimitMiddleware = (limiter: RateLimiter) => {
   return () => {
     const { user: { _id } }: MyContext = coreApp.contextFns
-      .getContextModel() as MyContext;
+      .getContextModel() as unknown as MyContext;
 
     // should get and set ip in context in future
     // const key = _id?.toString() || body.context?.ip || 'anonymous';

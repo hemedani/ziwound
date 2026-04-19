@@ -1,4 +1,5 @@
-import { type ActFn, jwt } from "@deps";
+import { type ActFn } from "lesan";
+import * as jwt from "djwt";
 import { jwtTokenKey, throwError } from "@lib";
 import { user } from "../../../mod.ts";
 

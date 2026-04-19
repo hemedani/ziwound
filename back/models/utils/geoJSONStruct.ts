@@ -1,4 +1,4 @@
-import { array, literal, number, object, tuple } from "@deps";
+import { array, literal, number, object, tuple } from "lesan";
 
 const Coordinate = tuple([number(), number()]);
 export type GeoJSONGeometryType =

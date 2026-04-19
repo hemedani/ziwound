@@ -19,11 +19,14 @@
   },
   "imports": {
     "@da/bcrypt": "jsr:@da/bcrypt@^1.0.1",
-    "lesan": "jsr:@hemedani/lesan@^0.2.3",
     "@std/fs/ensure-dir": "jsr:@std/fs@0.223/ensure-dir",
+    "esbuild": "npm:esbuild@^0.28.0",
+    "lesan": "/Users/syd/work/lesan/new-cross-platform-lesan/mod.ts",
     "djwt": "https://deno.land/x/djwt@v2.8/mod.ts",
     "@lib": "./utils/mod.ts",
-    "@model": "./models/mod.ts"
+    "@model": "./models/mod.ts",
+    "mongodb": "npm:mongodb@^7.1.1",
+    "superstruct": "npm:superstruct@^2.0.2"
   },
   "compilerOptions": {
     "strict": true

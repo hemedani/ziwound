@@ -1,4 +1,4 @@
-import { enums, object, optional, string } from "@deps";
+import { enums, object, optional, string } from "lesan";
 
 export const countValidator = () => {
   return object({

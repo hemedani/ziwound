@@ -1,4 +1,4 @@
-import { type ActFn, ObjectId } from "@deps";
+import { type ActFn, ObjectId } from "lesan";
 import { coreApp, user } from "../../../mod.ts";
 import { type MyContext, throwError } from "@lib";
 

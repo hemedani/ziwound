@@ -1,4 +1,4 @@
-import { type ActFn, ObjectId } from "@deps";
+import { type ActFn, ObjectId } from "lesan";
 import { user } from "../../../mod.ts";
 
 export const removeUserFn: ActFn = async (body) => {

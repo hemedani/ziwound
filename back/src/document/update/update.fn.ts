@@ -1,4 +1,4 @@
-import { type ActFn, type Infer, object, ObjectId } from "@deps";
+import { type ActFn, type Infer, object, ObjectId } from "lesan";
 import { document } from "../../../mod.ts";
 import { document_pure } from "@model";
 

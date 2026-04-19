@@ -1,4 +1,4 @@
-import type { ActFn } from "@deps";
+import type { ActFn } from "lesan";
 import { category, city, province, tag, user } from "../../../mod.ts";
 
 export const dashboardStatisticFn: ActFn = async () => {

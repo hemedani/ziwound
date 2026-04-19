@@ -1,4 +1,4 @@
-import { jwt } from "@deps";
+import * as jwt from "djwt";
 import { coreApp } from "../mod.ts";
 import { throwError } from "./throwError.ts";
 

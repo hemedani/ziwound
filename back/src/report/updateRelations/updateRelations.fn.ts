@@ -1,15 +1,11 @@
-import { type ActFn, ObjectId } from "@deps";
-import { coreApp, report } from "../../../mod.ts";
-import type { MyContext } from "@lib";
+import { type ActFn, ObjectId } from "lesan";
+import { report } from "../../../mod.ts";
 
 export const updateRelationsFn: ActFn = async (body) => {
   const {
     set: { _id, tags, category, documents, removeDocuments },
     get,
   } = body.details;
-
-  const { user }: MyContext = coreApp.contextFns
-    .getContextModel() as MyContext;
 
   const reportId = new ObjectId(_id);
 

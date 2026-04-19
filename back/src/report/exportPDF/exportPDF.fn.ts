@@ -1,4 +1,4 @@
-import { type ActFn, ObjectId } from "@deps";
+import { type ActFn, ObjectId } from "lesan";
 import { report } from "../../../mod.ts";
 
 export const exportPDFFn: ActFn = async (body) => {
@@ -8,7 +8,7 @@ export const exportPDFFn: ActFn = async (body) => {
   } = body.details;
 
   const reportData = await report.findOne({
-    filter: { _id: new ObjectId(_id) },
+    filters: { _id: new ObjectId(_id) },
     projection: get,
   });
 

@@ -1,4 +1,4 @@
-import { type ActFn, ObjectId } from "@deps";
+import { type ActFn, ObjectId } from "lesan";
 import { blogPost } from "../../../mod.ts";
 
 export const getRelatedFn: ActFn = async (body) => {
@@ -9,7 +9,7 @@ export const getRelatedFn: ActFn = async (body) => {
 
   // Find the current post by slug
   const currentPost = await blogPost.findOne({
-    filter: { slug },
+    filters: { slug },
     projection: { _id: 1, "tags._id": 1 },
   });
 

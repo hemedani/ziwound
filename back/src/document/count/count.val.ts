@@ -1,4 +1,4 @@
-import { object, optional, string } from "@deps";
+import { object, optional, string } from "lesan";
 
 export const countValidator = () => {
   return object({

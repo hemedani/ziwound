@@ -1,4 +1,4 @@
-import { enums, object, optional, string } from "@deps";
+import { enums, object, optional, string } from "lesan";
 import { report_status_array } from "@model";
 
 export const countValidator = () => {

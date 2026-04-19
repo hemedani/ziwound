@@ -1,4 +1,4 @@
-import { type ActFn, type Infer, object, ObjectId } from "@deps";
+import { type ActFn, type Infer, object, ObjectId } from "lesan";
 import { tag } from "../../../mod.ts";
 import { shared_relation_pure } from "@model";
 

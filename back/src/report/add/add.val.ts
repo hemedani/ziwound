@@ -1,4 +1,4 @@
-import { array, number, object, objectIdValidation, optional, string } from "@deps";
+import { array, number, object, objectIdValidation, optional, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { report_pure } from "@model";
 

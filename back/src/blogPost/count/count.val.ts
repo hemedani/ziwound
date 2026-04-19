@@ -1,4 +1,4 @@
-import { array, boolean, enums, object, objectIdValidation, optional, string } from "@deps";
+import { array, boolean, enums, object, objectIdValidation, optional, string } from "lesan";
 
 export const countValidator = () => {
   return object({

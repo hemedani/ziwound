@@ -1,4 +1,5 @@
-import type { ActFn, Document } from "@deps";
+import type { ActFn, Document } from "lesan";
+import { ObjectId } from "lesan";
 import { document } from "../../../mod.ts";
 
 export const getsFn: ActFn = async (body) => {
@@ -8,6 +9,8 @@ export const getsFn: ActFn = async (body) => {
       limit,
       skip,
       search,
+      reportId,
+      documentTypes,
       sortBy,
       sortOrder,
     },
@@ -20,6 +23,20 @@ export const getsFn: ActFn = async (body) => {
   search &&
     pipeline.push({
       $match: { $text: { $search: search } },
+    });
+
+  // Filter by report ID
+  reportId &&
+    pipeline.push({
+      $match: { "report._id": new ObjectId(reportId as string) },
+    });
+
+  // Filter by document file types
+  documentTypes && documentTypes.length > 0 &&
+    pipeline.push({
+      $match: {
+        "documentFiles.type": { $in: documentTypes },
+      },
     });
 
   // Add text search score for sorting if search term exists

@@ -1,4 +1,4 @@
-import { array, literal, number, object, Struct, tuple, union } from "@deps";
+import { array, literal, number, object, Struct, tuple, union } from "lesan";
 
 // نوع پایه: مختصات دو عددی (lng, lat)
 const Coordinate = tuple([number(), number()]);

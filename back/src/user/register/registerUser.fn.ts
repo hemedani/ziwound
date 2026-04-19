@@ -1,4 +1,4 @@
-import type { ActFn } from "@deps";
+import type { ActFn } from "lesan";
 import { user } from "../../../mod.ts";
 import { throwError } from "@lib";
 import { hash } from "@da/bcrypt";

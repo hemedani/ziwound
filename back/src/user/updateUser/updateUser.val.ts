@@ -5,7 +5,7 @@ import {
 	objectIdValidation,
 	optional,
 	string,
-} from "@deps";
+} from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { user_genders } from "@model";
 

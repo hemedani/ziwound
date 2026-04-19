@@ -1,5 +1,5 @@
 import { coreApp } from "../mod.ts";
-import { type RelationDataType } from "@deps";
+import { type RelationDataType } from "lesan";
 import { pure_location } from "@model";
 import { user_excludes } from "./excludes.ts";
 

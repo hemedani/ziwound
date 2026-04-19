@@ -7,7 +7,7 @@ import {
 	objectIdValidation,
 	optional,
 	string,
-} from "@deps";
+} from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import {
 	is_valid_national_number_struct,

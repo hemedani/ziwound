@@ -1,4 +1,4 @@
-import { type ActFn } from "@deps";
+import { type ActFn } from "lesan";
 import { coreApp, tag } from "../../../mod.ts";
 import type { MyContext } from "@lib";
 

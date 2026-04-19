@@ -1,4 +1,4 @@
-import { type Infer, type LesanContenxt, object, type ObjectId } from "@deps";
+import { type Infer, type LesanContenxt, object, type ObjectId } from "lesan";
 import { user_pure } from "../models/user.ts";
 
 type Merge<A, B> =

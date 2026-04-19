@@ -1,4 +1,4 @@
-import { type ActFn, type Infer, object, ObjectId } from "@deps";
+import { type ActFn, type Infer, object, ObjectId } from "lesan";
 import { province } from "../../../mod.ts";
 import { province_pure } from "@model";
 
