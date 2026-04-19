@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { ArrowLeft, Edit, FileIcon, Calendar, Info } from "lucide-react";
 import { getLesanBaseUrl } from "@/lib/api";
+import { fileSchema, reportSchema } from "@/types/declarations";
 
 export default async function DocumentDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const t = await getTranslations("admin");
@@ -106,9 +107,9 @@ export default async function DocumentDetailsPage({ params }: { params: Promise<
             <CardContent>
               {documentData.documentFiles && documentData.documentFiles.length > 0 ? (
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {documentData.documentFiles.map((file: any) => (
+                  {documentData.documentFiles.map((file: fileSchema) => (
                     <a
-                      key={file._id}
+                      key={file._id as string}
                       href={`${baseUrl}/file/download?id=${file._id}`}
                       target="_blank"
                       rel="noopener noreferrer"
@@ -143,9 +144,9 @@ export default async function DocumentDetailsPage({ params }: { params: Promise<
             <CardContent>
               {documentData.report && documentData.report.length > 0 ? (
                 <div className="space-y-3">
-                  {documentData.report.map((report: any) => (
+                  {documentData.report.map((report: reportSchema) => (
                     <Link
-                      key={report._id}
+                      key={report._id as string}
                       href={`/admin/reports/${report._id}`}
                       className="block p-3 border rounded-lg hover:bg-muted/50 transition-colors"
                     >

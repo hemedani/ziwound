@@ -7,12 +7,8 @@ export default async function NewDocumentPage() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">
-          {t("addDocument")}
-        </h1>
-        <p className="text-muted-foreground">
-          {t("addDocumentDescription")}
-        </p>
+        <h1 className="text-3xl font-bold tracking-tight">{t("addDocument")}</h1>
+        <p className="text-muted-foreground">{t("addDocumentDescription")}</p>
       </div>
       <div className="max-w-2xl">
         <DocumentForm />
