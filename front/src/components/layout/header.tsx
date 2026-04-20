@@ -82,6 +82,12 @@ export function Header() {
             >
               {t("newReport")}
             </Link>
+            <Link
+              href={`/${locale}/documents`}
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              {t("documents")}
+            </Link>
           </nav>
         )}
 
@@ -257,6 +263,12 @@ export function Header() {
                         >
                           {t("newReport")}
                         </Link>
+                        <Link
+                          href={`/${locale}/documents`}
+                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
+                        >
+                          {t("documents")}
+                        </Link>
                       </>
                     ) : (
                       <>
@@ -271,6 +283,12 @@ export function Header() {
                           className="text-sm font-medium hover:text-primary transition-colors"
                         >
                           {t("newReport")}
+                        </Link>
+                        <Link
+                          href={`/${locale}/documents`}
+                          className="text-sm font-medium hover:text-primary transition-colors"
+                        >
+                          {t("documents")}
                         </Link>
                       </>
                     )}

@@ -209,7 +209,8 @@
     "myReports": "Raporlarım",
     "newReport": "Yeni Rapor",
     "profile": "Profil",
-    "register": "Kayıt Ol"
+    "register": "Kayıt Ol",
+    "documents": "Public Documents"
   },
   "footer": {
     "about": "Hakkımızda",
@@ -394,5 +395,21 @@
     "backHome": "Ana Sayfaya Dön",
     "description": "Aradığınız sayfa mevcut değil.",
     "title": "Sayfa Bulunamadı"
+  },
+  "documents": {
+    "title": "Public Documents",
+    "description": "Explore public documents.",
+    "searchPlaceholder": "Search...",
+    "language": "Language",
+    "allLanguages": "All Languages",
+    "search": "Search",
+    "noDocuments": "No documents found",
+    "tryAdjustingSearch": "Try adjusting search",
+    "noDescription": "No description",
+    "linkedReports": "Linked Reports",
+    "files": "Files",
+    "moreFiles": "more files",
+    "noFiles": "No files",
+    "pageInfo": "Page {page} of {totalPages}"
   }
 }

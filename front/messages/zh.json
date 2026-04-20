@@ -209,7 +209,8 @@
     "myReports": "我的报告",
     "newReport": "新报告",
     "profile": "个人资料",
-    "register": "注册"
+    "register": "注册",
+    "documents": "Public Documents"
   },
   "footer": {
     "about": "关于我们",
@@ -394,5 +395,21 @@
     "backHome": "返回首页",
     "description": "您寻找的页面不存在。",
     "title": "页面未找到"
+  },
+  "documents": {
+    "title": "Public Documents",
+    "description": "Explore public documents.",
+    "searchPlaceholder": "Search...",
+    "language": "Language",
+    "allLanguages": "All Languages",
+    "search": "Search",
+    "noDocuments": "No documents found",
+    "tryAdjustingSearch": "Try adjusting search",
+    "noDescription": "No description",
+    "linkedReports": "Linked Reports",
+    "files": "Files",
+    "moreFiles": "more files",
+    "noFiles": "No files",
+    "pageInfo": "Page {page} of {totalPages}"
   }
 }

@@ -209,7 +209,8 @@
     "myReports": "Мои отчеты",
     "newReport": "Новый отчет",
     "profile": "Профиль",
-    "register": "Регистрация"
+    "register": "Регистрация",
+    "documents": "Public Documents"
   },
   "footer": {
     "about": "О нас",
@@ -394,5 +395,21 @@
     "backHome": "Вернуться на главную",
     "description": "Страница, которую вы ищете, не существует.",
     "title": "Страница не найдена"
+  },
+  "documents": {
+    "title": "Public Documents",
+    "description": "Explore public documents.",
+    "searchPlaceholder": "Search...",
+    "language": "Language",
+    "allLanguages": "All Languages",
+    "search": "Search",
+    "noDocuments": "No documents found",
+    "tryAdjustingSearch": "Try adjusting search",
+    "noDescription": "No description",
+    "linkedReports": "Linked Reports",
+    "files": "Files",
+    "moreFiles": "more files",
+    "noFiles": "No files",
+    "pageInfo": "Page {page} of {totalPages}"
   }
 }

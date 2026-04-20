@@ -209,7 +209,8 @@
     "myReports": "Meus Relatórios",
     "newReport": "Novo Relatório",
     "profile": "Perfil",
-    "register": "Registrar"
+    "register": "Registrar",
+    "documents": "Public Documents"
   },
   "footer": {
     "about": "Sobre Nós",
@@ -394,5 +395,21 @@
     "backHome": "Voltar ao início",
     "description": "A página que você está procurando não existe.",
     "title": "Página não encontrada"
+  },
+  "documents": {
+    "title": "Public Documents",
+    "description": "Explore public documents.",
+    "searchPlaceholder": "Search...",
+    "language": "Language",
+    "allLanguages": "All Languages",
+    "search": "Search",
+    "noDocuments": "No documents found",
+    "tryAdjustingSearch": "Try adjusting search",
+    "noDescription": "No description",
+    "linkedReports": "Linked Reports",
+    "files": "Files",
+    "moreFiles": "more files",
+    "noFiles": "No files",
+    "pageInfo": "Page {page} of {totalPages}"
   }
 }

@@ -296,10 +296,10 @@
   - [x] Update report detail page to show associated documents
   - [x] Add document upload section in report edit form
   - [x] Display documents as downloadable files with preview icons
-- [ ] **Public Document Access** (if approved by admin)
-  - [ ] Create optional public document listing page
-  - [ ] Add document download with proper permissions check
-  - [ ] Display document metadata and linked reports
+- [x] **Public Document Access** (if approved by admin)
+  - [x] Create optional public document listing page
+  - [x] Add document download with proper permissions check
+  - [x] Display document metadata and linked reports
 
 ## Phase 9: Dashboard Pages Update with New Document and Report Models
 

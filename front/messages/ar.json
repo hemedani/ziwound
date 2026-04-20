@@ -209,7 +209,8 @@
     "myReports": "تقاريري",
     "newReport": "تقرير جديد",
     "profile": "الملف الشخصي",
-    "register": "إنشاء حساب"
+    "register": "إنشاء حساب",
+    "documents": "Public Documents"
   },
   "footer": {
     "about": "معلومات عنا",
@@ -394,5 +395,21 @@
     "backHome": "العودة إلى الصفحة الرئيسية",
     "description": "الصفحة التي تبحث عنها غير موجودة.",
     "title": "الصفحة غير موجودة"
+  },
+  "documents": {
+    "title": "Public Documents",
+    "description": "Explore public documents.",
+    "searchPlaceholder": "Search...",
+    "language": "Language",
+    "allLanguages": "All Languages",
+    "search": "Search",
+    "noDocuments": "No documents found",
+    "tryAdjustingSearch": "Try adjusting search",
+    "noDescription": "No description",
+    "linkedReports": "Linked Reports",
+    "files": "Files",
+    "moreFiles": "more files",
+    "noFiles": "No files",
+    "pageInfo": "Page {page} of {totalPages}"
   }
 }

@@ -209,7 +209,8 @@
     "myReports": "گزارش‌های من",
     "newReport": "گزارش جدید",
     "profile": "پروفایل",
-    "register": "ثبت‌نام"
+    "register": "ثبت‌نام",
+    "documents": "اسناد عمومی"
   },
   "footer": {
     "about": "درباره ما",
@@ -394,5 +395,21 @@
     "backHome": "بازگشت به صفحه اصلی",
     "description": "متاسفیم، صفحه‌ای که به دنبال آن هستید وجود ندارد.",
     "title": "صفحه پیدا نشد"
+  },
+  "documents": {
+    "title": "اسناد عمومی",
+    "description": "کاوش اسناد عمومی.",
+    "searchPlaceholder": "جستجو...",
+    "language": "زبان",
+    "allLanguages": "همه زبان‌ها",
+    "search": "جستجو",
+    "noDocuments": "سندی یافت نشد",
+    "tryAdjustingSearch": "لطفا جستجو را تغییر دهید",
+    "noDescription": "بدون توضیحات",
+    "linkedReports": "گزارش‌های مرتبط",
+    "files": "فایل‌ها",
+    "moreFiles": "فایل بیشتر",
+    "noFiles": "بدون فایل",
+    "pageInfo": "صفحه {page} از {totalPages}"
   }
 }
