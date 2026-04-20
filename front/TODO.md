@@ -292,10 +292,10 @@
   - [x] Add document delete action with confirmation
   - [x] Add document preview functionality
 - [ ] **Report Integration**
-  - [ ] Update report submission page to allow document uploads/links
-  - [ ] Update report detail page to show associated documents
-  - [ ] Add document upload section in report edit form
-  - [ ] Display documents as downloadable files with preview icons
+  - [x] Update report submission page to allow document uploads/links
+  - [x] Update report detail page to show associated documents
+  - [x] Add document upload section in report edit form
+  - [x] Display documents as downloadable files with preview icons
 - [ ] **Public Document Access** (if approved by admin)
   - [ ] Create optional public document listing page
   - [ ] Add document download with proper permissions check

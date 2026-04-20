@@ -13,6 +13,7 @@ import Image from "next/image";
 import { get as getReport } from "@/app/actions/report/get";
 import dynamic from "next/dynamic";
 import { documentSchema, reportSchema } from "@/types/declarations";
+import { getLesanBaseUrl } from "@/lib/api";
 
 const ReadonlyMap = dynamic(
   () => import("@/components/map/readonly-map").then((mod) => mod.ReadonlyMap),
@@ -53,7 +54,7 @@ export default function ReportDetailPage() {
             updatedAt: 1,
             category: { _id: 1, name: 1 },
             tags: { _id: 1, name: 1 },
-            documents: { _id: 1, title: 1, documentFiles: { name: 1, mimeType: 1, type: 1 } },
+            documents: { _id: 1, title: 1, documentFiles: { _id: 1, name: 1, mimeType: 1, type: 1 } },
           },
         );
 
@@ -233,48 +234,50 @@ export default function ReportDetailPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Paperclip className="h-5 w-5" />
-              {t("attachments")} ({report.documents.length})
+              {t("attachments")} (
+              {report.documents.reduce((acc, doc) => acc + (doc.documentFiles?.length || 0), 0)})
             </CardTitle>
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 sm:grid-cols-2">
-              {report.documents.map((doc) => (
-                <div key={doc._id} className="flex items-center gap-3 rounded-lg border p-4">
-                  {isImage(doc.documentFiles?.[0]?.mimeType || "") ? (
-                    <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
-                      <Image
-                        src={
-                          doc.documentFiles?.[0]?.name
-                            ? `/uploads/${doc.documentFiles[0].name}`
-                            : "https://placehold.co/400x400.png"
-                        }
-                        alt={doc.documentFiles?.[0]?.name || doc.title || "Attachment"}
-                        fill
-                        className="object-cover"
-                      />
+              {report.documents.flatMap((doc) =>
+                (doc.documentFiles || []).map((file, index) => (
+                  <div
+                    key={`${doc._id}-${file._id || index}`}
+                    className="flex items-center gap-3 rounded-lg border p-4"
+                  >
+                    {isImage(file.mimeType || "") ? (
+                      <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
+                        <Image
+                          src={
+                            file._id
+                              ? `${getLesanBaseUrl()}/file/download?id=${file._id}`
+                              : "https://placehold.co/400x400.png"
+                          }
+                          alt={file.name || doc.title || "Attachment"}
+                          fill
+                          className="object-cover"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-md bg-muted">
+                        <FileText className="h-8 w-8 text-muted-foreground" />
+                      </div>
+                    )}
+                    <div className="min-w-0 flex-1">
+                      <p className="truncate text-sm font-medium">{file.name || doc.title}</p>
                     </div>
-                  ) : (
-                    <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-md bg-muted">
-                      <FileText className="h-8 w-8 text-muted-foreground" />
-                    </div>
-                  )}
-                  <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium">
-                      {doc.title || doc.documentFiles?.[0]?.name}
-                    </p>
+                    <Button variant="ghost" size="icon" asChild>
+                      <a
+                        href={file._id ? `${getLesanBaseUrl()}/file/download?id=${file._id}` : "#"}
+                        download={file.name}
+                      >
+                        <Download className="h-4 w-4" />
+                      </a>
+                    </Button>
                   </div>
-                  <Button variant="ghost" size="icon" asChild>
-                    <a
-                      href={
-                        doc.documentFiles?.[0]?.name ? `/uploads/${doc.documentFiles[0].name}` : "#"
-                      }
-                      download={doc.documentFiles?.[0]?.name}
-                    >
-                      <Download className="h-4 w-4" />
-                    </a>
-                  </Button>
-                </div>
-              ))}
+                )),
+              )}
             </div>
           </CardContent>
         </Card>

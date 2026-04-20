@@ -17,6 +17,27 @@ export async function createReport(data: {
       return { success: false, error: "Not authenticated" };
     }
 
+    let documentIds: string[] = [];
+    if (data.attachments && data.attachments.length > 0) {
+      const docResult = await AppApi(undefined, token).send({
+        service: "main",
+        model: "document",
+        act: "add",
+        details: {
+          set: {
+            title: `Attachments for: ${data.title}`,
+            description: "Automatically created from report submission",
+            documentFiles: data.attachments,
+          },
+          get: { _id: 1 },
+        },
+      });
+
+      if (docResult.success && docResult.body && (docResult.body as any)._id) {
+        documentIds = [(docResult.body as any)._id];
+      }
+    }
+
     const result = await AppApi(undefined, token).send({
       service: "main",
       model: "report",
@@ -28,9 +49,7 @@ export async function createReport(data: {
           ...(data.location ? { location: data.location } : {}),
           ...(data.tags && data.tags.length > 0 ? { tags: data.tags } : {}),
           ...(data.category ? { category: data.category } : {}),
-          ...(data.attachments && data.attachments.length > 0
-            ? { attachments: data.attachments }
-            : {}),
+          ...(documentIds.length > 0 ? { documents: documentIds } : {}),
         },
         get: {
           _id: 1,
