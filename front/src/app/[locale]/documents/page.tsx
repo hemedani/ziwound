@@ -53,8 +53,8 @@ export default async function PublicDocumentsPage({
   const resolvedParams = await params;
   const { locale } = resolvedParams;
 
-  const t = await getTranslations("documents");
-  const tCommon = await getTranslations("common");
+  const t = await getTranslations({ locale, namespace: "documents" });
+  const tCommon = await getTranslations({ locale, namespace: "common" });
 
   const page = Number(resolvedSearchParams.page) || 1;
   const search = resolvedSearchParams.search || "";
@@ -82,16 +82,34 @@ export default async function PublicDocumentsPage({
     },
   });
 
-  let documents: any[] = [];
+  type DocumentFile = { _id: string; name?: string; mimeType?: string };
+  type LinkedReport = { _id: string; title: string };
+  type DocumentItem = {
+    _id: string;
+    title: string;
+    description?: string;
+    language?: string;
+    createdAt: string;
+    documentFiles?: DocumentFile[];
+    report?: LinkedReport[];
+  };
+
+  let documents: DocumentItem[] = [];
   let totalPages = 1;
   let totalCount = 0;
   let error: string | null = null;
 
   if (response?.success) {
-    const responseData = response.body as any;
+    const responseData = response.body as
+      | { list: DocumentItem[]; totalPages?: number; totalCount?: number }
+      | DocumentItem[];
     documents = Array.isArray(responseData) ? responseData : responseData?.list || [];
-    totalPages = responseData?.totalPages || 1;
-    totalCount = responseData?.totalCount || documents.length;
+    totalPages =
+      !Array.isArray(responseData) && responseData?.totalPages ? responseData.totalPages : 1;
+    totalCount =
+      !Array.isArray(responseData) && responseData?.totalCount
+        ? responseData.totalCount
+        : documents.length;
   } else {
     error = response?.error || response?.body?.message || "Failed to fetch documents";
   }
@@ -104,12 +122,17 @@ export default async function PublicDocumentsPage({
             {t("title") || "Public Documents"}
           </h1>
           <p className="text-xl text-muted-foreground">
-            {t("description") || "Explore and download public documents, evidence, and reports related to documented incidents."}
+            {t("description") ||
+              "Explore and download public documents, evidence, and reports related to documented incidents."}
           </p>
         </div>
 
         <div className="bg-card border rounded-lg p-4 sm:p-6 shadow-sm">
-          <form method="GET" className="flex flex-col sm:flex-row gap-4">
+          <form
+            action={`/${locale}/documents`}
+            method="GET"
+            className="flex flex-col sm:flex-row gap-4"
+          >
             <div className="relative flex-1">
               <Search className="absolute start-3 top-3 h-4 w-4 text-muted-foreground" />
               <Input
@@ -165,7 +188,9 @@ export default async function PublicDocumentsPage({
                   <div className="flex justify-between items-start gap-4 mb-2">
                     <Badge variant="outline" className="flex items-center gap-1 shrink-0">
                       <Globe className="h-3 w-3" />
-                      {languages.find((l) => l.code === doc.language)?.name || doc.language || "Unknown"}
+                      {languages.find((l) => l.code === doc.language)?.name ||
+                        doc.language ||
+                        "Unknown"}
                     </Badge>
                     <div className="flex items-center text-xs text-muted-foreground whitespace-nowrap">
                       <Calendar className="mr-1 h-3 w-3" />
@@ -174,7 +199,7 @@ export default async function PublicDocumentsPage({
                   </div>
                   <CardTitle className="line-clamp-2 leading-tight">{doc.title}</CardTitle>
                   <CardDescription className="line-clamp-3 mt-2 text-sm">
-                    {doc.description || (t("noDescription") || "No description provided.")}
+                    {doc.description || t("noDescription") || "No description provided."}
                   </CardDescription>
                 </CardHeader>
                 <CardContent className="flex-1 flex flex-col justify-end pt-0">
@@ -184,8 +209,12 @@ export default async function PublicDocumentsPage({
                         {t("linkedReports") || "Linked Reports"}
                       </p>
                       <div className="flex flex-wrap gap-1">
-                        {doc.report.slice(0, 2).map((r: any) => (
-                          <Badge key={r._id} variant="secondary" className="text-xs font-normal max-w-full truncate">
+                        {doc.report.slice(0, 2).map((r) => (
+                          <Badge
+                            key={r._id}
+                            variant="secondary"
+                            className="text-xs font-normal max-w-full truncate"
+                          >
                             {r.title}
                           </Badge>
                         ))}
@@ -204,9 +233,15 @@ export default async function PublicDocumentsPage({
                     </p>
                     {doc.documentFiles && doc.documentFiles.length > 0 ? (
                       <div className="flex flex-col gap-2">
-                        {doc.documentFiles.slice(0, 3).map((file: any) => (
-                          <div key={file._id} className="flex items-center justify-between bg-muted/50 rounded-md p-2 text-sm">
-                            <span className="truncate mr-2 max-w-[150px] font-medium" title={file.name}>
+                        {doc.documentFiles.slice(0, 3).map((file) => (
+                          <div
+                            key={file._id}
+                            className="flex items-center justify-between bg-muted/50 rounded-md p-2 text-sm"
+                          >
+                            <span
+                              className="truncate mr-2 max-w-[150px] font-medium"
+                              title={file.name}
+                            >
                               {file.name || "Document"}
                             </span>
                             <Button variant="ghost" size="sm" className="h-7 w-7 p-0 shrink-0" asChild>
@@ -254,7 +289,8 @@ export default async function PublicDocumentsPage({
               </Link>
             </Button>
             <span className="text-sm text-muted-foreground px-4">
-              {t("pageInfo", { page, totalPages }) || `Page ${page} of ${totalPages || Math.ceil(totalCount / 12) || 1}`}
+              {t("pageInfo", { page, totalPages }) ||
+                `Page ${page} of ${totalPages || Math.ceil(totalCount / 12) || 1}`}
             </span>
             <Button
               variant="outline"
