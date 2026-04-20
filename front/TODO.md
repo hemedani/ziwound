@@ -282,7 +282,7 @@
   - [x] Create `src/app/actions/document/update.ts`
   - [x] Create `src/app/actions/document/remove.ts`
   - [x] Create `src/app/actions/document/updateRelations.ts`
-- [ ] **Admin Panel - Document Management**
+- [x] **Admin Panel - Document Management**
   - [x] Add Documents to admin sidebar navigation
   - [x] Create `/admin/documents` page with document list
   - [x] Add data table with columns: title, type, linked reports, date, actions
@@ -291,7 +291,7 @@
   - [x] Add document edit modal with report linking interface
   - [x] Add document delete action with confirmation
   - [x] Add document preview functionality
-- [ ] **Report Integration**
+- [x] **Report Integration**
   - [x] Update report submission page to allow document uploads/links
   - [x] Update report detail page to show associated documents
   - [x] Add document upload section in report edit form

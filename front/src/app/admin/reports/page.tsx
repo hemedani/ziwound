@@ -62,6 +62,7 @@ export default async function AdminReportsPage({
     priority: 1,
     createdAt: 1,
     category: { _id: 1, name: 1 },
+    documents: { _id: 1, title: 1 },
   });
 
   let reports: Array<{
@@ -71,6 +72,7 @@ export default async function AdminReportsPage({
     priority: string;
     createdAt: string;
     category?: { _id: string; name: string };
+    documents?: Array<{ _id: string; title: string }>;
   }> = [];
   let error: string | null = null;
   if (response?.success) {

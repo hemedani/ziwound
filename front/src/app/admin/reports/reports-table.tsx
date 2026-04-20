@@ -34,6 +34,7 @@ type ReportItem = {
   priority: string;
   createdAt: string;
   category?: { _id: string; name: string };
+  documents?: { _id: string; title: string }[];
 };
 
 export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?: string | null }) {
@@ -370,6 +371,20 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
                   </Badge>
                 </div>
               </div>
+              {selectedReport.documents && selectedReport.documents.length > 0 && (
+                <div className="pt-4 border-t mt-4">
+                  <h4 className="text-sm font-medium text-muted-foreground mb-2">
+                    {t("documents") || "Linked Documents"}
+                  </h4>
+                  <div className="flex flex-col gap-2">
+                    {selectedReport.documents.map((doc) => (
+                      <div key={doc._id} className="text-sm bg-muted/50 p-2 rounded-md border">
+                        {doc.title}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
             </div>
           )}
         </DialogContent>
