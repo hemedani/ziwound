@@ -10,7 +10,7 @@ import {
 import { useTranslations } from "next-intl";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-import { TagForm } from "./tag-form";
+import { TagForm, TagFormValues } from "./tag-form";
 import { update } from "@/app/actions/tag/update";
 import { tagSchema } from "@/types/declarations";
 
@@ -25,7 +25,7 @@ export function EditTagDialog({ tag, open, onOpenChange }: EditTagDialogProps) {
   const { toast } = useToast();
   const router = useRouter();
 
-  const handleSubmit = async (data: any) => {
+  const handleSubmit = async (data: TagFormValues) => {
     if (!tag?._id) return;
 
     try {

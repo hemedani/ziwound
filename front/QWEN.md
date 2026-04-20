@@ -302,7 +302,7 @@ setTheme("dark"); // or 'light' or 'system'
 
 You are a front-end expert in Next.js 16, Tailwind v4, and shadcn/ui. Always prioritize **clean, beautiful, intuitive, and accessible** UIs. The report submission page must feel simple and welcoming; the admin panel must be powerful yet well-organized.
 
-- Use **pnpm** for all commands.
+- **STRICT RULE FOR AI AGENTS**: Use **pnpm** for all `npm` like commands.
 - Use **Server Actions** in `src/app/actions/<model>/` for all backend communication (preferred pattern: `add`, `get`, `gets`, `update`, `remove`, etc.).
 - Backend responses follow: `{ success: boolean, body: data }`. Always access data via `response.body`.
 - For authentication: token is sent in header `token` (no "Bearer" prefix), stored in cookie named "token".
@@ -829,6 +829,7 @@ export async function createReport(data: {
   tags?: string[];
   category?: string;
   documentIds?: string[];
+  language?: string;
 }) {
   const token = await getToken();
   if (!token) {
@@ -843,6 +844,7 @@ export async function createReport(data: {
       set: {
         title: data.title,
         description: data.description,
+        ...(data.language ? { language: data.language } : {}),
         ...(data.location ? { location: data.location } : {}),
         ...(data.tags && data.tags.length > 0 ? { tags: data.tags } : {}),
         ...(data.category ? { category: data.category } : {}),
@@ -992,7 +994,7 @@ When adding a new model to your Lesan backend:
 When creating a new report that includes file attachments, follow this specific order of operations to ensure data integrity and proper relationship linking:
 
 1. **Upload Files**: First, upload all selected files to the server using the `uploadFile` server action (e.g., via the `FileUploadField` component). This action will store the files and return their unique file IDs.
-2. **Create Document**: Once you have the file IDs, create a new `Document` record in the database (using the `add` document server action). Pass the file IDs to the `documentFiles` field. This will group the files together and return a new Document ID.
+2. **Create Document**: Once you have the file IDs, create a new `Document` record in the database (using the `add` document server action). Pass the file IDs to the `documentFileIds` field. This will group the files together and return a new Document ID.
 3. **Create Report**: Finally, create the `Report` record. Pass the newly created Document ID(s) to the `documentIds` field in the report's `add` action, along with the title, description, and other report details.
 
 This three-step process ensures that files are securely stored, properly grouped into documents, and correctly linked to the final report.
@@ -1019,6 +1021,7 @@ This three-step process ensures that files are securely stored, properly grouped
 ### Important Notes
 
 - Use types from `/src/types/declarations` for consistency with the backend.
+- **STRICT RULE FOR AI AGENTS**: NEVER use the `any` type in this project. Always resolve and use the proper types, mostly available inside `/src/types/declarations.ts`.
 - Ghost user level has full admin access.
 - Keep the report submission page **simple and elegant**.
 - Do not run `pnpm dev` or build commands automatically — only suggest them.

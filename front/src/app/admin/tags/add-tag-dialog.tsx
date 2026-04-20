@@ -14,7 +14,7 @@ import {
 import { useTranslations } from "next-intl";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-import { TagForm } from "./tag-form";
+import { TagForm, TagFormValues } from "./tag-form";
 import { add } from "@/app/actions/tag/add";
 
 export function AddTagDialog() {
@@ -23,9 +23,9 @@ export function AddTagDialog() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
-  const handleSubmit = async (data: any) => {
+  const handleSubmit = async (data: TagFormValues) => {
     try {
-      const res = await add(data, { _id: 1, name: 1 });
+      const res = await add({ ...data, description: data.description ?? "" }, { _id: 1, name: 1 });
 
       if (res?.success) {
         toast({

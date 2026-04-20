@@ -18,6 +18,7 @@ export default async function AdminReportsPage({
     status?: string;
     priority?: string;
     category?: string;
+    language?: string;
     sortBy?: string;
     sortOrder?: string;
   }>;
@@ -29,6 +30,7 @@ export default async function AdminReportsPage({
   const status = resolvedSearchParams.status || "all";
   const priority = resolvedSearchParams.priority || "all";
   const category = resolvedSearchParams.category || "all";
+  const language = resolvedSearchParams.language || "all";
   const sortBy = resolvedSearchParams.sortBy || "createdAt";
   const sortOrder = resolvedSearchParams.sortOrder || "desc";
 
@@ -38,6 +40,8 @@ export default async function AdminReportsPage({
   if (priority !== "all")
     setQuery.priority = priority as ReqType["main"]["report"]["gets"]["set"]["priority"];
   if (category !== "all") setQuery.categoryIds = [category];
+  if (language !== "all")
+    setQuery.language = language as ReqType["main"]["report"]["gets"]["set"]["language"];
   setQuery.sortBy = sortBy as ReqType["main"]["report"]["gets"]["set"]["sortBy"];
   setQuery.sortOrder = sortOrder as ReqType["main"]["report"]["gets"]["set"]["sortOrder"];
 
@@ -138,6 +142,41 @@ export default async function AdminReportsPage({
             </Select>
           </div>
           <div className="w-full sm:w-48">
+            <Select name="language" defaultValue={language}>
+              <SelectTrigger>
+                <SelectValue placeholder={t("language") || "Language"} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t("allLanguages") || "All Languages"}</SelectItem>
+                <SelectItem value="en">English (en)</SelectItem>
+                <SelectItem value="zh">Chinese (zh)</SelectItem>
+                <SelectItem value="hi">Hindi (hi)</SelectItem>
+                <SelectItem value="es">Spanish (es)</SelectItem>
+                <SelectItem value="fr">French (fr)</SelectItem>
+                <SelectItem value="ar">Arabic (ar)</SelectItem>
+                <SelectItem value="pt">Portuguese (pt)</SelectItem>
+                <SelectItem value="ru">Russian (ru)</SelectItem>
+                <SelectItem value="ja">Japanese (ja)</SelectItem>
+                <SelectItem value="pa">Punjabi (pa)</SelectItem>
+                <SelectItem value="de">German (de)</SelectItem>
+                <SelectItem value="id">Indonesian (id)</SelectItem>
+                <SelectItem value="te">Telugu (te)</SelectItem>
+                <SelectItem value="mr">Marathi (mr)</SelectItem>
+                <SelectItem value="tr">Turkish (tr)</SelectItem>
+                <SelectItem value="ta">Tamil (ta)</SelectItem>
+                <SelectItem value="vi">Vietnamese (vi)</SelectItem>
+                <SelectItem value="ko">Korean (ko)</SelectItem>
+                <SelectItem value="it">Italian (it)</SelectItem>
+                <SelectItem value="fa">Persian (fa)</SelectItem>
+                <SelectItem value="nl">Dutch (nl)</SelectItem>
+                <SelectItem value="sv">Swedish (sv)</SelectItem>
+                <SelectItem value="pl">Polish (pl)</SelectItem>
+                <SelectItem value="uk">Ukrainian (uk)</SelectItem>
+                <SelectItem value="ro">Romanian (ro)</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="w-full sm:w-48">
             <Select name="sortBy" defaultValue={sortBy}>
               <SelectTrigger>
                 <SelectValue placeholder={t("sortBy") || "Sort By"} />
@@ -173,7 +212,7 @@ export default async function AdminReportsPage({
         {page > 1 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/reports?page=${page - 1}${search ? `&search=${search}` : ""}${status !== "all" ? `&status=${status}` : ""}${priority !== "all" ? `&priority=${priority}` : ""}${category !== "all" ? `&category=${category}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/reports?page=${page - 1}${search ? `&search=${search}` : ""}${status !== "all" ? `&status=${status}` : ""}${priority !== "all" ? `&priority=${priority}` : ""}${category !== "all" ? `&category=${category}` : ""}${language !== "all" ? `&language=${language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("previous") || "Previous"}
             </Link>
@@ -186,7 +225,7 @@ export default async function AdminReportsPage({
         {reports.length >= 10 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/reports?page=${page + 1}${search ? `&search=${search}` : ""}${status !== "all" ? `&status=${status}` : ""}${priority !== "all" ? `&priority=${priority}` : ""}${category !== "all" ? `&category=${category}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/reports?page=${page + 1}${search ? `&search=${search}` : ""}${status !== "all" ? `&status=${status}` : ""}${priority !== "all" ? `&priority=${priority}` : ""}${category !== "all" ? `&category=${category}` : ""}${language !== "all" ? `&language=${language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("next") || "Next"}
             </Link>

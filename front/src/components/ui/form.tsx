@@ -146,11 +146,11 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<
       try {
         const parsed = JSON.parse(errorMessage);
         if (parsed?.key) {
-          translatedMessage = t(parsed.key as any, parsed.values);
+          translatedMessage = t(parsed.key as Parameters<typeof t>[0], parsed.values);
         }
       } catch (e) {
         const isTranslationKey = errorMessage.includes(".");
-        translatedMessage = isTranslationKey ? t(errorMessage as any) : errorMessage;
+        translatedMessage = isTranslationKey ? t(errorMessage as Parameters<typeof t>[0]) : errorMessage;
       }
     }
 

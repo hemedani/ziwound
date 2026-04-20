@@ -1,6 +1,7 @@
 "use server";
 
 import { AppApi, getToken } from "@/lib/api";
+import { ReqType } from "@/types/declarations";
 
 export async function createReport(data: {
   title: string;
@@ -10,6 +11,7 @@ export async function createReport(data: {
   tags?: string[];
   category?: string;
   documentIds?: string[];
+  language?: string;
 }) {
   try {
     const token = await getToken();
@@ -25,6 +27,9 @@ export async function createReport(data: {
         set: {
           title: data.title,
           description: data.description,
+          ...(data.language
+            ? { language: data.language as ReqType["main"]["report"]["add"]["set"]["language"] }
+            : {}),
           ...(data.location ? { location: data.location } : {}),
           ...(data.tags && data.tags.length > 0 ? { tags: data.tags } : {}),
           ...(data.category ? { category: data.category } : {}),

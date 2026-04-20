@@ -17,6 +17,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useToast } from "@/components/ui/use-toast";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { Loader2 } from "lucide-react";
+import { ReqType } from "@/types/declarations";
 
 const formSchema = z.object({
   title: z.string().min(2, "Title is required"),
@@ -94,7 +95,7 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
           _id: initialData._id,
           title: data.title,
           description: data.description,
-          language: data.language as any,
+          language: data.language as ReqType["main"]["document"]["add"]["set"]["language"],
         });
 
         if (!updateRes.success) {
@@ -111,8 +112,8 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
         if (filesToAdd.length > 0 || filesToRemove.length > 0) {
           const relationRes = await updateRelations({
             _id: initialData._id,
-            documentFiles: filesToAdd.length > 0 ? filesToAdd : undefined,
-            removeDocumentFiles: filesToRemove.length > 0 ? filesToRemove : undefined,
+            documentFileIds: filesToAdd.length > 0 ? filesToAdd : undefined,
+            documentFileIdsToRemove: filesToRemove.length > 0 ? filesToRemove : undefined,
           });
 
           if (!relationRes.success) {
@@ -131,8 +132,8 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
         const addRes = await addDocument({
           title: data.title,
           description: data.description,
-          language: data.language as any,
-          documentFiles: data.documentFiles,
+          language: data.language as ReqType["main"]["document"]["add"]["set"]["language"],
+          documentFileIds: data.documentFiles,
         });
 
         if (!addRes.success) {

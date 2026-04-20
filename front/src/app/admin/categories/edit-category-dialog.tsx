@@ -10,7 +10,7 @@ import {
 import { useTranslations } from "next-intl";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-import { CategoryForm } from "./category-form";
+import { CategoryForm, CategoryFormValues } from "./category-form";
 import { update } from "@/app/actions/category/update";
 import { categorySchema } from "@/types/declarations";
 
@@ -25,7 +25,7 @@ export function EditCategoryDialog({ category, open, onOpenChange }: EditCategor
   const { toast } = useToast();
   const router = useRouter();
 
-  const handleSubmit = async (data: any) => {
+  const handleSubmit = async (data: CategoryFormValues) => {
     if (!category?._id) return;
 
     try {

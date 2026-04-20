@@ -99,6 +99,7 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - ✅ Created `/admin/documents` page with document list table and basic search/type filtering, with translations in all 9 languages
 - ✅ **Project renamed from Gozarish to Ziwound (war crimes documentation system)**
 - ✅ **Added new phases for Document Management, Blog Section, and War Crimes Exploration**
+- ✅ Added language field to Report model and updated API usage
 
 **Frontend Structure**:
 

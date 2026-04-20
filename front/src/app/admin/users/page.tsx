@@ -34,8 +34,8 @@ export default async function AdminUsersPage({
   if (search) setQuery.search = search;
   if (level !== "all")
     setQuery.levels = [level] as ReqType["main"]["user"]["getUsers"]["set"]["levels"];
-  setQuery.sortBy = sortBy as any;
-  setQuery.sortOrder = sortOrder as any;
+  setQuery.sortBy = sortBy as ReqType["main"]["user"]["getUsers"]["set"]["sortBy"];
+  setQuery.sortOrder = sortOrder as ReqType["main"]["user"]["getUsers"]["set"]["sortOrder"];
 
   // Fetch users
   const response = await getUsers(setQuery, {

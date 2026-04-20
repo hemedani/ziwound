@@ -303,6 +303,7 @@
 
 ## Phase 9: Dashboard Pages Update with New Document and Report Models
 
+- [x] Add language field to Report model and update API usage
 - [ ] **Update Server Actions to Use Lesan Framework**
   - [ ] Update `src/app/actions/report/actions.ts` to use the standard Lesan action pattern from QWEN.md
   - [ ] Update `src/app/actions/report/gets.ts` to use Lesan API

@@ -23,7 +23,7 @@ const tagFormSchema = z.object({
   icon: z.string().optional(),
 });
 
-type TagFormValues = z.infer<typeof tagFormSchema>;
+export type TagFormValues = z.infer<typeof tagFormSchema>;
 
 interface TagFormProps {
   initialData?: Partial<tagSchema>;

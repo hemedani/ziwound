@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { useFormContext, Controller, FieldValues, ControllerProps } from 'react-hook-form';
+import { useFormContext, Controller, FieldValues, ControllerProps, Path } from 'react-hook-form';
 import {
   FormItem,
   FormLabel,
@@ -35,7 +35,7 @@ export function FormInput<T extends FieldValues>({
 
   return (
     <Controller
-      name={name as any}
+      name={name as Path<T>}
       control={control}
       render={({ field }) => (
         <FormItem>

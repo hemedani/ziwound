@@ -23,7 +23,7 @@ const categoryFormSchema = z.object({
   icon: z.string().optional(),
 });
 
-type CategoryFormValues = z.infer<typeof categoryFormSchema>;
+export type CategoryFormValues = z.infer<typeof categoryFormSchema>;
 
 interface CategoryFormProps {
   initialData?: Partial<categorySchema>;

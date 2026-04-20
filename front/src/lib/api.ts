@@ -72,7 +72,7 @@ export const AppApi = (lesanUrl?: string, token?: string | undefined) => {
     // If we're on the client side and using the proxy, we need to handle the request differently
     if (isClientSide && url === "/api/proxy") {
       // Create a compatible API function that sends requests to our proxy
-      const send = async (body: any, additionalHeaders?: Record<string, string>) => {
+      const send = async (body: Record<string, unknown>, additionalHeaders?: Record<string, string>) => {
         try {
           const response = await fetch(url, {
             method: "POST",

@@ -73,6 +73,7 @@ export type userSchema = {
     address?: string;
     status: ("Pending" | "Approved" | "Rejected" | "InReview");
     priority?: ("Low" | "Medium" | "High");
+    language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
   }[];
   blogPosts: {
     _id?: string;
@@ -272,6 +273,7 @@ export type tagSchema = {
     address?: string;
     status: ("Pending" | "Approved" | "Rejected" | "InReview");
     priority?: ("Low" | "Medium" | "High");
+    language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
   }[];
   blogPosts: {
     _id?: string;
@@ -321,6 +323,7 @@ export type categorySchema = {
     address?: string;
     status: ("Pending" | "Approved" | "Rejected" | "InReview");
     priority?: ("Low" | "Medium" | "High");
+    language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
   }[];
 };
 ;
@@ -357,6 +360,7 @@ export type documentSchema = {
     address?: string;
     status: ("Pending" | "Approved" | "Rejected" | "InReview");
     priority?: ("Low" | "Medium" | "High");
+    language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
   }[];
 };
 ;
@@ -382,6 +386,7 @@ export type reportSchema = {
   address?: string;
   status: ("Pending" | "Approved" | "Rejected" | "InReview");
   priority?: ("Low" | "Medium" | "High");
+  language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
   createdAt?: Date;
   updatedAt?: Date;
   reporter: {
@@ -643,6 +648,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -749,6 +755,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -831,6 +838,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -937,6 +945,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1044,6 +1053,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1129,6 +1139,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1210,6 +1221,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1449,6 +1461,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1512,6 +1525,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1663,6 +1677,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1726,6 +1741,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1913,6 +1929,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -2080,6 +2097,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -2299,6 +2317,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -2428,6 +2447,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -2514,6 +2534,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -2596,6 +2617,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -2681,6 +2703,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -2858,6 +2881,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -3009,6 +3033,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -3077,6 +3102,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -3125,6 +3151,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -3203,6 +3230,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -3222,6 +3250,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -3356,6 +3385,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -3375,6 +3405,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -3502,6 +3533,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
           };
         };
       };
@@ -3541,6 +3573,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
           };
         };
       };
@@ -3610,6 +3643,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -3629,6 +3663,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -3731,6 +3766,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -3750,6 +3786,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -3816,6 +3853,7 @@ export type ReqType = {
           description: string;
           createdAt?: Date;
           updatedAt?: Date;
+          language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
           location?: {
             type: string;
             coordinates: number[];
@@ -3832,6 +3870,7 @@ export type ReqType = {
           address?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
+          language?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -3878,6 +3917,7 @@ export type ReqType = {
           address?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
+          language?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -3932,6 +3972,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -3963,6 +4004,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
           };
           tags?: {
@@ -3988,6 +4030,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4022,6 +4065,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
           };
         };
@@ -4036,6 +4080,7 @@ export type ReqType = {
           search?: string;
           status?: ("Pending" | "Approved" | "Rejected" | "InReview");
           priority?: ("Low" | "Medium" | "High");
+          language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
           categoryIds?: string[];
           tagIds?: string[];
           userIds?: string[];
@@ -4056,6 +4101,7 @@ export type ReqType = {
           address?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
+          language?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4110,6 +4156,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4141,6 +4188,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
           };
           tags?: {
@@ -4166,6 +4214,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4200,6 +4249,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
           };
         };
@@ -4218,6 +4268,7 @@ export type ReqType = {
           address?: string;
           status?: ("Pending" | "Approved" | "Rejected" | "InReview");
           priority?: ("Low" | "Medium" | "High");
+          language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
           tags?: string[];
           category?: string;
         };
@@ -4229,6 +4280,7 @@ export type ReqType = {
           address?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
+          language?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4283,6 +4335,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4314,6 +4367,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
           };
           tags?: {
@@ -4339,6 +4393,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4373,6 +4428,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
           };
         };
@@ -4395,6 +4451,7 @@ export type ReqType = {
           address?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
+          language?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4449,6 +4506,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4480,6 +4538,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
           };
           tags?: {
@@ -4505,6 +4564,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4539,6 +4599,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
           };
         };
@@ -4558,6 +4619,7 @@ export type ReqType = {
           address?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
+          language?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4614,6 +4676,7 @@ export type ReqType = {
           address?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
+          language?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4674,6 +4737,7 @@ export type ReqType = {
           address?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
+          language?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4728,6 +4792,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4759,6 +4824,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
           };
           tags?: {
@@ -4784,6 +4850,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4818,6 +4885,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
           };
         };
@@ -4836,6 +4904,7 @@ export type ReqType = {
           address?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
+          language?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4890,6 +4959,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4921,6 +4991,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
           };
           tags?: {
@@ -4946,6 +5017,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4980,6 +5052,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
           };
         };
@@ -4996,10 +5069,10 @@ export type ReqType = {
         set: {
           title: string;
           description?: string;
-          language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
           createdAt?: Date;
           updatedAt?: Date;
-          documentFiles?: string[];
+          language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+          documentFileIds?: string[];
         };
         get: {
           _id?: (0 | 1);
@@ -5023,6 +5096,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
           };
         };
       };
@@ -5064,6 +5138,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -5141,6 +5216,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -5213,6 +5289,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -5249,8 +5326,8 @@ export type ReqType = {
       updateRelations: {
         set: {
           _id: string;
-          documentFiles?: string[];
-          removeDocumentFiles?: string[];
+          documentFileIds?: string[];
+          documentFileIdsToRemove?: string[];
         };
         get: {
           _id?: (0 | 1);
@@ -5284,6 +5361,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -5344,6 +5422,7 @@ export type ReqType = {
             address?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
+            language?: (0 | 1);
           };
         };
       };
@@ -5482,6 +5561,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5533,6 +5613,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5623,6 +5704,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5674,6 +5756,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5761,6 +5844,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5812,6 +5896,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5896,6 +5981,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5947,6 +6033,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6083,6 +6170,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6134,6 +6222,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6215,6 +6304,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6266,6 +6356,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6348,6 +6439,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6399,6 +6491,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6480,6 +6573,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6531,6 +6625,7 @@ export type ReqType = {
               address?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
+              language?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);

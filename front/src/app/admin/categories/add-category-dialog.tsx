@@ -14,7 +14,7 @@ import {
 import { useTranslations } from "next-intl";
 import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
-import { CategoryForm } from "./category-form";
+import { CategoryForm, CategoryFormValues } from "./category-form";
 import { add } from "@/app/actions/category/add";
 
 export function AddCategoryDialog() {
@@ -23,9 +23,9 @@ export function AddCategoryDialog() {
   const router = useRouter();
   const [open, setOpen] = useState(false);
 
-  const handleSubmit = async (data: any) => {
+  const handleSubmit = async (data: CategoryFormValues) => {
     try {
-      const res = await add(data, { _id: 1, name: 1 });
+      const res = await add({ ...data, description: data.description ?? "" }, { _id: 1, name: 1 });
 
       if (res?.success) {
         toast({

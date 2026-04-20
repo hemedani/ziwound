@@ -36,6 +36,7 @@ import { TagSelector } from "@/components/form/tag-selector";
 import dynamic from "next/dynamic";
 import { useToast } from "@/components/ui/use-toast";
 import { CheckCircle2, Loader2 } from "lucide-react";
+import { ReqType } from "@/types/declarations";
 
 const LocationPicker = dynamic(
   () => import("@/components/form/location-picker").then((mod) => mod.LocationPicker),
@@ -113,14 +114,14 @@ export default function NewReportPage() {
         {
           title: `Attachments for: ${data.title}`,
           description: "Automatically created from report submission",
-          documentFiles: data.attachments,
-          language: locale as any,
+          documentFileIds: data.attachments,
+          language: locale as ReqType["main"]["document"]["add"]["set"]["language"],
         },
         { _id: 1 },
       );
 
-      if (docResult.success && docResult.body && (docResult.body as any)._id) {
-        documentIds = [(docResult.body as any)._id];
+      if (docResult.success && docResult.body && (docResult.body as { _id: string })._id) {
+        documentIds = [(docResult.body as { _id: string })._id];
       } else {
         toast({
           variant: "destructive",
@@ -141,6 +142,7 @@ export default function NewReportPage() {
         ? { type: "Point", coordinates: [data.location.longitude || 0, data.location.latitude || 0] }
         : undefined,
       documentIds,
+      language: locale,
     });
 
     if (result.success) {

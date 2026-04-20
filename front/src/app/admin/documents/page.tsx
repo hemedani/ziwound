@@ -73,7 +73,8 @@ export default async function AdminDocumentsPage({
   if (search) setQuery.search = search;
   if (type !== "all") setQuery.documentTypes = [type as "image" | "video" | "docs"];
   if (report !== "all") setQuery.reportId = report;
-  if (language !== "all") setQuery.language = language as any;
+  if (language !== "all")
+    setQuery.language = language as ReqType["main"]["document"]["gets"]["set"]["language"];
   setQuery.sortBy = sortBy as ReqType["main"]["document"]["gets"]["set"]["sortBy"];
   setQuery.sortOrder = sortOrder as ReqType["main"]["document"]["gets"]["set"]["sortOrder"];
 
