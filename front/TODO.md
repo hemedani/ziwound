@@ -350,16 +350,16 @@
 - [ ] **Blog Admin Panel**
   - [x] Add Blog to admin sidebar navigation
   - [x] Create `/admin/blog` page with blog post management
-  - [ ] Add data table with columns: title, author, status (draft/published), tags, date, actions
-  - [ ] Add search and filtering (by status, author, tags, date)
-  - [ ] Add blog post creation/editing with rich text editor
+  - [x] Add data table with columns: title, author, status (draft/published), tags, date, actions
+  - [x] Add search and filtering (by status, author, tags, date)
+  - [x] Add blog post creation/editing with rich text editor
   - [ ] Integrate rich text editor (TipTap, Quill, or similar)
     - [ ] Headings, bold, italic, lists, links, images
     - [ ] Code blocks, quotes, tables
-  - [ ] Add cover image upload
-  - [ ] Add tag selection
-  - [ ] Add publish/unpublish toggle
-  - [ ] Add delete action with confirmation
+  - [x] Add cover image upload
+  - [x] Add tag selection
+  - [x] Add publish/unpublish toggle
+  - [x] Add delete action with confirmation
 - [ ] **Blog UI Components**
   - [ ] Create BlogPostCard component
   - [ ] Create BlogPostList component

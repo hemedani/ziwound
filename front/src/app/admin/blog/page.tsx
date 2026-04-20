@@ -14,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { ReqType } from "@/types/declarations";
+import { DeleteBlogPostMenuItem } from "./_components/delete-blog-post-button";
 
 export default async function AdminBlogPage({
   searchParams,
@@ -45,6 +46,7 @@ export default async function AdminBlogPage({
     publishedAt: 1,
     createdAt: 1,
     author: { _id: 1, first_name: 1, last_name: 1 },
+    tags: { _id: 1, name: 1 },
   });
 
   type BlogPost = {
@@ -55,6 +57,7 @@ export default async function AdminBlogPage({
     publishedAt?: string;
     createdAt?: string;
     author?: { _id: string; first_name?: string; last_name?: string };
+    tags?: { _id: string; name: string }[];
   };
 
   let posts: BlogPost[] = [];
@@ -64,7 +67,8 @@ export default async function AdminBlogPage({
   if (response?.success) {
     const responseData = response.body as { list: BlogPost[]; totalPages?: number } | BlogPost[];
     posts = Array.isArray(responseData) ? responseData : responseData?.list || [];
-    totalPages = !Array.isArray(responseData) && responseData?.totalPages ? responseData.totalPages : 1;
+    totalPages =
+      !Array.isArray(responseData) && responseData?.totalPages ? responseData.totalPages : 1;
   } else {
     error = response?.error || response?.body?.message || "Failed to fetch blog posts";
   }
@@ -129,6 +133,7 @@ export default async function AdminBlogPage({
                 <TableHead>{t("title") || "Title"}</TableHead>
                 <TableHead>{t("status") || "Status"}</TableHead>
                 <TableHead>{t("author") || "Author"}</TableHead>
+                <TableHead>{t("tags") || "Tags"}</TableHead>
                 <TableHead>{t("date") || "Date"}</TableHead>
                 <TableHead className="text-right">{t("actions") || "Actions"}</TableHead>
               </TableRow>
@@ -136,7 +141,7 @@ export default async function AdminBlogPage({
             <TableBody>
               {posts.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center py-8 text-muted-foreground">
+                  <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
                     {t("noPosts") || "No blog posts found"}
                   </TableCell>
                 </TableRow>
@@ -155,15 +160,31 @@ export default async function AdminBlogPage({
                           {t("published") || "Published"}
                         </Badge>
                       ) : (
-                        <Badge variant="secondary">
-                          {t("draft") || "Draft"}
-                        </Badge>
+                        <Badge variant="secondary">{t("draft") || "Draft"}</Badge>
                       )}
                     </TableCell>
                     <TableCell>
                       {post.author?.first_name || post.author?.last_name
                         ? `${post.author.first_name || ""} ${post.author.last_name || ""}`.trim()
                         : "Admin"}
+                    </TableCell>
+                    <TableCell>
+                      {post.tags && post.tags.length > 0 ? (
+                        <div className="flex flex-wrap gap-1">
+                          {post.tags.slice(0, 2).map((tag) => (
+                            <Badge key={tag._id} variant="outline" className="text-xs">
+                              {tag.name}
+                            </Badge>
+                          ))}
+                          {post.tags.length > 2 && (
+                            <Badge variant="outline" className="text-xs">
+                              +{post.tags.length - 2}
+                            </Badge>
+                          )}
+                        </div>
+                      ) : (
+                        <span className="text-muted-foreground">-</span>
+                      )}
                     </TableCell>
                     <TableCell>
                       {post.publishedAt
@@ -193,6 +214,7 @@ export default async function AdminBlogPage({
                               {tCommon("edit") || "Edit"}
                             </Link>
                           </DropdownMenuItem>
+                          <DeleteBlogPostMenuItem id={post._id} />
                         </DropdownMenuContent>
                       </DropdownMenu>
                     </TableCell>
