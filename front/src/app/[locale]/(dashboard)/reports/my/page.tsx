@@ -11,15 +11,12 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { gets as getReports } from "@/app/actions/report/gets";
 import { FileText, Plus, Calendar, ChevronLeft, ChevronRight } from "lucide-react";
 import { format } from "date-fns";
+import { reportSchema } from "@/types/declarations";
 
-interface Report {
+type Report = Omit<reportSchema, "createdAt"> & {
   _id: string;
-  title: string;
-  description: string;
-  status: "Pending" | "Approved" | "Rejected" | "InReview";
-  priority: "Low" | "Medium" | "High";
   createdAt: string;
-}
+};
 
 export default function MyReportsPage() {
   const t = useTranslations("report");

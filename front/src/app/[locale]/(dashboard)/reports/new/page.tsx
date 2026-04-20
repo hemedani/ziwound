@@ -7,10 +7,11 @@ import { gets as getCategories } from "@/app/actions/category/gets";
 import { gets as getTags } from "@/app/actions/tag/gets";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
-import { createReport } from "@/app/actions/report/actions";
+import { add as addReport } from "@/app/actions/report/add";
 import { add as addDocument } from "@/app/actions/document/add";
 import { Link, useRouter } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
+
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import {
@@ -133,7 +134,7 @@ export default function NewReportPage() {
       }
     }
 
-    const result = await createReport({
+    const result = await addReport({
       title: data.title,
       description: data.description,
       tags: data.tags,
@@ -142,7 +143,7 @@ export default function NewReportPage() {
         ? { type: "Point", coordinates: [data.location.longitude || 0, data.location.latitude || 0] }
         : undefined,
       documentIds,
-      language: locale,
+      language: locale as ReqType["main"]["report"]["add"]["set"]["language"],
     });
 
     if (result.success) {

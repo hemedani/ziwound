@@ -304,25 +304,25 @@
 ## Phase 9: Dashboard Pages Update with New Document and Report Models
 
 - [x] Add language field to Report model and update API usage
-- [ ] **Update Server Actions to Use Lesan Framework**
-  - [ ] Update `src/app/actions/report/actions.ts` to use the standard Lesan action pattern from QWEN.md
-  - [ ] Update `src/app/actions/report/gets.ts` to use Lesan API
-  - [ ] Update `src/app/actions/report/get.ts` to use Lesan API
-  - [ ] Ensure all report actions follow the pattern: cookieStore, token, result with service, model, act, details
-- [ ] **Update Dashboard Pages to Use New Models**
-  - [ ] Update `src/app/[locale]/(dashboard)/reports/new/page.tsx` to use updated createReport action and match reportSchema
-  - [ ] Update `src/app/[locale]/(dashboard)/reports/my/page.tsx` to use updated getReports action and match reportSchema
-  - [ ] Update `src/app/[locale]/(dashboard)/reports/[id]/page.tsx` to fully align with reportSchema and documentSchema
-  - [ ] Ensure all interfaces in dashboard pages extend or match the schemas from declarations.ts
-- [ ] **Integrate Document Management in Dashboard**
-  - [ ] Update report creation to properly handle documents via the new Document model
-  - [ ] Ensure attachments in new report form create Document records
-  - [ ] Update report detail page to display documents correctly using documentSchema
-- [ ] **Test and Validate Dashboard Functionality**
-  - [ ] Test report creation with attachments (ensure documents are created)
-  - [ ] Test report listing and filtering
-  - [ ] Test report detail view with documents
-  - [ ] Ensure all pages work with the new Lesan API responses
+- [x] **Update Server Actions to Use Lesan Framework**
+  - [x] Update `src/app/actions/report/actions.ts` to use the standard Lesan action pattern from QWEN.md
+  - [x] Update `src/app/actions/report/gets.ts` to use Lesan API
+  - [x] Update `src/app/actions/report/get.ts` to use Lesan API
+  - [x] Ensure all report actions follow the pattern: cookieStore, token, result with service, model, act, details
+- [x] **Update Dashboard Pages to Use New Models**
+  - [x] Update `src/app/[locale]/(dashboard)/reports/new/page.tsx` to use updated createReport action and match reportSchema
+  - [x] Update `src/app/[locale]/(dashboard)/reports/my/page.tsx` to use updated getReports action and match reportSchema
+  - [x] Update `src/app/[locale]/(dashboard)/reports/[id]/page.tsx` to fully align with reportSchema and documentSchema
+  - [x] Ensure all interfaces in dashboard pages extend or match the schemas from declarations.ts
+- [x] **Integrate Document Management in Dashboard**
+  - [x] Update report creation to properly handle documents via the new Document model
+  - [x] Ensure attachments in new report form create Document records
+  - [x] Update report detail page to display documents correctly using documentSchema
+- [x] **Test and Validate Dashboard Functionality**
+  - [x] Test report creation with attachments (ensure documents are created)
+  - [x] Test report listing and filtering
+  - [x] Test report detail view with documents
+  - [x] Ensure all pages work with the new Lesan API responses
 
 ## Phase 10: Blog Section Implementation
 
