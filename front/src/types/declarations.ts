@@ -1,25 +1,28 @@
+
 /* eslint-disable */
 
+
 export type userInp = {
-  avatar?: number | fileInp;
-  national_card?: number | fileInp;
-  province?: number | provinceInp;
-  city?: number | cityInp;
-  uploadedAssets?: number | fileInp;
-  reports?: number | reportInp;
-  blogPosts?: number | blogPostInp;
-};
+  avatar?: number | fileInp
+  national_card?: number | fileInp
+  province?: number | provinceInp
+  city?: number | cityInp
+  uploadedAssets?: number | fileInp
+  reports?: number | reportInp
+  blogPosts?: number | blogPostInp
+}
+
 
 export type userSchema = {
   _id?: string;
   first_name: string;
   last_name: string;
   father_name?: string;
-  gender: "Male" | "Female";
+  gender: ("Male" | "Female");
   birth_date?: Date;
   summary?: string;
   address?: string;
-  level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+  level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
   email: string;
   is_verified: boolean;
   createdAt?: Date;
@@ -28,14 +31,14 @@ export type userSchema = {
     _id?: string;
     name: string;
     mimeType: string;
-    type: "image" | "video" | "docs";
+    type: ("image" | "video" | "docs");
     alt_text?: string;
   };
   national_card?: {
     _id?: string;
     name: string;
     mimeType: string;
-    type: "image" | "video" | "docs";
+    type: ("image" | "video" | "docs");
     alt_text?: string;
   };
   province?: {
@@ -56,7 +59,7 @@ export type userSchema = {
     _id?: string;
     name: string;
     mimeType: string;
-    type: "image" | "video" | "docs";
+    type: ("image" | "video" | "docs");
     alt_text?: string;
   }[];
   reports: {
@@ -68,8 +71,8 @@ export type userSchema = {
       coordinates: any[];
     };
     address?: string;
-    status: "Pending" | "Approved" | "Rejected" | "InReview";
-    priority?: "Low" | "Medium" | "High";
+    status: ("Pending" | "Approved" | "Rejected" | "InReview");
+    priority?: ("Low" | "Medium" | "High");
   }[];
   blogPosts: {
     _id?: string;
@@ -81,16 +84,21 @@ export type userSchema = {
     publishedAt?: string;
   }[];
 };
+;
+
+
 export type fileInp = {
-  uploader?: number | userInp;
-};
+  uploader?: number | userInp
+
+}
+
 
 export type fileSchema = {
   _id?: string;
   name: string;
   mimeType: string;
   size: number;
-  type: "image" | "video" | "docs";
+  type: ("image" | "video" | "docs");
   alt_text?: string;
   createdAt?: Date;
   updatedAt?: Date;
@@ -98,19 +106,23 @@ export type fileSchema = {
     _id?: string;
     first_name: string;
     last_name: string;
-    gender: "Male" | "Female";
+    gender: ("Male" | "Female");
     address?: string;
-    level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
     email: string;
     is_verified: boolean;
   };
 };
+;
+
+
 export type provinceInp = {
-  registrar?: number | userInp;
-  users?: number | userInp;
-  cities?: number | cityInp;
-  capital?: number | cityInp;
-};
+  registrar?: number | userInp
+  users?: number | userInp
+  cities?: number | cityInp
+  capital?: number | cityInp
+}
+
 
 export type provinceSchema = {
   _id?: string;
@@ -130,9 +142,9 @@ export type provinceSchema = {
     _id?: string;
     first_name: string;
     last_name: string;
-    gender: "Male" | "Female";
+    gender: ("Male" | "Female");
     address?: string;
-    level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
     email: string;
     is_verified: boolean;
   };
@@ -140,9 +152,9 @@ export type provinceSchema = {
     _id?: string;
     first_name: string;
     last_name: string;
-    gender: "Male" | "Female";
+    gender: ("Male" | "Female");
     address?: string;
-    level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
     email: string;
     is_verified: boolean;
   }[];
@@ -169,11 +181,15 @@ export type provinceSchema = {
     updatedAt?: Date;
   }[];
 };
+;
+
+
 export type cityInp = {
-  registrar?: number | userInp;
-  province?: number | provinceInp;
-  users?: number | userInp;
-};
+  registrar?: number | userInp
+  province?: number | provinceInp
+  users?: number | userInp
+}
+
 
 export type citySchema = {
   _id?: string;
@@ -193,9 +209,9 @@ export type citySchema = {
     _id?: string;
     first_name: string;
     last_name: string;
-    gender: "Male" | "Female";
+    gender: ("Male" | "Female");
     address?: string;
-    level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
     email: string;
     is_verified: boolean;
   };
@@ -210,18 +226,22 @@ export type citySchema = {
     _id?: string;
     first_name: string;
     last_name: string;
-    gender: "Male" | "Female";
+    gender: ("Male" | "Female");
     address?: string;
-    level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
     email: string;
     is_verified: boolean;
   }[];
 };
+;
+
+
 export type tagInp = {
-  registrar?: number | userInp;
-  reports?: number | reportInp;
-  blogPosts?: number | blogPostInp;
-};
+  registrar?: number | userInp
+  reports?: number | reportInp
+  blogPosts?: number | blogPostInp
+}
+
 
 export type tagSchema = {
   _id?: string;
@@ -235,9 +255,9 @@ export type tagSchema = {
     _id?: string;
     first_name: string;
     last_name: string;
-    gender: "Male" | "Female";
+    gender: ("Male" | "Female");
     address?: string;
-    level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
     email: string;
     is_verified: boolean;
   };
@@ -250,8 +270,8 @@ export type tagSchema = {
       coordinates: any[];
     };
     address?: string;
-    status: "Pending" | "Approved" | "Rejected" | "InReview";
-    priority?: "Low" | "Medium" | "High";
+    status: ("Pending" | "Approved" | "Rejected" | "InReview");
+    priority?: ("Low" | "Medium" | "High");
   }[];
   blogPosts: {
     _id?: string;
@@ -263,10 +283,14 @@ export type tagSchema = {
     publishedAt?: string;
   }[];
 };
+;
+
+
 export type categoryInp = {
-  registrar?: number | userInp;
-  reports?: number | reportInp;
-};
+  registrar?: number | userInp
+  reports?: number | reportInp
+}
+
 
 export type categorySchema = {
   _id?: string;
@@ -280,9 +304,9 @@ export type categorySchema = {
     _id?: string;
     first_name: string;
     last_name: string;
-    gender: "Male" | "Female";
+    gender: ("Male" | "Female");
     address?: string;
-    level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
     email: string;
     is_verified: boolean;
   };
@@ -295,14 +319,18 @@ export type categorySchema = {
       coordinates: any[];
     };
     address?: string;
-    status: "Pending" | "Approved" | "Rejected" | "InReview";
-    priority?: "Low" | "Medium" | "High";
+    status: ("Pending" | "Approved" | "Rejected" | "InReview");
+    priority?: ("Low" | "Medium" | "High");
   }[];
 };
+;
+
+
 export type documentInp = {
-  documentFiles?: number | fileInp;
-  report?: number | reportInp;
-};
+  documentFiles?: number | fileInp
+  report?: number | reportInp
+}
+
 
 export type documentSchema = {
   _id?: string;
@@ -314,7 +342,7 @@ export type documentSchema = {
     _id?: string;
     name: string;
     mimeType: string;
-    type: "image" | "video" | "docs";
+    type: ("image" | "video" | "docs");
     alt_text?: string;
   }[];
   report: {
@@ -326,16 +354,21 @@ export type documentSchema = {
       coordinates: any[];
     };
     address?: string;
-    status: "Pending" | "Approved" | "Rejected" | "InReview";
-    priority?: "Low" | "Medium" | "High";
+    status: ("Pending" | "Approved" | "Rejected" | "InReview");
+    priority?: ("Low" | "Medium" | "High");
   }[];
 };
+;
+
+
 export type reportInp = {
-  reporter?: number | userInp;
-  documents?: number | documentInp;
-  tags?: number | tagInp;
-  category?: number | categoryInp;
-};
+  reporter?: number | userInp
+  documents?: number | documentInp
+  tags?: number | tagInp
+  category?: number | categoryInp
+
+}
+
 
 export type reportSchema = {
   _id?: string;
@@ -346,17 +379,17 @@ export type reportSchema = {
     coordinates: any[];
   };
   address?: string;
-  status: "Pending" | "Approved" | "Rejected" | "InReview";
-  priority?: "Low" | "Medium" | "High";
+  status: ("Pending" | "Approved" | "Rejected" | "InReview");
+  priority?: ("Low" | "Medium" | "High");
   createdAt?: Date;
   updatedAt?: Date;
   reporter: {
     _id?: string;
     first_name: string;
     last_name: string;
-    gender: "Male" | "Female";
+    gender: ("Male" | "Female");
     address?: string;
-    level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
     email: string;
     is_verified: boolean;
   };
@@ -364,25 +397,6 @@ export type reportSchema = {
     _id?: string;
     title: string;
     description?: string;
-    documentFiles?: {
-      _id?: string;
-      name?: string;
-      mimeType?: string;
-      type?: "image" | "video" | "docs";
-      alt_text?: string;
-    };
-    report?: {
-      _id?: string;
-      title: string;
-      description: string;
-      location?: {
-        type: "Point";
-        coordinates: any[];
-      };
-      address?: string;
-      status: "Pending" | "Approved" | "Rejected" | "InReview";
-      priority?: "Low" | "Medium" | "High";
-    };
   }[];
   tags?: {
     _id?: string;
@@ -397,11 +411,16 @@ export type reportSchema = {
     icon?: string;
   };
 };
+;
+
+
 export type blogPostInp = {
-  author?: number | userInp;
-  coverImage?: number | fileInp;
-  tags?: number | tagInp;
-};
+  author?: number | userInp
+  coverImage?: number | fileInp
+  tags?: number | tagInp
+
+}
+
 
 export type blogPostSchema = {
   _id?: string;
@@ -417,9 +436,9 @@ export type blogPostSchema = {
     _id?: string;
     first_name: string;
     last_name: string;
-    gender: "Male" | "Female";
+    gender: ("Male" | "Female");
     address?: string;
-    level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
     email: string;
     is_verified: boolean;
   };
@@ -427,7 +446,7 @@ export type blogPostSchema = {
     _id?: string;
     name: string;
     mimeType: string;
-    type: "image" | "video" | "docs";
+    type: ("image" | "video" | "docs");
     alt_text?: string;
   };
   tags?: {
@@ -437,9 +456,18 @@ export type blogPostSchema = {
     icon?: string;
   }[];
 };
+;
+
+
 export type ReqType = {
+
+
   main: {
+
+
     city: {
+
+
       add: {
         set: {
           name: string;
@@ -458,42 +486,43 @@ export type ReqType = {
           isCapital: boolean;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          english_name?: 0 | 1;
-          area?: 0 | 1;
-          center?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          english_name?: (0 | 1);
+          area?: (0 | 1);
+          center?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           province?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           users?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
         };
       };
+
 
       update: {
         set: {
@@ -510,226 +539,228 @@ export type ReqType = {
           };
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          english_name?: 0 | 1;
-          area?: 0 | 1;
-          center?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          english_name?: (0 | 1);
+          area?: (0 | 1);
+          center?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           province?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           users?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
         };
       };
+
 
       get: {
         set: {
           _id: string;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          english_name?: 0 | 1;
-          area?: 0 | 1;
-          center?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          english_name?: (0 | 1);
+          area?: (0 | 1);
+          center?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           province?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             users?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             cities?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             capital?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              area?: 0 | 1;
-              center?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              area?: (0 | 1);
+              center?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
           };
           users?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
+
 
       gets: {
         set: {
@@ -739,184 +770,185 @@ export type ReqType = {
           provinceId?: string;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          english_name?: 0 | 1;
-          area?: 0 | 1;
-          center?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          english_name?: (0 | 1);
+          area?: (0 | 1);
+          center?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           province?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             users?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             cities?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             capital?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              area?: 0 | 1;
-              center?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              area?: (0 | 1);
+              center?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
           };
           users?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
+
 
       remove: {
         set: {
@@ -924,99 +956,106 @@ export type ReqType = {
           hardCascade?: boolean;
         };
         get: {
-          success?: 0 | 1;
+          success?: (0 | 1);
         };
       };
+
 
       count: {
         set: {
           name?: string;
         };
         get: {
-          qty?: 0 | 1;
+          qty?: (0 | 1);
         };
       };
-    };
+
+
+    }
+
 
     file: {
+
+
       get: {
         set: {
           _id: string;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          mimeType?: 0 | 1;
-          size?: 0 | 1;
-          type?: 0 | 1;
-          alt_text?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          mimeType?: (0 | 1);
+          size?: (0 | 1);
+          type?: (0 | 1);
+          alt_text?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           uploader?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
+
 
       gets: {
         set: {
@@ -1024,83 +1063,84 @@ export type ReqType = {
           limit?: number;
           skip?: number;
           search?: string;
-          sortBy?: "createdAt" | "updatedAt" | "name";
-          sortOrder?: "asc" | "desc";
+          sortBy?: ("createdAt" | "updatedAt" | "name");
+          sortOrder?: ("asc" | "desc");
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          mimeType?: 0 | 1;
-          size?: 0 | 1;
-          type?: 0 | 1;
-          alt_text?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          mimeType?: (0 | 1);
+          size?: (0 | 1);
+          type?: (0 | 1);
+          alt_text?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           uploader?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
+
 
       update: {
         set: {
@@ -1108,110 +1148,116 @@ export type ReqType = {
           alt_text?: string;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          mimeType?: 0 | 1;
-          size?: 0 | 1;
-          type?: 0 | 1;
-          alt_text?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          mimeType?: (0 | 1);
+          size?: (0 | 1);
+          type?: (0 | 1);
+          alt_text?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           uploader?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
 
+
       uploadFile: {
         set: {
-          type: "video" | "image" | "doc";
+          type: ("video" | "image" | "doc");
           createdAt?: Date;
           updatedAt?: Date;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          mimeType?: 0 | 1;
-          size?: 0 | 1;
-          type?: 0 | 1;
-          alt_text?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          mimeType?: (0 | 1);
+          size?: (0 | 1);
+          type?: (0 | 1);
+          alt_text?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           uploader?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
         };
       };
-    };
+
+
+    }
+
 
     province: {
+
+
       add: {
         set: {
           name: string;
@@ -1228,51 +1274,52 @@ export type ReqType = {
           updatedAt?: Date;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          english_name?: 0 | 1;
-          area?: 0 | 1;
-          center?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          english_name?: (0 | 1);
+          area?: (0 | 1);
+          center?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           users?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           cities?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           capital?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            area?: 0 | 1;
-            center?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            area?: (0 | 1);
+            center?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
         };
       };
+
 
       update: {
         set: {
@@ -1289,262 +1336,264 @@ export type ReqType = {
           };
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          english_name?: 0 | 1;
-          area?: 0 | 1;
-          center?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          english_name?: (0 | 1);
+          area?: (0 | 1);
+          center?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           users?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           cities?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           capital?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            area?: 0 | 1;
-            center?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            area?: (0 | 1);
+            center?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
         };
       };
+
 
       get: {
         set: {
           _id: string;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          english_name?: 0 | 1;
-          area?: 0 | 1;
-          center?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          english_name?: (0 | 1);
+          area?: (0 | 1);
+          center?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           users?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           cities?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             users?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           capital?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            area?: 0 | 1;
-            center?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            area?: (0 | 1);
+            center?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             users?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
         };
       };
+
 
       gets: {
         set: {
@@ -1553,211 +1602,212 @@ export type ReqType = {
           name?: string;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          english_name?: 0 | 1;
-          area?: 0 | 1;
-          center?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          english_name?: (0 | 1);
+          area?: (0 | 1);
+          center?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           users?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           cities?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             users?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           capital?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            area?: 0 | 1;
-            center?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            area?: (0 | 1);
+            center?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             users?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
         };
       };
+
 
       remove: {
         set: {
@@ -1765,33 +1815,39 @@ export type ReqType = {
           hardCascade?: boolean;
         };
         get: {
-          success?: 0 | 1;
+          success?: (0 | 1);
         };
       };
+
 
       count: {
         set: {
           name?: string;
         };
         get: {
-          qty?: 0 | 1;
+          qty?: (0 | 1);
         };
       };
-    };
+
+
+    }
+
 
     user: {
+
+
       addUser: {
         set: {
           first_name: string;
           last_name: string;
           father_name: string;
           mobile: string;
-          gender: "Male" | "Female";
+          gender: ("Male" | "Female");
           birth_date?: Date;
           summary?: string;
           national_number: string;
           address: string;
-          level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+          level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
           is_verified: boolean;
           nationalCard?: string;
           avatar?: string;
@@ -1799,506 +1855,510 @@ export type ReqType = {
           cityId?: string;
         };
         get: {
-          _id?: 0 | 1;
-          first_name?: 0 | 1;
-          last_name?: 0 | 1;
-          father_name?: 0 | 1;
-          gender?: 0 | 1;
-          birth_date?: 0 | 1;
-          summary?: 0 | 1;
-          address?: 0 | 1;
-          level?: 0 | 1;
-          email?: 0 | 1;
-          is_verified?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          first_name?: (0 | 1);
+          last_name?: (0 | 1);
+          father_name?: (0 | 1);
+          gender?: (0 | 1);
+          birth_date?: (0 | 1);
+          summary?: (0 | 1);
+          address?: (0 | 1);
+          level?: (0 | 1);
+          email?: (0 | 1);
+          is_verified?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           avatar?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           national_card?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           province?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           city?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           uploadedAssets?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
           };
           blogPosts?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            slug?: 0 | 1;
-            content?: 0 | 1;
-            isPublished?: 0 | 1;
-            isFeatured?: 0 | 1;
-            publishedAt?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
           };
         };
       };
 
+
       getMe: {
-        set: {};
+        set: {
+        };
         get: {
-          _id?: 0 | 1;
-          first_name?: 0 | 1;
-          last_name?: 0 | 1;
-          father_name?: 0 | 1;
-          gender?: 0 | 1;
-          birth_date?: 0 | 1;
-          summary?: 0 | 1;
-          address?: 0 | 1;
-          level?: 0 | 1;
-          email?: 0 | 1;
-          is_verified?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          first_name?: (0 | 1);
+          last_name?: (0 | 1);
+          father_name?: (0 | 1);
+          gender?: (0 | 1);
+          birth_date?: (0 | 1);
+          summary?: (0 | 1);
+          address?: (0 | 1);
+          level?: (0 | 1);
+          email?: (0 | 1);
+          is_verified?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           avatar?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           national_card?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           province?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             users?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             cities?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             capital?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              area?: 0 | 1;
-              center?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              area?: (0 | 1);
+              center?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
           };
           city?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             users?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           uploadedAssets?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
             reporter?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             documents?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
             category?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
           blogPosts?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            slug?: 0 | 1;
-            content?: 0 | 1;
-            isPublished?: 0 | 1;
-            isFeatured?: 0 | 1;
-            publishedAt?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
             author?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             coverImage?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
       };
+
 
       getUser: {
         set: {
           _id: string;
         };
         get: {
-          _id?: 0 | 1;
-          first_name?: 0 | 1;
-          last_name?: 0 | 1;
-          father_name?: 0 | 1;
-          gender?: 0 | 1;
-          birth_date?: 0 | 1;
-          summary?: 0 | 1;
-          address?: 0 | 1;
-          level?: 0 | 1;
-          email?: 0 | 1;
-          is_verified?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          first_name?: (0 | 1);
+          last_name?: (0 | 1);
+          father_name?: (0 | 1);
+          gender?: (0 | 1);
+          birth_date?: (0 | 1);
+          summary?: (0 | 1);
+          address?: (0 | 1);
+          level?: (0 | 1);
+          email?: (0 | 1);
+          is_verified?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           avatar?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           national_card?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           province?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             users?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             cities?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             capital?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              area?: 0 | 1;
-              center?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              area?: (0 | 1);
+              center?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
           };
           city?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             users?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           uploadedAssets?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
             reporter?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             documents?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
             category?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
           blogPosts?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            slug?: 0 | 1;
-            content?: 0 | 1;
-            isPublished?: 0 | 1;
-            isFeatured?: 0 | 1;
-            publishedAt?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
             author?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             coverImage?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
       };
+
 
       login: {
         set: {
@@ -2306,84 +2366,85 @@ export type ReqType = {
           password: string;
         };
         get?: {
-          token?: 0 | 1;
+          token?: (0 | 1);
           user: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            father_name?: 0 | 1;
-            gender?: 0 | 1;
-            birth_date?: 0 | 1;
-            summary?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            father_name?: (0 | 1);
+            gender?: (0 | 1);
+            birth_date?: (0 | 1);
+            summary?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
+
 
       tempUser: {
         set: {
           first_name: string;
           last_name: string;
           father_name?: string;
-          gender: "Male" | "Female";
+          gender: ("Male" | "Female");
           birth_date?: Date;
           summary?: string;
           address?: string;
@@ -2393,74 +2454,75 @@ export type ReqType = {
           updatedAt?: Date;
         };
         get: {
-          _id?: 0 | 1;
-          first_name?: 0 | 1;
-          last_name?: 0 | 1;
-          father_name?: 0 | 1;
-          gender?: 0 | 1;
-          birth_date?: 0 | 1;
-          summary?: 0 | 1;
-          address?: 0 | 1;
-          level?: 0 | 1;
-          email?: 0 | 1;
-          is_verified?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          first_name?: (0 | 1);
+          last_name?: (0 | 1);
+          father_name?: (0 | 1);
+          gender?: (0 | 1);
+          birth_date?: (0 | 1);
+          summary?: (0 | 1);
+          address?: (0 | 1);
+          level?: (0 | 1);
+          email?: (0 | 1);
+          is_verified?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           avatar?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           national_card?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           province?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           city?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           uploadedAssets?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
           };
           blogPosts?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            slug?: 0 | 1;
-            content?: 0 | 1;
-            isPublished?: 0 | 1;
-            isFeatured?: 0 | 1;
-            publishedAt?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
           };
         };
       };
+
 
       updateUser: {
         set: {
@@ -2468,87 +2530,88 @@ export type ReqType = {
           first_name?: string;
           last_name?: string;
           father_name?: string;
-          gender?: "Male" | "Female";
+          gender?: ("Male" | "Female");
           birth_date?: Date;
           summary?: string;
           address?: string;
         };
         get: {
-          _id?: 0 | 1;
-          first_name?: 0 | 1;
-          last_name?: 0 | 1;
-          father_name?: 0 | 1;
-          gender?: 0 | 1;
-          birth_date?: 0 | 1;
-          summary?: 0 | 1;
-          address?: 0 | 1;
-          level?: 0 | 1;
-          email?: 0 | 1;
-          is_verified?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          first_name?: (0 | 1);
+          last_name?: (0 | 1);
+          father_name?: (0 | 1);
+          gender?: (0 | 1);
+          birth_date?: (0 | 1);
+          summary?: (0 | 1);
+          address?: (0 | 1);
+          level?: (0 | 1);
+          email?: (0 | 1);
+          is_verified?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           avatar?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           national_card?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           province?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           city?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           uploadedAssets?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
           };
           blogPosts?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            slug?: 0 | 1;
-            content?: 0 | 1;
-            isPublished?: 0 | 1;
-            isFeatured?: 0 | 1;
-            publishedAt?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
           };
         };
       };
+
 
       registerUser: {
         set: {
           first_name: string;
           last_name: string;
           father_name?: string;
-          gender: "Male" | "Female";
+          gender: ("Male" | "Female");
           birth_date?: Date;
           summary?: string;
           address?: string;
@@ -2558,74 +2621,75 @@ export type ReqType = {
           updatedAt?: Date;
         };
         get: {
-          _id?: 0 | 1;
-          first_name?: 0 | 1;
-          last_name?: 0 | 1;
-          father_name?: 0 | 1;
-          gender?: 0 | 1;
-          birth_date?: 0 | 1;
-          summary?: 0 | 1;
-          address?: 0 | 1;
-          level?: 0 | 1;
-          email?: 0 | 1;
-          is_verified?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          first_name?: (0 | 1);
+          last_name?: (0 | 1);
+          father_name?: (0 | 1);
+          gender?: (0 | 1);
+          birth_date?: (0 | 1);
+          summary?: (0 | 1);
+          address?: (0 | 1);
+          level?: (0 | 1);
+          email?: (0 | 1);
+          is_verified?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           avatar?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           national_card?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           province?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           city?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           uploadedAssets?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
           };
           blogPosts?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            slug?: 0 | 1;
-            content?: 0 | 1;
-            isPublished?: 0 | 1;
-            isFeatured?: 0 | 1;
-            publishedAt?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
           };
         };
       };
+
 
       getUsers: {
         set: {
@@ -2633,225 +2697,226 @@ export type ReqType = {
           limit?: number;
           skip?: number;
           search?: string;
-          level?: "Ghost" | "Manager" | "Editor" | "Ordinary";
+          level?: ("Ghost" | "Manager" | "Editor" | "Ordinary");
           levels?: ("Ghost" | "Manager" | "Editor" | "Ordinary")[];
-          isVerified?: "true" | "false" | "all";
-          gender?: "Male" | "Female";
-          sortBy?: "createdAt" | "updatedAt" | "first_name" | "last_name" | "email" | "level";
-          sortOrder?: "asc" | "desc";
+          isVerified?: ("true" | "false" | "all");
+          gender?: ("Male" | "Female");
+          sortBy?: ("createdAt" | "updatedAt" | "first_name" | "last_name" | "email" | "level");
+          sortOrder?: ("asc" | "desc");
         };
         get: {
-          _id?: 0 | 1;
-          first_name?: 0 | 1;
-          last_name?: 0 | 1;
-          father_name?: 0 | 1;
-          gender?: 0 | 1;
-          birth_date?: 0 | 1;
-          summary?: 0 | 1;
-          address?: 0 | 1;
-          level?: 0 | 1;
-          email?: 0 | 1;
-          is_verified?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          first_name?: (0 | 1);
+          last_name?: (0 | 1);
+          father_name?: (0 | 1);
+          gender?: (0 | 1);
+          birth_date?: (0 | 1);
+          summary?: (0 | 1);
+          address?: (0 | 1);
+          level?: (0 | 1);
+          email?: (0 | 1);
+          is_verified?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           avatar?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           national_card?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           province?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             users?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             cities?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             capital?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              area?: 0 | 1;
-              center?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              area?: (0 | 1);
+              center?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
           };
           city?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             users?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           uploadedAssets?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
             reporter?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             documents?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
             category?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
           blogPosts?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            slug?: 0 | 1;
-            content?: 0 | 1;
-            isPublished?: 0 | 1;
-            isFeatured?: 0 | 1;
-            publishedAt?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
             author?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             coverImage?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
       };
+
 
       removeUser: {
         set: {
@@ -2859,18 +2924,20 @@ export type ReqType = {
           hardCascade?: boolean;
         };
         get: {
-          success?: 0 | 1;
+          success?: (0 | 1);
         };
       };
+
 
       countUsers: {
         set: {
           levels?: ("Ghost" | "Manager" | "Editor" | "Ordinary")[];
         };
         get: {
-          qty: 0 | 1;
+          qty: (0 | 1);
         };
       };
+
 
       updateUserRelations: {
         set: {
@@ -2881,88 +2948,95 @@ export type ReqType = {
           city?: string;
         };
         get: {
-          _id?: 0 | 1;
-          first_name?: 0 | 1;
-          last_name?: 0 | 1;
-          father_name?: 0 | 1;
-          gender?: 0 | 1;
-          birth_date?: 0 | 1;
-          summary?: 0 | 1;
-          address?: 0 | 1;
-          level?: 0 | 1;
-          email?: 0 | 1;
-          is_verified?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          first_name?: (0 | 1);
+          last_name?: (0 | 1);
+          father_name?: (0 | 1);
+          gender?: (0 | 1);
+          birth_date?: (0 | 1);
+          summary?: (0 | 1);
+          address?: (0 | 1);
+          level?: (0 | 1);
+          email?: (0 | 1);
+          is_verified?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           avatar?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           national_card?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           province?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           city?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            english_name?: 0 | 1;
-            createdAt?: 0 | 1;
-            updatedAt?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
           };
           uploadedAssets?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
           };
           blogPosts?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            slug?: 0 | 1;
-            content?: 0 | 1;
-            isPublished?: 0 | 1;
-            isFeatured?: 0 | 1;
-            publishedAt?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
           };
         };
       };
+
 
       dashboardStatistic: {
-        set: {};
+        set: {
+        };
         get: {
-          users?: 0 | 1;
-          provinces?: 0 | 1;
-          cities?: 0 | 1;
-          categories?: 0 | 1;
-          tags?: 0 | 1;
+          users?: (0 | 1);
+          provinces?: (0 | 1);
+          cities?: (0 | 1);
+          categories?: (0 | 1);
+          tags?: (0 | 1);
         };
       };
-    };
+
+
+    }
+
 
     tag: {
+
+
       add: {
         set: {
           name: string;
@@ -2973,43 +3047,44 @@ export type ReqType = {
           updatedAt?: Date;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          description?: 0 | 1;
-          color?: 0 | 1;
-          icon?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          description?: (0 | 1);
+          color?: (0 | 1);
+          icon?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
           };
           blogPosts?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            slug?: 0 | 1;
-            content?: 0 | 1;
-            isPublished?: 0 | 1;
-            isFeatured?: 0 | 1;
-            publishedAt?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
           };
         };
       };
+
 
       update: {
         set: {
@@ -3020,189 +3095,191 @@ export type ReqType = {
           icon?: string;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          description?: 0 | 1;
-          color?: 0 | 1;
-          icon?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          description?: (0 | 1);
+          color?: (0 | 1);
+          icon?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
           };
           blogPosts?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            slug?: 0 | 1;
-            content?: 0 | 1;
-            isPublished?: 0 | 1;
-            isFeatured?: 0 | 1;
-            publishedAt?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
           };
         };
       };
+
 
       get: {
         set: {
           _id: string;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          description?: 0 | 1;
-          color?: 0 | 1;
-          icon?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          description?: (0 | 1);
+          color?: (0 | 1);
+          icon?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
             reporter?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             documents?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
             category?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
           blogPosts?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            slug?: 0 | 1;
-            content?: 0 | 1;
-            isPublished?: 0 | 1;
-            isFeatured?: 0 | 1;
-            publishedAt?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
             author?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             coverImage?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
       };
+
 
       gets: {
         set: {
@@ -3210,150 +3287,151 @@ export type ReqType = {
           limit?: number;
           skip?: number;
           search?: string;
-          sortBy?: "createdAt" | "updatedAt" | "name";
-          sortOrder?: "asc" | "desc";
+          sortBy?: ("createdAt" | "updatedAt" | "name");
+          sortOrder?: ("asc" | "desc");
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          description?: 0 | 1;
-          color?: 0 | 1;
-          icon?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          description?: (0 | 1);
+          color?: (0 | 1);
+          icon?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
             reporter?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             documents?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
             category?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
           blogPosts?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            slug?: 0 | 1;
-            content?: 0 | 1;
-            isPublished?: 0 | 1;
-            isFeatured?: 0 | 1;
-            publishedAt?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            slug?: (0 | 1);
+            content?: (0 | 1);
+            isPublished?: (0 | 1);
+            isFeatured?: (0 | 1);
+            publishedAt?: (0 | 1);
             author?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             coverImage?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
       };
+
 
       remove: {
         set: {
@@ -3361,21 +3439,27 @@ export type ReqType = {
           hardCascade?: boolean;
         };
         get: {
-          success?: 0 | 1;
+          success?: (0 | 1);
         };
       };
+
 
       count: {
         set: {
           name?: string;
         };
         get: {
-          qty?: 0 | 1;
+          qty?: (0 | 1);
         };
       };
-    };
+
+
+    }
+
 
     category: {
+
+
       add: {
         set: {
           name: string;
@@ -3386,34 +3470,35 @@ export type ReqType = {
           updatedAt?: Date;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          description?: 0 | 1;
-          color?: 0 | 1;
-          icon?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          description?: (0 | 1);
+          color?: (0 | 1);
+          icon?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
           };
         };
       };
+
 
       update: {
         set: {
@@ -3424,148 +3509,150 @@ export type ReqType = {
           icon?: string;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          description?: 0 | 1;
-          color?: 0 | 1;
-          icon?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          description?: (0 | 1);
+          color?: (0 | 1);
+          icon?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
           };
         };
       };
+
 
       get: {
         set: {
           _id: string;
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          description?: 0 | 1;
-          color?: 0 | 1;
-          icon?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          description?: (0 | 1);
+          color?: (0 | 1);
+          icon?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
             reporter?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             documents?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
             category?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
       };
+
 
       gets: {
         set: {
@@ -3573,118 +3660,119 @@ export type ReqType = {
           limit?: number;
           skip?: number;
           search?: string;
-          sortBy?: "createdAt" | "updatedAt" | "name";
-          sortOrder?: "asc" | "desc";
+          sortBy?: ("createdAt" | "updatedAt" | "name");
+          sortOrder?: ("asc" | "desc");
         };
         get: {
-          _id?: 0 | 1;
-          name?: 0 | 1;
-          description?: 0 | 1;
-          color?: 0 | 1;
-          icon?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          description?: (0 | 1);
+          color?: (0 | 1);
+          icon?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           registrar?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           reports?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
             reporter?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             documents?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
             category?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
       };
+
 
       remove: {
         set: {
@@ -3692,21 +3780,27 @@ export type ReqType = {
           hardCascade?: boolean;
         };
         get: {
-          success?: 0 | 1;
+          success?: (0 | 1);
         };
       };
+
 
       count: {
         set: {
           name?: string;
         };
         get: {
-          qty?: 0 | 1;
+          qty?: (0 | 1);
         };
       };
-    };
+
+
+    }
+
 
     report: {
+
+
       add: {
         set: {
           title: string;
@@ -3719,207 +3813,209 @@ export type ReqType = {
           };
           tags?: string[];
           category?: string;
-          documents?: string[];
+          documentIds?: string[];
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          location?: 0 | 1;
-          address?: 0 | 1;
-          status?: 0 | 1;
-          priority?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          location?: (0 | 1);
+          address?: (0 | 1);
+          status?: (0 | 1);
+          priority?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           reporter?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           documents?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
           };
           category?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
           };
         };
       };
+
 
       get: {
         set: {
           _id: string;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          location?: 0 | 1;
-          address?: 0 | 1;
-          status?: 0 | 1;
-          priority?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          location?: (0 | 1);
+          address?: (0 | 1);
+          status?: (0 | 1);
+          priority?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           reporter?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           documents?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
             documentFiles?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             report?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           category?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
         };
       };
+
 
       gets: {
         set: {
@@ -3927,8 +4023,8 @@ export type ReqType = {
           limit?: number;
           skip?: number;
           search?: string;
-          status?: "Pending" | "Approved" | "Rejected" | "InReview";
-          priority?: "Low" | "Medium" | "High";
+          status?: ("Pending" | "Approved" | "Rejected" | "InReview");
+          priority?: ("Low" | "Medium" | "High");
           categoryIds?: string[];
           tagIds?: string[];
           userIds?: string[];
@@ -3938,164 +4034,165 @@ export type ReqType = {
           nearLat?: number;
           maxDistance?: number;
           bbox?: number[];
-          sortBy?: "createdAt" | "updatedAt" | "title" | "status" | "priority";
-          sortOrder?: "asc" | "desc";
+          sortBy?: ("createdAt" | "updatedAt" | "title" | "status" | "priority");
+          sortOrder?: ("asc" | "desc");
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          location?: 0 | 1;
-          address?: 0 | 1;
-          status?: 0 | 1;
-          priority?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          location?: (0 | 1);
+          address?: (0 | 1);
+          status?: (0 | 1);
+          priority?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           reporter?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           documents?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
             documentFiles?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             report?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           category?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
         };
       };
+
 
       update: {
         set: {
@@ -4107,330 +4204,332 @@ export type ReqType = {
             coordinates?: number[];
           };
           address?: string;
-          status?: "Pending" | "Approved" | "Rejected" | "InReview";
-          priority?: "Low" | "Medium" | "High";
+          status?: ("Pending" | "Approved" | "Rejected" | "InReview");
+          priority?: ("Low" | "Medium" | "High");
           tags?: string[];
           category?: string;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          location?: 0 | 1;
-          address?: 0 | 1;
-          status?: 0 | 1;
-          priority?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          location?: (0 | 1);
+          address?: (0 | 1);
+          status?: (0 | 1);
+          priority?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           reporter?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           documents?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
             documentFiles?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             report?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           category?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
         };
       };
+
 
       updateRelations: {
         set: {
           _id: string;
           tags?: string[];
           category?: string;
-          documents?: string[];
-          removeDocuments?: string[];
+          documentIds?: string[];
+          documentIdsToRemove?: string[];
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          location?: 0 | 1;
-          address?: 0 | 1;
-          status?: 0 | 1;
-          priority?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          location?: (0 | 1);
+          address?: (0 | 1);
+          status?: (0 | 1);
+          priority?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           reporter?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           documents?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
             documentFiles?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             report?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           category?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
         };
       };
+
 
       remove: {
         set: {
@@ -4438,102 +4537,106 @@ export type ReqType = {
           hardCascade?: boolean;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          location?: 0 | 1;
-          address?: 0 | 1;
-          status?: 0 | 1;
-          priority?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          location?: (0 | 1);
+          address?: (0 | 1);
+          status?: (0 | 1);
+          priority?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           reporter?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           documents?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
           };
           category?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
           };
         };
       };
+
 
       count: {
         set: {
-          status?: "Pending" | "Approved" | "Rejected" | "InReview";
+          status?: ("Pending" | "Approved" | "Rejected" | "InReview");
           categoryId?: string;
         };
         get: {
-          qty?: 0 | 1;
+          qty?: (0 | 1);
         };
       };
 
+
       statistics: {
-        set: {};
+        set: {
+        };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          location?: 0 | 1;
-          address?: 0 | 1;
-          status?: 0 | 1;
-          priority?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          location?: (0 | 1);
+          address?: (0 | 1);
+          status?: (0 | 1);
+          priority?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           reporter?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           documents?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
           };
           category?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
           };
         };
       };
+
 
       exportCSV: {
         set: {
           search?: string;
-          status?: "Pending" | "Approved" | "Rejected" | "InReview";
-          priority?: "Low" | "Medium" | "High";
+          status?: ("Pending" | "Approved" | "Rejected" | "InReview");
+          priority?: ("Low" | "Medium" | "High");
           categoryIds?: string[];
           tagIds?: string[];
           userIds?: string[];
@@ -4543,328 +4646,334 @@ export type ReqType = {
           nearLat?: number;
           maxDistance?: number;
           bbox?: number[];
-          sortBy?: "createdAt" | "updatedAt" | "title" | "status" | "priority";
-          sortOrder?: "asc" | "desc";
+          sortBy?: ("createdAt" | "updatedAt" | "title" | "status" | "priority");
+          sortOrder?: ("asc" | "desc");
           limit?: number;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          location?: 0 | 1;
-          address?: 0 | 1;
-          status?: 0 | 1;
-          priority?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          location?: (0 | 1);
+          address?: (0 | 1);
+          status?: (0 | 1);
+          priority?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           reporter?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           documents?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
             documentFiles?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             report?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           category?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
         };
       };
+
 
       exportPDF: {
         set: {
           _id: string;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          location?: 0 | 1;
-          address?: 0 | 1;
-          status?: 0 | 1;
-          priority?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          location?: (0 | 1);
+          address?: (0 | 1);
+          status?: (0 | 1);
+          priority?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           reporter?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           documents?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
             documentFiles?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             report?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           category?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
           };
         };
       };
-    };
+
+
+    }
+
 
     document: {
+
+
       add: {
         set: {
           title: string;
@@ -4874,95 +4983,97 @@ export type ReqType = {
           documentFiles?: string[];
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           documentFiles?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           report?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
           };
         };
       };
+
 
       get: {
         set: {
           _id: string;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           documentFiles?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           report?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
             reporter?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             documents?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
             category?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
       };
+
 
       gets: {
         set: {
@@ -4972,70 +5083,71 @@ export type ReqType = {
           search?: string;
           reportId?: string;
           documentTypes?: ("image" | "video" | "docs")[];
-          sortBy?: "createdAt" | "updatedAt" | "title";
-          sortOrder?: "asc" | "desc";
+          sortBy?: ("createdAt" | "updatedAt" | "title");
+          sortOrder?: ("asc" | "desc");
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           documentFiles?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           report?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
             reporter?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             documents?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
             category?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
       };
+
 
       update: {
         set: {
@@ -5044,66 +5156,67 @@ export type ReqType = {
           description?: string;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           documentFiles?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           report?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
             reporter?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             documents?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
             category?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
       };
+
 
       updateRelations: {
         set: {
@@ -5112,66 +5225,67 @@ export type ReqType = {
           removeDocumentFiles?: string[];
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           documentFiles?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           report?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
             reporter?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             documents?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
             };
             tags?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
             category?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              color?: 0 | 1;
-              icon?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
             };
           };
         };
       };
+
 
       remove: {
         set: {
@@ -5179,29 +5293,30 @@ export type ReqType = {
           hardCascade?: boolean;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          description?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          description?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           documentFiles?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           report?: {
-            _id?: 0 | 1;
-            title?: 0 | 1;
-            description?: 0 | 1;
-            location?: 0 | 1;
-            address?: 0 | 1;
-            status?: 0 | 1;
-            priority?: 0 | 1;
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
           };
         };
       };
+
 
       count: {
         set: {
@@ -5211,9 +5326,14 @@ export type ReqType = {
           qty?: string;
         };
       };
-    };
+
+
+    }
+
 
     blogPost: {
+
+
       add: {
         set: {
           title: string;
@@ -5228,40 +5348,41 @@ export type ReqType = {
           tags?: string[];
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          slug?: 0 | 1;
-          content?: 0 | 1;
-          isPublished?: 0 | 1;
-          isFeatured?: 0 | 1;
-          publishedAt?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           author?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           coverImage?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
           };
         };
       };
+
 
       get: {
         set: {
@@ -5269,131 +5390,132 @@ export type ReqType = {
           slug?: string;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          slug?: 0 | 1;
-          content?: 0 | 1;
-          isPublished?: 0 | 1;
-          isFeatured?: 0 | 1;
-          publishedAt?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           author?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           coverImage?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
+
 
       gets: {
         set: {
@@ -5405,135 +5527,136 @@ export type ReqType = {
           isFeatured?: boolean;
           authorId?: string;
           tagIds?: string[];
-          sortBy?: "publishedAt" | "createdAt" | "updatedAt" | "title";
-          sortOrder?: "asc" | "desc";
+          sortBy?: ("publishedAt" | "createdAt" | "updatedAt" | "title");
+          sortOrder?: ("asc" | "desc");
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          slug?: 0 | 1;
-          content?: 0 | 1;
-          isPublished?: 0 | 1;
-          isFeatured?: 0 | 1;
-          publishedAt?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           author?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           coverImage?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
+
 
       update: {
         set: {
@@ -5546,131 +5669,132 @@ export type ReqType = {
           publishedAt?: string;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          slug?: 0 | 1;
-          content?: 0 | 1;
-          isPublished?: 0 | 1;
-          isFeatured?: 0 | 1;
-          publishedAt?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           author?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           coverImage?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
+
 
       updateRelations: {
         set: {
@@ -5680,131 +5804,132 @@ export type ReqType = {
           removeTags?: string[];
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          slug?: 0 | 1;
-          content?: 0 | 1;
-          isPublished?: 0 | 1;
-          isFeatured?: 0 | 1;
-          publishedAt?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           author?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           coverImage?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
+
 
       remove: {
         set: {
@@ -5812,40 +5937,41 @@ export type ReqType = {
           hardCascade?: boolean;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          slug?: 0 | 1;
-          content?: 0 | 1;
-          isPublished?: 0 | 1;
-          isFeatured?: 0 | 1;
-          publishedAt?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           author?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           coverImage?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
           };
         };
       };
+
 
       count: {
         set: {
@@ -5859,267 +5985,270 @@ export type ReqType = {
         };
       };
 
+
       publish: {
         set: {
           _id: string;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          slug?: 0 | 1;
-          content?: 0 | 1;
-          isPublished?: 0 | 1;
-          isFeatured?: 0 | 1;
-          publishedAt?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           author?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           coverImage?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
+
 
       unpublish: {
         set: {
           _id: string;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          slug?: 0 | 1;
-          content?: 0 | 1;
-          isPublished?: 0 | 1;
-          isFeatured?: 0 | 1;
-          publishedAt?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           author?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           coverImage?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
+
 
       getRelated: {
         set: {
@@ -6127,279 +6256,285 @@ export type ReqType = {
           limit?: number;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          slug?: 0 | 1;
-          content?: 0 | 1;
-          isPublished?: 0 | 1;
-          isFeatured?: 0 | 1;
-          publishedAt?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           author?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           coverImage?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
+
 
       getBySlug: {
         set: {
           slug: string;
         };
         get: {
-          _id?: 0 | 1;
-          title?: 0 | 1;
-          slug?: 0 | 1;
-          content?: 0 | 1;
-          isPublished?: 0 | 1;
-          isFeatured?: 0 | 1;
-          publishedAt?: 0 | 1;
-          createdAt?: 0 | 1;
-          updatedAt?: 0 | 1;
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          slug?: (0 | 1);
+          content?: (0 | 1);
+          isPublished?: (0 | 1);
+          isFeatured?: (0 | 1);
+          publishedAt?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
           author?: {
-            _id?: 0 | 1;
-            first_name?: 0 | 1;
-            last_name?: 0 | 1;
-            gender?: 0 | 1;
-            address?: 0 | 1;
-            level?: 0 | 1;
-            email?: 0 | 1;
-            is_verified?: 0 | 1;
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
             avatar?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             national_card?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             province?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             city?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              english_name?: 0 | 1;
-              createdAt?: 0 | 1;
-              updatedAt?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
             };
             uploadedAssets?: {
-              _id?: 0 | 1;
-              name?: 0 | 1;
-              mimeType?: 0 | 1;
-              type?: 0 | 1;
-              alt_text?: 0 | 1;
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           coverImage?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            mimeType?: 0 | 1;
-            type?: 0 | 1;
-            alt_text?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
             uploader?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
           };
           tags?: {
-            _id?: 0 | 1;
-            name?: 0 | 1;
-            color?: 0 | 1;
-            icon?: 0 | 1;
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
             registrar?: {
-              _id?: 0 | 1;
-              first_name?: 0 | 1;
-              last_name?: 0 | 1;
-              gender?: 0 | 1;
-              address?: 0 | 1;
-              level?: 0 | 1;
-              email?: 0 | 1;
-              is_verified?: 0 | 1;
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             reports?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              description?: 0 | 1;
-              location?: 0 | 1;
-              address?: 0 | 1;
-              status?: 0 | 1;
-              priority?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
             };
             blogPosts?: {
-              _id?: 0 | 1;
-              title?: 0 | 1;
-              slug?: 0 | 1;
-              content?: 0 | 1;
-              isPublished?: 0 | 1;
-              isFeatured?: 0 | 1;
-              publishedAt?: 0 | 1;
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
         };
       };
-    };
-  };
+
+
+    }
+
+
+  }
+
+
 };
+
 
 export type DeepPartial<T> = {
   [P in keyof T]?: T[P] extends object ? DeepPartial<T[P]> : T[P];
 };
 
-export const lesanApi = ({
-  URL,
-  settings,
-  baseHeaders,
-}: {
-  URL: string;
-  settings?: Record<string, any>;
-  baseHeaders?: Record<string, any>;
-}) => {
+export const lesanApi = (
+  { URL, settings, baseHeaders }: {
+    URL: string;
+    settings?: Record<string, any>;
+    baseHeaders?: Record<string, any>;
+  },
+) => {
   const setting = {
     method: "POST",
     headers: {
@@ -6426,18 +6561,15 @@ export const lesanApi = ({
     TSet extends DeepPartial<ReqType[TService][TModel][TAct]["set"]>,
     // @ts-ignore: Unreachable code error
     TGet extends DeepPartial<ReqType[TService][TModel][TAct]["get"]>,
-  >(
-    body: {
-      service?: TService;
-      model: TModel;
-      act: TAct;
-      details: {
-        set: TSet;
-        get: TGet;
-      };
-    },
-    additionalHeaders?: Record<string, any>,
-  ) => {
+  >(body: {
+    service?: TService;
+    model: TModel;
+    act: TAct;
+    details: {
+      set: TSet;
+      get: TGet;
+    };
+  }, additionalHeaders?: Record<string, any>) => {
     const req = await fetch(URL, {
       ...getSetting(),
       headers: {
@@ -6453,3 +6585,5 @@ export const lesanApi = ({
 
   return { send, setHeaders };
 };
+
+

@@ -8,6 +8,7 @@ import { gets as getTags } from "@/app/actions/tag/gets";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { createReport } from "@/app/actions/report/actions";
+import { add as addDocument } from "@/app/actions/document/add";
 import { Link, useRouter } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -105,6 +106,30 @@ export default function NewReportPage() {
   const onSubmit = async (data: ReportFormData) => {
     setLoading(true);
 
+    let documentIds: string[] = [];
+    if (data.attachments && data.attachments.length > 0) {
+      const docResult = await addDocument(
+        {
+          title: `Attachments for: ${data.title}`,
+          description: "Automatically created from report submission",
+          documentFiles: data.attachments,
+        },
+        { _id: 1 },
+      );
+
+      if (docResult.success && docResult.body && (docResult.body as any)._id) {
+        documentIds = [(docResult.body as any)._id];
+      } else {
+        toast({
+          variant: "destructive",
+          title: t("common.error"),
+          description: "Failed to attach files",
+        });
+        setLoading(false);
+        return;
+      }
+    }
+
     const result = await createReport({
       title: data.title,
       description: data.description,
@@ -113,7 +138,7 @@ export default function NewReportPage() {
       location: data.location
         ? { type: "Point", coordinates: [data.location.longitude || 0, data.location.latitude || 0] }
         : undefined,
-      attachments: data.attachments,
+      documentIds,
     });
 
     if (result.success) {

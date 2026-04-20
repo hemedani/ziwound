@@ -817,22 +817,23 @@ For complex operations that don't fit the standard CRUD pattern, create custom a
 
 import { AppApi, getToken } from "@/lib/api";
 
+// When adding a report that includes file attachments:
+// 1. Files are first uploaded to the server (returning their file IDs).
+// 2. A new Document is created in the database containing these file IDs.
+// 3. The new Report is created referencing the newly created Document ID (`documentIds`).
 export async function createReport(data: {
   title: string;
   description: string;
-  address?: string;
   location?: { type: string; coordinates: [number, number] };
   priority?: string;
   tags?: string[];
   category?: string;
-  attachments?: string[];
+  documentIds?: string[];
 }) {
   const token = await getToken();
   if (!token) {
     return { success: false, error: "Not authenticated" };
   }
-
-  const { tags, category, attachments, ...rest } = data;
 
   const result = await AppApi(undefined, token).send({
     service: "main",
@@ -840,42 +841,18 @@ export async function createReport(data: {
     act: "add",
     details: {
       set: {
-        ...rest,
-        tags: tags || [],
-        category: category || undefined,
-        attachments: attachments || [],
+        title: data.title,
+        description: data.description,
+        ...(data.location ? { location: data.location } : {}),
+        ...(data.tags && data.tags.length > 0 ? { tags: data.tags } : {}),
+        ...(data.category ? { category: data.category } : {}),
+        ...(data.documentIds && data.documentIds.length > 0 ? { documentIds: data.documentIds } : {}),
       },
       get: {
         _id: 1,
         title: 1,
         description: 1,
         status: 1,
-      },
-    },
-  });
-
-  return result;
-}
-
-export async function getMyReports(page = 1, limit = 10) {
-  const token = await getToken();
-  if (!token) {
-    return { success: false, body: [] };
-  }
-
-  const result = await AppApi(undefined, token).send({
-    service: "main",
-    model: "report",
-    act: "gets",
-    details: {
-      set: { page, limit },
-      get: {
-        _id: 1,
-        title: 1,
-        description: 1,
-        status: 1,
-        priority: 1,
-        createdAt: 1,
       },
     },
   });
@@ -883,6 +860,34 @@ export async function getMyReports(page = 1, limit = 10) {
   return result;
 }
 ```
+
+export async function getMyReports(page = 1, limit = 10) {
+const token = await getToken();
+if (!token) {
+return { success: false, body: [] };
+}
+
+const result = await AppApi(undefined, token).send({
+service: "main",
+model: "report",
+act: "gets",
+details: {
+set: { page, limit },
+get: {
+\_id: 1,
+title: 1,
+description: 1,
+status: 1,
+priority: 1,
+createdAt: 1,
+},
+},
+});
+
+return result;
+}
+
+````
 
 **When to use custom actions:**
 
@@ -901,7 +906,7 @@ The `ReqType` is auto-generated from your Lesan backend and provides complete ty
 ReqType["main"]["category"]["add"]["set"]; // Type for creating a category
 ReqType["main"]["category"]["get"]["get"]; // Type for selecting category fields
 ReqType["main"]["report"]["gets"]["set"]; // Type for fetching reports
-```
+````
 
 **Benefits:**
 
@@ -981,6 +986,16 @@ When adding a new model to your Lesan backend:
 4. **Use the template**: Copy the standard pattern and replace `<model>` and `<action>`
 5. **Test types**: Ensure TypeScript recognizes `ReqType["main"]["<model>"]`
 6. **Add custom actions**: If needed, create special operations in `actions.ts`
+
+### Report and Document Creation Flow
+
+When creating a new report that includes file attachments, follow this specific order of operations to ensure data integrity and proper relationship linking:
+
+1. **Upload Files**: First, upload all selected files to the server using the `uploadFile` server action (e.g., via the `FileUploadField` component). This action will store the files and return their unique file IDs.
+2. **Create Document**: Once you have the file IDs, create a new `Document` record in the database (using the `add` document server action). Pass the file IDs to the `documentFiles` field. This will group the files together and return a new Document ID.
+3. **Create Report**: Finally, create the `Report` record. Pass the newly created Document ID(s) to the `documentIds` field in the report's `add` action, along with the title, description, and other report details.
+
+This three-step process ensures that files are securely stored, properly grouped into documents, and correctly linked to the final report.
 
 ### Troubleshooting
 
