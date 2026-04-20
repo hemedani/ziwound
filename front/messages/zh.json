@@ -210,7 +210,7 @@
     "newReport": "新报告",
     "profile": "个人资料",
     "register": "注册",
-    "documents": "Public Documents"
+    "documents": "公开文档"
   },
   "footer": {
     "about": "关于我们",
@@ -397,19 +397,19 @@
     "title": "页面未找到"
   },
   "documents": {
-    "title": "Public Documents",
-    "description": "Explore public documents.",
-    "searchPlaceholder": "Search...",
-    "language": "Language",
-    "allLanguages": "All Languages",
-    "search": "Search",
-    "noDocuments": "No documents found",
-    "tryAdjustingSearch": "Try adjusting search",
-    "noDescription": "No description",
-    "linkedReports": "Linked Reports",
-    "files": "Files",
-    "moreFiles": "more files",
-    "noFiles": "No files",
-    "pageInfo": "Page {page} of {totalPages}"
+    "title": "公开文档",
+    "description": "探索和下载与记录事件相关的公开文档、证据和报告。",
+    "searchPlaceholder": "按标题或描述搜索...",
+    "language": "语言",
+    "allLanguages": "所有语言",
+    "search": "搜索",
+    "noDocuments": "未找到文档",
+    "tryAdjustingSearch": "请尝试调整搜索条件或清除过滤器。",
+    "noDescription": "未提供描述。",
+    "linkedReports": "关联报告",
+    "files": "文件",
+    "moreFiles": "更多文件",
+    "noFiles": "未附加文件",
+    "pageInfo": "第 {page} 页，共 {totalPages} 页"
   }
 }

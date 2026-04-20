@@ -398,18 +398,18 @@
   },
   "documents": {
     "title": "Public Documents",
-    "description": "Explore public documents.",
-    "searchPlaceholder": "Search...",
+    "description": "Explore and download public documents, evidence, and reports related to documented incidents.",
+    "searchPlaceholder": "Search by title or description...",
     "language": "Language",
     "allLanguages": "All Languages",
     "search": "Search",
     "noDocuments": "No documents found",
-    "tryAdjustingSearch": "Try adjusting search",
-    "noDescription": "No description",
+    "tryAdjustingSearch": "Try adjusting your search criteria or clear the filters.",
+    "noDescription": "No description provided.",
     "linkedReports": "Linked Reports",
     "files": "Files",
     "moreFiles": "more files",
-    "noFiles": "No files",
+    "noFiles": "No files attached",
     "pageInfo": "Page {page} of {totalPages}"
   }
 }

@@ -210,7 +210,7 @@
     "newReport": "Новый отчет",
     "profile": "Профиль",
     "register": "Регистрация",
-    "documents": "Public Documents"
+    "documents": "Публичные документы"
   },
   "footer": {
     "about": "О нас",
@@ -397,19 +397,19 @@
     "title": "Страница не найдена"
   },
   "documents": {
-    "title": "Public Documents",
-    "description": "Explore public documents.",
-    "searchPlaceholder": "Search...",
-    "language": "Language",
-    "allLanguages": "All Languages",
-    "search": "Search",
-    "noDocuments": "No documents found",
-    "tryAdjustingSearch": "Try adjusting search",
-    "noDescription": "No description",
-    "linkedReports": "Linked Reports",
-    "files": "Files",
-    "moreFiles": "more files",
-    "noFiles": "No files",
-    "pageInfo": "Page {page} of {totalPages}"
+    "title": "Публичные документы",
+    "description": "Изучайте и скачивайте публичные документы, доказательства и отчеты, связанные с задокументированными инцидентами.",
+    "searchPlaceholder": "Поиск по названию или описанию...",
+    "language": "Язык",
+    "allLanguages": "Все языки",
+    "search": "Поиск",
+    "noDocuments": "Документы не найдены",
+    "tryAdjustingSearch": "Попробуйте изменить критерии поиска или очистить фильтры.",
+    "noDescription": "Описание не предоставлено.",
+    "linkedReports": "Связанные отчеты",
+    "files": "Файлы",
+    "moreFiles": "больше файлов",
+    "noFiles": "Нет прикрепленных файлов",
+    "pageInfo": "Страница {page} из {totalPages}"
   }
 }

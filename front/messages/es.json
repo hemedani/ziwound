@@ -210,7 +210,7 @@
     "newReport": "Nuevo Reporte",
     "profile": "Perfil",
     "register": "Registrarse",
-    "documents": "Public Documents"
+    "documents": "Documentos Públicos"
   },
   "footer": {
     "about": "Sobre Nosotros",
@@ -397,19 +397,19 @@
     "title": "Página no encontrada"
   },
   "documents": {
-    "title": "Public Documents",
-    "description": "Explore public documents.",
-    "searchPlaceholder": "Search...",
-    "language": "Language",
-    "allLanguages": "All Languages",
-    "search": "Search",
-    "noDocuments": "No documents found",
-    "tryAdjustingSearch": "Try adjusting search",
-    "noDescription": "No description",
-    "linkedReports": "Linked Reports",
-    "files": "Files",
-    "moreFiles": "more files",
-    "noFiles": "No files",
-    "pageInfo": "Page {page} of {totalPages}"
+    "title": "Documentos Públicos",
+    "description": "Explore y descargue documentos públicos, pruebas e informes relacionados con incidentes documentados.",
+    "searchPlaceholder": "Buscar por título o descripción...",
+    "language": "Idioma",
+    "allLanguages": "Todos los idiomas",
+    "search": "Buscar",
+    "noDocuments": "No se encontraron documentos",
+    "tryAdjustingSearch": "Intente ajustar sus criterios de búsqueda o borrar los filtros.",
+    "noDescription": "No se proporcionó ninguna descripción.",
+    "linkedReports": "Informes vinculados",
+    "files": "Archivos",
+    "moreFiles": "más archivos",
+    "noFiles": "No hay archivos adjuntos",
+    "pageInfo": "Página {page} de {totalPages}"
   }
 }

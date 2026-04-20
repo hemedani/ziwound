@@ -210,7 +210,7 @@
     "newReport": "Nieuw Rapport",
     "profile": "Profiel",
     "register": "Registreren",
-    "documents": "Public Documents"
+    "documents": "Openbare Documenten"
   },
   "footer": {
     "about": "Over Ons",
@@ -397,19 +397,19 @@
     "title": "Pagina niet gevonden"
   },
   "documents": {
-    "title": "Public Documents",
-    "description": "Explore public documents.",
-    "searchPlaceholder": "Search...",
-    "language": "Language",
-    "allLanguages": "All Languages",
-    "search": "Search",
-    "noDocuments": "No documents found",
-    "tryAdjustingSearch": "Try adjusting search",
-    "noDescription": "No description",
-    "linkedReports": "Linked Reports",
-    "files": "Files",
-    "moreFiles": "more files",
-    "noFiles": "No files",
-    "pageInfo": "Page {page} of {totalPages}"
+    "title": "Openbare Documenten",
+    "description": "Verken en download openbare documenten, bewijsmateriaal en rapporten met betrekking tot gedocumenteerde incidenten.",
+    "searchPlaceholder": "Zoeken op titel of beschrijving...",
+    "language": "Taal",
+    "allLanguages": "Alle talen",
+    "search": "Zoeken",
+    "noDocuments": "Geen documenten gevonden",
+    "tryAdjustingSearch": "Probeer uw zoekcriteria aan te passen of wis de filters.",
+    "noDescription": "Geen beschrijving gegeven.",
+    "linkedReports": "Gekoppelde rapporten",
+    "files": "Bestanden",
+    "moreFiles": "meer bestanden",
+    "noFiles": "Geen bestanden bijgevoegd",
+    "pageInfo": "Pagina {page} van {totalPages}"
   }
 }

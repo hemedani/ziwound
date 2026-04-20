@@ -398,18 +398,18 @@
   },
   "documents": {
     "title": "اسناد عمومی",
-    "description": "کاوش اسناد عمومی.",
-    "searchPlaceholder": "جستجو...",
+    "description": "کاوش و دانلود اسناد عمومی، شواهد و گزارش‌های مرتبط با حوادث ثبت شده.",
+    "searchPlaceholder": "جستجو بر اساس عنوان یا توضیحات...",
     "language": "زبان",
     "allLanguages": "همه زبان‌ها",
     "search": "جستجو",
     "noDocuments": "سندی یافت نشد",
-    "tryAdjustingSearch": "لطفا جستجو را تغییر دهید",
-    "noDescription": "بدون توضیحات",
+    "tryAdjustingSearch": "لطفا معیارهای جستجو را تغییر دهید یا فیلترها را پاک کنید.",
+    "noDescription": "توضیحاتی ارائه نشده است.",
     "linkedReports": "گزارش‌های مرتبط",
     "files": "فایل‌ها",
     "moreFiles": "فایل بیشتر",
-    "noFiles": "بدون فایل",
+    "noFiles": "فایلی پیوست نشده است",
     "pageInfo": "صفحه {page} از {totalPages}"
   }
 }

@@ -210,7 +210,7 @@
     "newReport": "Yeni Rapor",
     "profile": "Profil",
     "register": "Kayıt Ol",
-    "documents": "Public Documents"
+    "documents": "Genel Belgeler"
   },
   "footer": {
     "about": "Hakkımızda",
@@ -397,19 +397,19 @@
     "title": "Sayfa Bulunamadı"
   },
   "documents": {
-    "title": "Public Documents",
-    "description": "Explore public documents.",
-    "searchPlaceholder": "Search...",
-    "language": "Language",
-    "allLanguages": "All Languages",
-    "search": "Search",
-    "noDocuments": "No documents found",
-    "tryAdjustingSearch": "Try adjusting search",
-    "noDescription": "No description",
-    "linkedReports": "Linked Reports",
-    "files": "Files",
-    "moreFiles": "more files",
-    "noFiles": "No files",
-    "pageInfo": "Page {page} of {totalPages}"
+    "title": "Genel Belgeler",
+    "description": "Belgelenmiş olaylarla ilgili genel belgeleri, kanıtları ve raporları inceleyin ve indirin.",
+    "searchPlaceholder": "Başlık veya açıklamaya göre ara...",
+    "language": "Dil",
+    "allLanguages": "Tüm Diller",
+    "search": "Ara",
+    "noDocuments": "Belge bulunamadı",
+    "tryAdjustingSearch": "Arama kriterlerinizi ayarlamayı veya filtreleri temizlemeyi deneyin.",
+    "noDescription": "Açıklama sağlanmadı.",
+    "linkedReports": "Bağlantılı Raporlar",
+    "files": "Dosyalar",
+    "moreFiles": "daha fazla dosya",
+    "noFiles": "Ekli dosya yok",
+    "pageInfo": "Sayfa {page} / {totalPages}"
   }
 }

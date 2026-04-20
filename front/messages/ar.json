@@ -210,7 +210,7 @@
     "newReport": "تقرير جديد",
     "profile": "الملف الشخصي",
     "register": "إنشاء حساب",
-    "documents": "Public Documents"
+    "documents": "الوثائق العامة"
   },
   "footer": {
     "about": "معلومات عنا",
@@ -397,19 +397,19 @@
     "title": "الصفحة غير موجودة"
   },
   "documents": {
-    "title": "Public Documents",
-    "description": "Explore public documents.",
-    "searchPlaceholder": "Search...",
-    "language": "Language",
-    "allLanguages": "All Languages",
-    "search": "Search",
-    "noDocuments": "No documents found",
-    "tryAdjustingSearch": "Try adjusting search",
-    "noDescription": "No description",
-    "linkedReports": "Linked Reports",
-    "files": "Files",
-    "moreFiles": "more files",
-    "noFiles": "No files",
-    "pageInfo": "Page {page} of {totalPages}"
+    "title": "الوثائق العامة",
+    "description": "استكشاف وتنزيل الوثائق العامة والأدلة والتقارير المتعلقة بالحوادث الموثقة.",
+    "searchPlaceholder": "البحث بالعنوان أو الوصف...",
+    "language": "اللغة",
+    "allLanguages": "جميع اللغات",
+    "search": "بحث",
+    "noDocuments": "لم يتم العثور على وثائق",
+    "tryAdjustingSearch": "حاول تعديل معايير البحث أو مسح الفلاتر.",
+    "noDescription": "لا يوجد وصف متاح.",
+    "linkedReports": "التقارير المرتبطة",
+    "files": "الملفات",
+    "moreFiles": "ملفات إضافية",
+    "noFiles": "لا توجد ملفات مرفقة",
+    "pageInfo": "صفحة {page} من {totalPages}"
   }
 }
