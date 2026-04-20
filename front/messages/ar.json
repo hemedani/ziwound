@@ -412,7 +412,8 @@
     "contentPlaceholder": "اكتب محتوى منشور المدونة هنا...",
     "blogPostCreated": "تم إنشاء المنشور بنجاح",
     "blogPostUpdated": "تم تحديث المنشور بنجاح",
-    "blogPostDeleted": "تم حذف المنشور بنجاح"
+    "blogPostDeleted": "تم حذف المنشور بنجاح",
+    "author": "المؤلف"
   },
   "notFound": {
     "backHome": "العودة إلى الصفحة الرئيسية",

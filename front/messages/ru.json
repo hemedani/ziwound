@@ -412,7 +412,8 @@
     "contentPlaceholder": "Напишите содержимое вашего поста здесь...",
     "blogPostCreated": "Пост в блоге успешно создан",
     "blogPostUpdated": "Пост в блоге успешно обновлен",
-    "blogPostDeleted": "Пост в блоге успешно удален"
+    "blogPostDeleted": "Пост в блоге успешно удален",
+    "author": "Автор"
   },
   "notFound": {
     "backHome": "Вернуться на главную",

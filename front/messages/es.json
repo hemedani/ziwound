@@ -412,7 +412,8 @@
     "contentPlaceholder": "Escriba el contenido de su publicación de blog aquí...",
     "blogPostCreated": "Publicación de blog creada con éxito",
     "blogPostUpdated": "Publicación de blog actualizada con éxito",
-    "blogPostDeleted": "Publicación de blog eliminada con éxito"
+    "blogPostDeleted": "Publicación de blog eliminada con éxito",
+    "author": "Autor"
   },
   "notFound": {
     "backHome": "Volver al inicio",

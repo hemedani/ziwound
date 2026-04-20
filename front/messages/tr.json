@@ -412,7 +412,8 @@
     "contentPlaceholder": "Blog gönderisi içeriğinizi buraya yazın...",
     "blogPostCreated": "Blog gönderisi başarıyla oluşturuldu",
     "blogPostUpdated": "Blog gönderisi başarıyla güncellendi",
-    "blogPostDeleted": "Blog gönderisi başarıyla silindi"
+    "blogPostDeleted": "Blog gönderisi başarıyla silindi",
+    "author": "Yazar"
   },
   "notFound": {
     "backHome": "Ana Sayfaya Dön",

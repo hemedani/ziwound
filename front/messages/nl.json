@@ -412,7 +412,8 @@
     "contentPlaceholder": "Schrijf hier de inhoud van uw blogbericht...",
     "blogPostCreated": "Blogbericht succesvol aangemaakt",
     "blogPostUpdated": "Blogbericht succesvol bijgewerkt",
-    "blogPostDeleted": "Blogbericht succesvol verwijderd"
+    "blogPostDeleted": "Blogbericht succesvol verwijderd",
+    "author": "Auteur"
   },
   "notFound": {
     "backHome": "Terug naar startpagina",

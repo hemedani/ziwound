@@ -412,7 +412,8 @@
     "contentPlaceholder": "在此处编写您的博客文章内容...",
     "blogPostCreated": "博客文章创建成功",
     "blogPostUpdated": "博客文章更新成功",
-    "blogPostDeleted": "博客文章删除成功"
+    "blogPostDeleted": "博客文章删除成功",
+    "author": "作者"
   },
   "notFound": {
     "backHome": "返回首页",

@@ -412,7 +412,8 @@
     "contentPlaceholder": "Write your blog post content here...",
     "blogPostCreated": "Blog post created successfully",
     "blogPostUpdated": "Blog post updated successfully",
-    "blogPostDeleted": "Blog post deleted successfully"
+    "blogPostDeleted": "Blog post deleted successfully",
+    "author": "Author"
   },
   "notFound": {
     "backHome": "Back to Home",

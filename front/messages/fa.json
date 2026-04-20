@@ -412,7 +412,8 @@
     "contentPlaceholder": "محتوای پست وبلاگ خود را اینجا بنویسید...",
     "blogPostCreated": "پست وبلاگ با موفقیت ایجاد شد",
     "blogPostUpdated": "پست وبلاگ با موفقیت به‌روزرسانی شد",
-    "blogPostDeleted": "پست وبلاگ با موفقیت حذف شد"
+    "blogPostDeleted": "پست وبلاگ با موفقیت حذف شد",
+    "author": "نویسنده"
   },
   "notFound": {
     "backHome": "بازگشت به صفحه اصلی",
