@@ -3,11 +3,7 @@ import { get as getDocument } from "@/app/actions/document/get";
 import { DocumentForm } from "../../_components/document-form";
 import { notFound } from "next/navigation";
 
-export default async function EditDocumentPage({
-  params,
-}: {
-  params: Promise<{ id: string }>;
-}) {
+export default async function EditDocumentPage({ params }: { params: Promise<{ id: string }> }) {
   const t = await getTranslations("admin");
   const resolvedParams = await params;
   const { id } = resolvedParams;
@@ -18,11 +14,12 @@ export default async function EditDocumentPage({
       _id: 1,
       title: 1,
       description: 1,
+      language: 1,
       documentFiles: {
         _id: 1,
         name: 1,
       },
-    }
+    },
   );
 
   if (!response?.success || !response.body) {
@@ -34,9 +31,7 @@ export default async function EditDocumentPage({
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-3xl font-bold tracking-tight">
-          {t("editDocument") || "Edit Document"}
-        </h1>
+        <h1 className="text-3xl font-bold tracking-tight">{t("editDocument") || "Edit Document"}</h1>
         <p className="text-muted-foreground">
           {t("editDocumentDescription") || "Update document details and files"}
         </p>

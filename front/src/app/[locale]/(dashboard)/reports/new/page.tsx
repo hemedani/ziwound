@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { gets as getCategories } from "@/app/actions/category/gets";
 import { gets as getTags } from "@/app/actions/tag/gets";
@@ -62,6 +62,7 @@ type ReportFormData = z.infer<typeof reportSchema>;
 
 export default function NewReportPage() {
   const t = useTranslations();
+  const locale = useLocale();
   const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
@@ -113,6 +114,7 @@ export default function NewReportPage() {
           title: `Attachments for: ${data.title}`,
           description: "Automatically created from report submission",
           documentFiles: data.attachments,
+          language: locale as any,
         },
         { _id: 1 },
       );

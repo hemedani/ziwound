@@ -13,6 +13,7 @@ import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/components/ui/use-toast";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { Loader2 } from "lucide-react";
@@ -20,8 +21,37 @@ import { Loader2 } from "lucide-react";
 const formSchema = z.object({
   title: z.string().min(2, "Title is required"),
   description: z.string().optional(),
+  language: z.string().optional(),
   documentFiles: z.array(z.string()).optional(),
 });
+
+const languages = [
+  { code: "en", name: "English" },
+  { code: "zh", name: "Chinese" },
+  { code: "hi", name: "Hindi" },
+  { code: "es", name: "Spanish" },
+  { code: "fr", name: "French" },
+  { code: "ar", name: "Arabic" },
+  { code: "pt", name: "Portuguese" },
+  { code: "ru", name: "Russian" },
+  { code: "ja", name: "Japanese" },
+  { code: "pa", name: "Punjabi" },
+  { code: "de", name: "German" },
+  { code: "id", name: "Indonesian" },
+  { code: "te", name: "Telugu" },
+  { code: "mr", name: "Marathi" },
+  { code: "tr", name: "Turkish" },
+  { code: "ta", name: "Tamil" },
+  { code: "vi", name: "Vietnamese" },
+  { code: "ko", name: "Korean" },
+  { code: "it", name: "Italian" },
+  { code: "fa", name: "Persian" },
+  { code: "nl", name: "Dutch" },
+  { code: "sv", name: "Swedish" },
+  { code: "pl", name: "Polish" },
+  { code: "uk", name: "Ukrainian" },
+  { code: "ro", name: "Romanian" },
+];
 
 type FormValues = z.infer<typeof formSchema>;
 
@@ -30,6 +60,7 @@ interface DocumentFormProps {
     _id: string;
     title: string;
     description?: string;
+    language?: string;
     documentFiles?: Array<{ _id: string; name?: string }>;
   };
 }
@@ -48,6 +79,7 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
     defaultValues: {
       title: initialData?.title || "",
       description: initialData?.description || "",
+      language: initialData?.language || "",
       documentFiles: initialData?.documentFiles?.map((f) => f._id) || [],
     },
   });
@@ -62,6 +94,7 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
           _id: initialData._id,
           title: data.title,
           description: data.description,
+          language: data.language as any,
         });
 
         if (!updateRes.success) {
@@ -98,6 +131,7 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
         const addRes = await addDocument({
           title: data.title,
           description: data.description,
+          language: data.language as any,
           documentFiles: data.documentFiles,
         });
 
@@ -136,6 +170,31 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
               <FormControl>
                 <Input placeholder={t("titlePlaceholder") || "Enter document title"} {...field} />
               </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="language"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>{t("language") || "Language"}</FormLabel>
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger>
+                    <SelectValue placeholder={t("languagePlaceholder") || "Select a language"} />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {languages.map((lang) => (
+                    <SelectItem key={lang.code} value={lang.code}>
+                      {lang.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormMessage />
             </FormItem>
           )}

@@ -18,6 +18,34 @@ import {
 import { ReqType } from "@/types/declarations";
 import { DeleteDocumentMenuItem } from "./_components/delete-document-button";
 
+const languages = [
+  { code: "en", name: "English" },
+  { code: "zh", name: "Chinese" },
+  { code: "hi", name: "Hindi" },
+  { code: "es", name: "Spanish" },
+  { code: "fr", name: "French" },
+  { code: "ar", name: "Arabic" },
+  { code: "pt", name: "Portuguese" },
+  { code: "ru", name: "Russian" },
+  { code: "ja", name: "Japanese" },
+  { code: "pa", name: "Punjabi" },
+  { code: "de", name: "German" },
+  { code: "id", name: "Indonesian" },
+  { code: "te", name: "Telugu" },
+  { code: "mr", name: "Marathi" },
+  { code: "tr", name: "Turkish" },
+  { code: "ta", name: "Tamil" },
+  { code: "vi", name: "Vietnamese" },
+  { code: "ko", name: "Korean" },
+  { code: "it", name: "Italian" },
+  { code: "fa", name: "Persian" },
+  { code: "nl", name: "Dutch" },
+  { code: "sv", name: "Swedish" },
+  { code: "pl", name: "Polish" },
+  { code: "uk", name: "Ukrainian" },
+  { code: "ro", name: "Romanian" },
+];
+
 export default async function AdminDocumentsPage({
   searchParams,
 }: {
@@ -26,6 +54,7 @@ export default async function AdminDocumentsPage({
     search?: string;
     type?: string;
     report?: string;
+    language?: string;
     sortBy?: string;
     sortOrder?: string;
   }>;
@@ -36,6 +65,7 @@ export default async function AdminDocumentsPage({
   const search = resolvedSearchParams.search || "";
   const type = resolvedSearchParams.type || "all";
   const report = resolvedSearchParams.report || "all";
+  const language = resolvedSearchParams.language || "all";
   const sortBy = resolvedSearchParams.sortBy || "createdAt";
   const sortOrder = resolvedSearchParams.sortOrder || "desc";
 
@@ -43,6 +73,7 @@ export default async function AdminDocumentsPage({
   if (search) setQuery.search = search;
   if (type !== "all") setQuery.documentTypes = [type as "image" | "video" | "docs"];
   if (report !== "all") setQuery.reportId = report;
+  if (language !== "all") setQuery.language = language as any;
   setQuery.sortBy = sortBy as ReqType["main"]["document"]["gets"]["set"]["sortBy"];
   setQuery.sortOrder = sortOrder as ReqType["main"]["document"]["gets"]["set"]["sortOrder"];
 
@@ -59,6 +90,7 @@ export default async function AdminDocumentsPage({
   const response = await getDocuments(setQuery, {
     _id: 1,
     title: 1,
+    language: 1,
     report: { _id: 1, title: 1 },
     createdAt: 1,
   });
@@ -67,6 +99,7 @@ export default async function AdminDocumentsPage({
     _id: string;
     title: string;
     type: string;
+    language?: string;
     report?: Array<{ _id: string; title: string }>;
     createdAt: string;
   }> = [];
@@ -114,6 +147,21 @@ export default async function AdminDocumentsPage({
                 <SelectItem value="image">Image</SelectItem>
                 <SelectItem value="video">Video</SelectItem>
                 <SelectItem value="docs">Document</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="w-full sm:w-48">
+            <Select name="language" defaultValue={language}>
+              <SelectTrigger>
+                <SelectValue placeholder={t("language") || "Language"} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t("allLanguages") || "All Languages"}</SelectItem>
+                {languages.map((lang) => (
+                  <SelectItem key={lang.code} value={lang.code}>
+                    {lang.name}
+                  </SelectItem>
+                ))}
               </SelectContent>
             </Select>
           </div>
@@ -172,6 +220,7 @@ export default async function AdminDocumentsPage({
               <TableRow>
                 <TableHead>{t("title")}</TableHead>
                 <TableHead>{t("type")}</TableHead>
+                <TableHead>{t("language") || "Language"}</TableHead>
                 <TableHead>{t("report") || "Report"}</TableHead>
                 <TableHead>{t("date")}</TableHead>
                 <TableHead className="text-right">{t("actions")}</TableHead>
@@ -180,7 +229,7 @@ export default async function AdminDocumentsPage({
             <TableBody>
               {documents.length === 0 ? (
                 <TableRow>
-                  <TableCell colSpan={5} className="text-center py-8">
+                  <TableCell colSpan={6} className="text-center py-8">
                     {t("noDocuments") || "No documents found"}
                   </TableCell>
                 </TableRow>
@@ -190,6 +239,15 @@ export default async function AdminDocumentsPage({
                     <TableCell className="font-medium">{doc.title}</TableCell>
                     <TableCell>
                       <Badge variant="secondary">{doc.type}</Badge>
+                    </TableCell>
+                    <TableCell>
+                      {doc.language ? (
+                        <Badge variant="outline">
+                          {languages.find((l) => l.code === doc.language)?.name || doc.language}
+                        </Badge>
+                      ) : (
+                        <span className="text-muted-foreground">-</span>
+                      )}
                     </TableCell>
                     <TableCell>
                       {doc.report && doc.report.length > 0 ? (
@@ -247,7 +305,7 @@ export default async function AdminDocumentsPage({
         {page > 1 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/documents?page=${page - 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${report !== "all" ? `&report=${report}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/documents?page=${page - 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${report !== "all" ? `&report=${report}` : ""}${language !== "all" ? `&language=${language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("previous") || "Previous"}
             </Link>
@@ -260,7 +318,7 @@ export default async function AdminDocumentsPage({
         {documents.length >= 10 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/documents?page=${page + 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${report !== "all" ? `&report=${report}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/documents?page=${page + 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${report !== "all" ? `&report=${report}` : ""}${language !== "all" ? `&language=${language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("next") || "Next"}
             </Link>
