@@ -326,14 +326,14 @@
 
 ## Phase 10: Blog Section Implementation
 
-- [ ] **Blog Server Actions**
-  - [ ] Create `src/app/actions/blogPost/add.ts`
-  - [ ] Create `src/app/actions/blogPost/get.ts` (by ID or slug)
-  - [ ] Create `src/app/actions/blogPost/gets.ts` (with pagination, filters, search)
-  - [ ] Create `src/app/actions/blogPost/update.ts`
-  - [ ] Create `src/app/actions/blogPost/updateRelations.ts`
-  - [ ] Create `src/app/actions/blogPost/remove.ts`
-  - [ ] Create `src/app/actions/blogPost/publish.ts` (publish/unpublish toggle)
+- [x] **Blog Server Actions**
+  - [x] Create `src/app/actions/blogPost/add.ts`
+  - [x] Create `src/app/actions/blogPost/get.ts` (by ID or slug)
+  - [x] Create `src/app/actions/blogPost/gets.ts` (with pagination, filters, search)
+  - [x] Create `src/app/actions/blogPost/update.ts`
+  - [x] Create `src/app/actions/blogPost/updateRelations.ts`
+  - [x] Create `src/app/actions/blogPost/remove.ts`
+  - [x] Create `src/app/actions/blogPost/publish.ts` (publish/unpublish toggle)
 - [ ] **Public Blog Pages**
   - [ ] Create `/[locale]/blog` listing page
     - [ ] Blog post cards with cover image, title, excerpt, date, author, tags
@@ -348,8 +348,8 @@
     - [ ] Share buttons (social media)
     - [ ] Comments section (if applicable)
 - [ ] **Blog Admin Panel**
-  - [ ] Add Blog to admin sidebar navigation
-  - [ ] Create `/admin/blog` page with blog post management
+  - [x] Add Blog to admin sidebar navigation
+  - [x] Create `/admin/blog` page with blog post management
   - [ ] Add data table with columns: title, author, status (draft/published), tags, date, actions
   - [ ] Add search and filtering (by status, author, tags, date)
   - [ ] Add blog post creation/editing with rich text editor

@@ -13,6 +13,7 @@ import {
   FileImage,
   ChevronLeft,
   ChevronRight,
+  BookOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -64,6 +65,11 @@ export function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
       name: t("documents"),
       href: "/admin/documents",
       icon: FileText,
+    },
+    {
+      name: t("blog") || "Blog",
+      href: "/admin/blog",
+      icon: BookOpen,
     },
   ];
 
