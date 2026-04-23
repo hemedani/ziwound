@@ -1,6 +1,6 @@
 import { array, enums, object, objectIdValidation, optional, string, date, number } from "lesan";
 import { selectStruct } from "../../../mod.ts";
-import { report_status_array } from "@model";
+import { language_array, report_status_array } from "@model";
 import { pagination } from "@lib";
 
 export const getsValidator = () => {
@@ -12,6 +12,7 @@ export const getsValidator = () => {
 			// Filters
 			status: optional(enums(report_status_array)),
 			priority: optional(enums(["Low", "Medium", "High"])),
+			language: optional(enums(language_array)),
 			categoryIds: optional(array(objectIdValidation)),
 			tagIds: optional(array(objectIdValidation)),
 			userIds: optional(array(objectIdValidation)),

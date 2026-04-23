@@ -1,24 +1,23 @@
-import { type ActFn, type Infer, object, ObjectId } from "lesan";
+import { type ActFn, ObjectId } from "lesan";
 import { report } from "../../../mod.ts";
-import { report_pure } from "@model";
 
 export const updateFn: ActFn = async (body) => {
 	const {
-		set: { _id, ...rest },
+		set: { _id, title, description, address, status, priority, language, location },
 		get,
 	} = body.details;
 
-	const pureStruct = object(report_pure);
-	const updateObj: Partial<Infer<typeof pureStruct>> = {
+	const updateObj: Record<string, unknown> = {
 		updatedAt: new Date(),
 	};
 
-	rest.title && (updateObj.title = rest.title);
-	rest.description && (updateObj.description = rest.description);
-	rest.address && (updateObj.address = rest.address);
-	rest.status && (updateObj.status = rest.status);
-	rest.priority && (updateObj.priority = rest.priority);
-	rest.location && (updateObj.location = rest.location);
+	if (title) updateObj.title = title;
+	if (description) updateObj.description = description;
+	if (address) updateObj.address = address;
+	if (status) updateObj.status = status;
+	if (priority) updateObj.priority = priority;
+	if (language) updateObj.language = language;
+	if (location) updateObj.location = location;
 
 	return await report.findOneAndUpdate({
 		filter: { _id: new ObjectId(_id as string) },

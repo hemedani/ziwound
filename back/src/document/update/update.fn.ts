@@ -1,20 +1,19 @@
-import { type ActFn, type Infer, object, ObjectId } from "lesan";
+import { type ActFn, ObjectId } from "lesan";
 import { document } from "../../../mod.ts";
-import { document_pure } from "@model";
 
 export const updateFn: ActFn = async (body) => {
   const {
-    set: { _id, ...rest },
+    set: { _id, title, description, language },
     get,
   } = body.details;
 
-  const pureStruct = object(document_pure);
-  const updateObj: Partial<Infer<typeof pureStruct>> = {
+  const updateObj: Record<string, unknown> = {
     updatedAt: new Date(),
   };
 
-  rest.title && (updateObj.title = rest.title);
-  rest.description && (updateObj.description = rest.description);
+  if (title) updateObj.title = title;
+  if (description) updateObj.description = description;
+  if (language) updateObj.language = language;
 
   return await document.findOneAndUpdate({
     filter: { _id: new ObjectId(_id as string) },

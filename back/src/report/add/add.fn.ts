@@ -7,7 +7,7 @@ export const addFn: ActFn = async (body) => {
   const { user }: MyContext = coreApp.contextFns
     .getContextModel() as unknown as MyContext;
 
-  const { tags, category, documents, ...rest } = set;
+  const { tags, category, documentIds, ...rest } = set;
 
   return await report.insertOne({
     doc: rest,
@@ -31,9 +31,9 @@ export const addFn: ActFn = async (body) => {
           },
         }
         : undefined,
-      documents: documents
+      documents: documentIds
         ? {
-          _ids: documents.map((id: string) => new ObjectId(id)),
+          _ids: documentIds.map((id: string) => new ObjectId(id)),
           relatedRelations: {
             report: true,
           },

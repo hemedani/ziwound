@@ -8,6 +8,7 @@ import {
 } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { pagination } from "@lib";
+import { language_array } from "@model";
 
 export const getsValidator = () => {
   return object({
@@ -17,6 +18,7 @@ export const getsValidator = () => {
       search: optional(string()),
       // Filters
       reportId: optional(objectIdValidation),
+      language: optional(enums(language_array)),
       documentTypes: optional(array(enums(["image", "video", "docs"]))),
       // Sort options
       sortBy: optional(enums(["createdAt", "updatedAt", "title"])),

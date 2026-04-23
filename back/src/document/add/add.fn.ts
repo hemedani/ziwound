@@ -4,14 +4,14 @@ import { document } from "../../../mod.ts";
 export const addFn: ActFn = async (body) => {
   const { set, get } = body.details;
 
-  const { documentFiles, ...rest } = set;
+  const { documentFileIds, ...rest } = set;
 
   return await document.insertOne({
     doc: rest,
     relations: {
-      documentFiles: documentFiles
+      documentFiles: documentFileIds
         ? {
-          _ids: documentFiles.map((id: string) => new ObjectId(id)),
+          _ids: documentFileIds.map((id: string) => new ObjectId(id)),
         }
         : undefined,
     },

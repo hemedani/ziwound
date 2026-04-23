@@ -11,6 +11,7 @@ export const getsFn: ActFn = async (body) => {
       search,
       status,
       priority,
+      language,
       categoryIds,
       tagIds,
       userIds,
@@ -44,6 +45,12 @@ export const getsFn: ActFn = async (body) => {
   priority &&
     pipeline.push({
       $match: { priority },
+    });
+
+  // Language filter
+  language &&
+    pipeline.push({
+      $match: { language },
     });
 
   // Category filter (array of IDs)

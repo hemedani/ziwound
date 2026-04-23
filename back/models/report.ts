@@ -15,6 +15,7 @@ import {
   user_excludes,
 } from "./excludes.ts";
 import { geoJSONStruct } from "./utils/geoJSONStruct.ts";
+import { language_enums } from "./document.ts";
 
 export const report_status_array = [
   "Pending",
@@ -31,6 +32,7 @@ export const report_pure = {
   address: optional(string()),
   status: defaulted(report_status_emums, "Pending"),
   priority: optional(enums(["Low", "Medium", "High"])),
+  language: optional(language_enums),
   ...createUpdateAt,
 };
 

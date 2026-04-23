@@ -7,8 +7,8 @@ export const updateRelationsValidator = () => {
       _id: objectIdValidation,
       tags: optional(array(objectIdValidation)),
       category: optional(objectIdValidation),
-      documents: optional(array(objectIdValidation)),
-      removeDocuments: optional(array(objectIdValidation)),
+      documentIds: optional(array(objectIdValidation)),
+      documentIdsToRemove: optional(array(objectIdValidation)),
     }),
     get: selectStruct("report", 2),
   });

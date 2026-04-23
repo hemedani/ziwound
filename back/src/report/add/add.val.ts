@@ -3,12 +3,13 @@ import { selectStruct } from "../../../mod.ts";
 import { report_pure } from "@model";
 
 export const addValidator = () => {
-  const { location, address, status, priority, ...basePure } =
+  const { location, address, status, priority, language, ...basePure } =
     report_pure as Record<string, unknown>;
 
   return object({
     set: object({
       ...basePure,
+      language: language,
       location: optional(
         object({
           type: string(),
@@ -17,7 +18,7 @@ export const addValidator = () => {
       ),
       tags: optional(array(objectIdValidation)),
       category: optional(objectIdValidation),
-      documents: optional(array(objectIdValidation)),
+      documentIds: optional(array(objectIdValidation)),
     }),
     get: selectStruct("report", 1),
   });
