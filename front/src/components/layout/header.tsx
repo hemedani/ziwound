@@ -88,6 +88,12 @@ export function Header() {
             >
               {t("documents")}
             </Link>
+            <Link
+              href={`/${locale}/blog`}
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              {t("blog")}
+            </Link>
           </nav>
         )}
 
@@ -269,6 +275,12 @@ export function Header() {
                         >
                           {t("documents")}
                         </Link>
+                        <Link
+                          href={`/${locale}/blog`}
+                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
+                        >
+                          {t("blog")}
+                        </Link>
                       </>
                     ) : (
                       <>
@@ -289,6 +301,12 @@ export function Header() {
                           className="text-sm font-medium hover:text-primary transition-colors"
                         >
                           {t("documents")}
+                        </Link>
+                        <Link
+                          href={`/${locale}/blog`}
+                          className="text-sm font-medium hover:text-primary transition-colors"
+                        >
+                          {t("blog")}
                         </Link>
                       </>
                     )}
