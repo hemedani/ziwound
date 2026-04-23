@@ -15,6 +15,26 @@ const withPWA = withPWAInit({
 
 const nextConfig: NextConfig = {
   output: "standalone",
+  experimental: {
+    serverActions: {
+      bodySizeLimit: "10mb",
+    },
+  },
+  images: {
+    remotePatterns: [
+      {
+        protocol: "http",
+        hostname: "localhost",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "placehold.co",
+      },
+    ],
+    dangerouslyAllowSVG: true,
+    disableStaticImages: true,
+  },
   async headers() {
     return [
       {
@@ -43,20 +63,6 @@ const nextConfig: NextConfig = {
         ],
       },
     ];
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "http",
-        hostname: "localhost",
-        port: "1405",
-        pathname: "/uploads/**",
-      },
-      {
-        protocol: "https",
-        hostname: "placehold.co",
-      },
-    ],
   },
 };
 

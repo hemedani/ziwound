@@ -14,6 +14,7 @@ import { get as getReport } from "@/app/actions/report/get";
 import dynamic from "next/dynamic";
 import { documentSchema, reportSchema } from "@/types/declarations";
 import { getLesanBaseUrl } from "@/lib/api";
+import { getImageUrl, getImageUploadUrl } from "@/utils/imageUrl";
 
 const ReadonlyMap = dynamic(
   () => import("@/components/map/readonly-map").then((mod) => mod.ReadonlyMap),
@@ -251,11 +252,13 @@ export default function ReportDetailPage() {
                         <Image
                           src={
                             file._id
-                              ? `${getLesanBaseUrl()}/file/download?id=${file._id}`
+                              ? getImageUploadUrl(file.name, file.type)
                               : "https://placehold.co/400x400.png"
                           }
                           alt={file.name || doc.title || "Attachment"}
                           fill
+                          unoptimized
+                          sizes="64px"
                           className="object-cover"
                         />
                       </div>
@@ -269,7 +272,7 @@ export default function ReportDetailPage() {
                     </div>
                     <Button variant="ghost" size="icon" asChild>
                       <a
-                        href={file._id ? `${getLesanBaseUrl()}/file/download?id=${file._id}` : "#"}
+                        href={file._id ? getImageUploadUrl(file.name, file.type) : "#"}
                         download={file.name}
                       >
                         <Download className="h-4 w-4" />

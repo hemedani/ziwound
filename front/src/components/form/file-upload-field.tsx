@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button";
 import { useTranslations } from "next-intl";
 import { uploadFileAction } from "@/app/actions/file/uploadFileAction";
 import { getLesanBaseUrl } from "@/lib/api";
+import { getImageUploadUrl } from "@/utils/imageUrl";
 
 interface FileUploadFieldProps {
   label: string;
@@ -45,7 +46,7 @@ export function FileUploadField({
         value.map((id) => ({
           id,
           name: id, // We don't have the original name
-          url: `${getLesanBaseUrl()}/uploads/images/${id}`, // Assuming image for preview, ideally we should know the type
+          url: getImageUploadUrl(id), // Assuming image for preview, ideally we should know the type
         })),
       );
     }
@@ -85,7 +86,7 @@ export function FileUploadField({
           act: "uploadFile",
           details: {
             set: { type },
-            get: { _id: 1, name: 1, mimType: 1 },
+            get: { _id: 1, name: 1, mimeType: 1 },
           },
         };
 
@@ -192,7 +193,8 @@ export function FileUploadField({
                     <Image
                       unoptimized
                       fill
-                      src={file.url || `${getLesanBaseUrl()}/uploads/images/${file.id}`}
+                      sizes="(max-width: 768px) 50vw, 25vw"
+                      src={file.url || getImageUploadUrl(file.id as string)}
                       alt={file.name || "Uploaded image"}
                       className="object-cover"
                     />
