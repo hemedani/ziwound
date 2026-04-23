@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { gets as getBlogPosts } from "@/app/actions/blogPost/gets";
 import { Button } from "@/components/ui/button";
-import { Search, Plus, MoreHorizontal, Edit, Trash2, Eye } from "lucide-react";
+import { Search, Plus, MoreHorizontal, Edit, Eye } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Link from "next/link";
@@ -188,18 +188,16 @@ export default async function AdminBlogPage({
                     </TableCell>
                     <TableCell>
                       {post.publishedAt
-                        ? new Date(post.publishedAt).toLocaleDateString()
+                        ? new Date(post.publishedAt).toISOString().split("T")[0]
                         : post.createdAt
-                          ? new Date(post.createdAt).toLocaleDateString()
+                          ? new Date(post.createdAt).toISOString().split("T")[0]
                           : "-"}
                     </TableCell>
                     <TableCell className="text-right">
                       <DropdownMenu>
-                        <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" className="h-8 w-8 p-0">
-                            <span className="sr-only">Open menu</span>
-                            <MoreHorizontal className="h-4 w-4" />
-                          </Button>
+                        <DropdownMenuTrigger className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0">
+                          <span className="sr-only">Open menu</span>
+                          <MoreHorizontal className="h-4 w-4" />
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
                           <DropdownMenuItem asChild>

@@ -66,8 +66,8 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
       try {
         const res = await getTags({ page: 1, limit: 100 }, { _id: 1, name: 1 });
         if (res?.success) {
-          const data = res.body as any;
-          setAvailableTags(Array.isArray(data) ? data : data?.list || []);
+          const data = (res.body as { _id: string; name: string }[]) || [];
+          setAvailableTags(Array.isArray(data) ? data : []);
         }
       } catch (err) {
         console.error(err);
@@ -179,9 +179,10 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
         });
       }
 
-      router.push("/admin/blog");
       router.refresh();
+      router.push("/admin/blog");
     } catch (error) {
+      console.error("Form submission error:", error);
       toast({
         title: tCommon("error"),
         description: error instanceof Error ? error.message : "Something went wrong",
