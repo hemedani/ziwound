@@ -210,7 +210,8 @@
     "newReport": "گزارش جدید",
     "profile": "پروفایل",
     "register": "ثبت‌نام",
-    "documents": "اسناد عمومی"
+    "documents": "اسناد عمومی",
+    "blog": "وبلاگ"
   },
   "footer": {
     "about": "درباره ما",
@@ -436,4 +437,4 @@
     "noFiles": "فایلی پیوست نشده است",
     "pageInfo": "صفحه {page} از {totalPages}"
   }
-}
+}\n

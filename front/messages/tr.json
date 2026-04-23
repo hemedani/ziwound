@@ -210,7 +210,8 @@
     "newReport": "Yeni Rapor",
     "profile": "Profil",
     "register": "Kayıt Ol",
-    "documents": "Genel Belgeler"
+    "documents": "Genel Belgeler",
+    "blog": "Blog"
   },
   "footer": {
     "about": "Hakkımızda",
@@ -436,4 +437,4 @@
     "noFiles": "Ekli dosya yok",
     "pageInfo": "Sayfa {page} / {totalPages}"
   }
-}
+}\n

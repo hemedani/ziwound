@@ -210,7 +210,8 @@
     "newReport": "New Report",
     "profile": "Profile",
     "register": "Register",
-    "documents": "Public Documents"
+    "documents": "Public Documents",
+    "blog": "Blog"
   },
   "footer": {
     "about": "About Us",
@@ -436,4 +437,4 @@
     "noFiles": "No files attached",
     "pageInfo": "Page {page} of {totalPages}"
   }
-}
+}\n

@@ -210,7 +210,8 @@
     "newReport": "Nieuw Rapport",
     "profile": "Profiel",
     "register": "Registreren",
-    "documents": "Openbare Documenten"
+    "documents": "Openbare Documenten",
+    "blog": "Blog"
   },
   "footer": {
     "about": "Over Ons",
@@ -436,4 +437,4 @@
     "noFiles": "Geen bestanden bijgevoegd",
     "pageInfo": "Pagina {page} van {totalPages}"
   }
-}
+}\n

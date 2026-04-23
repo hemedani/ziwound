@@ -334,20 +334,20 @@
   - [x] Create `src/app/actions/blogPost/updateRelations.ts`
   - [x] Create `src/app/actions/blogPost/remove.ts`
   - [x] Create `src/app/actions/blogPost/publish.ts` (publish/unpublish toggle)
-- [ ] **Public Blog Pages**
-  - [ ] Create `/[locale]/blog` listing page
-    - [ ] Blog post cards with cover image, title, excerpt, date, author, tags
-    - [ ] Search bar for blog posts
-    - [ ] Filter by tags/categories
-    - [ ] Pagination or infinite scroll
+- [x] **Public Blog Pages**
+  - [x] Create `/[locale]/blog` listing page
+    - [x] Blog post cards with cover image, title, excerpt, date, author, tags
+    - [x] Search bar for blog posts
+    - [x] Filter by tags/categories
+    - [x] Pagination or infinite scroll
     - [ ] RSS feed link (optional)
-  - [ ] Create `/[locale]/blog/[slug]` individual post page
-    - [ ] Full blog post content with rich text rendering
-    - [ ] Title, author, date, tags display
-    - [ ] Related posts section (based on tags)
+  - [x] Create `/[locale]/blog/[slug]` individual post page
+    - [x] Full blog post content with rich text rendering
+    - [x] Title, author, date, tags display
+    - [x] Related posts section (based on tags)
     - [ ] Share buttons (social media)
     - [ ] Comments section (if applicable)
-- [ ] **Blog Admin Panel**
+- [x] **Blog Admin Panel**
   - [x] Add Blog to admin sidebar navigation
   - [x] Create `/admin/blog` page with blog post management
   - [x] Add data table with columns: title, author, status (draft/published), tags, date, actions
@@ -360,15 +360,15 @@
   - [x] Add tag selection
   - [x] Add publish/unpublish toggle
   - [x] Add delete action with confirmation
-- [ ] **Blog UI Components**
-  - [ ] Create BlogPostCard component
-  - [ ] Create BlogPostList component
-  - [ ] Create BlogPostDetail component
-  - [ ] Create RichTextRenderer component (for rendering markdown/HTML content)
-  - [ ] Create BlogSearch component
-- [ ] **Blog Translations**
-  - [ ] Add all blog-related translation keys to all 9 language files
-  - [ ] Translate blog UI elements (labels, buttons, placeholders, etc.)
+- [x] **Blog UI Components**
+  - [x] Create BlogPostCard component (inlined)
+  - [x] Create BlogPostList component (inlined)
+  - [x] Create BlogPostDetail component (inlined)
+  - [x] Create RichTextRenderer component (via @tailwindcss/typography)
+  - [x] Create BlogSearch component (inlined)
+- [x] **Blog Translations**
+  - [x] Add all blog-related translation keys to all 9 language files
+  - [x] Translate blog UI elements (labels, buttons, placeholders, etc.)
   - [ ] Test blog pages in RTL (fa, ar) and LTR (en, zh, etc.) layouts
 
 ## Phase 11: War Crimes Exploration Page

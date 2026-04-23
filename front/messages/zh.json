@@ -210,7 +210,8 @@
     "newReport": "新报告",
     "profile": "个人资料",
     "register": "注册",
-    "documents": "公开文档"
+    "documents": "公开文档",
+    "blog": "Blog"
   },
   "footer": {
     "about": "关于我们",
@@ -436,4 +437,4 @@
     "noFiles": "未附加文件",
     "pageInfo": "第 {page} 页，共 {totalPages} 页"
   }
-}
+}\n

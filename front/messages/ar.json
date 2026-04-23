@@ -210,7 +210,8 @@
     "newReport": "تقرير جديد",
     "profile": "الملف الشخصي",
     "register": "إنشاء حساب",
-    "documents": "الوثائق العامة"
+    "documents": "الوثائق العامة",
+    "blog": "وبلاگ"
   },
   "footer": {
     "about": "معلومات عنا",
@@ -436,4 +437,4 @@
     "noFiles": "لا توجد ملفات مرفقة",
     "pageInfo": "صفحة {page} من {totalPages}"
   }
-}
+}\n

@@ -210,7 +210,8 @@
     "newReport": "Nuevo Reporte",
     "profile": "Perfil",
     "register": "Registrarse",
-    "documents": "Documentos Públicos"
+    "documents": "Documentos Públicos",
+    "blog": "Blog"
   },
   "footer": {
     "about": "Sobre Nosotros",
@@ -436,4 +437,4 @@
     "noFiles": "No hay archivos adjuntos",
     "pageInfo": "Página {page} de {totalPages}"
   }
-}
+}\n

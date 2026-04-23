@@ -210,7 +210,8 @@
     "newReport": "Новый отчет",
     "profile": "Профиль",
     "register": "Регистрация",
-    "documents": "Публичные документы"
+    "documents": "Публичные документы",
+    "blog": "Blog"
   },
   "footer": {
     "about": "О нас",
@@ -436,4 +437,4 @@
     "noFiles": "Нет прикрепленных файлов",
     "pageInfo": "Страница {page} из {totalPages}"
   }
-}
+}\n
