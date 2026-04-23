@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { getImageUploadUrl } from "@/utils/imageUrl";
 import { get as getDocument } from "@/app/actions/document/get";
 import { notFound } from "next/navigation";
 import { Button } from "@/components/ui/button";
@@ -110,10 +111,10 @@ export default async function DocumentDetailsPage({ params }: { params: Promise<
                   {documentData.documentFiles.map((file: fileSchema) => (
                     <a
                       key={file._id as string}
-                      href={`${baseUrl}/file/download?id=${file._id}`}
+                      href={`${getImageUploadUrl(file.name, file.type)}`}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 p-3 border rounded-lg hover:bg-muted/50 transition-colors"
+                      className="flex items-center gap-3 p-3 rounded-md border bg-muted/30 hover:bg-muted transition-colors group"
                     >
                       <div className="p-2 bg-primary/10 rounded-md">
                         <FileIcon className="h-6 w-6 text-primary" />

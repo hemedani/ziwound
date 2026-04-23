@@ -32,7 +32,7 @@ export default async function AdminFilesPage({
   const response = await gets(setQuery, {
     _id: 1,
     name: 1,
-    mimeType: 1,
+    mimeType: 1, type: 1,
     size: 1,
     createdAt: 1,
     uploader: {

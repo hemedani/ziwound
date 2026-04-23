@@ -9,6 +9,7 @@ import { Search, FileText, Download, Eye, Calendar, Globe } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import { ReqType } from "@/types/declarations";
 import { getLesanBaseUrl } from "@/lib/api";
+import { getImageUploadUrl } from "@/utils/imageUrl";
 
 const languages = [
   { code: "en", name: "English" },
@@ -74,7 +75,7 @@ export default async function PublicDocumentsPage({
     documentFiles: {
       _id: 1,
       name: 1,
-      mimeType: 1,
+      mimeType: 1, type: 1,
     },
     report: {
       _id: 1,
@@ -82,7 +83,7 @@ export default async function PublicDocumentsPage({
     },
   });
 
-  type DocumentFile = { _id: string; name?: string; mimeType?: string };
+  type DocumentFile = { _id: string; name: string; mimeType?: string; type?: "image" | "video" | "docs" };
   type LinkedReport = { _id: string; title: string };
   type DocumentItem = {
     _id: string;
@@ -245,7 +246,10 @@ export default async function PublicDocumentsPage({
                               {file.name || "Document"}
                             </span>
                             <Button variant="ghost" size="sm" className="h-7 w-7 p-0 shrink-0" asChild>
-                              <a href={`${getLesanBaseUrl()}/file/download?id=${file._id}`} download>
+                              <a
+                                href={`${getImageUploadUrl(file.name, file.type)}`}
+                                download
+                              >
                                 <Download className="h-4 w-4" />
                                 <span className="sr-only">{tCommon("download")}</span>
                               </a>

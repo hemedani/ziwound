@@ -1,5 +1,6 @@
 "use client";
 
+import { getImageUploadUrl } from "@/utils/imageUrl";
 import { useTranslations } from "next-intl";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
@@ -143,7 +144,12 @@ export function FilesTable({ files, error }: FilesTableProps) {
                   <DropdownMenuContent align="end">
                     <DropdownMenuLabel>{t("actions") || "Actions"}</DropdownMenuLabel>
                     <DropdownMenuItem
-                      onClick={() => window.open(`/api/files/${file._id}`, "_blank")}
+                      onClick={() =>
+                        window.open(
+                          `${getImageUploadUrl(file.name, file.type)}`,
+                          "_blank",
+                        )
+                      }
                       className="cursor-pointer"
                     >
                       <Eye className="me-2 h-4 w-4" />
