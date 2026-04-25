@@ -392,6 +392,11 @@
   - [x] **Map View**:
     - [x] Placeholder with report count display
     - [x] Reports with location data shown
+    - [ ] Integrate MapLibre GL / Leaflet for interactive map
+    - [ ] Display war crime reports as map markers
+    - [ ] Add marker clustering for dense areas
+    - [ ] Add popup on marker click with report preview
+    - [ ] Support map filters (bounding box selection)
   - [x] **Statistics View**:
     - [x] Statistics cards (total, by priority)
     - [x] Bar and Pie charts with Chart.js
@@ -403,66 +408,30 @@
     - [x] Priority filter
     - [x] Status filter
     - [x] Filter reset button
+    - [ ] Location filter (city, province, or map selection)
+  - [ ] **Timeline View** (optional, advanced feature):
+    - [ ] Add timeline component showing reports over time
+    - [ ] Allow timeline navigation and filtering
+  - [ ] **Export & Sharing**:
+    - [ ] Add export button (CSV, PDF)
+    - [ ] Add share link functionality
+    - [ ] Add social media sharing buttons
 - [x] **War Crimes Exploration UI Components**
   - [x] Create `WarCrimesFilters` component
   - [x] Create `WarCrimesList` component (list/grid view)
   - [x] Create `WarCrimesMap` component (lazy loaded)
   - [x] Create `WarCrimesStatistics` component (charts)
+  - [ ] Create `WarCrimesTimeline` component
+  - [ ] Create `WarCrimesExport` component (export buttons)
 - [x] **War Crimes Translations**
   - [x] Add all war crimes exploration translation keys to fa.json
+  - [ ] Add all war crimes exploration translation keys to all 9 language files
   - [x] Translate exploration UI elements (labels, buttons, placeholders, filters)
+  - [ ] Test exploration page in RTL (fa, ar) and LTR (en, zh, etc.) layouts
 - [x] **Navigation Integration**
   - [x] Add War Crimes link to main header navigation (desktop + mobile)
   - [x] Add warCrimes translation key to header section
-- [ ] **War Crimes Exploration Page** (`/[locale]/war-crimes`)
-  - [ ] Create main exploration page layout
-  - [ ] Add dual view toggle: Map View / List View
-  - [ ] **Map View**:
-    - [ ] Integrate MapLibre GL / Leaflet for interactive map
-    - [ ] Display war crime reports as map markers
-    - [ ] Add marker clustering for dense areas
-    - [ ] Add popup on marker click with report preview
-    - [ ] Support map filters (bounding box selection)
-  - [ ] **List View**:
-    - [ ] Data table/cards with report listings
-    - [ ] Columns: title, location, date, category, severity, status
-    - [ ] Sorting by date, relevance, location
-    - [ ] Pagination
-  - [ ] **Advanced Search & Filters Panel**:
-    - [ ] Text search input
-    - [ ] Date range picker (from/to)
-    - [ ] Category multi-select
-    - [ ] Tag multi-select
-    - [ ] Severity/priority filter
-    - [ ] Location filter (city, province, or map selection)
-    - [ ] Filter reset button
-  - [ ] **Timeline View** (optional, advanced feature):
-    - [ ] Add timeline component showing reports over time
-    - [ ] Allow timeline navigation and filtering
-  - [ ] **Statistics Dashboard**:
-    - [ ] Add statistics cards (total reports, by category, by severity, by location)
-    - [ ] Add charts/graphs (reports over time, geographic distribution)
-    - [ ] Use charting library (Recharts, Chart.js, etc.)
-  - [ ] **Export & Sharing**:
-    - [ ] Add export button (CSV, PDF)
-    - [ ] Add share link functionality
-    - [ ] Add social media sharing buttons
-- [ ] **War Crimes Exploration UI Components**
-  - [ ] Create WarCrimesMap component (with MapLibre GL/Leaflet)
-  - [ ] Create WarCrimesTimeline component
-  - [ ] Create WarCrimesStatistics component (charts/graphs)
-  - [ ] Create WarCrimesFilters component (advanced search panel)
-  - [ ] Create WarCrimesList component (list/grid view)
-  - [ ] Create WarCrimesMarker component (map popup with preview)
-  - [ ] Create WarCrimesExport component (export buttons)
-- [ ] **War Crimes Translations**
-  - [ ] Add all war crimes exploration translation keys to all 9 language files
-  - [ ] Translate exploration UI elements (labels, buttons, placeholders, filters)
-  - [ ] Test exploration page in RTL (fa, ar) and LTR (en, zh, etc.) layouts
-- [ ] **Navigation Integration**
-  - [ ] Add War Crimes link to main header navigation
   - [ ] Add War Crimes link to footer quick links
-  - [ ] Ensure proper routing and active state highlighting
 
 ## Known Issues & Technical Debt
 
