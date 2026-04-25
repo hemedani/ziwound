@@ -392,10 +392,10 @@
   - [x] **Map View**:
     - [x] Placeholder with report count display
     - [x] Reports with location data shown
-    - [ ] Integrate MapLibre GL / Leaflet for interactive map
-    - [ ] Display war crime reports as map markers
-    - [ ] Add marker clustering for dense areas
-    - [ ] Add popup on marker click with report preview
+    - [x] Integrate MapLibre GL / Leaflet for interactive map
+    - [x] Display war crime reports as map markers
+    - [x] Add marker clustering for dense areas
+    - [x] Add popup on marker click with report preview
     - [ ] Support map filters (bounding box selection)
   - [x] **Statistics View**:
     - [x] Statistics cards (total, by priority)
