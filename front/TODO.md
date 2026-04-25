@@ -396,7 +396,7 @@
     - [x] Display war crime reports as map markers
     - [x] Add marker clustering for dense areas
     - [x] Add popup on marker click with report preview
-    - [ ] Support map filters (bounding box selection)
+    - [x] Support map filters (bounding box selection)
   - [x] **Statistics View**:
     - [x] Statistics cards (total, by priority)
     - [x] Bar and Pie charts with Chart.js

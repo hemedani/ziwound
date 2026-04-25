@@ -31,6 +31,7 @@ export default async function WarCrimesPage({
     dateFrom?: string;
     dateTo?: string;
     view?: string;
+    bbox?: string;
   }>;
   params: Promise<{ locale: string }>;
 }) {
@@ -52,6 +53,9 @@ export default async function WarCrimesPage({
   const dateFrom = resolvedSearchParams.dateFrom ? new Date(resolvedSearchParams.dateFrom) : undefined;
   const dateTo = resolvedSearchParams.dateTo ? new Date(resolvedSearchParams.dateTo) : undefined;
   const view = resolvedSearchParams.view || "list";
+  const bboxStr = resolvedSearchParams.bbox;
+  const bbox = bboxStr ? bboxStr.split(",").map(Number).filter(n => !isNaN(n)) : undefined;
+  const finalBbox = bbox?.length === 4 ? bbox : undefined;
 
   const reportQuery: ReqType["main"]["report"]["gets"]["set"] = {
     page,
@@ -63,6 +67,7 @@ export default async function WarCrimesPage({
     tagIds: tagIds || undefined,
     createdAtFrom: dateFrom,
     createdAtTo: dateTo,
+    bbox: finalBbox,
   };
 
   const response = await getReports(reportQuery, {
