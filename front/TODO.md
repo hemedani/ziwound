@@ -408,7 +408,7 @@
     - [x] Priority filter
     - [x] Status filter
     - [x] Filter reset button
-    - [ ] Location filter (city, province, or map selection)
+    - [x] Location filter (city, province, or map selection)
   - [ ] **Timeline View** (optional, advanced feature):
     - [ ] Add timeline component showing reports over time
     - [ ] Allow timeline navigation and filtering
