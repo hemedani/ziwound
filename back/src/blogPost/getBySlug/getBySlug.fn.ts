@@ -8,7 +8,7 @@ export const getBySlugFn: ActFn = async (body) => {
   } = body.details;
 
   return await blogPost.findOne({
-    filters: { slug },
+    filters: { slug, isPublished: true },
     projection: get,
   });
 };
