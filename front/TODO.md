@@ -353,9 +353,9 @@
   - [x] Add data table with columns: title, author, status (draft/published), tags, date, actions
   - [x] Add search and filtering (by status, author, tags, date)
   - [x] Add blog post creation/editing with rich text editor
-  - [ ] Integrate rich text editor (TipTap, Quill, or similar)
-    - [ ] Headings, bold, italic, lists, links, images
-    - [ ] Code blocks, quotes, tables
+  - [x] Integrate rich text editor (TipTap)
+    - [x] Headings, bold, italic, lists, links, images
+    - [x] Quotes, tables
   - [x] Add cover image upload
   - [x] Add tag selection
   - [x] Add publish/unpublish toggle

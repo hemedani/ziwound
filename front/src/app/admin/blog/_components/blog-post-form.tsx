@@ -22,6 +22,7 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { RichTextEditor } from "@/components/form/rich-text-editor";
 import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
 import { FileUploadField } from "@/components/form/file-upload-field";
@@ -326,12 +327,12 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
           name="content"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t("content") || "Content (Markdown supported)"}</FormLabel>
+              <FormLabel>{t("content") || "Content"}</FormLabel>
               <FormControl>
-                <Textarea
+                <RichTextEditor
+                  value={field.value}
+                  onChange={field.onChange}
                   placeholder={t("contentPlaceholder") || "Write your blog post content here..."}
-                  className="min-h-[400px] font-mono text-sm"
-                  {...field}
                 />
               </FormControl>
               <FormMessage />
