@@ -369,7 +369,7 @@
 - [x] **Blog Translations**
   - [x] Add all blog-related translation keys to all 9 language files
   - [x] Translate blog UI elements (labels, buttons, placeholders, etc.)
-  - [ ] Test blog pages in RTL (fa, ar) and LTR (en, zh, etc.) layouts
+  - [x] Test blog pages in RTL (fa, ar) and LTR (en, zh, etc.) layouts
 
 ## Phase 11: War Crimes Exploration Page
 
