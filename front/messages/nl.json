@@ -211,7 +211,8 @@
     "profile": "Profiel",
     "register": "Registreren",
     "documents": "Openbare Documenten",
-    "blog": "Blog"
+    "blog": "Blog",
+    "warCrimes": "Oorlogsmisdrijven"
   },
   "footer": {
     "about": "Over Ons",
@@ -436,5 +437,65 @@
     "moreFiles": "meer bestanden",
     "noFiles": "Geen bestanden bijgevoegd",
     "pageInfo": "Pagina {page} van {totalPages}"
+  },
+  "warCrimes": {
+    "title": "Oorlogsmisdrijven Verkenning",
+    "description": "Zoek en verken gedocumenteerde oorlogsmisdrijven van over de hele wereld.",
+    "exploreMap": "Kaart Weergave",
+    "exploreList": "Lijst Weergave",
+    "searchPlaceholder": "Zoeken op titel of beschrijving...",
+    "filters": {
+      "title": "Filters",
+      "status": "Status",
+      "dateRange": "Datum Bereik",
+      "from": "Van",
+      "to": "Tot",
+      "category": "Categorie",
+      "selectCategory": "Selecteer categorie",
+      "tags": "Tags",
+      "selectTags": "Selecteer tags",
+      "priority": "Prioriteit",
+      "selectPriority": "Selecteer prioriteit",
+      "location": "Locatie",
+      "selectLocation": "Selecteer locatie",
+      "reset": "Filters wissen",
+      "apply": "Filters toepassen"
+    },
+    "priority": {
+      "all": "Alle prioriteiten",
+      "high": "Hoog",
+      "medium": "Middel",
+      "low": "Laag"
+    },
+    "status": {
+      "all": "Alle statussen",
+      "approved": "Goedgekeurd",
+      "pending": "In Afwachting",
+      "rejected": "Afgewezen",
+      "inReview": "In Review"
+    },
+    "view": "Bekijken",
+    "noResults": "Geen resultaten gevonden",
+    "noResultsDescription": "Pas uw zoekcriteria aan of wis de filters.",
+    "totalReports": "Totaal Rapporten",
+    "byCategory": "Per Categorie",
+    "byPriority": "Per Prioriteit",
+    "byLocation": "Per Locatie",
+    "statistics": "Statistieken",
+    "export": "Exporteren",
+    "exportCSV": "CSV Exporteren",
+    "share": "Delen",
+    "shareLink": "Link Kopiëren",
+    "linkCopied": "Link gekopieerd",
+    "timeline": "Tijdlijn",
+    "date": "Datum",
+    "location": "Locatie",
+    "category": "Categorie",
+    "reporter": "Reporter",
+    "pageInfo": "Pagina {page} van {totalPages}",
+    "showing": "Toont {from} tot {to} van {total} resultaten",
+    "withLocation": "met locatie",
+    "previous": "Vorige",
+    "next": "Volgende"
   }
-}\n
+}

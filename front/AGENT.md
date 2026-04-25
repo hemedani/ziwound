@@ -309,7 +309,7 @@ You are a front-end expert in Next.js 16, Tailwind v4, and shadcn/ui. Always pri
 - Strictly follow clean code, clean architecture, and best practices. Remove unused code, console.logs, etc.
 - Use shadcn/ui components (Button, Input, Textarea, Card, Table, Form, Dialog, etc.) as the foundation.
 - All new forms: React Hook Form + Zod.
-- When adding translations: add keys to **all** language files.
+- **STRICT RULE FOR AI AGENTS**: When adding translations, add keys to **all** language files in the `/messages` directory. Furthermore, when using `getTranslations()` in Server Components, ALWAYS pass the `locale` parameter explicitly (e.g., `await getTranslations({ locale })`) to prevent fallback to the default language.
 - Test thoroughly in fa (RTL) and en (LTR).
 
 ### API Calls Best Practice
@@ -386,11 +386,13 @@ Proxies images from the backend through the Next.js server.
 **Route:** `/api/image-proxy?path=<encoded-path>`
 
 **Example:**
+
 ```
 /api/image-proxy?path=uploads/images/filename.jpg
 ```
 
 **Implementation (`src/app/api/image-proxy/route.ts`):**
+
 ```ts
 import { NextRequest, NextResponse } from "next/server";
 
@@ -429,6 +431,7 @@ Proxies JSON API requests to the backend, handling authentication and multipart 
 **Route:** `/api/proxy` (POST)
 
 **Features:**
+
 - Forwards `Authorization` and `Cookie` headers
 - Handles multipart/form-data for file uploads
 - 55-second timeout for large uploads
@@ -442,14 +445,14 @@ Use the helper functions to generate proper URLs:
 import { getImageUrl, getImageUploadUrl } from "@/utils/imageUrl";
 
 // Generic image URL
-getImageUrl("uploads/images/filename.jpg")
+getImageUrl("uploads/images/filename.jpg");
 // => "/api/image-proxy?path=uploads/images/filename.jpg"
 
 // Specific for uploaded files (auto-appends folder)
-getImageUploadUrl("filename.jpg", "image")
+getImageUploadUrl("filename.jpg", "image");
 // => "/api/image-proxy?path=uploads/images/filename.jpg"
 
-getImageUploadUrl("file.pdf", "docs")
+getImageUploadUrl("file.pdf", "docs");
 // => "/api/image-proxy?path=uploads/docs/file.pdf"
 ```
 
@@ -468,7 +471,7 @@ import { getImageUploadUrl } from "@/utils/imageUrl";
   unoptimized
   sizes="(max-width: 768px) 100vw, 50vw"
   className="object-cover"
-/>
+/>;
 ```
 
 #### Download Links
@@ -1149,6 +1152,7 @@ This three-step process ensures that files are securely stored, properly grouped
 
 - Use types from `/src/types/declarations` for consistency with the backend.
 - **STRICT RULE FOR AI AGENTS**: NEVER use the `any` type in this project. Always resolve and use the proper types, mostly available inside `/src/types/declarations.ts`.
+- **STRICT RULE FOR AI AGENTS**: When calling `getTranslations()` in Server Components, you MUST explicitly pass the `locale` parameter (e.g., `await getTranslations({ locale })`). Also, ensure new translation keys are present across ALL available language files in the `/messages` folder.
 - Ghost user level has full admin access.
 - Keep the report submission page **simple and elegant**.
 - Do not run `pnpm dev` or build commands automatically — only suggest them.

@@ -27,6 +27,25 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
+const getStatusKey = (status?: string): string => {
+  const statusMap: Record<string, string> = {
+    Approved: "approved",
+    Pending: "pending",
+    Rejected: "rejected",
+    InReview: "in_review",
+  };
+  return statusMap[status || ""] || "pending";
+};
+
+const getPriorityKey = (priority?: string): string => {
+  const priorityMap: Record<string, string> = {
+    High: "high",
+    Medium: "medium",
+    Low: "low",
+  };
+  return priorityMap[priority || ""] || "low";
+};
+
 type ReportItem = {
   _id: string;
   title: string;
@@ -268,18 +287,18 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
                   <TableCell>
                     <Badge
                       variant={
-                        report.status === "pending"
+                        report.status === "Pending"
                           ? "outline"
-                          : report.status === "approved"
+                          : report.status === "Approved"
                             ? "default"
                             : "destructive"
                       }
                     >
-                      {t(`status_${report.status || "pending"}`)}
+                      {t(`status_${getStatusKey(report.status)}`)}
                     </Badge>
                   </TableCell>
                   <TableCell>
-                    <Badge variant="secondary">{t(`priority_${report.priority || "low"}`)}</Badge>
+                    <Badge variant="secondary">{t(`priority_${getPriorityKey(report.priority)}`)}</Badge>
                   </TableCell>
                   <TableCell>
                     {report.createdAt ? new Date(report.createdAt).toLocaleDateString() : "-"}

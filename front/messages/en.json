@@ -211,7 +211,8 @@
     "profile": "Profile",
     "register": "Register",
     "documents": "Public Documents",
-    "blog": "Blog"
+    "blog": "Blog",
+    "warCrimes": "War Crimes"
   },
   "footer": {
     "about": "About Us",
@@ -436,5 +437,65 @@
     "moreFiles": "more files",
     "noFiles": "No files attached",
     "pageInfo": "Page {page} of {totalPages}"
+  },
+  "warCrimes": {
+    "title": "War Crimes Exploration",
+    "description": "Search and explore documented war crimes from around the world.",
+    "exploreMap": "Map View",
+    "exploreList": "List View",
+    "searchPlaceholder": "Search by title or description...",
+    "filters": {
+      "title": "Filters",
+      "status": "Status",
+      "dateRange": "Date Range",
+      "from": "From",
+      "to": "To",
+      "category": "Category",
+      "selectCategory": "Select category",
+      "tags": "Tags",
+      "selectTags": "Select tags",
+      "priority": "Priority",
+      "selectPriority": "Select priority",
+      "location": "Location",
+      "selectLocation": "Select location",
+      "reset": "Clear filters",
+      "apply": "Apply filters"
+    },
+    "priority": {
+      "all": "All priorities",
+      "high": "High",
+      "medium": "Medium",
+      "low": "Low"
+    },
+    "status": {
+      "all": "All statuses",
+      "approved": "Approved",
+      "pending": "Pending",
+      "rejected": "Rejected",
+      "inReview": "In Review"
+    },
+    "view": "View",
+    "noResults": "No results found",
+    "noResultsDescription": "Try adjusting your search criteria or clear the filters.",
+    "totalReports": "Total Reports",
+    "byCategory": "By Category",
+    "byPriority": "By Priority",
+    "byLocation": "By Location",
+    "statistics": "Statistics",
+    "export": "Export",
+    "exportCSV": "Export CSV",
+    "share": "Share",
+    "shareLink": "Copy Link",
+    "linkCopied": "Link copied",
+    "timeline": "Timeline",
+    "date": "Date",
+    "location": "Location",
+    "category": "Category",
+    "reporter": "Reporter",
+    "pageInfo": "Page {page} of {totalPages}",
+    "showing": "Showing {from} to {to} of {total} results",
+    "withLocation": "with location",
+    "previous": "Previous",
+    "next": "Next"
   }
-}\n
+}

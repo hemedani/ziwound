@@ -211,7 +211,8 @@
     "profile": "Perfil",
     "register": "Registrar",
     "documents": "Documentos Públicos",
-    "blog": "Blog"
+    "blog": "Blog",
+    "warCrimes": "Crimes de Guerra"
   },
   "footer": {
     "about": "Sobre Nós",
@@ -436,5 +437,65 @@
     "moreFiles": "mais arquivos",
     "noFiles": "Nenhum arquivo anexado",
     "pageInfo": "Página {page} de {totalPages}"
+  },
+  "warCrimes": {
+    "title": "Exploração de Crimes de Guerra",
+    "description": "Pesquise e explore crimes de guerra documentados de todo o mundo.",
+    "exploreMap": "Visualização do Mapa",
+    "exploreList": "Visualização em Lista",
+    "searchPlaceholder": "Pesquisar por título ou descrição...",
+    "filters": {
+      "title": "Filtros",
+      "status": "Status",
+      "dateRange": "Intervalo de Datas",
+      "from": "De",
+      "to": "Até",
+      "category": "Categoria",
+      "selectCategory": "Selecionar categoria",
+      "tags": "Tags",
+      "selectTags": "Selecionar tags",
+      "priority": "Prioridade",
+      "selectPriority": "Selecionar prioridade",
+      "location": "Localização",
+      "selectLocation": "Selecionar localização",
+      "reset": "Limpar filtros",
+      "apply": "Aplicar filtros"
+    },
+    "priority": {
+      "all": "Todas as prioridades",
+      "high": "Alta",
+      "medium": "Média",
+      "low": "Baixa"
+    },
+    "status": {
+      "all": "Todos os status",
+      "approved": "Aprovado",
+      "pending": "Pendente",
+      "rejected": "Rejeitado",
+      "inReview": "Em Revisão"
+    },
+    "view": "Ver",
+    "noResults": "Nenhum resultado encontrado",
+    "noResultsDescription": "Tente ajustar seus critérios de pesquisa ou limpar os filtros.",
+    "totalReports": "Total de Relatórios",
+    "byCategory": "Por Categoria",
+    "byPriority": "Por Prioridade",
+    "byLocation": "Por Localização",
+    "statistics": "Estatísticas",
+    "export": "Exportar",
+    "exportCSV": "Exportar CSV",
+    "share": "Compartilhar",
+    "shareLink": "Copiar Link",
+    "linkCopied": "Link copiado",
+    "timeline": "Linha do Tempo",
+    "date": "Data",
+    "location": "Localização",
+    "category": "Categoria",
+    "reporter": "Relator",
+    "pageInfo": "Página {page} de {totalPages}",
+    "showing": "Mostrando {from} a {to} de {total} resultados",
+    "withLocation": "com localização",
+    "previous": "Anterior",
+    "next": "Próximo"
   }
-}\n
+}

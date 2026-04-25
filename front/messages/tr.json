@@ -211,7 +211,8 @@
     "profile": "Profil",
     "register": "Kayıt Ol",
     "documents": "Genel Belgeler",
-    "blog": "Blog"
+    "blog": "Blog",
+    "warCrimes": "Savaş Suçları"
   },
   "footer": {
     "about": "Hakkımızda",
@@ -436,5 +437,65 @@
     "moreFiles": "daha fazla dosya",
     "noFiles": "Ekli dosya yok",
     "pageInfo": "Sayfa {page} / {totalPages}"
+  },
+  "warCrimes": {
+    "title": "Savaş Suçları Keşfi",
+    "description": "Dünya genelinde belgelenmiş savaş suçlarını arayın ve keşfedin.",
+    "exploreMap": "Harita Görünümü",
+    "exploreList": "Liste Görünümü",
+    "searchPlaceholder": "Başlık veya açıklamaya göre ara...",
+    "filters": {
+      "title": "Filtreler",
+      "status": "Durum",
+      "dateRange": "Tarih Aralığı",
+      "from": "Başlangıç",
+      "to": "Bitiş",
+      "category": "Kategori",
+      "selectCategory": "Kategori seçin",
+      "tags": "Etiketler",
+      "selectTags": "Etiket seçin",
+      "priority": "Öncelik",
+      "selectPriority": "Öncelik seçin",
+      "location": "Konum",
+      "selectLocation": "Konum seçin",
+      "reset": "Filtreleri temizle",
+      "apply": "Filtreleri uygula"
+    },
+    "priority": {
+      "all": "Tüm öncelikler",
+      "high": "Yüksek",
+      "medium": "Orta",
+      "low": "Düşük"
+    },
+    "status": {
+      "all": "Tüm durumlar",
+      "approved": "Onaylandı",
+      "pending": "Beklemede",
+      "rejected": "Reddedildi",
+      "inReview": "İncelemede"
+    },
+    "view": "Görüntüle",
+    "noResults": "Sonuç bulunamadı",
+    "noResultsDescription": "Arama kriterlerinizi ayarlamayı veya filtreleri temizlemeyi deneyin.",
+    "totalReports": "Toplam Raporlar",
+    "byCategory": "Kategoriye Göre",
+    "byPriority": "Önceliğe Göre",
+    "byLocation": "Konuma Göre",
+    "statistics": "İstatistikler",
+    "export": "Dışa Aktar",
+    "exportCSV": "CSV Dışa Aktar",
+    "share": "Paylaş",
+    "shareLink": "Linki Kopyala",
+    "linkCopied": "Link kopyalandı",
+    "timeline": "Zaman Çizelgesi",
+    "date": "Tarih",
+    "location": "Konum",
+    "category": "Kategori",
+    "reporter": "Raporlayan",
+    "pageInfo": "Sayfa {page} / {totalPages}",
+    "showing": "{from} - {to} arası gösteriliyor, {total} sonuç",
+    "withLocation": "konum ile",
+    "previous": "Önceki",
+    "next": "Sonraki"
   }
-}\n
+}

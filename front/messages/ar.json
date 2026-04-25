@@ -211,7 +211,8 @@
     "profile": "الملف الشخصي",
     "register": "إنشاء حساب",
     "documents": "الوثائق العامة",
-    "blog": "وبلاگ"
+    "blog": "وبلاگ",
+    "warCrimes": "استكشاف الجرائم"
   },
   "footer": {
     "about": "معلومات عنا",
@@ -436,5 +437,65 @@
     "moreFiles": "ملفات إضافية",
     "noFiles": "لا توجد ملفات مرفقة",
     "pageInfo": "صفحة {page} من {totalPages}"
+  },
+  "warCrimes": {
+    "title": "استكشاف الجرائم الحربية",
+    "description": "البحث واستكشاف الجرائم الحربية الموثقة من جميع أنحاء العالم.",
+    "exploreMap": "عرض الخريطة",
+    "exploreList": "عرض القائمة",
+    "searchPlaceholder": "البحث بالعنوان أو الوصف...",
+    "filters": {
+      "title": "الفلاتر",
+      "status": "الحالة",
+      "dateRange": "النطاق الزمني",
+      "from": "من",
+      "to": "إلى",
+      "category": "الفئة",
+      "selectCategory": "اختر الفئة",
+      "tags": "العلامات",
+      "selectTags": "اختر العلامات",
+      "priority": "الأولوية",
+      "selectPriority": "اختر الأولوية",
+      "location": "الموقع",
+      "selectLocation": "اختر الموقع",
+      "reset": "مسح الفلاتر",
+      "apply": "تطبيق الفلاتر"
+    },
+    "priority": {
+      "all": "جميع الأولويات",
+      "high": "عالية",
+      "medium": "متوسطة",
+      "low": "منخفضة"
+    },
+    "status": {
+      "all": "جميع الحالات",
+      "approved": "موافق عليه",
+      "pending": "قيد الانتظار",
+      "rejected": "مرفوض",
+      "inReview": "قيد المراجعة"
+    },
+    "view": "عرض",
+    "noResults": "لم يتم العثور على نتائج",
+    "noResultsDescription": "حاول تعديل معايير البحث أو مسح الفلاتر.",
+    "totalReports": "إجمالي التقارير",
+    "byCategory": "حسب الفئة",
+    "byPriority": "حسب الأولوية",
+    "byLocation": "حسب الموقع",
+    "statistics": "الإحصائيات",
+    "export": "تصدير",
+    "exportCSV": "تصدير CSV",
+    "share": "مشاركة",
+    "shareLink": "نسخ الرابط",
+    "linkCopied": "تم نسخ الرابط",
+    "timeline": "الجدول الزمني",
+    "date": "التاريخ",
+    "location": "الموقع",
+    "category": "الفئة",
+    "reporter": "المبلّغ",
+    "pageInfo": "صفحة {page} من {totalPages}",
+    "showing": "عرض {from} إلى {to} من {total} نتيجة",
+    "withLocation": "مع الموقع",
+    "previous": "السابق",
+    "next": "التالي"
   }
-}\n
+}

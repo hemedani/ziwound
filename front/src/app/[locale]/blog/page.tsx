@@ -8,6 +8,7 @@ import { Search, Calendar, User, ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { getImageUploadUrl } from "@/utils/imageUrl";
+import { blogPostSchema, DeepPartial, ReqType, tagSchema } from "@/types/declarations";
 
 export default async function BlogListingPage({
   searchParams,
@@ -20,7 +21,7 @@ export default async function BlogListingPage({
   const resolvedParams = await params;
 
   // Try to use a specific namespace, fallback to common ones if not fully populated
-  const t = await getTranslations();
+  const t = await getTranslations({ locale: (await params).locale });
   const locale = resolvedParams.locale;
 
   const page = Number(resolvedSearchParams.page) || 1;
@@ -28,7 +29,7 @@ export default async function BlogListingPage({
   const limit = 12;
 
   // We set basic queries. Depending on Lesan's implementation we might filter `isPublished: true` here or manually after
-  const setQuery: any = {
+  const setQuery: ReqType["main"]["blogPost"]["gets"]["set"] = {
     page,
     limit,
   };
@@ -47,7 +48,7 @@ export default async function BlogListingPage({
     tags: { _id: 1, name: 1 },
   });
 
-  let posts: any[] = [];
+  let posts: DeepPartial<blogPostSchema>[] = [];
   if (response?.success) {
     posts = Array.isArray(response.body) ? response.body : response.body?.list || [];
   }
@@ -105,7 +106,7 @@ export default async function BlogListingPage({
                 {post.coverImage ? (
                   <Image
                     src={getImageUploadUrl(post.coverImage.name)}
-                    alt={post.title}
+                    alt={post.title || "Blog post cover image"}
                     fill
                     unoptimized
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
@@ -120,7 +121,7 @@ export default async function BlogListingPage({
 
               <CardHeader>
                 <div className="flex flex-wrap gap-2 mb-2">
-                  {post.tags?.map((tag: any) => (
+                  {post.tags?.map((tag: DeepPartial<tagSchema>) => (
                     <Badge key={tag._id} variant="secondary" className="text-xs">
                       {tag.name}
                     </Badge>
@@ -139,7 +140,9 @@ export default async function BlogListingPage({
                   <div className="flex items-center gap-1">
                     <Calendar className="h-3 w-3" />
                     <span>
-                      {new Date(post.publishedAt || post.createdAt).toLocaleDateString(locale)}
+                      {new Date(post.publishedAt ?? post.createdAt ?? new Date()).toLocaleDateString(
+                        locale,
+                      )}
                     </span>
                   </div>
                 </div>

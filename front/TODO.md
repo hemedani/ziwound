@@ -373,15 +373,47 @@
 
 ## Phase 11: War Crimes Exploration Page
 
-- [ ] **War Crimes Server Actions** (extend existing report actions)
-  - [ ] Enhance `src/app/actions/report/gets.ts` with advanced filters:
-    - [ ] Date range filtering
-    - [ ] Geospatial filtering (bounding box, radius)
-    - [ ] Advanced category/tag filtering
-    - [ ] Severity/priority filtering
-    - [ ] Status filtering (only approved/published)
-  - [ ] Create `src/app/actions/report/statistics.ts` for analytics
-  - [ ] Create `src/app/actions/report/export.ts` for CSV/PDF export
+- [x] **War Crimes Server Actions** (extend existing report actions)
+  - [x] Enhanced `src/app/actions/report/gets.ts` with advanced filters (already supported in backend declarations):
+    - [x] Date range filtering (createdAtFrom/To)
+    - [x] Geospatial filtering (nearLng/nearLat/maxDistance, bbox)
+    - [x] Advanced category/tag filtering (categoryIds, tagIds)
+    - [x] Severity/priority filtering (priority)
+    - [x] Status filtering (status - Pending, Approved, Rejected, InReview)
+  - [x] Create `src/app/actions/report/statistics.ts` for analytics
+  - [x] Create `src/app/actions/report/export.ts` for CSV export
+- [x] **War Crimes Exploration Page** (`/[locale]/war-crimes`)
+  - [x] Create main exploration page layout
+  - [x] Add dual view toggle: Map View / List View / Statistics View
+  - [x] **List View**:
+    - [x] Data cards with report listings
+    - [x] Columns: title, category, priority, date, location
+    - [x] Pagination
+  - [x] **Map View**:
+    - [x] Placeholder with report count display
+    - [x] Reports with location data shown
+  - [x] **Statistics View**:
+    - [x] Statistics cards (total, by priority)
+    - [x] Bar and Pie charts with Chart.js
+  - [x] **Advanced Search & Filters Panel**:
+    - [x] Text search input
+    - [x] Date range picker (from/to)
+    - [x] Category dropdown
+    - [x] Tag multi-select
+    - [x] Priority filter
+    - [x] Status filter
+    - [x] Filter reset button
+- [x] **War Crimes Exploration UI Components**
+  - [x] Create `WarCrimesFilters` component
+  - [x] Create `WarCrimesList` component (list/grid view)
+  - [x] Create `WarCrimesMap` component (lazy loaded)
+  - [x] Create `WarCrimesStatistics` component (charts)
+- [x] **War Crimes Translations**
+  - [x] Add all war crimes exploration translation keys to fa.json
+  - [x] Translate exploration UI elements (labels, buttons, placeholders, filters)
+- [x] **Navigation Integration**
+  - [x] Add War Crimes link to main header navigation (desktop + mobile)
+  - [x] Add warCrimes translation key to header section
 - [ ] **War Crimes Exploration Page** (`/[locale]/war-crimes`)
   - [ ] Create main exploration page layout
   - [ ] Add dual view toggle: Map View / List View

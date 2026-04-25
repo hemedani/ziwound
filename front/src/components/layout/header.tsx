@@ -94,6 +94,12 @@ export function Header() {
             >
               {t("blog")}
             </Link>
+            <Link
+              href={`/${locale}/war-crimes`}
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              {t("warCrimes")}
+            </Link>
           </nav>
         )}
 
@@ -275,11 +281,17 @@ export function Header() {
                         >
                           {t("documents")}
                         </Link>
-                        <Link
+<Link
                           href={`/${locale}/blog`}
                           className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
                         >
                           {t("blog")}
+                        </Link>
+                        <Link
+                          href={`/${locale}/war-crimes`}
+                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
+                        >
+                          {t("warCrimes")}
                         </Link>
                       </>
                     ) : (
@@ -298,15 +310,21 @@ export function Header() {
                         </Link>
                         <Link
                           href={`/${locale}/documents`}
-                          className="text-sm font-medium hover:text-primary transition-colors"
+                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
                         >
                           {t("documents")}
                         </Link>
                         <Link
                           href={`/${locale}/blog`}
-                          className="text-sm font-medium hover:text-primary transition-colors"
+                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
                         >
                           {t("blog")}
+                        </Link>
+                        <Link
+                          href={`/${locale}/war-crimes`}
+                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
+                        >
+                          {t("warCrimes")}
                         </Link>
                       </>
                     )}

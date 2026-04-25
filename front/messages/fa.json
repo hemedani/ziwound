@@ -211,7 +211,8 @@
     "profile": "پروفایل",
     "register": "ثبت‌نام",
     "documents": "اسناد عمومی",
-    "blog": "وبلاگ"
+    "blog": "وبلاگ",
+    "warCrimes": "کاوش جنایات"
   },
   "footer": {
     "about": "درباره ما",
@@ -436,5 +437,65 @@
     "moreFiles": "فایل بیشتر",
     "noFiles": "فایلی پیوست نشده است",
     "pageInfo": "صفحه {page} از {totalPages}"
+  },
+  "warCrimes": {
+    "title": "کاوش جنایات جنگی",
+    "description": "جستجو و کاوش در گزارش‌های مستند شده جنایات جنگی از سراسر جهان.",
+    "exploreMap": "نمایش نقشه",
+    "exploreList": "نمایش لیست",
+    "searchPlaceholder": "جستجو بر اساس عنوان یا توضیحات...",
+    "filters": {
+      "title": "فیلترها",
+      "status": "وضعیت",
+      "dateRange": "بازه زمانی",
+      "from": "از",
+      "to": "تا",
+      "category": "دسته‌بندی",
+      "selectCategory": "انتخاب دسته‌بندی",
+      "tags": "برچسب‌ها",
+      "selectTags": "انتخاب برچسب‌ها",
+      "priority": "اولویت",
+      "selectPriority": "انتخاب اولویت",
+      "location": "موقعیت مکانی",
+      "selectLocation": "انتخاب موقعیت",
+      "reset": "پاک کردن فیلترها",
+      "apply": "اعمال فیلترها"
+    },
+    "priority": {
+      "all": "همه اولویت‌ها",
+      "high": "زیاد",
+      "medium": "متوسط",
+      "low": "کم"
+    },
+    "status": {
+      "all": "همه وضعیت‌ها",
+      "approved": "تأیید شده",
+      "pending": "در انتظار",
+      "rejected": "رد شده",
+      "inReview": "در حال بررسی"
+    },
+    "view": "مشاهده",
+    "noResults": "نتیجه‌ای یافت نشد",
+    "noResultsDescription": "معیارهای جستجو را تغییر دهید یا فیلترها را پاک کنید.",
+    "totalReports": "مجموع گزارش‌ها",
+    "byCategory": "بر اساس دسته‌بندی",
+    "byPriority": "بر اساس اولویت",
+    "byLocation": "بر اساس موقعیت",
+    "statistics": "آمار",
+    "export": "خروجی",
+    "exportCSV": "خروجی CSV",
+    "share": "اشتراک‌گذاری",
+    "shareLink": "کپی لینک",
+    "linkCopied": "لینک کپی شد",
+    "timeline": "خط زمانی",
+    "date": "تاریخ",
+    "location": "موقعیت",
+    "category": "دسته‌بندی",
+    "reporter": "گزارش‌دهنده",
+    "pageInfo": "صفحه {page} از {totalPages}",
+    "showing": "نمایش {from} تا {to} از {total} نتیجه",
+    "withLocation": "با موقعیت مکانی",
+    "previous": "قبلی",
+    "next": "بعدی"
   }
-}\n
+}

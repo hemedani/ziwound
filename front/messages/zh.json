@@ -211,7 +211,8 @@
     "profile": "个人资料",
     "register": "注册",
     "documents": "公开文档",
-    "blog": "Blog"
+    "blog": "博客",
+    "warCrimes": "战争罪行探索"
   },
   "footer": {
     "about": "关于我们",
@@ -436,5 +437,65 @@
     "moreFiles": "更多文件",
     "noFiles": "未附加文件",
     "pageInfo": "第 {page} 页，共 {totalPages} 页"
+  },
+  "warCrimes": {
+    "title": "战争罪行探索",
+    "description": "搜索和探索世界各地记录在案的战争罪行。",
+    "exploreMap": "地图视图",
+    "exploreList": "列表视图",
+    "searchPlaceholder": "按标题或描述搜索...",
+    "filters": {
+      "title": "过滤器",
+      "status": "状态",
+      "dateRange": "日期范围",
+      "from": "从",
+      "to": "到",
+      "category": "类别",
+      "selectCategory": "选择类别",
+      "tags": "标签",
+      "selectTags": "选择标签",
+      "priority": "优先级",
+      "selectPriority": "选择优先级",
+      "location": "位置",
+      "selectLocation": "选择位置",
+      "reset": "清除过滤器",
+      "apply": "应用过滤器"
+    },
+    "priority": {
+      "all": "所有优先级",
+      "high": "高",
+      "medium": "中",
+      "low": "低"
+    },
+    "status": {
+      "all": "所有状态",
+      "approved": "已批准",
+      "pending": "待处理",
+      "rejected": "已拒绝",
+      "inReview": "审核中"
+    },
+    "view": "查看",
+    "noResults": "未找到结果",
+    "noResultsDescription": "请尝试调整搜索条件或清除过滤器。",
+    "totalReports": "总报告数",
+    "byCategory": "按类别",
+    "byPriority": "按优先级",
+    "byLocation": "按位置",
+    "statistics": "统计",
+    "export": "导出",
+    "exportCSV": "导出CSV",
+    "share": "分享",
+    "shareLink": "复制链接",
+    "linkCopied": "链接已复制",
+    "timeline": "时间线",
+    "date": "日期",
+    "location": "位置",
+    "category": "类别",
+    "reporter": "报告者",
+    "pageInfo": "第 {page} 页，共 {totalPages} 页",
+    "showing": "显示 {from} 到 {to}，共 {total} 条结果",
+    "withLocation": "有位置信息",
+    "previous": "上一页",
+    "next": "下一页"
   }
-}\n
+}

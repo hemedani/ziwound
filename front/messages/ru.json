@@ -211,7 +211,8 @@
     "profile": "Профиль",
     "register": "Регистрация",
     "documents": "Публичные документы",
-    "blog": "Blog"
+    "blog": "Блог",
+    "warCrimes": "Военные Преступления"
   },
   "footer": {
     "about": "О нас",
@@ -436,5 +437,65 @@
     "moreFiles": "больше файлов",
     "noFiles": "Нет прикрепленных файлов",
     "pageInfo": "Страница {page} из {totalPages}"
+  },
+  "warCrimes": {
+    "title": "Исследование Военных Преступлений",
+    "description": "Ищите и исследуйте задокументированные военные преступления со всего мира.",
+    "exploreMap": "Вид карты",
+    "exploreList": "Вид списка",
+    "searchPlaceholder": "Поиск по названию или описанию...",
+    "filters": {
+      "title": "Фильтры",
+      "status": "Статус",
+      "dateRange": "Диапазон дат",
+      "from": "От",
+      "to": "До",
+      "category": "Категория",
+      "selectCategory": "Выберите категорию",
+      "tags": "Теги",
+      "selectTags": "Выберите теги",
+      "priority": "Приоритет",
+      "selectPriority": "Выберите приоритет",
+      "location": "Местоположение",
+      "selectLocation": "Выберите местоположение",
+      "reset": "Сбросить фильтры",
+      "apply": "Применить фильтры"
+    },
+    "priority": {
+      "all": "Все приоритеты",
+      "high": "Высокий",
+      "medium": "Средний",
+      "low": "Низкий"
+    },
+    "status": {
+      "all": "Все статусы",
+      "approved": "Одобрено",
+      "pending": "В ожидании",
+      "rejected": "Отклонено",
+      "inReview": "На рассмотрении"
+    },
+    "view": "Просмотр",
+    "noResults": "Результаты не найдены",
+    "noResultsDescription": "Попробуйте изменить критерии поиска или сбросить фильтры.",
+    "totalReports": "Всего отчетов",
+    "byCategory": "По категории",
+    "byPriority": "По приоритету",
+    "byLocation": "По местоположению",
+    "statistics": "Статистика",
+    "export": "Экспорт",
+    "exportCSV": "Экспорт CSV",
+    "share": "Поделиться",
+    "shareLink": "Копировать ссылку",
+    "linkCopied": "Ссылка скопирована",
+    "timeline": "Временная шкала",
+    "date": "Дата",
+    "location": "Местоположение",
+    "category": "Категория",
+    "reporter": "Репортер",
+    "pageInfo": "Страница {page} из {totalPages}",
+    "showing": "Показано с {from} по {to} из {total} результатов",
+    "withLocation": "с местоположением",
+    "previous": "Предыдущая",
+    "next": "Следующая"
   }
-}\n
+}

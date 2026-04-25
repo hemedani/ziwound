@@ -1,5 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { gets as getBlogPosts } from "@/app/actions/blogPost/gets";
+import { getBySlug } from "@/app/actions/blogPost/getBySlug";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, User, ArrowLeft, Tag } from "lucide-react";
@@ -7,6 +8,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import { getImageUploadUrl } from "@/utils/imageUrl";
+import { blogPostSchema, DeepPartial, tagSchema } from "@/types/declarations";
 
 export default async function BlogPostDetailPage({
   params,
@@ -16,51 +18,33 @@ export default async function BlogPostDetailPage({
   const resolvedParams = await params;
   const { locale, slug } = resolvedParams;
 
-  const t = await getTranslations();
+  const t = await getTranslations({ locale: (await params).locale });
 
   // Fetch the blog post by slug
-  // We use gets with a search/filter on slug depending on the backend capabilities
-  // If slug is not directly searchable via gets set, we might have to fetch all and filter,
-  // but let's assume the backend handles string matching or we pass it as a custom filter if needed.
-  // For safety with generic gets, we might pass slug as part of the query or just fetch and match.
-  // We will assume `gets` accepts a search param that can match slug or we can pass slug directly if supported.
-  const setQuery: any = {
-    limit: 1,
-    slug: slug, // Assuming Lesan supports filtering by exact field if passed
-  };
+  const response = await getBySlug(
+    { slug },
+    {
+      _id: 1,
+      title: 1,
+      slug: 1,
+      content: 1,
+      publishedAt: 1,
+      createdAt: 1,
+      isPublished: 1,
+      coverImage: { _id: 1, name: 1 },
+      author: { _id: 1, first_name: 1, last_name: 1 },
+      tags: { _id: 1, name: 1 },
+    },
+  );
 
-  const response = await getBlogPosts(setQuery, {
-    _id: 1,
-    title: 1,
-    slug: 1,
-    content: 1,
-    publishedAt: 1,
-    createdAt: 1,
-    isPublished: 1,
-    coverImage: { _id: 1, name: 1 },
-    author: { _id: 1, first_name: 1, last_name: 1 },
-    tags: { _id: 1, name: 1 },
-  });
-
-  let posts: any[] = [];
-  if (response?.success) {
-    posts = Array.isArray(response.body) ? response.body : response.body?.list || [];
-  }
-
-  // If we couldn't filter perfectly by backend, find it manually
-  let post = posts.find((p) => p.slug === slug);
-
-  // If not found in the initial filtered response, fallback to a broader search
-  if (!post && posts.length > 0) {
-    post = posts[0];
-  }
+  const post: DeepPartial<blogPostSchema> | null = response?.success ? response.body : null;
 
   if (!post || post.isPublished === false) {
     notFound();
   }
 
-  const dateToDisplay = post.publishedAt || post.createdAt;
-  const formattedDate = new Date(dateToDisplay).toLocaleDateString(locale, {
+  const dateToDisplay = post.publishedAt || post.createdAt || new Date().toISOString();
+  const formattedDate = new Date(dateToDisplay as string | number | Date).toLocaleDateString(locale, {
     year: "numeric",
     month: "long",
     day: "numeric",
@@ -80,12 +64,14 @@ export default async function BlogPostDetailPage({
     },
   );
 
-  let recentPosts: any[] = [];
+  let recentPosts: DeepPartial<blogPostSchema>[] = [];
   if (recentPostsResponse?.success) {
     const list = Array.isArray(recentPostsResponse.body)
       ? recentPostsResponse.body
       : recentPostsResponse.body?.list || [];
-    recentPosts = list.filter((p: any) => p._id !== post._id && p.isPublished !== false).slice(0, 3);
+    recentPosts = list
+      .filter((p: DeepPartial<blogPostSchema>) => p._id !== post?._id && p.isPublished !== false)
+      .slice(0, 3);
   }
 
   return (
@@ -103,7 +89,7 @@ export default async function BlogPostDetailPage({
         </Button>
 
         <div className="flex flex-wrap gap-2 mb-6">
-          {post.tags?.map((tag: any) => (
+          {post.tags?.map((tag: DeepPartial<tagSchema>) => (
             <Badge key={tag._id} variant="secondary" className="flex items-center gap-1">
               <Tag className="h-3 w-3" />
               {tag.name}
@@ -145,8 +131,8 @@ export default async function BlogPostDetailPage({
       {post.coverImage && (
         <div className="relative w-full aspect-video rounded-xl overflow-hidden mb-12 shadow-lg">
           <Image
-            src={getImageUploadUrl(post.coverImage.name)}
-            alt={post.title}
+            src={getImageUploadUrl(post.coverImage.name as string)}
+            alt={post.title || ""}
             fill
             unoptimized
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
@@ -176,8 +162,8 @@ export default async function BlogPostDetailPage({
                 <div className="relative aspect-video rounded-lg overflow-hidden mb-3 bg-muted">
                   {relatedPost.coverImage ? (
                     <Image
-                      src={getImageUploadUrl(relatedPost.coverImage.name)}
-                      alt={relatedPost.title}
+                      src={getImageUploadUrl(relatedPost.coverImage.name as string)}
+                      alt={relatedPost.title || ""}
                       fill
                       unoptimized
                       sizes="(max-width: 768px) 100vw, 33vw"
@@ -193,9 +179,12 @@ export default async function BlogPostDetailPage({
                   {relatedPost.title}
                 </h3>
                 <p className="text-xs text-muted-foreground mt-1">
-                  {new Date(relatedPost.publishedAt || relatedPost.createdAt).toLocaleDateString(
-                    locale,
-                  )}
+                  {new Date(
+                    (relatedPost.publishedAt || relatedPost.createdAt || new Date().toISOString()) as
+                      | string
+                      | number
+                      | Date,
+                  ).toLocaleDateString(locale)}
                 </p>
               </Link>
             ))}
