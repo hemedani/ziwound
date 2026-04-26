@@ -120,29 +120,89 @@ front/
 ├── src/
 │   ├── app/
 │   │   ├── [locale]/              # Public routes with locale
-│   │   │   ├── page.tsx           # Landing page (beautiful, modern)
-│   │   │   └── layout.tsx         # Locale layout with Header, Footer, Toaster
-│   │   ├── (auth)/
-│   │   │   ├── login/page.tsx     # Login with shadcn/ui
-│   │   │   └── register/page.tsx  # Register with shadcn/ui
-│   │   ├── (dashboard)/
-│   │   │   └── reports/
-│   │   │       ├── new/page.tsx   # New report with all fields
-│   │   │       ├── my/page.tsx    # My reports with filtering
-│   │   │       └── [id]/page.tsx  # Report detail view
-│   │   ├── admin/                 # Admin panel
-│   │   └── actions/               # Server actions
+│   │   │   ├── (auth)/            # Auth routes (login, register)
+│   │   │   ├── (dashboard)/       # Protected routes (reports)
+│   │   │   │   └── reports/
+│   │   │   │       ├── new/       # New report page
+│   │   │   │       ├── my/       # My reports list
+│   │   │   │       └── [id]/     # Report detail
+│   │   │   ├── blog/              # Blog listing & posts
+│   │   │   ├── documents/        # Public documents
+│   │   │   ├── war-crimes/       # War crimes exploration
+│   │   │   ├── page.tsx          # Landing page
+│   │   │   ├── layout.tsx       # Locale layout
+│   │   │   └── error.tsx         # Error boundary
+│   │   ├── admin/                # Admin panel
+│   │   │   ├── dashboard/        # Admin dashboard
+│   │   │   ├── reports/          # Reports management
+│   │   │   ├── users/            # Users management
+│   │   │   ├── tags/             # Tags management
+│   │   │   ├── categories/      # Categories management
+│   │   │   ├── documents/       # Documents management
+│   │   │   ├── blog/            # Blog management
+│   │   │   └── layout.tsx        # Admin layout
+│   │   ├── actions/             # Server actions
+│   │   │   ├── auth/            # Login, register, logout
+│   │   │   ├── report/          # Report CRUD
+│   │   │   ├── document/         # Document CRUD
+│   │   │   ├── category/        # Category CRUD
+│   │   │   ├── tag/              # Tag CRUD
+│   │   │   ├── blogPost/         # Blog post CRUD
+│   │   │   └── user/             # User CRUD
+│   │   ├── api/                 # API routes
+│   │   ├── globals.css           # Global styles
+│   │   ├── layout.tsx          # Root layout
+│   │   └── global-error.tsx     # Global error
 │   ├── components/
-│   │   ├── ui/                    # 15+ shadcn/ui components
-│   │   ├── form/                  # 4 reusable form components
-│   │   ├── layout/                # Header, Footer, AdminSidebar, LanguageSwitcher
-│   │   └── providers/             # ThemeProvider
-│   └── stores/
-│       └── authStore.ts           # Zustand auth state
-├── messages/
-│   ├── fa.json                    # Persian (RTL, default)
-│   └── en.json                    # English
-└── i18n/                          # next-intl config
+│   │   ├── ui/                  # shadcn/ui components (15+)
+│   │   │   ├── button, input, textarea, label
+│   │   │   ├── card, dialog, sheet
+│   │   │   ├── select, checkbox, tabs
+│   │   │   ├── table, toast, badge
+│   │   │   ├── avatar, popover
+│   │   │   └── form (form field wrapper)
+│   │   ├── form/                 # Reusable form components
+│   │   │   ├── file-upload-field
+│   │   │   ├── tag-selector
+│   │   │   ├── emoji-picker
+│   │   │   └── location-picker
+│   │   ├── layout/              # Layout components
+│   │   │   ├── header
+│   │   │   ├── footer
+│   │   │   ├── admin-sidebar
+│   │   │   └── language-switcher
+│   │   ├── war-crimes/           # War crimes components
+│   │   │   ├── war-crimes-filters
+│   │   │   ├── war-crimes-list
+│   │   │   ├── war-crimes-map
+│   │   │   ├── war-crimes-timeline
+│   │   │   ├── war-crimes-statistics
+│   │   │   └── war-crimes-export
+│   │   ├── map/                  # Map components
+│   │   └── providers/            # React providers (theme, etc.)
+│   ├── stores/
+│   │   └── authStore.ts        # Zustand auth store
+│   ├── lib/
+│   │   ├── utils.ts            # cn() utility
+│   │   └── api.ts              # API client
+│   ├── types/
+│   │   └── declarations.ts     # Backend type declarations
+│   └── i18n/                  # i18n config
+│       ├── routing.ts
+│       └── request.ts
+├── messages/                    # Translation files
+│   ├── fa.json               # Persian (RTL, default)
+│   ├── en.json               # English
+│   ├── ar.json              # Arabic
+│   ├── zh.json              # Chinese
+│   ├── pt.json              # Portuguese
+│   ├── es.json              # Spanish
+│   ├── nl.json              # Dutch
+│   ├── tr.json              # Turkish
+│   └── ru.json              # Russian
+├── public/                    # Static assets
+│   └── ...                   # images, icons
+└── next.config.ts           # Next.js config
 ```
 
 **Server Actions Pattern**:
