@@ -1,4 +1,4 @@
-import type { ReportStatus, ReportPriority, ReportLanguage } from "./report-schema";
+import type { ReportStatus, ReportPriority, ReportLanguage } from "@/types/report-schema";
 
 export interface FieldMetadata {
   name: string;
@@ -21,6 +21,7 @@ export interface DeclarationField {
   type: FieldMetadata["type"];
   required: boolean;
   enumValues?: readonly string[];
+  nestedType?: string;
 }
 
 export const REPORT_FIELDS: DeclarationField[] = [
@@ -31,7 +32,7 @@ export const REPORT_FIELDS: DeclarationField[] = [
   { name: "country", type: "string", required: true },
   { name: "city", type: "string", required: false },
   { name: "address", type: "string", required: false },
-  { name: "location", type: "object", required: false, enumValues: ["Point"] },
+  { name: "location", type: "object", required: false, nestedType: "Location" },
   { name: "status", type: "enum", required: false, enumValues: ["Pending", "Approved", "Rejected", "InReview"] },
   { name: "priority", type: "enum", required: false, enumValues: ["Low", "Medium", "High"] },
   { name: "tags", type: "array", required: false },
@@ -89,7 +90,7 @@ export function getStepFields(step: number): string[] {
   return stepDef?.fields || [];
 }
 
-export function getAllStepFields(): StepDefinition {
+export function getAllStepFields(): StepDefinition[] {
   return REPORT_STEPS;
 }
 

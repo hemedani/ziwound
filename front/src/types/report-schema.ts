@@ -42,8 +42,9 @@ export type ReportPriority = (typeof REPORT_PRIORITY)[number];
 export type ReportLanguage = (typeof REPORT_LANGUAGES)[number];
 
 const locationSchema = z.object({
-  type: z.literal("Point").default("Point"),
-  coordinates: z.array(z.number()).length(2),
+  address: z.string(),
+  latitude: z.number().optional(),
+  longitude: z.number().optional(),
 });
 
 const baseReportSchema = z.object({
@@ -69,8 +70,8 @@ const baseReportSchema = z.object({
 
 export const reportFormSchema = baseReportSchema.refine(
   (data) => {
-    if (data.location?.coordinates) {
-      return data.location.coordinates[0] !== 0 || data.location.coordinates[1] !== 0;
+    if (data.location?.latitude && data.location?.longitude) {
+      return data.location.latitude !== 0 || data.location.longitude !== 0;
     }
     return true;
   },

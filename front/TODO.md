@@ -461,20 +461,20 @@
 - [x] 14.3 Build a declaration parser that extracts fields and their types from the file
   - [x] Created src/lib/declaration-parser.ts with REPORT_FIELDS and REPORT_STEPS
 - [x] 14.4 Create step definitions based on logical grouping of fields
-  - [x] Step 1: Basic Information (title, description, language)
-  - [x] Step 2: Crime Details (crime_occurred_at, priority)
-  - [x] Step 3: Location (location, address, country, city)
-  - [x] Step 4: Media & Documents (attachments, tags, category)
-  - [x] Step 5: Review & Submit
-- [ ] 14.5 Build generic `StepRenderer` component that renders shadcn form fields based on declaration
-- [ ] 14.5 Build generic `StepRenderer` component that renders shadcn form fields based on declaration
-- [ ] 14.6 Implement step 1 UI (Basic Information) with appropriate form fields
-- [ ] 14.7 Implement step 2 UI (Crime Details) with date picker and status/priority selects
-- [ ] 14.8 Implement step 3 UI (Location) with map picker and address fields
-- [ ] 14.9 Implement step 4 UI (Media & Documents) with upload component
-- [ ] 14.10 Implement step 5 UI (Review & Submit) showing all collected data
-- [ ] 14.11 Add navigation state management (next/previous, step persistence)
-- [ ] 14.12 Implement form data persistence in localStorage (save progress)
+- [x] 14.5 Build generic `StepRenderer` component that renders shadcn form fields based on declaration
+  - [x] Created src/components/form/step-renderer.tsx with dynamic field rendering
+- [x] 14.6 Implement step 1 UI (Basic Information) with appropriate form fields
+- [x] 14.7 Implement step 2 UI (Crime Details) with date picker and status/priority selects
+- [x] 14.8 Implement step 3 UI (Location) with map picker and address fields
+- [x] 14.9 Implement step 4 UI (Media & Documents) with upload component
+- [x] 14.10 Implement step 5 UI (Review & Submit) showing all collected data
+- [x] 14.11 Add navigation state management (next/previous, step persistence)
+  - [x] Created src/components/form/stepper.tsx and src/hooks/use-multi-step-form.ts
+- [x] 14.12 Implement form data persistence in localStorage (save progress)
+  - [x] Added localStorage persistence in use-multi-step-form hook
+- [x] 14.13 Add i18n keys for all new field labels and validation messages
+  - [x] Added stepper and step title i18n keys to all 9 language files
+- [ ] 14.14 Integrate with existing server action for report submission
 - [ ] 14.13 Add i18n keys for all new field labels and validation messages
 - [ ] 14.14 Integrate with existing server action for report submission
 - [ ] 14.15 Add progress indicator (stepper component)
