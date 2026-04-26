@@ -112,3 +112,125 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 Continue with the remaining unchecked steps in **TODO.md**, focusing on **Phase 13 (Public Site Navigation)** or any remaining tasks from Phase 2-7.
 
 Follow the same patterns: one step at a time, update TODO.md, commit with Gitmoji.
+
+**Frontend Structure**:
+
+```
+front/
+├── src/
+│   ├── app/
+│   │   ├── [locale]/              # Public routes with locale
+│   │   │   ├── page.tsx           # Landing page (beautiful, modern)
+│   │   │   └── layout.tsx         # Locale layout with Header, Footer, Toaster
+│   │   ├── (auth)/
+│   │   │   ├── login/page.tsx     # Login with shadcn/ui
+│   │   │   └── register/page.tsx  # Register with shadcn/ui
+│   │   ├── (dashboard)/
+│   │   │   └── reports/
+│   │   │       ├── new/page.tsx   # New report with all fields
+│   │   │       ├── my/page.tsx    # My reports with filtering
+│   │   │       └── [id]/page.tsx  # Report detail view
+│   │   ├── admin/                 # Admin panel
+│   │   └── actions/               # Server actions
+│   ├── components/
+│   │   ├── ui/                    # 15+ shadcn/ui components
+│   │   ├── form/                  # 4 reusable form components
+│   │   ├── layout/                # Header, Footer, AdminSidebar, LanguageSwitcher
+│   │   └── providers/             # ThemeProvider
+│   └── stores/
+│       └── authStore.ts           # Zustand auth state
+├── messages/
+│   ├── fa.json                    # Persian (RTL, default)
+│   └── en.json                    # English
+└── i18n/                          # next-intl config
+```
+
+**Server Actions Pattern**:
+Always use this pattern for server actions:
+
+```ts
+// src/app/actions/auth/login.ts
+"use server";
+
+import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
+
+export async function login(email: string, password: string) {
+  // ... implementation
+  return { success: true, body: { user, token } };
+}
+```
+
+**Form Pattern** (React Hook Form + Zod + shadcn/ui):
+
+```tsx
+"use client";
+
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
+import { Button } from "@/components/ui/button";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+
+const formSchema = z.object({
+  email: z.string().email(),
+  password: z.string().min(8),
+});
+
+export default function LoginForm() {
+  const form = useForm<z.infer<typeof formSchema>>({
+    resolver: zodResolver(formSchema),
+  });
+
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    // Call server action
+  }
+
+  return (
+    <Form {...form}>
+      <form onSubmit={form.handleSubmit(onSubmit)}>
+        <FormField
+          control={form.control}
+          name="email"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Email</FormLabel>
+              <FormControl>
+                <Input {...field} />
+              </FormControl>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">Login</Button>
+      </form>
+    </Form>
+  );
+}
+```
+
+**Available UI Components** (all in `/src/components/ui/`):
+
+- **Form**: Button, Input, Textarea, Label, Checkbox, Select, Form (FormField, FormItem, FormLabel, FormControl, FormMessage)
+- **Layout**: Card, Dialog, Tabs, Table, Dropdown Menu, Popover, Separator
+- **Feedback**: Toast (with useToast hook), Badge, Avatar
+
+**Reusable Form Components** (in `/src/components/form/`):
+
+- FormInput - Input/Textarea with label and validation
+- FileUploadField - File upload with image preview
+- TagSelector - Multi-select tags with chips and search
+- EmojiPicker - Emoji-picker-react integration for icons
+- LocationPicker - Address input with map placeholder
+
+**Important Reminders**:
+
+- Use types from `/src/types/declarations` for consistency with the backend
+- Ghost user level has full admin access
+- Keep the report submission page **simple and elegant**
+- Admin panel should be powerful but well-organized
+- All UI must be beautiful in both RTL (fa, ar) and LTR (en, zh, etc.) modes
+- Do not run `pnpm dev` or build commands automatically — only suggest them
+- Always test forms with both valid and invalid data
+- Use semantic HTML elements
+- Follow accessibility best practices
