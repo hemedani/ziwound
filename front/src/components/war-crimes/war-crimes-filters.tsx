@@ -23,6 +23,11 @@ interface WarCrimesFiltersProps {
   initialTagIds?: string[];
   initialDateFrom?: string;
   initialDateTo?: string;
+  initialCountry?: string;
+  initialCity?: string;
+  initialLanguage?: string;
+  initialCrimeOccurredFrom?: string;
+  initialCrimeOccurredTo?: string;
 }
 
 export function WarCrimesFilters({
@@ -36,6 +41,11 @@ export function WarCrimesFilters({
   initialTagIds = [],
   initialDateFrom,
   initialDateTo,
+  initialCountry = "",
+  initialCity = "",
+  initialLanguage = "",
+  initialCrimeOccurredFrom,
+  initialCrimeOccurredTo,
 }: WarCrimesFiltersProps) {
   const t = useTranslations("warCrimes");
   const tFilter = useTranslations("warCrimes.filters");
@@ -51,6 +61,11 @@ export function WarCrimesFilters({
   const [selectedTags, setSelectedTags] = useState<string[]>(initialTagIds);
   const [dateFrom, setDateFrom] = useState(initialDateFrom || "");
   const [dateTo, setDateTo] = useState(initialDateTo || "");
+  const [country, setCountry] = useState(initialCountry || "");
+  const [city, setCity] = useState(initialCity || "");
+  const [language, setLanguage] = useState(initialLanguage || "all");
+  const [crimeOccurredFrom, setCrimeOccurredFrom] = useState(initialCrimeOccurredFrom || "");
+  const [crimeOccurredTo, setCrimeOccurredTo] = useState(initialCrimeOccurredTo || "");
   const [showFilters, setShowFilters] = useState(false);
 
   const updateParams = (updates: Record<string, string | undefined>) => {
@@ -104,6 +119,31 @@ export function WarCrimesFilters({
     updateParams({ dateTo: value || undefined });
   };
 
+  const handleCountryChange = (value: string) => {
+    setCountry(value);
+    updateParams({ country: value || undefined });
+  };
+
+  const handleCityChange = (value: string) => {
+    setCity(value);
+    updateParams({ city: value || undefined });
+  };
+
+  const handleLanguageChange = (value: string) => {
+    setLanguage(value);
+    updateParams({ language: value === "all" ? undefined : value });
+  };
+
+  const handleCrimeOccurredFromChange = (value: string) => {
+    setCrimeOccurredFrom(value);
+    updateParams({ crimeOccurredFrom: value || undefined });
+  };
+
+  const handleCrimeOccurredToChange = (value: string) => {
+    setCrimeOccurredTo(value);
+    updateParams({ crimeOccurredTo: value || undefined });
+  };
+
   const handleReset = () => {
     setSearch("");
     setStatus("all");
@@ -112,6 +152,11 @@ export function WarCrimesFilters({
     setSelectedTags([]);
     setDateFrom("");
     setDateTo("");
+    setCountry("");
+    setCity("");
+    setLanguage("all");
+    setCrimeOccurredFrom("");
+    setCrimeOccurredTo("");
     router.push(pathname);
   };
 
@@ -122,7 +167,12 @@ export function WarCrimesFilters({
     categoryId ||
     selectedTags.length > 0 ||
     dateFrom ||
-    dateTo;
+    dateTo ||
+    country ||
+    city ||
+    language !== "all" ||
+    crimeOccurredFrom ||
+    crimeOccurredTo;
 
   return (
     <div className="bg-card border rounded-lg p-4">
@@ -184,7 +234,10 @@ export function WarCrimesFilters({
 
           <div className="space-y-2">
             <Label>{tFilter("category")}</Label>
-            <Select value={categoryId || "none"} onValueChange={(v) => handleCategoryChange(v === "none" ? "" : v)}>
+            <Select
+              value={categoryId || "none"}
+              onValueChange={(v) => handleCategoryChange(v === "none" ? "" : v)}
+            >
               <SelectTrigger>
                 <SelectValue placeholder={tFilter("selectCategory")} />
               </SelectTrigger>
@@ -214,6 +267,70 @@ export function WarCrimesFilters({
                 type="date"
                 value={dateTo}
                 onChange={(e) => handleDateToChange(e.target.value)}
+                className="flex-1"
+                placeholder={tFilter("to")}
+              />
+            </div>
+          </div>
+
+          <div className="space-y-2">
+            <Label>{tFilter("country") || "Country"}</Label>
+            <Input
+              type="text"
+              value={country}
+              onChange={(e) => handleCountryChange(e.target.value)}
+              placeholder={tFilter("selectCountry") || "Enter country"}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label>{tFilter("city") || "City"}</Label>
+            <Input
+              type="text"
+              value={city}
+              onChange={(e) => handleCityChange(e.target.value)}
+              placeholder={tFilter("selectCity") || "Enter city"}
+            />
+          </div>
+
+          <div className="space-y-2">
+            <Label>{t("filters.language") || "Language"}</Label>
+            <Select value={language || "all"} onValueChange={handleLanguageChange}>
+              <SelectTrigger>
+                <SelectValue placeholder={tCommon("all")} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{tCommon("all")}</SelectItem>
+                <SelectItem value="fa">فارسی</SelectItem>
+                <SelectItem value="en">English</SelectItem>
+                <SelectItem value="ar">العربية</SelectItem>
+                <SelectItem value="zh">中文</SelectItem>
+                <SelectItem value="pt">Português</SelectItem>
+                <SelectItem value="es">Español</SelectItem>
+                <SelectItem value="ru">Русский</SelectItem>
+                <SelectItem value="tr">Türkçe</SelectItem>
+                <SelectItem value="nl">Nederlands</SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-4 mt-4">
+          <div className="space-y-2">
+            <Label>{tFilter("crimeOccurredRange") || "Crime Occurrence Date"}</Label>
+            <div className="flex gap-2 items-center">
+              <Input
+                type="date"
+                value={crimeOccurredFrom}
+                onChange={(e) => handleCrimeOccurredFromChange(e.target.value)}
+                className="flex-1"
+                placeholder={tFilter("from")}
+              />
+              <span className="text-muted-foreground">-</span>
+              <Input
+                type="date"
+                value={crimeOccurredTo}
+                onChange={(e) => handleCrimeOccurredToChange(e.target.value)}
                 className="flex-1"
                 placeholder={tFilter("to")}
               />

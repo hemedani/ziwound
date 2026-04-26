@@ -2,16 +2,20 @@
   "common": {
     "add": "افزودن",
     "admin": "مدیریت",
+    "all": "همه",
     "appName": "گزارش",
     "back": "بازگشت",
     "cancel": "انصراف",
     "characters": "کاراکتر",
     "confirmDelete": "آیا از حذف این مورد اطمینان دارید؟",
+    "copied": "کپی شد",
+    "copyLink": "کپی لینک",
     "create": "ایجاد",
     "dashboard": "داشبورد",
     "delete": "حذف",
     "edit": "ویرایش",
     "error": "خطا",
+    "export": "خروجی",
     "fileUpload": {
       "browse": "انتخاب فایل‌ها",
       "maxFiles": "حداکثر {count} فایل",
@@ -38,6 +42,7 @@
     "required": "الزامی",
     "save": "ذخیره",
     "search": "جستجو",
+    "share": "اشتراک‌گذاری",
     "submit": "ارسال",
     "success": "موفق",
     "tagSelector": {
@@ -75,7 +80,14 @@
     "attachmentsDescription": "عکس یا سند مربوطه را آپلود کنید.",
     "backToReports": "بازگشت به گزارش‌ها",
     "category": "دسته‌بندی",
+    "city": "شهر",
+    "cityPlaceholder": "نام شهر را وارد کنید",
+    "country": "کشور",
+    "countryPlaceholder": "نام کشور را وارد کنید",
+    "countryRequired": "نام کشور الزامی است",
     "createFirstReport": "اولین گزارش خود را ثبت کنید",
+    "crimeOccurredAt": "تاریخ وقوع جرم",
+    "crimeOccurredRequired": "تاریخ وقوع جرم الزامی است",
     "description": "توضیحات",
     "descriptionPlaceholder": "مشکل را به صورت کامل شرح دهید...",
     "descriptionRequired": "توضیحات الزامی است",
@@ -262,7 +274,11 @@
     "categoryUpdated": "دسته‌بندی با موفقیت بروزرسانی شد.",
     "chartPlaceholder": "محل قرارگیری نمودار",
     "color": "رنگ",
+    "country": "کشور",
+    "city": "شهر",
     "createdAt": "تاریخ ایجاد",
+    "from": "از",
+    "to": "تا",
     "dashboard": "داشبورد",
     "dashboardDescription": "نمای کلی از وضعیت سیستم گزارش‌دهی",
     "date": "تاریخ",
@@ -459,7 +475,13 @@
       "location": "موقعیت مکانی",
       "selectLocation": "انتخاب موقعیت",
       "reset": "پاک کردن فیلترها",
-      "apply": "اعمال فیلترها"
+      "apply": "اعمال فیلترها",
+      "country": "کشور",
+      "selectCountry": "وارد کردن کشور",
+      "city": "شهر",
+      "selectCity": "وارد کردن شهر",
+      "language": "زبان",
+      "crimeOccurredRange": "تاریخ وقوع جرم"
     },
     "priority": {
       "all": "همه اولویت‌ها",
@@ -496,6 +518,11 @@
     "showing": "نمایش {from} تا {to} از {total} نتیجه",
     "withLocation": "با موقعیت مکانی",
     "previous": "قبلی",
-    "next": "بعدی"
+    "next": "بعدی",
+    "linkCopiedDesc": "لینک صفحه در کلیپ‌بورد شما کپی شد.",
+    "exportError": "خطا در خروجی گرفتن اطلاعات.",
+    "sharePage": "اشتراک‌گذاری صفحه",
+    "exportData": "خروجی اطلاعات",
+    "exportPDF": "خروجی PDF (به زودی)"
   }
 }

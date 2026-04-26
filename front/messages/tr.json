@@ -2,16 +2,20 @@
   "common": {
     "add": "Ekle",
     "admin": "Yönetici",
+    "all": "Hepsi",
     "appName": "Gozarish",
     "back": "Geri",
     "cancel": "İptal",
     "characters": "karakter",
     "confirmDelete": "Bunu silmek istediğinizden emin misiniz?",
+    "copied": "Kopyalandı",
+    "copyLink": "Bağlantıyı Kopyala",
     "create": "Oluştur",
     "dashboard": "Kontrol Paneli",
     "delete": "Sil",
     "edit": "Düzenle",
     "error": "Hata",
+    "export": "Dışa Aktar",
     "fileUpload": {
       "browse": "Dosyalara göz at",
       "maxFiles": "En fazla {count} dosya",
@@ -38,6 +42,7 @@
     "required": "Gerekli",
     "save": "Kaydet",
     "search": "Ara",
+    "share": "Paylaş",
     "submit": "Gönder",
     "success": "Başarılı",
     "tagSelector": {
@@ -262,7 +267,11 @@
     "categoryUpdated": "Kategori başarıyla güncellendi.",
     "chartPlaceholder": "Grafik yer tutucusu",
     "color": "Renk",
+    "country": "Ülke",
+    "city": "Şehir",
     "createdAt": "Oluşturulma Tarihi",
+    "from": "Başlangıç",
+    "to": "Bitiş",
     "dashboard": "Kontrol Paneli",
     "dashboardDescription": "Raporlama sistemi durumuna genel bakış",
     "date": "Tarih",
@@ -459,7 +468,13 @@
       "location": "Konum",
       "selectLocation": "Konum seçin",
       "reset": "Filtreleri temizle",
-      "apply": "Filtreleri uygula"
+      "apply": "Filtreleri uygula",
+      "country": "Ülke",
+      "selectCountry": "Ülke girin",
+      "city": "Şehir",
+      "selectCity": "Şehir girin",
+      "language": "Dil",
+      "crimeOccurredRange": "Suç tarihi"
     },
     "priority": {
       "all": "Tüm öncelikler",
@@ -496,6 +511,11 @@
     "showing": "{from} - {to} arası gösteriliyor, {total} sonuç",
     "withLocation": "konum ile",
     "previous": "Önceki",
-    "next": "Sonraki"
+    "next": "Sonraki",
+    "linkCopiedDesc": "Sayfa bağlantısı panonuza kopyalandı.",
+    "exportError": "Veriler dışa aktarılamadı.",
+    "sharePage": "Sayfayı Paylaş",
+    "exportData": "Verileri Dışa Aktar",
+    "exportPDF": "PDF Dışa Aktar (Yakında)"
   }
 }

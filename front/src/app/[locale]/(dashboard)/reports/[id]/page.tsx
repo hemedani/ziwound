@@ -51,6 +51,9 @@ export default function ReportDetailPage() {
             priority: 1,
             location: 1,
             address: 1,
+            country: 1,
+            city: 1,
+            crime_occurred_at: 1,
             createdAt: 1,
             updatedAt: 1,
             category: { _id: 1, name: 1 },
@@ -183,6 +186,42 @@ export default function ReportDetailPage() {
           <p className="text-muted-foreground whitespace-pre-wrap">{report.description}</p>
         </CardContent>
       </Card>
+
+      {/* Crime Location & Date */}
+      {(report.country || report.city || report.crime_occurred_at) && (
+        <Card className="mb-6">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <MapPin className="h-5 w-5" />
+              {t("location")}
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="grid gap-4 sm:grid-cols-2">
+              {report.country && (
+                <div>
+                  <p className="text-sm text-muted-foreground">{t("country")}</p>
+                  <p className="font-medium">{report.country}</p>
+                </div>
+              )}
+              {report.city && (
+                <div>
+                  <p className="text-sm text-muted-foreground">{t("city")}</p>
+                  <p className="font-medium">{report.city}</p>
+                </div>
+              )}
+              {report.crime_occurred_at && (
+                <div>
+                  <p className="text-sm text-muted-foreground">{t("crimeOccurredAt")}</p>
+                  <p className="font-medium">
+                    {format(new Date(report.crime_occurred_at), "MMM dd, yyyy")}
+                  </p>
+                </div>
+              )}
+            </div>
+          </CardContent>
+        </Card>
+      )}
 
       {/* Location */}
       {(report.address || report.location?.coordinates) && (

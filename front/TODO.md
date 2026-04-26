@@ -409,20 +409,20 @@
     - [x] Status filter
     - [x] Filter reset button
     - [x] Location filter (city, province, or map selection)
-  - [ ] **Timeline View** (optional, advanced feature):
-    - [ ] Add timeline component showing reports over time
-    - [ ] Allow timeline navigation and filtering
-  - [ ] **Export & Sharing**:
-    - [ ] Add export button (CSV, PDF)
-    - [ ] Add share link functionality
-    - [ ] Add social media sharing buttons
+  - [x] **Timeline View** (optional, advanced feature):
+    - [x] Add timeline component showing reports over time
+    - [x] Allow timeline navigation and filtering
+  - [x] **Export & Sharing**:
+    - [x] Add export button (CSV, PDF)
+    - [x] Add share link functionality
+    - [x] Add social media sharing buttons
 - [x] **War Crimes Exploration UI Components**
   - [x] Create `WarCrimesFilters` component
   - [x] Create `WarCrimesList` component (list/grid view)
   - [x] Create `WarCrimesMap` component (lazy loaded)
   - [x] Create `WarCrimesStatistics` component (charts)
-  - [ ] Create `WarCrimesTimeline` component
-  - [ ] Create `WarCrimesExport` component (export buttons)
+  - [x] Create `WarCrimesTimeline` component
+  - [x] Create `WarCrimesExport` component (export buttons)
 - [x] **War Crimes Translations**
   - [x] Add all war crimes exploration translation keys to fa.json
   - [ ] Add all war crimes exploration translation keys to all 9 language files
@@ -432,6 +432,17 @@
   - [x] Add War Crimes link to main header navigation (desktop + mobile)
   - [x] Add warCrimes translation key to header section
   - [ ] Add War Crimes link to footer quick links
+
+## Phase 12: Extended Report Fields (Crime Date & Location)
+
+- [x] Update War Crimes Exploration page to fetch new fields (`crime_occurred_at`, `country`, `city`, `language`)
+- [x] Update Timeline View to use `crime_occurred_at` instead of `createdAt` and pass correct sort/filters in `page.tsx`
+- [x] Update Advanced Filters to support country, city, language, and crimeOccurredFrom/To
+- [x] Update Report Form (add/update) to include `crime_occurred_at`, `country`, `city` and make `language` + `crime_occurred_at` strictly required
+- [x] Update Report Detail Page to display the new fields
+- [x] Update Admin Reports Management to display and filter by new fields
+- [x] Update War Crimes Statistics to show new charts (country, city, language, monthly crime occurrence)
+- [x] Update CSV Export with new filters
 
 ## Known Issues & Technical Debt
 

@@ -19,6 +19,10 @@ export default async function AdminReportsPage({
     priority?: string;
     category?: string;
     language?: string;
+    country?: string;
+    city?: string;
+    crimeOccurredFrom?: string;
+    crimeOccurredTo?: string;
     sortBy?: string;
     sortOrder?: string;
   }>;
@@ -31,6 +35,14 @@ export default async function AdminReportsPage({
   const priority = resolvedSearchParams.priority || "all";
   const category = resolvedSearchParams.category || "all";
   const language = resolvedSearchParams.language || "all";
+  const country = resolvedSearchParams.country || "";
+  const city = resolvedSearchParams.city || "";
+  const crimeOccurredFrom = resolvedSearchParams.crimeOccurredFrom
+    ? new Date(resolvedSearchParams.crimeOccurredFrom)
+    : undefined;
+  const crimeOccurredTo = resolvedSearchParams.crimeOccurredTo
+    ? new Date(resolvedSearchParams.crimeOccurredTo)
+    : undefined;
   const sortBy = resolvedSearchParams.sortBy || "createdAt";
   const sortOrder = resolvedSearchParams.sortOrder || "desc";
 
@@ -42,6 +54,10 @@ export default async function AdminReportsPage({
   if (category !== "all") setQuery.categoryIds = [category];
   if (language !== "all")
     setQuery.language = language as ReqType["main"]["report"]["gets"]["set"]["language"];
+  if (country) setQuery.country = country;
+  if (city) setQuery.city = city;
+  if (crimeOccurredFrom) setQuery.crimeOccurredFrom = crimeOccurredFrom;
+  if (crimeOccurredTo) setQuery.crimeOccurredTo = crimeOccurredTo;
   setQuery.sortBy = sortBy as ReqType["main"]["report"]["gets"]["set"]["sortBy"];
   setQuery.sortOrder = sortOrder as ReqType["main"]["report"]["gets"]["set"]["sortOrder"];
 
@@ -60,6 +76,9 @@ export default async function AdminReportsPage({
     title: 1,
     status: 1,
     priority: 1,
+    country: 1,
+    city: 1,
+    crime_occurred_at: 1,
     createdAt: 1,
     category: { _id: 1, name: 1 },
     documents: { _id: 1, title: 1 },
@@ -70,6 +89,9 @@ export default async function AdminReportsPage({
     title: string;
     status: string;
     priority: string;
+    country?: string;
+    city?: string;
+    crime_occurred_at?: string;
     createdAt: string;
     category?: { _id: string; name: string };
     documents?: Array<{ _id: string; title: string }>;
@@ -177,6 +199,26 @@ export default async function AdminReportsPage({
                 <SelectItem value="ro">Romanian (ro)</SelectItem>
               </SelectContent>
             </Select>
+          </div>
+          <div className="w-full sm:w-48">
+            <Input
+              name="country"
+              placeholder={t("country") || "Country"}
+              defaultValue={country}
+            />
+          </div>
+          <div className="w-full sm:w-48">
+            <Input name="city" placeholder={t("city") || "City"} defaultValue={city} />
+          </div>
+          <div className="w-full sm:w-48">
+            <Input
+              type="date"
+              name="crimeOccurredFrom"
+              placeholder={t("from") || "From"}
+            />
+          </div>
+          <div className="w-full sm:w-48">
+            <Input type="date" name="crimeOccurredTo" placeholder={t("to") || "To"} />
           </div>
           <div className="w-full sm:w-48">
             <Select name="sortBy" defaultValue={sortBy}>

@@ -52,6 +52,9 @@ type ReportItem = {
   status: string;
   priority: string;
   createdAt: string;
+  country?: string;
+  city?: string;
+  crime_occurred_at?: string;
   category?: { _id: string; name: string };
   documents?: { _id: string; title: string }[];
 };
@@ -83,12 +86,15 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
   const handleExportCSV = () => {
     if (reports.length === 0) return;
 
-    const headers = ["ID", "Title", "Status", "Priority", "Category", "Date"];
+    const headers = ["ID", "Title", "Status", "Priority", "Country", "City", "Crime Date", "Category", "Date"];
     const csvData = reports.map((r) => [
       r._id,
       r.title,
       r.status,
       r.priority,
+      r.country || "",
+      r.city || "",
+      r.crime_occurred_at ? new Date(r.crime_occurred_at).toLocaleDateString() : "",
       r.category?.name || "",
       r.createdAt ? new Date(r.createdAt).toLocaleDateString() : "",
     ]);
@@ -259,6 +265,8 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
               </TableHead>
               <TableHead>{t("title")}</TableHead>
               <TableHead>{t("category")}</TableHead>
+              <TableHead>{t("country")}</TableHead>
+              <TableHead>{t("city")}</TableHead>
               <TableHead>{t("status")}</TableHead>
               <TableHead>{t("priority")}</TableHead>
               <TableHead>{t("date")}</TableHead>
@@ -284,6 +292,8 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
                   </TableCell>
                   <TableCell className="font-medium">{report.title}</TableCell>
                   <TableCell>{report.category?.name || "-"}</TableCell>
+                  <TableCell>{report.country || "-"}</TableCell>
+                  <TableCell>{report.city || "-"}</TableCell>
                   <TableCell>
                     <Badge
                       variant={

@@ -1,17 +1,21 @@
 {
-  "common": {
+"common": {
     "add": "Toevoegen",
-    "admin": "Admin",
+    "admin": "Administrator",
+    "all": "Alle",
     "appName": "Gozarish",
     "back": "Terug",
     "cancel": "Annuleren",
     "characters": "tekens",
     "confirmDelete": "Weet u zeker dat u dit wilt verwijderen?",
+    "copied": "Gekopieerd",
+    "copyLink": "Link kopiëren",
     "create": "Aanmaken",
     "dashboard": "Dashboard",
     "delete": "Verwijderen",
     "edit": "Bewerken",
     "error": "Fout",
+    "export": "Exporteren",
     "fileUpload": {
       "browse": "Bestanden bladeren",
       "maxFiles": "Maximaal {count} bestanden",
@@ -38,6 +42,7 @@
     "required": "Verplicht",
     "save": "Opslaan",
     "search": "Zoeken",
+    "share": "Delen",
     "submit": "Indienen",
     "success": "Succes",
     "tagSelector": {
@@ -262,7 +267,11 @@
     "categoryUpdated": "De categorie is succesvol bijgewerkt.",
     "chartPlaceholder": "Grafiek aanduiding",
     "color": "Kleur",
+    "country": "Land",
+    "city": "Stad",
     "createdAt": "Gemaakt op",
+    "from": "Van",
+    "to": "Tot",
     "dashboard": "Dashboard",
     "dashboardDescription": "Overzicht van de status van het rapportagesysteem",
     "date": "Datum",
@@ -459,7 +468,13 @@
       "location": "Locatie",
       "selectLocation": "Selecteer locatie",
       "reset": "Filters wissen",
-      "apply": "Filters toepassen"
+      "apply": "Filters toepassen",
+      "country": "Land",
+      "selectCountry": "Land invoeren",
+      "city": "Stad",
+      "selectCity": "Stad invoeren",
+      "language": "Taal",
+      "crimeOccurredRange": "Datum misdrijf"
     },
     "priority": {
       "all": "Alle prioriteiten",
@@ -483,7 +498,7 @@
     "byLocation": "Per Locatie",
     "statistics": "Statistieken",
     "export": "Exporteren",
-    "exportCSV": "CSV Exporteren",
+    "exportCSV": "CSV exporteren",
     "share": "Delen",
     "shareLink": "Link Kopiëren",
     "linkCopied": "Link gekopieerd",
@@ -496,6 +511,11 @@
     "showing": "Toont {from} tot {to} van {total} resultaten",
     "withLocation": "met locatie",
     "previous": "Vorige",
-    "next": "Volgende"
+    "next": "Volgende",
+    "linkCopiedDesc": "De paginalink is naar uw klembord gekopieerd.",
+    "exportError": "Kan gegevens niet exporteren.",
+    "sharePage": "Deel pagina",
+    "exportData": "Gegevens exporteren",
+    "exportPDF": "PDF exporteren (Binnenkort)"
   }
 }

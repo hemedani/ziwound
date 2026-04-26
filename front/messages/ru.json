@@ -2,16 +2,20 @@
   "common": {
     "add": "Добавить",
     "admin": "Админ",
+    "all": "Все",
     "appName": "Gozarish",
     "back": "Назад",
     "cancel": "Отмена",
     "characters": "символов",
     "confirmDelete": "Вы уверены, что хотите удалить это?",
+    "copied": "Скопировано",
+    "copyLink": "Копировать ссылку",
     "create": "Создать",
     "dashboard": "Панель управления",
     "delete": "Удалить",
     "edit": "Редактировать",
     "error": "Ошибка",
+    "export": "Экспорт",
     "fileUpload": {
       "browse": "Обзор файлов",
       "maxFiles": "Максимум {count} файлов",
@@ -38,6 +42,7 @@
     "required": "Обязательно",
     "save": "Сохранить",
     "search": "Поиск",
+    "share": "Поделиться",
     "submit": "Отправить",
     "success": "Успех",
     "tagSelector": {
@@ -262,7 +267,11 @@
     "categoryUpdated": "Категория успешно обновлена.",
     "chartPlaceholder": "Место для графика",
     "color": "Цвет",
+    "country": "Страна",
+    "city": "Город",
     "createdAt": "Создано",
+    "from": "От",
+    "to": "До",
     "dashboard": "Панель управления",
     "dashboardDescription": "Обзор состояния системы отчетности",
     "date": "Дата",
@@ -459,7 +468,13 @@
       "location": "Местоположение",
       "selectLocation": "Выберите местоположение",
       "reset": "Сбросить фильтры",
-      "apply": "Применить фильтры"
+      "apply": "Применить фильтры",
+      "country": "Страна",
+      "selectCountry": "Введите страну",
+      "city": "Город",
+      "selectCity": "Введите город",
+      "language": "Язык",
+      "crimeOccurredRange": "Дата преступления"
     },
     "priority": {
       "all": "Все приоритеты",
@@ -496,6 +511,11 @@
     "showing": "Показано с {from} по {to} из {total} результатов",
     "withLocation": "с местоположением",
     "previous": "Предыдущая",
-    "next": "Следующая"
+    "next": "Следующая",
+    "linkCopiedDesc": "Ссылка на страницу скопирована в буфер обмена.",
+    "exportError": "Не удалось экспортировать данные.",
+    "sharePage": "Поделиться страницей",
+    "exportData": "Экспорт данных",
+    "exportPDF": "Экспорт PDF (Скоро)"
   }
 }

@@ -7,8 +7,10 @@ import { WarCrimesFilters } from "@/components/war-crimes/war-crimes-filters";
 import { WarCrimesList } from "@/components/war-crimes/war-crimes-list";
 import { WarCrimesMap } from "@/components/war-crimes/war-crimes-map";
 import { WarCrimesStatistics } from "@/components/war-crimes/war-crimes-statistics";
+import { WarCrimesTimeline } from "@/components/war-crimes/war-crimes-timeline";
+import { WarCrimesExport } from "@/components/war-crimes/war-crimes-export";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Map, List, BarChart3 } from "lucide-react";
+import { Map, List, BarChart3, Clock } from "lucide-react";
 import type {
   DeepPartial,
   ReqType,
@@ -32,6 +34,11 @@ export default async function WarCrimesPage({
     dateTo?: string;
     view?: string;
     bbox?: string;
+    country?: string;
+    city?: string;
+    language?: string;
+    crimeOccurredFrom?: string;
+    crimeOccurredTo?: string;
   }>;
   params: Promise<{ locale: string }>;
 }) {
@@ -54,8 +61,23 @@ export default async function WarCrimesPage({
   const dateTo = resolvedSearchParams.dateTo ? new Date(resolvedSearchParams.dateTo) : undefined;
   const view = resolvedSearchParams.view || "list";
   const bboxStr = resolvedSearchParams.bbox;
-  const bbox = bboxStr ? bboxStr.split(",").map(Number).filter(n => !isNaN(n)) : undefined;
+  const bbox = bboxStr
+    ? bboxStr
+        .split(",")
+        .map(Number)
+        .filter((n) => !isNaN(n))
+    : undefined;
   const finalBbox = bbox?.length === 4 ? bbox : undefined;
+
+  const country = resolvedSearchParams.country || undefined;
+  const city = resolvedSearchParams.city || undefined;
+  const language = resolvedSearchParams.language as ReqType["main"]["report"]["gets"]["set"]["language"] | undefined;
+  const crimeOccurredFrom = resolvedSearchParams.crimeOccurredFrom
+    ? new Date(resolvedSearchParams.crimeOccurredFrom)
+    : undefined;
+  const crimeOccurredTo = resolvedSearchParams.crimeOccurredTo
+    ? new Date(resolvedSearchParams.crimeOccurredTo)
+    : undefined;
 
   const reportQuery: ReqType["main"]["report"]["gets"]["set"] = {
     page,
@@ -65,8 +87,12 @@ export default async function WarCrimesPage({
     priority: priority || undefined,
     categoryIds: categoryId ? [categoryId] : undefined,
     tagIds: tagIds || undefined,
-    createdAtFrom: dateFrom,
-    createdAtTo: dateTo,
+    crimeOccurredFrom: crimeOccurredFrom,
+    crimeOccurredTo: crimeOccurredTo,
+    country: country,
+    city: city,
+    language: language,
+    ...(view === "timeline" ? { sortBy: "crime_occurred_at", sortOrder: "desc" } : {}),
     bbox: finalBbox,
   };
 
@@ -78,6 +104,9 @@ export default async function WarCrimesPage({
     address: 1,
     status: 1,
     priority: 1,
+    crime_occurred_at: 1,
+    country: 1,
+    city: 1,
     createdAt: 1,
     category: { _id: 1, name: 1, color: 1, icon: 1 },
     tags: { _id: 1, name: 1, color: 1, icon: 1 },
@@ -135,6 +164,11 @@ export default async function WarCrimesPage({
           initialTagIds={tagIds}
           initialDateFrom={dateFrom?.toISOString().split("T")[0]}
           initialDateTo={dateTo?.toISOString().split("T")[0]}
+          initialCountry={country}
+          initialCity={city}
+          initialLanguage={language}
+          initialCrimeOccurredFrom={crimeOccurredFrom?.toISOString().split("T")[0]}
+          initialCrimeOccurredTo={crimeOccurredTo?.toISOString().split("T")[0]}
         />
 
         <Tabs defaultValue={view} className="w-full">
@@ -148,17 +182,24 @@ export default async function WarCrimesPage({
                 <Map className="h-4 w-4" />
                 {t("warCrimes.exploreMap")}
               </TabsTrigger>
+              <TabsTrigger value="timeline" className="gap-2">
+                <Clock className="h-4 w-4" />
+                {t.has("warCrimes.timeline") ? t("warCrimes.timeline") : "Timeline"}
+              </TabsTrigger>
               <TabsTrigger value="statistics" className="gap-2">
                 <BarChart3 className="h-4 w-4" />
                 {t("warCrimes.statistics")}
               </TabsTrigger>
             </TabsList>
 
-            {totalCount > 0 && (
-              <p className="text-sm text-muted-foreground">
-                {t("warCrimes.showing", { from, to, total: totalCount })}
-              </p>
-            )}
+            <div className="flex items-center gap-4">
+              {totalCount > 0 && (
+                <p className="text-sm text-muted-foreground">
+                  {t("warCrimes.showing", { from, to, total: totalCount })}
+                </p>
+              )}
+              <WarCrimesExport searchParams={resolvedSearchParams} locale={locale} />
+            </div>
           </div>
 
           <TabsContent value="list" className="mt-0">
@@ -182,6 +223,10 @@ export default async function WarCrimesPage({
               totalCount={totalCount}
               locale={locale}
             />
+          </TabsContent>
+
+          <TabsContent value="timeline" className="mt-0">
+            <WarCrimesTimeline reports={reports} locale={locale} />
           </TabsContent>
         </Tabs>
       </div>

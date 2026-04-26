@@ -51,11 +51,12 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - ✅ Phase 6 (PWA & Polish): 100% complete
 - ✅ Phase 7 (Testing & Production Readiness): 100% complete
 - **New Phases Added**:
+  - Phase 12: Extended Report Fields (Crime Date & Location)
   - ✅ Phase 8: Document Management Implementation
   - ✅ Phase 9: Dashboard Pages Update with New Document and Report Models
   - 🔄 Phase 10: Blog Section Implementation
   - 🔄 Phase 11: War Crimes Exploration Page
-- **Next**: Phase 10 - Blog Section Implementation (remaining tasks) or Phase 11 - War Crimes Exploration Page (remaining tasks)
+- **Next**: Phase 12 - Extended Report Fields (or remaining Phase 11 tasks)
 
 **What's Done**:
 
@@ -100,6 +101,7 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - ✅ **Project renamed from Gozarish to Ziwound (war crimes documentation system)**
 - ✅ **Added new phases for Document Management, Blog Section, and War Crimes Exploration**
 - ✅ Added language field to Report model and updated API usage
+- ✅ Implemented War Crimes Export & Sharing functionality (WarCrimesExport component with CSV export, link sharing, and social media integration)
 
 **Frontend Structure**:
 
@@ -224,6 +226,6 @@ export default function LoginForm() {
 - Follow accessibility best practices
 
 **Next Session Prompt**:
-Continue with the remaining unchecked steps in **TODO.md**, focusing on **Phase 10 (Blog Section Rich Text Editor)** or **Phase 11 (War Crimes Exploration Map View)**.
+Continue with the remaining unchecked steps in **TODO.md**, focusing on **Phase 12 (Extended Report Fields)**.
 
 Follow the same patterns: one step at a time, update TODO.md, commit with Gitmoji.

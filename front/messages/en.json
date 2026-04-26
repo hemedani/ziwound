@@ -2,16 +2,20 @@
   "common": {
     "add": "Add",
     "admin": "Admin",
+    "all": "All",
     "appName": "Gozarish",
     "back": "Back",
     "cancel": "Cancel",
     "characters": "characters",
     "confirmDelete": "Are you sure you want to delete this?",
+    "copied": "Copied",
+    "copyLink": "Copy Link",
     "create": "Create",
     "dashboard": "Dashboard",
     "delete": "Delete",
     "edit": "Edit",
     "error": "Error",
+    "export": "Export",
     "fileUpload": {
       "browse": "Browse files",
       "maxFiles": "Max {count} files",
@@ -38,6 +42,7 @@
     "required": "Required",
     "save": "Save",
     "search": "Search",
+    "share": "Share",
     "submit": "Submit",
     "success": "Success",
     "tagSelector": {
@@ -75,7 +80,14 @@
     "attachmentsDescription": "Upload photos or documents.",
     "backToReports": "Back to Reports",
     "category": "Category",
+    "city": "City",
+    "cityPlaceholder": "Enter city name",
+    "country": "Country",
+    "countryPlaceholder": "Enter country name",
+    "countryRequired": "Country is required",
     "createFirstReport": "Create your first report",
+    "crimeOccurredAt": "Crime Occurrence Date",
+    "crimeOccurredRequired": "Crime occurrence date is required",
     "description": "Description",
     "descriptionPlaceholder": "Describe the issue in detail...",
     "descriptionRequired": "Description is required",
@@ -262,7 +274,11 @@
     "categoryUpdated": "Category has been updated successfully.",
     "chartPlaceholder": "Chart placeholder",
     "color": "Color",
+    "country": "Country",
+    "city": "City",
     "createdAt": "Created At",
+    "from": "From",
+    "to": "To",
     "dashboard": "Dashboard",
     "dashboardDescription": "Overview of the reporting system status",
     "date": "Date",
@@ -459,7 +475,13 @@
       "location": "Location",
       "selectLocation": "Select location",
       "reset": "Clear filters",
-      "apply": "Apply filters"
+      "apply": "Apply filters",
+      "country": "Country",
+      "selectCountry": "Enter country",
+      "city": "City",
+      "selectCity": "Enter city",
+      "language": "Language",
+      "crimeOccurredRange": "Crime Occurrence Date"
     },
     "priority": {
       "all": "All priorities",
@@ -496,6 +518,11 @@
     "showing": "Showing {from} to {to} of {total} results",
     "withLocation": "with location",
     "previous": "Previous",
-    "next": "Next"
+    "next": "Next",
+    "linkCopiedDesc": "The page link has been copied to your clipboard.",
+    "exportError": "Failed to export data.",
+    "sharePage": "Share Page",
+    "exportData": "Export Data",
+    "exportPDF": "Export PDF (Coming Soon)"
   }
 }

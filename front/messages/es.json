@@ -2,16 +2,20 @@
   "common": {
     "add": "Añadir",
     "admin": "Administrador",
+    "all": "Todos",
     "appName": "Gozarish",
     "back": "Atrás",
     "cancel": "Cancelar",
     "characters": "caracteres",
     "confirmDelete": "¿Estás seguro de que quieres eliminar esto?",
+    "copied": "Copiado",
+    "copyLink": "Copiar enlace",
     "create": "Crear",
     "dashboard": "Panel",
     "delete": "Eliminar",
     "edit": "Editar",
     "error": "Error",
+    "export": "Exportar",
     "fileUpload": {
       "browse": "Buscar archivos",
       "maxFiles": "Máximo {count} archivos",
@@ -38,6 +42,7 @@
     "required": "Requerido",
     "save": "Guardar",
     "search": "Buscar",
+    "share": "Compartir",
     "submit": "Enviar",
     "success": "Éxito",
     "tagSelector": {
@@ -262,7 +267,11 @@
     "categoryUpdated": "La categoría ha sido actualizada exitosamente.",
     "chartPlaceholder": "Marcador de posición del gráfico",
     "color": "Color",
+    "country": "País",
+    "city": "Ciudad",
     "createdAt": "Creado en",
+    "from": "Desde",
+    "to": "Hasta",
     "dashboard": "Panel",
     "dashboardDescription": "Resumen del estado del sistema de reportes",
     "date": "Fecha",
@@ -459,7 +468,13 @@
       "location": "Ubicación",
       "selectLocation": "Seleccionar ubicación",
       "reset": "Limpiar filtros",
-      "apply": "Aplicar filtros"
+      "apply": "Aplicar filtros",
+      "country": "País",
+      "selectCountry": "Introducir país",
+      "city": "Ciudad",
+      "selectCity": "Introducir ciudad",
+      "language": "Idioma",
+      "crimeOccurredRange": "Fecha del crimen"
     },
     "priority": {
       "all": "Todas las prioridades",
@@ -496,6 +511,11 @@
     "showing": "Mostrando {from} a {to} de {total} resultados",
     "withLocation": "con ubicación",
     "previous": "Anterior",
-    "next": "Siguiente"
+    "next": "Siguiente",
+    "linkCopiedDesc": "El enlace de la página se ha copiado en el portapapeles.",
+    "exportError": "Error al exportar los datos.",
+    "sharePage": "Compartir página",
+    "exportData": "Exportar datos",
+    "exportPDF": "Exportar PDF (Próximamente)"
   }
 }

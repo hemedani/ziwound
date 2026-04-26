@@ -71,9 +71,12 @@ export type userSchema = {
       coordinates: any[];
     };
     address?: string;
+    country?: string;
+    city?: string;
     status: ("Pending" | "Approved" | "Rejected" | "InReview");
     priority?: ("Low" | "Medium" | "High");
-    language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+    language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+    crime_occurred_at: Date;
   }[];
   blogPosts: {
     _id?: string;
@@ -271,9 +274,12 @@ export type tagSchema = {
       coordinates: any[];
     };
     address?: string;
+    country?: string;
+    city?: string;
     status: ("Pending" | "Approved" | "Rejected" | "InReview");
     priority?: ("Low" | "Medium" | "High");
-    language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+    language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+    crime_occurred_at: Date;
   }[];
   blogPosts: {
     _id?: string;
@@ -321,9 +327,12 @@ export type categorySchema = {
       coordinates: any[];
     };
     address?: string;
+    country?: string;
+    city?: string;
     status: ("Pending" | "Approved" | "Rejected" | "InReview");
     priority?: ("Low" | "Medium" | "High");
-    language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+    language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+    crime_occurred_at: Date;
   }[];
 };
 ;
@@ -358,9 +367,12 @@ export type documentSchema = {
       coordinates: any[];
     };
     address?: string;
+    country?: string;
+    city?: string;
     status: ("Pending" | "Approved" | "Rejected" | "InReview");
     priority?: ("Low" | "Medium" | "High");
-    language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+    language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+    crime_occurred_at: Date;
   }[];
 };
 ;
@@ -384,9 +396,12 @@ export type reportSchema = {
     coordinates: any[];
   };
   address?: string;
+  country?: string;
+  city?: string;
   status: ("Pending" | "Approved" | "Rejected" | "InReview");
   priority?: ("Low" | "Medium" | "High");
-  language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+  language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+  crime_occurred_at: Date;
   createdAt?: Date;
   updatedAt?: Date;
   reporter: {
@@ -646,9 +661,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -753,9 +771,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -836,9 +857,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -943,9 +967,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1051,9 +1078,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1137,9 +1167,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1219,9 +1252,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1459,9 +1495,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1523,9 +1562,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1675,9 +1717,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1739,9 +1784,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -1927,9 +1975,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -2095,9 +2146,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -2315,9 +2369,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -2445,9 +2502,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -2532,9 +2592,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -2615,9 +2678,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -2701,9 +2767,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -2879,9 +2948,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -3031,9 +3103,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -3100,9 +3175,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -3149,9 +3227,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -3228,9 +3309,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -3248,9 +3332,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -3383,9 +3470,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -3403,9 +3493,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -3531,9 +3624,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
           };
         };
       };
@@ -3571,9 +3667,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
           };
         };
       };
@@ -3641,9 +3740,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -3661,9 +3763,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -3764,9 +3869,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -3784,9 +3892,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -3851,13 +3962,19 @@ export type ReqType = {
         set: {
           title: string;
           description: string;
+          location?: {
+            type: "Point";
+            coordinates: any[];
+          };
+          address?: string;
+          country?: string;
+          city?: string;
+          status: ("Pending" | "Approved" | "Rejected" | "InReview");
+          priority?: ("Low" | "Medium" | "High");
+          language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+          crime_occurred_at: Date;
           createdAt?: Date;
           updatedAt?: Date;
-          language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
-          location?: {
-            type: string;
-            coordinates: number[];
-          };
           tags?: string[];
           category?: string;
           documentIds?: string[];
@@ -3868,9 +3985,12 @@ export type ReqType = {
           description?: (0 | 1);
           location?: (0 | 1);
           address?: (0 | 1);
+          country?: (0 | 1);
+          city?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
           language?: (0 | 1);
+          crime_occurred_at?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -3915,9 +4035,12 @@ export type ReqType = {
           description?: (0 | 1);
           location?: (0 | 1);
           address?: (0 | 1);
+          country?: (0 | 1);
+          city?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
           language?: (0 | 1);
+          crime_occurred_at?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -3970,9 +4093,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4002,9 +4128,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
           };
           tags?: {
@@ -4028,9 +4157,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4063,9 +4195,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
           };
         };
@@ -4084,13 +4219,17 @@ export type ReqType = {
           categoryIds?: string[];
           tagIds?: string[];
           userIds?: string[];
+          country?: string;
+          city?: string;
           createdAtFrom?: Date;
           createdAtTo?: Date;
+          crimeOccurredFrom?: Date;
+          crimeOccurredTo?: Date;
           nearLng?: number;
           nearLat?: number;
           maxDistance?: number;
           bbox?: number[];
-          sortBy?: ("createdAt" | "updatedAt" | "title" | "status" | "priority");
+          sortBy?: ("createdAt" | "updatedAt" | "title" | "status" | "priority" | "crime_occurred_at");
           sortOrder?: ("asc" | "desc");
         };
         get: {
@@ -4099,9 +4238,12 @@ export type ReqType = {
           description?: (0 | 1);
           location?: (0 | 1);
           address?: (0 | 1);
+          country?: (0 | 1);
+          city?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
           language?: (0 | 1);
+          crime_occurred_at?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4154,9 +4296,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4186,9 +4331,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
           };
           tags?: {
@@ -4212,9 +4360,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4247,9 +4398,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
           };
         };
@@ -4266,9 +4420,12 @@ export type ReqType = {
             coordinates?: number[];
           };
           address?: string;
+          country?: string;
+          city?: string;
           status?: ("Pending" | "Approved" | "Rejected" | "InReview");
           priority?: ("Low" | "Medium" | "High");
           language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+          crime_occurred_at?: Date;
           tags?: string[];
           category?: string;
         };
@@ -4278,9 +4435,12 @@ export type ReqType = {
           description?: (0 | 1);
           location?: (0 | 1);
           address?: (0 | 1);
+          country?: (0 | 1);
+          city?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
           language?: (0 | 1);
+          crime_occurred_at?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4333,9 +4493,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4365,9 +4528,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
           };
           tags?: {
@@ -4391,9 +4557,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4426,9 +4595,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
           };
         };
@@ -4449,9 +4621,12 @@ export type ReqType = {
           description?: (0 | 1);
           location?: (0 | 1);
           address?: (0 | 1);
+          country?: (0 | 1);
+          city?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
           language?: (0 | 1);
+          crime_occurred_at?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4504,9 +4679,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4536,9 +4714,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
           };
           tags?: {
@@ -4562,9 +4743,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4597,9 +4781,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
           };
         };
@@ -4617,9 +4804,12 @@ export type ReqType = {
           description?: (0 | 1);
           location?: (0 | 1);
           address?: (0 | 1);
+          country?: (0 | 1);
+          city?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
           language?: (0 | 1);
+          crime_occurred_at?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4657,7 +4847,13 @@ export type ReqType = {
       count: {
         set: {
           status?: ("Pending" | "Approved" | "Rejected" | "InReview");
+          priority?: ("Low" | "Medium" | "High");
+          language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
           categoryId?: string;
+          country?: string;
+          city?: string;
+          createdAtFrom?: Date;
+          createdAtTo?: Date;
         };
         get: {
           qty?: (0 | 1);
@@ -4667,6 +4863,16 @@ export type ReqType = {
 
       statistics: {
         set: {
+          status?: ("Pending" | "Approved" | "Rejected" | "InReview");
+          priority?: ("Low" | "Medium" | "High");
+          language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+          categoryId?: string;
+          country?: string;
+          city?: string;
+          createdAtFrom?: Date;
+          createdAtTo?: Date;
+          crimeOccurredFrom?: Date;
+          crimeOccurredTo?: Date;
         };
         get: {
           _id?: (0 | 1);
@@ -4674,9 +4880,12 @@ export type ReqType = {
           description?: (0 | 1);
           location?: (0 | 1);
           address?: (0 | 1);
+          country?: (0 | 1);
+          city?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
           language?: (0 | 1);
+          crime_occurred_at?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4716,16 +4925,21 @@ export type ReqType = {
           search?: string;
           status?: ("Pending" | "Approved" | "Rejected" | "InReview");
           priority?: ("Low" | "Medium" | "High");
+          language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
           categoryIds?: string[];
           tagIds?: string[];
           userIds?: string[];
+          country?: string;
+          city?: string;
           createdAtFrom?: Date;
           createdAtTo?: Date;
+          crimeOccurredFrom?: Date;
+          crimeOccurredTo?: Date;
           nearLng?: number;
           nearLat?: number;
           maxDistance?: number;
           bbox?: number[];
-          sortBy?: ("createdAt" | "updatedAt" | "title" | "status" | "priority");
+          sortBy?: ("createdAt" | "updatedAt" | "title" | "status" | "priority" | "crime_occurred_at");
           sortOrder?: ("asc" | "desc");
           limit?: number;
         };
@@ -4735,9 +4949,12 @@ export type ReqType = {
           description?: (0 | 1);
           location?: (0 | 1);
           address?: (0 | 1);
+          country?: (0 | 1);
+          city?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
           language?: (0 | 1);
+          crime_occurred_at?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4790,9 +5007,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4822,9 +5042,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
           };
           tags?: {
@@ -4848,9 +5071,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4883,9 +5109,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
           };
         };
@@ -4902,9 +5131,12 @@ export type ReqType = {
           description?: (0 | 1);
           location?: (0 | 1);
           address?: (0 | 1);
+          country?: (0 | 1);
+          city?: (0 | 1);
           status?: (0 | 1);
           priority?: (0 | 1);
           language?: (0 | 1);
+          crime_occurred_at?: (0 | 1);
           createdAt?: (0 | 1);
           updatedAt?: (0 | 1);
           reporter?: {
@@ -4957,9 +5189,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -4989,9 +5224,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
           };
           tags?: {
@@ -5015,9 +5253,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5050,9 +5291,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
           };
         };
@@ -5094,9 +5338,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
           };
         };
       };
@@ -5136,9 +5383,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -5214,9 +5464,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -5287,9 +5540,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -5359,9 +5615,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
             reporter?: {
               _id?: (0 | 1);
               first_name?: (0 | 1);
@@ -5420,9 +5679,12 @@ export type ReqType = {
             description?: (0 | 1);
             location?: (0 | 1);
             address?: (0 | 1);
+            country?: (0 | 1);
+            city?: (0 | 1);
             status?: (0 | 1);
             priority?: (0 | 1);
             language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
           };
         };
       };
@@ -5559,9 +5821,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5611,9 +5876,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5702,9 +5970,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5754,9 +6025,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5842,9 +6116,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5894,9 +6171,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -5979,9 +6259,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6031,9 +6314,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6168,9 +6454,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6220,9 +6509,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6302,9 +6594,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6354,9 +6649,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6437,9 +6735,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6489,9 +6790,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6571,9 +6875,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);
@@ -6623,9 +6930,12 @@ export type ReqType = {
               description?: (0 | 1);
               location?: (0 | 1);
               address?: (0 | 1);
+              country?: (0 | 1);
+              city?: (0 | 1);
               status?: (0 | 1);
               priority?: (0 | 1);
               language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
             };
             blogPosts?: {
               _id?: (0 | 1);

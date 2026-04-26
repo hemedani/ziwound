@@ -2,16 +2,20 @@
   "common": {
     "add": "إضافة",
     "admin": "المسؤول",
+    "all": "الكل",
     "appName": "گزارش",
     "back": "رجوع",
     "cancel": "إلغاء",
     "characters": "حروف",
     "confirmDelete": "هل أنت متأكد أنك تريد حذف هذا؟",
+    "copied": "تم النسخ",
+    "copyLink": "نسخ الرابط",
     "create": "إنشاء",
     "dashboard": "لوحة القيادة",
     "delete": "حذف",
     "edit": "تعديل",
     "error": "خطأ",
+    "export": "تصدير",
     "fileUpload": {
       "browse": "تصفح الملفات",
       "maxFiles": "الحد الأقصى {count} ملفات",
@@ -38,6 +42,7 @@
     "required": "مطلوب",
     "save": "حفظ",
     "search": "بحث",
+    "share": "مشاركة",
     "submit": "إرسال",
     "success": "نجاح",
     "tagSelector": {
@@ -262,7 +267,11 @@
     "categoryUpdated": "تم تحديث الفئة بنجاح.",
     "chartPlaceholder": "عنصر نائب للمخطط",
     "color": "اللون",
+    "country": "الدولة",
+    "city": "المدينة",
     "createdAt": "تاريخ الإنشاء",
+    "from": "من",
+    "to": "إلى",
     "dashboard": "لوحة القيادة",
     "dashboardDescription": "نظرة عامة على حالة نظام التقارير",
     "date": "التاريخ",
@@ -459,7 +468,13 @@
       "location": "الموقع",
       "selectLocation": "اختر الموقع",
       "reset": "مسح الفلاتر",
-      "apply": "تطبيق الفلاتر"
+      "apply": "تطبيق الفلاتر",
+      "country": "الدولة",
+      "selectCountry": "أدخل الدولة",
+      "city": "المدينة",
+      "selectCity": "أدخل المدينة",
+      "language": "اللغة",
+      "crimeOccurredRange": "تاريخ وقوع الجريمة"
     },
     "priority": {
       "all": "جميع الأولويات",
@@ -496,6 +511,11 @@
     "showing": "عرض {from} إلى {to} من {total} نتيجة",
     "withLocation": "مع الموقع",
     "previous": "السابق",
-    "next": "التالي"
+    "next": "التالي",
+    "linkCopiedDesc": "تم نسخ رابط الصفحة إلى الحافظة الخاصة بك.",
+    "exportError": "فشل في تصدير البيانات.",
+    "sharePage": "مشاركة الصفحة",
+    "exportData": "تصدير البيانات",
+    "exportPDF": "تصدير PDF (قريباً)"
   }
 }

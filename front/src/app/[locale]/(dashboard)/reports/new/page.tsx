@@ -48,6 +48,9 @@ const reportSchema = z.object({
   title: z.string().min(1, "report.titleRequired"),
   description: z.string().min(1, "report.descriptionRequired"),
   address: z.string().optional(),
+  country: z.string().min(1, "report.countryRequired"),
+  city: z.string().optional(),
+  crime_occurred_at: z.string().min(1, "report.crimeOccurredRequired"),
   tags: z.array(z.string()).optional(),
   category: z.string().optional(),
   location: z
@@ -99,6 +102,9 @@ export default function NewReportPage() {
       title: "",
       description: "",
       address: "",
+      country: "",
+      city: "",
+      crime_occurred_at: "",
       tags: [],
       category: "",
       location: { address: "" },
@@ -144,6 +150,10 @@ export default function NewReportPage() {
         : undefined,
       documentIds,
       language: locale as ReqType["main"]["report"]["add"]["set"]["language"],
+      status: "Pending",
+      crime_occurred_at: new Date(data.crime_occurred_at),
+      country: data.country,
+      city: data.city,
     });
 
     if (result.success) {
@@ -237,6 +247,67 @@ export default function NewReportPage() {
                     <FormDescription>
                       {field.value?.length || 0} / 1000 {t("common.characters")}
                     </FormDescription>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Country */}
+              <FormField
+                control={form.control}
+                name="country"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t("report.country")} <span className="text-destructive">*</span>
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder={t("report.countryPlaceholder")}
+                        disabled={loading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* City */}
+              <FormField
+                control={form.control}
+                name="city"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("report.city")}</FormLabel>
+                    <FormControl>
+                      <Input
+                        {...field}
+                        placeholder={t("report.cityPlaceholder")}
+                        disabled={loading}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              {/* Crime Occurred At */}
+              <FormField
+                control={form.control}
+                name="crime_occurred_at"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      {t("report.crimeOccurredAt")} <span className="text-destructive">*</span>
+                    </FormLabel>
+                    <FormControl>
+                      <Input
+                        type="date"
+                        {...field}
+                        disabled={loading}
+                      />
+                    </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
