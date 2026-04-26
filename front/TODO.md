@@ -56,8 +56,8 @@
   - [x] Form (React Hook Form integration with shadcn/ui)
   - [x] Popover (for emoji picker)
   - [x] Emoji Picker (emoji-picker-react)
-  - [ ] File Upload component
-  - [ ] Loading/Spinner component
+  - [x] File Upload component
+  - [x] Loading/Spinner component
 - [x] Create reusable form components:
   - [x] FormField (with label, input, error message)
   - [x] FileUploadField (with preview for images)
@@ -67,7 +67,7 @@
   - [x] Header (with language switcher, theme toggle, auth buttons)
   - [x] Footer (simple, multi-lang)
   - [x] Sidebar (for admin panel)
-  - [ ] Navigation (public site)
+  - [x] Navigation (public site)
 - [x] Theme configuration:
   - [x] Dark mode with next-themes
   - [x] Light mode (default)
@@ -139,7 +139,7 @@
   - [x] Recent reports list
   - [x] Charts/graphs (reports over time, by category, by status)
   - [x] Quick actions (approve pending, view users, etc.)
-- [ ] **Reports Management** (`/admin/reports`)
+- [x] **Reports Management** (`/admin/reports`)
   - [x] Data table with all reports
   - [x] Columns: title, reporter, category, status, priority, date, actions
   - [x] Filter by status, category, priority, date range
@@ -425,13 +425,13 @@
   - [x] Create `WarCrimesExport` component (export buttons)
 - [x] **War Crimes Translations**
   - [x] Add all war crimes exploration translation keys to fa.json
-  - [ ] Add all war crimes exploration translation keys to all 9 language files
+  - [x] Add all war crimes exploration translation keys to all 9 language files
   - [x] Translate exploration UI elements (labels, buttons, placeholders, filters)
   - [ ] Test exploration page in RTL (fa, ar) and LTR (en, zh, etc.) layouts
 - [x] **Navigation Integration**
   - [x] Add War Crimes link to main header navigation (desktop + mobile)
   - [x] Add warCrimes translation key to header section
-  - [ ] Add War Crimes link to footer quick links
+  - [x] Add War Crimes link to footer quick links
 
 ## Phase 12: Extended Report Fields (Crime Date & Location)
 
@@ -444,9 +444,9 @@
 - [x] Update War Crimes Statistics to show new charts (country, city, language, monthly crime occurrence)
 - [x] Update CSV Export with new filters
 
-## Phase 13: Public Site Navigation (Optional)
+## Phase 13: Public Site Navigation & Footer Links (Complete)
 
-- [ ] Create Navigation component for public site
+- [x] Create Navigation component for public site
 
 ## Known Issues & Technical Debt
 
