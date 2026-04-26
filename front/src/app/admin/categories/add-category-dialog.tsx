@@ -42,7 +42,7 @@ export function AddCategoryDialog() {
             res?.error || res?.body?.message || t("failedToCreateCategory") || "Failed to create category.",
         });
       }
-    } catch (error) {
+    } catch (_error) {
       toast({
         variant: "destructive",
         title: t("error") || "Error",

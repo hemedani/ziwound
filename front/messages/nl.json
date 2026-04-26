@@ -425,7 +425,14 @@
     "blogPostCreated": "Blogbericht succesvol aangemaakt",
     "blogPostUpdated": "Blogbericht succesvol bijgewerkt",
     "blogPostDeleted": "Blogbericht succesvol verwijderd",
-    "author": "Auteur"
+    "author": "Auteur",
+    "filename": "Bestandsnaam",
+    "size": "Grootte",
+    "uploadedBy": "Geüpload door",
+    "image": "Afbeelding",
+    "video": "Video",
+    "document": "Document",
+    "view": "Bekijken"
   },
   "notFound": {
     "backHome": "Terug naar startpagina",

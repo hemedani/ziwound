@@ -7,7 +7,6 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 import { ArrowLeft, Edit, FileIcon, Calendar, Info } from "lucide-react";
-import { getLesanBaseUrl } from "@/lib/api";
 import { fileSchema, reportSchema } from "@/types/declarations";
 
 export default async function DocumentDetailsPage({ params }: { params: Promise<{ id: string }> }) {
@@ -44,7 +43,6 @@ export default async function DocumentDetailsPage({ params }: { params: Promise<
   }
 
   const documentData = response.body;
-  const baseUrl = getLesanBaseUrl();
 
   return (
     <div className="space-y-6">

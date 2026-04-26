@@ -14,7 +14,6 @@ import {
   FileTextIcon,
   Trash2,
   Eye,
-  Download,
 } from "lucide-react";
 import {
   DropdownMenu,
@@ -57,7 +56,8 @@ export function FilesTable({ files, error }: FilesTableProps) {
     return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + " " + sizes[i];
   };
 
-  const getFileIcon = (mimeType: string) => {
+  const getFileIcon = (mimeType?: string) => {
+    if (!mimeType) return <FileIcon className="w-4 h-4 text-gray-500" />;
     if (mimeType.startsWith("image/")) return <FileImageIcon className="w-4 h-4 text-blue-500" />;
     if (mimeType.startsWith("video/")) return <FileVideoIcon className="w-4 h-4 text-purple-500" />;
     if (mimeType.includes("pdf") || mimeType.includes("document"))
@@ -65,7 +65,13 @@ export function FilesTable({ files, error }: FilesTableProps) {
     return <FileIcon className="w-4 h-4 text-gray-500" />;
   };
 
-  const getFileTypeBadge = (mimeType: string) => {
+  const getFileTypeBadge = (mimeType?: string) => {
+    if (!mimeType)
+      return (
+        <Badge variant="secondary" className="bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300">
+          {t("document") || "Document"}
+        </Badge>
+      );
     if (mimeType.startsWith("image/"))
       return (
         <Badge

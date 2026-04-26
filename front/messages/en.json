@@ -432,7 +432,14 @@
     "blogPostCreated": "Blog post created successfully",
     "blogPostUpdated": "Blog post updated successfully",
     "blogPostDeleted": "Blog post deleted successfully",
-    "author": "Author"
+    "author": "Author",
+    "filename": "Filename",
+    "size": "Size",
+    "uploadedBy": "Uploaded By",
+    "image": "Image",
+    "video": "Video",
+    "document": "Document",
+    "view": "View"
   },
   "notFound": {
     "backHome": "Back to Home",

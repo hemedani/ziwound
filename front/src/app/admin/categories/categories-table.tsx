@@ -7,7 +7,6 @@ import { remove } from "@/app/actions/category/remove";
 import { useToast } from "@/components/ui/use-toast";
 import { categorySchema } from "@/types/declarations";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Trash2, Pencil } from "lucide-react";
 import {

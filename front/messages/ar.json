@@ -425,7 +425,14 @@
     "blogPostCreated": "تم إنشاء المنشور بنجاح",
     "blogPostUpdated": "تم تحديث المنشور بنجاح",
     "blogPostDeleted": "تم حذف المنشور بنجاح",
-    "author": "المؤلف"
+    "author": "المؤلف",
+    "filename": "اسم الملف",
+    "size": "الحجم",
+    "uploadedBy": "تم الرفع بواسطة",
+    "image": "صورة",
+    "video": "فيديو",
+    "document": "مستند",
+    "view": "عرض"
   },
   "notFound": {
     "backHome": "العودة إلى الصفحة الرئيسية",

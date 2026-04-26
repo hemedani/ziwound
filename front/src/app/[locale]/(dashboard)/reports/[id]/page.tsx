@@ -13,8 +13,7 @@ import Image from "next/image";
 import { get as getReport } from "@/app/actions/report/get";
 import dynamic from "next/dynamic";
 import { documentSchema, reportSchema } from "@/types/declarations";
-import { getLesanBaseUrl } from "@/lib/api";
-import { getImageUrl, getImageUploadUrl } from "@/utils/imageUrl";
+import { getImageUploadUrl } from "@/utils/imageUrl";
 
 const ReadonlyMap = dynamic(
   () => import("@/components/map/readonly-map").then((mod) => mod.ReadonlyMap),

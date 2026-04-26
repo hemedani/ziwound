@@ -9,7 +9,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { add as addReport } from "@/app/actions/report/add";
 import { add as addDocument } from "@/app/actions/document/add";
-import { Link, useRouter } from "@/i18n/routing";
+import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
 
 import { Input } from "@/components/ui/input";
@@ -68,7 +68,6 @@ type ReportFormData = z.infer<typeof reportSchema>;
 export default function NewReportPage() {
   const t = useTranslations();
   const locale = useLocale();
-  const router = useRouter();
   const { toast } = useToast();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);

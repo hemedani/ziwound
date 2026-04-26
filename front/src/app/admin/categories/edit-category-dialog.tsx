@@ -49,7 +49,7 @@ export function EditCategoryDialog({ category, open, onOpenChange }: EditCategor
             res?.error || res?.body?.message || t("failedToUpdateCategory") || "Failed to update category.",
         });
       }
-    } catch (error) {
+    } catch (_error) {
       toast({
         variant: "destructive",
         title: t("error") || "Error",

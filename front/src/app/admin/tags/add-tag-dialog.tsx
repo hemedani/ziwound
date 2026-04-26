@@ -42,7 +42,7 @@ export function AddTagDialog() {
             res?.error || res?.body?.message || t("failedToCreateTag") || "Failed to create tag.",
         });
       }
-    } catch (error) {
+    } catch (_error) {
       toast({
         variant: "destructive",
         title: t("error") || "Error",

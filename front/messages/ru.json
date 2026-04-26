@@ -425,7 +425,14 @@
     "blogPostCreated": "Пост в блоге успешно создан",
     "blogPostUpdated": "Пост в блоге успешно обновлен",
     "blogPostDeleted": "Пост в блоге успешно удален",
-    "author": "Автор"
+    "author": "Автор",
+    "filename": "Имя файла",
+    "size": "Размер",
+    "uploadedBy": "Загрузил",
+    "image": "Изображение",
+    "video": "Видео",
+    "document": "Документ",
+    "view": "Просмотр"
   },
   "notFound": {
     "backHome": "Вернуться на главную",

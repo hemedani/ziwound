@@ -425,7 +425,14 @@
     "blogPostCreated": "博客文章创建成功",
     "blogPostUpdated": "博客文章更新成功",
     "blogPostDeleted": "博客文章删除成功",
-    "author": "作者"
+    "author": "作者",
+    "filename": "文件名",
+    "size": "大小",
+    "uploadedBy": "上传者",
+    "image": "图片",
+    "video": "视频",
+    "document": "文档",
+    "view": "查看"
   },
   "notFound": {
     "backHome": "返回首页",

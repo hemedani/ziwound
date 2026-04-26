@@ -49,7 +49,7 @@ export function EditTagDialog({ tag, open, onOpenChange }: EditTagDialogProps) {
             res?.error || res?.body?.message || t("failedToUpdateTag") || "Failed to update tag.",
         });
       }
-    } catch (error) {
+    } catch (_error) {
       toast({
         variant: "destructive",
         title: t("error") || "Error",

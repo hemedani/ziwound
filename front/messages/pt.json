@@ -425,7 +425,14 @@
     "blogPostCreated": "Postagem do blog criada com sucesso",
     "blogPostUpdated": "Postagem do blog atualizada com sucesso",
     "blogPostDeleted": "Postagem do blog excluída com sucesso",
-    "author": "Autor"
+    "author": "Autor",
+    "filename": "Nome do arquivo",
+    "size": "Tamanho",
+    "uploadedBy": "Enviado por",
+    "image": "Imagem",
+    "video": "Vídeo",
+    "document": "Documento",
+    "view": "Visualizar"
   },
   "notFound": {
     "backHome": "Voltar ao início",

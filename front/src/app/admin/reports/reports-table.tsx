@@ -138,7 +138,7 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
           router.refresh();
         });
       }
-    } catch (error) {
+    } catch (_error) {
       toast({
         variant: "destructive",
         title: t("error") || "Error",
@@ -159,7 +159,7 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
           router.refresh();
         });
       }
-    } catch (error) {
+    } catch (_error) {
       toast({
         variant: "destructive",
         title: t("error") || "Error",

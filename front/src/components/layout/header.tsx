@@ -67,26 +67,14 @@ export function Header() {
           <span className="font-bold text-xl">{t("appName")}</span>
         </Link>
 
-        {/* Navigation links - only show on public routes */}
-        {!pathname.startsWith("/admin") && isAuthenticated && (
+        {/* Navigation links - show on public routes for all users */}
+        {!pathname.startsWith("/admin") && !pathname.includes("/login") && !pathname.includes("/register") && (
           <nav className="hidden md:flex items-center gap-6">
             <Link
-              href={`/${locale}/reports/my`}
+              href={`/${locale}/war-crimes`}
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              {t("myReports")}
-            </Link>
-            <Link
-              href={`/${locale}/reports/new`}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              {t("newReport")}
-            </Link>
-            <Link
-              href={`/${locale}/documents`}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              {t("documents")}
+              {t("warCrimes")}
             </Link>
             <Link
               href={`/${locale}/blog`}
@@ -95,11 +83,27 @@ export function Header() {
               {t("blog")}
             </Link>
             <Link
-              href={`/${locale}/war-crimes`}
+              href={`/${locale}/documents`}
               className="text-sm font-medium hover:text-primary transition-colors"
             >
-              {t("warCrimes")}
+              {t("documents")}
             </Link>
+            {isAuthenticated && (
+              <>
+                <Link
+                  href={`/${locale}/reports/my`}
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  {t("myReports")}
+                </Link>
+                <Link
+                  href={`/${locale}/reports/new`}
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  {t("newReport")}
+                </Link>
+              </>
+            )}
           </nav>
         )}
 
@@ -294,25 +298,13 @@ export function Header() {
                           {t("warCrimes")}
                         </Link>
                       </>
-                    ) : (
+) : (
                       <>
                         <Link
-                          href={`/${locale}/reports/my`}
-                          className="text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("myReports")}
-                        </Link>
-                        <Link
-                          href={`/${locale}/reports/new`}
-                          className="text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("newReport")}
-                        </Link>
-                        <Link
-                          href={`/${locale}/documents`}
+                          href={`/${locale}/war-crimes`}
                           className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
                         >
-                          {t("documents")}
+                          {t("warCrimes")}
                         </Link>
                         <Link
                           href={`/${locale}/blog`}
@@ -321,11 +313,27 @@ export function Header() {
                           {t("blog")}
                         </Link>
                         <Link
-                          href={`/${locale}/war-crimes`}
+                          href={`/${locale}/documents`}
                           className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
                         >
-                          {t("warCrimes")}
+                          {t("documents")}
                         </Link>
+                        {isAuthenticated && (
+                          <>
+                            <Link
+                              href={`/${locale}/reports/my`}
+                              className="text-sm font-medium hover:text-primary transition-colors"
+                            >
+                              {t("myReports")}
+                            </Link>
+                            <Link
+                              href={`/${locale}/reports/new`}
+                              className="text-sm font-medium hover:text-primary transition-colors"
+                            >
+                              {t("newReport")}
+                            </Link>
+                          </>
+                        )}
                       </>
                     )}
                   </nav>

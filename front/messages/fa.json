@@ -432,7 +432,14 @@
     "blogPostCreated": "پست وبلاگ با موفقیت ایجاد شد",
     "blogPostUpdated": "پست وبلاگ با موفقیت به‌روزرسانی شد",
     "blogPostDeleted": "پست وبلاگ با موفقیت حذف شد",
-    "author": "نویسنده"
+    "author": "نویسنده",
+    "filename": "نام فایل",
+    "size": "اندازه",
+    "uploadedBy": "آپلود شده توسط",
+    "image": "تصویر",
+    "video": "ویدیو",
+    "document": "سند",
+    "view": "مشاهده"
   },
   "notFound": {
     "backHome": "بازگشت به صفحه اصلی",
