@@ -15,8 +15,12 @@ export const getsFn: ActFn = async (body) => {
       categoryIds,
       tagIds,
       userIds,
+      country,
+      city,
       createdAtFrom,
       createdAtTo,
+      crimeOccurredFrom,
+      crimeOccurredTo,
       nearLng,
       nearLat,
       maxDistance,
@@ -51,6 +55,18 @@ export const getsFn: ActFn = async (body) => {
   language &&
     pipeline.push({
       $match: { language },
+    });
+
+  // Country filter
+  country &&
+    pipeline.push({
+      $match: { country },
+    });
+
+  // City filter
+  city &&
+    pipeline.push({
+      $match: { city },
     });
 
   // Category filter (array of IDs)
@@ -88,6 +104,17 @@ export const getsFn: ActFn = async (body) => {
   createdAtTo &&
     pipeline.push({
       $match: { createdAt: { $lte: createdAtTo } },
+    });
+
+  // Crime occurred date range filters
+  crimeOccurredFrom &&
+    pipeline.push({
+      $match: { crime_occurred_at: { $gte: crimeOccurredFrom } },
+    });
+
+  crimeOccurredTo &&
+    pipeline.push({
+      $match: { crime_occurred_at: { $lte: crimeOccurredTo } },
     });
 
   // Geospatial filters

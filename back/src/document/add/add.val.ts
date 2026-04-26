@@ -8,7 +8,7 @@ export const addValidator = () => {
   return object({
     set: object({
       ...basePure,
-      language: language,
+      language: language as any,
       documentFileIds: optional(array(objectIdValidation)),
     }),
     get: selectStruct("document", 1),

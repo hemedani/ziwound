@@ -1,4 +1,5 @@
 import {
+  date,
   defaulted,
   enums,
   optional,
@@ -30,9 +31,12 @@ export const report_pure = {
   description: string(),
   location: optional(geoJSONStruct("Point")),
   address: optional(string()),
+  country: optional(string()),
+  city: optional(string()),
   status: defaulted(report_status_emums, "Pending"),
   priority: optional(enums(["Low", "Medium", "High"])),
-  language: optional(language_enums),
+  language: language_enums,
+  crime_occurred_at: date(),
   ...createUpdateAt,
 };
 

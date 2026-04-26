@@ -22,11 +22,16 @@ export const exportCSVFn: ActFn = async (body) => {
       search,
       status,
       priority,
+      language,
       categoryIds,
       tagIds,
       userIds,
+      country,
+      city,
       createdAtFrom,
       createdAtTo,
+      crimeOccurredFrom,
+      crimeOccurredTo,
       nearLng,
       nearLat,
       maxDistance,
@@ -56,6 +61,24 @@ export const exportCSVFn: ActFn = async (body) => {
   priority &&
     pipeline.push({
       $match: { priority },
+    });
+
+  // Language filter
+  language &&
+    pipeline.push({
+      $match: { language },
+    });
+
+  // Country filter
+  country &&
+    pipeline.push({
+      $match: { country },
+    });
+
+  // City filter
+  city &&
+    pipeline.push({
+      $match: { city },
     });
 
   // Category filter (array of IDs)
@@ -93,6 +116,17 @@ export const exportCSVFn: ActFn = async (body) => {
   createdAtTo &&
     pipeline.push({
       $match: { createdAt: { $lte: createdAtTo } },
+    });
+
+  // Crime occurred date range filters
+  crimeOccurredFrom &&
+    pipeline.push({
+      $match: { crime_occurred_at: { $gte: crimeOccurredFrom } },
+    });
+
+  crimeOccurredTo &&
+    pipeline.push({
+      $match: { crime_occurred_at: { $lte: crimeOccurredTo } },
     });
 
   // Geospatial filters
