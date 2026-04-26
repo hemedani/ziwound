@@ -444,6 +444,10 @@
 - [x] Update War Crimes Statistics to show new charts (country, city, language, monthly crime occurrence)
 - [x] Update CSV Export with new filters
 
+## Phase 13: Public Site Navigation (Optional)
+
+- [ ] Create Navigation component for public site
+
 ## Known Issues & Technical Debt
 
 - [x] Check if all server actions properly handle errors
