@@ -448,12 +448,70 @@
 
 - [x] Create Navigation component for public site
 
+## Phase 14: Multi-step Report Form (Declaration-Driven)
+**Priority**: HIGH – Replaces simple report submission with declaration-driven multi-step form
+
+**Declaration File**: `src/types/declarations.ts` (contains `reportSchema` and related types)
+
+**Implementation Steps**:
+
+- [x] 14.1 Analyze `src/types/declarations.ts` to understand the complete report schema structure
+- [x] 14.2 Create a Zod schema derived from the declaration types for runtime validation
+  - [x] Created src/types/report-schema.ts with reportFormSchema, ReportStatus, ReportPriority types, step schemas
+- [x] 14.3 Build a declaration parser that extracts fields and their types from the file
+  - [x] Created src/lib/declaration-parser.ts with REPORT_FIELDS and REPORT_STEPS
+- [x] 14.4 Create step definitions based on logical grouping of fields
+  - [x] Step 1: Basic Information (title, description, language)
+  - [x] Step 2: Crime Details (crime_occurred_at, priority)
+  - [x] Step 3: Location (location, address, country, city)
+  - [x] Step 4: Media & Documents (attachments, tags, category)
+  - [x] Step 5: Review & Submit
+- [ ] 14.5 Build generic `StepRenderer` component that renders shadcn form fields based on declaration
+- [ ] 14.5 Build generic `StepRenderer` component that renders shadcn form fields based on declaration
+- [ ] 14.6 Implement step 1 UI (Basic Information) with appropriate form fields
+- [ ] 14.7 Implement step 2 UI (Crime Details) with date picker and status/priority selects
+- [ ] 14.8 Implement step 3 UI (Location) with map picker and address fields
+- [ ] 14.9 Implement step 4 UI (Media & Documents) with upload component
+- [ ] 14.10 Implement step 5 UI (Review & Submit) showing all collected data
+- [ ] 14.11 Add navigation state management (next/previous, step persistence)
+- [ ] 14.12 Implement form data persistence in localStorage (save progress)
+- [ ] 14.13 Add i18n keys for all new field labels and validation messages
+- [ ] 14.14 Integrate with existing server action for report submission
+- [ ] 14.15 Add progress indicator (stepper component)
+- [ ] 14.16 Handle validation per step (only validate visible fields)
+- [ ] 14.17 Add accessibility features (announce step changes, keyboard navigation)
+- [ ] 14.18 Test full submission flow with all document types
+- [ ] 14.19 Remove/replace old simple report form components
+- [ ] 14.20 Update my-reports page to use new form structure for edits
+
+## Phase 15: Public Site Navigation (optional)
+- [ ] 15.1 Create landing page with hero section
+- [ ] 15.2 Add about page with mission statement
+- [ ] 15.3 Create contact page with form
+- [ ] 15.4 Add FAQ page
+- [ ] 15.5 Implement breadcrumbs navigation
+- [ ] 15.6 Add footer with links to legal pages
+- [ ] 15.7 Create 404 page with helpful suggestions
+- [ ] 15.8 Implement cookie consent banner
+- [ ] 15.9 Add privacy policy and terms of service pages
+- [ ] 15.10 Implement newsletter signup (if needed)
+
+## Phase 16: Final Polish & Deployment
+- [ ] 16.1 Run full Lighthouse audit and achieve 90+ scores
+- [ ] 16.2 Test all 9 languages for RTL/LTR display issues
+- [ ] 16.3 Verify WCAG AA compliance with screen readers
+- [ ] 16.4 Run end-to-end tests for all major user journeys
+- [ ] 16.5 Update documentation (README, API, deployment guide)
+- [ ] 16.6 Prepare production build and deploy to Vercel/Railway
+- [ ] 16.7 Configure monitoring and error tracking (Sentry)
+- [ ] 16.8 Set up backup and disaster recovery procedures
+
 ## Known Issues & Technical Debt
 
-- [x] Check if all server actions properly handle errors
-- [x] Verify JWT cookie handling is secure (httpOnly, secure flags)
-- [x] Ensure all forms have proper loading states
-- [x] Test all RTL layouts for alignment issues
-- [x] Verify all translation keys exist in all language files
+- [ ] Check if all server actions properly handle errors
+- [ ] Verify JWT cookie handling is secure (httpOnly, secure flags)
+- [ ] Ensure all forms have proper loading states
+- [ ] Test all RTL layouts for alignment issues
+- [ ] Verify all translation keys exist in all language files
 
 **How to proceed**: Open `CONTINUE.md` in ZED, tell the AI agent: "Continue with next unchecked step from TODO.md". After each step the agent must update TODO.md and commit.

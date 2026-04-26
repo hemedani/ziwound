@@ -55,7 +55,14 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - ✅ Phase 10: Blog Section Implementation
 - ✅ Phase 11: War Crimes Exploration Page
 - ✅ Phase 12: Extended Report Fields (Crime Date & Location) - COMPLETE
-- **Next**: Phase 13 - Public Site Navigation (optional)
+- ✅ Phase 13 (Extended Report Fields): 100% complete
+- **Next**: Phase 14 - Multi-step Report Form (Declaration-Driven) - Step 14.1: Analyze `src/types/declarations.ts` to understand the complete report schema structure
+
+**Declaration-Driven Development Requirement**:
+- All new form components for report submission must be generated directly from the types in `front/src/types/declarations.ts`.
+- Do not hardcode fields, options, or validation rules. Derive everything from the declaration file.
+- If you encounter a field type that is not yet declared, add it to `declarations.ts` first, then proceed to build the UI.
+- The declaration file is the single source of truth. Any inconsistencies between the form and the declaration should be resolved by updating the declaration, not the form.
 
 **What's Done**:
 
