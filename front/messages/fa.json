@@ -224,7 +224,7 @@
     "register": "ثبت‌نام",
     "documents": "اسناد عمومی",
     "blog": "وبلاگ",
-    "warCrimes": "کاوش جنایات"
+    "warCrimes": "کاوش جنایات جنگی"
   },
   "footer": {
     "about": "درباره ما",
@@ -239,7 +239,8 @@
     "quickLinks": "لینک‌های سریع",
     "submitReport": "ثبت گزارش",
     "support": "پشتیبانی",
-    "termsOfService": "شرایط خدمات"
+    "termsOfService": "شرایط خدمات",
+    "warCrimes": "کاوش جنایات جنگی"
   },
   "admin": {
     "actions": "عملیات",

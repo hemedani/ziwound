@@ -217,7 +217,7 @@
     "register": "Kayıt Ol",
     "documents": "Genel Belgeler",
     "blog": "Blog",
-    "warCrimes": "Savaş Suçları"
+    "warCrimes": "Savaş Suçları Keşfi"
   },
   "footer": {
     "about": "Hakkımızda",
@@ -232,6 +232,7 @@
     "quickLinks": "Hızlı Bağlantılar",
     "submitReport": "Rapor Gönder",
     "support": "Destek",
+    "warCrimes": "Savaş Suçları Keşfi",
     "termsOfService": "Hizmet Şartları"
   },
   "admin": {

@@ -217,7 +217,7 @@
     "register": "Registreren",
     "documents": "Openbare Documenten",
     "blog": "Blog",
-    "warCrimes": "Oorlogsmisdrijven"
+    "warCrimes": "Oorlogsmisdrijven Verkenning"
   },
   "footer": {
     "about": "Over Ons",
@@ -232,6 +232,7 @@
     "quickLinks": "Snelle Links",
     "submitReport": "Rapport Indienen",
     "support": "Ondersteuning",
+    "warCrimes": "Oorlogsmisdrijven Verkenning",
     "termsOfService": "Servicevoorwaarden"
   },
   "admin": {

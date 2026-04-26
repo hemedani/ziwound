@@ -46,6 +46,14 @@ export function Footer() {
               </li>
               <li>
                 <Link
+                  href={`/${locale}/war-crimes`}
+                  className="text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {t("warCrimes")}
+                </Link>
+              </li>
+              <li>
+                <Link
                   href={`/${locale}/about`}
                   className="text-sm text-muted-foreground hover:text-foreground transition-colors"
                 >

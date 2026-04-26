@@ -217,7 +217,7 @@
     "register": "إنشاء حساب",
     "documents": "الوثائق العامة",
     "blog": "وبلاگ",
-    "warCrimes": "استكشاف الجرائم"
+    "warCrimes": "استكشاف جرائم الحرب"
   },
   "footer": {
     "about": "معلومات عنا",
@@ -232,7 +232,8 @@
     "quickLinks": "روابط سريعة",
     "submitReport": "تقديم تقرير",
     "support": "الدعم",
-    "termsOfService": "شروط الخدمة"
+    "termsOfService": "شروط الخدمة",
+    "warCrimes": "استكشاف جرائم الحرب"
   },
   "admin": {
     "actions": "الإجراءات",

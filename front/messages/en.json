@@ -224,14 +224,14 @@
     "register": "Register",
     "documents": "Public Documents",
     "blog": "Blog",
-    "warCrimes": "War Crimes"
+    "warCrimes": "War Crimes Exploration"
   },
-  "footer": {
+"footer": {
     "about": "About Us",
-    "appName": "Gozarish",
-    "contact": "Contact",
-    "copyright": "© {year} Gozarish. All rights reserved.",
-    "description": "A fast and secure way to report citizen issues to the municipality.",
+    "appName": "Report",
+    "contact": "Contact Us",
+    "copyright": "© {year} Report. All rights reserved.",
+    "description": "A fast and secure way to report issues to the municipality.",
     "faq": "FAQ",
     "help": "Help Center",
     "myReports": "My Reports",
@@ -239,7 +239,8 @@
     "quickLinks": "Quick Links",
     "submitReport": "Submit Report",
     "support": "Support",
-    "termsOfService": "Terms of Service"
+    "termsOfService": "Terms of Service",
+    "warCrimes": "War Crimes Exploration"
   },
   "admin": {
     "actions": "Actions",

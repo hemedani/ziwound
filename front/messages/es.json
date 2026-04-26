@@ -217,7 +217,7 @@
     "register": "Registrarse",
     "documents": "Documentos Públicos",
     "blog": "Blog",
-    "warCrimes": "Crímenes de Guerra"
+    "warCrimes": "Exploración de Crímenes de Guerra"
   },
   "footer": {
     "about": "Sobre Nosotros",
@@ -232,6 +232,7 @@
     "quickLinks": "Enlaces Rápidos",
     "submitReport": "Enviar Reporte",
     "support": "Soporte",
+    "warCrimes": "Exploración de Crímenes de Guerra",
     "termsOfService": "Términos de Servicio"
   },
   "admin": {
