@@ -1,4 +1,5 @@
 import {
+  coerce,
   date,
   defaulted,
   enums,
@@ -16,7 +17,7 @@ import {
   user_excludes,
 } from "./excludes.ts";
 import { geoJSONStruct } from "./utils/geoJSONStruct.ts";
-import { language_enums } from "./document.ts";
+import { language_enums, type LanguageCode } from "./document.ts";
 
 export const report_status_array = [
   "Pending",
@@ -33,10 +34,27 @@ export const report_pure = {
   address: optional(string()),
   country: optional(string()),
   city: optional(string()),
-  status: defaulted(report_status_emums, "Pending"),
-  priority: optional(enums(["Low", "Medium", "High"])),
-  language: language_enums,
-  crime_occurred_at: date(),
+  status: defaulted(
+    coerce(
+      report_status_emums,
+      string(),
+      (value) => value as typeof report_status_array[number],
+    ),
+    "Pending",
+  ),
+  priority: optional(
+    coerce(
+      enums(["Low", "Medium", "High"]),
+      string(),
+      (value) => value as "Low" | "Medium" | "High",
+    ),
+  ),
+  selected_language: coerce(
+    language_enums,
+    string(),
+    (value) => value as LanguageCode,
+  ),
+  crime_occurred_at: coerce(date(), string(), (value) => new Date(value)),
   ...createUpdateAt,
 };
 

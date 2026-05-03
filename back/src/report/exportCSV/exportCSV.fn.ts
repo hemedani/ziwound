@@ -4,16 +4,18 @@ import { report } from "../../../mod.ts";
 function arrayToCSV(data: any[]): string {
   if (data.length === 0) return "";
   const headers = Object.keys(data[0]);
-  const csvRows = data.map(row =>
-    headers.map(header => {
+  const csvRows = data.map((row) =>
+    headers.map((header) => {
       const value = row[header];
       if (Array.isArray(value)) {
-        return `"${value.join(', ')}"`;
+        return `"${value.join(", ")}"`;
       }
-      return typeof value === 'string' && value.includes(',') ? `"${value}"` : value;
-    }).join(',')
+      return typeof value === "string" && value.includes(",")
+        ? `"${value}"`
+        : value;
+    }).join(",")
   );
-  return [headers.join(','), ...csvRows].join('\n');
+  return [headers.join(","), ...csvRows].join("\n");
 }
 
 export const exportCSVFn: ActFn = async (body) => {
@@ -22,7 +24,7 @@ export const exportCSVFn: ActFn = async (body) => {
       search,
       status,
       priority,
-      language,
+      selected_language,
       categoryIds,
       tagIds,
       userIds,
@@ -64,9 +66,9 @@ export const exportCSVFn: ActFn = async (body) => {
     });
 
   // Language filter
-  language &&
+  selected_language &&
     pipeline.push({
-      $match: { language },
+      $match: { selected_language },
     });
 
   // Country filter
@@ -135,23 +137,23 @@ export const exportCSVFn: ActFn = async (body) => {
       $match: {
         location: {
           $geoWithin: {
-            $box: [[bbox[0], bbox[1]], [bbox[2], bbox[3]]]
-          }
-        }
-      }
+            $box: [[bbox[0], bbox[1]], [bbox[2], bbox[3]]],
+          },
+        },
+      },
     });
   }
 
   if (nearLng !== undefined && nearLat !== undefined) {
     const centerSphere: any = {
-      $centerSphere: [[nearLng, nearLat], (maxDistance || 10000) / 6378100]  // default 10km
+      $centerSphere: [[nearLng, nearLat], (maxDistance || 10000) / 6378100], // default 10km
     };
     pipeline.push({
       $match: {
         location: {
-          $geoWithin: centerSphere
-        }
-      }
+          $geoWithin: centerSphere,
+        },
+      },
     });
   }
 

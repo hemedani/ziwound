@@ -3,7 +3,7 @@ import { document } from "../../../mod.ts";
 
 export const updateFn: ActFn = async (body) => {
   const {
-    set: { _id, title, description, language },
+    set: { _id, title, description, selected_language },
     get,
   } = body.details;
 
@@ -13,7 +13,7 @@ export const updateFn: ActFn = async (body) => {
 
   if (title) updateObj.title = title;
   if (description) updateObj.description = description;
-  if (language) updateObj.language = language;
+  if (selected_language) updateObj.selected_language = selected_language;
 
   return await document.findOneAndUpdate({
     filter: { _id: new ObjectId(_id as string) },

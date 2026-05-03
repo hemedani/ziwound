@@ -11,7 +11,7 @@ export const getsFn: ActFn = async (body) => {
       search,
       status,
       priority,
-      language,
+      selected_language,
       categoryIds,
       tagIds,
       userIds,
@@ -52,9 +52,9 @@ export const getsFn: ActFn = async (body) => {
     });
 
   // Language filter
-  language &&
+  selected_language &&
     pipeline.push({
-      $match: { language },
+      $match: { selected_language },
     });
 
   // Country filter
@@ -123,23 +123,23 @@ export const getsFn: ActFn = async (body) => {
       $match: {
         location: {
           $geoWithin: {
-            $box: [[bbox[0], bbox[1]], [bbox[2], bbox[3]]]
-          }
-        }
-      }
+            $box: [[bbox[0], bbox[1]], [bbox[2], bbox[3]]],
+          },
+        },
+      },
     });
   }
 
   if (nearLng !== undefined && nearLat !== undefined) {
     const centerSphere: any = {
-      $centerSphere: [[nearLng, nearLat], (maxDistance || 10000) / 6378100]  // default 10km, earth radius in meters
+      $centerSphere: [[nearLng, nearLat], (maxDistance || 10000) / 6378100], // default 10km, earth radius in meters
     };
     pipeline.push({
       $match: {
         location: {
-          $geoWithin: centerSphere
-        }
-      }
+          $geoWithin: centerSphere,
+        },
+      },
     });
   }
 

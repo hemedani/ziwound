@@ -10,7 +10,7 @@ export const getsFn: ActFn = async (body) => {
       skip,
       search,
       reportId,
-      language,
+      selected_language,
       documentTypes,
       sortBy,
       sortOrder,
@@ -32,10 +32,10 @@ export const getsFn: ActFn = async (body) => {
       $match: { "report._id": new ObjectId(reportId as string) },
     });
 
-  // Filter by language
-  language &&
+  // Filter by selected_language
+  selected_language &&
     pipeline.push({
-      $match: { language },
+      $match: { selected_language },
     });
 
   // Filter by document file types

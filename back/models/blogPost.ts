@@ -77,8 +77,10 @@ export const blogPostModel = () =>
 
 export const createBlogPostTextIndex = async () => {
   const collection = coreApp.odm.getCollection("blogPost");
-  await collection.createIndex({
-    title: "text",
-    content: "text",
-  });
+  await collection.createIndex(
+    {
+      title: "text",
+      content: "text",
+    },
+  );
 };

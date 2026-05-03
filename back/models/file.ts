@@ -1,4 +1,5 @@
 import {
+  coerce,
   enums,
   number,
   optional,
@@ -14,7 +15,11 @@ export const pure_file = {
   name: string(),
   mimeType: string(),
   size: number(),
-  type: enums(["image", "video", "docs"]),
+  type: coerce(
+    enums(["image", "video", "docs"]),
+    string(),
+    (value) => value as "image" | "video" | "docs",
+  ),
   alt_text: optional(string()),
   ...createUpdateAt,
 };

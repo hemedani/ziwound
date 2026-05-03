@@ -50,7 +50,11 @@ export const emailPattern = pattern(
 // 	},
 // );
 
-export const user_genders = enums(["Male", "Female"]);
+export const user_genders = coerce(
+  enums(["Male", "Female"]),
+  string(),
+  (value) => value as "Male" | "Female",
+);
 
 export const user_pure = {
   first_name: string(),
@@ -65,7 +69,14 @@ export const user_pure = {
   // national_number: is_valid_national_number_struct,
   address: optional(string()),
 
-  level: defaulted(user_level_emums, "Ordinary"),
+  level: defaulted(
+    coerce(
+      user_level_emums,
+      string(),
+      (value) => value as typeof user_level_array[number],
+    ),
+    "Ordinary",
+  ),
 
   email: emailPattern,
   password: string(),
@@ -139,11 +150,13 @@ export const users = () =>
 export const createUserTextIndex = async () => {
   const collection = coreApp.odm.getCollection("user");
   try {
-    await collection.createIndex({
-      "first_name": "text",
-      "last_name": "text",
-      "email": "text",
-    });
+    await collection.createIndex(
+      {
+        first_name: "text",
+        last_name: "text",
+        email: "text",
+      },
+    );
   } catch (error) {
     console.log(
       "Text index already exists or creation failed:",

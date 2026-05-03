@@ -1,9 +1,7 @@
-import { enums, optional, type RelationDataType, string } from "lesan";
+import { coerce, enums, optional, type RelationDataType, string } from "lesan";
 import { coreApp } from "../mod.ts";
 import { createUpdateAt } from "@lib";
-import {
-  file_excludes,
-} from "./excludes.ts";
+import { file_excludes } from "./excludes.ts";
 
 export const language_array = [
   "en",
@@ -40,7 +38,9 @@ export const language_enums = enums(language_array);
 export const document_pure = {
   title: string(),
   description: optional(string()),
-  language: optional(language_enums),
+  selected_language: optional(
+    coerce(language_enums, string(), (value) => value as LanguageCode),
+  ),
   ...createUpdateAt,
 };
 

@@ -8,7 +8,7 @@ export const updateValidator = () => {
       _id: objectIdValidation,
       title: optional(string()),
       description: optional(string()),
-      language: optional(enums(language_array)),
+      selected_language: optional(enums(language_array)),
     }),
     get: selectStruct("document", 2),
   });
