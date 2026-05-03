@@ -34,6 +34,7 @@
     "logout": "Sair",
     "myReports": "Meus Relatórios",
     "next": "Próximo",
+    "of": "de",
     "noDescription": "Nenhuma descrição fornecida.",
     "optional": "Opcional",
     "previous": "Anterior",
@@ -43,6 +44,7 @@
     "save": "Salvar",
     "search": "Buscar",
     "share": "Compartilhar",
+    "step": "Etapa",
     "submit": "Enviar",
     "success": "Sucesso",
     "tagSelector": {

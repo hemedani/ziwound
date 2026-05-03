@@ -34,6 +34,7 @@
     "logout": "تسجيل الخروج",
     "myReports": "تقاريري",
     "next": "التالي",
+    "of": "من",
     "noDescription": "لم يتم تقديم وصف.",
     "optional": "اختياري",
     "previous": "السابق",
@@ -43,6 +44,7 @@
     "save": "حفظ",
     "search": "بحث",
     "share": "مشاركة",
+    "step": "خطوة",
     "submit": "إرسال",
     "success": "نجاح",
     "tagSelector": {

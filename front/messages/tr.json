@@ -34,6 +34,7 @@
     "logout": "Çıkış Yap",
     "myReports": "Raporlarım",
     "next": "İleri",
+    "of": "/",
     "noDescription": "Açıklama sağlanmadı.",
     "optional": "İsteğe Bağlı",
     "previous": "Önceki",
@@ -43,6 +44,7 @@
     "save": "Kaydet",
     "search": "Ara",
     "share": "Paylaş",
+    "step": "Adım",
     "submit": "Gönder",
     "success": "Başarılı",
     "tagSelector": {

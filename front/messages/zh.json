@@ -34,6 +34,7 @@
     "logout": "退出",
     "myReports": "我的报告",
     "next": "下一页",
+    "of": "/",
     "noDescription": "未提供描述。",
     "optional": "可选",
     "previous": "上一页",
@@ -43,6 +44,7 @@
     "save": "保存",
     "search": "搜索",
     "share": "分享",
+    "step": "步骤",
     "submit": "提交",
     "success": "成功",
     "tagSelector": {
