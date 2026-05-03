@@ -3,7 +3,7 @@ import { report } from "../../../mod.ts";
 
 export const updateRelationsFn: ActFn = async (body) => {
   const {
-    set: { _id, tags, category, documentIds, documentIdsToRemove },
+    set: { _id, tags, category, documentIds, documentIdsToRemove, hostileCountryIds, hostileCountryIdsToRemove, attackedCountryIds, attackedCountryIdsToRemove },
     get,
   } = body.details;
 
@@ -65,6 +65,68 @@ export const updateRelationsFn: ActFn = async (body) => {
           _ids: documentIdsToRemove.map((id: string) => new ObjectId(id)),
           relatedRelations: {
             report: true,
+          },
+        },
+      },
+      projection: get,
+    });
+  }
+
+  if (hostileCountryIds) {
+    await report.addRelation({
+      filters: { _id: reportId },
+      relations: {
+        hostileCountries: {
+          _ids: hostileCountryIds.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            hostileReports: true,
+          },
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
+
+  if (hostileCountryIdsToRemove) {
+    await report.removeRelation({
+      filters: { _id: reportId },
+      relations: {
+        hostileCountries: {
+          _ids: hostileCountryIdsToRemove.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            hostileReports: true,
+          },
+        },
+      },
+      projection: get,
+    });
+  }
+
+  if (attackedCountryIds) {
+    await report.addRelation({
+      filters: { _id: reportId },
+      relations: {
+        attackedCountries: {
+          _ids: attackedCountryIds.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            attackedReports: true,
+          },
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
+
+  if (attackedCountryIdsToRemove) {
+    await report.removeRelation({
+      filters: { _id: reportId },
+      relations: {
+        attackedCountries: {
+          _ids: attackedCountryIdsToRemove.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            attackedReports: true,
           },
         },
       },

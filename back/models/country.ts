@@ -1,5 +1,5 @@
 import { coreApp } from "../mod.ts";
-import { type RelationDataType, string } from "lesan";
+import { type RelationDataType, type RelationSortOrderType, string } from "lesan";
 import { pure_location, user_excludes } from "@model";
 
 export const country_pure = {
@@ -26,6 +26,16 @@ export const country_relations = {
     optional: true,
     excludes: user_excludes,
     relatedRelations: {},
+  },
+  provinces: {
+    schemaName: "province",
+    type: "multiple" as RelationDataType,
+    optional: true,
+    relatedRelations: {
+      country: {
+        type: "single" as RelationDataType,
+      },
+    },
   },
 };
 

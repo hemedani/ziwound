@@ -9,6 +9,10 @@ export const updateRelationsValidator = () => {
       category: optional(objectIdValidation),
       documentIds: optional(array(objectIdValidation)),
       documentIdsToRemove: optional(array(objectIdValidation)),
+      hostileCountryIds: optional(array(objectIdValidation)),
+      hostileCountryIdsToRemove: optional(array(objectIdValidation)),
+      attackedCountryIds: optional(array(objectIdValidation)),
+      attackedCountryIdsToRemove: optional(array(objectIdValidation)),
     }),
     get: selectStruct("report", 2),
   });

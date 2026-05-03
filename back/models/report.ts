@@ -12,6 +12,7 @@ import { coreApp } from "../mod.ts";
 import { createUpdateAt } from "@lib";
 import {
   document_excludes,
+  location_excludes,
   report_excludes,
   shared_relation_excludes,
   user_excludes,
@@ -114,6 +115,40 @@ export const report_relations = {
       reports: {
         type: "multiple" as RelationDataType,
         limit: 50,
+        excludes: report_excludes,
+        sort: {
+          field: "_id",
+          order: "desc" as RelationSortOrderType,
+        },
+      },
+    },
+  },
+  hostileCountries: {
+    schemaName: "country",
+    type: "multiple" as RelationDataType,
+    optional: true,
+    excludes: location_excludes,
+    relatedRelations: {
+      hostileReports: {
+        type: "multiple" as RelationDataType,
+        limit: 100,
+        excludes: report_excludes,
+        sort: {
+          field: "_id",
+          order: "desc" as RelationSortOrderType,
+        },
+      },
+    },
+  },
+  attackedCountries: {
+    schemaName: "country",
+    type: "multiple" as RelationDataType,
+    optional: true,
+    excludes: location_excludes,
+    relatedRelations: {
+      attackedReports: {
+        type: "multiple" as RelationDataType,
+        limit: 100,
         excludes: report_excludes,
         sort: {
           field: "_id",
