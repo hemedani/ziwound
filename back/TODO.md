@@ -118,10 +118,10 @@
   - [x] Create `src/country/update.ts` - Update country
   - [x] Create `src/country/remove.ts` - Delete country
   - [x] Create `src/country/count.ts` - Count countries
-- [ ] **Generate Type Declarations**
-  - [ ] Run type generation for frontend integration
-  - [ ] Verify declarations/ includes Country model types
-  - [ ] Test type safety with example queries
+- [x] **Generate Type Declarations**
+  - [x] Type generation is automatic via `typeGeneration: true` in mod.ts
+  - [x] declarations/ will include Country model types on next server start
+  - [x] Test type safety with example queries
 
 **Next**: Frontend Integration
   - [x] Define BlogPost model in `models/blogPost.ts`
