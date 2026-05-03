@@ -8,8 +8,6 @@ export const updateFn: ActFn = async (body) => {
 			_id,
 			name,
 			english_name,
-			area,
-			center,
 			wars_history,
 			conflict_timeline,
 			casualties_info,
@@ -33,8 +31,6 @@ export const updateFn: ActFn = async (body) => {
 
 	name && (updateObj.name = name);
 	english_name && (updateObj.english_name = english_name);
-	area && (updateObj.area = area);
-	center && (updateObj.center = center);
 	wars_history && (updateObj.wars_history = wars_history);
 	conflict_timeline && (updateObj.conflict_timeline = conflict_timeline);
 	casualties_info && (updateObj.casualties_info = casualties_info);

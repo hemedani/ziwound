@@ -1,9 +1,10 @@
 import type { ActFn } from "lesan";
+import { ObjectId } from "lesan";
 import { province } from "../../../mod.ts";
 
 export const getsFn: ActFn = async (body) => {
 	const {
-		set: { page, limit, name },
+		set: { page, limit, name, countryId },
 		get,
 	} = body.details;
 
@@ -13,6 +14,13 @@ export const getsFn: ActFn = async (body) => {
 		pipeline.push({
 			$match: {
 				name: { $regex: new RegExp(name, "i") },
+			},
+		});
+
+	countryId &&
+		pipeline.push({
+			$match: {
+				"country._id": new ObjectId(countryId as string),
 			},
 		});
 

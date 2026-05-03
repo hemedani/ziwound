@@ -18,17 +18,27 @@ export const user_excludes: (string)[] = [
   "summary",
 ];
 
-// Location model excludes
-export const location_excludes: (string)[] = [
-  "area",
-  "center",
-];
-
 // Shared relation model excludes
 export const shared_relation_excludes: (string)[] = [
   "createdAt",
   "updatedAt",
   "description",
+];
+
+// Location model excludes (for city, province, country)
+export const location_excludes: (string)[] = [
+  "createdAt",
+  "updatedAt",
+  "wars_history",
+  "conflict_timeline",
+  "casualties_info",
+  "notable_battles",
+  "occupation_info",
+  "destruction_level",
+  "civilian_impact",
+  "mass_graves_info",
+  "war_crimes_events",
+  "liberation_info",
 ];
 
 // Place model excludes

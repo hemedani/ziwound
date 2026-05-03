@@ -7,6 +7,7 @@ export const getsValidator = () => {
 			page: number(),
 			limit: number(),
 			name: optional(string()),
+			search: optional(string()),
 		}),
 		get: selectStruct("country", 2),
 	});

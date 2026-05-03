@@ -1,6 +1,5 @@
 import { object, objectIdValidation, optional, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
-import { geoJSONStruct } from "@model";
 
 export const updateValidator = () => {
 	return object({
@@ -8,8 +7,6 @@ export const updateValidator = () => {
 			_id: objectIdValidation,
 			name: optional(string()),
 			english_name: optional(string()),
-			area: optional(geoJSONStruct("Polygon")),
-			center: optional(geoJSONStruct("Point")),
 			wars_history: optional(string()),
 			conflict_timeline: optional(string()),
 			casualties_info: optional(string()),

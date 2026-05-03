@@ -1,13 +1,9 @@
 import { string } from "lesan";
-import { geoJSONStruct } from "@model";
 import { createUpdateAt } from "../../utils/createUpdateAt.ts";
 
 export const pure_location = {
-	name: string(),
-	english_name: string(),
+  name: string(),
+  english_name: string(),
 
-	area: geoJSONStruct("MultiPolygon"),
-	center: geoJSONStruct("Point"),
-
-	...createUpdateAt,
+  ...createUpdateAt,
 };

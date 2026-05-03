@@ -3,7 +3,7 @@ import { country } from "../../../mod.ts";
 
 export const getsFn: ActFn = async (body) => {
 	const {
-		set: { page, limit, name },
+		set: { page, limit, name, search },
 		get,
 	} = body.details;
 
@@ -13,6 +13,13 @@ export const getsFn: ActFn = async (body) => {
 		pipeline.push({
 			$match: {
 				name: { $regex: new RegExp(name, "i") },
+			},
+		});
+
+	search &&
+		pipeline.push({
+			$match: {
+				$text: { $search: search },
 			},
 		});
 
