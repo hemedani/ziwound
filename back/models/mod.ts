@@ -10,5 +10,6 @@ export * from "./tag.ts";
 export * from "./category.ts";
 export * from "./report.ts";
 export * from "./document.ts";
+export * from "./country.ts";
 import { blogPostModel, createBlogPostTextIndex, blogPost_pure, blogPost_relations } from "./blogPost.ts";
 export { blogPostModel, createBlogPostTextIndex, blogPost_pure, blogPost_relations };

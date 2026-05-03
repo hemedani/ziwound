@@ -7,8 +7,10 @@ import { categorySetup } from "./category/mod.ts";
 import { reportSetup } from "./report/mod.ts";
 import { documentSetup } from "./document/mod.ts";
 import { blogPostSetup } from "./blogPost/mod.ts";
+import { countrySetup } from "./country/mod.ts";
 
 export const functionsSetup = () => {
+  countrySetup();
   citySetup();
   fileSetup();
   provinceSetup();

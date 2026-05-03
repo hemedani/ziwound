@@ -3,6 +3,7 @@ import {
   blogPostModel,
   categories,
   cities,
+  countries,
   createBlogPostTextIndex,
   createUserTextIndex,
   documents,
@@ -26,6 +27,7 @@ coreApp.odm.setDb(db);
 
 export const file = files();
 export const user = users();
+export const country = countries();
 export const province = provinces();
 export const city = cities();
 export const tag = tags();

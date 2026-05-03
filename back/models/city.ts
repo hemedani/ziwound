@@ -1,16 +1,21 @@
 import { coreApp } from "../mod.ts";
-import { type RelationDataType, type RelationSortOrderType } from "lesan";
+import { type RelationDataType, type RelationSortOrderType, string } from "lesan";
 import { pure_location } from "@model";
 import { location_excludes, user_excludes } from "./excludes.ts";
 
 export const city_pure = {
 	...pure_location,
-	// native_area: geoJSONStruct("MultiPolygon"), // -- محدوده بومی (اگر متفاوت است)
-	// non_native_area: geoJSONStruct("MultiPolygon"), // -- محدوده غیربومی (اگر متفاوت است)
-	// population: number(),
-	// area_number: number(),
 
-	// ...createUpdateAt,
+	wars_history: string(),
+	conflict_timeline: string(),
+	casualties_info: string(),
+	notable_battles: string(),
+	occupation_info: string(),
+	destruction_level: string(),
+	civilian_impact: string(),
+	mass_graves_info: string(),
+	war_crimes_events: string(),
+	liberation_info: string(),
 };
 
 export const city_relations = {
@@ -49,6 +54,12 @@ export const cities = () =>
 			indexSpec: {
 				area: "2dsphere",
 				center_location: "2dsphere",
+				name: "text",
+				english_name: "text",
+				wars_history: "text",
+				conflict_timeline: "text",
+				war_crimes_events: "text",
+				notable_battles: "text",
 			},
 		},
 	});

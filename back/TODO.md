@@ -94,9 +94,36 @@
 - ✅ Phase 6 (Backend Audit): 100% complete
 - ✅ Phase 7 (Testing & Prod): 100% complete
 
-**Next**: Frontend Integration
+**Next**: Add Country and enhanced City/Province models for war crimes documentation
 
-- [x] **Create BlogPost Model Schema**
+- [x] **Create Country Model Schema**
+  - [x] Define Country model in `models/country.ts`
+  - [x] Fields: name, english_name, area (GeoJSON MultiPolygon), center (GeoJSON Point), createdAt, updatedAt
+  - [x] War description fields: wars_history, conflict_timeline, casualties_info, international_response, war_crimes_documentation, human_rights_violations, genocide_info, chemical_weapons_info, displacement_info, reconstruction_status, international_sanctions, notable_war_events
+  - [x] Add validator schemas
+  - [x] Add text indexes for search on name and war description fields
+  - [x] Add 2dsphere indexes for geospatial queries
+- [x] **Update Province Model**
+  - [x] Add country relation (single relation to Country)
+  - [x] Update validator schemas
+  - [x] Add province.updateRelations act for country relation
+- [x] **Update City Model**
+  - [x] Add war description fields: wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info
+  - [x] Update validator schemas
+  - [x] Update CRUD acts to support war description fields
+- [x] **Implement Country CRUD Acts**
+  - [x] Create `src/country/add.ts` - Add new country
+  - [x] Create `src/country/get.ts` - Get single country by ID
+  - [x] Create `src/country/gets.ts` - Get multiple countries with pagination/filtering
+  - [x] Create `src/country/update.ts` - Update country
+  - [x] Create `src/country/remove.ts` - Delete country
+  - [x] Create `src/country/count.ts` - Count countries
+- [ ] **Generate Type Declarations**
+  - [ ] Run type generation for frontend integration
+  - [ ] Verify declarations/ includes Country model types
+  - [ ] Test type safety with example queries
+
+**Next**: Frontend Integration
   - [x] Define BlogPost model in `models/blogPost.ts`
   - [x] Fields: title (string, required), slug (string, unique, required), content (string, required - markdown/HTML), author relation (User reference), coverImage (File reference, optional), isPublished (boolean, default false), tags relation (multiple), publishedAt (Date, optional)
   - [x] Add validator schemas with Zod-like syntax
