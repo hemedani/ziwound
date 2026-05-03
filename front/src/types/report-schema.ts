@@ -1,15 +1,39 @@
 import { z } from "zod";
 
-export const REPORT_STATUS = [
-  "Pending",
-  "Approved",
-  "Rejected",
-  "InReview",
-] as const;
+export const REPORT_STATUS = ["Pending", "Approved", "Rejected", "InReview"] as const;
 
 export const REPORT_PRIORITY = ["Low", "Medium", "High"] as const;
 
-export const REPORT_LANGUAGES = [
+// Backend language codes with display names
+export const LANGUAGE_MAP = {
+  en: "English",
+  zh: "Chinese",
+  hi: "Hindi",
+  es: "Spanish",
+  fr: "French",
+  ar: "Arabic",
+  pt: "Portuguese",
+  ru: "Russian",
+  ja: "Japanese",
+  pa: "Punjabi",
+  de: "German",
+  id: "Indonesian",
+  te: "Telugu",
+  mr: "Marathi",
+  tr: "Turkish",
+  ta: "Tamil",
+  vi: "Vietnamese",
+  ko: "Korean",
+  it: "Italian",
+  fa: "Persian",
+  nl: "Dutch",
+  sv: "Swedish",
+  pl: "Polish",
+  uk: "Ukrainian",
+  ro: "Romanian",
+} as const;
+
+export const REPORT_LANGUAGES = Object.keys(LANGUAGE_MAP) as unknown as readonly [
   "en",
   "zh",
   "hi",
@@ -35,7 +59,7 @@ export const REPORT_LANGUAGES = [
   "pl",
   "uk",
   "ro",
-] as const;
+];
 
 export type ReportStatus = (typeof REPORT_STATUS)[number];
 export type ReportPriority = (typeof REPORT_PRIORITY)[number];
@@ -53,7 +77,7 @@ const baseReportSchema = z.object({
     .string()
     .min(1, "Description is required")
     .max(10000, "Description must be less than 10000 characters"),
-  language: z.enum(REPORT_LANGUAGES, {
+  selected_language: z.enum(REPORT_LANGUAGES, {
     required_error: "Language is required",
   }),
   crime_occurred_at: z.string().min(1, "Crime date is required"),
@@ -65,7 +89,7 @@ const baseReportSchema = z.object({
   priority: z.enum(REPORT_PRIORITY).optional(),
   tags: z.array(z.string()).optional(),
   category: z.string().optional(),
-  attachments: z.array(z.string()).optional(),
+  documents: z.array(z.string()).optional(),
 });
 
 export const reportFormSchema = baseReportSchema.refine(
@@ -78,7 +102,7 @@ export const reportFormSchema = baseReportSchema.refine(
   {
     message: "Please select a valid location on the map",
     path: ["location"],
-  }
+  },
 );
 
 export type ReportFormData = z.infer<typeof reportFormSchema>;
@@ -87,11 +111,13 @@ export const reportStepSchemas = {
   step1: baseReportSchema.pick({
     title: true,
     description: true,
-    language: true,
+    selected_language: true,
   }),
   step2: baseReportSchema.pick({
     crime_occurred_at: true,
     priority: true,
+    tags: true,
+    category: true,
   }),
   step3: baseReportSchema.pick({
     location: true,
@@ -100,9 +126,7 @@ export const reportStepSchemas = {
     city: true,
   }),
   step4: baseReportSchema.pick({
-    attachments: true,
-    tags: true,
-    category: true,
+    documents: true,
   }),
   step5: baseReportSchema,
 };

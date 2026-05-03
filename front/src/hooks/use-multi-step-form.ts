@@ -36,17 +36,32 @@ function getInitialState(initialStep: number): MultiStepFormState {
   return { currentStep: initialStep, completedSteps: [], formData: {} };
 }
 
+function loadFromStorage(): MultiStepFormState | null {
+  if (typeof window === "undefined") return null;
+  
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      return JSON.parse(saved);
+    }
+  } catch {
+    localStorage.removeItem(STORAGE_KEY);
+  }
+  return null;
+}
+
 export function useMultiStepForm({
   initialStep = 1,
   totalSteps,
 }: UseMultiStepFormProps) {
-  const [initialState] = useState(() => getInitialState(initialStep));
-  
-  const [currentStep, setCurrentStep] = useState(initialState.currentStep);
-  const [completedSteps, setCompletedSteps] = useState<number[]>(initialState.completedSteps);
-  const [formData, setFormData] = useState<Record<string, unknown>>(initialState.formData);
+  // Always use defaults - no localStorage on init
+  const [currentStep, setCurrentStep] = useState(initialStep);
+  const [completedSteps, setCompletedSteps] = useState<number[]>([]);
+  const [formData, setFormData] = useState<Record<string, unknown>>({});
 
+  // Save to localStorage when state changes
   useEffect(() => {
+    if (typeof window === "undefined") return;
     const state = { currentStep, completedSteps, formData };
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
   }, [currentStep, completedSteps, formData]);

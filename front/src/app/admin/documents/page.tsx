@@ -54,7 +54,7 @@ export default async function AdminDocumentsPage({
     search?: string;
     type?: string;
     report?: string;
-    language?: string;
+    selected_language?: string;
     sortBy?: string;
     sortOrder?: string;
   }>;
@@ -65,7 +65,7 @@ export default async function AdminDocumentsPage({
   const search = resolvedSearchParams.search || "";
   const type = resolvedSearchParams.type || "all";
   const report = resolvedSearchParams.report || "all";
-  const language = resolvedSearchParams.language || "all";
+  const selected_language = resolvedSearchParams.selected_language || "all";
   const sortBy = resolvedSearchParams.sortBy || "createdAt";
   const sortOrder = resolvedSearchParams.sortOrder || "desc";
 
@@ -73,8 +73,8 @@ export default async function AdminDocumentsPage({
   if (search) setQuery.search = search;
   if (type !== "all") setQuery.documentTypes = [type as "image" | "video" | "docs"];
   if (report !== "all") setQuery.reportId = report;
-  if (language !== "all")
-    setQuery.language = language as ReqType["main"]["document"]["gets"]["set"]["language"];
+  if (selected_language !== "all")
+    setQuery.selected_language = selected_language as ReqType["main"]["document"]["gets"]["set"]["selected_language"];
   setQuery.sortBy = sortBy as ReqType["main"]["document"]["gets"]["set"]["sortBy"];
   setQuery.sortOrder = sortOrder as ReqType["main"]["document"]["gets"]["set"]["sortOrder"];
 
@@ -91,7 +91,7 @@ export default async function AdminDocumentsPage({
   const response = await getDocuments(setQuery, {
     _id: 1,
     title: 1,
-    language: 1,
+    selected_language: 1,
     report: { _id: 1, title: 1 },
     createdAt: 1,
   });
@@ -100,7 +100,7 @@ export default async function AdminDocumentsPage({
     _id: string;
     title: string;
     type: string;
-    language?: string;
+    selected_language?: string;
     report?: Array<{ _id: string; title: string }>;
     createdAt: string;
   }> = [];
@@ -152,7 +152,7 @@ export default async function AdminDocumentsPage({
             </Select>
           </div>
           <div className="w-full sm:w-48">
-            <Select name="language" defaultValue={language}>
+            <Select name="selected_language" defaultValue={selected_language}>
               <SelectTrigger>
                 <SelectValue placeholder={t("language") || "Language"} />
               </SelectTrigger>
@@ -242,9 +242,9 @@ export default async function AdminDocumentsPage({
                       <Badge variant="secondary">{doc.type}</Badge>
                     </TableCell>
                     <TableCell>
-                      {doc.language ? (
+                      {doc.selected_language ? (
                         <Badge variant="outline">
-                          {languages.find((l) => l.code === doc.language)?.name || doc.language}
+                          {languages.find((l) => l.code === doc.selected_language)?.name || doc.selected_language}
                         </Badge>
                       ) : (
                         <span className="text-muted-foreground">-</span>
@@ -306,7 +306,7 @@ export default async function AdminDocumentsPage({
         {page > 1 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/documents?page=${page - 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${report !== "all" ? `&report=${report}` : ""}${language !== "all" ? `&language=${language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/documents?page=${page - 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${report !== "all" ? `&report=${report}` : ""}${selected_language !== "all" ? `&selected_language=${selected_language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("previous") || "Previous"}
             </Link>
@@ -319,7 +319,7 @@ export default async function AdminDocumentsPage({
         {documents.length >= 10 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/documents?page=${page + 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${report !== "all" ? `&report=${report}` : ""}${language !== "all" ? `&language=${language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/documents?page=${page + 1}${search ? `&search=${search}` : ""}${type !== "all" ? `&type=${type}` : ""}${report !== "all" ? `&report=${report}` : ""}${selected_language !== "all" ? `&selected_language=${selected_language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("next") || "Next"}
             </Link>

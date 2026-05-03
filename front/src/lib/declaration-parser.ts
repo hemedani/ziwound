@@ -27,7 +27,7 @@ export interface DeclarationField {
 export const REPORT_FIELDS: DeclarationField[] = [
   { name: "title", type: "string", required: true },
   { name: "description", type: "string", required: true },
-  { name: "language", type: "enum", required: true, enumValues: ["en", "zh", "hi", "es", "fr", "ar", "pt", "ru", "ja", "pa", "de", "id", "te", "mr", "tr", "ta", "vi", "ko", "it", "fa", "nl", "sv", "pl", "uk", "ro"] },
+  { name: "selected_language", type: "enum", required: true, enumValues: ["en", "zh", "hi", "es", "fr", "ar", "pt", "ru", "ja", "pa", "de", "id", "te", "mr", "tr", "ta", "vi", "ko", "it", "fa", "nl", "sv", "pl", "uk", "ro"] },
   { name: "crime_occurred_at", type: "date", required: true },
   { name: "country", type: "string", required: true },
   { name: "city", type: "string", required: false },
@@ -37,7 +37,7 @@ export const REPORT_FIELDS: DeclarationField[] = [
   { name: "priority", type: "enum", required: false, enumValues: ["Low", "Medium", "High"] },
   { name: "tags", type: "array", required: false },
   { name: "category", type: "string", required: false },
-  { name: "attachments", type: "array", required: false },
+  { name: "documents", type: "array", required: false, nestedType: "Document" },
 ];
 
 export const REPORT_STEPS: StepDefinition[] = [
@@ -45,7 +45,7 @@ export const REPORT_STEPS: StepDefinition[] = [
     step: 1,
     title: "Basic Information",
     description: "Enter the basic details about the incident",
-    fields: ["title", "description", "language"],
+    fields: ["title", "description", "selected_language"],
   },
   {
     step: 2,
@@ -61,9 +61,9 @@ export const REPORT_STEPS: StepDefinition[] = [
   },
   {
     step: 4,
-    title: "Media & Documents",
-    description: "Upload evidence and supporting documents",
-    fields: ["attachments", "tags", "category"],
+    title: "Documents",
+    description: "Upload supporting documents with details",
+    fields: ["documents"],
   },
   {
     step: 5,

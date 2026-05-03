@@ -14,7 +14,7 @@ export default async function EditDocumentPage({ params }: { params: Promise<{ i
       _id: 1,
       title: 1,
       description: 1,
-      language: 1,
+      selected_language: 1,
       documentFiles: {
         _id: 1,
         name: 1,

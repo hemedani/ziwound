@@ -22,7 +22,7 @@ import { ReqType } from "@/types/declarations";
 const formSchema = z.object({
   title: z.string().min(2, "Title is required"),
   description: z.string().optional(),
-  language: z.string().optional(),
+  selected_language: z.string().optional(),
   documentFiles: z.array(z.string()).optional(),
 });
 
@@ -61,7 +61,7 @@ interface DocumentFormProps {
     _id: string;
     title: string;
     description?: string;
-    language?: string;
+    selected_language?: string;
     documentFiles?: Array<{ _id: string; name?: string }>;
   };
 }
@@ -80,7 +80,7 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
     defaultValues: {
       title: initialData?.title || "",
       description: initialData?.description || "",
-      language: initialData?.language || "",
+      selected_language: initialData?.selected_language || "",
       documentFiles: initialData?.documentFiles?.map((f) => f._id) || [],
     },
   });
@@ -95,7 +95,7 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
           _id: initialData._id,
           title: data.title,
           description: data.description,
-          language: data.language as ReqType["main"]["document"]["add"]["set"]["language"],
+          selected_language: data.selected_language as ReqType["main"]["document"]["add"]["set"]["selected_language"],
         });
 
         if (!updateRes.success) {
@@ -132,7 +132,7 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
         const addRes = await addDocument({
           title: data.title,
           description: data.description,
-          language: data.language as ReqType["main"]["document"]["add"]["set"]["language"],
+          selected_language: data.selected_language as ReqType["main"]["document"]["add"]["set"]["selected_language"],
           documentFileIds: data.documentFiles,
         });
 
@@ -178,7 +178,7 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
 
         <FormField
           control={form.control}
-          name="language"
+          name="selected_language"
           render={({ field }) => (
             <FormItem>
               <FormLabel>{t("language") || "Language"}</FormLabel>

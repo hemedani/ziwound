@@ -46,6 +46,7 @@ export function Stepper({
                 type="button"
                 onClick={() => isClickable && onStepClick?.(step)}
                 disabled={!isClickable}
+                suppressHydrationWarning
                 className={cn(
                   "flex flex-col items-center gap-2 transition-colors",
                   isClickable ? "cursor-pointer hover:opacity-80" : "cursor-default"

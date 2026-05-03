@@ -18,7 +18,7 @@ export default async function AdminReportsPage({
     status?: string;
     priority?: string;
     category?: string;
-    language?: string;
+    selected_language?: string;
     country?: string;
     city?: string;
     crimeOccurredFrom?: string;
@@ -34,7 +34,7 @@ export default async function AdminReportsPage({
   const status = resolvedSearchParams.status || "all";
   const priority = resolvedSearchParams.priority || "all";
   const category = resolvedSearchParams.category || "all";
-  const language = resolvedSearchParams.language || "all";
+  const selected_language = resolvedSearchParams.selected_language || "all";
   const country = resolvedSearchParams.country || "";
   const city = resolvedSearchParams.city || "";
   const crimeOccurredFrom = resolvedSearchParams.crimeOccurredFrom
@@ -52,8 +52,8 @@ export default async function AdminReportsPage({
   if (priority !== "all")
     setQuery.priority = priority as ReqType["main"]["report"]["gets"]["set"]["priority"];
   if (category !== "all") setQuery.categoryIds = [category];
-  if (language !== "all")
-    setQuery.language = language as ReqType["main"]["report"]["gets"]["set"]["language"];
+  if (selected_language !== "all")
+    setQuery.selected_language = selected_language as ReqType["main"]["report"]["gets"]["set"]["selected_language"];
   if (country) setQuery.country = country;
   if (city) setQuery.city = city;
   if (crimeOccurredFrom) setQuery.crimeOccurredFrom = crimeOccurredFrom;
@@ -166,7 +166,7 @@ export default async function AdminReportsPage({
             </Select>
           </div>
           <div className="w-full sm:w-48">
-            <Select name="language" defaultValue={language}>
+            <Select name="selected_language" defaultValue={selected_language}>
               <SelectTrigger>
                 <SelectValue placeholder={t("language") || "Language"} />
               </SelectTrigger>
@@ -256,7 +256,7 @@ export default async function AdminReportsPage({
         {page > 1 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/reports?page=${page - 1}${search ? `&search=${search}` : ""}${status !== "all" ? `&status=${status}` : ""}${priority !== "all" ? `&priority=${priority}` : ""}${category !== "all" ? `&category=${category}` : ""}${language !== "all" ? `&language=${language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/reports?page=${page - 1}${search ? `&search=${search}` : ""}${status !== "all" ? `&status=${status}` : ""}${priority !== "all" ? `&priority=${priority}` : ""}${category !== "all" ? `&category=${category}` : ""}${selected_language !== "all" ? `&selected_language=${selected_language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("previous") || "Previous"}
             </Link>
@@ -269,7 +269,7 @@ export default async function AdminReportsPage({
         {reports.length >= 10 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/reports?page=${page + 1}${search ? `&search=${search}` : ""}${status !== "all" ? `&status=${status}` : ""}${priority !== "all" ? `&priority=${priority}` : ""}${category !== "all" ? `&category=${category}` : ""}${language !== "all" ? `&language=${language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/reports?page=${page + 1}${search ? `&search=${search}` : ""}${status !== "all" ? `&status=${status}` : ""}${priority !== "all" ? `&priority=${priority}` : ""}${category !== "all" ? `&category=${category}` : ""}${selected_language !== "all" ? `&selected_language=${selected_language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("next") || "Next"}
             </Link>

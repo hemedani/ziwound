@@ -45,7 +45,7 @@ export default async function PublicDocumentsPage({
   searchParams: Promise<{
     page?: string;
     search?: string;
-    language?: string;
+    selected_language?: string;
   }>;
   params: Promise<{ locale: string }>;
 }) {
@@ -58,18 +58,18 @@ export default async function PublicDocumentsPage({
 
   const page = Number(resolvedSearchParams.page) || 1;
   const search = resolvedSearchParams.search || "";
-  const language = resolvedSearchParams.language || "all";
+  const selected_language = resolvedSearchParams.selected_language || "all";
 
   const setQuery: ReqType["main"]["document"]["gets"]["set"] = { page, limit: 12 };
   if (search) setQuery.search = search;
-  if (language !== "all")
-    setQuery.language = language as ReqType["main"]["document"]["gets"]["set"]["language"];
+  if (selected_language !== "all")
+    setQuery.selected_language = selected_language as ReqType["main"]["document"]["gets"]["set"]["selected_language"];
 
   const response = await getDocuments(setQuery, {
     _id: 1,
     title: 1,
     description: 1,
-    language: 1,
+    selected_language: 1,
     createdAt: 1,
     documentFiles: {
       _id: 1,
@@ -88,7 +88,7 @@ export default async function PublicDocumentsPage({
     _id: string;
     title: string;
     description?: string;
-    language?: string;
+    selected_language?: string;
     createdAt: string;
     documentFiles?: DocumentFile[];
     report?: LinkedReport[];
@@ -143,7 +143,7 @@ export default async function PublicDocumentsPage({
               />
             </div>
             <div className="w-full sm:w-48">
-              <Select name="language" defaultValue={language}>
+              <Select name="selected_language" defaultValue={selected_language}>
                 <SelectTrigger>
                   <SelectValue placeholder={t("language") || "Language"} />
                 </SelectTrigger>
@@ -160,7 +160,7 @@ export default async function PublicDocumentsPage({
             <Button type="submit" className="w-full sm:w-auto">
               {t("search") || "Search"}
             </Button>
-            {(search || language !== "all") && (
+            {(search || selected_language !== "all") && (
               <Button type="button" variant="outline" asChild className="w-full sm:w-auto">
                 <Link href="/documents">{tCommon("clear") || "Clear"}</Link>
               </Button>
@@ -188,8 +188,8 @@ export default async function PublicDocumentsPage({
                   <div className="flex justify-between items-start gap-4 mb-2">
                     <Badge variant="outline" className="flex items-center gap-1 shrink-0">
                       <Globe className="h-3 w-3" />
-                      {languages.find((l) => l.code === doc.language)?.name ||
-                        doc.language ||
+                      {languages.find((l) => l.code === doc.selected_language)?.name ||
+                        doc.selected_language ||
                         "Unknown"}
                     </Badge>
                     <div className="flex items-center text-xs text-muted-foreground whitespace-nowrap">
@@ -285,7 +285,7 @@ export default async function PublicDocumentsPage({
             >
               <Link
                 href={`/documents?page=${page - 1}${search ? `&search=${search}` : ""}${
-                  language !== "all" ? `&language=${language}` : ""
+                  selected_language !== "all" ? `&selected_language=${selected_language}` : ""
                 }`}
               >
                 {tCommon("previous")}
@@ -304,7 +304,7 @@ export default async function PublicDocumentsPage({
             >
               <Link
                 href={`/documents?page=${page + 1}${search ? `&search=${search}` : ""}${
-                  language !== "all" ? `&language=${language}` : ""
+                  selected_language !== "all" ? `&selected_language=${selected_language}` : ""
                 }`}
               >
                 {tCommon("next")}

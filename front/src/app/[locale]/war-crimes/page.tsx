@@ -36,7 +36,7 @@ export default async function WarCrimesPage({
     bbox?: string;
     country?: string;
     city?: string;
-    language?: string;
+    selected_language?: string;
     crimeOccurredFrom?: string;
     crimeOccurredTo?: string;
   }>;
@@ -71,7 +71,7 @@ export default async function WarCrimesPage({
 
   const country = resolvedSearchParams.country || undefined;
   const city = resolvedSearchParams.city || undefined;
-  const language = resolvedSearchParams.language as ReqType["main"]["report"]["gets"]["set"]["language"] | undefined;
+  const selected_language = resolvedSearchParams.selected_language as ReqType["main"]["report"]["gets"]["set"]["selected_language"] | undefined;
   const crimeOccurredFrom = resolvedSearchParams.crimeOccurredFrom
     ? new Date(resolvedSearchParams.crimeOccurredFrom)
     : undefined;
@@ -91,7 +91,7 @@ export default async function WarCrimesPage({
     crimeOccurredTo: crimeOccurredTo,
     country: country,
     city: city,
-    language: language,
+    selected_language: selected_language,
     ...(view === "timeline" ? { sortBy: "crime_occurred_at", sortOrder: "desc" } : {}),
     bbox: finalBbox,
   };
@@ -166,7 +166,7 @@ export default async function WarCrimesPage({
           initialDateTo={dateTo?.toISOString().split("T")[0]}
           initialCountry={country}
           initialCity={city}
-          initialLanguage={language}
+          initialLanguage={selected_language}
           initialCrimeOccurredFrom={crimeOccurredFrom?.toISOString().split("T")[0]}
           initialCrimeOccurredTo={crimeOccurredTo?.toISOString().split("T")[0]}
         />

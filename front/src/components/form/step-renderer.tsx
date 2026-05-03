@@ -17,14 +17,15 @@ import {
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { TagSelector } from "@/components/form/tag-selector";
 import { FileUploadField } from "@/components/form/file-upload-field";
+import { DocumentFormField } from "@/components/form/document-list-field";
 import dynamic from "next/dynamic";
-import { REPORT_LANGUAGES, REPORT_PRIORITY } from "@/types/report-schema";
+import { REPORT_LANGUAGES, REPORT_PRIORITY, LANGUAGE_MAP } from "@/types/report-schema";
 import { getFieldMetadata } from "@/lib/declaration-parser";
 import type { reportFormSchema } from "@/types/report-schema";
 
 const LocationPicker = dynamic(
   () => import("@/components/form/location-picker").then((mod) => mod.LocationPicker),
-  { ssr: false, loading: () => <div className="h-20 w-full animate-pulse rounded-md bg-muted" /> }
+  { ssr: false, loading: () => <div className="h-20 w-full animate-pulse rounded-md bg-muted" /> },
 );
 
 type FormData = z.infer<typeof reportFormSchema>;
@@ -32,13 +33,13 @@ type FormData = z.infer<typeof reportFormSchema>;
 interface StepRendererProps {
   step: number;
   control: Control<FormData>;
-  register: UseFormRegister<FormData>;
   errors: FieldErrors<FormData>;
   setValue: UseFormSetValue<FormData>;
   watch: UseFormWatch<FormData>;
   categories: { _id: string; name: string }[];
   availableTags: { id: string; name: string }[];
   disabled?: boolean;
+  locale?: string;
 }
 
 export function StepRenderer({
@@ -50,13 +51,14 @@ export function StepRenderer({
   categories,
   availableTags,
   disabled = false,
+  locale = "en",
 }: StepRendererProps) {
   const t = useTranslations();
   const fieldComponents: Record<number, string[]> = {
-    1: ["title", "description", "language"],
-    2: ["crime_occurred_at", "priority"],
+    1: ["title", "description", "selected_language"],
+    2: ["crime_occurred_at", "priority", "tags", "category"],
     3: ["location", "address", "country", "city"],
-    4: ["attachments", "tags", "category"],
+    4: ["documents"],
   };
 
   const fields = fieldComponents[step] || [];
@@ -65,14 +67,14 @@ export function StepRenderer({
     const labels: Record<string, string> = {
       title: t("report.reportTitle"),
       description: t("report.description"),
-      language: t("report.language"),
+      selected_language: t("report.language"),
       crime_occurred_at: t("report.crimeOccurredAt"),
       priority: t("report.priority"),
       location: t("report.location"),
       address: t("report.address"),
       country: t("report.country"),
       city: t("report.city"),
-      attachments: t("report.attachments"),
+      documents: t("report.documents"),
       tags: t("report.tags"),
       category: t("report.category"),
     };
@@ -96,10 +98,15 @@ export function StepRenderer({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)} {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                  {getFieldLabel(fieldName)}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
                 <FormControl>
-                  <Input {...field} placeholder={t("report.reportTitlePlaceholder")} disabled={disabled} />
+                  <Input
+                    {...field}
+                    placeholder={t("report.reportTitlePlaceholder")}
+                    disabled={disabled}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -115,7 +122,8 @@ export function StepRenderer({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)} {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                  {getFieldLabel(fieldName)}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
                 <FormControl>
                   <Textarea
@@ -126,7 +134,7 @@ export function StepRenderer({
                   />
                 </FormControl>
                 <FormDescription>
-                  {(field.value?.length || 0)} / 10000 {t("common.characters")}
+                  {field.value?.length || 0} / 10000 {t("common.characters")}
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -134,17 +142,23 @@ export function StepRenderer({
           />
         );
 
-      case "language":
+      case "selected_language":
         return (
           <FormField
             control={control}
-            name="language"
+            name="selected_language"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)} {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                  {getFieldLabel(fieldName)}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
-                <Select onValueChange={field.onChange} defaultValue={field.value} disabled={disabled}>
+                <Select
+                  onValueChange={field.onChange}
+                  value={field.value}
+                  defaultValue={field.value}
+                  disabled={disabled}
+                >
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder={t("report.selectLanguage")} />
@@ -153,7 +167,7 @@ export function StepRenderer({
                   <SelectContent>
                     {(REPORT_LANGUAGES as readonly string[]).map((lang) => (
                       <SelectItem key={lang} value={lang}>
-                        {lang.toUpperCase()}
+                        {LANGUAGE_MAP[lang as keyof typeof LANGUAGE_MAP]}
                       </SelectItem>
                     ))}
                   </SelectContent>
@@ -172,7 +186,8 @@ export function StepRenderer({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)} {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                  {getFieldLabel(fieldName)}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
                 <FormControl>
                   <Input type="date" {...field} disabled={disabled} />
@@ -191,13 +206,10 @@ export function StepRenderer({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)} {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                  {getFieldLabel(fieldName)}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  disabled={disabled}
-                >
+                <Select onValueChange={field.onChange} value={field.value} disabled={disabled}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder={t("report.selectPriority")} />
@@ -225,7 +237,8 @@ export function StepRenderer({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)} {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                  {getFieldLabel(fieldName)}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
                 <LocationPicker
                   label={getFieldLabel(fieldName)}
@@ -247,7 +260,8 @@ export function StepRenderer({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)} {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                  {getFieldLabel(fieldName)}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
                 <FormControl>
                   <Input {...field} placeholder={t("report.addressPlaceholder")} disabled={disabled} />
@@ -266,7 +280,8 @@ export function StepRenderer({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)} {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                  {getFieldLabel(fieldName)}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
                 <FormControl>
                   <Input {...field} placeholder={t("report.countryPlaceholder")} disabled={disabled} />
@@ -285,7 +300,8 @@ export function StepRenderer({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)} {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                  {getFieldLabel(fieldName)}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
                 <FormControl>
                   <Input {...field} placeholder={t("report.cityPlaceholder")} disabled={disabled} />
@@ -296,25 +312,23 @@ export function StepRenderer({
           />
         );
 
-      case "attachments":
+      case "documents":
         return (
           <FormField
             control={control}
-            name="attachments"
+            name="documents"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)} {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                  {getFieldLabel(fieldName)}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
-                <FileUploadField
-                  label={getFieldLabel(fieldName)}
-                  maxFiles={10}
-                  maxSize={10 * 1024 * 1024}
-                  accept="image/*,.pdf,.doc,.docx"
+                <DocumentFormField
                   value={field.value || []}
                   onChange={field.onChange}
+                  locale={locale}
                 />
-                <FormDescription>{t("report.attachmentsDescription")}</FormDescription>
+                <FormDescription>{t("report.documentsDescription")}</FormDescription>
                 <FormMessage />
               </FormItem>
             )}
@@ -329,7 +343,8 @@ export function StepRenderer({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)} {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                  {getFieldLabel(fieldName)}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
                 <TagSelector
                   label={getFieldLabel(fieldName)}
@@ -355,13 +370,10 @@ export function StepRenderer({
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)} {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                  {getFieldLabel(fieldName)}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
-                <Select
-                  onValueChange={field.onChange}
-                  defaultValue={field.value}
-                  disabled={disabled}
-                >
+                <Select onValueChange={field.onChange} value={field.value} disabled={disabled}>
                   <FormControl>
                     <SelectTrigger>
                       <SelectValue placeholder={t("report.selectCategory")} />

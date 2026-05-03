@@ -63,7 +63,7 @@ export function WarCrimesFilters({
   const [dateTo, setDateTo] = useState(initialDateTo || "");
   const [country, setCountry] = useState(initialCountry || "");
   const [city, setCity] = useState(initialCity || "");
-  const [language, setLanguage] = useState(initialLanguage || "all");
+  const [selected_language, setSelectedLanguage] = useState(initialLanguage || "all");
   const [crimeOccurredFrom, setCrimeOccurredFrom] = useState(initialCrimeOccurredFrom || "");
   const [crimeOccurredTo, setCrimeOccurredTo] = useState(initialCrimeOccurredTo || "");
   const [showFilters, setShowFilters] = useState(false);
@@ -130,8 +130,8 @@ export function WarCrimesFilters({
   };
 
   const handleLanguageChange = (value: string) => {
-    setLanguage(value);
-    updateParams({ language: value === "all" ? undefined : value });
+    setSelectedLanguage(value);
+    updateParams({ selected_language: value === "all" ? undefined : value });
   };
 
   const handleCrimeOccurredFromChange = (value: string) => {
@@ -154,7 +154,7 @@ export function WarCrimesFilters({
     setDateTo("");
     setCountry("");
     setCity("");
-    setLanguage("all");
+    setSelectedLanguage("all");
     setCrimeOccurredFrom("");
     setCrimeOccurredTo("");
     router.push(pathname);
@@ -170,7 +170,7 @@ export function WarCrimesFilters({
     dateTo ||
     country ||
     city ||
-    language !== "all" ||
+    selected_language !== "all" ||
     crimeOccurredFrom ||
     crimeOccurredTo;
 
@@ -295,7 +295,7 @@ export function WarCrimesFilters({
 
           <div className="space-y-2">
             <Label>{t("filters.language") || "Language"}</Label>
-            <Select value={language || "all"} onValueChange={handleLanguageChange}>
+            <Select value={selected_language || "all"} onValueChange={handleLanguageChange}>
               <SelectTrigger>
                 <SelectValue placeholder={tCommon("all")} />
               </SelectTrigger>
