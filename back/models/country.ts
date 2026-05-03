@@ -1,5 +1,5 @@
 import { coreApp } from "../mod.ts";
-import { type RelationDataType, type RelationSortOrderType, string } from "lesan";
+import { type RelationDataType, string } from "lesan";
 import { pure_location, user_excludes } from "@model";
 
 export const country_pure = {

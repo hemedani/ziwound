@@ -3,7 +3,7 @@ import { report } from "../../../mod.ts";
 
 export const updateRelationsFn: ActFn = async (body) => {
   const {
-    set: { _id, tags, category, documentIds, documentIdsToRemove, hostileCountryIds, hostileCountryIdsToRemove, attackedCountryIds, attackedCountryIdsToRemove },
+    set: { _id, tags, category, documentIds, documentIdsToRemove, hostileCountryIds, hostileCountryIdsToRemove, attackedCountryIds, attackedCountryIdsToRemove, attackedProvinceIds, attackedProvinceIdsToRemove, attackedCityIds, attackedCityIdsToRemove },
     get,
   } = body.details;
 
@@ -127,6 +127,68 @@ export const updateRelationsFn: ActFn = async (body) => {
           _ids: attackedCountryIdsToRemove.map((id: string) => new ObjectId(id)),
           relatedRelations: {
             attackedReports: true,
+          },
+        },
+      },
+      projection: get,
+    });
+  }
+
+  if (attackedProvinceIds) {
+    await report.addRelation({
+      filters: { _id: reportId },
+      relations: {
+        attackedProvinces: {
+          _ids: attackedProvinceIds.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            attackedByReports: true,
+          },
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
+
+  if (attackedProvinceIdsToRemove) {
+    await report.removeRelation({
+      filters: { _id: reportId },
+      relations: {
+        attackedProvinces: {
+          _ids: attackedProvinceIdsToRemove.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            attackedByReports: true,
+          },
+        },
+      },
+      projection: get,
+    });
+  }
+
+  if (attackedCityIds) {
+    await report.addRelation({
+      filters: { _id: reportId },
+      relations: {
+        attackedCities: {
+          _ids: attackedCityIds.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            attackedByReports: true,
+          },
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
+
+  if (attackedCityIdsToRemove) {
+    await report.removeRelation({
+      filters: { _id: reportId },
+      relations: {
+        attackedCities: {
+          _ids: attackedCityIdsToRemove.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            attackedByReports: true,
           },
         },
       },

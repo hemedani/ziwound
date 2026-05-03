@@ -33,8 +33,6 @@ export const report_pure = {
   description: string(),
   location: optional(geoJSONStruct("Point")),
   address: optional(string()),
-  country: optional(string()),
-  city: optional(string()),
   status: defaulted(
     coerce(
       report_status_emums,
@@ -131,7 +129,7 @@ export const report_relations = {
     relatedRelations: {
       hostileReports: {
         type: "multiple" as RelationDataType,
-        limit: 100,
+        limit: 50,
         excludes: report_excludes,
         sort: {
           field: "_id",
@@ -148,7 +146,41 @@ export const report_relations = {
     relatedRelations: {
       attackedReports: {
         type: "multiple" as RelationDataType,
-        limit: 100,
+        limit: 50,
+        excludes: report_excludes,
+        sort: {
+          field: "_id",
+          order: "desc" as RelationSortOrderType,
+        },
+      },
+    },
+  },
+  attackedProvinces: {
+    schemaName: "province",
+    type: "multiple" as RelationDataType,
+    optional: true,
+    excludes: location_excludes,
+    relatedRelations: {
+      attackedByReports: {
+        type: "multiple" as RelationDataType,
+        limit: 50,
+        excludes: report_excludes,
+        sort: {
+          field: "_id",
+          order: "desc" as RelationSortOrderType,
+        },
+      },
+    },
+  },
+  attackedCities: {
+    schemaName: "city",
+    type: "multiple" as RelationDataType,
+    optional: true,
+    excludes: location_excludes,
+    relatedRelations: {
+      attackedByReports: {
+        type: "multiple" as RelationDataType,
+        limit: 50,
         excludes: report_excludes,
         sort: {
           field: "_id",
