@@ -515,8 +515,8 @@
 
 ## Phase 17: Backend Models Update (Country, Relations & War Description Fields)
 
-- [ ] 17.1 Update `src/types/declarations.ts` with new Country model and updated Province/City/Report relations
-- [ ] 17.2 Implement Country, Province, and City server actions (gets, add, update, remove, updateRelations)
+- [x] 17.1 Update `src/types/declarations.ts` with new Country model and updated Province/City/Report relations
+- [x] 17.2 Implement Country, Province, and City server actions (gets, add, update, remove, updateRelations)
 - [ ] 17.3 Update Admin UI for Countries management
 - [ ] 17.4 Update Admin UI for Provinces management with war description fields
 - [ ] 17.5 Update Admin UI for Cities management with war description fields
