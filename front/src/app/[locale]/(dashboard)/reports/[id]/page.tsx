@@ -50,8 +50,10 @@ export default function ReportDetailPage() {
             priority: 1,
             location: 1,
             address: 1,
-            country: 1,
-            city: 1,
+            hostileCountries: { _id: 1, name: 1 },
+            attackedCountries: { _id: 1, name: 1 },
+            attackedProvinces: { _id: 1, name: 1 },
+            attackedCities: { _id: 1, name: 1 },
             crime_occurred_at: 1,
             createdAt: 1,
             updatedAt: 1,
@@ -187,7 +189,7 @@ export default function ReportDetailPage() {
       </Card>
 
       {/* Crime Location & Date */}
-      {(report.country || report.city || report.crime_occurred_at) && (
+      {(report.hostileCountries?.length || report.attackedCountries?.length || report.attackedProvinces?.length || report.attackedCities?.length || report.crime_occurred_at) && (
         <Card className="mb-6">
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
@@ -197,16 +199,28 @@ export default function ReportDetailPage() {
           </CardHeader>
           <CardContent>
             <div className="grid gap-4 sm:grid-cols-2">
-              {report.country && (
+              {report.hostileCountries && report.hostileCountries.length > 0 && (
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("country")}</p>
-                  <p className="font-medium">{report.country}</p>
+                  <p className="text-sm text-muted-foreground">{t("hostileCountries") || "Hostile Countries"}</p>
+                  <p className="font-medium">{report.hostileCountries.map(c => c.name).join(", ")}</p>
                 </div>
               )}
-              {report.city && (
+              {report.attackedCountries && report.attackedCountries.length > 0 && (
                 <div>
-                  <p className="text-sm text-muted-foreground">{t("city")}</p>
-                  <p className="font-medium">{report.city}</p>
+                  <p className="text-sm text-muted-foreground">{t("attackedCountries") || "Attacked Countries"}</p>
+                  <p className="font-medium">{report.attackedCountries.map(c => c.name).join(", ")}</p>
+                </div>
+              )}
+              {report.attackedProvinces && report.attackedProvinces.length > 0 && (
+                <div>
+                  <p className="text-sm text-muted-foreground">{t("attackedProvinces") || "Attacked Provinces"}</p>
+                  <p className="font-medium">{report.attackedProvinces.map(p => p.name).join(", ")}</p>
+                </div>
+              )}
+              {report.attackedCities && report.attackedCities.length > 0 && (
+                <div>
+                  <p className="text-sm text-muted-foreground">{t("attackedCities") || "Attacked Cities"}</p>
+                  <p className="font-medium">{report.attackedCities.map(c => c.name).join(", ")}</p>
                 </div>
               )}
               {report.crime_occurred_at && (

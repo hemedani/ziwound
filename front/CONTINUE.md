@@ -17,8 +17,9 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - ALWAYS work **one tiny step at a time** from `TODO.md`. Never jump ahead.
 - After completing a step:
   1. Mark it `[x]` in `TODO.md` (add short note if needed).
-  2. Run the exact Git commit procedure described in root QWEN.md (Gitmoji + conventional commits, atomic commits, no git reset ever).
-  3. Tell the user exactly what was done and what the next step is.
+  2. Tell the user exactly what was changed and ask them to review the changes.
+  3. Wait for the user's approval.
+  4. Only AFTER the user approves, commit the changes using the git commit command.
 - Use **pnpm** for all commands.
 - Never add unnecessary console.log, unused imports, or complex code. Follow clean architecture.
 - For API calls in frontend: always use server actions in `src/app/actions/<model>/` (never direct client fetch).
@@ -59,6 +60,7 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - **Next**: Phase 14 - Multi-step Report Form (Declaration-Driven) - Step 14.1: Analyze `src/types/declarations.ts` to understand the complete report schema structure
 
 **Declaration-Driven Development Requirement**:
+
 - All new form components for report submission must be generated directly from the types in `front/src/types/declarations.ts`.
 - Do not hardcode fields, options, or validation rules. Derive everything from the declaration file.
 - If you encounter a field type that is not yet declared, add it to `declarations.ts` first, then proceed to build the UI.
@@ -116,9 +118,9 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
   - Added translations for all 9 languages
 
 **Next Session Prompt**:
-Continue with the remaining unchecked steps in **TODO.md**, focusing on **Phase 13 (Public Site Navigation)** or any remaining tasks from Phase 2-7.
+Continue with the remaining unchecked steps in **TODO.md**, focusing on **Phase 17 (Backend Models Update)**, starting with Step 17.1: Update `src/types/declarations.ts` with new Country model and updated Province/City/Report relations. Specifically, update the new multi-step report form (`/reports/new-multi`) to use the new array-based relation fields (`hostileCountryIds`, `attackedCountryIds`, `attackedProvinceIds`, `attackedCityIds`) instead of the old string-based `country` and `city` fields.
 
-Follow the same patterns: one step at a time, update TODO.md, commit with Gitmoji.
+Follow the same patterns: one step at a time, update TODO.md, wait for the user to review the changes, and commit with Gitmoji only after approval.
 
 **Frontend Structure**:
 

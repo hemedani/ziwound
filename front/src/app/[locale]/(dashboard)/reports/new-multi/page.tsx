@@ -5,6 +5,9 @@ import { useTranslations, useLocale } from "next-intl";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { gets as getCategories } from "@/app/actions/category/gets";
 import { gets as getTags } from "@/app/actions/tag/gets";
+import { gets as getCountries } from "@/app/actions/country/gets";
+import { gets as getProvinces } from "@/app/actions/province/gets";
+import { gets as getCities } from "@/app/actions/city/gets";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { add as addReport } from "@/app/actions/report/add";
@@ -37,6 +40,9 @@ export default function MultiStepReportPage() {
   const [success, setSuccess] = useState(false);
   const [categories, setCategories] = useState<{ _id: string; name: string }[]>([]);
   const [availableTags, setAvailableTags] = useState<{ id: string; name: string }[]>([]);
+  const [countries, setCountries] = useState<{ id: string; name: string }[]>([]);
+  const [provinces, setProvinces] = useState<{ id: string; name: string }[]>([]);
+  const [cities, setCities] = useState<{ id: string; name: string }[]>([]);
 
   const {
     currentStep,
@@ -66,6 +72,36 @@ export default function MultiStepReportPage() {
             })),
           );
         }
+
+        const countriesResult = await getCountries({ page: 1, limit: 1000 }, { _id: 1, name: 1 });
+        if (countriesResult.success && countriesResult.body) {
+          setCountries(
+            countriesResult.body.map((c: { _id: string; name: string }) => ({
+              id: c._id,
+              name: c.name,
+            })),
+          );
+        }
+
+        const provincesResult = await getProvinces({ page: 1, limit: 1000 }, { _id: 1, name: 1 });
+        if (provincesResult.success && provincesResult.body) {
+          setProvinces(
+            provincesResult.body.map((p: { _id: string; name: string }) => ({
+              id: p._id,
+              name: p.name,
+            })),
+          );
+        }
+
+        const citiesResult = await getCities({ page: 1, limit: 1000 }, { _id: 1, name: 1 });
+        if (citiesResult.success && citiesResult.body) {
+          setCities(
+            citiesResult.body.map((c: { _id: string; name: string }) => ({
+              id: c._id,
+              name: c.name,
+            })),
+          );
+        }
       } catch (error) {
         console.error("Error loading categories and tags:", error);
       }
@@ -82,8 +118,10 @@ export default function MultiStepReportPage() {
       selected_language: locale as FormData["selected_language"],
       crime_occurred_at: "",
       address: "",
-      country: "",
-      city: "",
+      hostileCountryIds: [],
+      attackedCountryIds: [],
+      attackedProvinceIds: [],
+      attackedCityIds: [],
       location: undefined,
       status: "Pending",
       priority: undefined,
@@ -110,8 +148,10 @@ export default function MultiStepReportPage() {
         documentIds,
         status: "Pending",
         crime_occurred_at: new Date(data.crime_occurred_at),
-        country: data.country,
-        city: data.city,
+        hostileCountryIds: data.hostileCountryIds,
+        attackedCountryIds: data.attackedCountryIds,
+        attackedProvinceIds: data.attackedProvinceIds,
+        attackedCityIds: data.attackedCityIds,
         selected_language: data.selected_language,
         priority: data.priority,
       } as ReqType["main"]["report"]["add"]["set"]);
@@ -146,7 +186,13 @@ export default function MultiStepReportPage() {
     const stepFields: Record<number, (keyof FormData)[]> = {
       1: ["title", "description"],
       2: ["crime_occurred_at", "priority", "tags", "category"],
-      3: ["location", "country", "city"],
+      3: [
+        "location",
+        "hostileCountryIds",
+        "attackedCountryIds",
+        "attackedProvinceIds",
+        "attackedCityIds",
+      ],
       4: ["documents"],
     };
 
@@ -218,7 +264,7 @@ export default function MultiStepReportPage() {
           >
             <Form {...form}>
               {currentStep < 5 ? (
-                <StepRenderer
+                  <StepRenderer
                   step={currentStep}
                   control={form.control}
                   errors={form.formState.errors}
@@ -226,6 +272,9 @@ export default function MultiStepReportPage() {
                   watch={form.watch}
                   categories={categories}
                   availableTags={availableTags}
+                  countries={countries}
+                  provinces={provinces}
+                  cities={cities}
                   disabled={loading}
                   locale={locale}
                 />
@@ -247,12 +296,36 @@ export default function MultiStepReportPage() {
                         {form.getValues("selected_language")}
                       </div>
                       <div>
-                        <span className="font-medium">{t("report.country")}:</span>{" "}
-                        {form.getValues("country")}
+                        <span className="font-medium">{t("report.hostileCountries") || "Hostile Countries"}:</span>{" "}
+                        {(form.getValues("hostileCountryIds") || []).length > 0
+                          ? (form.getValues("hostileCountryIds") || [])
+                              .map((id) => countries.find((c) => c.id === id)?.name || id)
+                              .join(", ")
+                          : "-"}
                       </div>
                       <div>
-                        <span className="font-medium">{t("report.city")}:</span>{" "}
-                        {form.getValues("city") || "-"}
+                        <span className="font-medium">{t("report.attackedCountries") || "Attacked Countries"}:</span>{" "}
+                        {(form.getValues("attackedCountryIds") || []).length > 0
+                          ? (form.getValues("attackedCountryIds") || [])
+                              .map((id) => countries.find((c) => c.id === id)?.name || id)
+                              .join(", ")
+                          : "-"}
+                      </div>
+                      <div>
+                        <span className="font-medium">{t("report.attackedProvinces") || "Attacked Provinces"}:</span>{" "}
+                        {(form.getValues("attackedProvinceIds") || []).length > 0
+                          ? (form.getValues("attackedProvinceIds") || [])
+                              .map((id) => provinces.find((p) => p.id === id)?.name || id)
+                              .join(", ")
+                          : "-"}
+                      </div>
+                      <div>
+                        <span className="font-medium">{t("report.attackedCities") || "Attacked Cities"}:</span>{" "}
+                        {(form.getValues("attackedCityIds") || []).length > 0
+                          ? (form.getValues("attackedCityIds") || [])
+                              .map((id) => cities.find((c) => c.id === id)?.name || id)
+                              .join(", ")
+                          : "-"}
                       </div>
                       <div>
                         <span className="font-medium">{t("report.crimeOccurredAt")}:</span>{" "}

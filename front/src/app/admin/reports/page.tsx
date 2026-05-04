@@ -54,8 +54,6 @@ export default async function AdminReportsPage({
   if (category !== "all") setQuery.categoryIds = [category];
   if (selected_language !== "all")
     setQuery.selected_language = selected_language as ReqType["main"]["report"]["gets"]["set"]["selected_language"];
-  if (country) setQuery.country = country;
-  if (city) setQuery.city = city;
   if (crimeOccurredFrom) setQuery.crimeOccurredFrom = crimeOccurredFrom;
   if (crimeOccurredTo) setQuery.crimeOccurredTo = crimeOccurredTo;
   setQuery.sortBy = sortBy as ReqType["main"]["report"]["gets"]["set"]["sortBy"];
@@ -76,8 +74,10 @@ export default async function AdminReportsPage({
     title: 1,
     status: 1,
     priority: 1,
-    country: 1,
-    city: 1,
+    hostileCountries: { _id: 1, name: 1 },
+    attackedCountries: { _id: 1, name: 1 },
+    attackedProvinces: { _id: 1, name: 1 },
+    attackedCities: { _id: 1, name: 1 },
     crime_occurred_at: 1,
     createdAt: 1,
     category: { _id: 1, name: 1 },
@@ -89,8 +89,10 @@ export default async function AdminReportsPage({
     title: string;
     status: string;
     priority: string;
-    country?: string;
-    city?: string;
+    hostileCountries?: Array<{ _id: string; name: string }>;
+    attackedCountries?: Array<{ _id: string; name: string }>;
+    attackedProvinces?: Array<{ _id: string; name: string }>;
+    attackedCities?: Array<{ _id: string; name: string }>;
     crime_occurred_at?: string;
     createdAt: string;
     category?: { _id: string; name: string };

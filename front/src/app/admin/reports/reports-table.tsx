@@ -52,8 +52,10 @@ type ReportItem = {
   status: string;
   priority: string;
   createdAt: string;
-  country?: string;
-  city?: string;
+  hostileCountries?: { _id: string; name: string }[];
+  attackedCountries?: { _id: string; name: string }[];
+  attackedProvinces?: { _id: string; name: string }[];
+  attackedCities?: { _id: string; name: string }[];
   crime_occurred_at?: string;
   category?: { _id: string; name: string };
   documents?: { _id: string; title: string }[];
@@ -86,14 +88,16 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
   const handleExportCSV = () => {
     if (reports.length === 0) return;
 
-    const headers = ["ID", "Title", "Status", "Priority", "Country", "City", "Crime Date", "Category", "Date"];
+    const headers = ["ID", "Title", "Status", "Priority", "Hostile Countries", "Attacked Countries", "Attacked Provinces", "Attacked Cities", "Crime Date", "Category", "Date"];
     const csvData = reports.map((r) => [
       r._id,
       r.title,
       r.status,
       r.priority,
-      r.country || "",
-      r.city || "",
+      r.hostileCountries?.map((c) => c.name).join(", ") || "",
+      r.attackedCountries?.map((c) => c.name).join(", ") || "",
+      r.attackedProvinces?.map((p) => p.name).join(", ") || "",
+      r.attackedCities?.map((c) => c.name).join(", ") || "",
       r.crime_occurred_at ? new Date(r.crime_occurred_at).toLocaleDateString() : "",
       r.category?.name || "",
       r.createdAt ? new Date(r.createdAt).toLocaleDateString() : "",
@@ -265,8 +269,10 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
               </TableHead>
               <TableHead>{t("title")}</TableHead>
               <TableHead>{t("category")}</TableHead>
-              <TableHead>{t("country")}</TableHead>
-              <TableHead>{t("city")}</TableHead>
+              <TableHead>{t("hostileCountries") || "Hostile Countries"}</TableHead>
+              <TableHead>{t("attackedCountries") || "Attacked Countries"}</TableHead>
+              <TableHead>{t("attackedProvinces") || "Attacked Provinces"}</TableHead>
+              <TableHead>{t("attackedCities") || "Attacked Cities"}</TableHead>
               <TableHead>{t("status")}</TableHead>
               <TableHead>{t("priority")}</TableHead>
               <TableHead>{t("date")}</TableHead>
@@ -276,7 +282,7 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
           <TableBody>
             {reports.length === 0 ? (
               <TableRow>
-                <TableCell colSpan={7} className="h-24 text-center">
+                <TableCell colSpan={9} className="h-24 text-center">
                   {t("noReports")}
                 </TableCell>
               </TableRow>
@@ -292,8 +298,10 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
                   </TableCell>
                   <TableCell className="font-medium">{report.title}</TableCell>
                   <TableCell>{report.category?.name || "-"}</TableCell>
-                  <TableCell>{report.country || "-"}</TableCell>
-                  <TableCell>{report.city || "-"}</TableCell>
+                  <TableCell>{report.hostileCountries?.map((c) => c.name).join(", ") || "-"}</TableCell>
+                  <TableCell>{report.attackedCountries?.map((c) => c.name).join(", ") || "-"}</TableCell>
+                  <TableCell>{report.attackedProvinces?.map((p) => p.name).join(", ") || "-"}</TableCell>
+                  <TableCell>{report.attackedCities?.map((c) => c.name).join(", ") || "-"}</TableCell>
                   <TableCell>
                     <Badge
                       variant={

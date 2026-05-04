@@ -38,6 +38,9 @@ interface StepRendererProps {
   watch: UseFormWatch<FormData>;
   categories: { _id: string; name: string }[];
   availableTags: { id: string; name: string }[];
+  countries?: { id: string; name: string }[];
+  provinces?: { id: string; name: string }[];
+  cities?: { id: string; name: string }[];
   disabled?: boolean;
   locale?: string;
 }
@@ -50,6 +53,9 @@ export function StepRenderer({
   watch,
   categories,
   availableTags,
+  countries = [],
+  provinces = [],
+  cities = [],
   disabled = false,
   locale = "en",
 }: StepRendererProps) {
@@ -57,7 +63,14 @@ export function StepRenderer({
   const fieldComponents: Record<number, string[]> = {
     1: ["title", "description", "selected_language"],
     2: ["crime_occurred_at", "priority", "tags", "category"],
-    3: ["location", "address", "country", "city"],
+    3: [
+      "location",
+      "address",
+      "hostileCountryIds",
+      "attackedCountryIds",
+      "attackedProvinceIds",
+      "attackedCityIds",
+    ],
     4: ["documents"],
   };
 
@@ -272,40 +285,108 @@ export function StepRenderer({
           />
         );
 
-      case "country":
+      case "hostileCountryIds":
         return (
           <FormField
             control={control}
-            name="country"
+            name="hostileCountryIds"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)}{" "}
+                  {t("report.hostileCountries") || "Hostile Countries"}{" "}
                   {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
-                <FormControl>
-                  <Input {...field} placeholder={t("report.countryPlaceholder")} disabled={disabled} />
-                </FormControl>
+                <TagSelector
+                  label={t("report.hostileCountries") || "Hostile Countries"}
+                  availableTags={countries}
+                  selectedTags={(field.value || []).map((id) => {
+                    const c = countries.find((t) => t.id === id);
+                    return { id, name: c ? c.name : id };
+                  })}
+                  onChange={(tags) => field.onChange(tags.map((t) => t.id))}
+                  creatable={false}
+                />
                 <FormMessage />
               </FormItem>
             )}
           />
         );
 
-      case "city":
+      case "attackedCountryIds":
         return (
           <FormField
             control={control}
-            name="city"
+            name="attackedCountryIds"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>
-                  {getFieldLabel(fieldName)}{" "}
+                  {t("report.attackedCountries") || "Attacked Countries"}{" "}
                   {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
-                <FormControl>
-                  <Input {...field} placeholder={t("report.cityPlaceholder")} disabled={disabled} />
-                </FormControl>
+                <TagSelector
+                  label={t("report.attackedCountries") || "Attacked Countries"}
+                  availableTags={countries}
+                  selectedTags={(field.value || []).map((id) => {
+                    const c = countries.find((t) => t.id === id);
+                    return { id, name: c ? c.name : id };
+                  })}
+                  onChange={(tags) => field.onChange(tags.map((t) => t.id))}
+                  creatable={false}
+                />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        );
+
+      case "attackedProvinceIds":
+        return (
+          <FormField
+            control={control}
+            name="attackedProvinceIds"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  {t("report.attackedProvinces") || "Attacked Provinces"}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                </FormLabel>
+                <TagSelector
+                  label={t("report.attackedProvinces") || "Attacked Provinces"}
+                  availableTags={provinces}
+                  selectedTags={(field.value || []).map((id) => {
+                    const c = provinces.find((t) => t.id === id);
+                    return { id, name: c ? c.name : id };
+                  })}
+                  onChange={(tags) => field.onChange(tags.map((t) => t.id))}
+                  creatable={false}
+                />
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        );
+
+      case "attackedCityIds":
+        return (
+          <FormField
+            control={control}
+            name="attackedCityIds"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  {t("report.attackedCities") || "Attacked Cities"}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                </FormLabel>
+                <TagSelector
+                  label={t("report.attackedCities") || "Attacked Cities"}
+                  availableTags={cities}
+                  selectedTags={(field.value || []).map((id) => {
+                    const c = cities.find((t) => t.id === id);
+                    return { id, name: c ? c.name : id };
+                  })}
+                  onChange={(tags) => field.onChange(tags.map((t) => t.id))}
+                  creatable={false}
+                />
                 <FormMessage />
               </FormItem>
             )}

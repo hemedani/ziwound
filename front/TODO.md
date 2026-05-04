@@ -449,6 +449,7 @@
 - [x] Create Navigation component for public site
 
 ## Phase 14: Multi-step Report Form (Declaration-Driven)
+
 **Priority**: HIGH – Replaces simple report submission with declaration-driven multi-step form
 
 **Declaration File**: `src/types/declarations.ts` (contains `reportSchema` and related types)
@@ -489,6 +490,7 @@
 - [ ] 14.20 Update my-reports page to use new form structure for edits
 
 ## Phase 15: Public Site Navigation (optional)
+
 - [ ] 15.1 Create landing page with hero section
 - [ ] 15.2 Add about page with mission statement
 - [ ] 15.3 Create contact page with form
@@ -501,6 +503,7 @@
 - [ ] 15.10 Implement newsletter signup (if needed)
 
 ## Phase 16: Final Polish & Deployment
+
 - [ ] 16.1 Run full Lighthouse audit and achieve 90+ scores
 - [ ] 16.2 Test all 9 languages for RTL/LTR display issues
 - [ ] 16.3 Verify WCAG AA compliance with screen readers
@@ -510,6 +513,17 @@
 - [ ] 16.7 Configure monitoring and error tracking (Sentry)
 - [ ] 16.8 Set up backup and disaster recovery procedures
 
+## Phase 17: Backend Models Update (Country, Relations & War Description Fields)
+
+- [ ] 17.1 Update `src/types/declarations.ts` with new Country model and updated Province/City/Report relations
+- [ ] 17.2 Implement Country, Province, and City server actions (gets, add, update, remove, updateRelations)
+- [ ] 17.3 Update Admin UI for Countries management
+- [ ] 17.4 Update Admin UI for Provinces management with war description fields
+- [ ] 17.5 Update Admin UI for Cities management with war description fields
+- [ ] 17.6 Update Report Form (including new multi-step form at `/reports/new-multi`) and Admin Reports Management to use relation arrays (`hostileCountryIds`, `attackedCountryIds`, `attackedProvinceIds`, `attackedCityIds`) instead of string inputs for `country` and `city`. Also update Zod schemas and validation rules.
+- [ ] 17.7 Update War Crimes Exploration map and filters to use new Country, Province, City relation structure
+- [ ] 17.8 Add Translations for the 12 war description fields across all 9 languages
+
 ## Known Issues & Technical Debt
 
 - [ ] Check if all server actions properly handle errors
@@ -518,4 +532,4 @@
 - [ ] Test all RTL layouts for alignment issues
 - [ ] Verify all translation keys exist in all language files
 
-**How to proceed**: Open `CONTINUE.md` in ZED, tell the AI agent: "Continue with next unchecked step from TODO.md". After each step the agent must update TODO.md and commit.
+**How to proceed**: Open `CONTINUE.md` in ZED, tell the AI agent: "Continue with next unchecked step from TODO.md". After each step the agent must wait for you to review the changes, and only commit them once you approve.
