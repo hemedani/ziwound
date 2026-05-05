@@ -822,5 +822,49 @@
     "newReport": "New Report",
     "myReports": "My Reports",
     "detail": "Detail"
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "subtitle": "How we collect, use, and protect your personal information",
+    "section1Title": "Information We Collect",
+    "section1Content": "We collect information you provide directly to us when creating an account, submitting reports, or contacting us. This may include your name, email address, and any content you choose to share in your reports. We also automatically collect certain information about your device and usage of our services.",
+    "section2Title": "How We Use Your Information",
+    "section2Content": "We use the information we collect to provide, maintain, and improve our services, to process and verify reports, to communicate with you, and to ensure the security of our platform. Your personal information is never sold to third parties.",
+    "section3Title": "Data Security",
+    "section3Content": "We implement appropriate technical and organizational measures to protect your personal data against unauthorized access, alteration, disclosure, or destruction. All data is encrypted in transit and at rest using industry-standard protocols.",
+    "section4Title": "Your Rights",
+    "section4Content": "You have the right to access, correct, or delete your personal information. You may also request a copy of your data or object to certain processing activities. To exercise these rights, please contact us using the information below.",
+    "contactTitle": "Contact Us",
+    "contactContent": "If you have any questions about this Privacy Policy or our data practices, please contact us at privacy@ziwound.org or through our contact page."
+  },
+  "terms": {
+    "title": "Terms of Service",
+    "subtitle": "Terms and conditions for using our platform",
+    "section1Title": "Acceptance of Terms",
+    "section1Content": "By accessing or using Ziwound, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our platform. We reserve the right to modify these terms at any time, and such modifications shall be effective immediately upon posting.",
+    "section2Title": "User Responsibilities",
+    "section2Content": "You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree to provide accurate and truthful information when submitting reports and to use the platform only for lawful purposes.",
+    "section3Title": "Content and Reporting",
+    "section3Content": "By submitting content to Ziwound, you grant us a non-exclusive license to use, store, and process that content for the purposes of operating and improving our services. You represent that you have the right to submit such content and that it does not violate any third-party rights.",
+    "section4Title": "Limitation of Liability",
+    "section4Content": "Ziwound and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of the platform. We make no warranties about the accuracy or completeness of information on the platform.",
+    "contactTitle": "Contact Information",
+    "contactContent": "For questions about these Terms of Service, please contact us at legal@ziwound.org or through our contact page."
+  },
+  "help": {
+    "title": "Help Center",
+    "subtitle": "Find guidance and support for using Ziwound",
+    "gettingStartedTitle": "Getting Started",
+    "gettingStartedDesc": "Learn the basics of creating an account and navigating the platform",
+    "submittingReportsTitle": "Submitting Reports",
+    "submittingReportsDesc": "Step-by-step guide to creating and submitting war crime reports",
+    "guidesTitle": "User Guides",
+    "guidesDesc": "Detailed documentation on platform features and best practices",
+    "contactSupportTitle": "Contact Support",
+    "contactSupportDesc": "Get in touch with our support team for personalized assistance",
+    "learnMore": "Learn More",
+    "stillNeedHelp": "Still need help?",
+    "contactPrompt": "Can't find what you're looking for? Our support team is ready to assist you.",
+    "contactUs": "Contact Us"
   }
 }

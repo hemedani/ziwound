@@ -744,5 +744,49 @@
     "newReport": "Yeni Rapor",
     "myReports": "Raporlarım",
     "detail": "Detay"
+  },
+  "privacy": {
+    "title": "Gizlilik Politikası",
+    "subtitle": "Kişisel bilgilerinizi nasıl topladığımız, kullandığımız ve koruduğumuz",
+    "section1Title": "Topladığımız Bilgiler",
+    "section1Content": "Hesap oluştururken, rapor gönderirken veya bizimle iletişime geçerken doğrudan bize sağladığınız bilgileri toplarız. Bu, adınız, e-posta adresiniz ve raporlarınızda paylaşmayı seçtiğiniz herhangi bir içerik olabilir. Ayrıca cihazınız ve hizmetlerimizi kullanımınız hakkında belirli bilgileri otomatik olarak toplarız.",
+    "section2Title": "Bilgilerinizi Nasıl Kullanıyoruz",
+    "section2Content": "Topladığımız bilgileri hizmetlerimizi sağlamak, sürdürmek ve iyileştirmek, raporları işlemek ve doğrulamak, sizinle iletişim kurmak ve platformumuzun güvenliğini sağlamak için kullanırız. Kişisel bilgileriniz asla üçüncü taraflara satılmaz.",
+    "section3Title": "Veri Güvenliği",
+    "section3Content": "Kişisel verilerinizi yetkisiz erişime, değişikliğe, ifşaya veya imhaya karşı korumak için uygun teknik ve organizasyonel önlemler uyguluyoruz. Tüm veriler sektör standardı protokoller kullanılarak aktarım sırasında ve dinlenme halinde şifrelenir.",
+    "section4Title": "Haklarınız",
+    "section4Content": "Kişisel bilgilerinize erişme, düzeltme veya silme hakkına sahipsiniz. Ayrıca verilerinizin bir kopyasını talep edebilir veya belirli işleme faaliyetlerine itiraz edebilirsiniz. Bu hakları kullanmak için lütfen aşağıdaki bilgileri kullanarak bizimle iletişime geçin.",
+    "contactTitle": "Bize Ulaşın",
+    "contactContent": "Bu Gizlilik Politikası veya veri uygulamalarımız hakkında herhangi bir sorunuz varsa, lütfen privacy@ziwound.org adresinden veya iletişim sayfamızdan bizimle iletişime geçin."
+  },
+  "terms": {
+    "title": "Kullanım Koşulları",
+    "subtitle": "Platformumuzu kullanmak için koşullar ve şartlar",
+    "section1Title": "Koşulların Kabulü",
+    "section1Content": "Ziwound'a erişerek veya kullanarak, bu Kullanım Koşullarına tabi olmayı kabul etmiş olursunuz. Bu koşulları kabul etmiyorsanız, lütfen platformumuzu kullanmayın. Bu koşulları istediğimiz zaman değiştirme hakkını saklı tutarız ve bu değişiklikler yayınlandıktan hemen sonra yürürlüğe girer.",
+    "section2Title": "Kullanıcı Sorumlulukları",
+    "section2Content": "Hesap kimlik bilgilerinizin gizliliğini korumaktan ve hesabınız altında gerçekleşen tüm faaliyetlerden siz sorumlusunuz. Rapor gönderirken doğru ve dürüst bilgiler sağlamayı ve platformu yalnızca meşru amaçlar için kullanmayı kabul edersiniz.",
+    "section3Title": "İçerik ve Raporlama",
+    "section3Content": "Ziwound'a içerik göndererek, hizmetlerimizi işletmek ve iyileştirmek amacıyla bu içeriği kullanmak, depolamak ve işlemek için bize münhasır olmayan bir lisans vermiş olursunuz. Bu içeriği gönderme hakkına sahip olduğunuzu ve üçüncü taraf haklarını ihlal etmediğini beyan edersiniz.",
+    "section4Title": "Sorumluluk Sınırlaması",
+    "section4Content": "Ziwound ve işletmecileri, platformun kullanımından kaynaklanan veya bununla ilgili herhangi bir dolaylı, arızi, özel, netice veya cezai zarardan sorumlu olmayacaktır. Platformdaki bilgilerin doğruluğu veya bütünlüğü hakkında herhangi bir garanti vermiyoruz.",
+    "contactTitle": "İletişim Bilgileri",
+    "contactContent": "Bu Kullanım Koşulları hakkında sorularınız için lütfen legal@ziwound.org adresinden veya iletişim sayfamızdan bizimle iletişime geçin."
+  },
+  "help": {
+    "title": "Yardım Merkezi",
+    "subtitle": "Ziwound kullanımı için rehberlik ve destek bulun",
+    "gettingStartedTitle": "Başlarken",
+    "gettingStartedDesc": "Hesap oluşturmanın ve platformda gezinmenin temellerini öğrenin",
+    "submittingReportsTitle": "Rapor Gönderme",
+    "submittingReportsDesc": "Savaş suçu raporları oluşturma ve gönderme adım adım kılavuzu",
+    "guidesTitle": "Kullanıcı Kılavuzları",
+    "guidesDesc": "Platform özellikleri ve en iyi uygulamalar hakkında ayrıntılı dokümantasyon",
+    "contactSupportTitle": "Destekle İletişime Geçin",
+    "contactSupportDesc": "Kişiselleştirilmiş yardım için destek ekibimizle iletişime geçin",
+    "learnMore": "Daha Fazla Bilgi",
+    "stillNeedHelp": "Hala Yardıma mı İhtiyacınız Var?",
+    "contactPrompt": "Aradığınızı bulamadınız mı? Destek ekibimiz yardıma hazır.",
+    "contactUs": "Bize Ulaşın"
   }
 }

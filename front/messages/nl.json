@@ -799,5 +799,49 @@
     "newReport": "Nieuw Rapport",
     "myReports": "Mijn Rapporten",
     "detail": "Detail"
+  },
+  "privacy": {
+    "title": "Privacybeleid",
+    "subtitle": "Hoe we uw persoonlijke informatie verzamelen, gebruiken en beschermen",
+    "section1Title": "Informatie die We Verzamelen",
+    "section1Content": "We verzamelen informatie die u rechtstreeks aan ons verstrekt bij het aanmaken van een account, het indienen van rapporten of het contact met ons opnemen. Dit kan uw naam, e-mailadres en alle inhoud omvatten die u kiest om te delen in uw rapporten. We verzamelen ook automatisch bepaalde informatie over uw apparaat en gebruik van onze diensten.",
+    "section2Title": "Hoe We Uw Informatie Gebruiken",
+    "section2Content": "We gebruiken de verzamelde informatie om onze diensten te leveren, onderhouden en verbeteren, rapporten te verwerken en verifiëren, met u te communiceren en de veiligheid van ons platform te garanderen. Uw persoonlijke informatie wordt nooit verkocht aan derden.",
+    "section3Title": "Gegevensbeveiliging",
+    "section3Content": "We implementeren passende technische en organisatorische maatregelen om uw persoonsgegevens te beschermen tegen ongeautoriseerde toegang, wijziging, openbaarmaking of vernietiging. Alle gegevens zijn versleuteld tijdens transport en in rust met behulp van industriestandaard protocollen.",
+    "section4Title": "Uw Rechten",
+    "section4Content": "U heeft het recht om uw persoonlijke informatie te raadplegen, te corrigeren of te verwijderen. U kunt ook een kopie van uw gegevens aanvragen of bezwaar maken tegen bepaalde verwerkingsactiviteiten. Om deze rechten uit te oefenen, neemt u contact met ons op via de onderstaande informatie.",
+    "contactTitle": "Neem Contact Op",
+    "contactContent": "Als u vragen heeft over dit Privacybeleid of onze gegevenspraktijken, neem dan contact met ons op via privacy@ziwound.org of via onze contactpagina."
+  },
+  "terms": {
+    "title": "Servicevoorwaarden",
+    "subtitle": "Algemene voorwaarden voor het gebruik van ons platform",
+    "section1Title": "Acceptatie van Voorwaarden",
+    "section1Content": "Door toegang te krijgen tot of gebruik te maken van Ziwound, gaat u ermee akkoord gebonden te zijn aan deze Servicevoorwaarden. Als u niet akkoord gaat met deze voorwaarden, gebruik ons platform dan niet. We behouden ons het recht voor om deze voorwaarden op elk moment te wijzigen, en dergelijke wijzigingen worden onmiddellijk na publicatie van kracht.",
+    "section2Title": "Gebruikersverantwoordelijkheden",
+    "section2Content": "U bent verantwoordelijk voor het handhaven van de vertrouwelijkheid van uw accountgegevens en voor alle activiteiten die onder uw account plaatsvinden. U stemt ermee in om nauwkeurige en waarheidsgetrouwe informatie te verstrekken bij het indienen van rapporten en het platform alleen voor legitieme doeleinden te gebruiken.",
+    "section3Title": "Inhoud en Rapporten",
+    "section3Content": "Door inhoud naar Ziwound te verzenden, verleent u ons een niet-exclusieve licentie om die inhoud te gebruiken, op te slaan en te verwerken voor de doeleinden van het exploiteren en verbeteren van onze diensten. U verklaart dat u het recht heeft om deze inhoud te verzenden en dat het geen inbreuk maakt op rechten van derden.",
+    "section4Title": "Beperking van Aansprakelijkheid",
+    "section4Content": "Ziwound en zijn exploitanten zijn niet aansprakelijk voor enige indirecte, incidentele, speciale, gevolgschade of punitieve schade die voortvloeit uit of verband houdt met uw gebruik van het platform. We geven geen garanties over de nauwkeurigheid of volledigheid van de informatie op het platform.",
+    "contactTitle": "Contactgegevens",
+    "contactContent": "Voor vragen over deze Servicevoorwaarden kunt u contact met ons opnemen via legal@ziwound.org of via onze contactpagina."
+  },
+  "help": {
+    "title": "Helpcentrum",
+    "subtitle": "Vind begeleiding en ondersteuning voor het gebruik van Ziwound",
+    "gettingStartedTitle": "Aan de Slag",
+    "gettingStartedDesc": "Leer de basis van het aanmaken van een account en navigeren op het platform",
+    "submittingReportsTitle": "Rapporten Indienen",
+    "submittingReportsDesc": "Stapsgewijze handleiding voor het maken en indienen van oorlogsmisdaadrapporten",
+    "guidesTitle": "Gebruikershandleidingen",
+    "guidesDesc": "Gedetailleerde documentatie over platformfuncties en beste praktijken",
+    "contactSupportTitle": "Contact Opnemen met Ondersteuning",
+    "contactSupportDesc": "Neem contact op met ons ondersteuningsteam voor persoonlijke assistentie",
+    "learnMore": "Meer Leren",
+    "stillNeedHelp": "Hulp Nodig?",
+    "contactPrompt": "Kunt u niet vinden wat u zoekt? Ons ondersteuningsteam staat klaar om te helpen.",
+    "contactUs": "Neem Contact Op"
   }
 }

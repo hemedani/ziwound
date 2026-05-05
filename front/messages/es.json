@@ -799,5 +799,49 @@
     "newReport": "Nuevo Reporte",
     "myReports": "Mis Reportes",
     "detail": "Detalle"
+  },
+  "privacy": {
+    "title": "Política de Privacidad",
+    "subtitle": "Cómo recopilamos, usamos y protegemos su información personal",
+    "section1Title": "Información que Recopilamos",
+    "section1Content": "Recopilamos la información que nos proporciona directamente al crear una cuenta, enviar reportes o contactarnos. Esto puede incluir su nombre, dirección de correo electrónico y cualquier contenido que elija compartir en sus reportes. También recopilamos automáticamente cierta información sobre su dispositivo y uso de nuestros servicios.",
+    "section2Title": "Cómo Usamos su Información",
+    "section2Content": "Usamos la información que recopilamos para proporcionar, mantener y mejorar nuestros servicios, procesar y verificar reportes, comunicarnos con usted y garantizar la seguridad de nuestra plataforma. Su información personal nunca se vende a terceros.",
+    "section3Title": "Seguridad de Datos",
+    "section3Content": "Implementamos medidas técnicas y organizativas apropiadas para proteger sus datos personales contra el acceso, alteración, divulgación o destrucción no autorizados. Todos los datos están encriptados en tránsito y en reposo utilizando protocolos estándar de la industria.",
+    "section4Title": "Sus Derechos",
+    "section4Content": "Tiene derecho a acceder, corregir o eliminar su información personal. También puede solicitar una copia de sus datos u oponerse a ciertas actividades de procesamiento. Para ejercer estos derechos, contáctenos usando la información a continuación.",
+    "contactTitle": "Contáctenos",
+    "contactContent": "Si tiene alguna pregunta sobre esta Política de Privacidad o nuestras prácticas de datos, contáctenos en privacy@ziwound.org o a través de nuestra página de contacto."
+  },
+  "terms": {
+    "title": "Términos de Servicio",
+    "subtitle": "Términos y condiciones para usar nuestra plataforma",
+    "section1Title": "Aceptación de Términos",
+    "section1Content": "Al acceder o usar Ziwound, usted acepta estar sujeto a estos Términos de Servicio. Si no está de acuerdo con estos términos, por favor no use nuestra plataforma. Nos reservamos el derecho de modificar estos términos en cualquier momento, y dichas modificaciones serán efectivas inmediatamente después de su publicación.",
+    "section2Title": "Responsabilidades del Usuario",
+    "section2Content": "Usted es responsable de mantener la confidencialidad de sus credenciales de cuenta y de todas las actividades que ocurran bajo su cuenta. Usted acepta proporcionar información precisa y veraz al enviar reportes y usar la plataforma solo para fines legítimos.",
+    "section3Title": "Contenido y Reportes",
+    "section3Content": "Al enviar contenido a Ziwound, usted nos otorga una licencia no exclusiva para usar, almacenar y procesar ese contenido con fines de operar y mejorar nuestros servicios. Usted declara que tiene el derecho de enviar dicho contenido y que no viola los derechos de terceros.",
+    "section4Title": "Limitación de Responsabilidad",
+    "section4Content": "Ziwound y sus operadores no serán responsables por ningún daño indirecto, incidental, especial, consecuente o punitivo que surja de o esté relacionado con su uso de la plataforma. No hacemos garantías sobre la precisión o integridad de la información en la plataforma.",
+    "contactTitle": "Información de Contacto",
+    "contactContent": "Para preguntas sobre estos Términos de Servicio, contáctenos en legal@ziwound.org o a través de nuestra página de contacto."
+  },
+  "help": {
+    "title": "Centro de Ayuda",
+    "subtitle": "Encuentre orientación y soporte para usar Ziwound",
+    "gettingStartedTitle": "Primeros Pasos",
+    "gettingStartedDesc": "Aprenda lo básico de crear una cuenta y navegar la plataforma",
+    "submittingReportsTitle": "Enviar Reportes",
+    "submittingReportsDesc": "Guía paso a paso para crear y enviar reportes de crímenes de guerra",
+    "guidesTitle": "Guías de Usuario",
+    "guidesDesc": "Documentación detallada sobre funciones de la plataforma y mejores prácticas",
+    "contactSupportTitle": "Contactar Soporte",
+    "contactSupportDesc": "Comuníquese con nuestro equipo de soporte para asistencia personalizada",
+    "learnMore": "Aprender Más",
+    "stillNeedHelp": "¿Aún necesita ayuda?",
+    "contactPrompt": "¿No encuentra lo que busca? Nuestro equipo de soporte está listo para ayudar.",
+    "contactUs": "Contáctenos"
   }
 }

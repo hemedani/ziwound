@@ -744,5 +744,49 @@
     "newReport": "新建报告",
     "myReports": "我的报告",
     "detail": "详情"
+  },
+  "privacy": {
+    "title": "隐私政策",
+    "subtitle": "我们如何收集、使用和保护您的个人信息",
+    "section1Title": "我们收集的信息",
+    "section1Content": "我们收集您在创建账户、提交报告或联系我们时直接提供给我们的信息。这可能包括您的姓名、电子邮件地址以及您选择在报告中分享的任何内容。我们还会自动收集有关您的设备和使用我们服务的某些信息。",
+    "section2Title": "我们如何使用您的信息",
+    "section2Content": "我们使用收集的信息来提供、维护和改进我们的服务，处理和验证报告，与您沟通，并确保我们平台的安全。您的个人信息绝不会出售给第三方。",
+    "section3Title": "数据安全",
+    "section3Content": "我们实施适当的技术和组织措施来保护您的个人数据，防止未经授权的访问、更改、披露或销毁。所有数据在传输和静态时都使用行业标准协议进行加密。",
+    "section4Title": "您的权利",
+    "section4Content": "您有权访问、更正或删除您的个人信息。您还可以请求数据的副本或反对某些处理活动。要行使这些权利，请使用以下信息与我们联系。",
+    "contactTitle": "联系我们",
+    "contactContent": "如果您对本隐私政策或我们的数据做法有任何疑问，请通过 privacy@ziwound.org 或我们的联系页面与我们联系。"
+  },
+  "terms": {
+    "title": "服务条款",
+    "subtitle": "使用我们平台的条款和条件",
+    "section1Title": "接受条款",
+    "section1Content": "通过访问或使用Ziwound，您同意受这些服务条款的约束。如果您不同意这些条款，请不要使用我们的平台。我们保留随时修改这些条款的权利，此类修改将在发布后即时生效。",
+    "section2Title": "用户责任",
+    "section2Content": "您有责任维护账户凭证的机密性以及账户下发生的所有活动。您同意在提交报告时提供准确真实的信息，并且仅将平台用于合法目的。",
+    "section3Title": "内容和报告",
+    "section3Content": "通过向Ziwound提交内容，您授予我们非独占性许可，以使用、存储和处理该内容，用于运营和改进我们的服务。您声明您有权提交此类内容，并且它不侵犯任何第三方权利。",
+    "section4Title": "责任限制",
+    "section4Content": "Ziwound及其运营者不对因使用平台而产生的或与之相关的任何间接、附带、特殊、后果性或惩罚性损害承担责任。我们对平台上信息的准确性或完整性不作任何保证。",
+    "contactTitle": "联系信息",
+    "contactContent": "有关这些服务条款的问题，请通过 legal@ziwound.org 或我们的联系页面与我们联系。"
+  },
+  "help": {
+    "title": "帮助中心",
+    "subtitle": "查找使用Ziwound的指南和支持",
+    "gettingStartedTitle": "入门指南",
+    "gettingStartedDesc": "了解创建账户和浏览平台的基础知识",
+    "submittingReportsTitle": "提交报告",
+    "submittingReportsDesc": "创建和提交战争罪行报告的分步指南",
+    "guidesTitle": "用户指南",
+    "guidesDesc": "关于平台功能和最佳实践的详细文档",
+    "contactSupportTitle": "联系支持",
+    "contactSupportDesc": "与我们的支持团队联系以获得个性化帮助",
+    "learnMore": "了解更多",
+    "stillNeedHelp": "仍然需要帮助？",
+    "contactPrompt": "找不到您要找的内容？我们的支持团队随时准备为您提供帮助。",
+    "contactUs": "联系我们"
   }
 }

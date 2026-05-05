@@ -528,7 +528,17 @@
   - Fully responsive with flex-wrap for mobile
   - Added `breadcrumbs` namespace translations to all 9 languages
   - Integrated into locale layout between Header and main content
-- [ ] 15.6 Add footer with links to legal pages
+- [x] 15.5b Rename reports/new-multi to reports/new
+  - Renamed directory to sync with Header navigation links
+  - Multi-step report form now accessible at /reports/new
+- [x] 15.6 Add footer with links to legal pages
+  - Footer already had links to privacy, terms, faq, and help pages
+  - Created `/privacy/page.tsx` with privacy policy content
+  - Created `/terms/page.tsx` with terms of service content  
+  - Created `/help/page.tsx` with help center sections
+  - Added full translations for privacy, terms, and help namespaces to all 9 languages
+  - Each page includes hero section and structured content in Cards
+  - Help page includes quick links to FAQ, Contact, and Blog sections
 - [x] 15.7 Create 404 page with helpful suggestions (already exists)
 - [ ] 15.8 Implement cookie consent banner
 - [ ] 15.9 Add privacy policy and terms of service pages
