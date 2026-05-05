@@ -559,7 +559,15 @@
       "city": "Şehir",
       "selectCity": "Şehir girin",
       "language": "Dil",
-      "crimeOccurredRange": "Suç tarihi"
+      "crimeOccurredRange": "Suç tarihi",
+      "hostileCountries": "Düşman Ülkeler",
+      "allHostileCountries": "Tüm Düşman Ülkeler",
+      "attackedCountries": "Saldırıya Uğrayan Ülkeler",
+      "allAttackedCountries": "Tüm Saldırıya Uğrayan Ülkeler",
+      "attackedProvinces": "Saldırıya Uğrayan İller",
+      "allAttackedProvinces": "Tüm Saldırıya Uğrayan İller",
+      "attackedCities": "Saldırıya Uğrayan Şehirler",
+      "allAttackedCities": "Tüm Saldırıya Uğrayan Şehirler"
     },
     "priority": {
       "all": "Tüm öncelikler",

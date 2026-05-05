@@ -535,7 +535,16 @@
     - `attackedCities`, `allAttackedCities`
   - Fixed reports-table.tsx to use `getStatusKey()` and `getPriorityKey()` helper functions for dialog badge translations (was using raw status values causing MISSING_MESSAGE errors)
   - TypeScript type checking passes
-- [ ] 17.7 Update War Crimes Exploration map and filters to use new Country, Province, City relation structure
+- [x] 17.7 Update War Crimes Exploration map and filters to use new Country, Province, City relation structure
+  - Updated War Crimes page (`/war-crimes/page.tsx`) to use new relation array filters
+  - Added imports for country, province, and city server actions
+  - Updated searchParams type to replace `country` and `city` with `hostileCountryIds`, `attackedCountryIds`, `attackedProvinceIds`, `attackedCityIds`
+  - Updated query building to pass relation ID arrays to backend
+  - Added fetching of countries, provinces, and cities for filter dropdowns
+  - Updated WarCrimesFilters component to accept new props and display Select dropdowns
+  - Added 4 new Select dropdown filters: Hostile Countries, Attacked Countries, Attacked Provinces, Attacked Cities
+  - Added translation keys for new filters to all 9 language files (fa, en, ar, zh, pt, es, nl, tr, ru)
+  - TypeScript type checking passes
 - [x] 17.8 Add Translations for the 12 war description fields across all 9 languages - Added all admin keys (province, city, country management labels, CRUD messages, search, etc.) to all 9 language files (fa, en, ar, zh, pt, es, nl, tr, ru)
 
 ## Known Issues & Technical Debt

@@ -553,7 +553,15 @@
       "city": "المدينة",
       "selectCity": "أدخل المدينة",
       "language": "اللغة",
-      "crimeOccurredRange": "تاريخ وقوع الجريمة"
+      "crimeOccurredRange": "تاريخ وقوع الجريمة",
+      "hostileCountries": "الدول المعادية",
+      "allHostileCountries": "جميع الدول المعادية",
+      "attackedCountries": "الدول المهاجمة",
+      "allAttackedCountries": "جميع الدول المهاجمة",
+      "attackedProvinces": "المحافظات المهاجمة",
+      "allAttackedProvinces": "جميع المحافظات المهاجمة",
+      "attackedCities": "المدن المهاجمة",
+      "allAttackedCities": "جميع المدن المهاجمة"
     },
     "priority": {
       "all": "جميع الأولويات",

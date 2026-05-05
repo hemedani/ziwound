@@ -559,7 +559,15 @@
       "city": "城市",
       "selectCity": "输入城市",
       "language": "语言",
-      "crimeOccurredRange": "犯罪日期"
+      "crimeOccurredRange": "犯罪日期",
+      "hostileCountries": "敌对国家",
+      "allHostileCountries": "所有敌对国家",
+      "attackedCountries": "被攻击国家",
+      "allAttackedCountries": "所有被攻击国家",
+      "attackedProvinces": "被攻击省份",
+      "allAttackedProvinces": "所有被攻击省份",
+      "attackedCities": "被攻击城市",
+      "allAttackedCities": "所有被攻击城市"
     },
     "priority": {
       "all": "所有优先级",

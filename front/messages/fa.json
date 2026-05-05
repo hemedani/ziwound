@@ -640,7 +640,15 @@
       "city": "شهر",
       "selectCity": "وارد کردن شهر",
       "language": "زبان",
-      "crimeOccurredRange": "تاریخ وقوع جرم"
+      "crimeOccurredRange": "تاریخ وقوع جرم",
+      "hostileCountries": "کشورهای متخاصم",
+      "allHostileCountries": "همه کشورهای متخاصم",
+      "attackedCountries": "کشورهای مورد حمله",
+      "allAttackedCountries": "همه کشورهای مورد حمله",
+      "attackedProvinces": "استان‌های مورد حمله",
+      "allAttackedProvinces": "همه استان‌های مورد حمله",
+      "attackedCities": "شهرهای مورد حمله",
+      "allAttackedCities": "همه شهرهای مورد حمله"
     },
     "priority": {
       "all": "همه اولویت‌ها",

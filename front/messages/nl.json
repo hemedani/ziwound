@@ -614,7 +614,15 @@
       "city": "Stad",
       "selectCity": "Stad invoeren",
       "language": "Taal",
-      "crimeOccurredRange": "Datum misdrijf"
+      "crimeOccurredRange": "Datum misdrijf",
+      "hostileCountries": "Vijandige Landen",
+      "allHostileCountries": "Alle Vijandige Landen",
+      "attackedCountries": "Aangevallen Landen",
+      "allAttackedCountries": "Alle Aangevallen Landen",
+      "attackedProvinces": "Aangevallen Provincies",
+      "allAttackedProvinces": "Alle Aangevallen Provincies",
+      "attackedCities": "Aangevallen Steden",
+      "allAttackedCities": "Alle Aangevallen Steden"
     },
     "priority": {
       "all": "Alle prioriteiten",

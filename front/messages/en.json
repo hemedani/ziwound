@@ -637,7 +637,15 @@
       "city": "City",
       "selectCity": "Enter city",
       "language": "Language",
-      "crimeOccurredRange": "Crime Occurrence Date"
+      "crimeOccurredRange": "Crime Occurrence Date",
+      "hostileCountries": "Hostile Countries",
+      "allHostileCountries": "All Hostile Countries",
+      "attackedCountries": "Attacked Countries",
+      "allAttackedCountries": "All Attacked Countries",
+      "attackedProvinces": "Attacked Provinces",
+      "allAttackedProvinces": "All Attacked Provinces",
+      "attackedCities": "Attacked Cities",
+      "allAttackedCities": "All Attacked Cities"
     },
     "priority": {
       "all": "All priorities",

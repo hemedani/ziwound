@@ -614,7 +614,15 @@
       "city": "Город",
       "selectCity": "Введите город",
       "language": "Язык",
-      "crimeOccurredRange": "Дата преступления"
+      "crimeOccurredRange": "Дата преступления",
+      "hostileCountries": "Враждебные Страны",
+      "allHostileCountries": "Все Враждебные Страны",
+      "attackedCountries": "Атакованные Страны",
+      "allAttackedCountries": "Все Атакованные Страны",
+      "attackedProvinces": "Атакованные Провинции",
+      "allAttackedProvinces": "Все Атакованные Провинции",
+      "attackedCities": "Атакованные Города",
+      "allAttackedCities": "Все Атакованные Города"
     },
     "priority": {
       "all": "Все приоритеты",

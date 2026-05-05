@@ -559,7 +559,15 @@
       "city": "Cidade",
       "selectCity": "Digite a cidade",
       "language": "Idioma",
-      "crimeOccurredRange": "Data do crime"
+      "crimeOccurredRange": "Data do crime",
+      "hostileCountries": "Países Hostis",
+      "allHostileCountries": "Todos os Países Hostis",
+      "attackedCountries": "Países Atacados",
+      "allAttackedCountries": "Todos os Países Atacados",
+      "attackedProvinces": "Províncias Atacadas",
+      "allAttackedProvinces": "Todas as Províncias Atacadas",
+      "attackedCities": "Cidades Atacadas",
+      "allAttackedCities": "Todas as Cidades Atacadas"
     },
     "priority": {
       "all": "Todas as prioridades",

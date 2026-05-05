@@ -10,12 +10,15 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { DeepPartial, categorySchema, tagSchema, ReqType } from "@/types/declarations";
+import type { DeepPartial, categorySchema, tagSchema, countrySchema, provinceSchema, citySchema, ReqType } from "@/types/declarations";
 
 interface WarCrimesFiltersProps {
   locale: string;
   categories: DeepPartial<categorySchema>[];
   tags: DeepPartial<tagSchema>[];
+  countries: DeepPartial<countrySchema>[];
+  provinces: DeepPartial<provinceSchema>[];
+  cities: DeepPartial<citySchema>[];
   initialSearch?: string;
   initialStatus?: ReqType["main"]["report"]["gets"]["set"]["status"];
   initialPriority?: ReqType["main"]["report"]["gets"]["set"]["priority"];
@@ -23,8 +26,10 @@ interface WarCrimesFiltersProps {
   initialTagIds?: string[];
   initialDateFrom?: string;
   initialDateTo?: string;
-  initialCountry?: string;
-  initialCity?: string;
+  initialHostileCountryIds?: string;
+  initialAttackedCountryIds?: string;
+  initialAttackedProvinceIds?: string;
+  initialAttackedCityIds?: string;
   initialLanguage?: string;
   initialCrimeOccurredFrom?: string;
   initialCrimeOccurredTo?: string;
@@ -34,6 +39,9 @@ export function WarCrimesFilters({
   locale,
   categories,
   tags,
+  countries,
+  provinces,
+  cities,
   initialSearch = "",
   initialStatus,
   initialPriority,
@@ -41,8 +49,10 @@ export function WarCrimesFilters({
   initialTagIds = [],
   initialDateFrom,
   initialDateTo,
-  initialCountry = "",
-  initialCity = "",
+  initialHostileCountryIds = "",
+  initialAttackedCountryIds = "",
+  initialAttackedProvinceIds = "",
+  initialAttackedCityIds = "",
   initialLanguage = "",
   initialCrimeOccurredFrom,
   initialCrimeOccurredTo,
@@ -61,8 +71,10 @@ export function WarCrimesFilters({
   const [selectedTags, setSelectedTags] = useState<string[]>(initialTagIds);
   const [dateFrom, setDateFrom] = useState(initialDateFrom || "");
   const [dateTo, setDateTo] = useState(initialDateTo || "");
-  const [country, setCountry] = useState(initialCountry || "");
-  const [city, setCity] = useState(initialCity || "");
+  const [hostileCountryIds, setHostileCountryIds] = useState(initialHostileCountryIds || "");
+  const [attackedCountryIds, setAttackedCountryIds] = useState(initialAttackedCountryIds || "");
+  const [attackedProvinceIds, setAttackedProvinceIds] = useState(initialAttackedProvinceIds || "");
+  const [attackedCityIds, setAttackedCityIds] = useState(initialAttackedCityIds || "");
   const [selected_language, setSelectedLanguage] = useState(initialLanguage || "all");
   const [crimeOccurredFrom, setCrimeOccurredFrom] = useState(initialCrimeOccurredFrom || "");
   const [crimeOccurredTo, setCrimeOccurredTo] = useState(initialCrimeOccurredTo || "");
@@ -119,14 +131,24 @@ export function WarCrimesFilters({
     updateParams({ dateTo: value || undefined });
   };
 
-  const handleCountryChange = (value: string) => {
-    setCountry(value);
-    updateParams({ country: value || undefined });
+  const handleHostileCountryChange = (value: string) => {
+    setHostileCountryIds(value);
+    updateParams({ hostileCountryIds: value === "all" ? undefined : value });
   };
 
-  const handleCityChange = (value: string) => {
-    setCity(value);
-    updateParams({ city: value || undefined });
+  const handleAttackedCountryChange = (value: string) => {
+    setAttackedCountryIds(value);
+    updateParams({ attackedCountryIds: value === "all" ? undefined : value });
+  };
+
+  const handleAttackedProvinceChange = (value: string) => {
+    setAttackedProvinceIds(value);
+    updateParams({ attackedProvinceIds: value === "all" ? undefined : value });
+  };
+
+  const handleAttackedCityChange = (value: string) => {
+    setAttackedCityIds(value);
+    updateParams({ attackedCityIds: value === "all" ? undefined : value });
   };
 
   const handleLanguageChange = (value: string) => {
@@ -152,8 +174,10 @@ export function WarCrimesFilters({
     setSelectedTags([]);
     setDateFrom("");
     setDateTo("");
-    setCountry("");
-    setCity("");
+    setHostileCountryIds("");
+    setAttackedCountryIds("");
+    setAttackedProvinceIds("");
+    setAttackedCityIds("");
     setSelectedLanguage("all");
     setCrimeOccurredFrom("");
     setCrimeOccurredTo("");
@@ -168,8 +192,10 @@ export function WarCrimesFilters({
     selectedTags.length > 0 ||
     dateFrom ||
     dateTo ||
-    country ||
-    city ||
+    hostileCountryIds ||
+    attackedCountryIds ||
+    attackedProvinceIds ||
+    attackedCityIds ||
     selected_language !== "all" ||
     crimeOccurredFrom ||
     crimeOccurredTo;
@@ -274,23 +300,71 @@ export function WarCrimesFilters({
           </div>
 
           <div className="space-y-2">
-            <Label>{tFilter("country") || "Country"}</Label>
-            <Input
-              type="text"
-              value={country}
-              onChange={(e) => handleCountryChange(e.target.value)}
-              placeholder={tFilter("selectCountry") || "Enter country"}
-            />
+            <Label>{tFilter("hostileCountries") || "Hostile Countries"}</Label>
+            <Select value={hostileCountryIds || "all"} onValueChange={handleHostileCountryChange}>
+              <SelectTrigger>
+                <SelectValue placeholder={tFilter("allHostileCountries") || "All Hostile Countries"} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{tFilter("allHostileCountries") || "All Hostile Countries"}</SelectItem>
+                {countries.map((country) => (
+                  <SelectItem key={country._id} value={country._id || ""}>
+                    {country.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="space-y-2">
-            <Label>{tFilter("city") || "City"}</Label>
-            <Input
-              type="text"
-              value={city}
-              onChange={(e) => handleCityChange(e.target.value)}
-              placeholder={tFilter("selectCity") || "Enter city"}
-            />
+            <Label>{tFilter("attackedCountries") || "Attacked Countries"}</Label>
+            <Select value={attackedCountryIds || "all"} onValueChange={handleAttackedCountryChange}>
+              <SelectTrigger>
+                <SelectValue placeholder={tFilter("allAttackedCountries") || "All Attacked Countries"} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{tFilter("allAttackedCountries") || "All Attacked Countries"}</SelectItem>
+                {countries.map((country) => (
+                  <SelectItem key={country._id} value={country._id || ""}>
+                    {country.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label>{tFilter("attackedProvinces") || "Attacked Provinces"}</Label>
+            <Select value={attackedProvinceIds || "all"} onValueChange={handleAttackedProvinceChange}>
+              <SelectTrigger>
+                <SelectValue placeholder={tFilter("allAttackedProvinces") || "All Attacked Provinces"} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{tFilter("allAttackedProvinces") || "All Attacked Provinces"}</SelectItem>
+                {provinces.map((province) => (
+                  <SelectItem key={province._id} value={province._id || ""}>
+                    {province.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+
+          <div className="space-y-2">
+            <Label>{tFilter("attackedCities") || "Attacked Cities"}</Label>
+            <Select value={attackedCityIds || "all"} onValueChange={handleAttackedCityChange}>
+              <SelectTrigger>
+                <SelectValue placeholder={tFilter("allAttackedCities") || "All Attacked Cities"} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{tFilter("allAttackedCities") || "All Attacked Cities"}</SelectItem>
+                {cities.map((city) => (
+                  <SelectItem key={city._id} value={city._id || ""}>
+                    {city.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
 
           <div className="space-y-2">
