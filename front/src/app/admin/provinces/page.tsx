@@ -39,7 +39,9 @@ export default async function AdminProvincesPage({
     _id: 1,
     name: 1,
     english_name: 1,
-    country_id: 1,
+    country: {
+      _id: 1,
+    },
   });
 
   const countriesResponse = await getCountries(
