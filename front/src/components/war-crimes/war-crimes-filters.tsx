@@ -192,7 +192,7 @@ export function WarCrimesFilters({
   // Load options functions for AsyncSelect
   const loadCountryOptions = useCallback(async (inputValue: string): Promise<AsyncSelectLoadResult> => {
     const result = await getCountries(
-      { search: inputValue, limit: 50 },
+      { search: inputValue, page: 1, limit: 50 },
       { _id: 1, name: 1 }
     );
     
@@ -209,7 +209,7 @@ export function WarCrimesFilters({
 
   const loadProvinceOptions = useCallback(async (inputValue: string): Promise<AsyncSelectLoadResult> => {
     const result = await getProvinces(
-      { search: inputValue, limit: 50 },
+      { search: inputValue, page: 1, limit: 50 },
       { _id: 1, name: 1 }
     );
     
@@ -226,7 +226,7 @@ export function WarCrimesFilters({
 
   const loadCityOptions = useCallback(async (inputValue: string): Promise<AsyncSelectLoadResult> => {
     const result = await getCities(
-      { search: inputValue, limit: 50 },
+      { search: inputValue, page: 1, limit: 50 },
       { _id: 1, name: 1 }
     );
     
