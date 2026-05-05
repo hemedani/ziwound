@@ -287,7 +287,7 @@ export default function ReportDetailPage() {
           <CardHeader>
             <CardTitle className="flex items-center gap-2">
               <Paperclip className="h-5 w-5" />
-              {t("report.documents")} (
+              {t("documents")} (
               {report.documents.reduce((acc, doc) => acc + (doc.documentFiles?.length || 0), 0)})
             </CardTitle>
           </CardHeader>

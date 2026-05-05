@@ -122,9 +122,10 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - ✅ Phase 17.4: Created full Province admin UI with full-page forms (new/edit) and RichTextEditor for all 12 war description fields
 - ✅ Phase 17.5: Created full City admin UI with full-page forms (new/edit) and RichTextEditor for all 12 war description fields
 - ✅ Updated admin sidebar to include Countries, Provinces, and Cities navigation links
+- ✅ Phase 17.6: Updated Admin Reports Management to use relation arrays (`hostileCountryIds`, `attackedCountryIds`, `attackedProvinceIds`, `attackedCityIds`) instead of string inputs for `country` and `city` filters. The multi-step report form already had proper relation array support.
 
 **Next Session Prompt**:
-Continue with the remaining unchecked steps in **TODO.md**, focusing on **Phase 17 (Backend Models Update)**, starting with Step 17.6: Update Report Form (including new multi-step form at `/reports/new-multi`) and Admin Reports Management to use relation arrays (`hostileCountryIds`, `attackedCountryIds`, `attackedProvinceIds`, `attackedCityIds`) instead of string inputs for `country` and `city` fields. Also update Zod schemas and validation rules.
+Continue with the remaining unchecked steps in **TODO.md**, focusing on **Phase 17 (Backend Models Update)**, starting with Step 17.7: Update War Crimes Exploration map and filters to use new Country, Province, City relation structure.
 
 Follow the same patterns: one step at a time, update TODO.md, wait for the user to review the changes, and commit with Gitmoji only after approval.
 

@@ -520,7 +520,21 @@
 - [x] 17.3 Update Admin UI for Countries management - Created full-page form with RTE for all 12 war description fields
 - [x] 17.4 Update Admin UI for Provinces management with war description fields - Created full-page form (new/edit) with RTE
 - [x] 17.5 Update Admin UI for Cities management with war description fields - Created full-page form (new/edit) with RTE
-- [ ] 17.6 Update Report Form (including new multi-step form at `/reports/new-multi`) and Admin Reports Management to use relation arrays (`hostileCountryIds`, `attackedCountryIds`, `attackedProvinceIds`, `attackedCityIds`) instead of string inputs for `country` and `city`. Also update Zod schemas and validation rules.
+- [x] 17.6 Update Report Form (including new multi-step form at `/reports/new-multi`) and Admin Reports Management to use relation arrays (`hostileCountryIds`, `attackedCountryIds`, `attackedProvinceIds`, `attackedCityIds`) instead of string inputs for `country` and `city`. Also update Zod schemas and validation rules.
+  - Updated admin reports page (`/admin/reports/page.tsx`) to use new relation array filters
+  - Added imports for country, province, and city server actions
+  - Updated searchParams type to include `hostileCountryIds`, `attackedCountryIds`, `attackedProvinceIds`, `attackedCityIds`
+  - Removed old `country` and `city` text input filters
+  - Added 4 new Select dropdown filters for relation-based filtering
+  - Updated query building to pass relation ID arrays to backend
+  - Updated pagination links to preserve new filter parameters
+  - Added missing translation keys to all 9 language files (fa, en, ar, zh, pt, es, nl, tr, ru):
+    - `hostileCountries`, `allHostileCountries`
+    - `attackedCountries`, `allAttackedCountries`
+    - `attackedProvinces`, `allAttackedProvinces`
+    - `attackedCities`, `allAttackedCities`
+  - Fixed reports-table.tsx to use `getStatusKey()` and `getPriorityKey()` helper functions for dialog badge translations (was using raw status values causing MISSING_MESSAGE errors)
+  - TypeScript type checking passes
 - [ ] 17.7 Update War Crimes Exploration map and filters to use new Country, Province, City relation structure
 - [x] 17.8 Add Translations for the 12 war description fields across all 9 languages - Added all admin keys (province, city, country management labels, CRUD messages, search, etc.) to all 9 language files (fa, en, ar, zh, pt, es, nl, tr, ru)
 

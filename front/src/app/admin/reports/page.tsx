@@ -1,6 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import { gets as getReports } from "@/app/actions/report/gets";
 import { gets as getCategories } from "@/app/actions/category/gets";
+import { gets as getCountries } from "@/app/actions/country/gets";
+import { gets as getProvinces } from "@/app/actions/province/gets";
+import { gets as getCities } from "@/app/actions/city/gets";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -19,8 +22,10 @@ export default async function AdminReportsPage({
     priority?: string;
     category?: string;
     selected_language?: string;
-    country?: string;
-    city?: string;
+    hostileCountryIds?: string;
+    attackedCountryIds?: string;
+    attackedProvinceIds?: string;
+    attackedCityIds?: string;
     crimeOccurredFrom?: string;
     crimeOccurredTo?: string;
     sortBy?: string;
@@ -35,8 +40,10 @@ export default async function AdminReportsPage({
   const priority = resolvedSearchParams.priority || "all";
   const category = resolvedSearchParams.category || "all";
   const selected_language = resolvedSearchParams.selected_language || "all";
-  const country = resolvedSearchParams.country || "";
-  const city = resolvedSearchParams.city || "";
+  const hostileCountryIds = resolvedSearchParams.hostileCountryIds || "";
+  const attackedCountryIds = resolvedSearchParams.attackedCountryIds || "";
+  const attackedProvinceIds = resolvedSearchParams.attackedProvinceIds || "";
+  const attackedCityIds = resolvedSearchParams.attackedCityIds || "";
   const crimeOccurredFrom = resolvedSearchParams.crimeOccurredFrom
     ? new Date(resolvedSearchParams.crimeOccurredFrom)
     : undefined;
@@ -54,6 +61,10 @@ export default async function AdminReportsPage({
   if (category !== "all") setQuery.categoryIds = [category];
   if (selected_language !== "all")
     setQuery.selected_language = selected_language as ReqType["main"]["report"]["gets"]["set"]["selected_language"];
+  if (hostileCountryIds) setQuery.hostileCountryIds = hostileCountryIds.split(",").filter(Boolean);
+  if (attackedCountryIds) setQuery.attackedCountryIds = attackedCountryIds.split(",").filter(Boolean);
+  if (attackedProvinceIds) setQuery.attackedProvinceIds = attackedProvinceIds.split(",").filter(Boolean);
+  if (attackedCityIds) setQuery.attackedCityIds = attackedCityIds.split(",").filter(Boolean);
   if (crimeOccurredFrom) setQuery.crimeOccurredFrom = crimeOccurredFrom;
   if (crimeOccurredTo) setQuery.crimeOccurredTo = crimeOccurredTo;
   setQuery.sortBy = sortBy as ReqType["main"]["report"]["gets"]["set"]["sortBy"];
@@ -67,6 +78,31 @@ export default async function AdminReportsPage({
       ? categoriesResponse.body
       : categoriesResponse.body?.list || [];
   }
+
+  // Fetch countries, provinces, and cities for filter dropdowns
+  const [countriesResponse, provincesResponse, citiesResponse] = await Promise.all([
+    getCountries({ page: 1, limit: 100 }, { _id: 1, name: 1 }),
+    getProvinces({ page: 1, limit: 100 }, { _id: 1, name: 1 }),
+    getCities({ page: 1, limit: 100 }, { _id: 1, name: 1 }),
+  ]);
+
+  const countries = countriesResponse?.success
+    ? Array.isArray(countriesResponse.body)
+      ? countriesResponse.body
+      : countriesResponse.body?.list || []
+    : [];
+
+  const provinces = provincesResponse?.success
+    ? Array.isArray(provincesResponse.body)
+      ? provincesResponse.body
+      : provincesResponse.body?.list || []
+    : [];
+
+  const cities = citiesResponse?.success
+    ? Array.isArray(citiesResponse.body)
+      ? citiesResponse.body
+      : citiesResponse.body?.list || []
+    : [];
 
   // Fetch reports
   const response = await getReports(setQuery, {
@@ -203,14 +239,64 @@ export default async function AdminReportsPage({
             </Select>
           </div>
           <div className="w-full sm:w-48">
-            <Input
-              name="country"
-              placeholder={t("country") || "Country"}
-              defaultValue={country}
-            />
+            <Select name="hostileCountryIds" defaultValue={hostileCountryIds || "all"}>
+              <SelectTrigger>
+                <SelectValue placeholder={t("hostileCountries") || "Hostile Countries"} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t("allHostileCountries") || "All Hostile Countries"}</SelectItem>
+                {countries.map((country: { _id: string; name: string }) => (
+                  <SelectItem key={country._id} value={country._id}>
+                    {country.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <div className="w-full sm:w-48">
-            <Input name="city" placeholder={t("city") || "City"} defaultValue={city} />
+            <Select name="attackedCountryIds" defaultValue={attackedCountryIds || "all"}>
+              <SelectTrigger>
+                <SelectValue placeholder={t("attackedCountries") || "Attacked Countries"} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t("allAttackedCountries") || "All Attacked Countries"}</SelectItem>
+                {countries.map((country: { _id: string; name: string }) => (
+                  <SelectItem key={country._id} value={country._id}>
+                    {country.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="w-full sm:w-48">
+            <Select name="attackedProvinceIds" defaultValue={attackedProvinceIds || "all"}>
+              <SelectTrigger>
+                <SelectValue placeholder={t("attackedProvinces") || "Attacked Provinces"} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t("allAttackedProvinces") || "All Attacked Provinces"}</SelectItem>
+                {provinces.map((province: { _id: string; name: string }) => (
+                  <SelectItem key={province._id} value={province._id}>
+                    {province.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
+          <div className="w-full sm:w-48">
+            <Select name="attackedCityIds" defaultValue={attackedCityIds || "all"}>
+              <SelectTrigger>
+                <SelectValue placeholder={t("attackedCities") || "Attacked Cities"} />
+              </SelectTrigger>
+              <SelectContent>
+                <SelectItem value="all">{t("allAttackedCities") || "All Attacked Cities"}</SelectItem>
+                {cities.map((city: { _id: string; name: string }) => (
+                  <SelectItem key={city._id} value={city._id}>
+                    {city.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
           </div>
           <div className="w-full sm:w-48">
             <Input
@@ -258,7 +344,7 @@ export default async function AdminReportsPage({
         {page > 1 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/reports?page=${page - 1}${search ? `&search=${search}` : ""}${status !== "all" ? `&status=${status}` : ""}${priority !== "all" ? `&priority=${priority}` : ""}${category !== "all" ? `&category=${category}` : ""}${selected_language !== "all" ? `&selected_language=${selected_language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/reports?page=${page - 1}${search ? `&search=${search}` : ""}${status !== "all" ? `&status=${status}` : ""}${priority !== "all" ? `&priority=${priority}` : ""}${category !== "all" ? `&category=${category}` : ""}${selected_language !== "all" ? `&selected_language=${selected_language}` : ""}${hostileCountryIds ? `&hostileCountryIds=${hostileCountryIds}` : ""}${attackedCountryIds ? `&attackedCountryIds=${attackedCountryIds}` : ""}${attackedProvinceIds ? `&attackedProvinceIds=${attackedProvinceIds}` : ""}${attackedCityIds ? `&attackedCityIds=${attackedCityIds}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("previous") || "Previous"}
             </Link>
@@ -271,7 +357,7 @@ export default async function AdminReportsPage({
         {reports.length >= 10 ? (
           <Button variant="outline" size="sm" asChild>
             <Link
-              href={`/admin/reports?page=${page + 1}${search ? `&search=${search}` : ""}${status !== "all" ? `&status=${status}` : ""}${priority !== "all" ? `&priority=${priority}` : ""}${category !== "all" ? `&category=${category}` : ""}${selected_language !== "all" ? `&selected_language=${selected_language}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/reports?page=${page + 1}${search ? `&search=${search}` : ""}${status !== "all" ? `&status=${status}` : ""}${priority !== "all" ? `&priority=${priority}` : ""}${category !== "all" ? `&category=${category}` : ""}${selected_language !== "all" ? `&selected_language=${selected_language}` : ""}${hostileCountryIds ? `&hostileCountryIds=${hostileCountryIds}` : ""}${attackedCountryIds ? `&attackedCountryIds=${attackedCountryIds}` : ""}${attackedProvinceIds ? `&attackedProvinceIds=${attackedProvinceIds}` : ""}${attackedCityIds ? `&attackedCityIds=${attackedCityIds}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
             >
               {t("next") || "Next"}
             </Link>

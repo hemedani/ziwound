@@ -391,20 +391,20 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
                   <h4 className="text-sm font-medium text-muted-foreground">{t("status")}</h4>
                   <Badge
                     variant={
-                      selectedReport.status === "pending"
+                      selectedReport.status === "Pending"
                         ? "outline"
-                        : selectedReport.status === "approved"
+                        : selectedReport.status === "Approved"
                           ? "default"
                           : "destructive"
                     }
                   >
-                    {t(`status_${selectedReport.status || "pending"}`)}
+                    {t(`status_${getStatusKey(selectedReport.status)}`)}
                   </Badge>
                 </div>
                 <div>
                   <h4 className="text-sm font-medium text-muted-foreground">{t("priority")}</h4>
                   <Badge variant="secondary">
-                    {t(`priority_${selectedReport.priority || "low"}`)}
+                    {t(`priority_${getPriorityKey(selectedReport.priority)}`)}
                   </Badge>
                 </div>
               </div>
