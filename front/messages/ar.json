@@ -123,7 +123,21 @@
     "submitReport": "إرسال التقرير",
     "tags": "العلامات",
     "titleRequired": "العنوان مطلوب",
-    "viewDetails": "عرض التفاصيل"
+    "viewDetails": "عرض التفاصيل",
+    "hostileCountries": "الدول المعادية",
+    "attackedCountries": "الدول المستهدفة",
+    "attackedProvinces": "المحافظات المستهدفة",
+    "attackedCities": "المدن المستهدفة",
+    "selectHostileCountries": "اختر الدول المعادية...",
+    "selectAttackedCountries": "اختر الدول المستهدفة...",
+    "selectAttackedProvinces": "اختر المحافظات المستهدفة...",
+    "selectAttackedCities": "اختر المدن المستهدفة...",
+    "searchCountries": "البحث في الدول...",
+    "searchProvinces": "البحث في المحافظات...",
+    "searchCities": "البحث في المدن...",
+    "noCountriesFound": "لم يتم العثور على دول.",
+    "noProvincesFound": "لم يتم العثور على محافظات.",
+    "noCitiesFound": "لم يتم العثور على مدن."
   },
   "home": {
     "cta": {
@@ -522,7 +536,21 @@
     "international_sanctions": "International Sanctions",
     "international_sanctionsPlaceholder": "Enter international sanctions details",
     "notable_war_events": "Notable War Events",
-    "notable_war_eventsPlaceholder": "Enter notable war events"
+    "notable_war_eventsPlaceholder": "Enter notable war events",
+    "notable_battles": "معارك بارزة",
+    "notable_battlesPlaceholder": "أدخل المعارك البارزة",
+    "occupation_info": "معلومات الاحتلال",
+    "occupation_infoPlaceholder": "أدخل معلومات الاحتلال",
+    "destruction_level": "مستوى التدمير",
+    "destruction_levelPlaceholder": "أدخل مستوى التدمير",
+    "civilian_impact": "التأثير على المدنيين",
+    "civilian_impactPlaceholder": "أدخل التأثير على المدنيين",
+    "mass_graves_info": "معلومات القبور الجماعية",
+    "mass_graves_infoPlaceholder": "أدخل معلومات القبور الجماعية",
+    "war_crimes_events": "أحداث جرائم الحرب",
+    "war_crimes_eventsPlaceholder": "أدخل أحداث جرائم الحرب",
+    "liberation_info": "معلومات التحرير",
+    "liberation_infoPlaceholder": "أدخل معلومات التحرير"
   },
   "notFound": {
     "backHome": "العودة إلى الصفحة الرئيسية",

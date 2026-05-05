@@ -123,7 +123,21 @@
     "submitReport": "Rapport Indienen",
     "tags": "Tags",
     "titleRequired": "Titel is verplicht",
-    "viewDetails": "Details Bekijken"
+    "viewDetails": "Details Bekijken",
+    "hostileCountries": "Vijandige Landen",
+    "attackedCountries": "Aangevallen Landen",
+    "attackedProvinces": "Aangevallen Provincies",
+    "attackedCities": "Aangevallen Steden",
+    "selectHostileCountries": "Selecteer vijandige landen...",
+    "selectAttackedCountries": "Selecteer aangevallen landen...",
+    "selectAttackedProvinces": "Selecteer aangevallen provincies...",
+    "selectAttackedCities": "Selecteer aangevallen steden...",
+    "searchCountries": "Zoek landen...",
+    "searchProvinces": "Zoek provincies...",
+    "searchCities": "Zoek steden...",
+    "noCountriesFound": "Geen landen gevonden.",
+    "noProvincesFound": "Geen provincies gevonden.",
+    "noCitiesFound": "Geen steden gevonden."
   },
   "home": {
     "cta": {
@@ -522,7 +536,21 @@
     "international_sanctions": "International Sanctions",
     "international_sanctionsPlaceholder": "Enter international sanctions details",
     "notable_war_events": "Notable War Events",
-    "notable_war_eventsPlaceholder": "Enter notable war events"
+    "notable_war_eventsPlaceholder": "Enter notable war events",
+    "notable_battles": "Opmerkelijke Gevechten",
+    "notable_battlesPlaceholder": "Voer opmerkelijke gevechten in",
+    "occupation_info": "Bezettingsinformatie",
+    "occupation_infoPlaceholder": "Voer bezettingsinformatie in",
+    "destruction_level": "Vernietigingsniveau",
+    "destruction_levelPlaceholder": "Voer vernietigingsniveau in",
+    "civilian_impact": "Burgerimpact",
+    "civilian_impactPlaceholder": "Voer burgerimpact in",
+    "mass_graves_info": "Massagrafen Informatie",
+    "mass_graves_infoPlaceholder": "Voer massagrafen informatie in",
+    "war_crimes_events": "Oorlogsmisdaden Gebeurtenissen",
+    "war_crimes_eventsPlaceholder": "Voer oorlogsmisdaden gebeurtenissen in",
+    "liberation_info": "Bevrijdingsinformatie",
+    "liberation_infoPlaceholder": "Voer bevrijdingsinformatie in"
   },
   "notFound": {
     "backHome": "Terug naar startpagina",

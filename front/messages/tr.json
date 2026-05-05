@@ -123,7 +123,21 @@
     "submitReport": "Raporu Gönder",
     "tags": "Etiketler",
     "titleRequired": "Başlık gereklidir",
-    "viewDetails": "Detayları Görüntüle"
+    "viewDetails": "Detayları Görüntüle",
+    "hostileCountries": "Düşman Ülkeler",
+    "attackedCountries": "Saldırıya Uğrayan Ülkeler",
+    "attackedProvinces": "Saldırıya Uğrayan İller",
+    "attackedCities": "Saldırıya Uğrayan Şehirler",
+    "selectHostileCountries": "Düşman ülkeleri seçin...",
+    "selectAttackedCountries": "Saldırıya uğrayan ülkeleri seçin...",
+    "selectAttackedProvinces": "Saldırıya uğrayan illeri seçin...",
+    "selectAttackedCities": "Saldırıya uğrayan şehirleri seçin...",
+    "searchCountries": "Ülke ara...",
+    "searchProvinces": "İl ara...",
+    "searchCities": "Şehir ara...",
+    "noCountriesFound": "Ülke bulunamadı.",
+    "noProvincesFound": "İl bulunamadı.",
+    "noCitiesFound": "Şehir bulunamadı."
   },
   "home": {
     "cta": {
@@ -522,7 +536,21 @@
     "international_sanctions": "International Sanctions",
     "international_sanctionsPlaceholder": "Enter international sanctions details",
     "notable_war_events": "Notable War Events",
-    "notable_war_eventsPlaceholder": "Enter notable war events"
+    "notable_war_eventsPlaceholder": "Enter notable war events",
+    "notable_battles": "Önemli Savaşlar",
+    "notable_battlesPlaceholder": "Önemli savaşları girin",
+    "occupation_info": "İşgal Bilgisi",
+    "occupation_infoPlaceholder": "İşgal bilgisini girin",
+    "destruction_level": "Yıkım Seviyesi",
+    "destruction_levelPlaceholder": "Yıkım seviyesini girin",
+    "civilian_impact": "Sivil Etki",
+    "civilian_impactPlaceholder": "Sivil etkiyi girin",
+    "mass_graves_info": "Toplu Mezarlar Bilgisi",
+    "mass_graves_infoPlaceholder": "Toplu mezarlar bilgisini girin",
+    "war_crimes_events": "Savaş Suçları Olayları",
+    "war_crimes_eventsPlaceholder": "Savaş suçları olaylarını girin",
+    "liberation_info": "Kurtuluş Bilgisi",
+    "liberation_infoPlaceholder": "Kurtuluş bilgisini girin"
   },
   "notFound": {
     "backHome": "Ana Sayfaya Dön",

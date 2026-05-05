@@ -123,7 +123,21 @@
     "submitReport": "提交报告",
     "tags": "标签",
     "titleRequired": "标题是必填项",
-    "viewDetails": "查看详情"
+    "viewDetails": "查看详情",
+    "hostileCountries": "敌对国家",
+    "attackedCountries": "被攻击国家",
+    "attackedProvinces": "被攻击省份",
+    "attackedCities": "被攻击城市",
+    "selectHostileCountries": "选择敌对国家...",
+    "selectAttackedCountries": "选择被攻击国家...",
+    "selectAttackedProvinces": "选择被攻击省份...",
+    "selectAttackedCities": "选择被攻击城市...",
+    "searchCountries": "搜索国家...",
+    "searchProvinces": "搜索省份...",
+    "searchCities": "搜索城市...",
+    "noCountriesFound": "未找到国家。",
+    "noProvincesFound": "未找到省份。",
+    "noCitiesFound": "未找到城市。"
   },
   "home": {
     "cta": {
@@ -522,7 +536,21 @@
     "international_sanctions": "International Sanctions",
     "international_sanctionsPlaceholder": "Enter international sanctions details",
     "notable_war_events": "Notable War Events",
-    "notable_war_eventsPlaceholder": "Enter notable war events"
+    "notable_war_eventsPlaceholder": "Enter notable war events",
+    "notable_battles": "著名战役",
+    "notable_battlesPlaceholder": "输入著名战役",
+    "occupation_info": "占领信息",
+    "occupation_infoPlaceholder": "输入占领信息",
+    "destruction_level": "破坏程度",
+    "destruction_levelPlaceholder": "输入破坏程度",
+    "civilian_impact": "平民影响",
+    "civilian_impactPlaceholder": "输入平民影响",
+    "mass_graves_info": "万人坑信息",
+    "mass_graves_infoPlaceholder": "输入万人坑信息",
+    "war_crimes_events": "战争罪行事件",
+    "war_crimes_eventsPlaceholder": "输入战争罪行事件",
+    "liberation_info": "解放信息",
+    "liberation_infoPlaceholder": "输入解放信息"
   },
   "notFound": {
     "backHome": "返回首页",

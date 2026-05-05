@@ -123,7 +123,21 @@
     "submitReport": "Отправить отчет",
     "tags": "Теги",
     "titleRequired": "Требуется заголовок",
-    "viewDetails": "Посмотреть детали"
+    "viewDetails": "Посмотреть детали",
+    "hostileCountries": "Враждебные Страны",
+    "attackedCountries": "Атакованные Страны",
+    "attackedProvinces": "Атакованные Провинции",
+    "attackedCities": "Атакованные Города",
+    "selectHostileCountries": "Выберите враждебные страны...",
+    "selectAttackedCountries": "Выберите атакованные страны...",
+    "selectAttackedProvinces": "Выберите атакованные провинции...",
+    "selectAttackedCities": "Выберите атакованные города...",
+    "searchCountries": "Поиск стран...",
+    "searchProvinces": "Поиск провинций...",
+    "searchCities": "Поиск городов...",
+    "noCountriesFound": "Страны не найдены.",
+    "noProvincesFound": "Провинции не найдены.",
+    "noCitiesFound": "Города не найдены."
   },
   "home": {
     "cta": {
@@ -522,7 +536,21 @@
     "international_sanctions": "International Sanctions",
     "international_sanctionsPlaceholder": "Enter international sanctions details",
     "notable_war_events": "Notable War Events",
-    "notable_war_eventsPlaceholder": "Enter notable war events"
+    "notable_war_eventsPlaceholder": "Enter notable war events",
+    "notable_battles": "Примечательные Сражения",
+    "notable_battlesPlaceholder": "Введите примечательные сражения",
+    "occupation_info": "Информация об Оккупации",
+    "occupation_infoPlaceholder": "Введите информацию об оккупации",
+    "destruction_level": "Уровень Разрушений",
+    "destruction_levelPlaceholder": "Введите уровень разрушений",
+    "civilian_impact": "Воздействие на Гражданских",
+    "civilian_impactPlaceholder": "Введите воздействие на гражданских",
+    "mass_graves_info": "Информация о Массовых Захоронениях",
+    "mass_graves_infoPlaceholder": "Введите информацию о массовых захоронениях",
+    "war_crimes_events": "События Военных Преступлений",
+    "war_crimes_eventsPlaceholder": "Введите события военных преступлений",
+    "liberation_info": "Информация об Освобождении",
+    "liberation_infoPlaceholder": "Введите информацию об освобождении"
   },
   "notFound": {
     "backHome": "Вернуться на главную",

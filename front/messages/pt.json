@@ -123,7 +123,21 @@
     "submitReport": "Enviar Relatório",
     "tags": "Tags",
     "titleRequired": "O título é obrigatório",
-    "viewDetails": "Ver Detalhes"
+    "viewDetails": "Ver Detalhes",
+    "hostileCountries": "Países Hostis",
+    "attackedCountries": "Países Atacados",
+    "attackedProvinces": "Províncias Atacadas",
+    "attackedCities": "Cidades Atacadas",
+    "selectHostileCountries": "Selecionar países hostis...",
+    "selectAttackedCountries": "Selecionar países atacados...",
+    "selectAttackedProvinces": "Selecionar províncias atacadas...",
+    "selectAttackedCities": "Selecionar cidades atacadas...",
+    "searchCountries": "Buscar países...",
+    "searchProvinces": "Buscar províncias...",
+    "searchCities": "Buscar cidades...",
+    "noCountriesFound": "Nenhum país encontrado.",
+    "noProvincesFound": "Nenhuma província encontrada.",
+    "noCitiesFound": "Nenhuma cidade encontrada."
   },
   "home": {
     "cta": {
@@ -522,7 +536,21 @@
     "international_sanctions": "International Sanctions",
     "international_sanctionsPlaceholder": "Enter international sanctions details",
     "notable_war_events": "Notable War Events",
-    "notable_war_eventsPlaceholder": "Enter notable war events"
+    "notable_war_eventsPlaceholder": "Enter notable war events",
+    "notable_battles": "Batalhas Notáveis",
+    "notable_battlesPlaceholder": "Insira batalhas notáveis",
+    "occupation_info": "Informação de Ocupação",
+    "occupation_infoPlaceholder": "Insira informação de ocupação",
+    "destruction_level": "Nível de Destruição",
+    "destruction_levelPlaceholder": "Insira nível de destruição",
+    "civilian_impact": "Impacto Civil",
+    "civilian_impactPlaceholder": "Insira impacto civil",
+    "mass_graves_info": "Informação de Sepulturas em Massa",
+    "mass_graves_infoPlaceholder": "Insira informação de sepulturas em massa",
+    "war_crimes_events": "Eventos de Crimes de Guerra",
+    "war_crimes_eventsPlaceholder": "Insira eventos de crimes de guerra",
+    "liberation_info": "Informação de Libertação",
+    "liberation_infoPlaceholder": "Insira informação de libertação"
   },
   "notFound": {
     "backHome": "Voltar ao início",
