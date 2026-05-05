@@ -71,6 +71,12 @@ export function Header() {
         {!pathname.startsWith("/admin") && !pathname.includes("/login") && !pathname.includes("/register") && (
           <nav className="hidden md:flex items-center gap-6">
             <Link
+              href={`/${locale}/about`}
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              {t("about")}
+            </Link>
+            <Link
               href={`/${locale}/war-crimes`}
               className="text-sm font-medium hover:text-primary transition-colors"
             >
@@ -224,6 +230,12 @@ export function Header() {
                           <span>{tAdmin("dashboard")}</span>
                         </Link>
                         <Link
+                          href={`/${locale}/about`}
+                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
+                        >
+                          {t("about")}
+                        </Link>
+                        <Link
                           href="/admin/reports"
                           className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
                         >
@@ -298,8 +310,14 @@ export function Header() {
                           {t("warCrimes")}
                         </Link>
                       </>
-) : (
+                    ) : (
                       <>
+                        <Link
+                          href={`/${locale}/about`}
+                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
+                        >
+                          {t("about")}
+                        </Link>
                         <Link
                           href={`/${locale}/war-crimes`}
                           className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
