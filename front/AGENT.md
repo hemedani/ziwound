@@ -33,8 +33,10 @@ Ziwound frontend is a Next.js 16 application for a war crimes documentation syst
 
 ### Development Environment
 
+**IMPORTANT: This project uses `pnpm` as the package manager. Never use `npm` or `yarn`.**
+
 ```bash
-# Install dependencies with pnpm
+# Install dependencies with pnpm (REQUIRED - do not use npm/yarn)
 pnpm install
 
 # Run the development server (uses Turbopack)
@@ -49,7 +51,10 @@ The project is configured to use Next.js `standalone` output mode for highly opt
 In production (`Dockerfile`), we extract `.next/standalone` and run it natively via `node server.js` without reinstalling `node_modules`.
 
 ```bash
+# Build for production (uses pnpm, not npm)
 pnpm build
+
+# Start production server
 pnpm start
 ```
 
@@ -766,6 +771,114 @@ The `get` parameter works like GraphQL field selection - you specify exactly whi
 - Only request fields you actually need (reduces payload size)
 - Use nested selections for related data (avoids N+1 queries)
 
+### Field Naming Conventions & Relationships
+
+When working with the Leasan backend, understand these important patterns:
+
+#### 1. Field Projections in `get` Parameter
+Use nested objects to fetch related data, NOT camelCase IDs:
+
+```ts
+// ✅ CORRECT - Use nested relation objects
+const provinces = await getProvinces(
+  { page: 1, limit: 20 },
+  {
+    _id: 1,
+    name: 1,
+    country: {  // NOT 'countryId'
+      _id: 1,
+      name: 1,
+    },
+  }
+);
+
+// ✅ CORRECT - For cities with province and country
+const cities = await getCities(
+  { page: 1, limit: 20 },
+  {
+    _id: 1,
+    name: 1,
+    province: {  // NOT 'provinceId'
+      _id: 1,
+      name: 1,
+    },
+    country: {   // NOT 'countryId'
+      _id: 1,
+      name: 1,
+    },
+  }
+);
+```
+
+#### 2. Set Parameters in `add` and `update` Actions
+Use camelCase IDs when creating or updating records:
+
+```ts
+// ✅ CORRECT - Use camelCase IDs in 'set' parameter
+const newProvince = await add(
+  {
+    name: "Tehran",
+    english_name: "Tehran",
+    countryId: "123...",  // camelCase ID
+    wars_history: "...",
+  },
+  { _id: 1, name: 1 }
+);
+
+// ✅ CORRECT - For cities
+const newCity = await add(
+  {
+    name: "City Name",
+    english_name: "City Name",
+    countryId: "123...",   // camelCase ID
+    provinceId: "456...",  // camelCase ID
+    isCapital: false,
+    wars_history: "...",
+  },
+  { _id: 1, name: 1 }
+);
+```
+
+#### 3. Update Relations Separately
+Relations (like changing a province's country) must be updated via `updateRelations`:
+
+```ts
+// ✅ CORRECT - Update basic fields
+await update(
+  {
+    _id: provinceId,
+    name: "New Name",
+    wars_history: "...",
+    // Note: cannot change countryId here
+  },
+  { _id: 1 }
+);
+
+// ✅ CORRECT - Update relations separately
+await updateRelations(
+  {
+    _id: provinceId,
+    country: newCountryId,  // Use 'country', not 'countryId'
+  },
+  { _id: 1 }
+);
+```
+
+#### 4. TypeScript Type Handling
+When relations are returned as nested objects, extend the schema type:
+
+```ts
+// ✅ CORRECT - Extend schema type for nested relations
+interface CityWithRelations extends citySchema {
+  province?: { _id?: string; name?: string };
+  country?: { _id?: string; name?: string };
+}
+
+// Use in components
+const city: CityWithRelations = await getCity(...);
+console.log(city.province?._id);  // Access nested ID
+```
+
 ### Authentication Flow
 
 All actions automatically handle authentication:
@@ -1156,3 +1269,78 @@ This three-step process ensures that files are securely stored, properly grouped
 - Ghost user level has full admin access.
 - Keep the report submission page **simple and elegant**.
 - Do not run `pnpm dev` or build commands automatically — only suggest them.
+
+### Form Components: CountrySelect
+
+The `CountrySelect` component (`@/components/form/country-select.tsx`) is a comprehensive, production-ready dropdown component built on top of Radix UI Popover and `cmdk` (Command). It provides advanced capabilities similar to `react-select` but is fully integrated with the project's Shadcn UI design system.
+
+#### Key Features
+- **Async & Static Search:** Supports both static options arrays and asynchronous fetching via the `loadOptions` prop (with built-in debouncing).
+- **Clearable & Searchable:** Users can clear selections and search through items easily.
+- **Form Integration:** Seamlessly works with React Hook Form, controlled mode, and uncontrolled mode.
+- **Multi-select Ready:** Has base support for `isMulti` selection.
+- **Accessible & Responsive:** Fully accessible via keyboard and screen readers, adapting properly to dark/light modes.
+
+#### Usage Example
+
+```tsx
+import { CountrySelect } from "@/components/form/country-select";
+import { FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form";
+
+// Inside a React Hook Form:
+<FormField
+  control={form.control}
+  name="country_id"
+  render={({ field }) => (
+    <FormItem className="flex flex-col">
+      <FormLabel>Country</FormLabel>
+      <FormControl>
+        <CountrySelect
+          value={field.value}
+          onChange={(val) => field.onChange(val || "")}
+          options={[
+            { id: "1", name: "Iran", english_name: "Iran", flag: "🇮🇷" },
+            { id: "2", name: "United States", english_name: "United States", flag: "🇺🇸" },
+          ]}
+          placeholder="Select a country..."
+          searchPlaceholder="Search countries..."
+          emptyText="No country found."
+        />
+      </FormControl>
+    </FormItem>
+  )}
+/>
+```
+
+#### Async Fetching Example
+
+```tsx
+<CountrySelect
+  value={field.value}
+  onChange={(val) => field.onChange(val || "")}
+  async={true}
+  loadOptions={async (inputValue, page) => {
+    const res = await getCountries({ search: inputValue, page });
+    return {
+      options: res.body.map(c => ({ id: c._id, name: c.name, english_name: c.english_name })),
+      hasMore: res.hasMore
+    };
+  }}
+  placeholder="Search for a country..."
+/>
+```
+
+#### Component API (Props)
+- `value`: Current selected value (`string | string[] | null`).
+- `onChange`: Callback function when selection changes.
+- `defaultValue`: Initial value for uncontrolled usage.
+- `isMulti`: (boolean) Enable multi-select (default: false).
+- `isClearable`: (boolean) Enable clearing the selection (default: true).
+- `placeholder`: Text to show when no item is selected.
+- `searchPlaceholder`: Text for the inner search input.
+- `emptyText`: Text to show when no results are found.
+- `disabled`: (boolean) Disable the input.
+- `loading`: (boolean) Show external loading state.
+- `async`: (boolean) Enable asynchronous loading.
+- `loadOptions`: Promise-based function `(inputValue: string, page?: number)` for async loading.
+- `options`: Static fallback options array of `{ id, name, english_name?, flag? }`.
