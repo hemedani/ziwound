@@ -240,7 +240,8 @@
     "documents": "Genel Belgeler",
     "blog": "Blog",
     "warCrimes": "Savaş Suçları Keşfi",
-    "about": "Hakkında"
+    "about": "Hakkında",
+    "contact": "İletişim"
   },
   "footer": {
     "about": "Hakkımızda",
@@ -636,5 +637,35 @@
     "ctaDescription": "Raporunuzu göndererek tarihi belgelemeye ve adaletin sağlanmasına katkıda bulunursunuz.",
     "submitReport": "Rapor Gönder",
     "exploreData": "Verileri Keşfet"
+  },
+  "contact": {
+    "title": "İletişim",
+    "subtitle": "Bir sorunuz mu var veya yardıma mı ihtiyacınız var? Size yardımcı olmak için buradayız. Bize bir mesaj gönderin, en kısa sürede yanıt vereceğiz.",
+    "emailTitle": "E-posta",
+    "emailDescription": "Bize istediğiniz zaman e-posta gönderin",
+    "phoneTitle": "Telefon",
+    "phoneDescription": "Pzt-Cum 09:00-18:00 arası",
+    "addressTitle": "Adres",
+    "addressDescription": "Ofisimizi ziyaret edin",
+    "formTitle": "Bize Mesaj Gönderin",
+    "nameLabel": "Ad",
+    "namePlaceholder": "Adınızı girin",
+    "emailLabel": "E-posta",
+    "emailPlaceholder": "E-posta adresinizi girin",
+    "subjectLabel": "Konu",
+    "subjectPlaceholder": "Bir konu seçin",
+    "subjectGeneral": "Genel Soru",
+    "subjectSupport": "Teknik Destek",
+    "subjectPartnership": "İşbirliği",
+    "subjectMedia": "Medya Sorgusu",
+    "subjectOther": "Diğer",
+    "messageLabel": "Mesaj",
+    "messagePlaceholder": "Mesajınızı buraya yazın...",
+    "sending": "Gönderiliyor...",
+    "submit": "Mesaj Gönder",
+    "formError": "Mesaj gönderilemedi. Lütfen tekrar deneyin.",
+    "successTitle": "Mesaj Gönderildi!",
+    "successMessage": "İletişim kurduğunuz için teşekkür ederiz. Kısa sürede size dönüş yapacağız.",
+    "sendAnother": "Başka Mesaj Gönder"
   }
 }

@@ -240,7 +240,8 @@
     "documents": "Documentos Públicos",
     "blog": "Blog",
     "warCrimes": "Exploración de Crímenes de Guerra",
-    "about": "Acerca de"
+    "about": "Acerca de",
+    "contact": "Contacto"
   },
   "footer": {
     "about": "Sobre Nosotros",
@@ -691,5 +692,35 @@
     "ctaDescription": "Al enviar su reporte, ayuda a documentar la historia y contribuir a lograr la justicia.",
     "submitReport": "Enviar Reporte",
     "exploreData": "Explorar Datos"
+  },
+  "contact": {
+    "title": "Contáctenos",
+    "subtitle": "¿Tiene una pregunta o necesita ayuda? Estamos aquí para ayudar. Envíenos un mensaje y le responderemos lo antes posible.",
+    "emailTitle": "Correo Electrónico",
+    "emailDescription": "Envíenos un correo en cualquier momento",
+    "phoneTitle": "Teléfono",
+    "phoneDescription": "Lun-Vie de 9am a 6pm",
+    "addressTitle": "Dirección",
+    "addressDescription": "Visite nuestra oficina",
+    "formTitle": "Envíenos un Mensaje",
+    "nameLabel": "Nombre",
+    "namePlaceholder": "Ingrese su nombre",
+    "emailLabel": "Correo Electrónico",
+    "emailPlaceholder": "Ingrese su correo electrónico",
+    "subjectLabel": "Asunto",
+    "subjectPlaceholder": "Seleccione un asunto",
+    "subjectGeneral": "Consulta General",
+    "subjectSupport": "Soporte Técnico",
+    "subjectPartnership": "Colaboración",
+    "subjectMedia": "Consulta de Prensa",
+    "subjectOther": "Otro",
+    "messageLabel": "Mensaje",
+    "messagePlaceholder": "Escriba su mensaje aquí...",
+    "sending": "Enviando...",
+    "submit": "Enviar Mensaje",
+    "formError": "Error al enviar el mensaje. Por favor, inténtelo de nuevo.",
+    "successTitle": "¡Mensaje Enviado!",
+    "successMessage": "Gracias por contactarnos. Le responderemos pronto.",
+    "sendAnother": "Enviar Otro Mensaje"
   }
 }

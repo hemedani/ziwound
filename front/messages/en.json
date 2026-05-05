@@ -264,7 +264,8 @@
     "documents": "Public Documents",
     "blog": "Blog",
     "warCrimes": "War Crimes Exploration",
-    "about": "About"
+    "about": "About",
+    "contact": "Contact"
   },
 "footer": {
     "about": "About Us",
@@ -714,5 +715,35 @@
     "ctaDescription": "By submitting your report, you help document history and contribute to achieving justice.",
     "submitReport": "Submit Report",
     "exploreData": "Explore Data"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "subtitle": "Have a question or need assistance? We're here to help. Send us a message and we'll respond as soon as possible.",
+    "emailTitle": "Email",
+    "emailDescription": "Send us an email anytime",
+    "phoneTitle": "Phone",
+    "phoneDescription": "Mon-Fri from 9am to 6pm",
+    "addressTitle": "Address",
+    "addressDescription": "Visit our office",
+    "formTitle": "Send us a Message",
+    "nameLabel": "Name",
+    "namePlaceholder": "Enter your name",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter your email",
+    "subjectLabel": "Subject",
+    "subjectPlaceholder": "Select a subject",
+    "subjectGeneral": "General Inquiry",
+    "subjectSupport": "Technical Support",
+    "subjectPartnership": "Partnership",
+    "subjectMedia": "Media Inquiry",
+    "subjectOther": "Other",
+    "messageLabel": "Message",
+    "messagePlaceholder": "Write your message here...",
+    "sending": "Sending...",
+    "submit": "Send Message",
+    "formError": "Failed to send message. Please try again.",
+    "successTitle": "Message Sent!",
+    "successMessage": "Thank you for contacting us. We'll get back to you shortly.",
+    "sendAnother": "Send Another Message"
   }
 }

@@ -266,8 +266,9 @@
     "register": "ثبت‌نام",
     "documents": "اسناد عمومی",
     "blog": "وبلاگ",
-    "warCrimes": "کاوش جنایات جنگی",
-    "about": "درباره ما"
+    "warCrimes": "کاوش در جنایات جنگی",
+    "about": "درباره ما",
+    "contact": "تماس با ما"
   },
   "footer": {
     "about": "درباره ما",
@@ -717,5 +718,35 @@
     "ctaDescription": "با ثبت گزارش خود، به مستندسازی تاریخ و کمک به تحقق عدالت کمک کنید.",
     "submitReport": "ثبت گزارش",
     "exploreData": "مشاهده داده‌ها"
+  },
+  "contact": {
+    "title": "تماس با ما",
+    "subtitle": "سؤالی دارید یا نیاز به کمک دارید؟ ما اینجا هستیم تا کمک کنیم. پیام خود را بفرستید و ما در اسرع وقت پاسخ خواهیم داد.",
+    "emailTitle": "ایمیل",
+    "emailDescription": "در هر زمان به ما ایمیل بفرستید",
+    "phoneTitle": "تلفن",
+    "phoneDescription": "شنبه تا پنجشنبه از ساعت ۹ صبح تا ۶ عصر",
+    "addressTitle": "آدرس",
+    "addressDescription": "به دفتر ما سر بزنید",
+    "formTitle": "پیام خود را بفرستید",
+    "nameLabel": "نام",
+    "namePlaceholder": "نام خود را وارد کنید",
+    "emailLabel": "ایمیل",
+    "emailPlaceholder": "ایمیل خود را وارد کنید",
+    "subjectLabel": "موضوع",
+    "subjectPlaceholder": "موضوع را انتخاب کنید",
+    "subjectGeneral": "درخواست عمومی",
+    "subjectSupport": "پشتیبانی فنی",
+    "subjectPartnership": "مشارکت",
+    "subjectMedia": "استعلام رسانه‌ای",
+    "subjectOther": "سایر",
+    "messageLabel": "پیام",
+    "messagePlaceholder": "پیام خود را اینجا بنویسید...",
+    "sending": "در حال ارسال...",
+    "submit": "ارسال پیام",
+    "formError": "ارسال پیام با خطا مواجه شد. لطفاً دوباره تلاش کنید.",
+    "successTitle": "پیام ارسال شد!",
+    "successMessage": "با تشکر از تماس شما. به زودی با شما تماس خواهیم گرفت.",
+    "sendAnother": "ارسال پیام دیگر"
   }
 }

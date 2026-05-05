@@ -240,7 +240,8 @@
     "documents": "الوثائق العامة",
     "blog": "وبلاگ",
     "warCrimes": "استكشاف جرائم الحرب",
-    "about": "معلومات عنا"
+    "about": "معلومات عنا",
+    "contact": "اتصل بنا"
   },
   "footer": {
     "about": "معلومات عنا",
@@ -630,5 +631,35 @@
     "ctaDescription": "من خلال تقديم تقريرك، تساعد في توثيق التاريخ والمساهمة في تحقيق العدالة.",
     "submitReport": "إرسال تقرير",
     "exploreData": "استكشاف البيانات"
+  },
+  "contact": {
+    "title": "اتصل بنا",
+    "subtitle": "هل لديك سؤال أو تحتاج إلى مساعدة؟ نحن هنا للمساعدة. أرسل لنا رسالة وسنرد في أقرب وقت ممكن.",
+    "emailTitle": "البريد الإلكتروني",
+    "emailDescription": "أرسل لنا بريداً إلكترونياً في أي وقت",
+    "phoneTitle": "الهاتف",
+    "phoneDescription": "من الاثنين إلى الجمعة من الساعة 9 صباحاً حتى 6 مساءً",
+    "addressTitle": "العنوان",
+    "addressDescription": "زيارة مكتبنا",
+    "formTitle": "أرسل لنا رسالة",
+    "nameLabel": "الاسم",
+    "namePlaceholder": "أدخل اسمك",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "subjectLabel": "الموضوع",
+    "subjectPlaceholder": "اختر موضوعاً",
+    "subjectGeneral": "استفسار عام",
+    "subjectSupport": "الدعم الفني",
+    "subjectPartnership": "الشراكة",
+    "subjectMedia": "استفسار إعلامي",
+    "subjectOther": "أخرى",
+    "messageLabel": "الرسالة",
+    "messagePlaceholder": "اكتب رسالتك هنا...",
+    "sending": "جاري الإرسال...",
+    "submit": "إرسال الرسالة",
+    "formError": "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.",
+    "successTitle": "تم إرسال الرسالة!",
+    "successMessage": "شكراً لتواصلك معنا. سنرد عليك قريباً.",
+    "sendAnother": "إرسال رسالة أخرى"
   }
 }

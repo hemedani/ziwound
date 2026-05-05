@@ -77,6 +77,12 @@ export function Header() {
               {t("about")}
             </Link>
             <Link
+              href={`/${locale}/contact`}
+              className="text-sm font-medium hover:text-primary transition-colors"
+            >
+              {t("contact")}
+            </Link>
+            <Link
               href={`/${locale}/war-crimes`}
               className="text-sm font-medium hover:text-primary transition-colors"
             >
@@ -236,6 +242,12 @@ export function Header() {
                           {t("about")}
                         </Link>
                         <Link
+                          href={`/${locale}/contact`}
+                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
+                        >
+                          {t("contact")}
+                        </Link>
+                        <Link
                           href="/admin/reports"
                           className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
                         >
@@ -317,6 +329,12 @@ export function Header() {
                           className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
                         >
                           {t("about")}
+                        </Link>
+                        <Link
+                          href={`/${locale}/contact`}
+                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
+                        >
+                          {t("contact")}
                         </Link>
                         <Link
                           href={`/${locale}/war-crimes`}

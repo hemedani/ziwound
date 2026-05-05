@@ -240,7 +240,8 @@
     "documents": "公开文档",
     "blog": "博客",
     "warCrimes": "战争罪行探索",
-    "about": "关于"
+    "about": "关于",
+    "contact": "联系我们"
   },
   "footer": {
     "about": "关于我们",
@@ -636,5 +637,35 @@
     "ctaDescription": "通过提交您的报告，您可以帮助记录历史并为实现正义做出贡献。",
     "submitReport": "提交报告",
     "exploreData": "探索数据"
+  },
+  "contact": {
+    "title": "联系我们",
+    "subtitle": "有问题或需要帮助？我们随时为您服务。请给我们发送消息，我们会尽快回复。",
+    "emailTitle": "电子邮件",
+    "emailDescription": "随时给我们发送电子邮件",
+    "phoneTitle": "电话",
+    "phoneDescription": "周一至周五上午9点至下午6点",
+    "addressTitle": "地址",
+    "addressDescription": "访问我们的办公室",
+    "formTitle": "给我们发送消息",
+    "nameLabel": "姓名",
+    "namePlaceholder": "请输入您的姓名",
+    "emailLabel": "电子邮件",
+    "emailPlaceholder": "请输入您的电子邮件",
+    "subjectLabel": "主题",
+    "subjectPlaceholder": "请选择主题",
+    "subjectGeneral": "一般咨询",
+    "subjectSupport": "技术支持",
+    "subjectPartnership": "合作伙伴",
+    "subjectMedia": "媒体咨询",
+    "subjectOther": "其他",
+    "messageLabel": "消息",
+    "messagePlaceholder": "在此写下您的消息...",
+    "sending": "发送中...",
+    "submit": "发送消息",
+    "formError": "发送消息失败。请重试。",
+    "successTitle": "消息已发送！",
+    "successMessage": "感谢您的联系。我们会尽快回复您。",
+    "sendAnother": "发送另一条消息"
   }
 }

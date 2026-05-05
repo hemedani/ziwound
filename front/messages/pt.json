@@ -240,7 +240,8 @@
     "documents": "Documentos Públicos",
     "blog": "Blog",
     "warCrimes": "Exploração de Crimes de Guerra",
-    "about": "Sobre"
+    "about": "Sobre",
+    "contact": "Contato"
   },
   "footer": {
     "about": "Sobre Nós",
@@ -636,5 +637,35 @@
     "ctaDescription": "Ao enviar seu relatório, você ajuda a documentar a história e contribuir para a realização da justiça.",
     "submitReport": "Enviar Relatório",
     "exploreData": "Explorar Dados"
+  },
+  "contact": {
+    "title": "Entre em Contato",
+    "subtitle": "Tem uma pergunta ou precisa de ajuda? Estamos aqui para ajudar. Envie-nos uma mensagem e responderemos o mais breve possível.",
+    "emailTitle": "Email",
+    "emailDescription": "Envie-nos um email a qualquer momento",
+    "phoneTitle": "Telefone",
+    "phoneDescription": "Seg-Sex das 9h às 18h",
+    "addressTitle": "Endereço",
+    "addressDescription": "Visite nosso escritório",
+    "formTitle": "Envie-nos uma Mensagem",
+    "nameLabel": "Nome",
+    "namePlaceholder": "Digite seu nome",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Digite seu email",
+    "subjectLabel": "Assunto",
+    "subjectPlaceholder": "Selecione um assunto",
+    "subjectGeneral": "Consulta Geral",
+    "subjectSupport": "Suporte Técnico",
+    "subjectPartnership": "Parceria",
+    "subjectMedia": "Consulta de Mídia",
+    "subjectOther": "Outro",
+    "messageLabel": "Mensagem",
+    "messagePlaceholder": "Escreva sua mensagem aqui...",
+    "sending": "Enviando...",
+    "submit": "Enviar Mensagem",
+    "formError": "Falha ao enviar mensagem. Por favor, tente novamente.",
+    "successTitle": "Mensagem Enviada!",
+    "successMessage": "Obrigado por entrar em contato. Responderemos em breve.",
+    "sendAnother": "Enviar Outra Mensagem"
   }
 }

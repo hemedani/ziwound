@@ -240,7 +240,8 @@
     "documents": "Openbare Documenten",
     "blog": "Blog",
     "warCrimes": "Oorlogsmisdrijven Verkenning",
-    "about": "Over"
+    "about": "Over",
+    "contact": "Contact"
   },
   "footer": {
     "about": "Over Ons",
@@ -691,5 +692,35 @@
     "ctaDescription": "Door uw rapport in te dienen, helpt u geschiedenis te documenteren en bij te dragen aan het bereiken van gerechtigheid.",
     "submitReport": "Rapport Indienen",
     "exploreData": "Gegevens Verkennen"
+  },
+  "contact": {
+    "title": "Contact",
+    "subtitle": "Heeft u een vraag of hulp nodig? We zijn er om te helpen. Stuur ons een bericht en we reageren zo snel mogelijk.",
+    "emailTitle": "E-mail",
+    "emailDescription": "Stuur ons op elk moment een e-mail",
+    "phoneTitle": "Telefoon",
+    "phoneDescription": "Ma-Vr van 9.00 tot 18.00 uur",
+    "addressTitle": "Adres",
+    "addressDescription": "Bezoek ons kantoor",
+    "formTitle": "Stuur ons een Bericht",
+    "nameLabel": "Naam",
+    "namePlaceholder": "Voer uw naam in",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Voer uw e-mail in",
+    "subjectLabel": "Onderwerp",
+    "subjectPlaceholder": "Selecteer een onderwerp",
+    "subjectGeneral": "Algemene Vraag",
+    "subjectSupport": "Technische Ondersteuning",
+    "subjectPartnership": "Partnerschap",
+    "subjectMedia": "Media Vraag",
+    "subjectOther": "Overig",
+    "messageLabel": "Bericht",
+    "messagePlaceholder": "Schrijf uw bericht hier...",
+    "sending": "Bezig met verzenden...",
+    "submit": "Verstuur Bericht",
+    "formError": "Bericht verzenden mislukt. Probeer het opnieuw.",
+    "successTitle": "Bericht Verzonden!",
+    "successMessage": "Bedankt voor uw contact. We reageren spoedig.",
+    "sendAnother": "Nog een Bericht Versturen"
   }
 }
