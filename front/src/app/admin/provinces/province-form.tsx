@@ -15,23 +15,22 @@ import {
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { RichTextEditor } from "@/components/form/rich-text-editor";
+import { AsyncSelect, AsyncSelectOption } from "@/components/form/async-select";
 
 const provinceFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
   english_name: z.string().min(1, "English name is required"),
-  country_id: z.string().min(1, "Country is required"),
+  countryId: z.string().min(1, "Country is required"),
   wars_history: z.string().optional(),
   conflict_timeline: z.string().optional(),
   casualties_info: z.string().optional(),
-  international_response: z.string().optional(),
-  war_crimes_documentation: z.string().optional(),
-  human_rights_violations: z.string().optional(),
-  genocide_info: z.string().optional(),
-  chemical_weapons_info: z.string().optional(),
-  displacement_info: z.string().optional(),
-  reconstruction_status: z.string().optional(),
-  international_sanctions: z.string().optional(),
-  notable_war_events: z.string().optional(),
+  notable_battles: z.string().optional(),
+  occupation_info: z.string().optional(),
+  destruction_level: z.string().optional(),
+  civilian_impact: z.string().optional(),
+  mass_graves_info: z.string().optional(),
+  war_crimes_events: z.string().optional(),
+  liberation_info: z.string().optional(),
 });
 
 export type ProvinceFormValues = z.infer<typeof provinceFormSchema>;
@@ -48,15 +47,13 @@ const warDescriptionFields = [
   "wars_history",
   "conflict_timeline",
   "casualties_info",
-  "international_response",
-  "war_crimes_documentation",
-  "human_rights_violations",
-  "genocide_info",
-  "chemical_weapons_info",
-  "displacement_info",
-  "reconstruction_status",
-  "international_sanctions",
-  "notable_war_events",
+  "notable_battles",
+  "occupation_info",
+  "destruction_level",
+  "civilian_impact",
+  "mass_graves_info",
+  "war_crimes_events",
+  "liberation_info",
 ] as const;
 
 export function ProvinceForm({
@@ -73,19 +70,17 @@ export function ProvinceForm({
     defaultValues: {
       name: "",
       english_name: "",
-      country_id: "",
+      countryId: "",
       wars_history: "",
       conflict_timeline: "",
       casualties_info: "",
-      international_response: "",
-      war_crimes_documentation: "",
-      human_rights_violations: "",
-      genocide_info: "",
-      chemical_weapons_info: "",
-      displacement_info: "",
-      reconstruction_status: "",
-      international_sanctions: "",
-      notable_war_events: "",
+      notable_battles: "",
+      occupation_info: "",
+      destruction_level: "",
+      civilian_impact: "",
+      mass_graves_info: "",
+      war_crimes_events: "",
+      liberation_info: "",
       ...defaultValues,
     },
   });
@@ -96,22 +91,23 @@ export function ProvinceForm({
         <div className="grid grid-cols-2 gap-4">
           <FormField
             control={form.control}
-            name="country_id"
+            name="countryId"
             render={({ field }) => (
               <FormItem>
                 <FormLabel>{t("country") || "Country"}</FormLabel>
                 <FormControl>
-                  <select
-                    {...field}
-                    className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-                  >
-                    <option value="">{t("selectCountry") || "Select a country"}</option>
-                    {countries.map((country) => (
-                      <option key={country._id} value={country._id}>
-                        {country.name} ({country.english_name})
-                      </option>
-                    ))}
-                  </select>
+                  <AsyncSelect
+                    value={field.value}
+                    onChange={(val) => field.onChange(val || "")}
+                    options={countries.map((c) => ({
+                      id: c._id,
+                      label: c.name,
+                      subLabel: c.english_name,
+                    }))}
+                    placeholder={t("selectCountry") || "Select a country"}
+                    searchPlaceholder="Search countries..."
+                    emptyText="No country found."
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>

@@ -7,10 +7,11 @@ import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { ProvinceForm, ProvinceFormValues } from "../province-form";
 import { update } from "@/app/actions/province/update";
+import { updateRelations } from "@/app/actions/province/updateRelations";
 import { provinceSchema } from "@/types/declarations";
 
 interface EditProvinceFormProps {
-  province: provinceSchema;
+  province: provinceSchema & { country?: { _id?: string } };
   countries?: Array<{ _id: string; name: string; english_name: string }>;
 }
 
@@ -25,43 +26,63 @@ export function EditProvinceForm({ province, countries = [] }: EditProvinceFormP
     setIsLoading(true);
 
     try {
+      // First update the province basic info (without countryId)
       const res = await update(
         {
-          _id: province._id,
+          _id: province._id!,
           name: data.name,
           english_name: data.english_name,
-          country_id: data.country_id,
           wars_history: data.wars_history || "",
           conflict_timeline: data.conflict_timeline || "",
           casualties_info: data.casualties_info || "",
-          international_response: data.international_response || "",
-          war_crimes_documentation: data.war_crimes_documentation || "",
-          human_rights_violations: data.human_rights_violations || "",
-          genocide_info: data.genocide_info || "",
-          chemical_weapons_info: data.chemical_weapons_info || "",
-          displacement_info: data.displacement_info || "",
-          reconstruction_status: data.reconstruction_status || "",
-          international_sanctions: data.international_sanctions || "",
-          notable_war_events: data.notable_war_events || "",
+          notable_battles: data.notable_battles || "",
+          occupation_info: data.occupation_info || "",
+          destruction_level: data.destruction_level || "",
+          civilian_impact: data.civilian_impact || "",
+          mass_graves_info: data.mass_graves_info || "",
+          war_crimes_events: data.war_crimes_events || "",
+          liberation_info: data.liberation_info || "",
         },
         { _id: 1, name: 1 },
       );
 
-      if (res?.success) {
-        toast({
-          title: tCommon("success"),
-          description: t("provinceUpdated") || "Province updated successfully",
-        });
-        router.refresh();
-        router.push("/admin/provinces");
-      } else {
+      if (!res?.success) {
         toast({
           variant: "destructive",
           title: tCommon("error"),
           description:
             res?.error || res?.body?.message || t("failedToUpdateProvince") || "Failed to update province.",
         });
+        return;
       }
+
+      // Then update relations if country changed
+      if (data.countryId !== province.country?._id) {
+        const relationRes = await updateRelations(
+          {
+            _id: province._id!,
+            country: data.countryId,
+          },
+          { _id: 1 },
+        );
+
+        if (!relationRes?.success) {
+          toast({
+            variant: "destructive",
+            title: tCommon("error"),
+            description:
+              relationRes?.error || relationRes?.body?.message || t("failedToUpdateProvinceRelations") || "Failed to update province relations.",
+          });
+          return;
+        }
+      }
+
+      toast({
+        title: tCommon("success"),
+        description: t("provinceUpdated") || "Province updated successfully",
+      });
+      router.refresh();
+      router.push("/admin/provinces");
     } catch (_error) {
       toast({
         variant: "destructive",
@@ -80,19 +101,17 @@ export function EditProvinceForm({ province, countries = [] }: EditProvinceFormP
   const defaultValues = {
     name: province.name,
     english_name: province.english_name,
-    country_id: province.country_id,
+    countryId: province.country?._id || "",
     wars_history: province.wars_history || "",
     conflict_timeline: province.conflict_timeline || "",
     casualties_info: province.casualties_info || "",
-    international_response: province.international_response || "",
-    war_crimes_documentation: province.war_crimes_documentation || "",
-    human_rights_violations: province.human_rights_violations || "",
-    genocide_info: province.genocide_info || "",
-    chemical_weapons_info: province.chemical_weapons_info || "",
-    displacement_info: province.displacement_info || "",
-    reconstruction_status: province.reconstruction_status || "",
-    international_sanctions: province.international_sanctions || "",
-    notable_war_events: province.notable_war_events || "",
+    notable_battles: province.notable_battles || "",
+    occupation_info: province.occupation_info || "",
+    destruction_level: province.destruction_level || "",
+    civilian_impact: province.civilian_impact || "",
+    mass_graves_info: province.mass_graves_info || "",
+    war_crimes_events: province.war_crimes_events || "",
+    liberation_info: province.liberation_info || "",
   };
 
   return (
