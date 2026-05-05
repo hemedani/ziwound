@@ -2,23 +2,23 @@
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import { Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
-import type { DeepPartial, categorySchema, tagSchema, countrySchema, provinceSchema, citySchema, ReqType } from "@/types/declarations";
+import type { DeepPartial, categorySchema, tagSchema, ReqType } from "@/types/declarations";
+import { AsyncSelect, AsyncSelectOption, AsyncSelectLoadResult, AsyncSelectValue } from "@/components/form/async-select";
+import { gets as getCountries } from "@/app/actions/country/gets";
+import { gets as getProvinces } from "@/app/actions/province/gets";
+import { gets as getCities } from "@/app/actions/city/gets";
 
 interface WarCrimesFiltersProps {
   locale: string;
   categories: DeepPartial<categorySchema>[];
   tags: DeepPartial<tagSchema>[];
-  countries: DeepPartial<countrySchema>[];
-  provinces: DeepPartial<provinceSchema>[];
-  cities: DeepPartial<citySchema>[];
   initialSearch?: string;
   initialStatus?: ReqType["main"]["report"]["gets"]["set"]["status"];
   initialPriority?: ReqType["main"]["report"]["gets"]["set"]["priority"];
@@ -39,9 +39,6 @@ export function WarCrimesFilters({
   locale,
   categories,
   tags,
-  countries,
-  provinces,
-  cities,
   initialSearch = "",
   initialStatus,
   initialPriority,
@@ -98,19 +95,22 @@ export function WarCrimesFilters({
     updateParams({ search });
   };
 
-  const handleStatusChange = (value: string) => {
-    setStatus(value);
-    updateParams({ status: value === "all" ? undefined : value });
+  const handleStatusChange = (value: AsyncSelectValue) => {
+    const newValue = typeof value === "string" ? value : "all";
+    setStatus(newValue);
+    updateParams({ status: newValue === "all" ? undefined : newValue });
   };
 
-  const handlePriorityChange = (value: string) => {
-    setPriority(value);
-    updateParams({ priority: value === "all" ? undefined : value });
+  const handlePriorityChange = (value: AsyncSelectValue) => {
+    const newValue = typeof value === "string" ? value : "all";
+    setPriority(newValue);
+    updateParams({ priority: newValue === "all" ? undefined : newValue });
   };
 
-  const handleCategoryChange = (value: string) => {
-    setCategoryId(value);
-    updateParams({ categoryId: value || undefined });
+  const handleCategoryChange = (value: AsyncSelectValue) => {
+    const newValue = typeof value === "string" ? value : "";
+    setCategoryId(newValue);
+    updateParams({ categoryId: newValue || undefined });
   };
 
   const handleTagToggle = (tagId: string) => {
@@ -131,29 +131,34 @@ export function WarCrimesFilters({
     updateParams({ dateTo: value || undefined });
   };
 
-  const handleHostileCountryChange = (value: string) => {
-    setHostileCountryIds(value);
-    updateParams({ hostileCountryIds: value === "all" ? undefined : value });
+  const handleHostileCountryChange = (value: AsyncSelectValue) => {
+    const newValue = typeof value === "string" ? value : "";
+    setHostileCountryIds(newValue);
+    updateParams({ hostileCountryIds: newValue || undefined });
   };
 
-  const handleAttackedCountryChange = (value: string) => {
-    setAttackedCountryIds(value);
-    updateParams({ attackedCountryIds: value === "all" ? undefined : value });
+  const handleAttackedCountryChange = (value: AsyncSelectValue) => {
+    const newValue = typeof value === "string" ? value : "";
+    setAttackedCountryIds(newValue);
+    updateParams({ attackedCountryIds: newValue || undefined });
   };
 
-  const handleAttackedProvinceChange = (value: string) => {
-    setAttackedProvinceIds(value);
-    updateParams({ attackedProvinceIds: value === "all" ? undefined : value });
+  const handleAttackedProvinceChange = (value: AsyncSelectValue) => {
+    const newValue = typeof value === "string" ? value : "";
+    setAttackedProvinceIds(newValue);
+    updateParams({ attackedProvinceIds: newValue || undefined });
   };
 
-  const handleAttackedCityChange = (value: string) => {
-    setAttackedCityIds(value);
-    updateParams({ attackedCityIds: value === "all" ? undefined : value });
+  const handleAttackedCityChange = (value: AsyncSelectValue) => {
+    const newValue = typeof value === "string" ? value : "";
+    setAttackedCityIds(newValue);
+    updateParams({ attackedCityIds: newValue || undefined });
   };
 
-  const handleLanguageChange = (value: string) => {
-    setSelectedLanguage(value);
-    updateParams({ selected_language: value === "all" ? undefined : value });
+  const handleLanguageChange = (value: AsyncSelectValue) => {
+    const newValue = typeof value === "string" ? value : "all";
+    setSelectedLanguage(newValue);
+    updateParams({ selected_language: newValue === "all" ? undefined : newValue });
   };
 
   const handleCrimeOccurredFromChange = (value: string) => {
@@ -183,6 +188,95 @@ export function WarCrimesFilters({
     setCrimeOccurredTo("");
     router.push(pathname);
   };
+
+  // Load options functions for AsyncSelect
+  const loadCountryOptions = useCallback(async (inputValue: string): Promise<AsyncSelectLoadResult> => {
+    const result = await getCountries(
+      { search: inputValue, limit: 50 },
+      { _id: 1, name: 1 }
+    );
+    
+    if (result.success && result.body && Array.isArray(result.body)) {
+      const options: AsyncSelectOption[] = result.body.map((country: { _id: string; name?: string }) => ({
+        id: country._id,
+        label: country.name || "",
+      }));
+      return { options, hasMore: false };
+    }
+    
+    return { options: [], hasMore: false };
+  }, []);
+
+  const loadProvinceOptions = useCallback(async (inputValue: string): Promise<AsyncSelectLoadResult> => {
+    const result = await getProvinces(
+      { search: inputValue, limit: 50 },
+      { _id: 1, name: 1 }
+    );
+    
+    if (result.success && result.body && Array.isArray(result.body)) {
+      const options: AsyncSelectOption[] = result.body.map((province: { _id: string; name?: string }) => ({
+        id: province._id,
+        label: province.name || "",
+      }));
+      return { options, hasMore: false };
+    }
+    
+    return { options: [], hasMore: false };
+  }, []);
+
+  const loadCityOptions = useCallback(async (inputValue: string): Promise<AsyncSelectLoadResult> => {
+    const result = await getCities(
+      { search: inputValue, limit: 50 },
+      { _id: 1, name: 1 }
+    );
+    
+    if (result.success && result.body && Array.isArray(result.body)) {
+      const options: AsyncSelectOption[] = result.body.map((city: { _id: string; name?: string }) => ({
+        id: city._id,
+        label: city.name || "",
+      }));
+      return { options, hasMore: false };
+    }
+    
+    return { options: [], hasMore: false };
+  }, []);
+
+  // Static options for filters
+  const statusOptions: AsyncSelectOption[] = [
+    { id: "all", label: t("status.all") },
+    { id: "Approved", label: t("status.approved") },
+    { id: "Pending", label: t("status.pending") },
+    { id: "Rejected", label: t("status.rejected") },
+    { id: "InReview", label: t("status.inReview") },
+  ];
+
+  const priorityOptions: AsyncSelectOption[] = [
+    { id: "all", label: t("priority.all") },
+    { id: "High", label: t("priority.high") },
+    { id: "Medium", label: t("priority.medium") },
+    { id: "Low", label: t("priority.low") },
+  ];
+
+  const categoryOptions: AsyncSelectOption[] = [
+    { id: "", label: tFilter("selectCategory") },
+    ...categories.map((cat) => ({
+      id: cat._id || "",
+      label: cat.name || "",
+    })),
+  ];
+
+  const languageOptions: AsyncSelectOption[] = [
+    { id: "all", label: tCommon("all") },
+    { id: "fa", label: "فارسی" },
+    { id: "en", label: "English" },
+    { id: "ar", label: "العربية" },
+    { id: "zh", label: "中文" },
+    { id: "pt", label: "Português" },
+    { id: "es", label: "Español" },
+    { id: "ru", label: "Русский" },
+    { id: "tr", label: "Türkçe" },
+    { id: "nl", label: "Nederlands" },
+  ];
 
   const hasActiveFilters =
     search ||
@@ -229,53 +323,38 @@ export function WarCrimesFilters({
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="space-y-2">
             <Label>{t("filters.status")}</Label>
-            <Select value={status || "all"} onValueChange={handleStatusChange}>
-              <SelectTrigger>
-                <SelectValue placeholder={t("status.all")} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{t("status.all")}</SelectItem>
-                <SelectItem value="Approved">{t("status.approved")}</SelectItem>
-                <SelectItem value="Pending">{t("status.pending")}</SelectItem>
-                <SelectItem value="Rejected">{t("status.rejected")}</SelectItem>
-                <SelectItem value="InReview">{t("status.inReview")}</SelectItem>
-              </SelectContent>
-            </Select>
+            <AsyncSelect
+              value={status}
+              onChange={handleStatusChange}
+              options={statusOptions}
+              placeholder={t("status.all")}
+              searchPlaceholder={tCommon("search")}
+              emptyText={tCommon("noResults")}
+            />
           </div>
 
           <div className="space-y-2">
             <Label>{t("filters.priority")}</Label>
-            <Select value={priority || "all"} onValueChange={handlePriorityChange}>
-              <SelectTrigger>
-                <SelectValue placeholder={t("priority.all")} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{t("priority.all")}</SelectItem>
-                <SelectItem value="High">{t("priority.high")}</SelectItem>
-                <SelectItem value="Medium">{t("priority.medium")}</SelectItem>
-                <SelectItem value="Low">{t("priority.low")}</SelectItem>
-              </SelectContent>
-            </Select>
+            <AsyncSelect
+              value={priority}
+              onChange={handlePriorityChange}
+              options={priorityOptions}
+              placeholder={t("priority.all")}
+              searchPlaceholder={tCommon("search")}
+              emptyText={tCommon("noResults")}
+            />
           </div>
 
           <div className="space-y-2">
             <Label>{tFilter("category")}</Label>
-            <Select
-              value={categoryId || "none"}
-              onValueChange={(v) => handleCategoryChange(v === "none" ? "" : v)}
-            >
-              <SelectTrigger>
-                <SelectValue placeholder={tFilter("selectCategory")} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="none">{tFilter("selectCategory")}</SelectItem>
-                {categories.map((cat) => (
-                  <SelectItem key={cat._id} value={cat._id || ""}>
-                    {cat.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <AsyncSelect
+              value={categoryId || ""}
+              onChange={handleCategoryChange}
+              options={categoryOptions}
+              placeholder={tFilter("selectCategory")}
+              searchPlaceholder={tCommon("search")}
+              emptyText={tCommon("noResults")}
+            />
           </div>
 
           <div className="space-y-2">
@@ -301,91 +380,70 @@ export function WarCrimesFilters({
 
           <div className="space-y-2">
             <Label>{tFilter("hostileCountries") || "Hostile Countries"}</Label>
-            <Select value={hostileCountryIds || "all"} onValueChange={handleHostileCountryChange}>
-              <SelectTrigger>
-                <SelectValue placeholder={tFilter("allHostileCountries") || "All Hostile Countries"} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{tFilter("allHostileCountries") || "All Hostile Countries"}</SelectItem>
-                {countries.map((country) => (
-                  <SelectItem key={country._id} value={country._id || ""}>
-                    {country.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <AsyncSelect
+              value={hostileCountryIds || null}
+              onChange={handleHostileCountryChange}
+              async
+              loadOptions={loadCountryOptions}
+              placeholder={tFilter("allHostileCountries") || "All Hostile Countries"}
+              searchPlaceholder={tCommon("search")}
+              emptyText={tCommon("noResults")}
+              isClearable
+            />
           </div>
 
           <div className="space-y-2">
             <Label>{tFilter("attackedCountries") || "Attacked Countries"}</Label>
-            <Select value={attackedCountryIds || "all"} onValueChange={handleAttackedCountryChange}>
-              <SelectTrigger>
-                <SelectValue placeholder={tFilter("allAttackedCountries") || "All Attacked Countries"} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{tFilter("allAttackedCountries") || "All Attacked Countries"}</SelectItem>
-                {countries.map((country) => (
-                  <SelectItem key={country._id} value={country._id || ""}>
-                    {country.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <AsyncSelect
+              value={attackedCountryIds || null}
+              onChange={handleAttackedCountryChange}
+              async
+              loadOptions={loadCountryOptions}
+              placeholder={tFilter("allAttackedCountries") || "All Attacked Countries"}
+              searchPlaceholder={tCommon("search")}
+              emptyText={tCommon("noResults")}
+              isClearable
+            />
           </div>
 
           <div className="space-y-2">
             <Label>{tFilter("attackedProvinces") || "Attacked Provinces"}</Label>
-            <Select value={attackedProvinceIds || "all"} onValueChange={handleAttackedProvinceChange}>
-              <SelectTrigger>
-                <SelectValue placeholder={tFilter("allAttackedProvinces") || "All Attacked Provinces"} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{tFilter("allAttackedProvinces") || "All Attacked Provinces"}</SelectItem>
-                {provinces.map((province) => (
-                  <SelectItem key={province._id} value={province._id || ""}>
-                    {province.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <AsyncSelect
+              value={attackedProvinceIds || null}
+              onChange={handleAttackedProvinceChange}
+              async
+              loadOptions={loadProvinceOptions}
+              placeholder={tFilter("allAttackedProvinces") || "All Attacked Provinces"}
+              searchPlaceholder={tCommon("search")}
+              emptyText={tCommon("noResults")}
+              isClearable
+            />
           </div>
 
           <div className="space-y-2">
             <Label>{tFilter("attackedCities") || "Attacked Cities"}</Label>
-            <Select value={attackedCityIds || "all"} onValueChange={handleAttackedCityChange}>
-              <SelectTrigger>
-                <SelectValue placeholder={tFilter("allAttackedCities") || "All Attacked Cities"} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{tFilter("allAttackedCities") || "All Attacked Cities"}</SelectItem>
-                {cities.map((city) => (
-                  <SelectItem key={city._id} value={city._id || ""}>
-                    {city.name}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
+            <AsyncSelect
+              value={attackedCityIds || null}
+              onChange={handleAttackedCityChange}
+              async
+              loadOptions={loadCityOptions}
+              placeholder={tFilter("allAttackedCities") || "All Attacked Cities"}
+              searchPlaceholder={tCommon("search")}
+              emptyText={tCommon("noResults")}
+              isClearable
+            />
           </div>
 
           <div className="space-y-2">
             <Label>{t("filters.language") || "Language"}</Label>
-            <Select value={selected_language || "all"} onValueChange={handleLanguageChange}>
-              <SelectTrigger>
-                <SelectValue placeholder={tCommon("all")} />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectItem value="all">{tCommon("all")}</SelectItem>
-                <SelectItem value="fa">فارسی</SelectItem>
-                <SelectItem value="en">English</SelectItem>
-                <SelectItem value="ar">العربية</SelectItem>
-                <SelectItem value="zh">中文</SelectItem>
-                <SelectItem value="pt">Português</SelectItem>
-                <SelectItem value="es">Español</SelectItem>
-                <SelectItem value="ru">Русский</SelectItem>
-                <SelectItem value="tr">Türkçe</SelectItem>
-                <SelectItem value="nl">Nederlands</SelectItem>
-              </SelectContent>
-            </Select>
+            <AsyncSelect
+              value={selected_language}
+              onChange={handleLanguageChange}
+              options={languageOptions}
+              placeholder={tCommon("all")}
+              searchPlaceholder={tCommon("search")}
+              emptyText={tCommon("noResults")}
+            />
           </div>
         </div>
 

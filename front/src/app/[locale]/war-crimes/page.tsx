@@ -3,9 +3,6 @@ import { gets as getReports } from "@/app/actions/report/gets";
 import { count as countReports } from "@/app/actions/report/count";
 import { gets as getCategories } from "@/app/actions/category/gets";
 import { gets as getTags } from "@/app/actions/tag/gets";
-import { gets as getCountries } from "@/app/actions/country/gets";
-import { gets as getProvinces } from "@/app/actions/province/gets";
-import { gets as getCities } from "@/app/actions/city/gets";
 import { WarCrimesFilters } from "@/components/war-crimes/war-crimes-filters";
 import { WarCrimesList } from "@/components/war-crimes/war-crimes-list";
 import { WarCrimesMap } from "@/components/war-crimes/war-crimes-map";
@@ -20,9 +17,6 @@ import type {
   reportSchema,
   categorySchema,
   tagSchema,
-  countrySchema,
-  provinceSchema,
-  citySchema,
 } from "@/types/declarations";
 
 export default async function WarCrimesPage({
@@ -153,31 +147,6 @@ export default async function WarCrimesPage({
       : tagsResponse.body?.list || []
     : [];
 
-  // Fetch countries, provinces, and cities for filter dropdowns
-  const [countriesResponse, provincesResponse, citiesResponse] = await Promise.all([
-    getCountries({ page: 1, limit: 100 }, { _id: 1, name: 1 }),
-    getProvinces({ page: 1, limit: 100 }, { _id: 1, name: 1 }),
-    getCities({ page: 1, limit: 100 }, { _id: 1, name: 1 }),
-  ]);
-
-  const countries = countriesResponse?.success
-    ? Array.isArray(countriesResponse.body)
-      ? countriesResponse.body
-      : countriesResponse.body?.list || []
-    : [];
-
-  const provinces = provincesResponse?.success
-    ? Array.isArray(provincesResponse.body)
-      ? provincesResponse.body
-      : provincesResponse.body?.list || []
-    : [];
-
-  const cities = citiesResponse?.success
-    ? Array.isArray(citiesResponse.body)
-      ? citiesResponse.body
-      : citiesResponse.body?.list || []
-    : [];
-
   const totalPages = Math.ceil(totalCount / limit);
   const from = (page - 1) * limit + 1;
   const to = Math.min(page * limit, totalCount);
@@ -196,9 +165,6 @@ export default async function WarCrimesPage({
           locale={locale}
           categories={categories}
           tags={tags}
-          countries={countries}
-          provinces={provinces}
-          cities={cities}
           initialSearch={search}
           initialStatus={status}
           initialPriority={priority}
