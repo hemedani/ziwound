@@ -292,6 +292,7 @@
     "deleteCountryConfirm": "Tem certeza de que deseja excluir este país?",
     "noCountries": "Nenhum país encontrado",
     "searchCountries": "Procurar países...",
+    "selectCountry": "Selecione um país",
     "city": "Cidade",
     "cityPlaceholder": "Digite o nome da cidade",
     "cityRequired": "Cidade é obrigatória",

@@ -292,6 +292,7 @@
     "deleteCountryConfirm": "确定要删除此国家吗？",
     "noCountries": "未找到国家",
     "searchCountries": "搜索国家...",
+    "selectCountry": "选择国家",
     "city": "城市",
     "cityPlaceholder": "输入城市名称",
     "cityRequired": "城市是必需的",

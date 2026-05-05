@@ -292,6 +292,7 @@
     "deleteCountryConfirm": "Bu ülkeyi silmek istediğinizden emin misiniz?",
     "noCountries": "Ülke bulunamadı",
     "searchCountries": "Ülkelerde ara...",
+    "selectCountry": "Bir ülke seçin",
     "city": "Şehir",
     "cityPlaceholder": "Şehir adını girin",
     "cityRequired": "Şehir zorunludur",

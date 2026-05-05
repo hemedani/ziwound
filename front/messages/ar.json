@@ -292,6 +292,7 @@
     "deleteCountryConfirm": "هل أنت متأكد أنك تريد حذف هذه الدولة؟",
     "noCountries": "لم يتم العثور على دول",
     "searchCountries": "البحث عن الدول...",
+    "selectCountry": "حدد دولة",
     "city": "المدينة",
     "cityPlaceholder": "أدخل اسم المدينة",
     "cityRequired": "المدينة مطلوبة",

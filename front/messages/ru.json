@@ -292,6 +292,7 @@
     "deleteCountryConfirm": "Вы уверены, что хотите удалить эту страну?",
     "noCountries": "Страны не найдены",
     "searchCountries": "Поиск стран...",
+    "selectCountry": "Выберите страну",
     "city": "Город",
     "cityPlaceholder": "Введите название города",
     "cityRequired": "Город обязателен",

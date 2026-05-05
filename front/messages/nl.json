@@ -292,6 +292,7 @@
     "deleteCountryConfirm": "Weet u zeker dat u dit land wilt verwijderen?",
     "noCountries": "Geen landen gevonden",
     "searchCountries": "Landen zoeken...",
+    "selectCountry": "Selecteer een land",
     "city": "Stad",
     "cityPlaceholder": "Voer stadnaam in",
     "cityRequired": "Stad is verplicht",

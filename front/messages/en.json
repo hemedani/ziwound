@@ -315,6 +315,7 @@
     "deleteCountryConfirm": "Are you sure you want to delete this country?",
     "noCountries": "No countries found",
     "searchCountries": "Search countries...",
+    "selectCountry": "Select a country",
     "province": "Province",
     "provincePlaceholder": "Enter province name",
     "provinceRequired": "Province is required",

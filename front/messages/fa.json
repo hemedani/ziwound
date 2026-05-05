@@ -318,6 +318,7 @@
     "deleteCountryConfirm": "آیا از حذف این کشور اطمینان دارید؟",
     "noCountries": "هیچ کشوری یافت نشد",
     "searchCountries": "جستجوی کشورها...",
+    "selectCountry": "یک کشور را انتخاب کنید",
     "province": "استان",
     "provincePlaceholder": "نام استان را وارد کنید",
     "provinceRequired": "استان الزامی است",
