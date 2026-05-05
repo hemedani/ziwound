@@ -289,12 +289,100 @@ Lesan is a web server and ODM (Object Document Model) framework designed to impl
 
 ### Relationship Management
 
-**Important Note:** In Lesan, relations are one-direction. The model that owns the relation defines it, and the `relatedRelations` property automatically creates and updates the reverse relation on the target model. Do not define bidirectional relations manually, as this can lead to inconsistencies.
+**Important Note:** In Lesan, relations are **one-directional**. You only define the relation in the model that owns it. The `relatedRelations` property automatically creates and updates the reverse relation on the target model. Do not define bidirectional relations manually, as this leads to duplicates and errors.
+
+#### One-Directional Relation Concept
+
+In Lesan, when Model A defines a relation to Model B with `relatedRelations`, Lesan automatically:
+1. Creates the relation on Model A (the owner)
+2. Automatically creates/updates the reverse relation structure on Model B
+
+**You never need to define the reverse relation manually in Model B.**
 
 #### Types of Relationships:
 
-- **relation**: Defines relationships from the parent document to other documents
-- **relatedRelations**: Defines the reverse relationships that get created on the target model
+- **relation**: Defines relationships from the parent document to other documents (defined in owning model only)
+- **relatedRelations**: Defines what gets created automatically on the target model (virtual/reverse side)
+
+#### Full Example: City → Country Relation
+
+**Step 1: Define the relation in the owning model (city.ts)**
+
+```typescript
+// models/city.ts
+export const city_relations = {
+  country: {
+    schemaName: "country",        // Target model
+    type: "single" as RelationDataType,  // One-to-one
+    optional: true,
+    relatedRelations: {
+      // This automatically creates a "cities" relation on the country model
+      cities: {
+        type: "multiple" as RelationDataType,  // One-to-many reverse
+        limit: 50,
+        sort: { field: "_id", order: "desc" as RelationSortOrderType },
+      },
+    },
+  },
+};
+```
+
+**Step 2: That's it! Do NOT add anything to country.ts**
+
+Lesan automatically handles the reverse side. When you:
+- Insert a city with a country relation, Lesan automatically updates the country's embedded cities array
+- Remove a city's country relation, Lesan automatically removes it from the country's cities array
+- Query a country with depth, you'll see its cities through the automatic reverse relation
+
+**What NOT to do (❌ Wrong):**
+
+```typescript
+// models/country.ts - DON'T DO THIS
+export const country_relations = {
+  cities: {  // ❌ This creates duplicates and errors
+    schemaName: "city",
+    type: "multiple",
+    relatedRelations: { country: ... },
+  },
+};
+```
+
+**Correct pattern (✅ Right):**
+
+```typescript
+// models/country.ts - Just define its own relations
+export const country_relations = {
+  registrar: {
+    schemaName: "user",
+    type: "single",
+    optional: true,
+    relatedRelations: {},
+  },
+  // No "cities" relation here - it's automatically handled by Lesan!
+};
+```
+
+#### How It Works Internally
+
+When you insert a city with country relation:
+
+```typescript
+await city.insertOne({
+  doc: { name: "Aleppo", ... },
+  relations: {
+    country: {
+      _ids: new ObjectId(countryId),
+      // relatedRelations here is just for the insert operation
+      // The reverse relation structure is already defined in city_relations
+    },
+  },
+});
+```
+
+Lesan automatically:
+1. Embeds the country data in the city document
+2. Adds the city to the country's embedded `cities` array (based on `relatedRelations` in city model)
+3. Maintains data consistency across both sides
 
 #### Relationship Types:
 

@@ -14,6 +14,7 @@ import {
   ChevronLeft,
   ChevronRight,
   BookOpen,
+  Globe,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -55,6 +56,21 @@ export function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
       name: t("categories"),
       href: "/admin/categories",
       icon: FolderOpen,
+    },
+    {
+      name: t("countries") || "Countries",
+      href: "/admin/countries",
+      icon: Globe,
+    },
+    {
+      name: t("provinces") || "Provinces",
+      href: "/admin/provinces",
+      icon: Globe,
+    },
+    {
+      name: t("cities") || "Cities",
+      href: "/admin/cities",
+      icon: Globe,
     },
     {
       name: t("files"),

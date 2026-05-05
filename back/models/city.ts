@@ -48,6 +48,21 @@ export const city_relations = {
       },
     },
   },
+  country: {
+    schemaName: "country",
+    type: "single" as RelationDataType,
+    optional: true,
+    relatedRelations: {
+      cities: {
+        type: "multiple" as RelationDataType,
+        limit: 50,
+        sort: {
+          field: "_id",
+          order: "desc" as RelationSortOrderType,
+        },
+      },
+    },
+  },
 };
 
 export const cities = () =>

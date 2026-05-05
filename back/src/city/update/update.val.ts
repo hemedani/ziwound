@@ -10,6 +10,7 @@ export const updateValidator = () => {
 			english_name: optional(string()),
 			area: optional(geoJSONStruct("Polygon")),
 			center: optional(geoJSONStruct("Point")),
+			countryId: optional(objectIdValidation),
 			wars_history: optional(string()),
 			conflict_timeline: optional(string()),
 			casualties_info: optional(string()),

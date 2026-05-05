@@ -12,11 +12,32 @@ export const statisticsFn: ActFn = async (body) => {
   if (filters.selected_language) {
     matchStage.selected_language = filters.selected_language;
   }
-  if (filters.country) matchStage.country = filters.country;
-  if (filters.city) matchStage.city = filters.city;
   if (filters.categoryId) {
     matchStage["category._id"] = new ObjectId(filters.categoryId);
   }
+
+  // New relation-based filters
+  if (filters.hostileCountryIds && filters.hostileCountryIds.length > 0) {
+    matchStage["hostileCountries._id"] = {
+      $in: filters.hostileCountryIds.map((id: string) => new ObjectId(id)),
+    };
+  }
+  if (filters.attackedCountryIds && filters.attackedCountryIds.length > 0) {
+    matchStage["attackedCountries._id"] = {
+      $in: filters.attackedCountryIds.map((id: string) => new ObjectId(id)),
+    };
+  }
+  if (filters.attackedProvinceIds && filters.attackedProvinceIds.length > 0) {
+    matchStage["attackedProvinces._id"] = {
+      $in: filters.attackedProvinceIds.map((id: string) => new ObjectId(id)),
+    };
+  }
+  if (filters.attackedCityIds && filters.attackedCityIds.length > 0) {
+    matchStage["attackedCities._id"] = {
+      $in: filters.attackedCityIds.map((id: string) => new ObjectId(id)),
+    };
+  }
+
   if (filters.createdAtFrom || filters.createdAtTo) {
     matchStage.createdAt = {};
     if (filters.createdAtFrom) {
@@ -60,12 +81,24 @@ export const statisticsFn: ActFn = async (body) => {
           { $group: { _id: "$selected_language", count: { $sum: 1 } } },
           { $sort: { count: -1 } },
         ],
-        countryCounts: [
-          { $group: { _id: "$country", count: { $sum: 1 } } },
+        hostileCountryCounts: [
+          { $unwind: "$hostileCountries" },
+          { $group: { _id: "$hostileCountries.name", count: { $sum: 1 } } },
           { $sort: { count: -1 } },
         ],
-        cityCounts: [
-          { $group: { _id: "$city", count: { $sum: 1 } } },
+        attackedCountryCounts: [
+          { $unwind: "$attackedCountries" },
+          { $group: { _id: "$attackedCountries.name", count: { $sum: 1 } } },
+          { $sort: { count: -1 } },
+        ],
+        attackedProvinceCounts: [
+          { $unwind: "$attackedProvinces" },
+          { $group: { _id: "$attackedProvinces.name", count: { $sum: 1 } } },
+          { $sort: { count: -1 } },
+        ],
+        attackedCityCounts: [
+          { $unwind: "$attackedCities" },
+          { $group: { _id: "$attackedCities.name", count: { $sum: 1 } } },
           { $sort: { count: -1 } },
         ],
         monthlyCounts: [

@@ -117,8 +117,14 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
   - Added country, city to admin reports table and filters
   - Added translations for all 9 languages
 
+**Latest Completed Work**:
+- ✅ Phase 17.3: Created full Country admin UI with full-page forms (new/edit) and RichTextEditor for all 12 war description fields
+- ✅ Phase 17.4: Created full Province admin UI with full-page forms (new/edit) and RichTextEditor for all 12 war description fields
+- ✅ Phase 17.5: Created full City admin UI with full-page forms (new/edit) and RichTextEditor for all 12 war description fields
+- ✅ Updated admin sidebar to include Countries, Provinces, and Cities navigation links
+
 **Next Session Prompt**:
-Continue with the remaining unchecked steps in **TODO.md**, focusing on **Phase 17 (Backend Models Update)**, starting with Step 17.1: Update `src/types/declarations.ts` with new Country model and updated Province/City/Report relations. Specifically, update the new multi-step report form (`/reports/new-multi`) to use the new array-based relation fields (`hostileCountryIds`, `attackedCountryIds`, `attackedProvinceIds`, `attackedCityIds`) instead of the old string-based `country` and `city` fields.
+Continue with the remaining unchecked steps in **TODO.md**, focusing on **Phase 17 (Backend Models Update)**, starting with Step 17.6: Update Report Form (including new multi-step form at `/reports/new-multi`) and Admin Reports Management to use relation arrays (`hostileCountryIds`, `attackedCountryIds`, `attackedProvinceIds`, `attackedCityIds`) instead of string inputs for `country` and `city` fields. Also update Zod schemas and validation rules.
 
 Follow the same patterns: one step at a time, update TODO.md, wait for the user to review the changes, and commit with Gitmoji only after approval.
 

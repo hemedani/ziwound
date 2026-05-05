@@ -8,6 +8,7 @@ export const updateFn: ActFn = async (body) => {
 			_id,
 			name,
 			english_name,
+			countryId,
 			wars_history,
 			conflict_timeline,
 			casualties_info,
@@ -40,11 +41,21 @@ export const updateFn: ActFn = async (body) => {
 	war_crimes_events && (updateObj.war_crimes_events = war_crimes_events);
 	liberation_info && (updateObj.liberation_info = liberation_info);
 
+	const updateQuery: any = {
+		$set: updateObj,
+	};
+
+	if (countryId) {
+		updateQuery.$setRelations = {
+			country: {
+				_ids: new ObjectId(countryId as string),
+			},
+		};
+	}
+
 	return await city.findOneAndUpdate({
 		filter: { _id: new ObjectId(_id as string) },
-		update: {
-			$set: updateObj,
-		},
+		update: updateQuery,
 		projection: get,
 	});
 };

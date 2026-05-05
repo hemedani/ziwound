@@ -7,6 +7,7 @@ export const addValidator = () => {
 		set: object({
 			...city_pure,
 			provinceId: objectIdValidation,
+			countryId: objectIdValidation,
 			isCapital: boolean(),
 		}),
 		get: selectStruct("city", 1),

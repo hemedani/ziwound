@@ -23,9 +23,11 @@ export const exportCSVValidator = () => {
       categoryIds: optional(array(objectIdValidation)),
       tagIds: optional(array(objectIdValidation)),
       userIds: optional(array(objectIdValidation)),
-      // Text filters
-      country: optional(string()),
-      city: optional(string()),
+      // New relation filters
+      hostileCountryIds: optional(array(objectIdValidation)),
+      attackedCountryIds: optional(array(objectIdValidation)),
+      attackedProvinceIds: optional(array(objectIdValidation)),
+      attackedCityIds: optional(array(objectIdValidation)),
       // Date range filters
       createdAtFrom: optional(date()),
       createdAtTo: optional(date()),

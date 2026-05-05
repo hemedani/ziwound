@@ -27,16 +27,6 @@ export const country_relations = {
     excludes: user_excludes,
     relatedRelations: {},
   },
-  provinces: {
-    schemaName: "province",
-    type: "multiple" as RelationDataType,
-    optional: true,
-    relatedRelations: {
-      country: {
-        type: "single" as RelationDataType,
-      },
-    },
-  },
 };
 
 export const countries = () =>

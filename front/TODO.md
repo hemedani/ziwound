@@ -516,13 +516,13 @@
 ## Phase 17: Backend Models Update (Country, Relations & War Description Fields)
 
 - [x] 17.1 Update `src/types/declarations.ts` with new Country model and updated Province/City/Report relations
-- [x] 17.2 Implement Country, Province, and City server actions (gets, add, update, remove, updateRelations)
-- [ ] 17.3 Update Admin UI for Countries management
-- [ ] 17.4 Update Admin UI for Provinces management with war description fields
-- [ ] 17.5 Update Admin UI for Cities management with war description fields
+- [x] 17.2 Implement Country, Province, and City server actions (gets, add, update, remove, updateRelations) - Already existed
+- [x] 17.3 Update Admin UI for Countries management - Created full-page form with RTE for all 12 war description fields
+- [x] 17.4 Update Admin UI for Provinces management with war description fields - Created full-page form (new/edit) with RTE
+- [x] 17.5 Update Admin UI for Cities management with war description fields - Created full-page form (new/edit) with RTE
 - [ ] 17.6 Update Report Form (including new multi-step form at `/reports/new-multi`) and Admin Reports Management to use relation arrays (`hostileCountryIds`, `attackedCountryIds`, `attackedProvinceIds`, `attackedCityIds`) instead of string inputs for `country` and `city`. Also update Zod schemas and validation rules.
 - [ ] 17.7 Update War Crimes Exploration map and filters to use new Country, Province, City relation structure
-- [ ] 17.8 Add Translations for the 12 war description fields across all 9 languages
+- [x] 17.8 Add Translations for the 12 war description fields across all 9 languages - Added all admin keys (province, city, country management labels, CRUD messages, search, etc.) to all 9 language files (fa, en, ar, zh, pt, es, nl, tr, ru)
 
 ## Known Issues & Technical Debt
 

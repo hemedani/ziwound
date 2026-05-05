@@ -28,8 +28,10 @@ export const exportCSVFn: ActFn = async (body) => {
       categoryIds,
       tagIds,
       userIds,
-      country,
-      city,
+      hostileCountryIds,
+      attackedCountryIds,
+      attackedProvinceIds,
+      attackedCityIds,
       createdAtFrom,
       createdAtTo,
       crimeOccurredFrom,
@@ -71,18 +73,6 @@ export const exportCSVFn: ActFn = async (body) => {
       $match: { selected_language },
     });
 
-  // Country filter
-  country &&
-    pipeline.push({
-      $match: { country },
-    });
-
-  // City filter
-  city &&
-    pipeline.push({
-      $match: { city },
-    });
-
   // Category filter (array of IDs)
   categoryIds && categoryIds.length > 0 &&
     pipeline.push({
@@ -106,6 +96,46 @@ export const exportCSVFn: ActFn = async (body) => {
     pipeline.push({
       $match: {
         "reporter._id": { $in: userIds.map((id: string) => new ObjectId(id)) },
+      },
+    });
+
+  // Hostile Countries filter (attackers)
+  hostileCountryIds && hostileCountryIds.length > 0 &&
+    pipeline.push({
+      $match: {
+        "hostileCountries._id": {
+          $in: hostileCountryIds.map((id: string) => new ObjectId(id)),
+        },
+      },
+    });
+
+  // Attacked Countries filter (victims)
+  attackedCountryIds && attackedCountryIds.length > 0 &&
+    pipeline.push({
+      $match: {
+        "attackedCountries._id": {
+          $in: attackedCountryIds.map((id: string) => new ObjectId(id)),
+        },
+      },
+    });
+
+  // Attacked Provinces filter
+  attackedProvinceIds && attackedProvinceIds.length > 0 &&
+    pipeline.push({
+      $match: {
+        "attackedProvinces._id": {
+          $in: attackedProvinceIds.map((id: string) => new ObjectId(id)),
+        },
+      },
+    });
+
+  // Attacked Cities filter
+  attackedCityIds && attackedCityIds.length > 0 &&
+    pipeline.push({
+      $match: {
+        "attackedCities._id": {
+          $in: attackedCityIds.map((id: string) => new ObjectId(id)),
+        },
       },
     });
 

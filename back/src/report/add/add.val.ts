@@ -9,6 +9,10 @@ export const addValidator = () => {
       tags: optional(array(objectIdValidation)),
       category: optional(objectIdValidation),
       documentIds: optional(array(objectIdValidation)),
+      hostileCountryIds: optional(array(objectIdValidation)),
+      attackedCountryIds: optional(array(objectIdValidation)),
+      attackedProvinceIds: optional(array(objectIdValidation)),
+      attackedCityIds: optional(array(objectIdValidation)),
     }),
     get: selectStruct("report", 1),
   });

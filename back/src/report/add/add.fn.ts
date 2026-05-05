@@ -7,7 +7,7 @@ export const addFn: ActFn = async (body) => {
   const { user }: MyContext = coreApp.contextFns
     .getContextModel() as unknown as MyContext;
 
-  const { tags, category, documentIds, ...rest } = set;
+  const { tags, category, documentIds, hostileCountryIds, attackedCountryIds, attackedProvinceIds, attackedCityIds, ...rest } = set;
 
   return await report.insertOne({
     doc: rest,
@@ -36,6 +36,38 @@ export const addFn: ActFn = async (body) => {
           _ids: documentIds.map((id: string) => new ObjectId(id)),
           relatedRelations: {
             report: true,
+          },
+        }
+        : undefined,
+      hostileCountries: hostileCountryIds
+        ? {
+          _ids: hostileCountryIds.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            hostileReports: true,
+          },
+        }
+        : undefined,
+      attackedCountries: attackedCountryIds
+        ? {
+          _ids: attackedCountryIds.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            attackedReports: true,
+          },
+        }
+        : undefined,
+      attackedProvinces: attackedProvinceIds
+        ? {
+          _ids: attackedProvinceIds.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            attackedByReports: true,
+          },
+        }
+        : undefined,
+      attackedCities: attackedCityIds
+        ? {
+          _ids: attackedCityIds.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            attackedByReports: true,
           },
         }
         : undefined,

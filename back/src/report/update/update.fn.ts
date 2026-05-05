@@ -12,6 +12,7 @@ export const updateFn: ActFn = async (body) => {
       priority,
       selected_language,
       location,
+      crime_occurred_at,
     },
     get,
   } = body.details;
@@ -27,6 +28,7 @@ export const updateFn: ActFn = async (body) => {
   if (priority) updateObj.priority = priority;
   if (selected_language) updateObj.selected_language = selected_language;
   if (location) updateObj.location = location;
+  if (crime_occurred_at) updateObj.crime_occurred_at = crime_occurred_at;
 
   return await report.findOneAndUpdate({
     filter: { _id: new ObjectId(_id as string) },
