@@ -124,14 +124,21 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - ✅ Updated admin sidebar to include Countries, Provinces, and Cities navigation links
 - ✅ Phase 17.6: Updated Admin Reports Management to use relation arrays (`hostileCountryIds`, `attackedCountryIds`, `attackedProvinceIds`, `attackedCityIds`) instead of string inputs for `country` and `city` filters
 - ✅ Phase 17.7: Updated War Crimes Exploration page and filters to use new Country, Province, City relation structure
+- ✅ Phase 15.2: Created About page (`/[locale]/about`) with mission statement, vision, features grid, how-it-works steps, and CTA
+- ✅ Phase 15.3: Created Contact page (`/[locale]/contact`) with hero section, contact form (Name, Email, Subject, Message), contact info cards, and Server Action
+
+**Current Phase**: Phase 15 - Public Site Navigation
+**Next Step**: Phase 15.4 - Add FAQ page
 
 **Next Session Prompt**:
-All Phase 17 steps are now complete! The project has been fully updated to use the new Country, Province, and City relation structure throughout:
-- Admin Reports Management uses relation arrays for filtering
-- War Crimes Exploration uses relation arrays for filtering
-- All translation keys have been added to all 9 language files
+Phase 15 is in progress. About and Contact pages are complete. Next is the FAQ page at `/[locale]/faq` with:
+- Accordion-based FAQ layout with expandable questions and answers
+- Search functionality to filter questions
+- Categorized questions (General, Reporting, Privacy, Technical)
+- Translations for all 9 languages
+- FAQ link in Header navigation
 
-Please review the changes and let me know if you'd like to proceed to any other phases or make additional improvements.
+Please review the current changes and let me know when to proceed with the FAQ page.
 
 Follow the same patterns: one step at a time, update TODO.md, wait for the user to review the changes, and commit with Gitmoji only after approval.
 
