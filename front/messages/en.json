@@ -816,5 +816,11 @@
     "stillHaveQuestions": "Still have questions?",
     "contactUsPrompt": "Can't find the answer you're looking for? Our team is here to help.",
     "contactUs": "Contact Us"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "newReport": "New Report",
+    "myReports": "My Reports",
+    "detail": "Detail"
   }
 }

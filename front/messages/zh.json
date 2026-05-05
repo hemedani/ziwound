@@ -738,5 +738,11 @@
     "stillHaveQuestions": "还有问题？",
     "contactUsPrompt": "找不到您要找的答案？我们的团队随时为您提供帮助。",
     "contactUs": "联系我们"
+  },
+  "breadcrumbs": {
+    "home": "首页",
+    "newReport": "新建报告",
+    "myReports": "我的报告",
+    "detail": "详情"
   }
 }

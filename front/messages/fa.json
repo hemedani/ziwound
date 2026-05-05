@@ -819,5 +819,11 @@
     "stillHaveQuestions": "هنوز سؤال دارید؟",
     "contactUsPrompt": "پاسخ مورد نظر خود را پیدا نکردید؟ تیم ما اینجاست تا کمک کند.",
     "contactUs": "تماس با ما"
+  },
+  "breadcrumbs": {
+    "home": "خانه",
+    "newReport": "گزارش جدید",
+    "myReports": "گزارش‌های من",
+    "detail": "جزئیات"
   }
 }

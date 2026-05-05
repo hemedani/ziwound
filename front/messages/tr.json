@@ -738,5 +738,11 @@
     "stillHaveQuestions": "Hala sorularınız mı var?",
     "contactUsPrompt": "Aradığınız cevabı bulamadınız mı? Ekibimiz yardım etmek için burada.",
     "contactUs": "Bizimle İletişime Geçin"
+  },
+  "breadcrumbs": {
+    "home": "Ana Sayfa",
+    "newReport": "Yeni Rapor",
+    "myReports": "Raporlarım",
+    "detail": "Detay"
   }
 }

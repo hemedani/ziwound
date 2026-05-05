@@ -793,5 +793,11 @@
     "stillHaveQuestions": "Остались вопросы?",
     "contactUsPrompt": "Не нашли ответ, который искали? Наша команда готова помочь.",
     "contactUs": "Связаться с Нами"
+  },
+  "breadcrumbs": {
+    "home": "Главная",
+    "newReport": "Новый Отчет",
+    "myReports": "Мои Отчеты",
+    "detail": "Детали"
   }
 }

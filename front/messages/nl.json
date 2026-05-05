@@ -793,5 +793,11 @@
     "stillHaveQuestions": "Nog vragen?",
     "contactUsPrompt": "Kunt u het antwoord dat u zoekt niet vinden? Ons team staat klaar om te helpen.",
     "contactUs": "Neem Contact Op"
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "newReport": "Nieuw Rapport",
+    "myReports": "Mijn Rapporten",
+    "detail": "Detail"
   }
 }

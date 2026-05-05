@@ -793,5 +793,11 @@
     "stillHaveQuestions": "¿Aún tiene preguntas?",
     "contactUsPrompt": "¿No encuentra la respuesta que busca? Nuestro equipo está aquí para ayudar.",
     "contactUs": "Contáctenos"
+  },
+  "breadcrumbs": {
+    "home": "Inicio",
+    "newReport": "Nuevo Reporte",
+    "myReports": "Mis Reportes",
+    "detail": "Detalle"
   }
 }

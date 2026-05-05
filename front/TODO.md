@@ -517,7 +517,17 @@
   - Added 'faq' translation key to header namespace in all 9 languages
   - Integrated FAQ link into Header navigation (desktop + mobile)
   - Added full faq namespace translations to all 9 languages
-- [ ] 15.5 Implement breadcrumbs navigation
+- [x] 15.5 Implement breadcrumbs navigation
+  - Created `Breadcrumbs` component at `/src/components/layout/breadcrumbs.tsx`
+  - Uses `usePathname` and `useLocale` to dynamically generate breadcrumb items
+  - Maps URL segments to translated labels using header translations
+  - Supports dynamic segments (IDs) with generic "Detail" label
+  - Shows Home icon for root, ChevronRight separators between items
+  - Highlights current page with different styling
+  - Hidden on home page (only one breadcrumb item)
+  - Fully responsive with flex-wrap for mobile
+  - Added `breadcrumbs` namespace translations to all 9 languages
+  - Integrated into locale layout between Header and main content
 - [ ] 15.6 Add footer with links to legal pages
 - [x] 15.7 Create 404 page with helpful suggestions (already exists)
 - [ ] 15.8 Implement cookie consent banner
