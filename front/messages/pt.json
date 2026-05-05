@@ -241,7 +241,8 @@
     "blog": "Blog",
     "warCrimes": "Exploração de Crimes de Guerra",
     "about": "Sobre",
-    "contact": "Contato"
+    "contact": "Contato",
+    "faq": "FAQ"
   },
   "footer": {
     "about": "Sobre Nós",
@@ -667,5 +668,75 @@
     "successTitle": "Mensagem Enviada!",
     "successMessage": "Obrigado por entrar em contato. Responderemos em breve.",
     "sendAnother": "Enviar Outra Mensagem"
+  },
+  "faq": {
+    "title": "Perguntas Frequentes",
+    "subtitle": "Encontre respostas para perguntas comuns sobre o Ziwound. Não encontrou o que procura? Sinta-se à vontade para entrar em contato.",
+    "searchPlaceholder": "Pesquisar perguntas...",
+    "categories": {
+      "general": "Perguntas Gerais",
+      "reporting": "Relatórios",
+      "privacy": "Privacidade e Segurança",
+      "technical": "Suporte Técnico"
+    },
+    "questions": {
+      "whatIsZiwound": {
+        "question": "O que é o Ziwound?",
+        "answer": "O Ziwound é uma plataforma segura para documentar crimes de guerra e violações de direitos humanos. Fornecemos uma forma confidencial para indivíduos reportarem incidentes, fazerem upload de evidências e contribuírem para registros históricos, mantendo sua privacidade e segurança."
+      },
+      "isZiwoundFree": {
+        "question": "O Ziwound é gratuito?",
+        "answer": "Sim, o Ziwound é completamente gratuito para todos os usuários. Somos uma iniciativa sem fins lucrativos dedicada a documentar crimes de guerra e garantir responsabilidade. Não há taxas para enviar relatórios ou acessar informações públicas."
+      },
+      "whoCanUse": {
+        "question": "Quem pode usar o Ziwound?",
+        "answer": "Qualquer pessoa pode usar o Ziwound para enviar relatórios sobre crimes de guerra ou violações de direitos humanos que testemunhou ou experimentou. Damos as boas-vindas a relatórios de vítimas, testemunhas, jornalistas, pesquisadores e organizações de direitos humanos."
+      },
+      "howToReport": {
+        "question": "Como envio um relatório?",
+        "answer": "Para enviar um relatório, crie uma conta ou faça login, depois clique em 'Novo Relatório' no menu de navegação. Preencha o formulário com detalhes sobre o incidente, incluindo data, local, descrição e qualquer evidência que tenha. Você pode salvar seu progresso e retornar mais tarde, se necessário."
+      },
+      "whatEvidence": {
+        "question": "Que tipo de evidência posso fazer upload?",
+        "answer": "Você pode fazer upload de vários tipos de evidências, incluindo fotos, vídeos, gravações de áudio, documentos e dados de localização. Suportamos formatos comuns como JPG, PNG, MP4, MP3, PDF e DOC. Todos os arquivos são armazenados e criptografados com segurança."
+      },
+      "anonymousReport": {
+        "question": "Posso enviar um relatório anônimo?",
+        "answer": "Embora incentivemos os usuários a criarem contas para melhor comunicação e acompanhamento, entendemos que o anonimato pode ser necessário por razões de segurança. Você pode nos contatar diretamente através de nossos canais seguros se precisar enviar informações anonimamente."
+      },
+      "reportStatus": {
+        "question": "Como posso verificar o status do meu relatório?",
+        "answer": "Depois de enviar um relatório, você pode acompanhar seu status na seção 'Meus Relatórios' da sua conta. Os relatórios passam por várias etapas: Pendente (aguardando revisão), Em Revisão (sendo verificado), Aprovado (publicado) ou Rejeitado (com explicação)."
+      },
+      "dataSecurity": {
+        "question": "Como meus dados são protegidos?",
+        "answer": "Usamos criptografia padrão da indústria para toda transmissão e armazenamento de dados. Suas informações pessoais são mantidas confidenciais e nunca compartilhadas com terceiros sem seu consentimento. Nossos servidores são hospedados em instalações seguras com controles de acesso rigorosos."
+      },
+      "whoSeesReport": {
+        "question": "Quem verá meu relatório?",
+        "answer": "Seu relatório só é visível para administradores autorizados e organizações parceiras verificadas que trabalham na documentação de crimes de guerra. Informações de identificação pessoal são removidas de documentos públicos, a menos que você escolha explicitamente compartilhá-las."
+      },
+      "dataRetention": {
+        "question": "Por quanto tempo vocês mantêm meus dados?",
+        "answer": "Retemos relatórios e dados associados indefinidamente para fins de documentação histórica. No entanto, você pode solicitar a exclusão de suas informações pessoais da conta a qualquer momento. O conteúdo do relatório pode ser retido mesmo que os dados pessoais sejam removidos."
+      },
+      "supportedLanguages": {
+        "question": "Quais idiomas o Ziwound suporta?",
+        "answer": "O Ziwound atualmente suporta 9 idiomas: Persa, Inglês, Árabe, Chinês, Português, Espanhol, Holandês, Turco e Russo. Estamos continuamente trabalhando para adicionar mais idiomas para tornar a plataforma acessível a todos."
+      },
+      "mobileFriendly": {
+        "question": "O Ziwound é compatível com dispositivos móveis?",
+        "answer": "Sim, o Ziwound é totalmente responsivo e funciona em todos os dispositivos, incluindo smartphones e tablets. Você pode enviar relatórios, fazer upload de fotos e acessar todos os recursos do seu navegador móvel sem precisar baixar um aplicativo."
+      },
+      "browserSupport": {
+        "question": "Quais navegadores são suportados?",
+        "answer": "O Ziwound funciona em todos os navegadores modernos, incluindo Chrome, Firefox, Safari e Edge. Recomendamos usar a versão mais recente do seu navegador para a melhor experiência e segurança. O Internet Explorer não é suportado."
+      }
+    },
+    "noResults": "Nenhuma pergunta encontrada",
+    "tryDifferentSearch": "Tente um termo de pesquisa diferente ou navegue pelas categorias acima.",
+    "stillHaveQuestions": "Ainda tem perguntas?",
+    "contactUsPrompt": "Não encontrou a resposta que procura? Nossa equipe está aqui para ajudar.",
+    "contactUs": "Entre em Contato"
   }
 }

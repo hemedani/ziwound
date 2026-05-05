@@ -241,7 +241,8 @@
     "blog": "Blog",
     "warCrimes": "Oorlogsmisdrijven Verkenning",
     "about": "Over",
-    "contact": "Contact"
+    "contact": "Contact",
+    "faq": "FAQ"
   },
   "footer": {
     "about": "Over Ons",
@@ -722,5 +723,75 @@
     "successTitle": "Bericht Verzonden!",
     "successMessage": "Bedankt voor uw contact. We reageren spoedig.",
     "sendAnother": "Nog een Bericht Versturen"
+  },
+  "faq": {
+    "title": "Veelgestelde Vragen",
+    "subtitle": "Vind antwoorden op veelgestelde vragen over Ziwound. Kunt u niet vinden wat u zoekt? Neem gerust contact met ons op.",
+    "searchPlaceholder": "Zoek vragen...",
+    "categories": {
+      "general": "Algemene Vragen",
+      "reporting": "Rapporteren",
+      "privacy": "Privacy & Beveiliging",
+      "technical": "Technische Ondersteuning"
+    },
+    "questions": {
+      "whatIsZiwound": {
+        "question": "Wat is Ziwound?",
+        "answer": "Ziwound is een veilig platform voor het documenteren van oorlogsmisdaden en schendingen van mensenrechten. Wij bieden een vertrouwelijke manier voor individuen om incidenten te rapporteren, bewijs te uploaden en bij te dragen aan historische archieven, terwijl hun privacy en veiligheid behouden blijven."
+      },
+      "isZiwoundFree": {
+        "question": "Is Ziwound gratis te gebruiken?",
+        "answer": "Ja, Ziwound is volledig gratis voor alle gebruikers. We zijn een non-profit initiatief dat zich richt op het documenteren van oorlogsmisdaden en het waarborgen van verantwoordelijkheid. Er zijn geen kosten verbonden aan het indienen van rapporten of het openbaar toegankelijk maken van informatie."
+      },
+      "whoCanUse": {
+        "question": "Wie kan Ziwound gebruiken?",
+        "answer": "Iedereen kan Ziwound gebruiken om rapporten in te dienen over oorlogsmisdaden of schendingen van mensenrechten die hij/zij heeft gezien of meegemaakt. We verwelkomen rapporten van slachtoffers, getuigen, journalisten, onderzoekers en mensenrechtenorganisaties."
+      },
+      "howToReport": {
+        "question": "H dien ik een rapport in?",
+        "answer": "Om een rapport in te dienen, maakt u een account aan of logt u in, klikt u vervolgens op 'Nieuw Rapport' in het navigatiemenu. Vul het formulier in met details over het incident, inclusief datum, locatie, beschrijving en eventueel bewijsmateriaal dat u heeft. U kunt uw voortgang opslaan en later terugkomen indien nodig."
+      },
+      "whatEvidence": {
+        "question": "Welk type bewijs kan ik uploaden?",
+        "answer": "U kunt verschillende soorten bewijsmateriaal uploaden, waaronder foto's, video's, audio-opnamen, documenten en locatiegegevens. We ondersteunen veelvoorkomende formaten zoals JPG, PNG, MP4, MP3, PDF en DOC. Alle bestanden worden veilig opgeslagen en versleuteld."
+      },
+      "anonymousReport": {
+        "question": "Kan ik een anoniem rapport indienen?",
+        "answer": "Hoewel we gebruikers aanmoedigen om accounts aan te maken voor betere communicatie en opvolging, begrijpen we dat anonimiteit om veiligheidsredenen noodzakelijk kan zijn. U kunt rechtstreeks contact met ons opnemen via onze beveiligde kanalen als u anoniem informatie wilt indienen."
+      },
+      "reportStatus": {
+        "question": "Hoe kan ik de status van mijn rapport controleren?",
+        "answer": "Nadat u een rapport heeft ingediend, kunt u de status ervan volgen in de sectie 'Mijn Rapporten' van uw account. Rapporten doorlopen verschillende stadia: In afwachting (wachtend op beoordeling), In Beoordeling (wordt geverifieerd), Goedgekeurd (gepubliceerd) of Afgekeurd (met uitleg)."
+      },
+      "dataSecurity": {
+        "question": "Hoe worden mijn gegevens beschermd?",
+        "answer": "We gebruiken industriestandaard versleuteling voor alle gegevensoverdracht en -opslag. Uw persoonlijke informatie wordt vertrouwelijk gehouden en nooit gedeeld met derden zonder uw toestemming. Onze servers worden gehost in veilige faciliteiten met strikte toegangscontroles."
+      },
+      "whoSeesReport": {
+        "question": "Wie zal mijn rapport zien?",
+        "answer": "Uw rapport is alleen zichtbaar voor geautoriseerde beheerders en geverifieerde partnerorganisaties die werken aan de documentatie van oorlogsmisdaden. Persoonlijk identificeerbare informatie wordt verwijderd uit openbare documenten, tenzij u er expliciet voor kiest deze te delen."
+      },
+      "dataRetention": {
+        "question": "Hoe lang bewaren u mijn gegevens?",
+        "answer": "We bewaren rapporten en bijbehorende gegevens voor onbepaalde tijd voor historische documentatiedoeleinden. U kunt echter op elk moment verzoeken om verwijdering van uw persoonlijke accountinformatie. Rapportinhoud kan worden bewaard, zelfs als persoonlijke gegevens zijn verwijderd."
+      },
+      "supportedLanguages": {
+        "question": "Welke talen ondersteunt Ziwound?",
+        "answer": "Ziwound ondersteunt momenteel 9 talen: Perzisch, Engels, Arabisch, Chinees, Portugees, Spaans, Nederlands, Turks en Russisch. We werken continu aan het toevoegen van meer talen om het platform voor iedereen toegankelijk te maken."
+      },
+      "mobileFriendly": {
+        "question": "Is Ziwound mobielvriendelijk?",
+        "answer": "Ja, Ziwound is volledig responsief en werkt op alle apparaten, inclusief smartphones en tablets. U kunt rapporten indienen, foto's uploaden en toegang krijgen tot alle functies vanuit uw mobiele browser zonder een app te hoeven downloaden."
+      },
+      "browserSupport": {
+        "question": "Welke browsers worden ondersteund?",
+        "answer": "Ziwound werkt op alle moderne browsers, inclusief Chrome, Firefox, Safari en Edge. We raden aan om de nieuwste versie van uw browser te gebruiken voor de beste ervaring en beveiliging. Internet Explorer wordt niet ondersteund."
+      }
+    },
+    "noResults": "Geen vragen gevonden",
+    "tryDifferentSearch": "Probeer een andere zoekterm of blader door de categorieën hierboven.",
+    "stillHaveQuestions": "Nog vragen?",
+    "contactUsPrompt": "Kunt u het antwoord dat u zoekt niet vinden? Ons team staat klaar om te helpen.",
+    "contactUs": "Neem Contact Op"
   }
 }

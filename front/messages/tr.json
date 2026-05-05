@@ -241,7 +241,8 @@
     "blog": "Blog",
     "warCrimes": "Savaş Suçları Keşfi",
     "about": "Hakkında",
-    "contact": "İletişim"
+    "contact": "İletişim",
+    "faq": "SSS"
   },
   "footer": {
     "about": "Hakkımızda",
@@ -667,5 +668,75 @@
     "successTitle": "Mesaj Gönderildi!",
     "successMessage": "İletişim kurduğunuz için teşekkür ederiz. Kısa sürede size dönüş yapacağız.",
     "sendAnother": "Başka Mesaj Gönder"
+  },
+  "faq": {
+    "title": "Sıkça Sorulan Sorular",
+    "subtitle": "Ziwound hakkında sık sorulan soruların cevaplarını bulun. Aradığınızı bulamadınız mı? Bizimle iletişime geçmekten çekinmeyin.",
+    "searchPlaceholder": "Soru ara...",
+    "categories": {
+      "general": "Genel Sorular",
+      "reporting": "Raporlama",
+      "privacy": "Gizlilik ve Güvenlik",
+      "technical": "Teknik Destek"
+    },
+    "questions": {
+      "whatIsZiwound": {
+        "question": "Ziwound nedir?",
+        "answer": "Ziwound, savaş suçlarını ve insan hakları ihlallerini belgelemek için güvenli bir platformdur. Bireylere, gizliliklerini ve güvenliklerini korurken olayları bildirmeleri, kanıt yüklemeleri ve tarihi kayıtlara katkıda bulunmaları için gizli bir yol sunuyoruz."
+      },
+      "isZiwoundFree": {
+        "question": "Ziwound kullanımı ücretsiz mi?",
+        "answer": "Evet, Ziwound tüm kullanıcılar için tamamen ücretsizdir. Savaş suçlarını belgelemeye ve hesap verebilirliği sağlamaya adanmış kâr amacı gütmeyen bir girişimiz. Rapor göndermek veya kamu bilgilerine erişmek için herhangi bir ücret yoktur."
+      },
+      "whoCanUse": {
+        "question": "Kimler Ziwound'u kullanabilir?",
+        "answer": "Herkes Ziwound'u, tanık olduğu veya yaşadığı savaş suçları veya insan hakları ihlalleri hakkında rapor göndermek için kullanabilir. Mağdurlardan, tanıklardan, gazetecilerden, araştırmacılardan ve insan hakları örgütlerinden raporları memnuniyetle karşılıyoruz."
+      },
+      "howToReport": {
+        "question": "Nasıl rapor gönderirim?",
+        "answer": "Rapor göndermek için bir hesap oluşturun veya giriş yapın, ardından gezinme menüsündeki 'Yeni Rapor'a tıklayın. Olay hakkında tarih, konum, açıklama ve sahip olduğunuz herhangi bir kanıt dahil olmak üzere ayrıntıları içeren formu doldurun. İlerlemenizi kaydedebilir ve gerekirse daha sonra geri dönebilirsiniz."
+      },
+      "whatEvidence": {
+        "question": "Ne tür kanıtlar yükleyebilirim?",
+        "answer": "Fotoğraflar, videolar, ses kayıtları, belgeler ve konum verileri dahil olmak üzere çeşitli kanıt türleri yükleyebilirsiniz. JPG, PNG, MP4, MP3, PDF ve DOC gibi yaygın formatları destekliyoruz. Tüm dosyalar güvenli bir şekilde saklanır ve şifrelenir."
+      },
+      "anonymousReport": {
+        "question": "Anonim rapor gönderebilir miyim?",
+        "answer": "Daha iyi iletişim ve takip için kullanıcıları hesap oluşturmaya teşvik etsek de, anonimliğin güvenlik nedeniyle gerekli olabileceğini anlıyoruz. Bilgileri anonim olarak göndermeniz gerekiyorsa, güvenli kanallarımız aracılığıyla doğrudan bizimle iletişime geçebilirsiniz."
+      },
+      "reportStatus": {
+        "question": "Raporumun durumunu nasıl kontrol edebilirim?",
+        "answer": "Bir rapor gönderdikten sonra, hesabınızdaki 'Raporlarım' bölümünde durumunu takip edebilirsiniz. Raporlar birkaç aşamadan geçer: Beklemede (inceleme bekleniyor), İnceleniyor (doğrulanıyor), Onaylandı (yayınlandı) veya Reddedildi (açıklamalı)."
+      },
+      "dataSecurity": {
+        "question": "Verilerim nasıl korunuyor?",
+        "answer": "Tüm veri iletimi ve depolaması için endüstri standardı şifreleme kullanıyoruz. Kişisel bilgileriniz gizli tutulur ve sizin izniniz olmadan asla üçüncü taraflarla paylaşılmaz. Sunucularımız katı erişim kontrolleri olan güvenli tesislerde barındırılır."
+      },
+      "whoSeesReport": {
+        "question": "Raporumu kim görecek?",
+        "answer": "Raporunuz yalnızca yetkili yöneticiler ve savaş suçları belgeleme çalışmaları yapan doğrulanmış ortak kuruluşlar tarafından görülebilir. Kişisel kimlik bilgileri, açıkça paylaşmayı seçmediğiniz sürece kamuya açık belgelerden çıkarılır."
+      },
+      "dataRetention": {
+        "question": "Verilerimi ne kadar süreyle saklıyorsunuz?",
+        "answer": "Tarihsel belgeleme amaçlarıyla raporları ve ilgili verileri süresiz olarak saklıyoruz. Ancak, istediğiniz zaman kişisel hesap bilgilerinizin silinmesini talep edebilirsiniz. Kişisel veriler silinse bile rapor içeriği saklanabilir."
+      },
+      "supportedLanguages": {
+        "question": "Ziwound hangi dilleri destekliyor?",
+        "answer": "Ziwound şu anda 9 dili destekliyor: Farsça, İngilizce, Arapça, Çince, Portekizce, İspanyolca, Hollandaca, Türkçe ve Rusça. Platformu herkes için erişilebilir kılmak için sürekli olarak daha fazla dil eklemek için çalışıyoruz."
+      },
+      "mobileFriendly": {
+        "question": "Ziwound mobil uyumlu mu?",
+        "answer": "Evet, Ziwound tamamen duyarlıdır ve akıllı telefonlar ve tabletler dahil tüm cihazlarda çalışır. Uygulama indirmeye gerek kalmadan mobil tarayıcınızdan rapor gönderebilir, fotoğraf yükleyebilir ve tüm özelliklere erişebilirsiniz."
+      },
+      "browserSupport": {
+        "question": "Hangi tarayıcılar destekleniyor?",
+        "answer": "Ziwound, Chrome, Firefox, Safari ve Edge dahil olmak üzere tüm modern tarayıcılarda çalışır. En iyi deneyim ve güvenlik için tarayıcınızın en son sürümünü kullanmanızı öneririz. Internet Explorer desteklenmez."
+      }
+    },
+    "noResults": "Soru bulunamadı",
+    "tryDifferentSearch": "Farklı bir arama terimi deneyin veya yukarıdaki kategorilere göz atın.",
+    "stillHaveQuestions": "Hala sorularınız mı var?",
+    "contactUsPrompt": "Aradığınız cevabı bulamadınız mı? Ekibimiz yardım etmek için burada.",
+    "contactUs": "Bizimle İletişime Geçin"
   }
 }

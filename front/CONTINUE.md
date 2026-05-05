@@ -126,19 +126,15 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - ✅ Phase 17.7: Updated War Crimes Exploration page and filters to use new Country, Province, City relation structure
 - ✅ Phase 15.2: Created About page (`/[locale]/about`) with mission statement, vision, features grid, how-it-works steps, and CTA
 - ✅ Phase 15.3: Created Contact page (`/[locale]/contact`) with hero section, contact form (Name, Email, Subject, Message), contact info cards, and Server Action
+- ✅ Phase 15.4: Created FAQ page (`/[locale]/faq`) with accordion layout, search functionality, 4 categories (General, Reporting, Privacy, Technical), 13 questions, and Contact CTA
 
 **Current Phase**: Phase 15 - Public Site Navigation
-**Next Step**: Phase 15.4 - Add FAQ page
+**Next Step**: Phase 15.5 - Implement breadcrumbs navigation
 
 **Next Session Prompt**:
-Phase 15 is in progress. About and Contact pages are complete. Next is the FAQ page at `/[locale]/faq` with:
-- Accordion-based FAQ layout with expandable questions and answers
-- Search functionality to filter questions
-- Categorized questions (General, Reporting, Privacy, Technical)
-- Translations for all 9 languages
-- FAQ link in Header navigation
+Phase 15 is nearly complete. About, Contact, and FAQ pages are done. Next is Phase 15.5 - Breadcrumbs navigation component that can be used across all public pages to show the user's current location in the site hierarchy.
 
-Please review the current changes and let me know when to proceed with the FAQ page.
+Please review the FAQ page changes and let me know when to proceed with breadcrumbs.
 
 Follow the same patterns: one step at a time, update TODO.md, wait for the user to review the changes, and commit with Gitmoji only after approval.
 

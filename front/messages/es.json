@@ -241,7 +241,8 @@
     "blog": "Blog",
     "warCrimes": "Exploración de Crímenes de Guerra",
     "about": "Acerca de",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "faq": "FAQ"
   },
   "footer": {
     "about": "Sobre Nosotros",
@@ -722,5 +723,75 @@
     "successTitle": "¡Mensaje Enviado!",
     "successMessage": "Gracias por contactarnos. Le responderemos pronto.",
     "sendAnother": "Enviar Otro Mensaje"
+  },
+  "faq": {
+    "title": "Preguntas Frecuentes",
+    "subtitle": "Encuentre respuestas a preguntas comunes sobre Ziwound. ¿No encuentra lo que busca? No dude en contactarnos.",
+    "searchPlaceholder": "Buscar preguntas...",
+    "categories": {
+      "general": "Preguntas Generales",
+      "reporting": "Reportes",
+      "privacy": "Privacidad y Seguridad",
+      "technical": "Soporte Técnico"
+    },
+    "questions": {
+      "whatIsZiwound": {
+        "question": "¿Qué es Ziwound?",
+        "answer": "Ziwound es una plataforma segura para documentar crímenes de guerra y violaciones de derechos humanos. Proporcionamos una forma confidencial para que las personas reporten incidentes, suban evidencia y contribuyan a registros históricos mientras mantienen su privacidad y seguridad."
+      },
+      "isZiwoundFree": {
+        "question": "¿Es gratis usar Ziwound?",
+        "answer": "Sí, Ziwound es completamente gratuito para todos los usuarios. Somos una iniciativa sin fines de lucro dedicada a documentar crímenes de guerra y asegurar la rendición de cuentas. No hay tarifas por enviar reportes o acceder a información pública."
+      },
+      "whoCanUse": {
+        "question": "¿Quién puede usar Ziwound?",
+        "answer": "Cualquiera puede usar Ziwound para enviar reportes sobre crímenes de guerra o violaciones de derechos humanos que haya presenciado o experimentado. Damos la bienvenida a reportes de víctimas, testigos, periodistas, investigadores y organizaciones de derechos humanos."
+      },
+      "howToReport": {
+        "question": "¿Cómo envío un reporte?",
+        "answer": "Para enviar un reporte, cree una cuenta o inicie sesión, luego haga clic en 'Nuevo Reporte' en el menú de navegación. Complete el formulario con detalles sobre el incidente, incluyendo fecha, ubicación, descripción y cualquier evidencia que tenga. Puede guardar su progreso y volver más tarde si es necesario."
+      },
+      "whatEvidence": {
+        "question": "¿Qué tipo de evidencia puedo subir?",
+        "answer": "Puede subir varios tipos de evidencia incluyendo fotos, videos, grabaciones de audio, documentos y datos de ubicación. Soportamos formatos comunes como JPG, PNG, MP4, MP3, PDF y DOC. Todos los archivos se almacenan y encriptan de forma segura."
+      },
+      "anonymousReport": {
+        "question": "¿Puedo enviar un reporte anónimo?",
+        "answer": "Aunque alentamos a los usuarios a crear cuentas para mejor comunicación y seguimiento, entendemos que el anonimato puede ser necesario por razones de seguridad. Puede contactarnos directamente a través de nuestros canales seguros si necesita enviar información de forma anónima."
+      },
+      "reportStatus": {
+        "question": "¿Cómo puedo verificar el estado de mi reporte?",
+        "answer": "Una vez que envíe un reporte, puede rastrear su estado en la sección 'Mis Reportes' de su cuenta. Los reportes pasan por varias etapas: Pendiente (esperando revisión), En Revisión (siendo verificado), Aprobado (publicado) o Rechazado (con explicación)."
+      },
+      "dataSecurity": {
+        "question": "¿Cómo se protegen mis datos?",
+        "answer": "Usamos encriptación estándar de la industria para toda transmisión y almacenamiento de datos. Su información personal se mantiene confidencial y nunca se comparte con terceros sin su consentimiento. Nuestros servidores están alojados en instalaciones seguras con controles de acceso estrictos."
+      },
+      "whoSeesReport": {
+        "question": "¿Quién verá mi reporte?",
+        "answer": "Su reporte solo es visible para administradores autorizados y organizaciones asociadas verificadas que trabajan en la documentación de crímenes de guerra. La información de identificación personal se elimina de los documentos públicos a menos que elija compartirla explícitamente."
+      },
+      "dataRetention": {
+        "question": "¿Cuánto tiempo conservan mis datos?",
+        "answer": "Conservamos reportes y datos asociados indefinidamente para fines de documentación histórica. Sin embargo, puede solicitar la eliminación de su información personal de la cuenta en cualquier momento. El contenido del reporte puede conservarse incluso si se eliminan los datos personales."
+      },
+      "supportedLanguages": {
+        "question": "¿Qué idiomas soporta Ziwound?",
+        "answer": "Ziwound actualmente soporta 9 idiomas: Persa, Inglés, Árabe, Chino, Portugués, Español, Holandés, Turco y Ruso. Continuamente trabajamos para agregar más idiomas y hacer la plataforma accesible para todos."
+      },
+      "mobileFriendly": {
+        "question": "¿Es Ziwound compatible con dispositivos móviles?",
+        "answer": "Sí, Ziwound es completamente responsivo y funciona en todos los dispositivos incluyendo smartphones y tablets. Puede enviar reportes, subir fotos y acceder a todas las funciones desde su navegador móvil sin necesidad de descargar una aplicación."
+      },
+      "browserSupport": {
+        "question": "¿Qué navegadores son soportados?",
+        "answer": "Ziwound funciona en todos los navegadores modernos incluyendo Chrome, Firefox, Safari y Edge. Recomendamos usar la última versión de su navegador para la mejor experiencia y seguridad. Internet Explorer no es soportado."
+      }
+    },
+    "noResults": "No se encontraron preguntas",
+    "tryDifferentSearch": "Pruebe un término de búsqueda diferente o explore las categorías de arriba.",
+    "stillHaveQuestions": "¿Aún tiene preguntas?",
+    "contactUsPrompt": "¿No encuentra la respuesta que busca? Nuestro equipo está aquí para ayudar.",
+    "contactUs": "Contáctenos"
   }
 }

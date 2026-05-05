@@ -506,7 +506,17 @@
   - Added 'contact' translation key to header namespace in all 9 languages
   - Integrated Contact link into Header navigation (desktop + mobile)
   - Added full contact namespace translations to all 9 languages
-- [ ] 15.4 Add FAQ page
+- [x] 15.4 Add FAQ page
+  - Created `/faq/page.tsx` with hero section
+  - Added FAQContent component with accordion-based layout
+  - Implemented search functionality to filter questions
+  - Added 4 categories: General, Reporting, Privacy & Security, Technical Support
+  - Added 13 FAQ questions with detailed answers
+  - Added Contact CTA at bottom of page
+  - Installed shadcn Accordion component
+  - Added 'faq' translation key to header namespace in all 9 languages
+  - Integrated FAQ link into Header navigation (desktop + mobile)
+  - Added full faq namespace translations to all 9 languages
 - [ ] 15.5 Implement breadcrumbs navigation
 - [ ] 15.6 Add footer with links to legal pages
 - [x] 15.7 Create 404 page with helpful suggestions (already exists)

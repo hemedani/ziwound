@@ -241,7 +241,8 @@
     "blog": "博客",
     "warCrimes": "战争罪行探索",
     "about": "关于",
-    "contact": "联系我们"
+    "contact": "联系我们",
+    "faq": "常见问题"
   },
   "footer": {
     "about": "关于我们",
@@ -667,5 +668,75 @@
     "successTitle": "消息已发送！",
     "successMessage": "感谢您的联系。我们会尽快回复您。",
     "sendAnother": "发送另一条消息"
+  },
+  "faq": {
+    "title": "常见问题",
+    "subtitle": "查找关于Ziwound的常见问题答案。找不到您需要的？欢迎联系我们。",
+    "searchPlaceholder": "搜索问题...",
+    "categories": {
+      "general": "一般问题",
+      "reporting": "报告提交",
+      "privacy": "隐私与安全",
+      "technical": "技术支持"
+    },
+    "questions": {
+      "whatIsZiwound": {
+        "question": "什么是Ziwound？",
+        "answer": "Ziwound是一个记录战争罪行和侵犯人权行为的安全平台。我们为个人提供一种保密的方式，让他们在保护隐私和安全的同时，报告事件、上传证据并为历史记录做出贡献。"
+      },
+      "isZiwoundFree": {
+        "question": "Ziwound是免费的吗？",
+        "answer": "是的，Ziwound对所有用户完全免费。我们是一个致力于记录战争罪行并确保问责的非营利性倡议。提交报告或访问公共信息不收取任何费用。"
+      },
+      "whoCanUse": {
+        "question": "谁可以使用Ziwound？",
+        "answer": "任何人都可以使用Ziwound提交关于他们目击或经历的战争罪行或侵犯人权行为的报告。我们欢迎受害者、目击者、记者、研究人员和人权组织的报告。"
+      },
+      "howToReport": {
+        "question": "如何提交报告？",
+        "answer": "要提交报告，请创建帐户或登录，然后点击导航菜单中的'新报告'。填写表格，提供事件的详细信息，包括日期、地点、描述以及您掌握的任何证据。您可以保存进度，并在需要时稍后返回。"
+      },
+      "whatEvidence": {
+        "question": "我可以上传什么类型的证据？",
+        "answer": "您可以上传各种类型的证据，包括照片、视频、录音、文件和位置数据。我们支持JPG、PNG、MP4、MP3、PDF和DOC等常见格式。所有文件都经过安全存储和加密。"
+      },
+      "anonymousReport": {
+        "question": "我可以提交匿名报告吗？",
+        "answer": "虽然我们鼓励用户创建账户以便更好地沟通和跟进，但我们理解出于安全原因可能需要匿名。如果您需要匿名提交信息，可以通过我们的安全渠道直接与我们联系。"
+      },
+      "reportStatus": {
+        "question": "如何查看我的报告状态？",
+        "answer": "提交报告后，您可以在帐户的'我的报告'部分跟踪其状态。报告经历几个阶段：待处理（等待审核）、审核中（正在验证）、已批准（已发布）或已拒绝（有解释）。"
+      },
+      "dataSecurity": {
+        "question": "我的数据如何受到保护？",
+        "answer": "我们对所有数据传输和存储使用行业标准加密。您的个人信息被保密，未经您同意绝不会与第三方共享。我们的服务器托管在具有严格访问控制的安全设施中。"
+      },
+      "whoSeesReport": {
+        "question": "谁会看到我的报告？",
+        "answer": "您的报告仅对授权管理员和从事战争罪行记录的经过验证的合作伙伴组织可见。除非您明确选择共享，否则个人身份信息将从公开文件中删除。"
+      },
+      "dataRetention": {
+        "question": "你们保留我的数据多长时间？",
+        "answer": "我们无限期保留报告和相关数据以用于历史记录目的。但是，您可以随时请求删除您的个人帐户信息。即使删除了个人数据，报告内容也可能会被保留。"
+      },
+      "supportedLanguages": {
+        "question": "Ziwound支持哪些语言？",
+        "answer": "Ziwound目前支持9种语言：波斯语、英语、阿拉伯语、中文、葡萄牙语、西班牙语、荷兰语、土耳其语和俄语。我们不断努力增加更多语言，让每个人都能使用该平台。"
+      },
+      "mobileFriendly": {
+        "question": "Ziwound是否支持移动端？",
+        "answer": "是的，Ziwound完全响应式，可在所有设备上运行，包括智能手机和平板电脑。您可以从移动浏览器提交报告、上传照片并访问所有功能，无需下载应用程序。"
+      },
+      "browserSupport": {
+        "question": "支持哪些浏览器？",
+        "answer": "Ziwound适用于所有现代浏览器，包括Chrome、Firefox、Safari和Edge。我们建议使用浏览器的最新版本以获得最佳体验和安全性。不支持Internet Explorer。"
+      }
+    },
+    "noResults": "未找到问题",
+    "tryDifferentSearch": "尝试不同的搜索词或浏览上面的类别。",
+    "stillHaveQuestions": "还有问题？",
+    "contactUsPrompt": "找不到您要找的答案？我们的团队随时为您提供帮助。",
+    "contactUs": "联系我们"
   }
 }

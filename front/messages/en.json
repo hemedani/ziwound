@@ -265,7 +265,8 @@
     "blog": "Blog",
     "warCrimes": "War Crimes Exploration",
     "about": "About",
-    "contact": "Contact"
+    "contact": "Contact",
+    "faq": "FAQ"
   },
 "footer": {
     "about": "About Us",
@@ -745,5 +746,75 @@
     "successTitle": "Message Sent!",
     "successMessage": "Thank you for contacting us. We'll get back to you shortly.",
     "sendAnother": "Send Another Message"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about Ziwound. Can't find what you're looking for? Feel free to contact us.",
+    "searchPlaceholder": "Search questions...",
+    "categories": {
+      "general": "General Questions",
+      "reporting": "Reporting",
+      "privacy": "Privacy & Security",
+      "technical": "Technical Support"
+    },
+    "questions": {
+      "whatIsZiwound": {
+        "question": "What is Ziwound?",
+        "answer": "Ziwound is a secure platform for documenting war crimes and human rights violations. We provide a confidential way for individuals to report incidents, upload evidence, and contribute to historical records while maintaining their privacy and security."
+      },
+      "isZiwoundFree": {
+        "question": "Is Ziwound free to use?",
+        "answer": "Yes, Ziwound is completely free for all users. We are a non-profit initiative dedicated to documenting war crimes and ensuring accountability. There are no fees for submitting reports or accessing public information."
+      },
+      "whoCanUse": {
+        "question": "Who can use Ziwound?",
+        "answer": "Anyone can use Ziwound to submit reports about war crimes or human rights violations they have witnessed or experienced. We welcome reports from victims, witnesses, journalists, researchers, and human rights organizations."
+      },
+      "howToReport": {
+        "question": "How do I submit a report?",
+        "answer": "To submit a report, create an account or log in, then click 'New Report' in the navigation menu. Fill out the form with details about the incident, including date, location, description, and any evidence you have. You can save your progress and return later if needed."
+      },
+      "whatEvidence": {
+        "question": "What type of evidence can I upload?",
+        "answer": "You can upload various types of evidence including photos, videos, audio recordings, documents, and location data. We support common formats like JPG, PNG, MP4, MP3, PDF, and DOC. All files are securely stored and encrypted."
+      },
+      "anonymousReport": {
+        "question": "Can I submit an anonymous report?",
+        "answer": "While we encourage users to create accounts for better communication and follow-up, we understand that anonymity may be necessary for safety reasons. You can contact us directly through our secure channels if you need to submit information anonymously."
+      },
+      "reportStatus": {
+        "question": "How can I check the status of my report?",
+        "answer": "Once you submit a report, you can track its status in the 'My Reports' section of your account. Reports go through several stages: Pending (awaiting review), In Review (being verified), Approved (published), or Rejected (with explanation)."
+      },
+      "dataSecurity": {
+        "question": "How is my data secured?",
+        "answer": "We use industry-standard encryption for all data transmission and storage. Your personal information is kept confidential and never shared with third parties without your consent. Our servers are hosted in secure facilities with strict access controls."
+      },
+      "whoSeesReport": {
+        "question": "Who will see my report?",
+        "answer": "Your report is only visible to authorized administrators and verified partner organizations working on war crimes documentation. Personal identifying information is redacted from public-facing documents unless you explicitly choose to share it."
+      },
+      "dataRetention": {
+        "question": "How long do you keep my data?",
+        "answer": "We retain reports and associated data indefinitely for historical documentation purposes. However, you can request deletion of your personal account information at any time. Report content may be retained even if personal data is removed."
+      },
+      "supportedLanguages": {
+        "question": "What languages does Ziwound support?",
+        "answer": "Ziwound currently supports 9 languages: Persian (Farsi), English, Arabic, Chinese, Portuguese, Spanish, Dutch, Turkish, and Russian. We are continuously working to add more languages to make the platform accessible to everyone."
+      },
+      "mobileFriendly": {
+        "question": "Is Ziwound mobile-friendly?",
+        "answer": "Yes, Ziwound is fully responsive and works on all devices including smartphones and tablets. You can submit reports, upload photos, and access all features from your mobile browser without needing to download an app."
+      },
+      "browserSupport": {
+        "question": "Which browsers are supported?",
+        "answer": "Ziwound works on all modern browsers including Chrome, Firefox, Safari, and Edge. We recommend using the latest version of your browser for the best experience and security. Internet Explorer is not supported."
+      }
+    },
+    "noResults": "No questions found",
+    "tryDifferentSearch": "Try a different search term or browse the categories above.",
+    "stillHaveQuestions": "Still have questions?",
+    "contactUsPrompt": "Can't find the answer you're looking for? Our team is here to help.",
+    "contactUs": "Contact Us"
   }
 }
