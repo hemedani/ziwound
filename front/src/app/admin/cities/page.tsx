@@ -49,7 +49,7 @@ export default async function AdminCitiesPage({
     { _id: 1, name: 1, english_name: 1 }
   );
 
-  let cities: citySchema[] = [];
+  let cities: (citySchema & { province?: { _id?: string } })[] = [];
   let provinces: any[] = [];
   let error: string | null = null;
 

@@ -9,10 +9,11 @@ import { CityForm, CityFormValues } from "../city-form";
 import { add } from "@/app/actions/city/add";
 
 interface NewCityFormProps {
-  provinces?: Array<{ _id: string; name: string; english_name: string }>;
+  countries?: Array<{ _id: string; name: string; english_name: string }>;
+  provinces?: Array<{ _id: string; name: string; english_name: string; country?: { _id?: string } }>;
 }
 
-export function NewCityForm({ provinces = [] }: NewCityFormProps) {
+export function NewCityForm({ countries = [], provinces = [] }: NewCityFormProps) {
   const t = useTranslations("admin");
   const tCommon = useTranslations("common");
   const router = useRouter();
@@ -27,19 +28,19 @@ export function NewCityForm({ provinces = [] }: NewCityFormProps) {
         {
           name: data.name,
           english_name: data.english_name,
-          province_id: data.province_id,
+          provinceId: data.provinceId,
+          countryId: data.countryId,
+          isCapital: false,
           wars_history: data.wars_history || "",
           conflict_timeline: data.conflict_timeline || "",
           casualties_info: data.casualties_info || "",
-          international_response: data.international_response || "",
-          war_crimes_documentation: data.war_crimes_documentation || "",
-          human_rights_violations: data.human_rights_violations || "",
-          genocide_info: data.genocide_info || "",
-          chemical_weapons_info: data.chemical_weapons_info || "",
-          displacement_info: data.displacement_info || "",
-          reconstruction_status: data.reconstruction_status || "",
-          international_sanctions: data.international_sanctions || "",
-          notable_war_events: data.notable_war_events || "",
+          notable_battles: data.notable_battles || "",
+          occupation_info: data.occupation_info || "",
+          destruction_level: data.destruction_level || "",
+          civilian_impact: data.civilian_impact || "",
+          mass_graves_info: data.mass_graves_info || "",
+          war_crimes_events: data.war_crimes_events || "",
+          liberation_info: data.liberation_info || "",
         },
         { _id: 1, name: 1 },
       );
@@ -79,6 +80,7 @@ export function NewCityForm({ provinces = [] }: NewCityFormProps) {
       <CityForm
         onSubmit={handleSubmit}
         onCancel={handleCancel}
+        countries={countries}
         provinces={provinces}
       />
       <div className="flex gap-4 pt-6 border-t mt-6">

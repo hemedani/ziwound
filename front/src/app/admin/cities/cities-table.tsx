@@ -20,7 +20,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 interface CitiesTableProps {
-  cities: citySchema[];
+  cities: (citySchema & { province?: { _id?: string } })[];
   provinces: Array<{ _id: string; name: string; english_name: string }>;
   error?: string | null;
 }
@@ -64,7 +64,8 @@ export function CitiesTable({ cities, provinces, error }: CitiesTableProps) {
     }
   };
 
-  const getProvinceName = (provinceId: string) => {
+  const getProvinceName = (provinceId: string | undefined) => {
+    if (!provinceId) return "Unknown";
     const province = provinces.find(p => p._id === provinceId);
     return province ? `${province.name} (${province.english_name})` : "Unknown";
   };
@@ -88,11 +89,11 @@ export function CitiesTable({ cities, provinces, error }: CitiesTableProps) {
               </TableCell>
             </TableRow>
           ) : (
-            cities.map((city: citySchema) => (
+            cities.map((city) => (
               <TableRow key={city._id}>
                 <TableCell className="font-medium">{city.name}</TableCell>
                 <TableCell>{city.english_name}</TableCell>
-                <TableCell>{getProvinceName(city.province_id)}</TableCell>
+                <TableCell>{getProvinceName(city.province?._id)}</TableCell>
                 <TableCell className="text-end pe-4">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>

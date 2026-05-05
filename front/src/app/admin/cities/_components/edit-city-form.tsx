@@ -7,14 +7,16 @@ import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { CityForm, CityFormValues } from "../city-form";
 import { update } from "@/app/actions/city/update";
+import { updateRelations } from "@/app/actions/city/updateRelations";
 import { citySchema } from "@/types/declarations";
 
 interface EditCityFormProps {
-  city: citySchema;
-  provinces?: Array<{ _id: string; name: string; english_name: string }>;
+  city: citySchema & { province?: { _id?: string }; country?: { _id?: string } };
+  countries?: Array<{ _id: string; name: string; english_name: string }>;
+  provinces?: Array<{ _id: string; name: string; english_name: string; country?: { _id?: string } }>;
 }
 
-export function EditCityForm({ city, provinces = [] }: EditCityFormProps) {
+export function EditCityForm({ city, countries = [], provinces = [] }: EditCityFormProps) {
   const t = useTranslations("admin");
   const tCommon = useTranslations("common");
   const router = useRouter();
@@ -25,43 +27,65 @@ export function EditCityForm({ city, provinces = [] }: EditCityFormProps) {
     setIsLoading(true);
 
     try {
+      // First update the city basic info
       const res = await update(
         {
-          _id: city._id,
+          _id: city._id!,
           name: data.name,
           english_name: data.english_name,
-          province_id: data.province_id,
+          countryId: data.countryId,
           wars_history: data.wars_history || "",
           conflict_timeline: data.conflict_timeline || "",
           casualties_info: data.casualties_info || "",
-          international_response: data.international_response || "",
-          war_crimes_documentation: data.war_crimes_documentation || "",
-          human_rights_violations: data.human_rights_violations || "",
-          genocide_info: data.genocide_info || "",
-          chemical_weapons_info: data.chemical_weapons_info || "",
-          displacement_info: data.displacement_info || "",
-          reconstruction_status: data.reconstruction_status || "",
-          international_sanctions: data.international_sanctions || "",
-          notable_war_events: data.notable_war_events || "",
+          notable_battles: data.notable_battles || "",
+          occupation_info: data.occupation_info || "",
+          destruction_level: data.destruction_level || "",
+          civilian_impact: data.civilian_impact || "",
+          mass_graves_info: data.mass_graves_info || "",
+          war_crimes_events: data.war_crimes_events || "",
+          liberation_info: data.liberation_info || "",
         },
         { _id: 1, name: 1 },
       );
 
-      if (res?.success) {
-        toast({
-          title: tCommon("success"),
-          description: t("cityUpdated") || "City updated successfully",
-        });
-        router.refresh();
-        router.push("/admin/cities");
-      } else {
+      if (!res?.success) {
         toast({
           variant: "destructive",
           title: tCommon("error"),
           description:
             res?.error || res?.body?.message || t("failedToUpdateCity") || "Failed to update city.",
         });
+        return;
       }
+
+      // Then update relations if province changed
+      if (data.provinceId !== city.province?._id) {
+        const relationRes = await updateRelations(
+          {
+            _id: city._id!,
+            province: data.provinceId,
+            country: data.countryId,
+          },
+          { _id: 1 },
+        );
+
+        if (!relationRes?.success) {
+          toast({
+            variant: "destructive",
+            title: tCommon("error"),
+            description:
+              relationRes?.error || relationRes?.body?.message || t("failedToUpdateCityRelations") || "Failed to update city relations.",
+          });
+          return;
+        }
+      }
+
+      toast({
+        title: tCommon("success"),
+        description: t("cityUpdated") || "City updated successfully",
+      });
+      router.refresh();
+      router.push("/admin/cities");
     } catch (_error) {
       toast({
         variant: "destructive",
@@ -80,19 +104,18 @@ export function EditCityForm({ city, provinces = [] }: EditCityFormProps) {
   const defaultValues = {
     name: city.name,
     english_name: city.english_name,
-    province_id: city.province_id,
+    countryId: city.country?._id || "",
+    provinceId: city.province?._id || "",
     wars_history: city.wars_history || "",
     conflict_timeline: city.conflict_timeline || "",
     casualties_info: city.casualties_info || "",
-    international_response: city.international_response || "",
-    war_crimes_documentation: city.war_crimes_documentation || "",
-    human_rights_violations: city.human_rights_violations || "",
-    genocide_info: city.genocide_info || "",
-    chemical_weapons_info: city.chemical_weapons_info || "",
-    displacement_info: city.displacement_info || "",
-    reconstruction_status: city.reconstruction_status || "",
-    international_sanctions: city.international_sanctions || "",
-    notable_war_events: city.notable_war_events || "",
+    notable_battles: city.notable_battles || "",
+    occupation_info: city.occupation_info || "",
+    destruction_level: city.destruction_level || "",
+    civilian_impact: city.civilian_impact || "",
+    mass_graves_info: city.mass_graves_info || "",
+    war_crimes_events: city.war_crimes_events || "",
+    liberation_info: city.liberation_info || "",
   };
 
   return (
@@ -102,6 +125,7 @@ export function EditCityForm({ city, provinces = [] }: EditCityFormProps) {
         onCancel={handleCancel}
         defaultValues={defaultValues}
         isEditing={true}
+        countries={countries}
         provinces={provinces}
       />
       <div className="flex gap-4 pt-6 border-t mt-6">
