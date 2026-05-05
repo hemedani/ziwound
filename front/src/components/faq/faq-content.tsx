@@ -1,9 +1,11 @@
 "use client";
 
 import { useState, useMemo } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 import {
   Accordion,
   AccordionContent,
@@ -21,6 +23,7 @@ interface FAQItem {
 
 export function FAQContent() {
   const t = useTranslations("faq");
+  const locale = useLocale();
   const [searchQuery, setSearchQuery] = useState("");
 
   const faqItems: FAQItem[] = useMemo(() => {
@@ -194,12 +197,11 @@ export function FAQContent() {
         <CardContent className="p-6 text-center">
           <h3 className="text-lg font-semibold mb-2">{t("stillHaveQuestions")}</h3>
           <p className="text-muted-foreground mb-4">{t("contactUsPrompt")}</p>
-          <a
-            href="/contact"
-            className="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2"
-          >
-            {t("contactUs")}
-          </a>
+          <Button asChild>
+            <Link href={`/${locale}/contact`}>
+              {t("contactUs")}
+            </Link>
+          </Button>
         </CardContent>
       </Card>
     </div>
