@@ -16,12 +16,17 @@ import {
 } from "@/components/ui/form";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { TagSelector } from "@/components/form/tag-selector";
+import { AsyncSelect, AsyncSelectLoadResult } from "@/components/form/async-select";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { DocumentFormField } from "@/components/form/document-list-field";
 import dynamic from "next/dynamic";
 import { REPORT_LANGUAGES, REPORT_PRIORITY, LANGUAGE_MAP } from "@/types/report-schema";
 import { getFieldMetadata } from "@/lib/declaration-parser";
 import type { reportFormSchema } from "@/types/report-schema";
+import { ReqType } from "@/types/declarations";
+import { gets as getCountries } from "@/app/actions/country/gets";
+import { gets as getProvinces } from "@/app/actions/province/gets";
+import { gets as getCities } from "@/app/actions/city/gets";
 
 const LocationPicker = dynamic(
   () => import("@/components/form/location-picker").then((mod) => mod.LocationPicker),
@@ -38,9 +43,6 @@ interface StepRendererProps {
   watch: UseFormWatch<FormData>;
   categories: { _id: string; name: string }[];
   availableTags: { id: string; name: string }[];
-  countries?: { id: string; name: string }[];
-  provinces?: { id: string; name: string }[];
-  cities?: { id: string; name: string }[];
   disabled?: boolean;
   locale?: string;
 }
@@ -53,13 +55,74 @@ export function StepRenderer({
   watch,
   categories,
   availableTags,
-  countries = [],
-  provinces = [],
-  cities = [],
   disabled = false,
   locale = "en",
 }: StepRendererProps) {
   const t = useTranslations();
+
+  // Async load functions for countries, provinces, and cities
+  const loadCountries = async (inputValue: string): Promise<AsyncSelectLoadResult> => {
+    const query: ReqType["main"]["country"]["gets"]["set"] = {
+      page: 1,
+      limit: 50,
+    };
+    if (inputValue) {
+      query.search = inputValue;
+    }
+    const result = await getCountries(query, { _id: 1, name: 1 });
+    if (result.success && result.body) {
+      return {
+        options: result.body.map((c: { _id: string; name: string }) => ({
+          id: c._id,
+          label: c.name,
+        })),
+        hasMore: false,
+      };
+    }
+    return { options: [], hasMore: false };
+  };
+
+  const loadProvinces = async (inputValue: string): Promise<AsyncSelectLoadResult> => {
+    const query: ReqType["main"]["province"]["gets"]["set"] = {
+      page: 1,
+      limit: 50,
+    };
+    if (inputValue) {
+      query.search = inputValue;
+    }
+    const result = await getProvinces(query, { _id: 1, name: 1 });
+    if (result.success && result.body) {
+      return {
+        options: result.body.map((p: { _id: string; name: string }) => ({
+          id: p._id,
+          label: p.name,
+        })),
+        hasMore: false,
+      };
+    }
+    return { options: [], hasMore: false };
+  };
+
+  const loadCities = async (inputValue: string): Promise<AsyncSelectLoadResult> => {
+    const query: ReqType["main"]["city"]["gets"]["set"] = {
+      page: 1,
+      limit: 50,
+    };
+    if (inputValue) {
+      query.search = inputValue;
+    }
+    const result = await getCities(query, { _id: 1, name: 1 });
+    if (result.success && result.body) {
+      return {
+        options: result.body.map((c: { _id: string; name: string }) => ({
+          id: c._id,
+          label: c.name,
+        })),
+        hasMore: false,
+      };
+    }
+    return { options: [], hasMore: false };
+  };
   const fieldComponents: Record<number, string[]> = {
     1: ["title", "description", "selected_language"],
     2: ["crime_occurred_at", "priority", "tags", "category"],
@@ -296,16 +359,19 @@ export function StepRenderer({
                   {t("report.hostileCountries") || "Hostile Countries"}{" "}
                   {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
-                <TagSelector
-                  label={t("report.hostileCountries") || "Hostile Countries"}
-                  availableTags={countries}
-                  selectedTags={(field.value || []).map((id) => {
-                    const c = countries.find((t) => t.id === id);
-                    return { id, name: c ? c.name : id };
-                  })}
-                  onChange={(tags) => field.onChange(tags.map((t) => t.id))}
-                  creatable={false}
-                />
+                <FormControl>
+                  <AsyncSelect
+                    value={field.value || []}
+                    onChange={(value) => field.onChange(value)}
+                    isMulti
+                    async
+                    loadOptions={loadCountries}
+                    placeholder={t("report.selectHostileCountries") || "Select hostile countries..."}
+                    searchPlaceholder={t("report.searchCountries") || "Search countries..."}
+                    emptyText={t("report.noCountriesFound") || "No countries found."}
+                    disabled={disabled}
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -323,16 +389,19 @@ export function StepRenderer({
                   {t("report.attackedCountries") || "Attacked Countries"}{" "}
                   {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
-                <TagSelector
-                  label={t("report.attackedCountries") || "Attacked Countries"}
-                  availableTags={countries}
-                  selectedTags={(field.value || []).map((id) => {
-                    const c = countries.find((t) => t.id === id);
-                    return { id, name: c ? c.name : id };
-                  })}
-                  onChange={(tags) => field.onChange(tags.map((t) => t.id))}
-                  creatable={false}
-                />
+                <FormControl>
+                  <AsyncSelect
+                    value={field.value || []}
+                    onChange={(value) => field.onChange(value)}
+                    isMulti
+                    async
+                    loadOptions={loadCountries}
+                    placeholder={t("report.selectAttackedCountries") || "Select attacked countries..."}
+                    searchPlaceholder={t("report.searchCountries") || "Search countries..."}
+                    emptyText={t("report.noCountriesFound") || "No countries found."}
+                    disabled={disabled}
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -350,16 +419,19 @@ export function StepRenderer({
                   {t("report.attackedProvinces") || "Attacked Provinces"}{" "}
                   {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
-                <TagSelector
-                  label={t("report.attackedProvinces") || "Attacked Provinces"}
-                  availableTags={provinces}
-                  selectedTags={(field.value || []).map((id) => {
-                    const c = provinces.find((t) => t.id === id);
-                    return { id, name: c ? c.name : id };
-                  })}
-                  onChange={(tags) => field.onChange(tags.map((t) => t.id))}
-                  creatable={false}
-                />
+                <FormControl>
+                  <AsyncSelect
+                    value={field.value || []}
+                    onChange={(value) => field.onChange(value)}
+                    isMulti
+                    async
+                    loadOptions={loadProvinces}
+                    placeholder={t("report.selectAttackedProvinces") || "Select attacked provinces..."}
+                    searchPlaceholder={t("report.searchProvinces") || "Search provinces..."}
+                    emptyText={t("report.noProvincesFound") || "No provinces found."}
+                    disabled={disabled}
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
@@ -377,16 +449,19 @@ export function StepRenderer({
                   {t("report.attackedCities") || "Attacked Cities"}{" "}
                   {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
-                <TagSelector
-                  label={t("report.attackedCities") || "Attacked Cities"}
-                  availableTags={cities}
-                  selectedTags={(field.value || []).map((id) => {
-                    const c = cities.find((t) => t.id === id);
-                    return { id, name: c ? c.name : id };
-                  })}
-                  onChange={(tags) => field.onChange(tags.map((t) => t.id))}
-                  creatable={false}
-                />
+                <FormControl>
+                  <AsyncSelect
+                    value={field.value || []}
+                    onChange={(value) => field.onChange(value)}
+                    isMulti
+                    async
+                    loadOptions={loadCities}
+                    placeholder={t("report.selectAttackedCities") || "Select attacked cities..."}
+                    searchPlaceholder={t("report.searchCities") || "Search cities..."}
+                    emptyText={t("report.noCitiesFound") || "No cities found."}
+                    disabled={disabled}
+                  />
+                </FormControl>
                 <FormMessage />
               </FormItem>
             )}
