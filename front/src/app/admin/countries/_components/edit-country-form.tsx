@@ -27,7 +27,7 @@ export function EditCountryForm({ country }: EditCountryFormProps) {
     try {
       const res = await update(
         {
-          _id: country._id,
+          _id: country._id!,
           name: data.name,
           english_name: data.english_name,
           wars_history: data.wars_history || "",
