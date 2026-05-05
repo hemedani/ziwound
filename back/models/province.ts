@@ -1,21 +1,21 @@
 import { coreApp } from "../mod.ts";
-import { type RelationDataType, type RelationSortOrderType, string } from "lesan";
+import { optional, type RelationDataType, type RelationSortOrderType, string } from "lesan";
 import { pure_location } from "@model";
 import { user_excludes } from "./excludes.ts";
 
 export const province_pure = {
   ...pure_location,
 
-  wars_history: string(),
-  conflict_timeline: string(),
-  casualties_info: string(),
-  notable_battles: string(),
-  occupation_info: string(),
-  destruction_level: string(),
-  civilian_impact: string(),
-  mass_graves_info: string(),
-  war_crimes_events: string(),
-  liberation_info: string(),
+  wars_history: optional(string()),
+  conflict_timeline: optional(string()),
+  casualties_info: optional(string()),
+  notable_battles: optional(string()),
+  occupation_info: optional(string()),
+  destruction_level: optional(string()),
+  civilian_impact: optional(string()),
+  mass_graves_info: optional(string()),
+  war_crimes_events: optional(string()),
+  liberation_info: optional(string()),
 };
 
 export const province_relations = {
