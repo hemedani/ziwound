@@ -665,5 +665,30 @@
     "sharePage": "Deel pagina",
     "exportData": "Gegevens exporteren",
     "exportPDF": "PDF exporteren (Binnenkort)"
+  },
+  "about": {
+    "title": "Over Ons",
+    "mission": "Ziwound is een platform voor documentatie van oorlogsmisdaden waarmee individuen schendingen van mensenrechten en oorlogsmisdaden veilig en vertrouwelijk kunnen melden. Ons doel is het behouden van historisch geheugen en het waarborgen van verantwoording.",
+    "vision": "Een wereld waarin geen oorlogsmisdaad ongestraft blijft en de stemmen van slachtoffers worden gehoord.",
+    "whyChooseUs": "Waarom Ziwound?",
+    "feature1Title": "Hoge Veiligheid",
+    "feature1Description": "Uw rapporten zijn beschermd met de hoogste beveiligingsnormen.",
+    "feature2Title": "Meertalig",
+    "feature2Description": "Ondersteuning voor 9 talen voor wereldwijde en inclusieve toegang.",
+    "feature3Title": "Gemeenschapsgedreven",
+    "feature3Description": "Samenwerking met mensenrechtenorganisaties en internationale instellingen.",
+    "feature4Title": "Uitgebreide Documentatie",
+    "feature4Description": "Registratie van complete details samen met bewijs en geografische locatie.",
+    "howItWorks": "Hoe Het Werkt",
+    "step1Title": "Rapport Indienen",
+    "step1Description": "Vul het rapportformulier in en upload uw bewijs.",
+    "step2Title": "Beoordeling & Verificatie",
+    "step2Description": "Ons team beoordeelt en verifieert uw rapport.",
+    "step3Title": "Publicatie & Opvolging",
+    "step3Description": "Het rapport wordt gepubliceerd en beschikbaar gesteld voor relevante instellingen.",
+    "readyToContribute": "Klaar om Bij te Dragen?",
+    "ctaDescription": "Door uw rapport in te dienen, helpt u geschiedenis te documenteren en bij te dragen aan het bereiken van gerechtigheid.",
+    "submitReport": "Rapport Indienen",
+    "exploreData": "Gegevens Verkennen"
   }
 }

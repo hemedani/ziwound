@@ -610,5 +610,30 @@
     "sharePage": "Sayfayı Paylaş",
     "exportData": "Verileri Dışa Aktar",
     "exportPDF": "PDF Dışa Aktar (Yakında)"
+  },
+  "about": {
+    "title": "Hakkımızda",
+    "mission": "Ziwound, bireylerin insan hakları ihlallerini ve savaş suçlarını güvenli ve gizli bir şekilde bildirmesini sağlayan bir savaş suçları belgelendirme platformudur. Amacımız tarihi belleği korumak ve hesap verebilirliği sağlamaktır.",
+    "vision": "Hiçbir savaş suçunun cezasız kalmadığı ve mağdur seslerinin duyulduğu bir dünya.",
+    "whyChooseUs": "Neden Ziwound?",
+    "feature1Title": "Yüksek Güvenlik",
+    "feature1Description": "Raporlarınız en yüksek güvenlik standartlarıyla korunur.",
+    "feature2Title": "Çok Dilli",
+    "feature2Description": "Küresel ve kapsayıcı erişim için 9 dil desteği.",
+    "feature3Title": "Topluluk Odaklı",
+    "feature3Description": "İnsan hakları örgütleri ve uluslararası kurumlarla işbirliği.",
+    "feature4Title": "Kapsamlı Belgelendirme",
+    "feature4Description": "Kanıtlar ve coğrafi konumla birlikte eksiksiz detay kaydı.",
+    "howItWorks": "Nasıl Çalışır",
+    "step1Title": "Rapor Gönder",
+    "step1Description": "Rapor formunu doldurun ve kanıtlarınızı yükleyin.",
+    "step2Title": "İnceleme ve Doğrulama",
+    "step2Description": "Ekibimiz raporunuzu inceler ve doğrular.",
+    "step3Title": "Yayınlama ve Takip",
+    "step3Description": "Rapor yayınlanır ve ilgili kurumlar için kullanılabilir hale gelir.",
+    "readyToContribute": "Katkıda Bulunmaya Hazır mısınız?",
+    "ctaDescription": "Raporunuzu göndererek tarihi belgelemeye ve adaletin sağlanmasına katkıda bulunursunuz.",
+    "submitReport": "Rapor Gönder",
+    "exploreData": "Verileri Keşfet"
   }
 }

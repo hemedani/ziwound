@@ -610,5 +610,30 @@
     "sharePage": "分享页面",
     "exportData": "导出数据",
     "exportPDF": "导出 PDF (即将推出)"
+  },
+  "about": {
+    "title": "关于我们",
+    "mission": "Ziwound 是一个战争罪行记录平台，使个人能够安全、保密地报告侵犯人权和战争罪行。我们的目标是保存历史记忆并确保问责制。",
+    "vision": "一个没有战争罪行不受惩罚、受害者声音被听到的世界。",
+    "whyChooseUs": "为什么选择 Ziwound？",
+    "feature1Title": "高安全性",
+    "feature1Description": "您的报告受到最高安全标准的保护。",
+    "feature2Title": "多语言",
+    "feature2Description": "支持 9 种语言，实现全球和包容性访问。",
+    "feature3Title": "社区驱动",
+    "feature3Description": "与人权组织和国际机构合作。",
+    "feature4Title": "全面记录",
+    "feature4Description": "记录完整的细节以及证据和地理位置。",
+    "howItWorks": "工作原理",
+    "step1Title": "提交报告",
+    "step1Description": "填写报告表格并上传您的证据。",
+    "step2Title": "审查与验证",
+    "step2Description": "我们的团队审查并验证您的报告。",
+    "step3Title": "发布与跟进",
+    "step3Description": "报告已发布并可供相关机构使用。",
+    "readyToContribute": "准备好贡献了吗？",
+    "ctaDescription": "通过提交您的报告，您可以帮助记录历史并为实现正义做出贡献。",
+    "submitReport": "提交报告",
+    "exploreData": "探索数据"
   }
 }

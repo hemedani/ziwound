@@ -610,5 +610,30 @@
     "sharePage": "Compartilhar página",
     "exportData": "Exportar dados",
     "exportPDF": "Exportar PDF (Em breve)"
+  },
+  "about": {
+    "title": "Sobre Nós",
+    "mission": "Ziwound é uma plataforma de documentação de crimes de guerra que permite aos indivíduos relatar violações de direitos humanos e crimes de guerra de forma segura e confidencial. Nosso objetivo é preservar a memória histórica e garantir a responsabilidade.",
+    "vision": "Um mundo onde nenhum crime de guerra fica impune e as vozes das vítimas são ouvidas.",
+    "whyChooseUs": "Por que Ziwound?",
+    "feature1Title": "Alta Segurança",
+    "feature1Description": "Seus relatórios são protegidos com os mais altos padrões de segurança.",
+    "feature2Title": "Multilíngue",
+    "feature2Description": "Suporte para 9 idiomas para acesso global e inclusivo.",
+    "feature3Title": "Impulsionado pela Comunidade",
+    "feature3Description": "Colaboração com organizações de direitos humanos e instituições internacionais.",
+    "feature4Title": "Documentação Abrangente",
+    "feature4Description": "Registro de detalhes completos juntamente com evidências e localização geográfica.",
+    "howItWorks": "Como Funciona",
+    "step1Title": "Enviar Relatório",
+    "step1Description": "Preencha o formulário de relatório e envie suas evidências.",
+    "step2Title": "Revisão e Verificação",
+    "step2Description": "Nossa equipe revisa e verifica seu relatório.",
+    "step3Title": "Publicação e Acompanhamento",
+    "step3Description": "O relatório é publicado e disponibilizado para instituições relevantes.",
+    "readyToContribute": "Pronto para Contribuir?",
+    "ctaDescription": "Ao enviar seu relatório, você ajuda a documentar a história e contribuir para a realização da justiça.",
+    "submitReport": "Enviar Relatório",
+    "exploreData": "Explorar Dados"
   }
 }
