@@ -329,7 +329,7 @@ export function WarCrimesFilters({
               options={statusOptions}
               placeholder={t("status.all")}
               searchPlaceholder={tCommon("search")}
-              emptyText={tCommon("noResults")}
+              emptyText={t("noResults")}
             />
           </div>
 
@@ -341,7 +341,7 @@ export function WarCrimesFilters({
               options={priorityOptions}
               placeholder={t("priority.all")}
               searchPlaceholder={tCommon("search")}
-              emptyText={tCommon("noResults")}
+              emptyText={t("noResults")}
             />
           </div>
 
@@ -353,7 +353,7 @@ export function WarCrimesFilters({
               options={categoryOptions}
               placeholder={tFilter("selectCategory")}
               searchPlaceholder={tCommon("search")}
-              emptyText={tCommon("noResults")}
+              emptyText={t("noResults")}
             />
           </div>
 
@@ -387,7 +387,7 @@ export function WarCrimesFilters({
               loadOptions={loadCountryOptions}
               placeholder={tFilter("allHostileCountries") || "All Hostile Countries"}
               searchPlaceholder={tCommon("search")}
-              emptyText={tCommon("noResults")}
+              emptyText={t("noResults")}
               isClearable
             />
           </div>
@@ -401,7 +401,7 @@ export function WarCrimesFilters({
               loadOptions={loadCountryOptions}
               placeholder={tFilter("allAttackedCountries") || "All Attacked Countries"}
               searchPlaceholder={tCommon("search")}
-              emptyText={tCommon("noResults")}
+              emptyText={t("noResults")}
               isClearable
             />
           </div>
@@ -415,7 +415,7 @@ export function WarCrimesFilters({
               loadOptions={loadProvinceOptions}
               placeholder={tFilter("allAttackedProvinces") || "All Attacked Provinces"}
               searchPlaceholder={tCommon("search")}
-              emptyText={tCommon("noResults")}
+              emptyText={t("noResults")}
               isClearable
             />
           </div>
@@ -429,7 +429,7 @@ export function WarCrimesFilters({
               loadOptions={loadCityOptions}
               placeholder={tFilter("allAttackedCities") || "All Attacked Cities"}
               searchPlaceholder={tCommon("search")}
-              emptyText={tCommon("noResults")}
+              emptyText={t("noResults")}
               isClearable
             />
           </div>
@@ -442,7 +442,7 @@ export function WarCrimesFilters({
               options={languageOptions}
               placeholder={tCommon("all")}
               searchPlaceholder={tCommon("search")}
-              emptyText={tCommon("noResults")}
+              emptyText={t("noResults")}
             />
           </div>
         </div>
