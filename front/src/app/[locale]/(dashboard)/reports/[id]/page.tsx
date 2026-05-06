@@ -282,10 +282,10 @@ export default function ReportDetailPage() {
                   key={`${doc._id}-${file._id || index}`}
                   className="flex items-center gap-3 rounded-xl glass p-4 transition-all hover:bg-white/[0.04]"
                 >
-                  {isImage(file.mimeType || "") ? (
+                  {isImage(file.mimeType || "") && file._id ? (
                     <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
                       <Image
-                        src={file._id ? getImageUploadUrl(file.name, file.type) : "https://placehold.co/400x400.png"}
+                        src={getImageUploadUrl(file.name, file.type)}
                         alt={file.name || doc.title || "Attachment"}
                         fill
                         unoptimized
@@ -306,6 +306,7 @@ export default function ReportDetailPage() {
                     size="icon"
                     asChild
                     className="text-slate-body hover:text-offwhite hover:bg-white/10"
+                    aria-label={tCommon("download") || "Download file"}
                   >
                     <a href={file._id ? getImageUploadUrl(file.name, file.type) : "#"} download={file.name}>
                       <Download className="h-4 w-4" />
