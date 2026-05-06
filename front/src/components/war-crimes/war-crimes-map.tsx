@@ -7,8 +7,8 @@ export const WarCrimesMap = dynamic(
   {
     ssr: false,
     loading: () => (
-      <div className="h-[600px] w-full rounded-lg border bg-muted animate-pulse flex items-center justify-center">
-        <p className="text-muted-foreground">Loading Map...</p>
+      <div className="h-[600px] w-full rounded-2xl border border-white/[0.06] bg-white/[0.02] animate-pulse flex items-center justify-center">
+        <p className="text-slate-body/60">Loading Map...</p>
       </div>
     ),
   }

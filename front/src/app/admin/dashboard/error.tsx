@@ -1,26 +1,23 @@
 "use client";
 
 import { useEffect } from "react";
-import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, Home, RotateCcw } from "lucide-react";
-import { Link } from "@/i18n/routing";
+import { AlertTriangle, LayoutDashboard, RotateCcw } from "lucide-react";
+import Link from "next/link";
 
-export default function LocaleError({
+export default function AdminDashboardError({
   error,
   reset,
 }: {
   error: Error & { digest?: string };
   reset: () => void;
 }) {
-  const t = useTranslations("common");
-
   useEffect(() => {
     console.error(error);
   }, [error]);
 
   return (
-    <div className="flex min-h-[70vh] flex-col items-center justify-center p-4">
+    <div className="flex flex-col items-center justify-center min-h-[50vh] p-4">
       <div className="w-full max-w-md text-center space-y-6">
         {/* Icon */}
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-crimson/10 border border-crimson/20">
@@ -30,10 +27,10 @@ export default function LocaleError({
         {/* Title & Description */}
         <div className="space-y-2">
           <h1 className="text-2xl font-bold tracking-tight text-offwhite">
-            {t("error") || "Something went wrong"}
+            Dashboard Error
           </h1>
           <p className="text-slate-body text-sm leading-relaxed">
-            {t("unexpectedError") || "An unexpected error occurred while processing your request. We apologize for the inconvenience."}
+            An unexpected error occurred while loading dashboard statistics.
           </p>
         </div>
 
@@ -56,9 +53,9 @@ export default function LocaleError({
             asChild
             className="border-white/10 bg-white/5 text-offwhite hover:bg-white/[0.08] hover:text-offwhite"
           >
-            <Link href="/">
-              <Home className="h-4 w-4 me-2" />
-              {t("back") || "Home"}
+            <Link href="/admin/dashboard">
+              <LayoutDashboard className="h-4 w-4 me-2" />
+              Dashboard
             </Link>
           </Button>
           <Button
@@ -66,7 +63,7 @@ export default function LocaleError({
             className="bg-crimson hover:bg-crimson-light text-white"
           >
             <RotateCcw className="h-4 w-4 me-2" />
-            {t("tryAgain") || "Try again"}
+            Try again
           </Button>
         </div>
       </div>

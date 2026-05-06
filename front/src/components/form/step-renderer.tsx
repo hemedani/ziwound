@@ -30,7 +30,7 @@ import { gets as getCities } from "@/app/actions/city/gets";
 
 const LocationPicker = dynamic(
   () => import("@/components/form/location-picker").then((mod) => mod.LocationPicker),
-  { ssr: false, loading: () => <div className="h-20 w-full animate-pulse rounded-md bg-muted" /> },
+  { ssr: false, loading: () => <div className="h-20 w-full animate-pulse rounded-xl bg-white/5 border border-white/[0.06]" /> },
 );
 
 type FormData = z.infer<typeof reportFormSchema>;

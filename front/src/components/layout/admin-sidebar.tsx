@@ -82,6 +82,7 @@ export function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
           variant="ghost"
           size="icon"
           onClick={onToggle}
+          aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
           className={cn(
             "text-slate-body hover:text-offwhite hover:bg-white/5 rounded-lg",
             collapsed && "mx-auto"

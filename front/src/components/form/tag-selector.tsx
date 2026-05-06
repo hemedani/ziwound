@@ -140,6 +140,7 @@ export function TagSelector({
             size="icon"
             onClick={addNewTag}
             disabled={!newTagInput.trim()}
+            aria-label={t('tagSelector.addTag') || "Add tag"}
           >
             <Plus className="h-4 w-4" />
           </Button>

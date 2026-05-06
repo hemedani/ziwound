@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { HeroSlider, HeroSlide } from "@/components/landing/HeroSlider";
+import { HeroSlider } from "@/components/landing/hero-slider-dynamic";
+import { MapTeaser } from "@/components/landing/map-teaser-dynamic";
 import { ImpactStats } from "@/components/landing/ImpactStats";
 import { FeaturedReports } from "@/components/landing/FeaturedReports";
 import { TrustMission } from "@/components/landing/TrustMission";
 import { SubmitCTA } from "@/components/landing/SubmitCTA";
-import { MapTeaser } from "@/components/landing/MapTeaser";
 import { Timeline } from "@/components/landing/Timeline";
+import type { HeroSlide } from "@/components/landing/HeroSlider";
 import { count as countReports } from "@/app/actions/report/count";
 import { count as countDocuments } from "@/app/actions/document/count";
 import { gets as getReports } from "@/app/actions/report/gets";
@@ -106,48 +107,8 @@ export default async function Home({ params }: HomePageProps) {
       }))
     : [];
 
-  // Combine and take top 3, fallback to placeholders if empty
-  const featuredItems =
-    reportItems.length > 0 || blogItems.length > 0
-      ? [...reportItems, ...blogItems].slice(0, 3)
-      : [
-          {
-            id: "f1",
-            title: "Mass Graves Discovered in Eastern Region",
-            excerpt:
-              "Forensic teams have uncovered evidence of systematic executions following months of witness testimony and satellite analysis.",
-            image:
-              "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop",
-            date: "2024-11-12",
-            location: "Eastern Province",
-            category: "Investigation",
-            href: `/${locale}/war-crimes`,
-          },
-          {
-            id: "f2",
-            title: "Civilian Infrastructure Targeted in Airstrikes",
-            excerpt:
-              "Documented attacks on hospitals and schools raise concerns about violations of international humanitarian law.",
-            image:
-              "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=800&auto=format&fit=crop",
-            date: "2024-10-28",
-            location: "Northern District",
-            category: "Report",
-            href: `/${locale}/war-crimes`,
-          },
-          {
-            id: "f3",
-            title: "Witness Testimony: A Survivor's Account",
-            excerpt:
-              "An in-depth interview with a survivor who documented her experience through photographs and written testimony.",
-            image:
-              "https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?q=80&w=800&auto=format&fit=crop",
-            date: "2024-10-15",
-            location: "Capital City",
-            category: "Story",
-            href: `/${locale}/blog`,
-          },
-        ];
+  // Combine and take top 3
+  const featuredItems = [...reportItems, ...blogItems].slice(0, 3);
 
   const heroSlides: HeroSlide[] = [
     {

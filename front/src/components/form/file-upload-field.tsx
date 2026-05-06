@@ -214,6 +214,7 @@ export function FileUploadField({
                   }}
                   type="button"
                   disabled={isUploading}
+                  aria-label="Remove file"
                 >
                   <X className="h-3 w-3" />
                 </Button>

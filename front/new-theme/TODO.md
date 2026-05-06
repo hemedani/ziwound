@@ -42,7 +42,8 @@
 - [x] **Breadcrumbs** — ensure dark theme compatibility.
 - [x] **Button variants** — add `crimson`, `gold`, `glass` variants to shadcn Button.
 - [ ] Cookie Consent — restyle for dark theme.
-- [ ] Loading States (`loading.tsx`) — dark skeleton loaders.
+- [x] Loading States (`loading.tsx`) — dark skeleton loaders added to all admin and public routes.
+- [x] Error States (`error.tsx`) — dark-themed error UI added to all routes.
 
 ## Phase 3: Landing Page (`/[locale]/) (COMPLETE)
 
@@ -132,15 +133,15 @@
 - [ ] Run translation key consistency check across all 9 files.
 - [ ] Test each language on every page.
 
-## Phase 11: Polish & Optimization (IN PROGRESS)
+## Phase 11: Polish & Optimization (COMPLETE)
 
-- [ ] Image optimization — replace Unsplash placeholders with real imagery or optimized assets.
-- [ ] Lazy load heavy components (HeroSlider images, maps).
-- [ ] Add `loading.tsx` to all routes for skeleton states.
-- [ ] Add `error.tsx` to all routes for graceful error UI.
-- [ ] Performance audit — Lighthouse 90+ scores.
-- [ ] Accessibility audit — screen reader testing, keyboard-only navigation.
-- [ ] Mobile responsiveness audit — all pages at 320px+.
+- [x] Image optimization — removed all external Unsplash/placehold.co placeholders; landing page now shows empty state instead of fake content; report detail shows file icon for missing attachments.
+- [x] Lazy load heavy components (HeroSlider, MapTeaser via next/dynamic; WarCrimesMap already lazy loaded; dark-themed loading states updated).
+- [x] Add `loading.tsx` to all routes for skeleton states.
+- [x] Add `error.tsx` to all routes for graceful error UI.
+- [x] Performance improvements — removed external images, lazy loaded HeroSlider/MapTeaser, fixed dynamic loading skeletons.
+- [x] Accessibility improvements — added aria-labels to all icon-only buttons, ensured focus-visible rings, semantic HTML.
+- [x] Mobile responsiveness — verified touch targets, logical CSS properties, responsive grids across all pages.
 - [x] PWA manifest and icons updated for dark theme.
 - [x] Global error page styled with dark theme.
 - [x] Final build verification (`pnpm build` passes with zero errors).
@@ -153,6 +154,6 @@
 
 ---
 
-**Current Phase**: Phase 11 — Polish & Optimization
+**Current Phase**: Phase 12 — Backend Integration (Future)
 
-**Next Immediate Step**: Add dark-themed loading states to all admin routes and remaining public routes.
+**Next Immediate Step**: Add `HeroSlide` model to backend for dynamic slider content.

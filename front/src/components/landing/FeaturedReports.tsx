@@ -4,7 +4,7 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
-import { ArrowRight, Calendar, MapPin } from "lucide-react";
+import { ArrowRight, Calendar, FileText, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface FeaturedItem {
@@ -57,6 +57,27 @@ export function FeaturedReports({
           </h2>
           <p className="text-lg text-slate-body leading-relaxed">{subtitle}</p>
         </motion.div>
+
+        {/* Empty state */}
+        {items.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="flex flex-col items-center justify-center rounded-2xl glass-light border border-white/[0.06] py-16 px-6 text-center"
+          >
+            <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-crimson/10 border border-crimson/20">
+              <FileText className="h-7 w-7 text-crimson-light" />
+            </div>
+            <p className="text-lg font-medium text-offwhite mb-1">
+              No featured reports yet
+            </p>
+            <p className="text-sm text-slate-body max-w-sm">
+              Check back soon for the latest documented reports and stories.
+            </p>
+          </motion.div>
+        )}
 
         {/* Cards grid */}
         <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">

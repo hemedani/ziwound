@@ -48,7 +48,7 @@ export default async function DocumentDetailsPage({ params }: { params: Promise<
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-4">
-          <Button variant="outline" size="icon" asChild>
+          <Button variant="outline" size="icon" asChild aria-label="Back to documents">
             <Link href="/admin/documents">
               <ArrowLeft className="h-4 w-4" />
             </Link>

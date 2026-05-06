@@ -3,10 +3,10 @@
 import { useEffect } from "react";
 import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/button";
-import { AlertTriangle, Home, RotateCcw } from "lucide-react";
+import { AlertTriangle, Map, RotateCcw } from "lucide-react";
 import { Link } from "@/i18n/routing";
 
-export default function LocaleError({
+export default function WarCrimesError({
   error,
   reset,
 }: {
@@ -20,7 +20,7 @@ export default function LocaleError({
   }, [error]);
 
   return (
-    <div className="flex min-h-[70vh] flex-col items-center justify-center p-4">
+    <div className="container mx-auto py-12 px-4 md:px-6 flex flex-col items-center justify-center min-h-[50vh]">
       <div className="w-full max-w-md text-center space-y-6">
         {/* Icon */}
         <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-crimson/10 border border-crimson/20">
@@ -30,10 +30,10 @@ export default function LocaleError({
         {/* Title & Description */}
         <div className="space-y-2">
           <h1 className="text-2xl font-bold tracking-tight text-offwhite">
-            {t("error") || "Something went wrong"}
+            {t("error") || "War Crimes Data Error"}
           </h1>
           <p className="text-slate-body text-sm leading-relaxed">
-            {t("unexpectedError") || "An unexpected error occurred while processing your request. We apologize for the inconvenience."}
+            {t("unexpectedError") || "An unexpected error occurred while loading war crimes data."}
           </p>
         </div>
 
@@ -56,9 +56,9 @@ export default function LocaleError({
             asChild
             className="border-white/10 bg-white/5 text-offwhite hover:bg-white/[0.08] hover:text-offwhite"
           >
-            <Link href="/">
-              <Home className="h-4 w-4 me-2" />
-              {t("back") || "Home"}
+            <Link href="/war-crimes">
+              <Map className="h-4 w-4 me-2" />
+              {t("warCrimes") || "War Crimes"}
             </Link>
           </Button>
           <Button

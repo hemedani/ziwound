@@ -129,6 +129,7 @@ export function LocationPicker({
             onClick={handleUseCurrentLocation}
             disabled={isSearching}
             title={t("locationPicker.useCurrent")}
+            aria-label={t("locationPicker.useCurrent")}
           >
             <Search className="h-4 w-4" />
           </Button>

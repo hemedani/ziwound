@@ -2,15 +2,7 @@
 
 import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { AlertTriangle } from "lucide-react";
+import { AlertTriangle, LayoutDashboard, RotateCcw } from "lucide-react";
 import Link from "next/link";
 
 export default function AdminError({
@@ -21,43 +13,60 @@ export default function AdminError({
   reset: () => void;
 }) {
   useEffect(() => {
-    // Log the error to an error reporting service
     console.error(error);
   }, [error]);
 
   return (
     <div className="flex h-[calc(100vh-4rem)] flex-col items-center justify-center p-4">
-      <Card className="w-full max-w-md text-center">
-        <CardHeader>
-          <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-destructive/10">
-            <AlertTriangle className="h-8 w-8 text-destructive" />
-          </div>
-          <CardTitle className="text-2xl font-bold">
+      <div className="w-full max-w-md text-center space-y-6">
+        {/* Icon */}
+        <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-crimson/10 border border-crimson/20">
+          <AlertTriangle className="h-8 w-8 text-crimson-light" />
+        </div>
+
+        {/* Title & Description */}
+        <div className="space-y-2">
+          <h1 className="text-2xl font-bold tracking-tight text-offwhite">
             Admin Panel Error
-          </CardTitle>
-          <CardDescription>
-            An unexpected error occurred in the admin panel.
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <div className="rounded-md bg-muted p-4 text-sm text-muted-foreground text-left overflow-auto max-h-32">
-            <p className="font-mono text-xs break-words">
-              {error.message || "Unknown error occurred."}
+          </h1>
+          <p className="text-slate-body text-sm leading-relaxed">
+            An unexpected error occurred in the admin panel. We apologize for the inconvenience.
+          </p>
+        </div>
+
+        {/* Error Details */}
+        <div className="rounded-xl bg-white/[0.02] border border-white/[0.06] p-4 text-left overflow-auto max-h-32">
+          <p className="font-mono text-xs text-slate-body/80 break-words">
+            {error.message || "Unknown error occurred."}
+          </p>
+          {error.digest && (
+            <p className="font-mono text-xs text-slate-body/60 mt-2">
+              Error ID: {error.digest}
             </p>
-            {error.digest && (
-              <p className="font-mono text-xs mt-2">Error ID: {error.digest}</p>
-            )}
-          </div>
-        </CardContent>
-        <CardFooter className="flex justify-center gap-4">
-          <Button variant="outline" asChild>
-            <Link href="/admin/dashboard">Dashboard</Link>
+          )}
+        </div>
+
+        {/* Actions */}
+        <div className="flex justify-center gap-3">
+          <Button
+            variant="outline"
+            asChild
+            className="border-white/10 bg-white/5 text-offwhite hover:bg-white/[0.08] hover:text-offwhite"
+          >
+            <Link href="/admin/dashboard">
+              <LayoutDashboard className="h-4 w-4 me-2" />
+              Dashboard
+            </Link>
           </Button>
-          <Button onClick={() => reset()}>
+          <Button
+            onClick={() => reset()}
+            className="bg-crimson hover:bg-crimson-light text-white"
+          >
+            <RotateCcw className="h-4 w-4 me-2" />
             Try again
           </Button>
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
