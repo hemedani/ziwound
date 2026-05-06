@@ -180,25 +180,25 @@
       "description": "一种快速且安全的方式向市政府报告市民问题。",
       "ctaButton": "开始使用",
       "slide1": {
-        "title": "Documenting Crimes Against Humanity",
-        "subtitle": "A secure, permanent archive of war crimes and human rights violations. Every report contributes to the pursuit of justice.",
-        "cta": "Submit Report",
-        "secondaryCta": "Explore Archive"
+        "title": "记录反人类罪行",
+        "subtitle": "安全、永久的战争罪行和人权侵犯档案。每一份报告都为追求正义做出贡献。",
+        "cta": "提交报告",
+        "secondaryCta": "探索档案"
       },
       "slide2": {
-        "title": "Truth Cannot Be Erased",
-        "subtitle": "Survivors, witnesses, and investigators from across the globe unite here to preserve evidence and demand accountability.",
-        "cta": "Learn More",
-        "secondaryCta": "View Timeline"
+        "title": "真相无法被抹去",
+        "subtitle": "来自世界各地的幸存者、目击者和调查人员在这里团结起来，保存证据并要求追责。",
+        "cta": "了解更多",
+        "secondaryCta": "查看时间线"
       },
       "slide3": {
-        "title": "Justice Begins With Evidence",
-        "subtitle": "From conflict zones to courtrooms, verified documentation is the foundation of justice for victims worldwide.",
-        "cta": "Submit Report",
-        "secondaryCta": "Read Stories"
+        "title": "正义始于证据",
+        "subtitle": "从冲突地区到法庭，经过核实的文件记录是全球受害者获得正义的基础。",
+        "cta": "提交报告",
+        "secondaryCta": "阅读故事"
       },
       "brandLabel": "Ziwound",
-      "scrollIndicator": "Scroll"
+      "scrollIndicator": "向下滚动"
     },
     "howItWorks": {
       "title": "运作方式",
@@ -231,54 +231,54 @@
       ]
     },
     "impactStats": {
-      "reports": "Reports Documented",
-      "countries": "Countries",
-      "locations": "Locations Mapped",
-      "documents": "Documents Archived"
+      "reports": "已记录报告",
+      "countries": "国家",
+      "locations": "已标注地点",
+      "documents": "已归档文件"
     },
     "featured": {
-      "overline": "Featured",
-      "title": "Documented Cases & Stories",
-      "subtitle": "A selection of verified reports and survivor testimonies from our global archive.",
-      "readMore": "Read More"
+      "overline": "精选",
+      "title": "已记录案例与故事",
+      "subtitle": "从我们全球档案中精选的已核实报告和幸存者证词。",
+      "readMore": "阅读更多"
     },
     "mission": {
-      "overline": "Our Mission",
-      "title": "Truth is the Foundation of Justice",
-      "p1": "Ziwound exists to ensure that no crime against humanity goes undocumented. We provide a secure, permanent, and verifiable archive of war crimes and human rights violations from conflict zones around the world.",
-      "p2": "By combining cutting-edge technology with rigorous verification, we empower survivors, witnesses, and investigators to preserve evidence that can stand the test of time and the scrutiny of courts.",
-      "tagline": "For the victims. For justice. For history."
+      "overline": "我们的使命",
+      "title": "真相是正义的基石",
+      "p1": "Ziwound的存在是为了确保没有任何反人类罪行不被记录。我们为世界各地冲突地区的战争罪行和人权侵犯提供一个安全、永久且可核实的档案。",
+      "p2": "通过将尖端技术与严格核实相结合，我们赋能幸存者、目击者和调查人员保存能够经受时间考验和法庭审查的证据。",
+      "tagline": "为了受害者。为了正义。为了历史。"
     },
     "submitCTA": {
-      "title": "Your Voice Can Bring Justice",
-      "subtitle": "If you have witnessed or have evidence of war crimes or human rights violations, your testimony matters. Submit a report securely and help build the case for justice.",
-      "primary": "Submit a Report",
-      "secondary": "Explore Documented Crimes",
-      "note": "All submissions are encrypted and can be made anonymously. We protect your identity at every step."
+      "title": "您的声音可以带来正义",
+      "subtitle": "如果您目击或有战争罪行或人权侵犯的证据，您的证词很重要。安全地提交报告，帮助建立正义的案件。",
+      "primary": "提交报告",
+      "secondary": "探索已记录罪行",
+      "note": "所有提交内容均加密，可匿名进行。我们在每一步都保护您的身份。"
     },
     "timeline": {
-      "overline": "Timeline",
-      "title": "Recent Documented Events",
-      "subtitle": "A chronological record of recently verified incidents and investigations from our global network.",
-      "viewDetails": "View Details"
+      "overline": "时间线",
+      "title": "最新记录事件",
+      "subtitle": "我们全球网络中最近核实的事件和调查的时间记录。",
+      "viewDetails": "查看详情"
     },
     "mapTeaser": {
-      "overline": "Global Coverage",
-      "title": "Crimes Documented Across the World",
-      "description": "Our archive spans conflict zones and regions affected by human rights violations on nearly every continent. Explore the interactive map to see documented incidents by location, severity, and date.",
-      "activeZones": "Active conflict zones",
-      "verifiedReports": "Verified reports",
-      "cta": "Explore Interactive Map"
+      "overline": "全球覆盖",
+      "title": "世界各地记录的罪行",
+      "description": "我们的档案涵盖几乎所有大陆的冲突地区和受人权侵犯影响的地区。探索互动地图，按地点、严重程度和日期查看记录的事件。",
+      "activeZones": "活跃冲突地区",
+      "verifiedReports": "已核实报告",
+      "cta": "探索互动地图"
     },
     "trustMission": {
-      "pillar1Title": "Secure & Anonymous",
-      "pillar1Desc": "Every report is handled with the highest security standards. Whistleblowers and witnesses can submit information safely and anonymously.",
-      "pillar2Title": "Verified Documentation",
-      "pillar2Desc": "Our team of researchers and legal experts carefully verifies all submitted evidence before it enters the public archive.",
-      "pillar3Title": "Justice & Accountability",
-      "pillar3Desc": "We believe in the power of documented truth to drive legal proceedings, international pressure, and lasting justice for victims.",
-      "pillar4Title": "Global Solidarity",
-      "pillar4Desc": "A worldwide network of human rights defenders, journalists, and citizens standing together against impunity."
+      "pillar1Title": "安全与匿名",
+      "pillar1Desc": "每份报告都按照最高安全标准处理。举报人和目击者可以安全匿名地提交信息。",
+      "pillar2Title": "已核实文件",
+      "pillar2Desc": "我们的研究人员和法律专家团队在证据进入公共档案之前仔细核实所有提交的证据。",
+      "pillar3Title": "正义与问责",
+      "pillar3Desc": "我们相信经过记录的事实能够推动法律程序、国际压力和为受害者带来持久正义的力量。",
+      "pillar4Title": "全球团结",
+      "pillar4Desc": "一个由人权捍卫者、记者和公民组成的全球网络，共同反对有罪不罚。"
     }
   },
   "nav": {

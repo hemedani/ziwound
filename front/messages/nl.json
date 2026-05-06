@@ -180,22 +180,22 @@
       "description": "Een snelle en veilige manier om burgerproblemen aan de gemeente te melden.",
       "ctaButton": "Aan de slag",
       "slide1": {
-        "title": "Documenting Crimes Against Humanity",
-        "subtitle": "A secure, permanent archive of war crimes and human rights violations. Every report contributes to the pursuit of justice.",
-        "cta": "Submit Report",
-        "secondaryCta": "Explore Archive"
+        "title": "Misdaden Tegen de Menselijkheid Documenteren",
+        "subtitle": "Een veilig, permanent archief van oorlogsmisdaden en schendingen van de mensenrechten. Elk rapport draagt bij aan het nastreven van gerechtigheid.",
+        "cta": "Rapport Indienen",
+        "secondaryCta": "Archief Verkennen"
       },
       "slide2": {
-        "title": "Truth Cannot Be Erased",
-        "subtitle": "Survivors, witnesses, and investigators from across the globe unite here to preserve evidence and demand accountability.",
-        "cta": "Learn More",
-        "secondaryCta": "View Timeline"
+        "title": "De Waarheid Kan Niet Worden Uitgewist",
+        "subtitle": "Overlevenden, getuigen en onderzoekers van over de hele wereld verenigen zich hier om bewijs te bewaren en verantwoording te eisen.",
+        "cta": "Meer Informatie",
+        "secondaryCta": "Tijdlijn Bekijken"
       },
       "slide3": {
-        "title": "Justice Begins With Evidence",
-        "subtitle": "From conflict zones to courtrooms, verified documentation is the foundation of justice for victims worldwide.",
-        "cta": "Submit Report",
-        "secondaryCta": "Read Stories"
+        "title": "Gerechtigheid Begint met Bewijs",
+        "subtitle": "Van conflictgebieden tot rechtbanken, geverifieerde documentatie is de basis van gerechtigheid voor slachtoffers wereldwijd.",
+        "cta": "Rapport Indienen",
+        "secondaryCta": "Verhalen Lezen"
       },
       "brandLabel": "Ziwound",
       "scrollIndicator": "Scroll"
@@ -231,54 +231,54 @@
       ]
     },
     "impactStats": {
-      "reports": "Reports Documented",
-      "countries": "Countries",
-      "locations": "Locations Mapped",
-      "documents": "Documents Archived"
+      "reports": "Gedocumenteerde Rapporten",
+      "countries": "Landen",
+      "locations": "Gekarteerde Locaties",
+      "documents": "Gearchiveerde Documenten"
     },
     "featured": {
-      "overline": "Featured",
-      "title": "Documented Cases & Stories",
-      "subtitle": "A selection of verified reports and survivor testimonies from our global archive.",
-      "readMore": "Read More"
+      "overline": "Uitgelicht",
+      "title": "Gedocumenteerde Zaken en Verhalen",
+      "subtitle": "Een selectie van geverifieerde rapporten en getuigenissen van overlevenden uit ons wereldwijde archief.",
+      "readMore": "Lees Meer"
     },
     "mission": {
-      "overline": "Our Mission",
-      "title": "Truth is the Foundation of Justice",
-      "p1": "Ziwound exists to ensure that no crime against humanity goes undocumented. We provide a secure, permanent, and verifiable archive of war crimes and human rights violations from conflict zones around the world.",
-      "p2": "By combining cutting-edge technology with rigorous verification, we empower survivors, witnesses, and investigators to preserve evidence that can stand the test of time and the scrutiny of courts.",
-      "tagline": "For the victims. For justice. For history."
+      "overline": "Onze Missie",
+      "title": "Waarheid is de Basis van Gerechtigheid",
+      "p1": "Ziwound bestaat om ervoor te zorgen dat geen misdaad tegen de menselijkheid ongedocumenteerd blijft. Wij bieden een veilig, permanent en verifieerbaar archief van oorlogsmisdaden en schendingen van de mensenrechten uit conflictgebieden over de hele wereld.",
+      "p2": "Door geavanceerde technologie te combineren met strenge verificatie, empoweren wij overlevenden, getuigen en onderzoekers om bewijs te bewaren dat de tand des tijds en het gerechtelijk onderzoek kan doorstaan.",
+      "tagline": "Voor de slachtoffers. Voor gerechtigheid. Voor de geschiedenis."
     },
     "submitCTA": {
-      "title": "Your Voice Can Bring Justice",
-      "subtitle": "If you have witnessed or have evidence of war crimes or human rights violations, your testimony matters. Submit a report securely and help build the case for justice.",
-      "primary": "Submit a Report",
-      "secondary": "Explore Documented Crimes",
-      "note": "All submissions are encrypted and can be made anonymously. We protect your identity at every step."
+      "title": "Uw Stem Kan Gerechtigheid Brengen",
+      "subtitle": "Als u getuige bent geweest of bewijs heeft van oorlogsmisdaden of schendingen van de mensenrechten, uw getuigenis doet ertoe. Dien veilig een rapport in en help de zaak voor gerechtigheid opbouwen.",
+      "primary": "Rapport Indienen",
+      "secondary": "Gedocumenteerde Misdaden Verkennen",
+      "note": "Alle inzendingen zijn versleuteld en kunnen anoniem worden gedaan. Wij beschermen uw identiteit in elke stap."
     },
     "timeline": {
-      "overline": "Timeline",
-      "title": "Recent Documented Events",
-      "subtitle": "A chronological record of recently verified incidents and investigations from our global network.",
-      "viewDetails": "View Details"
+      "overline": "Tijdlijn",
+      "title": "Recent Gedocumenteerde Gebeurtenissen",
+      "subtitle": "Een chronologisch overzicht van recent geverifieerde incidenten en onderzoeken van ons wereldwijde netwerk.",
+      "viewDetails": "Details Bekijken"
     },
     "mapTeaser": {
-      "overline": "Global Coverage",
-      "title": "Crimes Documented Across the World",
-      "description": "Our archive spans conflict zones and regions affected by human rights violations on nearly every continent. Explore the interactive map to see documented incidents by location, severity, and date.",
-      "activeZones": "Active conflict zones",
-      "verifiedReports": "Verified reports",
-      "cta": "Explore Interactive Map"
+      "overline": "Wereldwijde Dekking",
+      "title": "Misdaden Gedocumenteerd Over de Hele Wereld",
+      "description": "Ons archief beslaat conflictgebieden en regio's getroffen door schendingen van de mensenrechten op bijna elk continent. Verken de interactieve kaart om gedocumenteerde incidenten te zien op locatie, ernst en datum.",
+      "activeZones": "Actieve conflictgebieden",
+      "verifiedReports": "Geverifieerde rapporten",
+      "cta": "Interactieve Kaart Verkennen"
     },
     "trustMission": {
-      "pillar1Title": "Secure & Anonymous",
-      "pillar1Desc": "Every report is handled with the highest security standards. Whistleblowers and witnesses can submit information safely and anonymously.",
-      "pillar2Title": "Verified Documentation",
-      "pillar2Desc": "Our team of researchers and legal experts carefully verifies all submitted evidence before it enters the public archive.",
-      "pillar3Title": "Justice & Accountability",
-      "pillar3Desc": "We believe in the power of documented truth to drive legal proceedings, international pressure, and lasting justice for victims.",
-      "pillar4Title": "Global Solidarity",
-      "pillar4Desc": "A worldwide network of human rights defenders, journalists, and citizens standing together against impunity."
+      "pillar1Title": "Veilig en Anoniem",
+      "pillar1Desc": "Elk rapport wordt behandeld volgens de hoogste veiligheidsnormen. Klokkenluiders en getuigen kunnen informatie veilig en anoniem indienen.",
+      "pillar2Title": "Geverifieerde Documentatie",
+      "pillar2Desc": "Ons team van onderzoekers en juridische experts verifieert zorgvuldig alle ingediende bewijzen voordat ze in het openbare archief worden opgenomen.",
+      "pillar3Title": "Gerechtigheid en Verantwoording",
+      "pillar3Desc": "Wij geloven in de kracht van gedocumenteerde waarheid om juridische procedures te stimuleren, internationale druk uit te oefenen en blijvende gerechtigheid voor slachtoffers te bereiken.",
+      "pillar4Title": "Wereldwijde Solidariteit",
+      "pillar4Desc": "Een wereldwijd netwerk van mensenrechtenverdedigers, journalisten en burgers die samen staan tegen straffeloosheid."
     }
   },
   "nav": {

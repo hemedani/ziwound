@@ -180,25 +180,25 @@
       "description": "Una forma rápida y segura de reportar problemas ciudadanos a la municipalidad.",
       "ctaButton": "Empezar",
       "slide1": {
-        "title": "Documenting Crimes Against Humanity",
-        "subtitle": "A secure, permanent archive of war crimes and human rights violations. Every report contributes to the pursuit of justice.",
-        "cta": "Submit Report",
-        "secondaryCta": "Explore Archive"
+        "title": "Documentando Crímenes de Lesa Humanidad",
+        "subtitle": "Un archivo seguro y permanente de crímenes de guerra y violaciones de derechos humanos. Cada informe contribuye a la búsqueda de la justicia.",
+        "cta": "Enviar Informe",
+        "secondaryCta": "Explorar Archivo"
       },
       "slide2": {
-        "title": "Truth Cannot Be Erased",
-        "subtitle": "Survivors, witnesses, and investigators from across the globe unite here to preserve evidence and demand accountability.",
-        "cta": "Learn More",
-        "secondaryCta": "View Timeline"
+        "title": "La Verdad No Puede Ser Borrada",
+        "subtitle": "Sobrevivientes, testigos e investigadores de todo el mundo se unen aquí para preservar evidencias y exigir rendición de cuentas.",
+        "cta": "Saber Más",
+        "secondaryCta": "Ver Cronología"
       },
       "slide3": {
-        "title": "Justice Begins With Evidence",
-        "subtitle": "From conflict zones to courtrooms, verified documentation is the foundation of justice for victims worldwide.",
-        "cta": "Submit Report",
-        "secondaryCta": "Read Stories"
+        "title": "La Justicia Comienza con Evidencias",
+        "subtitle": "De zonas de conflicto a tribunales, la documentación verificada es la base de la justicia para víctimas en todo el mundo.",
+        "cta": "Enviar Informe",
+        "secondaryCta": "Leer Historias"
       },
       "brandLabel": "Ziwound",
-      "scrollIndicator": "Scroll"
+      "scrollIndicator": "Desplazar"
     },
     "howItWorks": {
       "title": "Cómo funciona",
@@ -231,54 +231,54 @@
       ]
     },
     "impactStats": {
-      "reports": "Reports Documented",
-      "countries": "Countries",
-      "locations": "Locations Mapped",
-      "documents": "Documents Archived"
+      "reports": "Informes Documentados",
+      "countries": "Países",
+      "locations": "Ubicaciones Mapeadas",
+      "documents": "Documentos Archivados"
     },
     "featured": {
-      "overline": "Featured",
-      "title": "Documented Cases & Stories",
-      "subtitle": "A selection of verified reports and survivor testimonies from our global archive.",
-      "readMore": "Read More"
+      "overline": "Destacados",
+      "title": "Casos e Historias Documentados",
+      "subtitle": "Una selección de informes verificados y testimonios de sobrevivientes de nuestro archivo global.",
+      "readMore": "Leer Más"
     },
     "mission": {
-      "overline": "Our Mission",
-      "title": "Truth is the Foundation of Justice",
-      "p1": "Ziwound exists to ensure that no crime against humanity goes undocumented. We provide a secure, permanent, and verifiable archive of war crimes and human rights violations from conflict zones around the world.",
-      "p2": "By combining cutting-edge technology with rigorous verification, we empower survivors, witnesses, and investigators to preserve evidence that can stand the test of time and the scrutiny of courts.",
-      "tagline": "For the victims. For justice. For history."
+      "overline": "Nuestra Misión",
+      "title": "La Verdad es la Base de la Justicia",
+      "p1": "Ziwound existe para asegurar que ningún crimen contra la humanidad quede sin documentar. Proporcionamos un archivo seguro, permanente y verificable de crímenes de guerra y violaciones de derechos humanos de zonas de conflicto en todo el mundo.",
+      "p2": "Al combinar tecnología de vanguardia con verificación rigurosa, empoderamos a sobrevivientes, testigos e investigadores para preservar evidencias que puedan resistir la prueba del tiempo y el escrutinio de los tribunales.",
+      "tagline": "Por las víctimas. Por la justicia. Por la historia."
     },
     "submitCTA": {
-      "title": "Your Voice Can Bring Justice",
-      "subtitle": "If you have witnessed or have evidence of war crimes or human rights violations, your testimony matters. Submit a report securely and help build the case for justice.",
-      "primary": "Submit a Report",
-      "secondary": "Explore Documented Crimes",
-      "note": "All submissions are encrypted and can be made anonymously. We protect your identity at every step."
+      "title": "Tu Voz Puede Traer Justicia",
+      "subtitle": "Si has presenciado o tienes evidencia de crímenes de guerra o violaciones de derechos humanos, tu testimonio importa. Envía un informe de forma segura y ayuda a construir el caso por la justicia.",
+      "primary": "Enviar Informe",
+      "secondary": "Explorar Crímenes Documentados",
+      "note": "Todas las presentaciones están encriptadas y pueden hacerse anónimamente. Protegemos tu identidad en cada paso."
     },
     "timeline": {
-      "overline": "Timeline",
-      "title": "Recent Documented Events",
-      "subtitle": "A chronological record of recently verified incidents and investigations from our global network.",
-      "viewDetails": "View Details"
+      "overline": "Cronología",
+      "title": "Eventos Recientes Documentados",
+      "subtitle": "Un registro cronológico de incidentes e investigaciones recientemente verificados de nuestra red global.",
+      "viewDetails": "Ver Detalles"
     },
     "mapTeaser": {
-      "overline": "Global Coverage",
-      "title": "Crimes Documented Across the World",
-      "description": "Our archive spans conflict zones and regions affected by human rights violations on nearly every continent. Explore the interactive map to see documented incidents by location, severity, and date.",
-      "activeZones": "Active conflict zones",
-      "verifiedReports": "Verified reports",
-      "cta": "Explore Interactive Map"
+      "overline": "Cobertura Global",
+      "title": "Crímenes Documentados en Todo el Mundo",
+      "description": "Nuestro archivo abarca zonas de conflicto y regiones afectadas por violaciones de derechos humanos en casi todos los continentes. Explora el mapa interactivo para ver incidentes documentados por ubicación, gravedad y fecha.",
+      "activeZones": "Zonas de conflicto activas",
+      "verifiedReports": "Informes verificados",
+      "cta": "Explorar Mapa Interactivo"
     },
     "trustMission": {
-      "pillar1Title": "Secure & Anonymous",
-      "pillar1Desc": "Every report is handled with the highest security standards. Whistleblowers and witnesses can submit information safely and anonymously.",
-      "pillar2Title": "Verified Documentation",
-      "pillar2Desc": "Our team of researchers and legal experts carefully verifies all submitted evidence before it enters the public archive.",
-      "pillar3Title": "Justice & Accountability",
-      "pillar3Desc": "We believe in the power of documented truth to drive legal proceedings, international pressure, and lasting justice for victims.",
-      "pillar4Title": "Global Solidarity",
-      "pillar4Desc": "A worldwide network of human rights defenders, journalists, and citizens standing together against impunity."
+      "pillar1Title": "Seguro y Anónimo",
+      "pillar1Desc": "Cada informe se maneja con los más altos estándares de seguridad. Los denunciantes y testigos pueden enviar información de forma segura y anónima.",
+      "pillar2Title": "Documentación Verificada",
+      "pillar2Desc": "Nuestro equipo de investigadores y expertos legales verifica cuidadosamente toda la evidencia presentada antes de que entre en el archivo público.",
+      "pillar3Title": "Justicia y Rendición de Cuentas",
+      "pillar3Desc": "Creemos en el poder de la verdad documentada para impulsar procedimientos legales, presión internacional y justicia duradera para las víctimas.",
+      "pillar4Title": "Solidaridad Global",
+      "pillar4Desc": "Una red mundial de defensores de derechos humanos, periodistas y ciudadanos unidos contra la impunidad."
     }
   },
   "nav": {

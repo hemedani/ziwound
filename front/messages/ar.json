@@ -180,25 +180,25 @@
       "description": "طريقة سريعة وآمنة للإبلاغ عن مشاكل المواطنين إلى البلدية.",
       "ctaButton": "البدء",
       "slide1": {
-        "title": "Documenting Crimes Against Humanity",
-        "subtitle": "A secure, permanent archive of war crimes and human rights violations. Every report contributes to the pursuit of justice.",
-        "cta": "Submit Report",
-        "secondaryCta": "Explore Archive"
+        "title": "توثيق جرائم ضد الإنسانية",
+        "subtitle": "أرشيف آمن ودائم لجرائم الحرب وانتهاكات حقوق الإنسان. كل تقرير يساهم في السعي نحو العدالة.",
+        "cta": "تقديم تقرير",
+        "secondaryCta": "استكشاف الأرشيف"
       },
       "slide2": {
-        "title": "Truth Cannot Be Erased",
-        "subtitle": "Survivors, witnesses, and investigators from across the globe unite here to preserve evidence and demand accountability.",
-        "cta": "Learn More",
-        "secondaryCta": "View Timeline"
+        "title": "الحقيقة لا يمكن محوها",
+        "subtitle": "الناجون والشهود والمحققون من جميع أنحاء العالم يتحدون هنا للحفاظ على الأدلة والمطالبة بالمساءلة.",
+        "cta": "معرفة المزيد",
+        "secondaryCta": "عرض الخط الزمني"
       },
       "slide3": {
-        "title": "Justice Begins With Evidence",
-        "subtitle": "From conflict zones to courtrooms, verified documentation is the foundation of justice for victims worldwide.",
-        "cta": "Submit Report",
-        "secondaryCta": "Read Stories"
+        "title": "العدالة تبدأ بالأدلة",
+        "subtitle": "من مناطق النزاع إلى المحاكم، التوثيق المتحقق هو أساس العدالة للضحايا في جميع أنحاء العالم.",
+        "cta": "تقديم تقرير",
+        "secondaryCta": "قراءة القصص"
       },
-      "brandLabel": "Ziwound",
-      "scrollIndicator": "Scroll"
+      "brandLabel": "زيوند",
+      "scrollIndicator": "للأسفل"
     },
     "howItWorks": {
       "title": "كيف يعمل",
@@ -231,54 +231,54 @@
       ]
     },
     "impactStats": {
-      "reports": "Reports Documented",
-      "countries": "Countries",
-      "locations": "Locations Mapped",
-      "documents": "Documents Archived"
+      "reports": "تقارير موثقة",
+      "countries": "دول",
+      "locations": "مواقع مسجلة",
+      "documents": "وثائق مؤرشفة"
     },
     "featured": {
-      "overline": "Featured",
-      "title": "Documented Cases & Stories",
-      "subtitle": "A selection of verified reports and survivor testimonies from our global archive.",
-      "readMore": "Read More"
+      "overline": "مميز",
+      "title": "حالات وقصص موثقة",
+      "subtitle": "مجموعة مختارة من التقارير المتحققة وشهادات الناجين من أرشيفنا العالمي.",
+      "readMore": "اقرأ المزيد"
     },
     "mission": {
-      "overline": "Our Mission",
-      "title": "Truth is the Foundation of Justice",
-      "p1": "Ziwound exists to ensure that no crime against humanity goes undocumented. We provide a secure, permanent, and verifiable archive of war crimes and human rights violations from conflict zones around the world.",
-      "p2": "By combining cutting-edge technology with rigorous verification, we empower survivors, witnesses, and investigators to preserve evidence that can stand the test of time and the scrutiny of courts.",
-      "tagline": "For the victims. For justice. For history."
+      "overline": "مهمتنا",
+      "title": "الحقيقة هي أساس العدالة",
+      "p1": "توجد زيوند لضمان عدم مرور أي جريمة ضد الإنسانية دون توثيق. نقدم أرشيفاً آمناً ودائماً وقابلاً للتحقق من جرائم الحرب وانتهاكات حقوق الإنسان في مناطق النزاع حول العالم.",
+      "p2": "من خلال الجمع بين التكنولوجيا المتطورة والتحقق الدقيق، نمكن الناجين والشهود والمحققين من الحفاظ على الأدلة التي يمكن أن تصمد أمام اختبار الزمن ودقة المحاكم.",
+      "tagline": "من أجل الضحايا. من أجل العدالة. من أجل التاريخ."
     },
     "submitCTA": {
-      "title": "Your Voice Can Bring Justice",
-      "subtitle": "If you have witnessed or have evidence of war crimes or human rights violations, your testimony matters. Submit a report securely and help build the case for justice.",
-      "primary": "Submit a Report",
-      "secondary": "Explore Documented Crimes",
-      "note": "All submissions are encrypted and can be made anonymously. We protect your identity at every step."
+      "title": "صوتك يمكن أن يحقق العدالة",
+      "subtitle": "إذا كنت شاهداً أو لديك أدلة على جرائم الحرب أو انتهاكات حقوق الإنسان، شهادتك مهمة. قدم تقريراً بأمان وساعد في بناء قضية العدالة.",
+      "primary": "تقديم تقرير",
+      "secondary": "استكشاف الجرائم الموثقة",
+      "note": "جميع الإرسالات مشفرة ويمكن أن تتم بشكل مجهول. نحن نحمي هويتك في كل خطوة."
     },
     "timeline": {
-      "overline": "Timeline",
-      "title": "Recent Documented Events",
-      "subtitle": "A chronological record of recently verified incidents and investigations from our global network.",
-      "viewDetails": "View Details"
+      "overline": "الخط الزمني",
+      "title": "أحدث الأحداث الموثقة",
+      "subtitle": "سجل زمني للحوادث والتحقيقات الأخيرة المتحققة من شبكتنا العالمية.",
+      "viewDetails": "عرض التفاصيل"
     },
     "mapTeaser": {
-      "overline": "Global Coverage",
-      "title": "Crimes Documented Across the World",
-      "description": "Our archive spans conflict zones and regions affected by human rights violations on nearly every continent. Explore the interactive map to see documented incidents by location, severity, and date.",
-      "activeZones": "Active conflict zones",
-      "verifiedReports": "Verified reports",
-      "cta": "Explore Interactive Map"
+      "overline": "التغطية العالمية",
+      "title": "جرائم موثقة حول العالم",
+      "description": "يمتد أرشيفنا عبر مناطق النزاع والمناطق المتأثرة بانتهاكات حقوق الإنسان في تقريباً كل قارة. استكشف الخريطة التفاعلية لرؤية الحوادث الموثقة حسب الموقع والشدة والتاريخ.",
+      "activeZones": "مناطق النزاع النشطة",
+      "verifiedReports": "تقارير متحققة",
+      "cta": "استكشاف الخريطة التفاعلية"
     },
     "trustMission": {
-      "pillar1Title": "Secure & Anonymous",
-      "pillar1Desc": "Every report is handled with the highest security standards. Whistleblowers and witnesses can submit information safely and anonymously.",
-      "pillar2Title": "Verified Documentation",
-      "pillar2Desc": "Our team of researchers and legal experts carefully verifies all submitted evidence before it enters the public archive.",
-      "pillar3Title": "Justice & Accountability",
-      "pillar3Desc": "We believe in the power of documented truth to drive legal proceedings, international pressure, and lasting justice for victims.",
-      "pillar4Title": "Global Solidarity",
-      "pillar4Desc": "A worldwide network of human rights defenders, journalists, and citizens standing together against impunity."
+      "pillar1Title": "آمن ومجهول",
+      "pillar1Desc": "يتم التعامل مع كل تقرير بأعلى معايير الأمن. يمكن للمبلغين والشهود تقديم المعلومات بأمان ودون الكشف عن هويتهم.",
+      "pillar2Title": "توثيق متحقق",
+      "pillar2Desc": "يقوم فريقنا البحثي والقانوني بالتحقق الدقيق من جميع الأدلة المقدمة قبل دخولها إلى الأرشيف العام.",
+      "pillar3Title": "العدالة والمساءلة",
+      "pillar3Desc": "نؤمن بقوة الحقيقة المتوثقة في دفع الإجراءات القانونية والضغط الدولي وتحقيق العدالة الدائمة للضحايا.",
+      "pillar4Title": "التضامن العالمي",
+      "pillar4Desc": "شبكة عالمية من المدافعين عن حقوق الإنسان والصحفيين والمواطنين الذين يقفون متحدين ضد الإفلات من العقاب."
     }
   },
   "nav": {

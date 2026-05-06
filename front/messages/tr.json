@@ -180,25 +180,25 @@
       "description": "Vatandaşların sorunlarını belediyeye bildirmenin hızlı ve güvenli bir yolu.",
       "ctaButton": "Başlayın",
       "slide1": {
-        "title": "Documenting Crimes Against Humanity",
-        "subtitle": "A secure, permanent archive of war crimes and human rights violations. Every report contributes to the pursuit of justice.",
-        "cta": "Submit Report",
-        "secondaryCta": "Explore Archive"
+        "title": "İnsanlığa Karşı Suçları Belgelemek",
+        "subtitle": "Savaş suçları ve insan hakları ihlalleri için güvenli, kalıcı bir arşiv. Her rapor adaletin sağlanmasına katkıda bulunur.",
+        "cta": "Rapor Gönder",
+        "secondaryCta": "Arşivi Keşfet"
       },
       "slide2": {
-        "title": "Truth Cannot Be Erased",
-        "subtitle": "Survivors, witnesses, and investigators from across the globe unite here to preserve evidence and demand accountability.",
-        "cta": "Learn More",
-        "secondaryCta": "View Timeline"
+        "title": "Gerçek Silinemez",
+        "subtitle": "Dünyanın dört bir yanından sağ kalanlar, tanıklar ve araştırmacılar burada kanıtları korumak ve hesap sorulması talep etmek için bir araya geliyor.",
+        "cta": "Daha Fazla Bilgi",
+        "secondaryCta": "Zaman Çizelgesini Gör"
       },
       "slide3": {
-        "title": "Justice Begins With Evidence",
-        "subtitle": "From conflict zones to courtrooms, verified documentation is the foundation of justice for victims worldwide.",
-        "cta": "Submit Report",
-        "secondaryCta": "Read Stories"
+        "title": "Adalet Kanıtlarla Başlar",
+        "subtitle": "Çatışma bölgelerinden mahkemelere kadar, doğrulanmış belgeler dünya genelindeki mağdurlar için adaletin temelidir.",
+        "cta": "Rapor Gönder",
+        "secondaryCta": "Hikayeleri Oku"
       },
       "brandLabel": "Ziwound",
-      "scrollIndicator": "Scroll"
+      "scrollIndicator": "Aşağı"
     },
     "howItWorks": {
       "title": "Nasıl çalışır",
@@ -231,54 +231,54 @@
       ]
     },
     "impactStats": {
-      "reports": "Reports Documented",
-      "countries": "Countries",
-      "locations": "Locations Mapped",
-      "documents": "Documents Archived"
+      "reports": "Belgelenen Rapor",
+      "countries": "Ülke",
+      "locations": "Haritalanan Konum",
+      "documents": "Arşivlenen Belge"
     },
     "featured": {
-      "overline": "Featured",
-      "title": "Documented Cases & Stories",
-      "subtitle": "A selection of verified reports and survivor testimonies from our global archive.",
-      "readMore": "Read More"
+      "overline": "Öne Çıkanlar",
+      "title": "Belgelenen Olaylar ve Hikayeler",
+      "subtitle": "Küresel arşivimizden doğrulanmış raporların ve sağ kalan tanıklıklarının seçkisi.",
+      "readMore": "Devamını Oku"
     },
     "mission": {
-      "overline": "Our Mission",
-      "title": "Truth is the Foundation of Justice",
-      "p1": "Ziwound exists to ensure that no crime against humanity goes undocumented. We provide a secure, permanent, and verifiable archive of war crimes and human rights violations from conflict zones around the world.",
-      "p2": "By combining cutting-edge technology with rigorous verification, we empower survivors, witnesses, and investigators to preserve evidence that can stand the test of time and the scrutiny of courts.",
-      "tagline": "For the victims. For justice. For history."
+      "overline": "Misyonumuz",
+      "title": "Gerçek, Adaletin Temelidir",
+      "p1": "Ziwound, insanlığa karşı işlenen hiçbir suçun belgelenmeden kalmamasını sağlamak için var. Dünya genelindeki çatışma bölgelerinden savaş suçları ve insan hakları ihlalleri için güvenli, kalıcı ve doğrulanabilir bir arşiv sunuyoruz.",
+      "p2": "En son teknolojiyi titiz doğrulama ile birleştirerek, sağ kalanları, tanıkları ve araştırmacıları zamanın ve mahkemelerin titiz incelemesine dayanabilecek kanıtları korumaya güçlendiriyoruz.",
+      "tagline": "Mağdurlar için. Adalet için. Tarih için."
     },
     "submitCTA": {
-      "title": "Your Voice Can Bring Justice",
-      "subtitle": "If you have witnessed or have evidence of war crimes or human rights violations, your testimony matters. Submit a report securely and help build the case for justice.",
-      "primary": "Submit a Report",
-      "secondary": "Explore Documented Crimes",
-      "note": "All submissions are encrypted and can be made anonymously. We protect your identity at every step."
+      "title": "Sesiniz Adaleti Sağlayabilir",
+      "subtitle": "Savaş suçlarına veya insan hakları ihlallerine tanık olduysanız veya kanıtınız varsa, tanıklığınız önemlidir. Güvenli bir şekilde rapor gönderin ve adalet davasını oluşturmaya yardımcı olun.",
+      "primary": "Rapor Gönder",
+      "secondary": "Belgelenen Suçları Keşfet",
+      "note": "Tüm gönderiler şifrelenir ve anonim olarak yapılabilir. Kimliğinizi her adımda koruyoruz."
     },
     "timeline": {
-      "overline": "Timeline",
-      "title": "Recent Documented Events",
-      "subtitle": "A chronological record of recently verified incidents and investigations from our global network.",
-      "viewDetails": "View Details"
+      "overline": "Zaman Çizelgesi",
+      "title": "Son Belgelenen Olaylar",
+      "subtitle": "Küresel ağımızdan son doğrulanmış olayların ve soruşturmaların kronolojik kaydı.",
+      "viewDetails": "Detayları Gör"
     },
     "mapTeaser": {
-      "overline": "Global Coverage",
-      "title": "Crimes Documented Across the World",
-      "description": "Our archive spans conflict zones and regions affected by human rights violations on nearly every continent. Explore the interactive map to see documented incidents by location, severity, and date.",
-      "activeZones": "Active conflict zones",
-      "verifiedReports": "Verified reports",
-      "cta": "Explore Interactive Map"
+      "overline": "Küresel Kapsam",
+      "title": "Dünya Genelinde Belgelenen Suçlar",
+      "description": "Arşivimiz, neredeyse her kıtadaki çatışma bölgelerini ve insan hakları ihlallerinden etkilenen bölgeleri kapsar. Konum, şiddet derecesi ve tarihe göre belgelenen olayları görmek için etkileşimli haritayı keşfedin.",
+      "activeZones": "Aktif çatışma bölgeleri",
+      "verifiedReports": "Doğrulanmış raporlar",
+      "cta": "Etkileşimli Haritayı Keşfet"
     },
     "trustMission": {
-      "pillar1Title": "Secure & Anonymous",
-      "pillar1Desc": "Every report is handled with the highest security standards. Whistleblowers and witnesses can submit information safely and anonymously.",
-      "pillar2Title": "Verified Documentation",
-      "pillar2Desc": "Our team of researchers and legal experts carefully verifies all submitted evidence before it enters the public archive.",
-      "pillar3Title": "Justice & Accountability",
-      "pillar3Desc": "We believe in the power of documented truth to drive legal proceedings, international pressure, and lasting justice for victims.",
-      "pillar4Title": "Global Solidarity",
-      "pillar4Desc": "A worldwide network of human rights defenders, journalists, and citizens standing together against impunity."
+      "pillar1Title": "Güvenli ve Anonim",
+      "pillar1Desc": "Her rapor en yüksek güvenlik standartlarıyla ele alınır. İhbarcılar ve tanıklar bilgileri güvenli ve anonim bir şekilde iletebilir.",
+      "pillar2Title": "Doğrulanmış Belgeler",
+      "pillar2Desc": "Araştırma ve hukuk ekibimiz, kamu arşivine girmeden önce tüm sunulan kanıtları dikkatlice doğrular.",
+      "pillar3Title": "Adalet ve Sorumluluk",
+      "pillar3Desc": "Belgelenen gerçeğin hukuki süreçleri ilerletme, uluslararası baskı kurma ve mağdurlar için kalıcı adalet sağlama gücüne inanıyoruz.",
+      "pillar4Title": "Küresel Dayanışma",
+      "pillar4Desc": "İnsan hakları savunucuları, gazeteciler ve cezasızlığa karşı bir arada duran vatandaşlardan oluşan dünya çapında bir ağ."
     }
   },
   "nav": {
