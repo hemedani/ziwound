@@ -843,5 +843,12 @@
     "stillNeedHelp": "Hulp Nodig?",
     "contactPrompt": "Kunt u niet vinden wat u zoekt? Ons ondersteuningsteam staat klaar om te helpen.",
     "contactUs": "Neem Contact Op"
+  },
+  "cookieConsent": {
+    "title": "Wij gebruiken cookies",
+    "description": "We gebruiken cookies om uw ervaring te verbeteren en verkeer te begrijpen.",
+    "learnMore": "Meer informatie",
+    "accept": "Accepteren",
+    "decline": "Weigeren"
   }
 }

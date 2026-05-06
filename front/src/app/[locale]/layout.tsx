@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { Breadcrumbs } from "@/components/layout/breadcrumbs";
 import { Toaster } from "@/components/ui/toaster";
+import { CookieConsent } from "@/components/layout/cookie-consent";
 
 type LocaleLayoutProps = {
   children: React.ReactNode;
@@ -31,6 +32,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
         <Breadcrumbs />
         <main className="flex-1">{children}</main>
         <Footer />
+        <CookieConsent />
         <Toaster />
       </div>
     </NextIntlClientProvider>

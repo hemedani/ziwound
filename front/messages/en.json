@@ -866,5 +866,12 @@
     "stillNeedHelp": "Still need help?",
     "contactPrompt": "Can't find what you're looking for? Our support team is ready to assist you.",
     "contactUs": "Contact Us"
+  },
+  "cookieConsent": {
+    "title": "We use cookies",
+    "description": "We use cookies to improve your experience and understand traffic.",
+    "learnMore": "Learn more",
+    "accept": "Accept",
+    "decline": "Decline"
   }
 }

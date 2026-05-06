@@ -788,5 +788,12 @@
     "stillNeedHelp": "Hala Yardıma mı İhtiyacınız Var?",
     "contactPrompt": "Aradığınızı bulamadınız mı? Destek ekibimiz yardıma hazır.",
     "contactUs": "Bize Ulaşın"
+  },
+  "cookieConsent": {
+    "title": "Çerez kullanıyoruz",
+    "description": "Deneyiminizi iyileştirmek ve trafiği anlamak için çerezler kullanıyoruz.",
+    "learnMore": "Daha fazla bilgi",
+    "accept": "Kabul et",
+    "decline": "Reddet"
   }
 }

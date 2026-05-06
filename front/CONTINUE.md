@@ -132,7 +132,7 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - ✅ Phase 15.6: Created Privacy Policy, Terms of Service, and Help Center pages with full translations
 
 **Current Phase**: Phase 15 - Public Site Navigation (COMPLETE)
-**Next Step**: Phase 15.8 - Implement cookie consent banner (optional) or proceed to Phase 16
+**Next Step**: Phase 16 - Final Polish & Deployment
 
 **Next Session Prompt**:
 Phase 15 is now COMPLETE! All major public site navigation features have been implemented:
@@ -142,13 +142,11 @@ Phase 15 is now COMPLETE! All major public site navigation features have been im
 - Footer with links to all pages
 
 The remaining optional items are:
-- 15.8 Cookie consent banner
-- 15.9 Privacy policy and terms pages (DONE - actually completed in 15.6)
 - 15.10 Newsletter signup
 
 Please review all changes and let me know if you'd like to:
-1. Implement the cookie consent banner (15.8)
-2. Proceed to Phase 16 (Final Polish & Deployment)
+1. Proceed to Phase 16 (Final Polish & Deployment)
+2. Implement newsletter signup (15.10)
 3. Work on other improvements
 
 Follow the same patterns: one step at a time, update TODO.md, wait for the user to review the changes, and commit with Gitmoji only after approval.

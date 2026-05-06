@@ -843,5 +843,12 @@
     "stillNeedHelp": "¿Aún necesita ayuda?",
     "contactPrompt": "¿No encuentra lo que busca? Nuestro equipo de soporte está listo para ayudar.",
     "contactUs": "Contáctenos"
+  },
+  "cookieConsent": {
+    "title": "Usamos cookies",
+    "description": "Usamos cookies para mejorar su experiencia y comprender el tráfico.",
+    "learnMore": "Más información",
+    "accept": "Aceptar",
+    "decline": "Rechazar"
   }
 }

@@ -788,5 +788,12 @@
     "stillNeedHelp": "Ainda precisa de ajuda?",
     "contactPrompt": "Não encontrou o que procura? Nossa equipe de suporte está pronta para ajudar.",
     "contactUs": "Entre em Contato"
+  },
+  "cookieConsent": {
+    "title": "Usamos cookies",
+    "description": "Usamos cookies para melhorar sua experiência e entender o tráfego.",
+    "learnMore": "Saiba mais",
+    "accept": "Aceitar",
+    "decline": "Recusar"
   }
 }
