@@ -170,24 +170,29 @@ export default function MultiStepReportPage() {
 
   if (success) {
     return (
-      <div className="flex min-h-screen items-center justify-center p-4">
-        <Card className="w-full max-w-md">
-          <CardHeader>
-            <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-900">
-              <CheckCircle2 className="h-10 w-10 text-green-600 dark:text-green-400" />
+      <div className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center p-4 overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(16,185,129,0.08)_0%,_transparent_60%)]" />
+        <div className="relative w-full max-w-md">
+          <div className="rounded-2xl glass-strong p-10 text-center">
+            <div className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-emerald-500/10 ring-1 ring-emerald-500/20">
+              <CheckCircle2 className="h-10 w-10 text-emerald-400" />
             </div>
-            <CardTitle className="text-center text-2xl">{t("common.success")}</CardTitle>
-            <CardDescription className="text-center">{t("report.reportSubmitted")}</CardDescription>
-          </CardHeader>
-          <CardFooter className="flex justify-center gap-4">
-            <Button variant="outline" asChild>
-              <Link href="/reports/my">{t("report.myReports")}</Link>
-            </Button>
-            <Button asChild>
-              <Link href="/">{t("common.back")}</Link>
-            </Button>
-          </CardFooter>
-        </Card>
+            <h1 className="text-2xl font-bold text-offwhite mb-2">{t("common.success")}</h1>
+            <p className="text-slate-body mb-8">{t("report.reportSubmitted")}</p>
+            <div className="flex justify-center gap-4">
+              <Button
+                variant="outline"
+                asChild
+                className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white"
+              >
+                <Link href="/reports/my">{t("report.myReports")}</Link>
+              </Button>
+              <Button asChild className="bg-crimson hover:bg-crimson-light text-white">
+                <Link href="/">{t("common.back")}</Link>
+              </Button>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
@@ -202,12 +207,12 @@ export default function MultiStepReportPage() {
         {currentStep === 4 && t("report.step4Title")}
         {currentStep === 5 && t("report.step5Title")}
       </div>
-      <Card>
-        <CardHeader>
-          <CardTitle className="text-2xl font-bold">{t("report.newReport")}</CardTitle>
-          <CardDescription>{t("report.newReportDescription")}</CardDescription>
-        </CardHeader>
-        <CardContent>
+      <div className="rounded-2xl glass-strong overflow-hidden">
+        <div className="p-6 md:p-8 border-b border-white/5">
+          <h1 className="text-2xl font-bold text-offwhite">{t("report.newReport")}</h1>
+          <p className="text-slate-body mt-1">{t("report.newReportDescription")}</p>
+        </div>
+        <div className="p-6 md:p-8">
           <div className="mb-8">
             <Stepper
               currentStep={currentStep}
@@ -241,82 +246,61 @@ export default function MultiStepReportPage() {
                 />
               ) : (
                 <div className="space-y-6">
-                  <div className="rounded-lg border p-4">
-                    <h3 className="font-semibold mb-4">{t("report.step5Title")}</h3>
+                  <div className="rounded-xl glass-light p-5">
+                    <h3 className="font-semibold text-offwhite mb-4">{t("report.step5Title")}</h3>
                     <div className="space-y-4 text-sm">
-                      <div>
-                        <span className="font-medium">{t("report.reportTitle")}:</span>{" "}
-                        {form.getValues("title")}
+                      <div className="flex justify-between py-2 border-b border-white/5">
+                        <span className="font-medium text-slate-body">{t("report.reportTitle")}</span>
+                        <span className="text-offwhite">{form.getValues("title")}</span>
                       </div>
-                      <div>
-                        <span className="font-medium">{t("report.description")}:</span>{" "}
-                        {form.getValues("description")}
+                      <div className="flex justify-between py-2 border-b border-white/5">
+                        <span className="font-medium text-slate-body">{t("report.description")}</span>
+                        <span className="text-offwhite text-end max-w-xs truncate">{form.getValues("description")}</span>
                       </div>
-                      <div>
-                        <span className="font-medium">{t("report.language")}:</span>{" "}
-                        {form.getValues("selected_language")}
+                      <div className="flex justify-between py-2 border-b border-white/5">
+                        <span className="font-medium text-slate-body">{t("report.language")}</span>
+                        <span className="text-offwhite">{form.getValues("selected_language")}</span>
                       </div>
-                      <div>
-                        <span className="font-medium">{t("report.hostileCountries") || "Hostile Countries"}:</span>{" "}
-                        {(form.getValues("hostileCountryIds") || []).length > 0
-                          ? (form.getValues("hostileCountryIds") || []).join(", ")
-                          : "-"}
+                      <div className="flex justify-between py-2 border-b border-white/5">
+                        <span className="font-medium text-slate-body">{t("report.hostileCountries") || "Hostile Countries"}</span>
+                        <span className="text-offwhite">{(form.getValues("hostileCountryIds") || []).length > 0 ? (form.getValues("hostileCountryIds") || []).join(", ") : "-"}</span>
                       </div>
-                      <div>
-                        <span className="font-medium">{t("report.attackedCountries") || "Attacked Countries"}:</span>{" "}
-                        {(form.getValues("attackedCountryIds") || []).length > 0
-                          ? (form.getValues("attackedCountryIds") || []).join(", ")
-                          : "-"}
+                      <div className="flex justify-between py-2 border-b border-white/5">
+                        <span className="font-medium text-slate-body">{t("report.attackedCountries") || "Attacked Countries"}</span>
+                        <span className="text-offwhite">{(form.getValues("attackedCountryIds") || []).length > 0 ? (form.getValues("attackedCountryIds") || []).join(", ") : "-"}</span>
                       </div>
-                      <div>
-                        <span className="font-medium">{t("report.attackedProvinces") || "Attacked Provinces"}:</span>{" "}
-                        {(form.getValues("attackedProvinceIds") || []).length > 0
-                          ? (form.getValues("attackedProvinceIds") || []).join(", ")
-                          : "-"}
+                      <div className="flex justify-between py-2 border-b border-white/5">
+                        <span className="font-medium text-slate-body">{t("report.attackedProvinces") || "Attacked Provinces"}</span>
+                        <span className="text-offwhite">{(form.getValues("attackedProvinceIds") || []).length > 0 ? (form.getValues("attackedProvinceIds") || []).join(", ") : "-"}</span>
                       </div>
-                      <div>
-                        <span className="font-medium">{t("report.attackedCities") || "Attacked Cities"}:</span>{" "}
-                        {(form.getValues("attackedCityIds") || []).length > 0
-                          ? (form.getValues("attackedCityIds") || []).join(", ")
-                          : "-"}
+                      <div className="flex justify-between py-2 border-b border-white/5">
+                        <span className="font-medium text-slate-body">{t("report.attackedCities") || "Attacked Cities"}</span>
+                        <span className="text-offwhite">{(form.getValues("attackedCityIds") || []).length > 0 ? (form.getValues("attackedCityIds") || []).join(", ") : "-"}</span>
                       </div>
-                      <div>
-                        <span className="font-medium">{t("report.crimeOccurredAt")}:</span>{" "}
-                        {form.getValues("crime_occurred_at")}
+                      <div className="flex justify-between py-2 border-b border-white/5">
+                        <span className="font-medium text-slate-body">{t("report.crimeOccurredAt")}</span>
+                        <span className="text-offwhite">{form.getValues("crime_occurred_at")}</span>
                       </div>
-                      <div>
-                        <span className="font-medium">{t("report.priority")}:</span>{" "}
-                        {form.getValues("priority") || "-"}
+                      <div className="flex justify-between py-2 border-b border-white/5">
+                        <span className="font-medium text-slate-body">{t("report.priority")}</span>
+                        <span className="text-offwhite">{form.getValues("priority") || "-"}</span>
                       </div>
-                      <div>
-                        <span className="font-medium">{t("report.category")}:</span>{" "}
-                        {form.getValues("category")
-                          ? categories.find((c) => c._id === form.getValues("category"))?.name || "-"
-                          : "-"}
+                      <div className="flex justify-between py-2 border-b border-white/5">
+                        <span className="font-medium text-slate-body">{t("report.category")}</span>
+                        <span className="text-offwhite">{form.getValues("category") ? categories.find((c) => c._id === form.getValues("category"))?.name || "-" : "-"}</span>
                       </div>
-                      <div>
-                        <span className="font-medium">{t("report.tags")}:</span>{" "}
-                        {(form.getValues("tags") || []).length > 0
-                          ? (form.getValues("tags") || [])
-                              .map((tagId) => {
-                                const tag = availableTags.find((t) => t.id === tagId);
-                                return tag?.name || tagId;
-                              })
-                              .join(", ")
-                          : "-"}
+                      <div className="flex justify-between py-2 border-b border-white/5">
+                        <span className="font-medium text-slate-body">{t("report.tags")}</span>
+                        <span className="text-offwhite">{(form.getValues("tags") || []).length > 0 ? (form.getValues("tags") || []).map((tagId) => { const tag = availableTags.find((t) => t.id === tagId); return tag?.name || tagId; }).join(", ") : "-"}</span>
                       </div>
                       {form.getValues("documents") && form.getValues("documents")!.length > 0 && (
-                        <div>
-                          <span className="font-medium">{t("report.documents")}:</span>
-                          <div className="mt-2 space-y-2 ml-4">
+                        <div className="pt-2">
+                          <span className="font-medium text-slate-body">{t("report.documents")}</span>
+                          <div className="mt-2 space-y-2">
                             {form.getValues("documents")!.map((docId, idx) => (
-                              <div key={idx} className="border rounded p-2 text-xs">
-                                <div>
-                                  <span className="font-medium">
-                                    {t("report.document")} #{idx + 1}:
-                                  </span>{" "}
-                                  {docId}
-                                </div>
+                              <div key={idx} className="rounded-lg glass-light p-3 text-xs">
+                                <span className="font-medium text-offwhite">{t("report.document")} #{idx + 1}:</span>{" "}
+                                <span className="text-slate-body">{docId}</span>
                               </div>
                             ))}
                           </div>
@@ -328,31 +312,32 @@ export default function MultiStepReportPage() {
               )}
             </Form>
           </form>
-        </CardContent>
-        <CardFooter className="flex justify-between gap-4">
+        </div>
+        <div className="flex justify-between gap-4 p-6 md:p-8 border-t border-white/5">
           <Button
             variant="outline"
             onClick={prevStep}
             disabled={currentStep === 1 || loading}
             suppressHydrationWarning
+            className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white"
           >
-            <ChevronLeft className="mr-2 h-4 w-4" />
+            <ChevronLeft className="me-2 h-4 w-4" />
             {t("report.previous")}
           </Button>
 
           {currentStep < totalSteps ? (
-            <Button onClick={handleNext} disabled={loading}>
+            <Button onClick={handleNext} disabled={loading} className="bg-crimson hover:bg-crimson-light text-white gap-2">
               {t("report.next")}
-              <ChevronRight className="ml-2 h-4 w-4" />
+              <ChevronRight className="h-4 w-4" />
             </Button>
           ) : (
-            <Button onClick={form.handleSubmit(onSubmit)} disabled={loading}>
-              {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+            <Button onClick={form.handleSubmit(onSubmit)} disabled={loading} className="bg-crimson hover:bg-crimson-light text-white gap-2 animate-pulse-glow">
+              {loading && <Loader2 className="h-4 w-4 animate-spin" />}
               {loading ? t("common.loading") : t("report.submitReport")}
             </Button>
           )}
-        </CardFooter>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }

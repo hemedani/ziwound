@@ -5,21 +5,21 @@ import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/routing";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { FileText, Calendar, MapPin, Tag, Paperclip, ArrowLeft, Download } from "lucide-react";
+import { FileText, Calendar, MapPin, Tag, Paperclip, ArrowLeft, Download, Loader2 } from "lucide-react";
 import { format } from "date-fns";
 import Image from "next/image";
 import { get as getReport } from "@/app/actions/report/get";
 import dynamic from "next/dynamic";
 import { documentSchema, reportSchema } from "@/types/declarations";
 import { getImageUploadUrl } from "@/utils/imageUrl";
+import { cn } from "@/lib/utils";
 
 const ReadonlyMap = dynamic(
   () => import("@/components/map/readonly-map").then((mod) => mod.ReadonlyMap),
   {
     ssr: false,
-    loading: () => <div className="h-[350px] w-full animate-pulse rounded-xl bg-muted" />,
+    loading: () => <div className="h-[350px] w-full animate-pulse rounded-xl bg-white/5" />,
   },
 );
 
@@ -77,31 +77,31 @@ export default function ReportDetailPage() {
     fetchReport();
   }, [reportId]);
 
-  const getStatusColor = (status: string) => {
+  const getStatusClasses = (status: string) => {
     switch (status) {
       case "Pending":
-        return "secondary";
+        return "bg-gold/10 text-gold border-gold/20";
       case "Approved":
-        return "default";
+        return "bg-emerald-500/10 text-emerald-400 border-emerald-500/20";
       case "Rejected":
-        return "destructive";
+        return "bg-crimson/10 text-crimson-light border-crimson/20";
       case "InReview":
-        return "outline";
+        return "bg-blue-500/10 text-blue-400 border-blue-500/20";
       default:
-        return "secondary";
+        return "bg-white/5 text-slate-body border-white/10";
     }
   };
 
-  const getPriorityColor = (priority: string) => {
+  const getPriorityClasses = (priority: string) => {
     switch (priority) {
       case "High":
-        return "destructive";
+        return "bg-crimson/10 text-crimson-light border-crimson/20";
       case "Medium":
-        return "secondary";
+        return "bg-gold/10 text-gold border-gold/20";
       case "Low":
-        return "outline";
+        return "bg-white/5 text-slate-body border-white/10";
       default:
-        return "outline";
+        return "bg-white/5 text-slate-body border-white/10";
     }
   };
 
@@ -110,8 +110,8 @@ export default function ReportDetailPage() {
   if (loading) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <div className="text-center py-12">
-          <p className="text-muted-foreground">{tCommon("loading")}</p>
+        <div className="flex items-center justify-center py-20">
+          <Loader2 className="h-8 w-8 animate-spin text-crimson" />
         </div>
       </div>
     );
@@ -120,17 +120,14 @@ export default function ReportDetailPage() {
   if (!report) {
     return (
       <div className="container mx-auto px-4 py-8">
-        <Card>
-          <CardHeader className="text-center">
-            <CardTitle>{t("reportNotFound")}</CardTitle>
-            <CardDescription>{t("reportNotFoundDescription")}</CardDescription>
-          </CardHeader>
-          <CardContent className="flex justify-center pb-6">
-            <Button asChild>
-              <Link href="/reports/my">{t("backToReports")}</Link>
-            </Button>
-          </CardContent>
-        </Card>
+        <div className="rounded-2xl glass-strong p-10 text-center max-w-lg mx-auto">
+          <FileText className="mx-auto mb-4 h-12 w-12 text-slate-body/40" />
+          <h2 className="text-xl font-bold text-offwhite mb-2">{t("reportNotFound")}</h2>
+          <p className="text-slate-body mb-6">{t("reportNotFoundDescription")}</p>
+          <Button asChild className="bg-crimson hover:bg-crimson-light text-white">
+            <Link href="/reports/my">{t("backToReports")}</Link>
+          </Button>
+        </div>
       </div>
     );
   }
@@ -138,7 +135,11 @@ export default function ReportDetailPage() {
   return (
     <div className="container mx-auto max-w-4xl px-4 py-8">
       {/* Back button */}
-      <Button variant="ghost" asChild className="mb-6">
+      <Button
+        variant="ghost"
+        asChild
+        className="mb-6 text-slate-body hover:text-offwhite hover:bg-white/5"
+      >
         <Link href="/reports/my" className="gap-2">
           <ArrowLeft className="h-4 w-4" />
           {t("backToReports")}
@@ -146,196 +147,175 @@ export default function ReportDetailPage() {
       </Button>
 
       {/* Report Header */}
-      <Card className="mb-6">
-        <CardHeader>
-          <div className="mb-4 flex flex-wrap items-center gap-2">
-            {report.status && (
-              <Badge variant={getStatusColor(report.status)} className="text-sm">
-                {t(`status${report.status}`)}
-              </Badge>
-            )}
-            {report.priority && (
-              <Badge variant={getPriorityColor(report.priority)} className="text-sm">
-                {t(`priority${report.priority}`)}
-              </Badge>
-            )}
-          </div>
-          <CardTitle className="text-3xl">{report.title}</CardTitle>
-          <CardDescription className="flex items-center gap-4">
-            {report.createdAt && (
-              <span className="flex items-center gap-1">
-                <Calendar className="h-4 w-4" />
-                {format(new Date(report.createdAt), "MMM dd, yyyy")}
-              </span>
-            )}
-            {report.category && (
-              <span className="flex items-center gap-1">
-                <FileText className="h-4 w-4" />
-                {report.category.name}
-              </span>
-            )}
-          </CardDescription>
-        </CardHeader>
-      </Card>
+      <div className="rounded-2xl glass-strong p-6 md:p-8 mb-6">
+        <div className="mb-4 flex flex-wrap items-center gap-2">
+          {report.status && (
+            <Badge variant="outline" className={cn("text-sm", getStatusClasses(report.status))}>
+              {t(`status${report.status}`)}
+            </Badge>
+          )}
+          {report.priority && (
+            <Badge variant="outline" className={cn("text-sm", getPriorityClasses(report.priority))}>
+              {t(`priority${report.priority}`)}
+            </Badge>
+          )}
+        </div>
+        <h1 className="text-2xl md:text-3xl font-bold text-offwhite">{report.title}</h1>
+        <div className="flex flex-wrap items-center gap-4 mt-3 text-sm text-slate-body">
+          {report.createdAt && (
+            <span className="flex items-center gap-1.5">
+              <Calendar className="h-4 w-4 text-gold" />
+              {format(new Date(report.createdAt), "MMM dd, yyyy")}
+            </span>
+          )}
+          {report.category && (
+            <span className="flex items-center gap-1.5">
+              <FileText className="h-4 w-4 text-gold" />
+              {report.category.name}
+            </span>
+          )}
+        </div>
+      </div>
 
       {/* Description */}
-      <Card className="mb-6">
-        <CardHeader>
-          <CardTitle>{t("description")}</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <p className="text-muted-foreground whitespace-pre-wrap">{report.description}</p>
-        </CardContent>
-      </Card>
+      <div className="rounded-2xl glass-light p-6 md:p-8 mb-6">
+        <h2 className="text-lg font-semibold text-offwhite mb-4">{t("description")}</h2>
+        <p className="text-slate-body whitespace-pre-wrap leading-relaxed">{report.description}</p>
+      </div>
 
       {/* Crime Location & Date */}
       {(report.hostileCountries?.length || report.attackedCountries?.length || report.attackedProvinces?.length || report.attackedCities?.length || report.crime_occurred_at) && (
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <MapPin className="h-5 w-5" />
-              {t("location")}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {report.hostileCountries && report.hostileCountries.length > 0 && (
-                <div>
-                  <p className="text-sm text-muted-foreground">{t("hostileCountries") || "Hostile Countries"}</p>
-                  <p className="font-medium">{report.hostileCountries.map(c => c.name).join(", ")}</p>
-                </div>
-              )}
-              {report.attackedCountries && report.attackedCountries.length > 0 && (
-                <div>
-                  <p className="text-sm text-muted-foreground">{t("attackedCountries") || "Attacked Countries"}</p>
-                  <p className="font-medium">{report.attackedCountries.map(c => c.name).join(", ")}</p>
-                </div>
-              )}
-              {report.attackedProvinces && report.attackedProvinces.length > 0 && (
-                <div>
-                  <p className="text-sm text-muted-foreground">{t("attackedProvinces") || "Attacked Provinces"}</p>
-                  <p className="font-medium">{report.attackedProvinces.map(p => p.name).join(", ")}</p>
-                </div>
-              )}
-              {report.attackedCities && report.attackedCities.length > 0 && (
-                <div>
-                  <p className="text-sm text-muted-foreground">{t("attackedCities") || "Attacked Cities"}</p>
-                  <p className="font-medium">{report.attackedCities.map(c => c.name).join(", ")}</p>
-                </div>
-              )}
-              {report.crime_occurred_at && (
-                <div>
-                  <p className="text-sm text-muted-foreground">{t("crimeOccurredAt")}</p>
-                  <p className="font-medium">
-                    {format(new Date(report.crime_occurred_at), "MMM dd, yyyy")}
-                  </p>
-                </div>
-              )}
-            </div>
-          </CardContent>
-        </Card>
-      )}
-
-      {/* Location */}
-      {(report.address || report.location?.coordinates) && (
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <MapPin className="h-5 w-5" />
-              {t("location")}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            {report.address && <p className="text-muted-foreground">{report.address}</p>}
-            {report.location?.coordinates && (
-              <div className="mt-4">
-                <ReadonlyMap
-                  latitude={report.location.coordinates[1]}
-                  longitude={report.location.coordinates[0]}
-                  className="h-[350px] w-full rounded-xl overflow-hidden border-2 shadow-sm relative z-0"
-                />
+        <div className="rounded-2xl glass-light p-6 md:p-8 mb-6">
+          <h2 className="text-lg font-semibold text-offwhite mb-4 flex items-center gap-2">
+            <MapPin className="h-5 w-5 text-crimson" />
+            {t("location")}
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {report.hostileCountries && report.hostileCountries.length > 0 && (
+              <div>
+                <p className="text-sm text-slate-body">{t("hostileCountries") || "Hostile Countries"}</p>
+                <p className="font-medium text-offwhite mt-1">{report.hostileCountries.map(c => c.name).join(", ")}</p>
               </div>
             )}
-          </CardContent>
-        </Card>
+            {report.attackedCountries && report.attackedCountries.length > 0 && (
+              <div>
+                <p className="text-sm text-slate-body">{t("attackedCountries") || "Attacked Countries"}</p>
+                <p className="font-medium text-offwhite mt-1">{report.attackedCountries.map(c => c.name).join(", ")}</p>
+              </div>
+            )}
+            {report.attackedProvinces && report.attackedProvinces.length > 0 && (
+              <div>
+                <p className="text-sm text-slate-body">{t("attackedProvinces") || "Attacked Provinces"}</p>
+                <p className="font-medium text-offwhite mt-1">{report.attackedProvinces.map(p => p.name).join(", ")}</p>
+              </div>
+            )}
+            {report.attackedCities && report.attackedCities.length > 0 && (
+              <div>
+                <p className="text-sm text-slate-body">{t("attackedCities") || "Attacked Cities"}</p>
+                <p className="font-medium text-offwhite mt-1">{report.attackedCities.map(c => c.name).join(", ")}</p>
+              </div>
+            )}
+            {report.crime_occurred_at && (
+              <div>
+                <p className="text-sm text-slate-body">{t("crimeOccurredAt")}</p>
+                <p className="font-medium text-offwhite mt-1">
+                  {format(new Date(report.crime_occurred_at), "MMM dd, yyyy")}
+                </p>
+              </div>
+            )}
+          </div>
+        </div>
+      )}
+
+      {/* Location Map */}
+      {(report.address || report.location?.coordinates) && (
+        <div className="rounded-2xl glass-light p-6 md:p-8 mb-6">
+          <h2 className="text-lg font-semibold text-offwhite mb-4 flex items-center gap-2">
+            <MapPin className="h-5 w-5 text-crimson" />
+            {t("location")}
+          </h2>
+          {report.address && <p className="text-slate-body mb-4">{report.address}</p>}
+          {report.location?.coordinates && (
+            <div className="rounded-xl overflow-hidden border border-white/5">
+              <ReadonlyMap
+                latitude={report.location.coordinates[1]}
+                longitude={report.location.coordinates[0]}
+                className="h-[350px] w-full relative z-0"
+              />
+            </div>
+          )}
+        </div>
       )}
 
       {/* Tags */}
       {report.tags && report.tags.length > 0 && (
-        <Card className="mb-6">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Tag className="h-5 w-5" />
-              {t("tags")}
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="flex flex-wrap gap-2">
-              {report.tags.map((tag, index) => (
-                <Badge key={tag._id || index} variant="secondary">
-                  {tag.name}
-                </Badge>
-              ))}
-            </div>
-          </CardContent>
-        </Card>
+        <div className="rounded-2xl glass-light p-6 md:p-8 mb-6">
+          <h2 className="text-lg font-semibold text-offwhite mb-4 flex items-center gap-2">
+            <Tag className="h-5 w-5 text-gold" />
+            {t("tags")}
+          </h2>
+          <div className="flex flex-wrap gap-2">
+            {report.tags.map((tag, index) => (
+              <Badge
+                key={tag._id || index}
+                variant="outline"
+                className="bg-white/5 text-slate-body border-white/10 hover:bg-white/10"
+              >
+                {tag.name}
+              </Badge>
+            ))}
+          </div>
+        </div>
       )}
 
       {/* Attachments */}
       {report.documents && report.documents.length > 0 && (
-        <Card>
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Paperclip className="h-5 w-5" />
-              {t("documents")} (
-              {report.documents.reduce((acc, doc) => acc + (doc.documentFiles?.length || 0), 0)})
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {report.documents.flatMap((doc) =>
-                (doc.documentFiles || []).map((file, index) => (
-                  <div
-                    key={`${doc._id}-${file._id || index}`}
-                    className="flex items-center gap-3 rounded-lg border p-4"
-                  >
-                    {isImage(file.mimeType || "") ? (
-                      <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-md">
-                        <Image
-                          src={
-                            file._id
-                              ? getImageUploadUrl(file.name, file.type)
-                              : "https://placehold.co/400x400.png"
-                          }
-                          alt={file.name || doc.title || "Attachment"}
-                          fill
-                          unoptimized
-                          sizes="64px"
-                          className="object-cover"
-                        />
-                      </div>
-                    ) : (
-                      <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-md bg-muted">
-                        <FileText className="h-8 w-8 text-muted-foreground" />
-                      </div>
-                    )}
-                    <div className="min-w-0 flex-1">
-                      <p className="truncate text-sm font-medium">{file.name || doc.title}</p>
+        <div className="rounded-2xl glass-light p-6 md:p-8">
+          <h2 className="text-lg font-semibold text-offwhite mb-4 flex items-center gap-2">
+            <Paperclip className="h-5 w-5 text-gold" />
+            {t("documents")} ({report.documents.reduce((acc, doc) => acc + (doc.documentFiles?.length || 0), 0)})
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {report.documents.flatMap((doc) =>
+              (doc.documentFiles || []).map((file, index) => (
+                <div
+                  key={`${doc._id}-${file._id || index}`}
+                  className="flex items-center gap-3 rounded-xl glass p-4 transition-all hover:bg-white/[0.04]"
+                >
+                  {isImage(file.mimeType || "") ? (
+                    <div className="relative h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
+                      <Image
+                        src={file._id ? getImageUploadUrl(file.name, file.type) : "https://placehold.co/400x400.png"}
+                        alt={file.name || doc.title || "Attachment"}
+                        fill
+                        unoptimized
+                        sizes="64px"
+                        className="object-cover"
+                      />
                     </div>
-                    <Button variant="ghost" size="icon" asChild>
-                      <a
-                        href={file._id ? getImageUploadUrl(file.name, file.type) : "#"}
-                        download={file.name}
-                      >
-                        <Download className="h-4 w-4" />
-                      </a>
-                    </Button>
+                  ) : (
+                    <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-lg bg-white/5">
+                      <FileText className="h-8 w-8 text-slate-body" />
+                    </div>
+                  )}
+                  <div className="min-w-0 flex-1">
+                    <p className="truncate text-sm font-medium text-offwhite">{file.name || doc.title}</p>
                   </div>
-                )),
-              )}
-            </div>
-          </CardContent>
-        </Card>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    asChild
+                    className="text-slate-body hover:text-offwhite hover:bg-white/10"
+                  >
+                    <a href={file._id ? getImageUploadUrl(file.name, file.type) : "#"} download={file.name}>
+                      <Download className="h-4 w-4" />
+                    </a>
+                  </Button>
+                </div>
+              )),
+            )}
+          </div>
+        </div>
       )}
     </div>
   );
