@@ -79,35 +79,30 @@ For every page you redesign, verify in Persian (`/fa/`):
 ## What's Done So Far
 
 - ✅ Phase 1: Global theme foundation (globals.css, layout.tsx, button variants)
-- ✅ Phase 2: Header, Footer, LanguageSwitcher restyled
-- ✅ Phase 3 (partial): Landing page sections built (HeroSlider, ImpactStats, FeaturedReports, MapTeaser, Timeline, TrustMission, SubmitCTA)
+- ✅ Phase 2: Header, Footer, LanguageSwitcher, Breadcrumbs restyled
+- ✅ Phase 3: Landing page complete (HeroSlider, ImpactStats, FeaturedReports, MapTeaser, Timeline, TrustMission, SubmitCTA)
 - ✅ Backend integration: ImpactStats fetches live counts, FeaturedReports fetches real data
 - ✅ SEO metadata added to landing page
-- ✅ **CRITICAL FIX**: All hardcoded English strings removed from landing components
-- ✅ Persian (fa) translations added for all new `home.*` keys
+- ✅ All hardcoded English strings removed from landing components
+- ✅ All 9 language translations added for new `home.*` keys
+- ✅ Phase 4: Auth pages (login/register) redesigned with dark glass cards, crimson accents
+- ✅ Phase 5: Report pages redesigned (My Reports, New Report, Report Detail)
+- ✅ Phase 6: War Crimes page header and filters container restyled
+- ✅ Phase 8: All static pages redesigned (About, Contact, FAQ, Privacy, Terms, Help)
+- ✅ ContactForm and FAQContent components restyled
 
 ## What's Next (Immediate)
 
-### Step 1: Translate new `home.*` keys to remaining 8 languages
+### Remaining Phases:
 
-The English source keys exist in all 9 files, but only Persian has proper translations. Update:
-- `messages/ar.json` — Arabic translations
-- `messages/zh.json` — Chinese translations
-- `messages/pt.json` — Portuguese translations
-- `messages/es.json` — Spanish translations
-- `messages/nl.json` — Dutch translations
-- `messages/tr.json` — Turkish translations
-- `messages/ru.json` — Russian translations
+1. **Phase 7: Blog Pages** (`/[locale]/blog`, `/[locale]/blog/[slug]`)
+2. **Phase 9: Admin Panel** (`/admin/*` — all admin pages)
+3. **Phase 10: Multi-language completion** — audit all components for hardcoded strings
+4. **Phase 11: Polish & optimization** — Lighthouse, accessibility, mobile, PWA
 
-### Step 2: Proceed page by page through TODO.md
+### Current Step: Phase 7 — Blog Pages
 
-After landing page translations are complete, redesign each page in order:
-1. Auth pages (login, register) — dark glass cards, crimson accents
-2. Report pages (new, my, detail) — dark form sections, updated badges
-3. War crimes page — dark map, dark filters, dark charts
-4. Blog pages — dark cards, dark article layout
-5. Static pages (about, contact, faq, privacy, terms, help) — dark sections
-6. Admin panel pages — dark tables, dark modals, dark sidebar
+Redesign blog listing and post detail pages with dark theme.
 
 ## How to Proceed
 

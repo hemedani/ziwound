@@ -59,31 +59,30 @@
 - [x] Add SEO `generateMetadata`.
 - [x] **CRITICAL**: Fix all hardcoded English strings in landing components. Every string now comes from `messages/*.json` via props.
 - [x] Translate all new `home.*` keys into Persian (fa).
-- [ ] Translate all new `home.*` keys into the other 8 languages (ar, zh, pt, es, nl, tr, ru).
+- [x] Translate all new `home.*` keys into Arabic (ar), Turkish (tr), Spanish (es), Dutch (nl), Portuguese (pt), Chinese (zh), and Russian (ru).
 - [ ] Test landing page fully in Persian (RTL) — text direction, slider arrows, card layouts.
 
 ## Phase 4: Auth Pages
 
-- [ ] **Login Page** (`/[locale]/login`) — dark theme, glass card, crimson accents.
-- [ ] **Register Page** (`/[locale]/register`) — dark theme, multi-step if needed.
-- [ ] Auth form translations audit — all labels, placeholders, errors, buttons.
+- [x] **Login Page** (`/[locale]/login`) — dark theme, glass card, crimson accents, radial background glow.
+- [x] **Register Page** (`/[locale]/register`) — dark theme, glass card, crimson accents, matching login style.
+- [x] Auth form translations audit — all labels, placeholders, errors, buttons already use `t()`.
 - [ ] Auth page SEO metadata.
 - [ ] Test auth pages in RTL.
 
 ## Phase 5: Report Pages
 
-- [ ] **New Report Page** (`/[locale]/reports/new`) — dark theme, glass form sections.
-- [ ] **My Reports Page** (`/[locale]/reports/my`) — dark table/cards, status badges restyled.
-- [ ] **Report Detail Page** (`/[locale]/reports/[id]`) — dark layout, document previews.
-- [ ] Report form translations audit.
-- [ ] Report status/priority badge colors updated for dark theme.
+- [x] **New Report Page** (`/[locale]/reports/new`) — dark theme, glass form container, crimson buttons, success state redesigned.
+- [x] **My Reports Page** (`/[locale]/reports/my`) — dark glass cards, status badges with new dark-theme colors, crimson primary button.
+- [x] **Report Detail Page** (`/[locale]/reports/[id]`) — dark layout, glass sections, updated badges, document previews restyled.
+- [x] Report status/priority badge colors updated for dark theme.
 - [ ] Test all report pages in RTL.
 
 ## Phase 6: War Crimes Exploration Page
 
-- [ ] **War Crimes Page** (`/[locale]/war-crimes`) — dark theme for map, filters, lists.
+- [x] **War Crimes Page** (`/[locale]/war-crimes`) — dark theme header, glass filters container.
 - [ ] Map styling — dark map tiles or custom dark map overlay.
-- [ ] Filter panel — glassmorphism dark style.
+- [x] Filter panel — glassmorphism dark style (container updated, inner inputs need global component update).
 - [ ] Statistics/charts — dark theme colors (crimson/gold palette).
 - [ ] Timeline view — dark styling.
 - [ ] Export/share buttons — new button variants.
@@ -100,12 +99,14 @@
 
 ## Phase 8: Static Content Pages
 
-- [ ] **About Page** (`/[locale]/about`) — dark theme, glass sections.
-- [ ] **Contact Page** (`/[locale]/contact`) — dark form, glass cards.
-- [ ] **FAQ Page** (`/[locale]/faq`) — dark accordion, search bar.
-- [ ] **Privacy Policy** (`/[locale]/privacy`) — dark typography layout.
-- [ ] **Terms of Service** (`/[locale]/terms`) — dark typography layout.
-- [ ] **Help Page** (`/[locale]/help`) — dark sections.
+- [x] **About Page** (`/[locale]/about`) — dark theme, glass sections, crimson/gold accents, mission statement, features grid, how-it-works, CTA.
+- [x] **Contact Page** (`/[locale]/contact`) — dark form, glass cards for contact info, crimson icons.
+- [x] **FAQ Page** (`/[locale]/faq`) — dark accordion, glass search card, gold category icons.
+- [x] **Privacy Policy** (`/[locale]/privacy`) — dark typography layout, glass sections.
+- [x] **Terms of Service** (`/[locale]/terms`) — dark typography layout, glass sections.
+- [x] **Help Page** (`/[locale]/help`) — dark sections, glass cards, crimson icons.
+- [x] ContactForm component — dark inputs, crimson submit button, glass success state.
+- [x] FAQContent component — dark accordion styling, search input restyled.
 - [ ] All static page translations audit.
 - [ ] Test all in RTL.
 
