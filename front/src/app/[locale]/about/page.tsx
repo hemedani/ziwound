@@ -1,7 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
 import { Shield, Globe, Users, FileText, ArrowRight } from "lucide-react";
 
 export default async function AboutPage({
@@ -39,91 +38,104 @@ export default async function AboutPage({
     <div className="container mx-auto py-12 px-4 md:px-6">
       {/* Hero Section */}
       <section className="text-center mb-16">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        <div className="mb-4 flex items-center justify-center gap-3">
+          <div className="h-px w-12 bg-crimson" />
+          <span className="text-sm font-medium uppercase tracking-[0.15em] text-gold">
+            {t("about.overline") || "About Us"}
+          </span>
+          <div className="h-px w-12 bg-crimson" />
+        </div>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-offwhite">
           {t("about.title")}
         </h1>
-        <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
+        <p className="text-lg text-slate-body max-w-3xl mx-auto leading-relaxed">
           {t("about.mission")}
         </p>
       </section>
 
       {/* Mission Statement */}
       <section className="mb-16">
-        <Card className="bg-primary/5 border-primary/20">
-          <CardContent className="p-8">
-            <blockquote className="text-2xl md:text-3xl font-medium text-center italic">
-              &ldquo;{t("about.vision")}&rdquo;
-            </blockquote>
-          </CardContent>
-        </Card>
+        <div className="rounded-2xl glass-light p-8 md:p-12 relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-crimson/5 to-transparent" />
+          <blockquote className="relative text-xl md:text-2xl font-medium text-center italic text-offwhite leading-relaxed">
+            &ldquo;{t("about.vision")}&rdquo;
+          </blockquote>
+        </div>
       </section>
 
       {/* Features Grid */}
       <section className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">{t("about.whyChooseUs")}</h2>
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-offwhite">
+          {t("about.whyChooseUs")}
+        </h2>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {features.map((feature, index) => (
-            <Card key={index} className="group hover:shadow-lg transition-shadow">
-              <CardContent className="p-6">
-                <div className="flex items-start gap-4">
-                  <div className="p-3 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
-                    <feature.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold mb-2">{feature.title}</h3>
-                    <p className="text-muted-foreground">{feature.description}</p>
-                  </div>
+            <div
+              key={index}
+              className="rounded-2xl glass-light p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.04] group"
+            >
+              <div className="flex items-start gap-4">
+                <div className="p-3 rounded-xl bg-crimson/10 group-hover:bg-crimson/20 transition-colors shrink-0">
+                  <feature.icon className="h-6 w-6 text-crimson" />
                 </div>
-              </CardContent>
-            </Card>
+                <div>
+                  <h3 className="text-lg font-semibold mb-2 text-offwhite group-hover:text-gold transition-colors">
+                    {feature.title}
+                  </h3>
+                  <p className="text-slate-body text-sm leading-relaxed">{feature.description}</p>
+                </div>
+              </div>
+            </div>
           ))}
         </div>
       </section>
 
       {/* How It Works */}
       <section className="mb-16">
-        <h2 className="text-3xl font-bold text-center mb-12">{t("about.howItWorks")}</h2>
+        <h2 className="text-2xl md:text-3xl font-bold text-center mb-12 text-offwhite">
+          {t("about.howItWorks")}
+        </h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="text-center">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl font-bold text-primary">1</span>
+          {[1, 2, 3].map((step) => (
+            <div key={step} className="text-center">
+              <div className="w-16 h-16 rounded-2xl bg-crimson/10 flex items-center justify-center mx-auto mb-4 ring-1 ring-crimson/20">
+                <span className="text-2xl font-bold text-crimson">{step}</span>
+              </div>
+              <h3 className="text-lg font-semibold mb-2 text-offwhite">
+                {t(`about.step${step}Title`)}
+              </h3>
+              <p className="text-slate-body text-sm">{t(`about.step${step}Description`)}</p>
             </div>
-            <h3 className="text-xl font-semibold mb-2">{t("about.step1Title")}</h3>
-            <p className="text-muted-foreground">{t("about.step1Description")}</p>
-          </div>
-          <div className="text-center">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl font-bold text-primary">2</span>
-            </div>
-            <h3 className="text-xl font-semibold mb-2">{t("about.step2Title")}</h3>
-            <p className="text-muted-foreground">{t("about.step2Description")}</p>
-          </div>
-          <div className="text-center">
-            <div className="w-16 h-16 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-              <span className="text-2xl font-bold text-primary">3</span>
-            </div>
-            <h3 className="text-xl font-semibold mb-2">{t("about.step3Title")}</h3>
-            <p className="text-muted-foreground">{t("about.step3Description")}</p>
-          </div>
+          ))}
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="text-center">
-        <h2 className="text-3xl font-bold mb-6">{t("about.readyToContribute")}</h2>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-8">
-          {t("about.ctaDescription")}
-        </p>
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <Button asChild size="lg">
-            <Link href="/reports/new">
-              {t("about.submitReport")}
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Link>
-          </Button>
-          <Button variant="outline" asChild size="lg">
-            <Link href="/war-crimes">{t("about.exploreData")}</Link>
-          </Button>
+      <section className="text-center relative py-16">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(153,27,27,0.1)_0%,_transparent_70%)]" />
+        <div className="relative">
+          <h2 className="text-2xl md:text-3xl font-bold mb-4 text-offwhite">
+            {t("about.readyToContribute")}
+          </h2>
+          <p className="text-lg text-slate-body max-w-2xl mx-auto mb-8">
+            {t("about.ctaDescription")}
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Button asChild size="lg" className="bg-crimson hover:bg-crimson-light text-white gap-2 animate-pulse-glow">
+              <Link href="/reports/new">
+                {t("about.submitReport")}
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+            </Button>
+            <Button
+              variant="outline"
+              asChild
+              size="lg"
+              className="border-white/15 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white"
+            >
+              <Link href="/war-crimes">{t("about.exploreData")}</Link>
+            </Button>
+          </div>
         </div>
       </section>
     </div>

@@ -1,8 +1,7 @@
 import { getTranslations } from "next-intl/server";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
-import { HelpCircle, FileText, MessageCircle, Book } from "lucide-react";
+import { HelpCircle, FileText, MessageCircle, Book, ArrowRight } from "lucide-react";
 
 export default async function HelpPage({
   params,
@@ -43,10 +42,17 @@ export default async function HelpPage({
     <div className="container mx-auto py-12 px-4 md:px-6">
       {/* Hero Section */}
       <section className="text-center mb-12">
-        <h1 className="text-4xl md:text-5xl font-bold tracking-tight mb-6">
+        <div className="mb-4 flex items-center justify-center gap-3">
+          <div className="h-px w-12 bg-crimson" />
+          <span className="text-sm font-medium uppercase tracking-[0.15em] text-gold">
+            {t("help.overline") || "Support"}
+          </span>
+          <div className="h-px w-12 bg-crimson" />
+        </div>
+        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-offwhite">
           {t("help.title")}
         </h1>
-        <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+        <p className="text-lg text-slate-body max-w-2xl mx-auto">
           {t("help.subtitle")}
         </p>
       </section>
@@ -54,34 +60,41 @@ export default async function HelpPage({
       <div className="max-w-4xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {helpSections.map((section) => (
-            <Card key={section.title} className="hover:border-primary transition-colors">
-              <CardHeader>
-                <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-primary/10">
-                    <section.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-lg">{section.title}</CardTitle>
+            <div
+              key={section.title}
+              className="rounded-2xl glass-light p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.04] group"
+            >
+              <div className="flex items-center gap-3 mb-4">
+                <div className="p-2.5 rounded-xl bg-crimson/10 group-hover:bg-crimson/20 transition-colors">
+                  <section.icon className="h-6 w-6 text-crimson" />
                 </div>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground mb-4">{section.description}</p>
-                <Button variant="outline" asChild className="w-full">
-                  <Link href={section.href}>{t("help.learnMore")}</Link>
-                </Button>
-              </CardContent>
-            </Card>
+                <h3 className="text-lg font-semibold text-offwhite">{section.title}</h3>
+              </div>
+              <p className="text-slate-body mb-6 text-sm leading-relaxed">{section.description}</p>
+              <Button
+                variant="outline"
+                asChild
+                className="w-full border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white"
+              >
+                <Link href={section.href} className="gap-2">
+                  {t("help.learnMore")}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              </Button>
+            </div>
           ))}
         </div>
 
-        <Card className="mt-8 bg-primary/5 border-primary/20">
-          <CardContent className="p-6 text-center">
-            <h3 className="text-lg font-semibold mb-2">{t("help.stillNeedHelp")}</h3>
-            <p className="text-muted-foreground mb-4">{t("help.contactPrompt")}</p>
-            <Button asChild>
+        <div className="mt-8 rounded-2xl glass-light p-8 text-center relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-br from-crimson/5 to-transparent" />
+          <div className="relative">
+            <h3 className="text-lg font-semibold mb-2 text-offwhite">{t("help.stillNeedHelp")}</h3>
+            <p className="text-slate-body mb-6">{t("help.contactPrompt")}</p>
+            <Button asChild className="bg-crimson hover:bg-crimson-light text-white gap-2">
               <Link href={`/${locale}/contact`}>{t("help.contactUs")}</Link>
             </Button>
-          </CardContent>
-        </Card>
+          </div>
+        </div>
       </div>
     </div>
   );

@@ -74,14 +74,14 @@ export function ContactForm() {
   if (isSuccess) {
     return (
       <div className="flex flex-col items-center justify-center py-12 text-center">
-        <div className="w-16 h-16 rounded-full bg-green-100 flex items-center justify-center mb-4">
-          <CheckCircle2 className="h-8 w-8 text-green-600" />
+        <div className="w-16 h-16 rounded-full bg-emerald-500/10 flex items-center justify-center mb-4 ring-1 ring-emerald-500/20">
+          <CheckCircle2 className="h-8 w-8 text-emerald-400" />
         </div>
-        <h3 className="text-xl font-semibold mb-2">{t("successTitle")}</h3>
-        <p className="text-muted-foreground">{t("successMessage")}</p>
+        <h3 className="text-xl font-semibold mb-2 text-offwhite">{t("successTitle")}</h3>
+        <p className="text-slate-body">{t("successMessage")}</p>
         <Button 
           variant="outline" 
-          className="mt-6"
+          className="mt-6 border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white"
           onClick={() => setIsSuccess(false)}
         >
           {t("sendAnother")}
@@ -99,9 +99,13 @@ export function ContactForm() {
             name="name"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t("nameLabel")}</FormLabel>
+                <FormLabel className="text-offwhite">{t("nameLabel")}</FormLabel>
                 <FormControl>
-                  <Input placeholder={t("namePlaceholder")} {...field} />
+                  <Input 
+                    placeholder={t("namePlaceholder")} 
+                    {...field} 
+                    className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson h-11"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -113,9 +117,14 @@ export function ContactForm() {
             name="email"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>{t("emailLabel")}</FormLabel>
+                <FormLabel className="text-offwhite">{t("emailLabel")}</FormLabel>
                 <FormControl>
-                  <Input type="email" placeholder={t("emailPlaceholder")} {...field} />
+                  <Input 
+                    type="email" 
+                    placeholder={t("emailPlaceholder")} 
+                    {...field} 
+                    className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson h-11"
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
@@ -128,19 +137,19 @@ export function ContactForm() {
           name="subject"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t("subjectLabel")}</FormLabel>
+              <FormLabel className="text-offwhite">{t("subjectLabel")}</FormLabel>
               <Select onValueChange={field.onChange} value={field.value}>
                 <FormControl>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white/5 border-white/10 text-offwhite focus:ring-crimson h-11">
                     <SelectValue placeholder={t("subjectPlaceholder")} />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
-                  <SelectItem value="general">{t("subjectGeneral")}</SelectItem>
-                  <SelectItem value="support">{t("subjectSupport")}</SelectItem>
-                  <SelectItem value="partnership">{t("subjectPartnership")}</SelectItem>
-                  <SelectItem value="media">{t("subjectMedia")}</SelectItem>
-                  <SelectItem value="other">{t("subjectOther")}</SelectItem>
+                <SelectContent className="glass-strong border-white/10">
+                  <SelectItem value="general" className="text-offwhite focus:bg-white/10 focus:text-offwhite">{t("subjectGeneral")}</SelectItem>
+                  <SelectItem value="support" className="text-offwhite focus:bg-white/10 focus:text-offwhite">{t("subjectSupport")}</SelectItem>
+                  <SelectItem value="partnership" className="text-offwhite focus:bg-white/10 focus:text-offwhite">{t("subjectPartnership")}</SelectItem>
+                  <SelectItem value="media" className="text-offwhite focus:bg-white/10 focus:text-offwhite">{t("subjectMedia")}</SelectItem>
+                  <SelectItem value="other" className="text-offwhite focus:bg-white/10 focus:text-offwhite">{t("subjectOther")}</SelectItem>
                 </SelectContent>
               </Select>
               <FormMessage />
@@ -153,12 +162,13 @@ export function ContactForm() {
           name="message"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>{t("messageLabel")}</FormLabel>
+              <FormLabel className="text-offwhite">{t("messageLabel")}</FormLabel>
               <FormControl>
                 <Textarea 
                   placeholder={t("messagePlaceholder")} 
                   rows={5}
                   {...field} 
+                  className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
                 />
               </FormControl>
               <FormMessage />
@@ -167,17 +177,17 @@ export function ContactForm() {
         />
 
         {error && (
-          <div className="p-4 rounded-lg bg-destructive/10 text-destructive text-sm">
+          <div className="p-4 rounded-lg bg-crimson/10 text-crimson-light text-sm border border-crimson/20">
             {error}
           </div>
         )}
 
         <Button 
           type="submit" 
-          className="w-full md:w-auto"
+          className="w-full md:w-auto bg-crimson hover:bg-crimson-light text-white gap-2 h-11"
           disabled={isSubmitting}
         >
-          {isSubmitting && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+          {isSubmitting && <Loader2 className="h-4 w-4 animate-spin" />}
           {isSubmitting ? t("sending") : t("submit")}
         </Button>
       </form>

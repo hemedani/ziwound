@@ -3,7 +3,6 @@
 import { useState, useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
-import { Card, CardContent } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import {
@@ -28,7 +27,6 @@ export function FAQContent() {
 
   const faqItems: FAQItem[] = useMemo(() => {
     return [
-      // General Questions
       {
         id: "what-is-ziwound",
         question: t("questions.whatIsZiwound.question"),
@@ -47,7 +45,6 @@ export function FAQContent() {
         answer: t("questions.whoCanUse.answer"),
         category: "general",
       },
-      // Reporting Questions
       {
         id: "how-to-report",
         question: t("questions.howToReport.question"),
@@ -72,7 +69,6 @@ export function FAQContent() {
         answer: t("questions.reportStatus.answer"),
         category: "reporting",
       },
-      // Privacy Questions
       {
         id: "data-security",
         question: t("questions.dataSecurity.question"),
@@ -91,7 +87,6 @@ export function FAQContent() {
         answer: t("questions.dataRetention.answer"),
         category: "privacy",
       },
-      // Technical Questions
       {
         id: "supported-languages",
         question: t("questions.supportedLanguages.question"),
@@ -138,19 +133,17 @@ export function FAQContent() {
   return (
     <div className="max-w-4xl mx-auto space-y-8">
       {/* Search Bar */}
-      <Card>
-        <CardContent className="p-6">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-            <Input
-              placeholder={t("searchPlaceholder")}
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              className="pl-10"
-            />
-          </div>
-        </CardContent>
-      </Card>
+      <div className="rounded-2xl glass-light p-6">
+        <div className="relative">
+          <Search className="absolute start-3 top-1/2 -translate-y-1/2 h-5 w-5 text-slate-body" />
+          <Input
+            placeholder={t("searchPlaceholder")}
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+            className="ps-10 bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson h-11"
+          />
+        </div>
+      </div>
 
       {/* FAQ Categories */}
       {categories.map((category) => {
@@ -159,8 +152,8 @@ export function FAQContent() {
 
         return (
           <div key={category.id} className="space-y-4">
-            <h2 className="text-2xl font-semibold flex items-center gap-2">
-              <HelpCircle className="h-6 w-6 text-primary" />
+            <h2 className="text-xl font-semibold flex items-center gap-2 text-offwhite">
+              <HelpCircle className="h-5 w-5 text-gold" />
               {category.label}
             </h2>
             <Accordion type="single" collapsible className="space-y-2">
@@ -168,12 +161,12 @@ export function FAQContent() {
                 <AccordionItem
                   key={item.id}
                   value={item.id}
-                  className="border rounded-lg px-4 data-[state=open]:border-primary"
+                  className="border border-white/5 rounded-xl px-4 data-[state=open]:border-crimson/30 data-[state=open]:bg-white/[0.02] transition-colors"
                 >
-                  <AccordionTrigger className="text-left hover:no-underline py-4">
+                  <AccordionTrigger className="text-left hover:no-underline py-4 text-offwhite hover:text-gold transition-colors">
                     <span className="font-medium">{item.question}</span>
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-4">
+                  <AccordionContent className="text-slate-body pb-4 leading-relaxed">
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -186,24 +179,25 @@ export function FAQContent() {
       {/* No Results */}
       {filteredItems.length === 0 && (
         <div className="text-center py-12">
-          <HelpCircle className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-          <h3 className="text-lg font-medium mb-2">{t("noResults")}</h3>
-          <p className="text-muted-foreground">{t("tryDifferentSearch")}</p>
+          <HelpCircle className="h-12 w-12 text-slate-body/40 mx-auto mb-4" />
+          <h3 className="text-lg font-medium mb-2 text-offwhite">{t("noResults")}</h3>
+          <p className="text-slate-body">{t("tryDifferentSearch")}</p>
         </div>
       )}
 
       {/* Contact CTA */}
-      <Card className="bg-primary/5 border-primary/20">
-        <CardContent className="p-6 text-center">
-          <h3 className="text-lg font-semibold mb-2">{t("stillHaveQuestions")}</h3>
-          <p className="text-muted-foreground mb-4">{t("contactUsPrompt")}</p>
-          <Button asChild>
+      <div className="rounded-2xl glass-light p-8 text-center relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-crimson/5 to-transparent" />
+        <div className="relative">
+          <h3 className="text-lg font-semibold mb-2 text-offwhite">{t("stillHaveQuestions")}</h3>
+          <p className="text-slate-body mb-6">{t("contactUsPrompt")}</p>
+          <Button asChild className="bg-crimson hover:bg-crimson-light text-white">
             <Link href={`/${locale}/contact`}>
               {t("contactUs")}
             </Link>
           </Button>
-        </CardContent>
-      </Card>
+        </div>
+      </div>
     </div>
   );
 }
