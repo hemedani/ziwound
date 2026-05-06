@@ -1,5 +1,10 @@
 # Ziwound New Theme — Design & Style Explanation
 
+**Visual References** (in `pictures/` folder):
+- [00.png](pictures/00.png) — Overall hero / landing mood
+- [01.png](pictures/01.png) — Typography & card style
+- [02.png](pictures/02.png) — Color scheme & details
+
 **Inspiration Source**:  
 [https://dribbble.com/shots/25940621-Crypto-landing-page](https://dribbble.com/shots/25940621-Crypto-landing-page)
 
