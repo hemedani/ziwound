@@ -5,6 +5,8 @@ Add a powerful fullscreen hero slider at the top.
 
 **Theme Reference**: See [THEME.md](./THEME.md) for full design explanation, color palette, and adaptation guidelines from the Dribbble inspiration.
 
+**Pictures Reference**: See `pictures/` folder (00.png, 01.png, 02.png) for visual moodboard.
+
 ## Phase 1: Project Setup & Theme Foundation
 - [ ] Create new Tailwind config with updated color palette (deep dark base + crimson/red accents + subtle gold/amber highlights).
 - [ ] Update `globals.css` and shadcn/ui theme variables for the new dark premium look.
