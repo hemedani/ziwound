@@ -873,5 +873,17 @@
     "learnMore": "Learn more",
     "accept": "Accept",
     "decline": "Decline"
+  },
+  "newsletter": {
+    "title": "Stay in the loop",
+    "description": "Get updates about reports, releases, and platform news.",
+    "emailLabel": "Email",
+    "emailPlaceholder": "Enter your email",
+    "submit": "Subscribe",
+    "submitting": "Subscribing...",
+    "successTitle": "Subscribed",
+    "successDescription": "Thanks for joining our newsletter.",
+    "errorTitle": "Subscription failed",
+    "errorDescription": "Please try again later."
   }
 }

@@ -850,5 +850,17 @@
     "learnMore": "Más información",
     "accept": "Aceptar",
     "decline": "Rechazar"
+  },
+  "newsletter": {
+    "title": "Mantente al día",
+    "description": "Recibe actualizaciones sobre reportes, lanzamientos y noticias de la plataforma.",
+    "emailLabel": "Correo electrónico",
+    "emailPlaceholder": "Ingresa tu correo",
+    "submit": "Suscribirse",
+    "submitting": "Suscribiendo...",
+    "successTitle": "Suscripción exitosa",
+    "successDescription": "Gracias por unirte a nuestro boletín.",
+    "errorTitle": "Error de suscripción",
+    "errorDescription": "Por favor, inténtalo de nuevo más tarde."
   }
 }

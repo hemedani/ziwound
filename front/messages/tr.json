@@ -795,5 +795,17 @@
     "learnMore": "Daha fazla bilgi",
     "accept": "Kabul et",
     "decline": "Reddet"
+  },
+  "newsletter": {
+    "title": "Güncel kalın",
+    "description": "Raporlar, sürümler ve platform haberleri hakkında güncellemeler alın.",
+    "emailLabel": "E-posta",
+    "emailPlaceholder": "E-postanızı girin",
+    "submit": "Abone ol",
+    "submitting": "Abone olunuyor...",
+    "successTitle": "Abonelik başarılı",
+    "successDescription": "Bültenimize katıldığınız için teşekkürler.",
+    "errorTitle": "Abonelik başarısız",
+    "errorDescription": "Lütfen daha sonra tekrar deneyin."
   }
 }

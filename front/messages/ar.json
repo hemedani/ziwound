@@ -789,5 +789,17 @@
     "learnMore": "اعرف المزيد",
     "accept": "قبول",
     "decline": "رفض"
+  },
+  "newsletter": {
+    "title": "ابقَ على اطلاع",
+    "description": "احصل على تحديثات حول التقارير والإصدارات وأخبار المنصة.",
+    "emailLabel": "البريد الإلكتروني",
+    "emailPlaceholder": "أدخل بريدك الإلكتروني",
+    "submit": "اشترك",
+    "submitting": "جارٍ الاشتراك...",
+    "successTitle": "تم الاشتراك",
+    "successDescription": "شكرًا لانضمامك إلى نشرتنا البريدية.",
+    "errorTitle": "فشل الاشتراك",
+    "errorDescription": "يرجى المحاولة مرة أخرى لاحقًا."
   }
 }

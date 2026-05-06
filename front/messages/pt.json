@@ -795,5 +795,17 @@
     "learnMore": "Saiba mais",
     "accept": "Aceitar",
     "decline": "Recusar"
+  },
+  "newsletter": {
+    "title": "Fique por dentro",
+    "description": "Receba atualizações sobre relatórios, lançamentos e notícias da plataforma.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Digite seu e-mail",
+    "submit": "Assinar",
+    "submitting": "Assinando...",
+    "successTitle": "Inscrição realizada",
+    "successDescription": "Obrigado por se inscrever em nossa newsletter.",
+    "errorTitle": "Falha na inscrição",
+    "errorDescription": "Tente novamente mais tarde."
   }
 }

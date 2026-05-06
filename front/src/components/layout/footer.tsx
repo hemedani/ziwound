@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useTranslations, useLocale } from "next-intl";
 import { LanguageSwitcher } from "./language-switcher";
+import { NewsletterSignup } from "./newsletter-signup";
 
 export function Footer() {
   const t = useTranslations("footer");
@@ -22,6 +23,7 @@ export function Footer() {
               <span className="font-bold text-xl">{t("appName")}</span>
             </div>
             <p className="text-sm text-muted-foreground max-w-md">{t("description")}</p>
+            <NewsletterSignup />
           </div>
 
           {/* Quick links */}

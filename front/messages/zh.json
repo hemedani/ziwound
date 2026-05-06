@@ -795,5 +795,17 @@
     "learnMore": "了解更多",
     "accept": "接受",
     "decline": "拒绝"
+  },
+  "newsletter": {
+    "title": "保持关注",
+    "description": "获取报告、版本发布和平台新闻更新。",
+    "emailLabel": "邮箱",
+    "emailPlaceholder": "请输入邮箱",
+    "submit": "订阅",
+    "submitting": "订阅中...",
+    "successTitle": "订阅成功",
+    "successDescription": "感谢加入我们的新闻通讯。",
+    "errorTitle": "订阅失败",
+    "errorDescription": "请稍后再试。"
   }
 }

@@ -850,5 +850,17 @@
     "learnMore": "Meer informatie",
     "accept": "Accepteren",
     "decline": "Weigeren"
+  },
+  "newsletter": {
+    "title": "Blijf op de hoogte",
+    "description": "Ontvang updates over rapporten, releases en platformnieuws.",
+    "emailLabel": "E-mail",
+    "emailPlaceholder": "Vul uw e-mail in",
+    "submit": "Abonneren",
+    "submitting": "Bezig met abonneren...",
+    "successTitle": "Inschrijving gelukt",
+    "successDescription": "Bedankt dat u zich heeft ingeschreven voor onze nieuwsbrief.",
+    "errorTitle": "Inschrijving mislukt",
+    "errorDescription": "Probeer het later opnieuw."
   }
 }

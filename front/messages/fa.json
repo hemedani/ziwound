@@ -876,5 +876,17 @@
     "learnMore": "بیشتر بدانید",
     "accept": "می‌پذیرم",
     "decline": "نمی‌پذیرم"
+  },
+  "newsletter": {
+    "title": "همراه ما بمانید",
+    "description": "به‌روزرسانی گزارش‌ها، نسخه‌ها و اخبار پلتفرم را دریافت کنید.",
+    "emailLabel": "ایمیل",
+    "emailPlaceholder": "ایمیل خود را وارد کنید",
+    "submit": "عضویت",
+    "submitting": "در حال عضویت...",
+    "successTitle": "عضویت انجام شد",
+    "successDescription": "از عضویت شما در خبرنامه سپاسگزاریم.",
+    "errorTitle": "عضویت ناموفق بود",
+    "errorDescription": "لطفاً بعداً دوباره تلاش کنید."
   }
 }

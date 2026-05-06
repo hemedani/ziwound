@@ -542,7 +542,7 @@
 - [x] 15.7 Create 404 page with helpful suggestions (already exists)
 - [x] 15.8 Implement cookie consent banner
 - [x] 15.9 Add privacy policy and terms of service pages (completed in 15.6)
-- [ ] 15.10 Implement newsletter signup (if needed)
+- [x] 15.10 Implement newsletter signup
 
 ## Phase 16: Final Polish & Deployment
 
