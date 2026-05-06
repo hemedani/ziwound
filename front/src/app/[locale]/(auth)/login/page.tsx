@@ -8,18 +8,10 @@ import { z } from "zod";
 import { login } from "@/app/actions/user/login";
 import { Link, useRouter } from "@/i18n/routing";
 import { useAuthStore } from "@/stores/authStore";
-import { Loader2 } from "lucide-react";
+import { Loader2, Shield, ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { useToast } from "@/components/ui/use-toast";
 
 const loginSchema = z.object({
@@ -76,27 +68,43 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="flex min-h-screen items-center justify-center p-4">
-      <Card className="w-full max-w-md">
-        <CardHeader className="space-y-1">
-          <CardTitle className="text-2xl font-bold text-center">{t("auth.loginTitle")}</CardTitle>
-          <CardDescription className="text-center">{t("auth.loginDescription")}</CardDescription>
-        </CardHeader>
-        <CardContent>
+    <div className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center p-4 overflow-hidden">
+      {/* Background effects */}
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(153,27,27,0.15)_0%,_transparent_60%)]" />
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(212,175,55,0.05)_0%,_transparent_50%)]" />
+
+      <div className="relative w-full max-w-md">
+        {/* Glass card */}
+        <div className="rounded-2xl glass-strong p-8 md:p-10">
+          {/* Header */}
+          <div className="mb-8 text-center">
+            <div className="mx-auto mb-4 inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-crimson/10 ring-1 ring-crimson/20">
+              <Shield className="h-7 w-7 text-crimson" />
+            </div>
+            <h1 className="text-2xl font-bold text-offwhite mb-2">
+              {t("auth.loginTitle")}
+            </h1>
+            <p className="text-sm text-slate-body">
+              {t("auth.loginDescription")}
+            </p>
+          </div>
+
+          {/* Form */}
           <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
               <FormField
                 control={form.control}
                 name="email"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("auth.email")}</FormLabel>
+                    <FormLabel className="text-offwhite">{t("auth.email")}</FormLabel>
                     <FormControl>
                       <Input
                         {...field}
                         type="email"
                         placeholder="email@example.com"
                         disabled={loading}
+                        className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson h-11"
                       />
                     </FormControl>
                     <FormMessage />
@@ -109,31 +117,47 @@ export default function LoginPage() {
                 name="password"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>{t("auth.password")}</FormLabel>
+                    <FormLabel className="text-offwhite">{t("auth.password")}</FormLabel>
                     <FormControl>
-                      <Input {...field} type="password" placeholder="••••••••" disabled={loading} />
+                      <Input
+                        {...field}
+                        type="password"
+                        placeholder="••••••••"
+                        disabled={loading}
+                        className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson h-11"
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
                 )}
               />
 
-              <Button type="submit" className="w-full" disabled={loading}>
-                {loading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
+              <Button
+                type="submit"
+                className="w-full bg-crimson hover:bg-crimson-light text-white gap-2 h-11 animate-pulse-glow"
+                disabled={loading}
+              >
+                {loading && <Loader2 className="h-4 w-4 animate-spin" />}
                 {loading ? t("common.loading") : t("auth.loginButton")}
+                {!loading && <ArrowRight className="h-4 w-4" />}
               </Button>
             </form>
           </Form>
-        </CardContent>
-        <CardFooter className="flex flex-col space-y-4">
-          <p className="text-center text-sm text-muted-foreground">
-            {t("auth.noAccount")}{" "}
-            <Link href="/register" className="text-primary font-medium hover:underline">
-              {t("auth.registerButton")}
-            </Link>
-          </p>
-        </CardFooter>
-      </Card>
+
+          {/* Footer */}
+          <div className="mt-6 pt-6 border-t border-white/10 text-center">
+            <p className="text-sm text-slate-body">
+              {t("auth.noAccount")}{" "}
+              <Link
+                href="/register"
+                className="text-gold font-medium hover:text-gold-light transition-colors"
+              >
+                {t("auth.registerButton")}
+              </Link>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
