@@ -295,7 +295,7 @@ export function WarCrimesFilters({
     crimeOccurredTo;
 
   return (
-    <div className="bg-card border rounded-lg p-4">
+    <div className="rounded-2xl glass-light p-5">
       <form onSubmit={handleSearch} className="flex flex-col md:flex-row gap-4">
         <div className="relative flex-1">
           <Input
@@ -303,23 +303,23 @@ export function WarCrimesFilters({
             placeholder={t("searchPlaceholder")}
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full"
+            className="w-full bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson h-11"
           />
         </div>
-        <Button type="submit" variant="secondary">
+        <Button type="submit" className="bg-crimson hover:bg-crimson-light text-white h-11">
           {tCommon("search")}
         </Button>
         <Button
           type="button"
           variant="outline"
           onClick={() => setShowFilters(!showFilters)}
-          className="md:hidden"
+          className="md:hidden border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white h-11"
         >
           {tFilter("title")} {hasActiveFilters && "*"}
         </Button>
       </form>
 
-      <div className={cn("mt-4 pt-4 border-t", !showFilters && "hidden md:block")}>
+      <div className={cn("mt-4 pt-4 border-t border-white/5", !showFilters && "hidden md:block")}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <div className="space-y-2">
             <Label>{t("filters.status")}</Label>

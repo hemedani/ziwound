@@ -155,8 +155,17 @@ export default async function WarCrimesPage({
     <div className="container mx-auto py-8 px-4 md:px-6">
       <div className="flex flex-col gap-6">
         <div className="text-center">
-          <h1 className="text-4xl font-bold tracking-tight mb-2">{t("warCrimes.title")}</h1>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+          <div className="mb-4 flex items-center justify-center gap-3">
+            <div className="h-px w-12 bg-crimson" />
+            <span className="text-sm font-medium uppercase tracking-[0.15em] text-gold">
+              {t("warCrimes.overline") || "Archive"}
+            </span>
+            <div className="h-px w-12 bg-crimson" />
+          </div>
+          <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 text-offwhite">
+            {t("warCrimes.title")}
+          </h1>
+          <p className="text-lg text-slate-body max-w-2xl mx-auto leading-relaxed">
             {t("warCrimes.description")}
           </p>
         </div>
