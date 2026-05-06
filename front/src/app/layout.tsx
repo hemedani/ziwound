@@ -16,13 +16,13 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gozarish",
-  description: "Citizen report registration system",
+  title: "Ziwound — Documenting War Crimes",
+  description: "A solemn platform for documenting war crimes and human rights violations.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
-    statusBarStyle: "default",
-    title: "Gozarish",
+    statusBarStyle: "black-translucent",
+    title: "Ziwound",
   },
   formatDetection: {
     telephone: false,
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
+  themeColor: "#0a0a0a",
   width: "device-width",
   initialScale: 1,
   maximumScale: 1,
@@ -45,7 +45,6 @@ export default async function RootLayout({
   try {
     locale = await getLocale();
   } catch (error) {
-    // If not in a locale-managed context, fallback to 'fa'
     locale = "fa";
   }
 
@@ -57,7 +56,7 @@ export default async function RootLayout({
         suppressHydrationWarning
         className={`${geistSans.variable} ${geistMono.variable} font-sans antialiased min-h-screen`}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem={false}>
           <AuthProvider>{children}</AuthProvider>
         </ThemeProvider>
       </body>

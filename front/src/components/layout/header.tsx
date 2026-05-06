@@ -16,6 +16,7 @@ import {
   Tags,
   FolderOpen,
   FileImage,
+  Shield,
 } from "lucide-react";
 import { useTheme } from "@/components/providers/theme-provider";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,7 @@ import { useAuthStore } from "@/stores/authStore";
 import { logout as logoutAction } from "@/app/actions/user/logout";
 import { LanguageSwitcher } from "./language-switcher";
 import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { cn } from "@/lib/utils";
 
 export function Header() {
   const t = useTranslations("header");
@@ -40,10 +42,17 @@ export function Header() {
   const { theme, setTheme } = useTheme();
   const { user, isAuthenticated, logout } = useAuthStore();
   const [mounted, setMounted] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setMounted(true), 0);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const handleLogout = async () => {
@@ -56,67 +65,63 @@ export function Header() {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
+  const isLanding = pathname === `/${locale}` || pathname === "/";
+
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header
+      className={cn(
+        "z-50 w-full transition-all duration-500",
+        pathname.startsWith("/admin") ? "sticky top-0" : "fixed top-0",
+        isLanding && !scrolled
+          ? "bg-transparent border-b border-white/5"
+          : "bg-background/80 backdrop-blur-xl border-b border-border/60"
+      )}
+    >
       <div className="container flex h-16 items-center justify-between px-4">
-        {/* Logo and brand */}
-        <Link href={`/${locale}`} className="flex items-center gap-2">
-          <div className="h-8 w-8 rounded-full bg-primary flex items-center justify-center">
-            <span className="text-primary-foreground font-bold text-sm">G</span>
+        {/* Logo */}
+        <Link href={`/${locale}`} className="flex items-center gap-2.5 group">
+          <div className="h-9 w-9 rounded-xl bg-crimson flex items-center justify-center shadow-lg shadow-crimson/20 group-hover:shadow-crimson/30 transition-shadow">
+            <Shield className="h-5 w-5 text-white" />
           </div>
-          <span className="font-bold text-xl">{t("appName")}</span>
+          <span className="font-bold text-xl tracking-tight text-offwhite">
+            Ziwound
+          </span>
         </Link>
 
-        {/* Navigation links - show on public routes for all users */}
+        {/* Desktop Navigation */}
         {!pathname.startsWith("/admin") && !pathname.includes("/login") && !pathname.includes("/register") && (
-          <nav className="hidden md:flex items-center gap-6">
-            <Link
-              href={`/${locale}/about`}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              {t("about")}
-            </Link>
-            <Link
-              href={`/${locale}/contact`}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              {t("contact")}
-            </Link>
-            <Link
-              href={`/${locale}/faq`}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              {t("faq")}
-            </Link>
-            <Link
-              href={`/${locale}/war-crimes`}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              {t("warCrimes")}
-            </Link>
-            <Link
-              href={`/${locale}/blog`}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              {t("blog")}
-            </Link>
-            <Link
-              href={`/${locale}/documents`}
-              className="text-sm font-medium hover:text-primary transition-colors"
-            >
-              {t("documents")}
-            </Link>
+          <nav className="hidden md:flex items-center gap-1">
+            {[
+              { href: `/${locale}/war-crimes`, label: t("warCrimes") },
+              { href: `/${locale}/blog`, label: t("blog") },
+              { href: `/${locale}/documents`, label: t("documents") },
+              { href: `/${locale}/about`, label: t("about") },
+              { href: `/${locale}/contact`, label: t("contact") },
+            ].map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={cn(
+                  "px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                  pathname === item.href || pathname.startsWith(item.href)
+                    ? "text-gold bg-white/5"
+                    : "text-slate-body hover:text-offwhite hover:bg-white/[0.04]"
+                )}
+              >
+                {item.label}
+              </Link>
+            ))}
             {isAuthenticated && (
               <>
                 <Link
                   href={`/${locale}/reports/my`}
-                  className="text-sm font-medium hover:text-primary transition-colors"
+                  className="px-3 py-2 rounded-lg text-sm font-medium text-slate-body hover:text-offwhite hover:bg-white/[0.04] transition-all"
                 >
                   {t("myReports")}
                 </Link>
                 <Link
                   href={`/${locale}/reports/new`}
-                  className="text-sm font-medium hover:text-primary transition-colors"
+                  className="ml-1 px-4 py-2 rounded-lg text-sm font-medium bg-crimson/90 text-white hover:bg-crimson transition-colors shadow-sm shadow-crimson/20"
                 >
                   {t("newReport")}
                 </Link>
@@ -126,15 +131,13 @@ export function Header() {
         )}
 
         {/* Right side actions */}
-        <div className="flex items-center gap-2">
-          {/* Language switcher */}
+        <div className="flex items-center gap-1">
           <LanguageSwitcher />
 
-          {/* Theme toggle */}
           <Button
             variant="ghost"
             size="icon"
-            className="h-10 w-10 p-2"
+            className="h-10 w-10 rounded-lg text-slate-body hover:text-offwhite hover:bg-white/[0.04]"
             onClick={toggleTheme}
             title={mounted && theme === "dark" ? t("lightMode") : t("darkMode")}
             aria-label={mounted && theme === "dark" ? t("lightMode") : t("darkMode")}
@@ -150,35 +153,37 @@ export function Header() {
             )}
           </Button>
 
-          {/* User menu */}
           {isAuthenticated && user ? (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="rounded-full"
+                  className="rounded-full h-9 w-9 ml-1 bg-white/5 hover:bg-white/10"
                   aria-label={t("profile") || "User menu"}
                 >
-                  <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
-                    <User className="h-5 w-5" />
+                  <div className="h-8 w-8 rounded-full bg-crimson/20 flex items-center justify-center border border-crimson/30">
+                    <User className="h-4 w-4 text-crimson-light" />
                   </div>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="w-56">
+              <DropdownMenuContent
+                align="end"
+                className="w-56 glass-strong border-white/10"
+              >
                 <div className="flex items-center justify-start gap-2 p-2">
                   <div className="flex flex-col space-y-1 leading-none">
                     {(user.first_name || user.last_name) && (
-                      <p className="font-medium">
+                      <p className="font-medium text-offwhite">
                         {user.first_name || ""} {user.last_name || ""}
                       </p>
                     )}
                     {user.email && (
-                      <p className="w-[200px] truncate text-sm text-muted-foreground">{user.email}</p>
+                      <p className="w-[200px] truncate text-sm text-slate-body">{user.email}</p>
                     )}
                   </div>
                 </div>
-                <DropdownMenuSeparator />
+                <DropdownMenuSeparator className="bg-white/10" />
                 {!pathname.startsWith("/admin") &&
                   (user?.level === "Ghost"
                     ? 4
@@ -187,15 +192,18 @@ export function Header() {
                       : user?.level === "Editor"
                         ? 2
                         : 1) >= 3 && (
-                    <DropdownMenuItem asChild>
+                    <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
                       <Link href="/admin/dashboard">{t("adminPanel")}</Link>
                     </DropdownMenuItem>
                   )}
-                <DropdownMenuItem asChild>
+                <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
                   <Link href={`/${locale}/profile`}>{t("profile")}</Link>
                 </DropdownMenuItem>
-                <DropdownMenuSeparator />
-                <DropdownMenuItem onClick={handleLogout}>
+                <DropdownMenuSeparator className="bg-white/10" />
+                <DropdownMenuItem
+                  onClick={handleLogout}
+                  className="text-crimson-light focus:bg-white/10 focus:text-crimson-light cursor-pointer"
+                >
                   <LogOut className="me-2 h-4 w-4" />
                   <span>{t("logout")}</span>
                 </DropdownMenuItem>
@@ -205,187 +213,95 @@ export function Header() {
             !pathname.startsWith("/admin") &&
             !pathname.includes("/login") &&
             !pathname.includes("/register") && (
-              <div className="flex gap-2">
+              <div className="hidden md:flex items-center gap-2 ml-2">
                 <Link href={`/${locale}/login`}>
-                  <Button variant="ghost" className="w-full cursor-pointer">
+                  <Button
+                    variant="ghost"
+                    className="text-slate-body hover:text-offwhite hover:bg-white/[0.04]"
+                  >
                     {t("login")}
                   </Button>
                 </Link>
                 <Link href={`/${locale}/register`}>
-                  <Button className="w-full cursor-pointer">{t("register")}</Button>
+                  <Button className="bg-crimson hover:bg-crimson-light text-white shadow-sm shadow-crimson/20">
+                    {t("register")}
+                  </Button>
                 </Link>
               </div>
             )
           )}
 
-          {/* Mobile menu button */}
+          {/* Mobile menu */}
           <Sheet>
             <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="md:hidden" aria-label="Open menu">
+              <Button
+                variant="ghost"
+                size="icon"
+                className="md:hidden rounded-lg text-slate-body hover:text-offwhite hover:bg-white/[0.04]"
+                aria-label="Open menu"
+              >
                 <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side={locale === "fa" || locale === "ar" ? "right" : "left"}>
+            <SheetContent
+              side={locale === "fa" || locale === "ar" ? "right" : "left"}
+              className="glass-strong border-white/10 w-80"
+            >
               <SheetHeader>
-                <SheetTitle className="text-start">{t("appName")}</SheetTitle>
+                <SheetTitle className="text-start text-offwhite flex items-center gap-2">
+                  <div className="h-8 w-8 rounded-lg bg-crimson flex items-center justify-center">
+                    <Shield className="h-4 w-4 text-white" />
+                  </div>
+                  Ziwound
+                </SheetTitle>
               </SheetHeader>
-              <div className="flex flex-col gap-4 mt-6">
+              <div className="flex flex-col gap-1 mt-6">
                 {isAuthenticated && (
-                  <nav className="flex flex-col gap-4">
+                  <nav className="flex flex-col gap-1">
                     {pathname.startsWith("/admin") ? (
                       <>
-                        <Link
-                          href="/admin/dashboard"
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          <LayoutDashboard className="h-4 w-4" />
-                          <span>{tAdmin("dashboard")}</span>
-                        </Link>
-                        <Link
-                          href={`/${locale}/about`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("about")}
-                        </Link>
-                        <Link
-                          href={`/${locale}/contact`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("contact")}
-                        </Link>
-                        <Link
-                          href={`/${locale}/faq`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("faq")}
-                        </Link>
-                        <Link
-                          href="/admin/reports"
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          <FileText className="h-4 w-4" />
-                          <span>{tAdmin("reports")}</span>
-                        </Link>
-                        {(user?.level === "Ghost"
-                          ? 4
-                          : user?.level === "Manager"
-                            ? 3
-                            : user?.level === "Editor"
-                              ? 2
-                              : 1) >= 3 && (
-                          <Link
-                            href="/admin/users"
-                            className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                          >
-                            <Users className="h-4 w-4" />
-                            <span>{tAdmin("users")}</span>
-                          </Link>
+                        <MobileLink href="/admin/dashboard" icon={<LayoutDashboard className="h-4 w-4" />}>
+                          {tAdmin("dashboard")}
+                        </MobileLink>
+                        <MobileLink href={`/${locale}/about`}>{t("about")}</MobileLink>
+                        <MobileLink href={`/${locale}/contact`}>{t("contact")}</MobileLink>
+                        <MobileLink href={`/${locale}/faq`}>{t("faq")}</MobileLink>
+                        <MobileLink href="/admin/reports" icon={<FileText className="h-4 w-4" />}>
+                          {tAdmin("reports")}
+                        </MobileLink>
+                        {(user?.level === "Ghost" ? 4 : user?.level === "Manager" ? 3 : user?.level === "Editor" ? 2 : 1) >= 3 && (
+                          <MobileLink href="/admin/users" icon={<Users className="h-4 w-4" />}>
+                            {tAdmin("users")}
+                          </MobileLink>
                         )}
-                        <Link
-                          href="/admin/tags"
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          <Tags className="h-4 w-4" />
-                          <span>{tAdmin("tags")}</span>
-                        </Link>
-                        <Link
-                          href="/admin/categories"
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          <FolderOpen className="h-4 w-4" />
-                          <span>{tAdmin("categories")}</span>
-                        </Link>
-                        <Link
-                          href="/admin/files"
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          <FileImage className="h-4 w-4" />
-                          <span>{tAdmin("files")}</span>
-                        </Link>
-                        <div className="my-2 h-px bg-muted" />
-                        <Link
-                          href={`/${locale}/reports/my`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("myReports")}
-                        </Link>
-                        <Link
-                          href={`/${locale}/reports/new`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("newReport")}
-                        </Link>
-                        <Link
-                          href={`/${locale}/documents`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("documents")}
-                        </Link>
-<Link
-                          href={`/${locale}/blog`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("blog")}
-                        </Link>
-                        <Link
-                          href={`/${locale}/war-crimes`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("warCrimes")}
-                        </Link>
+                        <MobileLink href="/admin/tags" icon={<Tags className="h-4 w-4" />}>
+                          {tAdmin("tags")}
+                        </MobileLink>
+                        <MobileLink href="/admin/categories" icon={<FolderOpen className="h-4 w-4" />}>
+                          {tAdmin("categories")}
+                        </MobileLink>
+                        <MobileLink href="/admin/files" icon={<FileImage className="h-4 w-4" />}>
+                          {tAdmin("files")}
+                        </MobileLink>
+                        <div className="my-2 h-px bg-white/10" />
+                        <MobileLink href={`/${locale}/reports/my`}>{t("myReports")}</MobileLink>
+                        <MobileLink href={`/${locale}/reports/new`}>{t("newReport")}</MobileLink>
+                        <MobileLink href={`/${locale}/documents`}>{t("documents")}</MobileLink>
+                        <MobileLink href={`/${locale}/blog`}>{t("blog")}</MobileLink>
+                        <MobileLink href={`/${locale}/war-crimes`}>{t("warCrimes")}</MobileLink>
                       </>
                     ) : (
                       <>
-                        <Link
-                          href={`/${locale}/about`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("about")}
-                        </Link>
-                        <Link
-                          href={`/${locale}/contact`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("contact")}
-                        </Link>
-                        <Link
-                          href={`/${locale}/faq`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("faq")}
-                        </Link>
-                        <Link
-                          href={`/${locale}/war-crimes`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("warCrimes")}
-                        </Link>
-                        <Link
-                          href={`/${locale}/blog`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("blog")}
-                        </Link>
-                        <Link
-                          href={`/${locale}/documents`}
-                          className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors"
-                        >
-                          {t("documents")}
-                        </Link>
+                        <MobileLink href={`/${locale}/war-crimes`}>{t("warCrimes")}</MobileLink>
+                        <MobileLink href={`/${locale}/blog`}>{t("blog")}</MobileLink>
+                        <MobileLink href={`/${locale}/documents`}>{t("documents")}</MobileLink>
+                        <MobileLink href={`/${locale}/about`}>{t("about")}</MobileLink>
+                        <MobileLink href={`/${locale}/contact`}>{t("contact")}</MobileLink>
+                        <MobileLink href={`/${locale}/faq`}>{t("faq")}</MobileLink>
                         {isAuthenticated && (
                           <>
-                            <Link
-                              href={`/${locale}/reports/my`}
-                              className="text-sm font-medium hover:text-primary transition-colors"
-                            >
-                              {t("myReports")}
-                            </Link>
-                            <Link
-                              href={`/${locale}/reports/new`}
-                              className="text-sm font-medium hover:text-primary transition-colors"
-                            >
-                              {t("newReport")}
-                            </Link>
+                            <MobileLink href={`/${locale}/reports/my`}>{t("myReports")}</MobileLink>
+                            <MobileLink href={`/${locale}/reports/new`}>{t("newReport")}</MobileLink>
                           </>
                         )}
                       </>
@@ -398,12 +314,14 @@ export function Header() {
                   !pathname.includes("/register") && (
                     <div className="flex flex-col gap-2 mt-4">
                       <Link href={`/${locale}/login`}>
-                        <Button variant="outline" className="w-full">
+                        <Button variant="outline" className="w-full border-white/10 text-offwhite hover:bg-white/5">
                           {t("login")}
                         </Button>
                       </Link>
                       <Link href={`/${locale}/register`}>
-                        <Button className="w-full">{t("register")}</Button>
+                        <Button className="w-full bg-crimson hover:bg-crimson-light text-white">
+                          {t("register")}
+                        </Button>
                       </Link>
                     </div>
                   )}
@@ -413,5 +331,25 @@ export function Header() {
         </div>
       </div>
     </header>
+  );
+}
+
+function MobileLink({
+  href,
+  children,
+  icon,
+}: {
+  href: string;
+  children: React.ReactNode;
+  icon?: React.ReactNode;
+}) {
+  return (
+    <Link
+      href={href}
+      className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-body hover:text-offwhite hover:bg-white/[0.04] transition-colors"
+    >
+      {icon}
+      {children}
+    </Link>
   );
 }

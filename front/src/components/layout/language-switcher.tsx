@@ -32,7 +32,6 @@ export function LanguageSwitcher() {
   const currentLang = languages.find((lang) => lang.code === locale) || languages[0];
 
   const switchLanguage = (langCode: string) => {
-    // Replace the locale in the pathname
     const newPathname = pathname.replace(`/${locale}`, `/${langCode}`);
     router.push(newPathname);
   };
@@ -42,25 +41,33 @@ export function LanguageSwitcher() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="ghost"
-          className="h-9 px-3 gap-2 justify-center rounded-md"
+          className="h-10 w-10 md:h-9 md:w-auto md:px-3 gap-2 justify-center rounded-lg text-slate-body hover:text-offwhite hover:bg-white/[0.04]"
           aria-label="Select language"
         >
-          <Globe className="h-4 w-4 shrink-0" />
+          <Globe className="h-5 w-5 md:h-4 md:w-4 shrink-0" />
           <span className="hidden lg:inline text-sm font-medium leading-none">
             {currentLang.nativeName}
           </span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="center" sideOffset={8} className="w-48">
+      <DropdownMenuContent
+        align="center"
+        sideOffset={8}
+        className="w-48 glass-strong border-white/10"
+      >
         {languages.map((lang) => (
           <DropdownMenuItem
             key={lang.code}
             onClick={() => switchLanguage(lang.code)}
-            className={lang.code === locale ? "bg-muted" : ""}
+            className={
+              lang.code === locale
+                ? "bg-white/10 text-offwhite focus:bg-white/15 focus:text-offwhite cursor-pointer"
+                : "text-slate-body focus:bg-white/10 focus:text-offwhite cursor-pointer"
+            }
           >
             <div className="flex items-center justify-between w-full">
               <span>{lang.nativeName}</span>
-              {lang.code === locale && <span className="text-xs text-muted-foreground">✓</span>}
+              {lang.code === locale && <span className="text-xs text-gold">✓</span>}
             </div>
           </DropdownMenuItem>
         ))}

@@ -52,9 +52,9 @@ export function NewsletterSignup({ className }: NewsletterSignupProps) {
   };
 
   return (
-    <div className={cn("mt-6 rounded-lg border bg-muted/40 p-4", className)}>
-      <h4 className="text-sm font-semibold text-foreground">{t("title")}</h4>
-      <p className="mt-1 text-xs text-muted-foreground">{t("description")}</p>
+    <div className={cn("mt-6 rounded-xl border border-white/5 glass-light p-4", className)}>
+      <h4 className="text-sm font-semibold text-offwhite">{t("title")}</h4>
+      <p className="mt-1 text-xs text-slate-body">{t("description")}</p>
       <Form {...form}>
         <form onSubmit={form.handleSubmit(handleSubmit)} className="mt-4 flex flex-col gap-2 sm:flex-row">
           <FormField
@@ -68,6 +68,7 @@ export function NewsletterSignup({ className }: NewsletterSignupProps) {
                     placeholder={t("emailPlaceholder")}
                     aria-label={t("emailLabel")}
                     autoComplete="email"
+                    className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
                     {...field}
                   />
                 </FormControl>
@@ -75,7 +76,11 @@ export function NewsletterSignup({ className }: NewsletterSignupProps) {
               </FormItem>
             )}
           />
-          <Button type="submit" disabled={form.formState.isSubmitting} className="sm:w-auto">
+          <Button
+            type="submit"
+            disabled={form.formState.isSubmitting}
+            className="sm:w-auto bg-crimson hover:bg-crimson-light text-white"
+          >
             {form.formState.isSubmitting ? t("submitting") : t("submit")}
           </Button>
         </form>

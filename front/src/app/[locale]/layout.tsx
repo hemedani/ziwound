@@ -24,10 +24,7 @@ export default async function LocaleLayout({ children, params }: LocaleLayoutPro
 
   return (
     <NextIntlClientProvider locale={locale} messages={messages}>
-      <div
-        className="min-h-screen flex flex-col"
-
-      >
+      <div className="min-h-screen flex flex-col pt-16">
         <Header />
         <Breadcrumbs />
         <main className="flex-1">{children}</main>

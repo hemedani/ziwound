@@ -1,208 +1,280 @@
-"use client";
+import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
+import { HeroSlider, HeroSlide } from "@/components/landing/HeroSlider";
+import { ImpactStats } from "@/components/landing/ImpactStats";
+import { FeaturedReports } from "@/components/landing/FeaturedReports";
+import { TrustMission } from "@/components/landing/TrustMission";
+import { SubmitCTA } from "@/components/landing/SubmitCTA";
+import { MapTeaser } from "@/components/landing/MapTeaser";
+import { Timeline } from "@/components/landing/Timeline";
+import { count as countReports } from "@/app/actions/report/count";
+import { count as countDocuments } from "@/app/actions/document/count";
+import { gets as getReports } from "@/app/actions/report/gets";
+import { gets as getBlogPosts } from "@/app/actions/blogPost/gets";
+import { getImageUploadUrl } from "@/utils/imageUrl";
 
-import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
-import { Button } from "@/components/ui/button";
-import { Card, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Shield, Globe, FileText, Lock, Zap, Users, ArrowRight, CheckCircle2 } from "lucide-react";
-import { useAuthStore } from "@/stores/authStore";
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "home" });
+  return {
+    title: "Ziwound — Documenting War Crimes & Human Rights Violations",
+    description: t("hero.slide1.subtitle"),
+    openGraph: {
+      title: "Ziwound — Documenting War Crimes",
+      description: t("hero.slide1.subtitle"),
+      type: "website",
+    },
+  };
+}
 
-export default function Home() {
-  const t = useTranslations("home");
-  const nav = useTranslations("nav");
-  const { isAuthenticated } = useAuthStore();
+interface HomePageProps {
+  params: Promise<{ locale: string }>;
+}
 
-  const features = [
+export default async function Home({ params }: HomePageProps) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "home" });
+
+  // Fetch stats and featured content in parallel
+  const [reportCountRes, docCountRes, reportsRes, blogRes] = await Promise.all([
+    countReports({}, { qty: 1 }).catch(() => ({ success: false, body: { qty: 0 } })),
+    countDocuments({}, { qty: "1" }).catch(() => ({ success: false, body: { qty: 0 } })),
+    getReports(
+      { page: 1, limit: 6 },
+      {
+        _id: 1,
+        title: 1,
+        description: 1,
+        createdAt: 1,
+        location: 1,
+        category: { _id: 1, name: 1 },
+      }
+    ).catch(() => ({ success: false, body: [] })),
+    getBlogPosts(
+      { page: 1, limit: 6 },
+      {
+        _id: 1,
+        title: 1,
+        content: 1,
+        createdAt: 1,
+        coverImage: { _id: 1, name: 1 },
+        slug: 1,
+      }
+    ).catch(() => ({ success: false, body: [] })),
+  ]);
+
+  const reportCount = reportCountRes.success ? (reportCountRes.body?.qty ?? 0) : 0;
+  const docCount = docCountRes.success ? (docCountRes.body?.qty ?? 0) : 0;
+
+  // Build featured items from real data
+  const rawReports = reportsRes.success ? (reportsRes.body ?? []) : [];
+  const rawBlogs = blogRes.success ? (blogRes.body ?? []) : [];
+
+  const reportItems = Array.isArray(rawReports)
+    ? rawReports.slice(0, 3).map((r: any) => ({
+        id: r._id,
+        title: r.title,
+        excerpt: r.description
+          ? r.description.length > 140
+            ? r.description.slice(0, 140) + "..."
+            : r.description
+          : "",
+        image: getImageUploadUrl(r.coverImage?.name || ""),
+        date: r.createdAt
+          ? new Date(r.createdAt).toISOString().split("T")[0]
+          : "",
+        location: r.location?.address || undefined,
+        category: r.category?.name || "Report",
+        href: `/${locale}/reports/${r._id}`,
+      }))
+    : [];
+
+  const blogItems = Array.isArray(rawBlogs)
+    ? rawBlogs.slice(0, 3).map((b: any) => ({
+        id: b._id,
+        title: b.title,
+        excerpt: b.content
+            ? b.content.replace(/<[^>]+>/g, "").slice(0, 140) + "..."
+            : "",
+        image: getImageUploadUrl(b.coverImage?.name || ""),
+        date: b.createdAt
+          ? new Date(b.createdAt).toISOString().split("T")[0]
+          : "",
+        location: undefined,
+        category: "Story",
+        href: `/${locale}/blog/${b.slug || b._id}`,
+      }))
+    : [];
+
+  // Combine and take top 3, fallback to placeholders if empty
+  const featuredItems =
+    reportItems.length > 0 || blogItems.length > 0
+      ? [...reportItems, ...blogItems].slice(0, 3)
+      : [
+          {
+            id: "f1",
+            title: "Mass Graves Discovered in Eastern Region",
+            excerpt:
+              "Forensic teams have uncovered evidence of systematic executions following months of witness testimony and satellite analysis.",
+            image:
+              "https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=800&auto=format&fit=crop",
+            date: "2024-11-12",
+            location: "Eastern Province",
+            category: "Investigation",
+            href: `/${locale}/war-crimes`,
+          },
+          {
+            id: "f2",
+            title: "Civilian Infrastructure Targeted in Airstrikes",
+            excerpt:
+              "Documented attacks on hospitals and schools raise concerns about violations of international humanitarian law.",
+            image:
+              "https://images.unsplash.com/photo-1478760329108-5c3ed9d495a0?q=80&w=800&auto=format&fit=crop",
+            date: "2024-10-28",
+            location: "Northern District",
+            category: "Report",
+            href: `/${locale}/war-crimes`,
+          },
+          {
+            id: "f3",
+            title: "Witness Testimony: A Survivor's Account",
+            excerpt:
+              "An in-depth interview with a survivor who documented her experience through photographs and written testimony.",
+            image:
+              "https://images.unsplash.com/photo-1523995462485-3d171b5c8fa9?q=80&w=800&auto=format&fit=crop",
+            date: "2024-10-15",
+            location: "Capital City",
+            category: "Story",
+            href: `/${locale}/blog`,
+          },
+        ];
+
+  const heroSlides: HeroSlide[] = [
     {
-      icon: Shield,
-      title: t("features.secure.title"),
-      description: t("features.secure.description"),
+      id: "1",
+      gradient:
+        "radial-gradient(ellipse 120% 100% at 50% 0%, rgba(153,27,27,0.25) 0%, #0a0a0a 60%), linear-gradient(to bottom, #0f0f0f, #0a0a0a)",
+      title: t("hero.slide1.title"),
+      subtitle: t("hero.slide1.subtitle"),
+      ctaText: t("hero.slide1.cta"),
+      ctaLink: `/${locale}/reports/new`,
+      secondaryCtaText: t("hero.slide1.secondaryCta"),
+      secondaryCtaLink: `/${locale}/war-crimes`,
     },
     {
-      icon: Globe,
-      title: t("features.multilang.title"),
-      description: t("features.multilang.description"),
+      id: "2",
+      gradient:
+        "radial-gradient(ellipse 100% 80% at 20% 40%, rgba(139,0,0,0.2) 0%, transparent 60%), radial-gradient(ellipse 80% 60% at 80% 80%, rgba(212,175,55,0.08) 0%, transparent 50%), linear-gradient(135deg, #0a0a0a, #110808)",
+      title: t("hero.slide2.title"),
+      subtitle: t("hero.slide2.subtitle"),
+      ctaText: t("hero.slide2.cta"),
+      ctaLink: `/${locale}/about`,
+      secondaryCtaText: t("hero.slide2.secondaryCta"),
+      secondaryCtaLink: `/${locale}/war-crimes`,
     },
     {
-      icon: FileText,
-      title: t("features.easy.title"),
-      description: t("features.easy.description"),
-    },
-    {
-      icon: Lock,
-      title: t("features.private.title"),
-      description: t("features.private.description"),
-    },
-    {
-      icon: Zap,
-      title: t("features.fast.title"),
-      description: t("features.fast.description"),
-    },
-    {
-      icon: Users,
-      title: t("features.community.title"),
-      description: t("features.community.description"),
+      id: "3",
+      gradient:
+        "radial-gradient(ellipse 120% 100% at 50% 100%, rgba(153,27,27,0.2) 0%, #0a0a0a 55%), linear-gradient(to top, #0f0505, #0a0a0a)",
+      title: t("hero.slide3.title"),
+      subtitle: t("hero.slide3.subtitle"),
+      ctaText: t("hero.slide3.cta"),
+      ctaLink: `/${locale}/reports/new`,
+      secondaryCtaText: t("hero.slide3.secondaryCta"),
+      secondaryCtaLink: `/${locale}/blog`,
     },
   ];
 
-  const steps = [
-    {
-      number: 1,
-      title: t("steps.create.title"),
-      description: t("steps.create.description"),
-    },
-    {
-      number: 2,
-      title: t("steps.submit.title"),
-      description: t("steps.submit.description"),
-    },
-    {
-      number: 3,
-      title: t("steps.track.title"),
-      description: t("steps.track.description"),
-    },
-  ];
+  const formatCount = (n: number) => {
+    if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;
+    return `${n}`;
+  };
 
   return (
     <div className="flex min-h-screen flex-col">
-      {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-background to-muted/20 py-20 md:py-32">
-        <div className="container px-4">
-          <div className="mx-auto max-w-4xl text-center">
-            <Badge variant="secondary" className="mb-4">
-              {t("hero.badge")}
-            </Badge>
-            <h1 className="mb-6 text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl">
-              {t("hero.title")}
-            </h1>
-            <p className="mb-8 text-lg text-muted-foreground md:text-xl">{t("hero.description")}</p>
-            <div className="flex flex-col gap-4 sm:flex-row sm:justify-center">
-              {isAuthenticated ? (
-                <>
-                  <Button size="lg" asChild className="gap-2">
-                    <Link href="/reports/my">
-                      {nav("myReports") || "My Reports"} <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button size="lg" variant="outline" asChild>
-                    <Link href="/reports/new">{nav("newReport") || "New Report"}</Link>
-                  </Button>
-                </>
-              ) : (
-                <>
-                  <Button size="lg" asChild className="gap-2">
-                    <Link href="/register">
-                      {t("hero.ctaButton")} <ArrowRight className="h-4 w-4" />
-                    </Link>
-                  </Button>
-                  <Button size="lg" variant="outline" asChild>
-                    <Link href="/login">{nav("login")}</Link>
-                  </Button>
-                </>
-              )}
-            </div>
-          </div>
-        </div>
+      {/* Fullscreen Hero Slider */}
+      <div className="-mt-16">
+        <HeroSlider
+          slides={heroSlides}
+          brandLabel={t("hero.brandLabel")}
+          scrollIndicator={t("hero.scrollIndicator")}
+          autoPlayInterval={7000}
+        />
+      </div>
 
-        {/* Decorative elements */}
-        <div className="absolute inset-0 -z-10 h-full w-full bg-background [background:radial-gradient(125%_125%_at_50%_10%,not_#fff_40%,#6366f1_100%)] dark:[background:radial-gradient(125%_125%_at_50%_10%,not_#030712_40%,#6366f1_100%)] opacity-20" />
-      </section>
+      {/* Impact Stats Bar */}
+      <ImpactStats
+        reports={formatCount(reportCount)}
+        countries="47"
+        documents={formatCount(docCount)}
+        locations="1,120"
+        reportsLabel={t("impactStats.reports")}
+        countriesLabel={t("impactStats.countries")}
+        documentsLabel={t("impactStats.documents")}
+        locationsLabel={t("impactStats.locations")}
+      />
 
-      {/* Features Section */}
-      <section className="py-20 md:py-32">
-        <div className="container px-4">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-              {t("features.title")}
-            </h2>
-            <p className="text-lg text-muted-foreground">{t("features.description")}</p>
-          </div>
+      {/* Featured Reports / Stories */}
+      <FeaturedReports
+        overline={t("featured.overline")}
+        title={t("featured.title")}
+        subtitle={t("featured.subtitle")}
+        readMore={t("featured.readMore")}
+        items={featuredItems}
+      />
 
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {features.map((feature, index) => (
-              <Card key={index} className="relative">
-                <CardHeader>
-                  <div className="mb-2 inline-flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10">
-                    <feature.icon className="h-6 w-6 text-primary" />
-                  </div>
-                  <CardTitle className="text-xl">{feature.title}</CardTitle>
-                  <CardDescription>{feature.description}</CardDescription>
-                </CardHeader>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Map Teaser */}
+      <MapTeaser
+        locale={locale}
+        overline={t("mapTeaser.overline")}
+        title={t("mapTeaser.title")}
+        description={t("mapTeaser.description")}
+        activeZonesLabel={t("mapTeaser.activeZones")}
+        verifiedReportsLabel={t("mapTeaser.verifiedReports")}
+        ctaText={t("mapTeaser.cta")}
+      />
 
-      {/* How It Works Section */}
-      <section className="bg-muted/50 py-20 md:py-32">
-        <div className="container px-4">
-          <div className="mx-auto max-w-2xl text-center mb-16">
-            <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">
-              {t("howItWorks.title")}
-            </h2>
-            <p className="text-lg text-muted-foreground">{t("howItWorks.description")}</p>
-          </div>
+      {/* Timeline */}
+      <Timeline
+        overline={t("timeline.overline")}
+        title={t("timeline.title")}
+        subtitle={t("timeline.subtitle")}
+        viewDetails={t("timeline.viewDetails")}
+        events={featuredItems.slice(0, 4).map((item) => ({
+          id: item.id,
+          date: item.date,
+          title: item.title,
+          description: item.excerpt,
+          location: item.location,
+          href: item.href,
+        }))}
+      />
 
-          <div className="grid gap-8 sm:grid-cols-3">
-            {steps.map((step, index) => (
-              <div key={index} className="relative text-center">
-                <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-primary text-2xl font-bold text-primary-foreground">
-                  {step.number}
-                </div>
-                <h3 className="mb-2 text-xl font-semibold">{step.title}</h3>
-                <p className="text-muted-foreground">{step.description}</p>
-                {index < steps.length - 1 && (
-                  <div className="absolute end-0 top-8 hidden h-px w-16 bg-border sm:block rtl:left-0 rtl:right-auto" />
-                )}
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+      {/* Trust & Mission */}
+      <TrustMission
+        overline={t("mission.overline")}
+        title={t("mission.title")}
+        p1={t("mission.p1")}
+        p2={t("mission.p2")}
+        tagline={t("mission.tagline")}
+        pillar1Title={t("trustMission.pillar1Title")}
+        pillar1Desc={t("trustMission.pillar1Desc")}
+        pillar2Title={t("trustMission.pillar2Title")}
+        pillar2Desc={t("trustMission.pillar2Desc")}
+        pillar3Title={t("trustMission.pillar3Title")}
+        pillar3Desc={t("trustMission.pillar3Desc")}
+        pillar4Title={t("trustMission.pillar4Title")}
+        pillar4Desc={t("trustMission.pillar4Desc")}
+      />
 
-      {/* Trust Section */}
-      <section className="py-20 md:py-32">
-        <div className="container px-4">
-          <div className="mx-auto max-w-3xl rounded-xl border bg-card p-8 md:p-12">
-            <div className="text-center mb-8">
-              <h2 className="mb-4 text-2xl font-bold">{t("trust.title")}</h2>
-              <p className="text-muted-foreground">{t("trust.description")}</p>
-            </div>
-            <div className="grid gap-4 sm:grid-cols-2">
-              {[
-                t("trust.benefits.0"),
-                t("trust.benefits.1"),
-                t("trust.benefits.2"),
-                t("trust.benefits.3"),
-              ].map((benefit, index) => (
-                <div key={index} className="flex items-center gap-2">
-                  <CheckCircle2 className="h-5 w-5 text-green-500" />
-                  <span>{benefit}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      {!isAuthenticated && (
-        <section className="bg-primary py-20 md:py-32 text-primary-foreground">
-          <div className="container px-4">
-            <div className="mx-auto max-w-2xl text-center">
-              <h2 className="mb-4 text-3xl font-bold tracking-tight sm:text-4xl">{t("cta.title")}</h2>
-              <p className="mb-8 text-lg opacity-90">{t("cta.description")}</p>
-              <Button size="lg" variant="secondary" asChild className="gap-2">
-                <Link href="/register">
-                  {t("cta.button")} <ArrowRight className="h-4 w-4" />
-                </Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-      )}
+      {/* Submit Report CTA */}
+      <SubmitCTA
+        title={t("submitCTA.title")}
+        subtitle={t("submitCTA.subtitle")}
+        primaryCta={t("submitCTA.primary")}
+        secondaryCta={t("submitCTA.secondary")}
+        note={t("submitCTA.note")}
+      />
     </div>
   );
 }
