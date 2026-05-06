@@ -1,23 +1,23 @@
 {
-  "name": "Gozarish - Citizen Report System",
-  "short_name": "Gozarish",
-  "description": "A modern and secure citizen report registration system.",
+  "name": "Ziwound — War Crimes Documentation",
+  "short_name": "Ziwound",
+  "description": "A solemn platform for documenting war crimes and human rights violations.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#ffffff",
+  "background_color": "#0a0a0a",
+  "theme_color": "#0a0a0a",
   "orientation": "portrait",
   "icons": [
     {
       "src": "/icon-192x192.png",
       "sizes": "192x192",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     },
     {
       "src": "/icon-512x512.png",
       "sizes": "512x512",
-      "type": "image/svg+xml",
+      "type": "image/png",
       "purpose": "any maskable"
     }
   ]

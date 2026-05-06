@@ -212,6 +212,7 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
                         field.onChange(e);
                         handleTitleChange(e);
                       }}
+                      className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
                     />
                   </FormControl>
                   <FormMessage />
@@ -226,7 +227,7 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
                 <FormItem>
                   <FormLabel>{t("slug") || "Slug (URL)"}</FormLabel>
                   <FormControl>
-                    <Input placeholder={t("slugPlaceholder") || "my-awesome-post"} {...field} />
+                    <Input placeholder={t("slugPlaceholder") || "my-awesome-post"} {...field} className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson" />
                   </FormControl>
                   <FormDescription>
                     {t("slugDescription") || "The URL-friendly version of the title. Must be unique."}
@@ -256,7 +257,7 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
               )}
             />
 
-            <div className="space-y-4 rounded-lg border p-4 bg-card">
+            <div className="space-y-4 rounded-2xl glass-light p-5 border border-white/[0.06]">
               <FormField
                 control={form.control}
                 name="isPublished"
@@ -339,8 +340,8 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
           )}
         />
 
-        <div className="flex gap-4 pt-4 border-t">
-          <Button type="submit" disabled={isLoading}>
+        <div className="flex gap-4 pt-4 border-t border-white/[0.06]">
+          <Button type="submit" disabled={isLoading} className="bg-crimson hover:bg-crimson-light text-white">
             {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {isEditing ? tCommon("save") : tCommon("create")}
           </Button>
@@ -349,6 +350,7 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
             variant="outline"
             onClick={() => router.push("/admin/blog")}
             disabled={isLoading}
+            className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white"
           >
             {tCommon("cancel")}
           </Button>

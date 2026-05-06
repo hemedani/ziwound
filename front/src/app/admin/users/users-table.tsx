@@ -38,14 +38,30 @@ export function UsersTable({ users, error }: { users: userSchema[]; error?: stri
   const getLevelBadge = (level: string) => {
     switch (level) {
       case "Ghost":
-        return <Badge variant="destructive">{t("level_Ghost") || "Ghost"}</Badge>;
+        return (
+          <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-crimson/15 text-crimson-light border border-crimson/20">
+            {t("level_Ghost") || "Ghost"}
+          </span>
+        );
       case "Manager":
-        return <Badge variant="default">{t("level_Manager") || "Manager"}</Badge>;
+        return (
+          <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-gold/15 text-gold border border-gold/20">
+            {t("level_Manager") || "Manager"}
+          </span>
+        );
       case "Editor":
-        return <Badge variant="secondary">{t("level_Editor") || "Editor"}</Badge>;
+        return (
+          <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-blue-500/10 text-blue-400 border border-blue-500/20">
+            {t("level_Editor") || "Editor"}
+          </span>
+        );
       case "Ordinary":
       default:
-        return <Badge variant="outline">{t("level_Ordinary") || "Ordinary"}</Badge>;
+        return (
+          <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-white/5 text-slate-body border border-white/10">
+            {t("level_Ordinary") || "Ordinary"}
+          </span>
+        );
     }
   };
 
@@ -74,61 +90,61 @@ export function UsersTable({ users, error }: { users: userSchema[]; error?: stri
 
   return (
     <div className="space-y-4">
-      <div className="rounded-md border bg-card">
+      <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead>{t("name")}</TableHead>
-              <TableHead>{t("email") || "Email"}</TableHead>
-              <TableHead>{t("level")}</TableHead>
-              <TableHead>{t("date")}</TableHead>
-              <TableHead className="text-end pe-4">{t("actions")}</TableHead>
+            <TableRow className="border-white/[0.06] hover:bg-transparent">
+              <TableHead className="text-slate-body">{t("name")}</TableHead>
+              <TableHead className="text-slate-body">{t("email") || "Email"}</TableHead>
+              <TableHead className="text-slate-body">{t("level")}</TableHead>
+              <TableHead className="text-slate-body">{t("date")}</TableHead>
+              <TableHead className="text-end pe-4 text-slate-body">{t("actions")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {users.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={5} className="h-24 text-center">
+              <TableRow className="border-white/[0.06]">
+                <TableCell colSpan={5} className="h-24 text-center text-slate-body">
                   {t("noUsers") || "No users found"}
                 </TableCell>
               </TableRow>
             ) : (
               users.map((user: userSchema) => (
-                <TableRow key={user._id}>
-                  <TableCell className="font-medium">
+                <TableRow key={user._id} className="border-white/[0.06] hover:bg-white/[0.02]">
+                  <TableCell className="font-medium text-offwhite">
                     {user.first_name} {user.last_name}
                   </TableCell>
-                  <TableCell>{user.email}</TableCell>
+                  <TableCell className="text-slate-body">{user.email}</TableCell>
                   <TableCell>{getLevelBadge(user.level)}</TableCell>
-                  <TableCell>
+                  <TableCell className="text-slate-body">
                     {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : "-"}
                   </TableCell>
                   <TableCell className="text-end pe-4">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
+                        <Button variant="ghost" className="h-8 w-8 p-0 text-slate-body hover:text-offwhite hover:bg-white/5">
                           <span className="sr-only">Open menu</span>
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>{t("actions")}</DropdownMenuLabel>
-                        <DropdownMenuItem>
-                          <Eye className="me-2 h-4 w-4" />
+                      <DropdownMenuContent align="end" className="glass-strong border-white/10">
+                        <DropdownMenuLabel className="text-slate-body">{t("actions")}</DropdownMenuLabel>
+                        <DropdownMenuItem className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                          <Eye className="me-2 h-4 w-4 text-gold" />
                           {t("viewDetails")}
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>
-                          <Shield className="me-2 h-4 w-4" />
+                        <DropdownMenuSeparator className="bg-white/10" />
+                        <DropdownMenuItem className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                          <Shield className="me-2 h-4 w-4 text-blue-400" />
                           {t("editRole") || "Edit Role"}
                         </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <Ban className="me-2 h-4 w-4" />
+                        <DropdownMenuItem className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                          <Ban className="me-2 h-4 w-4 text-amber-400" />
                           {t("deactivate") || "Deactivate"}
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator />
+                        <DropdownMenuSeparator className="bg-white/10" />
                         <DropdownMenuItem
-                          className="text-destructive"
+                          className="text-crimson-light focus:bg-white/10 focus:text-crimson-light cursor-pointer"
                           onClick={() => deleteUserAction(user._id!)}
                           disabled={isPending}
                         >

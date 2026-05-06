@@ -50,7 +50,10 @@
     "tagSelector": {
       "newTag": "创建新标签",
       "search": "搜索标签..."
-    }
+    },
+    "readMore": "阅读更多",
+    "unknown": "未知",
+    "manage": "管理"
   },
   "auth": {
     "email": "电子邮箱",
@@ -579,7 +582,30 @@
     "war_crimes_events": "战争罪行事件",
     "war_crimes_eventsPlaceholder": "输入战争罪行事件",
     "liberation_info": "解放信息",
-    "liberation_infoPlaceholder": "输入解放信息"
+    "liberation_infoPlaceholder": "输入解放信息",
+    "exportCsv": "导出 CSV",
+    "documentTypeImage": "图片",
+    "documentTypeVideo": "视频",
+    "documentTypeDocument": "文档",
+    "userAdded": "用户添加成功",
+    "userAddFailed": "添加用户失败",
+    "selectGender": "选择性别",
+    "selectLevel": "选择级别",
+    "firstNamePlaceholder": "名字",
+    "lastNamePlaceholder": "姓氏",
+    "fatherNamePlaceholder": "父亲姓名",
+    "addressPlaceholder": "完整地址",
+    "quickActions": "快速操作",
+    "reportsByStatus": "按状态统计报告",
+    "reportsByPriority": "按优先级统计报告",
+    "reportsByCategory": "按分类统计报告",
+    "reportsByLanguage": "按语言统计报告",
+    "monthlyCreated": "每月创建的报告",
+    "crimeMonthly": "按发生月份统计的犯罪",
+    "topLocations": "热门地点",
+    "provinces": "省份",
+    "cities": "城市",
+    "noData": "暂无数据"
   },
   "notFound": {
     "backHome": "返回首页",
@@ -685,7 +711,8 @@
     "exportError": "导出数据失败。",
     "sharePage": "分享页面",
     "exportData": "导出数据",
-    "exportPDF": "导出 PDF (即将推出)"
+    "exportPDF": "导出 PDF (即将推出)",
+    "overline": "档案"
   },
   "about": {
     "title": "关于我们",
@@ -710,7 +737,8 @@
     "readyToContribute": "准备好贡献了吗？",
     "ctaDescription": "通过提交您的报告，您可以帮助记录历史并为实现正义做出贡献。",
     "submitReport": "提交报告",
-    "exploreData": "探索数据"
+    "exploreData": "探索数据",
+    "overline": "关于我们"
   },
   "contact": {
     "title": "联系我们",
@@ -740,7 +768,8 @@
     "formError": "发送消息失败。请重试。",
     "successTitle": "消息已发送！",
     "successMessage": "感谢您的联系。我们会尽快回复您。",
-    "sendAnother": "发送另一条消息"
+    "sendAnother": "发送另一条消息",
+    "overline": "联系我们"
   },
   "faq": {
     "title": "常见问题",
@@ -830,7 +859,8 @@
     "section4Title": "您的权利",
     "section4Content": "您有权访问、更正或删除您的个人信息。您还可以请求数据的副本或反对某些处理活动。要行使这些权利，请使用以下信息与我们联系。",
     "contactTitle": "联系我们",
-    "contactContent": "如果您对本隐私政策或我们的数据做法有任何疑问，请通过 privacy@ziwound.org 或我们的联系页面与我们联系。"
+    "contactContent": "如果您对本隐私政策或我们的数据做法有任何疑问，请通过 privacy@ziwound.org 或我们的联系页面与我们联系。",
+    "overline": "法律"
   },
   "terms": {
     "title": "服务条款",
@@ -844,7 +874,8 @@
     "section4Title": "责任限制",
     "section4Content": "Ziwound及其运营者不对因使用平台而产生的或与之相关的任何间接、附带、特殊、后果性或惩罚性损害承担责任。我们对平台上信息的准确性或完整性不作任何保证。",
     "contactTitle": "联系信息",
-    "contactContent": "有关这些服务条款的问题，请通过 legal@ziwound.org 或我们的联系页面与我们联系。"
+    "contactContent": "有关这些服务条款的问题，请通过 legal@ziwound.org 或我们的联系页面与我们联系。",
+    "overline": "法律"
   },
   "help": {
     "title": "帮助中心",
@@ -860,7 +891,8 @@
     "learnMore": "了解更多",
     "stillNeedHelp": "仍然需要帮助？",
     "contactPrompt": "找不到您要找的内容？我们的支持团队随时准备为您提供帮助。",
-    "contactUs": "联系我们"
+    "contactUs": "联系我们",
+    "overline": "支持"
   },
   "cookieConsent": {
     "title": "我们使用 Cookie",
@@ -880,5 +912,15 @@
     "successDescription": "感谢加入我们的新闻通讯。",
     "errorTitle": "订阅失败",
     "errorDescription": "请稍后再试。"
+  },
+  "blog": {
+    "overline": "故事与更新",
+    "title": "博客",
+    "description": "阅读我们的最新新闻和文章",
+    "searchPlaceholder": "搜索文章...",
+    "noPosts": "未找到博客文章。",
+    "author": "作者",
+    "publishedAt": "发布日期",
+    "relatedPosts": "相关文章"
   }
 }

@@ -50,7 +50,10 @@
     "tagSelector": {
       "newTag": "Criar nova tag",
       "search": "Buscar tags..."
-    }
+    },
+    "readMore": "Ler Mais",
+    "unknown": "Desconhecido",
+    "manage": "Gerenciar"
   },
   "auth": {
     "email": "E-mail",
@@ -579,7 +582,30 @@
     "war_crimes_events": "Eventos de Crimes de Guerra",
     "war_crimes_eventsPlaceholder": "Insira eventos de crimes de guerra",
     "liberation_info": "Informação de Libertação",
-    "liberation_infoPlaceholder": "Insira informação de libertação"
+    "liberation_infoPlaceholder": "Insira informação de libertação",
+    "exportCsv": "Exportar CSV",
+    "documentTypeImage": "Imagem",
+    "documentTypeVideo": "Vídeo",
+    "documentTypeDocument": "Documento",
+    "userAdded": "Usuário adicionado com sucesso",
+    "userAddFailed": "Falha ao adicionar usuário",
+    "selectGender": "Selecionar gênero",
+    "selectLevel": "Selecionar nível",
+    "firstNamePlaceholder": "Nome",
+    "lastNamePlaceholder": "Sobrenome",
+    "fatherNamePlaceholder": "Nome do pai",
+    "addressPlaceholder": "Endereço completo",
+    "quickActions": "Ações Rápidas",
+    "reportsByStatus": "Relatórios por Status",
+    "reportsByPriority": "Relatórios por Prioridade",
+    "reportsByCategory": "Relatórios por Categoria",
+    "reportsByLanguage": "Relatórios por Idioma",
+    "monthlyCreated": "Relatórios Criados por Mês",
+    "crimeMonthly": "Crimes por Mês de Ocorrência",
+    "topLocations": "Principais Locais",
+    "provinces": "Províncias",
+    "cities": "Cidades",
+    "noData": "Nenhum dado disponível"
   },
   "notFound": {
     "backHome": "Voltar ao início",
@@ -685,7 +711,8 @@
     "exportError": "Falha ao exportar dados.",
     "sharePage": "Compartilhar página",
     "exportData": "Exportar dados",
-    "exportPDF": "Exportar PDF (Em breve)"
+    "exportPDF": "Exportar PDF (Em breve)",
+    "overline": "Arquivo"
   },
   "about": {
     "title": "Sobre Nós",
@@ -710,7 +737,8 @@
     "readyToContribute": "Pronto para Contribuir?",
     "ctaDescription": "Ao enviar seu relatório, você ajuda a documentar a história e contribuir para a realização da justiça.",
     "submitReport": "Enviar Relatório",
-    "exploreData": "Explorar Dados"
+    "exploreData": "Explorar Dados",
+    "overline": "Sobre Nós"
   },
   "contact": {
     "title": "Entre em Contato",
@@ -740,7 +768,8 @@
     "formError": "Falha ao enviar mensagem. Por favor, tente novamente.",
     "successTitle": "Mensagem Enviada!",
     "successMessage": "Obrigado por entrar em contato. Responderemos em breve.",
-    "sendAnother": "Enviar Outra Mensagem"
+    "sendAnother": "Enviar Outra Mensagem",
+    "overline": "Entre em Contato"
   },
   "faq": {
     "title": "Perguntas Frequentes",
@@ -830,7 +859,8 @@
     "section4Title": "Seus Direitos",
     "section4Content": "Você tem o direito de acessar, corrigir ou excluir suas informações pessoais. Você também pode solicitar uma cópia de seus dados ou se opor a certas atividades de processamento. Para exercer esses direitos, entre em contato conosco usando as informações abaixo.",
     "contactTitle": "Contate-nos",
-    "contactContent": "Se tiver alguma dúvida sobre esta Política de Privacidade ou nossas práticas de dados, entre em contato conosco em privacy@ziwound.org ou através de nossa página de contato."
+    "contactContent": "Se tiver alguma dúvida sobre esta Política de Privacidade ou nossas práticas de dados, entre em contato conosco em privacy@ziwound.org ou através de nossa página de contato.",
+    "overline": "Jurídico"
   },
   "terms": {
     "title": "Termos de Serviço",
@@ -844,7 +874,8 @@
     "section4Title": "Limitação de Responsabilidade",
     "section4Content": "O Ziwound e seus operadores não serão responsáveis por quaisquer danos indiretos, incidentais, especiais, consequenciais ou punitivos decorrentes de ou relacionados ao seu uso da plataforma. Não fazemos garantias sobre a precisão ou integridade das informações na plataforma.",
     "contactTitle": "Informações de Contato",
-    "contactContent": "Para perguntas sobre estes Termos de Serviço, entre em contato conosco em legal@ziwound.org ou através de nossa página de contato."
+    "contactContent": "Para perguntas sobre estes Termos de Serviço, entre em contato conosco em legal@ziwound.org ou através de nossa página de contato.",
+    "overline": "Jurídico"
   },
   "help": {
     "title": "Central de Ajuda",
@@ -860,7 +891,8 @@
     "learnMore": "Saiba Mais",
     "stillNeedHelp": "Ainda precisa de ajuda?",
     "contactPrompt": "Não encontrou o que procura? Nossa equipe de suporte está pronta para ajudar.",
-    "contactUs": "Entre em Contato"
+    "contactUs": "Entre em Contato",
+    "overline": "Suporte"
   },
   "cookieConsent": {
     "title": "Usamos cookies",
@@ -880,5 +912,15 @@
     "successDescription": "Obrigado por se inscrever em nossa newsletter.",
     "errorTitle": "Falha na inscrição",
     "errorDescription": "Tente novamente mais tarde."
+  },
+  "blog": {
+    "overline": "Histórias e Atualizações",
+    "title": "Blog",
+    "description": "Leia nossas últimas notícias e artigos",
+    "searchPlaceholder": "Pesquisar artigos...",
+    "noPosts": "Nenhum post encontrado.",
+    "author": "Autor",
+    "publishedAt": "Publicado em",
+    "relatedPosts": "Artigos Relacionados"
   }
 }

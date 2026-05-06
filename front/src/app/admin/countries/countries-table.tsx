@@ -59,46 +59,46 @@ export function CountriesTable({ countries, error }: { countries: countrySchema[
   };
 
   return (
-    <div className="rounded-md border bg-card">
+    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead>{t("name") || "Name (Local)"}</TableHead>
-            <TableHead>{t("englishName") || "Name (English)"}</TableHead>
-            <TableHead className="text-end pe-4">{t("actions")}</TableHead>
+          <TableRow className="border-white/[0.06] hover:bg-transparent">
+            <TableHead className="text-slate-body">{t("name") || "Name (Local)"}</TableHead>
+            <TableHead className="text-slate-body">{t("englishName") || "Name (English)"}</TableHead>
+            <TableHead className="text-end pe-4 text-slate-body">{t("actions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {countries.length === 0 ? (
-            <TableRow>
-              <TableCell colSpan={3} className="h-24 text-center">
+            <TableRow className="border-white/[0.06] hover:bg-white/[0.02]">
+              <TableCell colSpan={3} className="h-24 text-center text-slate-body">
                 {t("noCountries") || "No countries found"}
               </TableCell>
             </TableRow>
           ) : (
             countries.map((country: countrySchema) => (
-              <TableRow key={country._id}>
-                <TableCell className="font-medium">{country.name}</TableCell>
-                <TableCell>{country.english_name}</TableCell>
+              <TableRow key={country._id} className="border-white/[0.06] hover:bg-white/[0.02]">
+                <TableCell className="font-medium text-offwhite">{country.name}</TableCell>
+                <TableCell className="text-slate-body">{country.english_name}</TableCell>
                 <TableCell className="text-end pe-4">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="h-8 w-8 p-0">
+                      <Button variant="ghost" className="h-8 w-8 p-0 text-slate-body hover:text-offwhite hover:bg-white/5">
                         <span className="sr-only">Open menu</span>
                         <MoreHorizontal className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>{t("actions")}</DropdownMenuLabel>
-                      <DropdownMenuItem asChild>
+                    <DropdownMenuContent align="end" className="glass-strong border-white/10">
+                      <DropdownMenuLabel className="text-slate-body">{t("actions")}</DropdownMenuLabel>
+                      <DropdownMenuItem className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer" asChild>
                         <Link href={`/admin/countries/${country._id}/edit`}>
                           <Pencil className="me-2 h-4 w-4" />
                           {t("edit")}
                         </Link>
                       </DropdownMenuItem>
-                      <DropdownMenuSeparator />
+                      <DropdownMenuSeparator className="bg-white/10" />
                       <DropdownMenuItem
-                        className="text-destructive"
+                        className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer"
                         onClick={() => deleteCountryAction(country._id!)}
                         disabled={isPending}
                       >

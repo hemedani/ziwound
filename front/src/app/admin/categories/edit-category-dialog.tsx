@@ -60,10 +60,10 @@ export function EditCategoryDialog({ category, open, onOpenChange }: EditCategor
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className="glass-strong border-white/10">
         <DialogHeader>
-          <DialogTitle>{t("editCategory") || "Edit Category"}</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-offwhite">{t("editCategory") || "Edit Category"}</DialogTitle>
+          <DialogDescription className="text-slate-body">
             {t("editCategoryDescription") || "Update the details of this category"}
           </DialogDescription>
         </DialogHeader>

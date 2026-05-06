@@ -51,7 +51,10 @@
     "tagSelector": {
       "newTag": "Create new tag",
       "search": "Search tags..."
-    }
+    },
+    "readMore": "Read More",
+    "unknown": "Unknown",
+    "manage": "Manage"
   },
   "auth": {
     "email": "Email",
@@ -659,7 +662,28 @@
     "image": "Image",
     "video": "Video",
     "document": "Document",
-    "view": "View"
+    "view": "View",
+    "exportCsv": "Export CSV",
+    "documentTypeImage": "Image",
+    "documentTypeVideo": "Video",
+    "documentTypeDocument": "Document",
+    "userAdded": "User added successfully",
+    "userAddFailed": "Failed to add user",
+    "selectGender": "Select gender",
+    "selectLevel": "Select level",
+    "firstNamePlaceholder": "First name",
+    "lastNamePlaceholder": "Last name",
+    "fatherNamePlaceholder": "Father name",
+    "addressPlaceholder": "Full address",
+    "quickActions": "Quick Actions",
+    "reportsByStatus": "Reports by Status",
+    "reportsByPriority": "Reports by Priority",
+    "reportsByCategory": "Reports by Category",
+    "reportsByLanguage": "Reports by Language",
+    "monthlyCreated": "Monthly Created Reports",
+    "crimeMonthly": "Crimes by Month of Occurrence",
+    "topLocations": "Top Locations",
+    "noData": "No data available"
   },
   "notFound": {
     "backHome": "Back to Home",
@@ -759,7 +783,8 @@
     "exportError": "Failed to export data.",
     "sharePage": "Share Page",
     "exportData": "Export Data",
-    "exportPDF": "Export PDF (Coming Soon)"
+    "exportPDF": "Export PDF (Coming Soon)",
+    "overline": "Archive"
   },
   "about": {
     "title": "About Us",
@@ -784,7 +809,8 @@
     "readyToContribute": "Ready to Contribute?",
     "ctaDescription": "By submitting your report, you help document history and contribute to achieving justice.",
     "submitReport": "Submit Report",
-    "exploreData": "Explore Data"
+    "exploreData": "Explore Data",
+    "overline": "About Us"
   },
   "contact": {
     "title": "Contact Us",
@@ -814,7 +840,8 @@
     "formError": "Failed to send message. Please try again.",
     "successTitle": "Message Sent!",
     "successMessage": "Thank you for contacting us. We'll get back to you shortly.",
-    "sendAnother": "Send Another Message"
+    "sendAnother": "Send Another Message",
+    "overline": "Get in Touch"
   },
   "faq": {
     "title": "Frequently Asked Questions",
@@ -904,7 +931,8 @@
     "section4Title": "Your Rights",
     "section4Content": "You have the right to access, correct, or delete your personal information. You may also request a copy of your data or object to certain processing activities. To exercise these rights, please contact us using the information below.",
     "contactTitle": "Contact Us",
-    "contactContent": "If you have any questions about this Privacy Policy or our data practices, please contact us at privacy@ziwound.org or through our contact page."
+    "contactContent": "If you have any questions about this Privacy Policy or our data practices, please contact us at privacy@ziwound.org or through our contact page.",
+    "overline": "Legal"
   },
   "terms": {
     "title": "Terms of Service",
@@ -918,7 +946,8 @@
     "section4Title": "Limitation of Liability",
     "section4Content": "Ziwound and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of the platform. We make no warranties about the accuracy or completeness of information on the platform.",
     "contactTitle": "Contact Information",
-    "contactContent": "For questions about these Terms of Service, please contact us at legal@ziwound.org or through our contact page."
+    "contactContent": "For questions about these Terms of Service, please contact us at legal@ziwound.org or through our contact page.",
+    "overline": "Legal"
   },
   "help": {
     "title": "Help Center",
@@ -934,7 +963,8 @@
     "learnMore": "Learn More",
     "stillNeedHelp": "Still need help?",
     "contactPrompt": "Can't find what you're looking for? Our support team is ready to assist you.",
-    "contactUs": "Contact Us"
+    "contactUs": "Contact Us",
+    "overline": "Support"
   },
   "cookieConsent": {
     "title": "We use cookies",
@@ -954,5 +984,15 @@
     "successDescription": "Thanks for joining our newsletter.",
     "errorTitle": "Subscription failed",
     "errorDescription": "Please try again later."
+  },
+  "blog": {
+    "overline": "Stories & Updates",
+    "title": "Blog",
+    "description": "Read our latest news and articles",
+    "searchPlaceholder": "Search articles...",
+    "noPosts": "No blog posts found.",
+    "author": "Author",
+    "publishedAt": "Published",
+    "relatedPosts": "Related Articles"
   }
 }

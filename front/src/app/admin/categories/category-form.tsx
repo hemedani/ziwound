@@ -62,7 +62,7 @@ export function CategoryForm({ initialData, onSubmit, onCancel }: CategoryFormPr
             <FormItem>
               <FormLabel>{t("categoryName") || "Category Name"}</FormLabel>
               <FormControl>
-                <Input placeholder={t("enterCategoryName") || "e.g. Urgent"} {...field} />
+                <Input placeholder={t("enterCategoryName") || "e.g. Urgent"} {...field} className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -80,7 +80,7 @@ export function CategoryForm({ initialData, onSubmit, onCancel }: CategoryFormPr
                   placeholder={
                     t("enterCategoryDescription") || "Describe what this category is used for"
                   }
-                  className="resize-none"
+                  className="resize-none bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
                   {...field}
                 />
               </FormControl>
@@ -98,10 +98,10 @@ export function CategoryForm({ initialData, onSubmit, onCancel }: CategoryFormPr
                 <FormLabel>{t("color") || "Color"}</FormLabel>
                 <div className="flex gap-2 items-center">
                   <FormControl>
-                    <Input type="color" className="w-12 h-10 p-1 cursor-pointer" {...field} />
+                    <Input type="color" className="w-12 h-10 p-1 cursor-pointer bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson" {...field} />
                   </FormControl>
                   <FormControl>
-                    <Input placeholder="#000000" {...field} className="flex-1" />
+                    <Input placeholder="#000000" {...field} className="flex-1 bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson" />
                   </FormControl>
                 </div>
                 <FormMessage />

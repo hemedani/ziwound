@@ -2,6 +2,7 @@
 
 import * as React from "react";
 import { Button } from "@/components/ui/button";
+import { Shield } from "lucide-react";
 
 export default function GlobalError({
   error,
@@ -12,23 +13,27 @@ export default function GlobalError({
 }) {
   return (
     <html>
-      <body>
-        <div className="flex h-screen flex-col items-center justify-center bg-background p-4 text-foreground">
-          <div className="space-y-4 text-center max-w-md">
-            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-destructive/10">
-              <span className="text-2xl font-bold text-destructive">!</span>
+      <body className="bg-[#0a0a0a]">
+        <div className="flex h-screen flex-col items-center justify-center p-4">
+          <div className="space-y-6 text-center max-w-md">
+            <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-2xl bg-crimson/10 border border-crimson/20">
+              <Shield className="h-8 w-8 text-crimson-light" />
             </div>
-            <h1 className="text-3xl font-bold tracking-tight">Something went wrong!</h1>
-            <p className="text-muted-foreground">
-              A critical error occurred. We apologize for the inconvenience. Our team has been notified.
-            </p>
+            <div>
+              <h1 className="text-3xl font-bold tracking-tight text-offwhite">
+                Something went wrong
+              </h1>
+              <p className="text-slate-body mt-3">
+                A critical error occurred. We apologize for the inconvenience. Our team has been notified.
+              </p>
+            </div>
             {error.digest && (
-              <p className="text-xs text-muted-foreground mt-2">
+              <p className="text-xs text-slate-body/60 mt-2 font-mono bg-white/5 px-3 py-1.5 rounded-lg inline-block">
                 Error ID: {error.digest}
               </p>
             )}
-            <div className="pt-4">
-              <Button onClick={() => reset()}>
+            <div className="pt-2">
+              <Button onClick={() => reset()} className="bg-crimson hover:bg-crimson-light text-white">
                 Try again
               </Button>
             </div>

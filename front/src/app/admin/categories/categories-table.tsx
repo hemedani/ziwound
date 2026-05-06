@@ -67,56 +67,56 @@ export function CategoriesTable({ categories, error }: { categories: categorySch
 
   return (
     <div className="space-y-4">
-      <div className="rounded-md border bg-card">
+      <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead>{t("name")}</TableHead>
-              <TableHead>{t("color") || "Color"}</TableHead>
-              <TableHead>{t("icon") || "Icon"}</TableHead>
-              <TableHead>{t("description") || "Description"}</TableHead>
-              <TableHead className="text-end pe-4">{t("actions")}</TableHead>
+            <TableRow className="border-white/[0.06] hover:bg-transparent">
+              <TableHead className="text-slate-body">{t("name")}</TableHead>
+              <TableHead className="text-slate-body">{t("color") || "Color"}</TableHead>
+              <TableHead className="text-slate-body">{t("icon") || "Icon"}</TableHead>
+              <TableHead className="text-slate-body">{t("description") || "Description"}</TableHead>
+              <TableHead className="text-end pe-4 text-slate-body">{t("actions")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {categories.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={5} className="h-24 text-center">
+              <TableRow className="border-white/[0.06] hover:bg-white/[0.02]">
+                <TableCell colSpan={5} className="h-24 text-center text-slate-body">
                   {t("noCategories") || "No categories found"}
                 </TableCell>
               </TableRow>
             ) : (
               categories.map((category: categorySchema) => (
-                <TableRow key={category._id}>
-                  <TableCell className="font-medium">{category.name}</TableCell>
+                <TableRow key={category._id} className="border-white/[0.06] hover:bg-white/[0.02]">
+                  <TableCell className="font-medium text-offwhite">{category.name}</TableCell>
                   <TableCell>
                     <div className="flex items-center gap-2">
                       <div
                         className="h-4 w-4 rounded-full border"
                         style={{ backgroundColor: category.color || "#000000" }}
                       />
-                      <span className="text-sm text-muted-foreground">{category.color || "-"}</span>
+                      <span className="text-sm text-slate-body">{category.color || "-"}</span>
                     </div>
                   </TableCell>
-                  <TableCell>{category.icon || "-"}</TableCell>
-                  <TableCell className="max-w-md truncate">{category.description || "-"}</TableCell>
+                  <TableCell className="text-offwhite">{category.icon || "-"}</TableCell>
+                  <TableCell className="max-w-md truncate text-slate-body">{category.description || "-"}</TableCell>
                   <TableCell className="text-end pe-4">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
+                        <Button variant="ghost" className="h-8 w-8 p-0 text-slate-body hover:text-offwhite hover:bg-white/5">
                           <span className="sr-only">Open menu</span>
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>{t("actions")}</DropdownMenuLabel>
-                        <DropdownMenuItem onClick={() => handleEditClick(category)}>
+                      <DropdownMenuContent align="end" className="glass-strong border-white/10">
+                        <DropdownMenuLabel className="text-slate-body">{t("actions")}</DropdownMenuLabel>
+                        <DropdownMenuItem className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer" onClick={() => handleEditClick(category)}>
                           <Pencil className="me-2 h-4 w-4" />
                           {t("edit")}
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator />
+                        <DropdownMenuSeparator className="bg-white/10" />
                         <DropdownMenuItem
-                          className="text-destructive"
+                          className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer"
                           onClick={() => deleteCategoryAction(category._id!)}
                           disabled={isPending}
                         >

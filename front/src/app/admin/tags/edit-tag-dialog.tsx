@@ -60,10 +60,10 @@ export function EditTagDialog({ tag, open, onOpenChange }: EditTagDialogProps) {
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent>
+      <DialogContent className="glass-strong border-white/10">
         <DialogHeader>
-          <DialogTitle>{t("editTag") || "Edit Tag"}</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-offwhite">{t("editTag") || "Edit Tag"}</DialogTitle>
+          <DialogDescription className="text-slate-body">
             {t("editTagDescription") || "Update the details of this tag"}
           </DialogDescription>
         </DialogHeader>

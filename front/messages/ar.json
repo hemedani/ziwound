@@ -50,7 +50,10 @@
     "tagSelector": {
       "newTag": "إنشاء علامة جديدة",
       "search": "البحث في العلامات..."
-    }
+    },
+    "readMore": "اقرأ المزيد",
+    "unknown": "غير معروف",
+    "manage": "إدارة"
   },
   "auth": {
     "email": "البريد الإلكتروني",
@@ -579,7 +582,30 @@
     "war_crimes_events": "أحداث جرائم الحرب",
     "war_crimes_eventsPlaceholder": "أدخل أحداث جرائم الحرب",
     "liberation_info": "معلومات التحرير",
-    "liberation_infoPlaceholder": "أدخل معلومات التحرير"
+    "liberation_infoPlaceholder": "أدخل معلومات التحرير",
+    "exportCsv": "تصدير CSV",
+    "documentTypeImage": "صورة",
+    "documentTypeVideo": "فيديو",
+    "documentTypeDocument": "مستند",
+    "userAdded": "تمت إضافة المستخدم بنجاح",
+    "userAddFailed": "فشل في إضافة المستخدم",
+    "selectGender": "اختر الجنس",
+    "selectLevel": "اختر المستوى",
+    "firstNamePlaceholder": "الاسم الأول",
+    "lastNamePlaceholder": "اسم العائلة",
+    "fatherNamePlaceholder": "اسم الأب",
+    "addressPlaceholder": "العنوان الكامل",
+    "quickActions": "إجراءات سريعة",
+    "reportsByStatus": "التقارير حسب الحالة",
+    "reportsByPriority": "التقارير حسب الأولوية",
+    "reportsByCategory": "التقارير حسب الفئة",
+    "reportsByLanguage": "التقارير حسب اللغة",
+    "monthlyCreated": "التقارير المنشأة شهرياً",
+    "crimeMonthly": "الجرائم حسب شهر الوقوع",
+    "topLocations": "أفضل المواقع",
+    "provinces": "المحافظات",
+    "cities": "المدن",
+    "noData": "لا توجد بيانات متاحة"
   },
   "notFound": {
     "backHome": "العودة إلى الصفحة الرئيسية",
@@ -679,7 +705,8 @@
     "exportError": "فشل في تصدير البيانات.",
     "sharePage": "مشاركة الصفحة",
     "exportData": "تصدير البيانات",
-    "exportPDF": "تصدير PDF (قريباً)"
+    "exportPDF": "تصدير PDF (قريباً)",
+    "overline": "أرشيف"
   },
   "about": {
     "title": "معلومات عنا",
@@ -704,7 +731,8 @@
     "readyToContribute": "مستعد للمساهمة؟",
     "ctaDescription": "من خلال تقديم تقريرك، تساعد في توثيق التاريخ والمساهمة في تحقيق العدالة.",
     "submitReport": "إرسال تقرير",
-    "exploreData": "استكشاف البيانات"
+    "exploreData": "استكشاف البيانات",
+    "overline": "من نحن"
   },
   "contact": {
     "title": "اتصل بنا",
@@ -734,7 +762,8 @@
     "formError": "فشل في إرسال الرسالة. يرجى المحاولة مرة أخرى.",
     "successTitle": "تم إرسال الرسالة!",
     "successMessage": "شكراً لتواصلك معنا. سنرد عليك قريباً.",
-    "sendAnother": "إرسال رسالة أخرى"
+    "sendAnother": "إرسال رسالة أخرى",
+    "overline": "تواصل معنا"
   },
   "faq": {
     "title": "الأسئلة الشائعة",
@@ -824,7 +853,8 @@
     "section4Title": "حقوقك",
     "section4Content": "لديك الحق في الوصول إلى معلوماتك الشخصية أو تصحيحها أو حذفها. يمكنك أيضاً طلب نسخة من بياناتك أو الاعتراض على أنشطة المعالجة معينة. لممارسة هذه الحقوق، يرجى الاتصال بنا باستخدام المعلومات أدناه.",
     "contactTitle": "اتصل بنا",
-    "contactContent": "إذا كانت لديك أي أسئلة حول سياسة الخصوصية هذه أو ممارسات البيانات لدينا، يرجى الاتصال بنا على privacy@ziwound.org أو من خلال صفحة الاتصال."
+    "contactContent": "إذا كانت لديك أي أسئلة حول سياسة الخصوصية هذه أو ممارسات البيانات لدينا، يرجى الاتصال بنا على privacy@ziwound.org أو من خلال صفحة الاتصال.",
+    "overline": "قانوني"
   },
   "terms": {
     "title": "شروط الخدمة",
@@ -838,7 +868,8 @@
     "section4Title": "تحديد المسؤولية",
     "section4Content": "لن تكون زیوند ومشغلوها مسؤولين عن أي أضرار غير مباشرة أو عرضية أو خاصة أو تبعية أو عقابية تنشأ عن أو تتعلق باستخدامك للمنصة. نحن لا نقدم أي ضمانات حول دقة أو اكتمال المعلومات على المنصة.",
     "contactTitle": "معلومات الاتصال",
-    "contactContent": "للأسئلة حول شروط الخدمة هذه، يرجى الاتصال بنا على legal@ziwound.org أو من خلال صفحة الاتصال."
+    "contactContent": "للأسئلة حول شروط الخدمة هذه، يرجى الاتصال بنا على legal@ziwound.org أو من خلال صفحة الاتصال.",
+    "overline": "قانوني"
   },
   "help": {
     "title": "مركز المساعدة",
@@ -854,7 +885,8 @@
     "learnMore": "تعرف على المزيد",
     "stillNeedHelp": "هل ما زلت بحاجة إلى مساعدة؟",
     "contactPrompt": "لا تجد ما تبحث عنه؟ فريق الدعم لدينا جاهز لمساعدتك.",
-    "contactUs": "اتصل بنا"
+    "contactUs": "اتصل بنا",
+    "overline": "دعم"
   },
   "cookieConsent": {
     "title": "نستخدم ملفات تعريف الارتباط",
@@ -874,5 +906,15 @@
     "successDescription": "شكرًا لانضمامك إلى نشرتنا البريدية.",
     "errorTitle": "فشل الاشتراك",
     "errorDescription": "يرجى المحاولة مرة أخرى لاحقًا."
+  },
+  "blog": {
+    "overline": "القصص والتحديثات",
+    "title": "المدونة",
+    "description": "اقرأ أحدث أخبارنا ومقالاتنا",
+    "searchPlaceholder": "البحث في المقالات...",
+    "noPosts": "لم يتم العثور على مقالات.",
+    "author": "المؤلف",
+    "publishedAt": "تاريخ النشر",
+    "relatedPosts": "مقالات ذات صلة"
   }
 }

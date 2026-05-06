@@ -1,9 +1,17 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@font-face {
+  font-family: 'Estedad';
+  src: url('/fonts/Estedad/Estedad[wght].woff2') format('woff2');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-    --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
-    --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+    --font-sans: 'Estedad', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: ui-monospace, monospace;
 
     /* Premium Dark Palette — solemn, authoritative, memorial-like */
     --color-background: hsl(0 0% 4%);           /* #0a0a0a near-black */

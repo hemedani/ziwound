@@ -6,7 +6,6 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Link from "next/link";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -77,14 +76,20 @@ export default async function AdminBlogPage({
     <div className="space-y-6">
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-3xl font-bold tracking-tight">
+          <div className="mb-2 flex items-center gap-3">
+            <div className="h-px w-8 bg-crimson" />
+            <span className="text-xs font-medium uppercase tracking-[0.15em] text-gold">
+              {t("adminPanel") || "Admin Panel"}
+            </span>
+          </div>
+          <h1 className="text-3xl font-bold tracking-tight text-offwhite">
             {t("blogManagement") || "Blog Management"}
           </h1>
-          <p className="text-muted-foreground">
+          <p className="text-slate-body mt-1">
             {t("blogManagementDescription") || "Create, edit, and manage your blog articles"}
           </p>
         </div>
-        <Button asChild>
+        <Button asChild className="bg-crimson hover:bg-crimson-light text-white">
           <Link href="/admin/blog/new">
             <Plus className="mr-2 h-4 w-4" />
             {t("addPost") || "New Post"}
@@ -93,77 +98,79 @@ export default async function AdminBlogPage({
       </div>
 
       <div className="flex flex-col gap-4 mb-6">
-        <form method="GET" className="flex flex-wrap gap-4 w-full items-start sm:items-center">
+        <form method="GET" className="flex flex-wrap gap-4 w-full items-start sm:items-center rounded-2xl glass-light p-5 border border-white/[0.06]">
           <div className="relative w-full sm:w-64">
-            <Search className="absolute inset-y-0 start-0 m-auto ms-3 h-4 w-4 text-muted-foreground" />
+            <Search className="absolute inset-y-0 start-0 m-auto ms-3 h-4 w-4 text-slate-body" />
             <Input
               name="search"
               placeholder={t("searchPlaceholder") || "Search posts..."}
               defaultValue={search}
-              className="ps-9"
+              className="ps-9 bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
             />
           </div>
           <div className="w-full sm:w-48">
             <Select name="status" defaultValue={status}>
-              <SelectTrigger>
+              <SelectTrigger className="bg-white/5 border-white/10 text-offwhite focus:ring-crimson">
                 <SelectValue placeholder={t("status") || "Status"} />
               </SelectTrigger>
-              <SelectContent>
+              <SelectContent className="glass-strong border-white/10">
                 <SelectItem value="all">{t("allStatuses") || "All Statuses"}</SelectItem>
                 <SelectItem value="published">{t("published") || "Published"}</SelectItem>
                 <SelectItem value="draft">{t("draft") || "Draft"}</SelectItem>
               </SelectContent>
             </Select>
           </div>
-          <Button type="submit" variant="secondary">
+          <Button type="submit" className="bg-crimson hover:bg-crimson-light text-white">
             {t("applyFilters") || "Filter"}
           </Button>
         </form>
       </div>
 
       {error ? (
-        <div className="text-center py-8 bg-destructive/10 rounded-md border border-destructive/20">
-          <p className="text-destructive">{error}</p>
+        <div className="text-center py-8 rounded-md border border-white/[0.06]">
+          <p className="text-crimson-light">{error}</p>
         </div>
       ) : (
-        <div className="rounded-md border bg-card">
+        <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
           <Table>
             <TableHeader>
-              <TableRow>
-                <TableHead>{t("title") || "Title"}</TableHead>
-                <TableHead>{t("status") || "Status"}</TableHead>
-                <TableHead>{t("author") || "Author"}</TableHead>
-                <TableHead>{t("tags") || "Tags"}</TableHead>
-                <TableHead>{t("date") || "Date"}</TableHead>
-                <TableHead className="text-right">{t("actions") || "Actions"}</TableHead>
+              <TableRow className="border-white/[0.06] hover:bg-transparent">
+                <TableHead className="text-slate-body">{t("title") || "Title"}</TableHead>
+                <TableHead className="text-slate-body">{t("status") || "Status"}</TableHead>
+                <TableHead className="text-slate-body">{t("author") || "Author"}</TableHead>
+                <TableHead className="text-slate-body">{t("tags") || "Tags"}</TableHead>
+                <TableHead className="text-slate-body">{t("date") || "Date"}</TableHead>
+                <TableHead className="text-right text-slate-body">{t("actions") || "Actions"}</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {posts.length === 0 ? (
-                <TableRow>
-                  <TableCell colSpan={6} className="text-center py-8 text-muted-foreground">
+                <TableRow className="border-white/[0.06] hover:bg-white/[0.02]">
+                  <TableCell colSpan={6} className="text-center py-8 text-slate-body">
                     {t("noPosts") || "No blog posts found"}
                   </TableCell>
                 </TableRow>
               ) : (
                 posts.map((post) => (
-                  <TableRow key={post._id}>
+                  <TableRow key={post._id} className="border-white/[0.06] hover:bg-white/[0.02]">
                     <TableCell className="font-medium">
                       <div className="flex flex-col">
-                        <span>{post.title}</span>
-                        <span className="text-xs text-muted-foreground">/{post.slug}</span>
+                        <span className="text-offwhite">{post.title}</span>
+                        <span className="text-xs text-slate-body">/{post.slug}</span>
                       </div>
                     </TableCell>
                     <TableCell>
                       {post.isPublished ? (
-                        <Badge variant="default" className="bg-green-600 hover:bg-green-700">
+                        <span className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
                           {t("published") || "Published"}
-                        </Badge>
+                        </span>
                       ) : (
-                        <Badge variant="secondary">{t("draft") || "Draft"}</Badge>
+                        <span className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
+                          {t("draft") || "Draft"}
+                        </span>
                       )}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="text-offwhite">
                       {post.author?.first_name || post.author?.last_name
                         ? `${post.author.first_name || ""} ${post.author.last_name || ""}`.trim()
                         : "Admin"}
@@ -172,21 +179,21 @@ export default async function AdminBlogPage({
                       {post.tags && post.tags.length > 0 ? (
                         <div className="flex flex-wrap gap-1">
                           {post.tags.slice(0, 2).map((tag) => (
-                            <Badge key={tag._id} variant="outline" className="text-xs">
+                            <span key={tag._id} className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border bg-white/5 text-slate-body border-white/10">
                               {tag.name}
-                            </Badge>
+                            </span>
                           ))}
                           {post.tags.length > 2 && (
-                            <Badge variant="outline" className="text-xs">
+                            <span className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border bg-white/5 text-slate-body border-white/10">
                               +{post.tags.length - 2}
-                            </Badge>
+                            </span>
                           )}
                         </div>
                       ) : (
-                        <span className="text-muted-foreground">-</span>
+                        <span className="text-slate-body">-</span>
                       )}
                     </TableCell>
-                    <TableCell>
+                    <TableCell className="text-slate-body">
                       {post.publishedAt
                         ? new Date(post.publishedAt).toISOString().split("T")[0]
                         : post.createdAt
@@ -195,18 +202,18 @@ export default async function AdminBlogPage({
                     </TableCell>
                     <TableCell className="text-right">
                       <DropdownMenu>
-                        <DropdownMenuTrigger className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 hover:bg-accent hover:text-accent-foreground h-8 w-8 p-0">
+                        <DropdownMenuTrigger className="inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-crimson focus-visible:ring-offset-2 focus-visible:ring-offset-background disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 text-slate-body hover:text-offwhite hover:bg-white/5 h-8 w-8 p-0">
                           <span className="sr-only">Open menu</span>
                           <MoreHorizontal className="h-4 w-4" />
                         </DropdownMenuTrigger>
-                        <DropdownMenuContent align="end">
-                          <DropdownMenuItem asChild>
+                        <DropdownMenuContent align="end" className="glass-strong border-white/10">
+                          <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
                             <Link href={`/blog/${post.slug}`} target="_blank">
                               <Eye className="mr-2 h-4 w-4" />
                               {t("viewDetails") || "View"}
                             </Link>
                           </DropdownMenuItem>
-                          <DropdownMenuItem asChild>
+                          <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
                             <Link href={`/admin/blog/${post._id}/edit`}>
                               <Edit className="mr-2 h-4 w-4" />
                               {tCommon("edit") || "Edit"}
@@ -225,13 +232,13 @@ export default async function AdminBlogPage({
       )}
 
       {!error && posts.length > 0 && (
-        <div className="flex items-center justify-end space-x-2 py-4">
+        <div className="flex items-center justify-end gap-2 py-4">
           <Button
             variant="outline"
             size="sm"
             asChild
             disabled={page <= 1}
-            className={page <= 1 ? "pointer-events-none opacity-50" : ""}
+            className={page <= 1 ? "pointer-events-none border-white/10 bg-white/5 text-offwhite opacity-30" : "border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white"}
           >
             <Link
               href={`/admin/blog?page=${page - 1}${search ? `&search=${search}` : ""}${
@@ -241,7 +248,7 @@ export default async function AdminBlogPage({
               {tCommon("previous") || "Previous"}
             </Link>
           </Button>
-          <span className="text-sm text-muted-foreground px-2">
+          <span className="text-sm text-slate-body px-2">
             {page} / {totalPages}
           </span>
           <Button
@@ -249,7 +256,7 @@ export default async function AdminBlogPage({
             size="sm"
             asChild
             disabled={page >= totalPages}
-            className={page >= totalPages ? "pointer-events-none opacity-50" : ""}
+            className={page >= totalPages ? "pointer-events-none border-white/10 bg-white/5 text-offwhite opacity-30" : "border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white"}
           >
             <Link
               href={`/admin/blog?page=${page + 1}${search ? `&search=${search}` : ""}${

@@ -50,7 +50,10 @@
     "tagSelector": {
       "newTag": "Yeni etiket oluştur",
       "search": "Etiketleri ara..."
-    }
+    },
+    "readMore": "Devamını Oku",
+    "unknown": "Bilinmiyor",
+    "manage": "Yönet"
   },
   "auth": {
     "email": "E-posta",
@@ -579,7 +582,30 @@
     "war_crimes_events": "Savaş Suçları Olayları",
     "war_crimes_eventsPlaceholder": "Savaş suçları olaylarını girin",
     "liberation_info": "Kurtuluş Bilgisi",
-    "liberation_infoPlaceholder": "Kurtuluş bilgisini girin"
+    "liberation_infoPlaceholder": "Kurtuluş bilgisini girin",
+    "exportCsv": "CSV Dışa Aktar",
+    "documentTypeImage": "Görsel",
+    "documentTypeVideo": "Video",
+    "documentTypeDocument": "Belge",
+    "userAdded": "Kullanıcı başarıyla eklendi",
+    "userAddFailed": "Kullanıcı eklenemedi",
+    "selectGender": "Cinsiyet seç",
+    "selectLevel": "Seviye seç",
+    "firstNamePlaceholder": "Ad",
+    "lastNamePlaceholder": "Soyad",
+    "fatherNamePlaceholder": "Baba adı",
+    "addressPlaceholder": "Tam adres",
+    "quickActions": "Hızlı İşlemler",
+    "reportsByStatus": "Duruma Göre Raporlar",
+    "reportsByPriority": "Önceliğe Göre Raporlar",
+    "reportsByCategory": "Kategoriye Göre Raporlar",
+    "reportsByLanguage": "Dile Göre Raporlar",
+    "monthlyCreated": "Aylık Oluşturulan Raporlar",
+    "crimeMonthly": "Vukuat Ayına Göre Suçlar",
+    "topLocations": "En İyi Konumlar",
+    "provinces": "İller",
+    "cities": "Şehirler",
+    "noData": "Veri mevcut değil"
   },
   "notFound": {
     "backHome": "Ana Sayfaya Dön",
@@ -685,7 +711,8 @@
     "exportError": "Veriler dışa aktarılamadı.",
     "sharePage": "Sayfayı Paylaş",
     "exportData": "Verileri Dışa Aktar",
-    "exportPDF": "PDF Dışa Aktar (Yakında)"
+    "exportPDF": "PDF Dışa Aktar (Yakında)",
+    "overline": "Arşiv"
   },
   "about": {
     "title": "Hakkımızda",
@@ -710,7 +737,8 @@
     "readyToContribute": "Katkıda Bulunmaya Hazır mısınız?",
     "ctaDescription": "Raporunuzu göndererek tarihi belgelemeye ve adaletin sağlanmasına katkıda bulunursunuz.",
     "submitReport": "Rapor Gönder",
-    "exploreData": "Verileri Keşfet"
+    "exploreData": "Verileri Keşfet",
+    "overline": "Hakkımızda"
   },
   "contact": {
     "title": "İletişim",
@@ -740,7 +768,8 @@
     "formError": "Mesaj gönderilemedi. Lütfen tekrar deneyin.",
     "successTitle": "Mesaj Gönderildi!",
     "successMessage": "İletişim kurduğunuz için teşekkür ederiz. Kısa sürede size dönüş yapacağız.",
-    "sendAnother": "Başka Mesaj Gönder"
+    "sendAnother": "Başka Mesaj Gönder",
+    "overline": "Bize Ulaşın"
   },
   "faq": {
     "title": "Sıkça Sorulan Sorular",
@@ -830,7 +859,8 @@
     "section4Title": "Haklarınız",
     "section4Content": "Kişisel bilgilerinize erişme, düzeltme veya silme hakkına sahipsiniz. Ayrıca verilerinizin bir kopyasını talep edebilir veya belirli işleme faaliyetlerine itiraz edebilirsiniz. Bu hakları kullanmak için lütfen aşağıdaki bilgileri kullanarak bizimle iletişime geçin.",
     "contactTitle": "Bize Ulaşın",
-    "contactContent": "Bu Gizlilik Politikası veya veri uygulamalarımız hakkında herhangi bir sorunuz varsa, lütfen privacy@ziwound.org adresinden veya iletişim sayfamızdan bizimle iletişime geçin."
+    "contactContent": "Bu Gizlilik Politikası veya veri uygulamalarımız hakkında herhangi bir sorunuz varsa, lütfen privacy@ziwound.org adresinden veya iletişim sayfamızdan bizimle iletişime geçin.",
+    "overline": "Yasal"
   },
   "terms": {
     "title": "Kullanım Koşulları",
@@ -844,7 +874,8 @@
     "section4Title": "Sorumluluk Sınırlaması",
     "section4Content": "Ziwound ve işletmecileri, platformun kullanımından kaynaklanan veya bununla ilgili herhangi bir dolaylı, arızi, özel, netice veya cezai zarardan sorumlu olmayacaktır. Platformdaki bilgilerin doğruluğu veya bütünlüğü hakkında herhangi bir garanti vermiyoruz.",
     "contactTitle": "İletişim Bilgileri",
-    "contactContent": "Bu Kullanım Koşulları hakkında sorularınız için lütfen legal@ziwound.org adresinden veya iletişim sayfamızdan bizimle iletişime geçin."
+    "contactContent": "Bu Kullanım Koşulları hakkında sorularınız için lütfen legal@ziwound.org adresinden veya iletişim sayfamızdan bizimle iletişime geçin.",
+    "overline": "Yasal"
   },
   "help": {
     "title": "Yardım Merkezi",
@@ -860,7 +891,8 @@
     "learnMore": "Daha Fazla Bilgi",
     "stillNeedHelp": "Hala Yardıma mı İhtiyacınız Var?",
     "contactPrompt": "Aradığınızı bulamadınız mı? Destek ekibimiz yardıma hazır.",
-    "contactUs": "Bize Ulaşın"
+    "contactUs": "Bize Ulaşın",
+    "overline": "Destek"
   },
   "cookieConsent": {
     "title": "Çerez kullanıyoruz",
@@ -880,5 +912,15 @@
     "successDescription": "Bültenimize katıldığınız için teşekkürler.",
     "errorTitle": "Abonelik başarısız",
     "errorDescription": "Lütfen daha sonra tekrar deneyin."
+  },
+  "blog": {
+    "overline": "Hikayeler ve Güncellemeler",
+    "title": "Blog",
+    "description": "En son haberlerimizi ve makalelerimizi okuyun",
+    "searchPlaceholder": "Makale ara...",
+    "noPosts": "Blog gönderisi bulunamadı.",
+    "author": "Yazar",
+    "publishedAt": "Yayınlanma Tarihi",
+    "relatedPosts": "İlgili Makaleler"
   }
 }

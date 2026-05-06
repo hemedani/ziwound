@@ -59,10 +59,10 @@ export function AddCategoryDialog() {
           {t("addCategory") || "Add Category"}
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="glass-strong border-white/10">
         <DialogHeader>
-          <DialogTitle>{t("addCategory") || "Add Category"}</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-offwhite">{t("addCategory") || "Add Category"}</DialogTitle>
+          <DialogDescription className="text-slate-body">
             {t("addCategoryDescription") || "Create a new category for reports"}
           </DialogDescription>
         </DialogHeader>

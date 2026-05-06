@@ -3,7 +3,7 @@
 import { getImageUploadUrl } from "@/utils/imageUrl";
 import { useTranslations } from "next-intl";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Badge } from "@/components/ui/badge";
+
 import { Button } from "@/components/ui/button";
 import { fileSchema } from "@/types/declarations";
 import { format } from "date-fns";
@@ -34,7 +34,7 @@ export function FilesTable({ files, error }: FilesTableProps) {
 
   if (error) {
     return (
-      <div className="rounded-md border p-8 text-center text-destructive">
+      <div className="rounded-md border border-white/[0.06] p-8 text-center text-crimson-light">
         <p>{error}</p>
       </div>
     );
@@ -42,7 +42,7 @@ export function FilesTable({ files, error }: FilesTableProps) {
 
   if (!files || files.length === 0) {
     return (
-      <div className="rounded-md border p-8 text-center text-muted-foreground">
+      <div className="rounded-md border border-white/[0.06] p-8 text-center text-slate-body">
         <p>{t("noFilesFound") || "No files found"}</p>
       </div>
     );
@@ -66,57 +66,49 @@ export function FilesTable({ files, error }: FilesTableProps) {
   };
 
   const getFileTypeBadge = (mimeType?: string) => {
+    const baseClass = "inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border";
     if (!mimeType)
       return (
-        <Badge variant="secondary" className="bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300">
+        <span className={`${baseClass} bg-white/5 text-slate-body border-white/10`}>
           {t("document") || "Document"}
-        </Badge>
+        </span>
       );
     if (mimeType.startsWith("image/"))
       return (
-        <Badge
-          variant="secondary"
-          className="bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300"
-        >
+        <span className={`${baseClass} bg-white/5 text-slate-body border-white/10`}>
           {t("image") || "Image"}
-        </Badge>
+        </span>
       );
     if (mimeType.startsWith("video/"))
       return (
-        <Badge
-          variant="secondary"
-          className="bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300"
-        >
+        <span className={`${baseClass} bg-white/5 text-slate-body border-white/10`}>
           {t("video") || "Video"}
-        </Badge>
+        </span>
       );
     return (
-      <Badge
-        variant="secondary"
-        className="bg-gray-100 text-gray-800 dark:bg-gray-800 dark:text-gray-300"
-      >
+      <span className={`${baseClass} bg-white/5 text-slate-body border-white/10`}>
         {t("document") || "Document"}
-      </Badge>
+      </span>
     );
   };
 
   return (
-    <div className="rounded-md border overflow-hidden">
+    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead>{t("filename") || "Filename"}</TableHead>
-            <TableHead>{t("type") || "Type"}</TableHead>
-            <TableHead>{t("size") || "Size"}</TableHead>
-            <TableHead>{t("uploadedBy") || "Uploaded By"}</TableHead>
-            <TableHead>{t("date") || "Date"}</TableHead>
-            <TableHead className="text-end">{t("actions") || "Actions"}</TableHead>
+          <TableRow className="border-white/[0.06] hover:bg-transparent">
+            <TableHead className="text-slate-body">{t("filename") || "Filename"}</TableHead>
+            <TableHead className="text-slate-body">{t("type") || "Type"}</TableHead>
+            <TableHead className="text-slate-body">{t("size") || "Size"}</TableHead>
+            <TableHead className="text-slate-body">{t("uploadedBy") || "Uploaded By"}</TableHead>
+            <TableHead className="text-slate-body">{t("date") || "Date"}</TableHead>
+            <TableHead className="text-end text-slate-body">{t("actions") || "Actions"}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {files.map((file) => (
-            <TableRow key={file._id}>
-              <TableCell className="font-medium">
+            <TableRow key={file._id} className="border-white/[0.06] hover:bg-white/[0.02]">
+              <TableCell className="font-medium text-offwhite">
                 <div className="flex items-center gap-2">
                   {getFileIcon(file.mimeType)}
                   <span className="truncate max-w-[200px]" title={file.name}>
@@ -125,30 +117,30 @@ export function FilesTable({ files, error }: FilesTableProps) {
                 </div>
               </TableCell>
               <TableCell>{getFileTypeBadge(file.mimeType)}</TableCell>
-              <TableCell className="text-muted-foreground whitespace-nowrap">
+              <TableCell className="text-slate-body whitespace-nowrap">
                 {formatFileSize(file.size)}
               </TableCell>
               <TableCell>
                 <div className="flex flex-col">
-                  <span>
+                  <span className="text-offwhite">
                     {file.uploader?.first_name} {file.uploader?.last_name}
                   </span>
-                  <span className="text-xs text-muted-foreground">{file.uploader?.email}</span>
+                  <span className="text-xs text-slate-body">{file.uploader?.email}</span>
                 </div>
               </TableCell>
-              <TableCell className="whitespace-nowrap text-muted-foreground">
+              <TableCell className="whitespace-nowrap text-slate-body">
                 {file.createdAt ? format(new Date(file.createdAt), "yyyy/MM/dd") : "-"}
               </TableCell>
               <TableCell className="text-end">
                 <DropdownMenu>
                   <DropdownMenuTrigger asChild>
-                    <Button variant="ghost" className="h-8 w-8 p-0">
+                    <Button variant="ghost" className="h-8 w-8 p-0 text-slate-body hover:text-offwhite hover:bg-white/5">
                       <span className="sr-only">Open menu</span>
                       <MoreHorizontal className="h-4 w-4" />
                     </Button>
                   </DropdownMenuTrigger>
-                  <DropdownMenuContent align="end">
-                    <DropdownMenuLabel>{t("actions") || "Actions"}</DropdownMenuLabel>
+                  <DropdownMenuContent align="end" className="glass-strong border-white/10">
+                    <DropdownMenuLabel className="text-slate-body">{t("actions") || "Actions"}</DropdownMenuLabel>
                     <DropdownMenuItem
                       onClick={() =>
                         window.open(
@@ -156,13 +148,13 @@ export function FilesTable({ files, error }: FilesTableProps) {
                           "_blank",
                         )
                       }
-                      className="cursor-pointer"
+                      className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer"
                     >
                       <Eye className="me-2 h-4 w-4" />
                       {t("view") || "View"}
                     </DropdownMenuItem>
                     <DropdownMenuItem
-                      className="text-destructive focus:text-destructive cursor-pointer"
+                      className="text-crimson-light focus:bg-white/10 focus:text-offwhite cursor-pointer"
                       onClick={() => alert("Delete functionality not implemented yet")}
                     >
                       <Trash2 className="me-2 h-4 w-4" />

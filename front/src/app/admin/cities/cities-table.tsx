@@ -71,48 +71,48 @@ export function CitiesTable({ cities, provinces, error }: CitiesTableProps) {
   };
 
   return (
-    <div className="rounded-md border bg-card">
+    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead>{t("name") || "Name (Local)"}</TableHead>
-            <TableHead>{t("englishName") || "Name (English)"}</TableHead>
-            <TableHead>{t("province") || "Province"}</TableHead>
-            <TableHead className="text-end pe-4">{t("actions")}</TableHead>
+          <TableRow className="border-white/[0.06] hover:bg-transparent">
+            <TableHead className="text-slate-body">{t("name") || "Name (Local)"}</TableHead>
+            <TableHead className="text-slate-body">{t("englishName") || "Name (English)"}</TableHead>
+            <TableHead className="text-slate-body">{t("province") || "Province"}</TableHead>
+            <TableHead className="text-end pe-4 text-slate-body">{t("actions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {cities.length === 0 ? (
-            <TableRow>
-              <TableCell colSpan={4} className="h-24 text-center">
+            <TableRow className="border-white/[0.06] hover:bg-white/[0.02]">
+              <TableCell colSpan={4} className="h-24 text-center text-slate-body">
                 {t("noCities") || "No cities found"}
               </TableCell>
             </TableRow>
           ) : (
             cities.map((city) => (
-              <TableRow key={city._id}>
-                <TableCell className="font-medium">{city.name}</TableCell>
-                <TableCell>{city.english_name}</TableCell>
-                <TableCell>{getProvinceName(city.province?._id)}</TableCell>
+              <TableRow key={city._id} className="border-white/[0.06] hover:bg-white/[0.02]">
+                <TableCell className="font-medium text-offwhite">{city.name}</TableCell>
+                <TableCell className="text-slate-body">{city.english_name}</TableCell>
+                <TableCell className="text-slate-body">{getProvinceName(city.province?._id)}</TableCell>
                 <TableCell className="text-end pe-4">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="h-8 w-8 p-0">
+                      <Button variant="ghost" className="h-8 w-8 p-0 text-slate-body hover:text-offwhite hover:bg-white/5">
                         <span className="sr-only">Open menu</span>
                         <MoreHorizontal className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>{t("actions")}</DropdownMenuLabel>
-                      <DropdownMenuItem asChild>
+                    <DropdownMenuContent align="end" className="glass-strong border-white/10">
+                      <DropdownMenuLabel className="text-slate-body">{t("actions")}</DropdownMenuLabel>
+                      <DropdownMenuItem className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer" asChild>
                         <Link href={`/admin/cities/${city._id}/edit`}>
                           <Pencil className="me-2 h-4 w-4" />
                           {t("edit")}
                         </Link>
                       </DropdownMenuItem>
-                      <DropdownMenuSeparator />
+                      <DropdownMenuSeparator className="bg-white/10" />
                       <DropdownMenuItem
-                        className="text-destructive"
+                        className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer"
                         onClick={() => deleteCityAction(city._id!)}
                         disabled={isPending}
                       >

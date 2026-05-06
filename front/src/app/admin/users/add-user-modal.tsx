@@ -64,7 +64,7 @@ export function AddUserModal() {
       if (res?.success) {
         toast({
           title: t("success") || "Success",
-          description: "User added successfully",
+          description: t("userAdded"),
         });
         setIsOpen(false);
         form.reset();
@@ -75,14 +75,14 @@ export function AddUserModal() {
         toast({
           variant: "destructive",
           title: t("error") || "Error",
-          description: res?.error || "Failed to add user",
+          description: res?.error || t("userAddFailed"),
         });
       }
     } catch (error) {
       toast({
         variant: "destructive",
         title: t("error") || "Error",
-        description: "An unexpected error occurred",
+        description: t("unexpectedError"),
       });
     }
   }
@@ -109,7 +109,7 @@ export function AddUserModal() {
                   <FormItem>
                     <FormLabel>{t("firstName") || "First Name"}</FormLabel>
                     <FormControl>
-                      <Input placeholder="John" {...field} />
+                      <Input placeholder={t("firstNamePlaceholder") || "First name"} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -122,7 +122,7 @@ export function AddUserModal() {
                   <FormItem>
                     <FormLabel>{t("lastName") || "Last Name"}</FormLabel>
                     <FormControl>
-                      <Input placeholder="Doe" {...field} />
+                      <Input placeholder={t("lastNamePlaceholder") || "Last name"} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -135,7 +135,7 @@ export function AddUserModal() {
                   <FormItem>
                     <FormLabel>{t("fatherName") || "Father Name"}</FormLabel>
                     <FormControl>
-                      <Input placeholder="Smith" {...field} />
+                      <Input placeholder={t("fatherNamePlaceholder") || "Father name"} {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
@@ -176,7 +176,7 @@ export function AddUserModal() {
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select gender" />
+                          <SelectValue placeholder={t("selectGender")} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -197,7 +197,7 @@ export function AddUserModal() {
                     <Select onValueChange={field.onChange} defaultValue={field.value}>
                       <FormControl>
                         <SelectTrigger>
-                          <SelectValue placeholder="Select level" />
+                          <SelectValue placeholder={t("selectLevel")} />
                         </SelectTrigger>
                       </FormControl>
                       <SelectContent>
@@ -233,7 +233,7 @@ export function AddUserModal() {
                 <FormItem>
                   <FormLabel>{t("address") || "Address"}</FormLabel>
                   <FormControl>
-                    <Input placeholder="Full Address" {...field} />
+                    <Input placeholder={t("addressPlaceholder") || "Full address"} {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>

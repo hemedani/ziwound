@@ -71,48 +71,48 @@ export function ProvincesTable({ provinces, countries, error }: ProvincesTablePr
   };
 
   return (
-    <div className="rounded-md border bg-card">
+    <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
       <Table>
         <TableHeader>
-          <TableRow>
-            <TableHead>{t("name") || "Name (Local)"}</TableHead>
-            <TableHead>{t("englishName") || "Name (English)"}</TableHead>
-            <TableHead>{t("country") || "Country"}</TableHead>
-            <TableHead className="text-end pe-4">{t("actions")}</TableHead>
+          <TableRow className="border-white/[0.06] hover:bg-transparent">
+            <TableHead className="text-slate-body">{t("name") || "Name (Local)"}</TableHead>
+            <TableHead className="text-slate-body">{t("englishName") || "Name (English)"}</TableHead>
+            <TableHead className="text-slate-body">{t("country") || "Country"}</TableHead>
+            <TableHead className="text-end pe-4 text-slate-body">{t("actions")}</TableHead>
           </TableRow>
         </TableHeader>
         <TableBody>
           {provinces.length === 0 ? (
-            <TableRow>
-              <TableCell colSpan={4} className="h-24 text-center">
+            <TableRow className="border-white/[0.06] hover:bg-white/[0.02]">
+              <TableCell colSpan={4} className="h-24 text-center text-slate-body">
                 {t("noProvinces") || "No provinces found"}
               </TableCell>
             </TableRow>
           ) : (
             provinces.map((province) => (
-              <TableRow key={province._id}>
-                <TableCell className="font-medium">{province.name}</TableCell>
-                <TableCell>{province.english_name}</TableCell>
-                <TableCell>{getCountryName(province.country?._id)}</TableCell>
+              <TableRow key={province._id} className="border-white/[0.06] hover:bg-white/[0.02]">
+                <TableCell className="font-medium text-offwhite">{province.name}</TableCell>
+                <TableCell className="text-slate-body">{province.english_name}</TableCell>
+                <TableCell className="text-slate-body">{getCountryName(province.country?._id)}</TableCell>
                 <TableCell className="text-end pe-4">
                   <DropdownMenu>
                     <DropdownMenuTrigger asChild>
-                      <Button variant="ghost" className="h-8 w-8 p-0">
+                      <Button variant="ghost" className="h-8 w-8 p-0 text-slate-body hover:text-offwhite hover:bg-white/5">
                         <span className="sr-only">Open menu</span>
                         <MoreHorizontal className="h-4 w-4" />
                       </Button>
                     </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                      <DropdownMenuLabel>{t("actions")}</DropdownMenuLabel>
-                      <DropdownMenuItem asChild>
+                    <DropdownMenuContent align="end" className="glass-strong border-white/10">
+                      <DropdownMenuLabel className="text-slate-body">{t("actions")}</DropdownMenuLabel>
+                      <DropdownMenuItem className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer" asChild>
                         <Link href={`/admin/provinces/${province._id}/edit`}>
                           <Pencil className="me-2 h-4 w-4" />
                           {t("edit")}
                         </Link>
                       </DropdownMenuItem>
-                      <DropdownMenuSeparator />
+                      <DropdownMenuSeparator className="bg-white/10" />
                       <DropdownMenuItem
-                        className="text-destructive"
+                        className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer"
                         onClick={() => deleteProvinceAction(province._id!)}
                         disabled={isPending}
                       >

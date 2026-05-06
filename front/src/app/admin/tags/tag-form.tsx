@@ -62,7 +62,7 @@ export function TagForm({ initialData, onSubmit, onCancel }: TagFormProps) {
             <FormItem>
               <FormLabel>{t("tagName") || "Tag Name"}</FormLabel>
               <FormControl>
-                <Input placeholder={t("enterTagName") || "e.g. Urgent"} {...field} />
+                <Input placeholder={t("enterTagName") || "e.g. Urgent"} {...field} className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -78,7 +78,7 @@ export function TagForm({ initialData, onSubmit, onCancel }: TagFormProps) {
               <FormControl>
                 <Textarea
                   placeholder={t("enterTagDescription") || "Describe what this tag is used for"}
-                  className="resize-none"
+                  className="resize-none bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
                   {...field}
                 />
               </FormControl>
@@ -96,10 +96,10 @@ export function TagForm({ initialData, onSubmit, onCancel }: TagFormProps) {
                 <FormLabel>{t("color") || "Color"}</FormLabel>
                 <div className="flex gap-2 items-center">
                   <FormControl>
-                    <Input type="color" className="w-12 h-10 p-1 cursor-pointer" {...field} />
+                    <Input type="color" className="w-12 h-10 p-1 cursor-pointer bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson" {...field} />
                   </FormControl>
                   <FormControl>
-                    <Input placeholder="#000000" {...field} className="flex-1" />
+                    <Input placeholder="#000000" {...field} className="flex-1 bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson" />
                   </FormControl>
                 </div>
                 <FormMessage />

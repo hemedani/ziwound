@@ -59,10 +59,10 @@ export function AddTagDialog() {
           {t("addTag") || "Add Tag"}
         </Button>
       </DialogTrigger>
-      <DialogContent>
+      <DialogContent className="glass-strong border-white/10">
         <DialogHeader>
-          <DialogTitle>{t("addTag") || "Add Tag"}</DialogTitle>
-          <DialogDescription>
+          <DialogTitle className="text-offwhite">{t("addTag") || "Add Tag"}</DialogTitle>
+          <DialogDescription className="text-slate-body">
             {t("addTagDescription") || "Create a new tag for reports"}
           </DialogDescription>
         </DialogHeader>

@@ -169,7 +169,7 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
             <FormItem>
               <FormLabel>{t("title")}</FormLabel>
               <FormControl>
-                <Input placeholder={t("titlePlaceholder") || "Enter document title"} {...field} />
+                <Input placeholder={t("titlePlaceholder") || "Enter document title"} {...field} className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson" />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -184,11 +184,11 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
               <FormLabel>{t("language") || "Language"}</FormLabel>
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
-                  <SelectTrigger>
+                  <SelectTrigger className="bg-white/5 border-white/10 text-offwhite focus:ring-crimson">
                     <SelectValue placeholder={t("languagePlaceholder") || "Select a language"} />
                   </SelectTrigger>
                 </FormControl>
-                <SelectContent>
+                <SelectContent className="glass-strong border-white/10">
                   {languages.map((lang) => (
                     <SelectItem key={lang.code} value={lang.code}>
                       {lang.name}
@@ -210,7 +210,7 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
               <FormControl>
                 <Textarea
                   placeholder={t("descriptionPlaceholder") || "Enter document description"}
-                  className="min-h-[100px]"
+                  className="min-h-[100px] bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
                   {...field}
                 />
               </FormControl>
@@ -239,7 +239,7 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
         />
 
         <div className="flex gap-4">
-          <Button type="submit" disabled={isLoading}>
+          <Button type="submit" disabled={isLoading} className="bg-crimson hover:bg-crimson-light text-white">
             {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
             {isEditing ? tCommon("save") : tCommon("create")}
           </Button>
@@ -248,6 +248,7 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
             variant="outline"
             onClick={() => router.push("/admin/documents")}
             disabled={isLoading}
+            className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white"
           >
             {tCommon("cancel")}
           </Button>

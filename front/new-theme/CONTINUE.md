@@ -54,6 +54,9 @@ You are implementing the new sleek dark theme (deep blacks `#0a0a0a`, crimson `#
 - `variant="gold"` — secondary/highlight button
 - `variant="glass"` — subtle action on dark backgrounds
 
+## Font
+The default font is **Estedad** (variable font at `public/fonts/Estedad/Estedad[wght].woff2`). It supports Persian, Arabic, Latin, and many other scripts. Loaded via `@font-face` in `globals.css`.
+
 ## Translation Workflow
 
 When adding ANY new UI text:
@@ -88,21 +91,32 @@ For every page you redesign, verify in Persian (`/fa/`):
 - ✅ Phase 4: Auth pages (login/register) redesigned with dark glass cards, crimson accents
 - ✅ Phase 5: Report pages redesigned (My Reports, New Report, Report Detail)
 - ✅ Phase 6: War Crimes page header and filters container restyled
+- ✅ Phase 7: Blog pages redesigned (listing + detail)
 - ✅ Phase 8: All static pages redesigned (About, Contact, FAQ, Privacy, Terms, Help)
-- ✅ ContactForm and FAQContent components restyled
+- ✅ Phase 9: Admin panel fully restyled (dashboard, reports, users, tags, categories, countries, provinces, cities, files, documents, blog, sidebar)
+- ✅ Admin dashboard fetches real statistics from backend `report/statistics` endpoint
+- ✅ Phase 10: Translation audit — hardcoded strings fixed across admin, blog, reports
+- ✅ Font updated to Estedad for multi-script support
+- ✅ PWA manifest updated with Ziwound branding and dark colors
+- ✅ Global error page styled with dark theme
 
 ## What's Next (Immediate)
 
 ### Remaining Phases:
 
-1. **Phase 7: Blog Pages** (`/[locale]/blog`, `/[locale]/blog/[slug]`)
-2. **Phase 9: Admin Panel** (`/admin/*` — all admin pages)
-3. **Phase 10: Multi-language completion** — audit all components for hardcoded strings
-4. **Phase 11: Polish & optimization** — Lighthouse, accessibility, mobile, PWA
+1. **Phase 11: Polish & optimization** — Lighthouse, accessibility, mobile, PWA, loading states
+2. **Phase 12: Backend Integration (Future)** — Add `HeroSlide` model, connect map hotspots, real-time stats
 
-### Current Step: Phase 7 — Blog Pages
+### Current Step: Phase 11 — Polish & Optimization
 
-Redesign blog listing and post detail pages with dark theme.
+- [ ] Image optimization — replace Unsplash placeholders with real imagery or optimized assets.
+- [ ] Lazy load heavy components (HeroSlider images, maps).
+- [ ] Add `loading.tsx` to all routes for dark skeleton states.
+- [ ] Add `error.tsx` to all routes for graceful error UI.
+- [ ] Performance audit — Lighthouse 90+ scores.
+- [ ] Accessibility audit — screen reader testing, keyboard-only navigation.
+- [ ] Mobile responsiveness audit — all pages at 320px+.
+- [ ] Final build verification (`pnpm build` passes with zero errors).
 
 ## How to Proceed
 

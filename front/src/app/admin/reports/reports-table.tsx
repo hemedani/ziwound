@@ -210,25 +210,26 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
   return (
     <div className="space-y-4">
       <div className="flex justify-end">
-        <Button variant="outline" onClick={handleExportCSV} disabled={reports.length === 0}>
-          Export CSV
+        <Button variant="outline" onClick={handleExportCSV} disabled={reports.length === 0} className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white">
+          {t("exportCsv")}
         </Button>
       </div>
 
       {selectedIds.length > 0 && (
-        <div className="flex items-center gap-2 p-2 rounded-md bg-muted/50 border">
-          <span className="text-sm font-medium ms-2">{selectedIds.length} selected</span>
+        <div className="flex items-center gap-2 p-3 rounded-xl glass-light border border-white/[0.06]">
+          <span className="text-sm font-medium ms-2 text-offwhite">{selectedIds.length} selected</span>
           <div className="flex-1" />
           <Button
             variant="outline"
             size="sm"
             onClick={() => handleBulkUpdate("Approved")}
             disabled={isPending}
+            className="border-emerald-500/30 text-emerald-400 hover:bg-emerald-500/10 hover:text-emerald-300"
           >
             {isPending ? (
               <Loader2 className="me-2 h-4 w-4 animate-spin" />
             ) : (
-              <Check className="me-2 h-4 w-4 text-green-500" />
+              <Check className="me-2 h-4 w-4" />
             )}
             {t("approve")}
           </Button>
@@ -237,15 +238,16 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
             size="sm"
             onClick={() => handleBulkUpdate("Rejected")}
             disabled={isPending}
+            className="border-crimson/30 text-crimson-light hover:bg-crimson/10 hover:text-crimson"
           >
             {isPending ? (
               <Loader2 className="me-2 h-4 w-4 animate-spin" />
             ) : (
-              <X className="me-2 h-4 w-4 text-red-500" />
+              <X className="me-2 h-4 w-4" />
             )}
             {t("reject")}
           </Button>
-          <Button variant="destructive" size="sm" onClick={handleBulkDelete} disabled={isPending}>
+          <Button variant="destructive" size="sm" onClick={handleBulkDelete} disabled={isPending} className="bg-crimson hover:bg-crimson-light">
             {isPending ? (
               <Loader2 className="me-2 h-4 w-4 animate-spin" />
             ) : (
@@ -256,39 +258,39 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
         </div>
       )}
 
-      <div className="rounded-md border bg-card">
+      <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
         <Table>
           <TableHeader>
-            <TableRow>
-              <TableHead className="w-[40px] ps-4">
+            <TableRow className="border-white/[0.06] hover:bg-transparent">
+              <TableHead className="w-[40px] ps-4 text-slate-body">
                 <Checkbox
                   checked={reports.length > 0 && selectedIds.length === reports.length}
                   onCheckedChange={toggleAll}
                   aria-label="Select all"
                 />
               </TableHead>
-              <TableHead>{t("title")}</TableHead>
-              <TableHead>{t("category")}</TableHead>
-              <TableHead>{t("hostileCountries") || "Hostile Countries"}</TableHead>
-              <TableHead>{t("attackedCountries") || "Attacked Countries"}</TableHead>
-              <TableHead>{t("attackedProvinces") || "Attacked Provinces"}</TableHead>
-              <TableHead>{t("attackedCities") || "Attacked Cities"}</TableHead>
-              <TableHead>{t("status")}</TableHead>
-              <TableHead>{t("priority")}</TableHead>
-              <TableHead>{t("date")}</TableHead>
-              <TableHead className="text-end pe-4">{t("actions")}</TableHead>
+              <TableHead className="text-slate-body">{t("title")}</TableHead>
+              <TableHead className="text-slate-body">{t("category")}</TableHead>
+              <TableHead className="text-slate-body">{t("hostileCountries") || "Hostile Countries"}</TableHead>
+              <TableHead className="text-slate-body">{t("attackedCountries") || "Attacked Countries"}</TableHead>
+              <TableHead className="text-slate-body">{t("attackedProvinces") || "Attacked Provinces"}</TableHead>
+              <TableHead className="text-slate-body">{t("attackedCities") || "Attacked Cities"}</TableHead>
+              <TableHead className="text-slate-body">{t("status")}</TableHead>
+              <TableHead className="text-slate-body">{t("priority")}</TableHead>
+              <TableHead className="text-slate-body">{t("date")}</TableHead>
+              <TableHead className="text-end pe-4 text-slate-body">{t("actions")}</TableHead>
             </TableRow>
           </TableHeader>
           <TableBody>
             {reports.length === 0 ? (
-              <TableRow>
-                <TableCell colSpan={9} className="h-24 text-center">
+              <TableRow className="border-white/[0.06]">
+                <TableCell colSpan={11} className="h-24 text-center text-slate-body">
                   {t("noReports")}
                 </TableCell>
               </TableRow>
             ) : (
               reports.map((report: ReportItem) => (
-                <TableRow key={report._id}>
+                <TableRow key={report._id} className="border-white/[0.06] hover:bg-white/[0.02]">
                   <TableCell className="ps-4">
                     <Checkbox
                       checked={selectedIds.includes(report._id)}
@@ -296,57 +298,61 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
                       aria-label={`Select ${report.title}`}
                     />
                   </TableCell>
-                  <TableCell className="font-medium">{report.title}</TableCell>
-                  <TableCell>{report.category?.name || "-"}</TableCell>
-                  <TableCell>{report.hostileCountries?.map((c) => c.name).join(", ") || "-"}</TableCell>
-                  <TableCell>{report.attackedCountries?.map((c) => c.name).join(", ") || "-"}</TableCell>
-                  <TableCell>{report.attackedProvinces?.map((p) => p.name).join(", ") || "-"}</TableCell>
-                  <TableCell>{report.attackedCities?.map((c) => c.name).join(", ") || "-"}</TableCell>
+                  <TableCell className="font-medium text-offwhite">{report.title}</TableCell>
+                  <TableCell className="text-slate-body">{report.category?.name || "-"}</TableCell>
+                  <TableCell className="text-slate-body">{report.hostileCountries?.map((c) => c.name).join(", ") || "-"}</TableCell>
+                  <TableCell className="text-slate-body">{report.attackedCountries?.map((c) => c.name).join(", ") || "-"}</TableCell>
+                  <TableCell className="text-slate-body">{report.attackedProvinces?.map((p) => p.name).join(", ") || "-"}</TableCell>
+                  <TableCell className="text-slate-body">{report.attackedCities?.map((c) => c.name).join(", ") || "-"}</TableCell>
                   <TableCell>
-                    <Badge
-                      variant={
+                    <span
+                      className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border ${
                         report.status === "Pending"
-                          ? "outline"
+                          ? "bg-amber-500/10 text-amber-400 border-amber-500/20"
                           : report.status === "Approved"
-                            ? "default"
-                            : "destructive"
-                      }
+                            ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                            : report.status === "Rejected"
+                              ? "bg-crimson/10 text-crimson-light border-crimson/20"
+                              : "bg-blue-500/10 text-blue-400 border-blue-500/20"
+                      }`}
                     >
                       {t(`status_${getStatusKey(report.status)}`)}
-                    </Badge>
+                    </span>
                   </TableCell>
                   <TableCell>
-                    <Badge variant="secondary">{t(`priority_${getPriorityKey(report.priority)}`)}</Badge>
+                    <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-white/5 text-slate-body border border-white/10">
+                      {t(`priority_${getPriorityKey(report.priority)}`)}
+                    </span>
                   </TableCell>
-                  <TableCell>
+                  <TableCell className="text-slate-body">
                     {report.createdAt ? new Date(report.createdAt).toLocaleDateString() : "-"}
                   </TableCell>
                   <TableCell className="text-end pe-4">
                     <DropdownMenu>
                       <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
+                        <Button variant="ghost" className="h-8 w-8 p-0 text-slate-body hover:text-offwhite hover:bg-white/5">
                           <span className="sr-only">Open menu</span>
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>{t("actions")}</DropdownMenuLabel>
-                        <DropdownMenuItem onClick={() => openReportDetails(report)}>
-                          <Eye className="me-2 h-4 w-4" />
+                      <DropdownMenuContent align="end" className="glass-strong border-white/10">
+                        <DropdownMenuLabel className="text-slate-body">{t("actions")}</DropdownMenuLabel>
+                        <DropdownMenuItem onClick={() => openReportDetails(report)} className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                          <Eye className="me-2 h-4 w-4 text-gold" />
                           {t("viewDetails")}
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem onClick={() => updateStatus(report._id, "Approved")}>
-                          <Check className="me-2 h-4 w-4" />
+                        <DropdownMenuSeparator className="bg-white/10" />
+                        <DropdownMenuItem onClick={() => updateStatus(report._id, "Approved")} className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                          <Check className="me-2 h-4 w-4 text-emerald-400" />
                           {t("approve")}
                         </DropdownMenuItem>
-                        <DropdownMenuItem onClick={() => updateStatus(report._id, "Rejected")}>
-                          <X className="me-2 h-4 w-4" />
+                        <DropdownMenuItem onClick={() => updateStatus(report._id, "Rejected")} className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                          <X className="me-2 h-4 w-4 text-crimson-light" />
                           {t("reject")}
                         </DropdownMenuItem>
-                        <DropdownMenuSeparator />
+                        <DropdownMenuSeparator className="bg-white/10" />
                         <DropdownMenuItem
-                          className="text-destructive"
+                          className="text-crimson-light focus:bg-white/10 focus:text-crimson-light cursor-pointer"
                           onClick={() => deleteReport(report._id)}
                         >
                           <Trash2 className="me-2 h-4 w-4" />
@@ -363,59 +369,61 @@ export function ReportsTable({ reports, error }: { reports: ReportItem[]; error?
       </div>
 
       <Dialog open={isModalOpen} onOpenChange={setIsModalOpen}>
-        <DialogContent className="max-w-md">
+        <DialogContent className="max-w-md glass-strong border-white/10">
           <DialogHeader>
-            <DialogTitle>{t("viewDetails") || "Report Details"}</DialogTitle>
-            <DialogDescription>{selectedReport?._id}</DialogDescription>
+            <DialogTitle className="text-offwhite">{t("viewDetails") || "Report Details"}</DialogTitle>
+            <DialogDescription className="text-slate-body">{selectedReport?._id}</DialogDescription>
           </DialogHeader>
           {selectedReport && (
             <div className="space-y-4 mt-4">
               <div>
-                <h4 className="text-sm font-medium text-muted-foreground">{t("title")}</h4>
-                <p>{selectedReport.title}</p>
+                <h4 className="text-sm font-medium text-slate-body">{t("title")}</h4>
+                <p className="text-offwhite">{selectedReport.title}</p>
               </div>
               <div className="grid grid-cols-2 gap-4">
                 <div>
-                  <h4 className="text-sm font-medium text-muted-foreground">{t("category")}</h4>
-                  <p>{selectedReport.category?.name || "-"}</p>
+                  <h4 className="text-sm font-medium text-slate-body">{t("category")}</h4>
+                  <p className="text-offwhite">{selectedReport.category?.name || "-"}</p>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-muted-foreground">{t("date")}</h4>
-                  <p>
+                  <h4 className="text-sm font-medium text-slate-body">{t("date")}</h4>
+                  <p className="text-offwhite">
                     {selectedReport.createdAt
                       ? new Date(selectedReport.createdAt).toLocaleDateString()
                       : "-"}
                   </p>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-muted-foreground">{t("status")}</h4>
-                  <Badge
-                    variant={
+                  <h4 className="text-sm font-medium text-slate-body">{t("status")}</h4>
+                  <span
+                    className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium border ${
                       selectedReport.status === "Pending"
-                        ? "outline"
+                        ? "bg-amber-500/10 text-amber-400 border-amber-500/20"
                         : selectedReport.status === "Approved"
-                          ? "default"
-                          : "destructive"
-                    }
+                          ? "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                          : selectedReport.status === "Rejected"
+                            ? "bg-crimson/10 text-crimson-light border-crimson/20"
+                            : "bg-blue-500/10 text-blue-400 border-blue-500/20"
+                    }`}
                   >
                     {t(`status_${getStatusKey(selectedReport.status)}`)}
-                  </Badge>
+                  </span>
                 </div>
                 <div>
-                  <h4 className="text-sm font-medium text-muted-foreground">{t("priority")}</h4>
-                  <Badge variant="secondary">
+                  <h4 className="text-sm font-medium text-slate-body">{t("priority")}</h4>
+                  <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-white/5 text-slate-body border border-white/10">
                     {t(`priority_${getPriorityKey(selectedReport.priority)}`)}
-                  </Badge>
+                  </span>
                 </div>
               </div>
               {selectedReport.documents && selectedReport.documents.length > 0 && (
-                <div className="pt-4 border-t mt-4">
-                  <h4 className="text-sm font-medium text-muted-foreground mb-2">
+                <div className="pt-4 border-t border-white/10 mt-4">
+                  <h4 className="text-sm font-medium text-slate-body mb-2">
                     {t("documents") || "Linked Documents"}
                   </h4>
                   <div className="flex flex-col gap-2">
                     {selectedReport.documents.map((doc) => (
-                      <div key={doc._id} className="text-sm bg-muted/50 p-2 rounded-md border">
+                      <div key={doc._id} className="text-sm bg-white/[0.03] p-2 rounded-md border border-white/[0.06] text-offwhite">
                         {doc.title}
                       </div>
                     ))}

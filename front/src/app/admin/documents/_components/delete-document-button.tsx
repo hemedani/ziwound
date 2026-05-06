@@ -41,7 +41,7 @@ export function DeleteDocumentMenuItem({ id }: { id: string }) {
 
   return (
     <DropdownMenuItem
-      className="text-destructive focus:bg-destructive focus:text-destructive-foreground cursor-pointer"
+      className="text-crimson-light focus:bg-white/10 focus:text-offwhite cursor-pointer"
       onSelect={(e) => {
         e.preventDefault();
         handleDelete();

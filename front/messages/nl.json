@@ -50,7 +50,10 @@
     "tagSelector": {
       "newTag": "Nieuwe tag aanmaken",
       "search": "Tags zoeken..."
-    }
+    },
+    "readMore": "Lees Meer",
+    "unknown": "Onbekend",
+    "manage": "Beheren"
   },
   "auth": {
     "email": "E-mail",
@@ -634,7 +637,28 @@
     "war_crimes_events": "Oorlogsmisdaden Gebeurtenissen",
     "war_crimes_eventsPlaceholder": "Voer oorlogsmisdaden gebeurtenissen in",
     "liberation_info": "Bevrijdingsinformatie",
-    "liberation_infoPlaceholder": "Voer bevrijdingsinformatie in"
+    "liberation_infoPlaceholder": "Voer bevrijdingsinformatie in",
+    "exportCsv": "Exporteer CSV",
+    "documentTypeImage": "Afbeelding",
+    "documentTypeVideo": "Video",
+    "documentTypeDocument": "Document",
+    "userAdded": "Gebruiker succesvol toegevoegd",
+    "userAddFailed": "Toevoegen gebruiker mislukt",
+    "selectGender": "Selecteer geslacht",
+    "selectLevel": "Selecteer niveau",
+    "firstNamePlaceholder": "Voornaam",
+    "lastNamePlaceholder": "Achternaam",
+    "fatherNamePlaceholder": "Vaders naam",
+    "addressPlaceholder": "Volledig adres",
+    "quickActions": "Snelle Acties",
+    "reportsByStatus": "Rapporten per Status",
+    "reportsByPriority": "Rapporten per Prioriteit",
+    "reportsByCategory": "Rapporten per Categorie",
+    "reportsByLanguage": "Rapporten per Taal",
+    "monthlyCreated": "Maandelijks Aangemaakte Rapporten",
+    "crimeMonthly": "Misdaden per Maand van Voorval",
+    "topLocations": "Top Locaties",
+    "noData": "Geen gegevens beschikbaar"
   },
   "notFound": {
     "backHome": "Terug naar startpagina",
@@ -740,7 +764,8 @@
     "exportError": "Kan gegevens niet exporteren.",
     "sharePage": "Deel pagina",
     "exportData": "Gegevens exporteren",
-    "exportPDF": "PDF exporteren (Binnenkort)"
+    "exportPDF": "PDF exporteren (Binnenkort)",
+    "overline": "Archief"
   },
   "about": {
     "title": "Over Ons",
@@ -765,7 +790,8 @@
     "readyToContribute": "Klaar om Bij te Dragen?",
     "ctaDescription": "Door uw rapport in te dienen, helpt u geschiedenis te documenteren en bij te dragen aan het bereiken van gerechtigheid.",
     "submitReport": "Rapport Indienen",
-    "exploreData": "Gegevens Verkennen"
+    "exploreData": "Gegevens Verkennen",
+    "overline": "Over Ons"
   },
   "contact": {
     "title": "Contact",
@@ -795,7 +821,8 @@
     "formError": "Bericht verzenden mislukt. Probeer het opnieuw.",
     "successTitle": "Bericht Verzonden!",
     "successMessage": "Bedankt voor uw contact. We reageren spoedig.",
-    "sendAnother": "Nog een Bericht Versturen"
+    "sendAnother": "Nog een Bericht Versturen",
+    "overline": "Neem Contact Op"
   },
   "faq": {
     "title": "Veelgestelde Vragen",
@@ -885,7 +912,8 @@
     "section4Title": "Uw Rechten",
     "section4Content": "U heeft het recht om uw persoonlijke informatie te raadplegen, te corrigeren of te verwijderen. U kunt ook een kopie van uw gegevens aanvragen of bezwaar maken tegen bepaalde verwerkingsactiviteiten. Om deze rechten uit te oefenen, neemt u contact met ons op via de onderstaande informatie.",
     "contactTitle": "Neem Contact Op",
-    "contactContent": "Als u vragen heeft over dit Privacybeleid of onze gegevenspraktijken, neem dan contact met ons op via privacy@ziwound.org of via onze contactpagina."
+    "contactContent": "Als u vragen heeft over dit Privacybeleid of onze gegevenspraktijken, neem dan contact met ons op via privacy@ziwound.org of via onze contactpagina.",
+    "overline": "Juridisch"
   },
   "terms": {
     "title": "Servicevoorwaarden",
@@ -899,7 +927,8 @@
     "section4Title": "Beperking van Aansprakelijkheid",
     "section4Content": "Ziwound en zijn exploitanten zijn niet aansprakelijk voor enige indirecte, incidentele, speciale, gevolgschade of punitieve schade die voortvloeit uit of verband houdt met uw gebruik van het platform. We geven geen garanties over de nauwkeurigheid of volledigheid van de informatie op het platform.",
     "contactTitle": "Contactgegevens",
-    "contactContent": "Voor vragen over deze Servicevoorwaarden kunt u contact met ons opnemen via legal@ziwound.org of via onze contactpagina."
+    "contactContent": "Voor vragen over deze Servicevoorwaarden kunt u contact met ons opnemen via legal@ziwound.org of via onze contactpagina.",
+    "overline": "Juridisch"
   },
   "help": {
     "title": "Helpcentrum",
@@ -915,7 +944,8 @@
     "learnMore": "Meer Leren",
     "stillNeedHelp": "Hulp Nodig?",
     "contactPrompt": "Kunt u niet vinden wat u zoekt? Ons ondersteuningsteam staat klaar om te helpen.",
-    "contactUs": "Neem Contact Op"
+    "contactUs": "Neem Contact Op",
+    "overline": "Ondersteuning"
   },
   "cookieConsent": {
     "title": "Wij gebruiken cookies",
@@ -935,5 +965,15 @@
     "successDescription": "Bedankt dat u zich heeft ingeschreven voor onze nieuwsbrief.",
     "errorTitle": "Inschrijving mislukt",
     "errorDescription": "Probeer het later opnieuw."
+  },
+  "blog": {
+    "overline": "Verhalen & Updates",
+    "title": "Blog",
+    "description": "Lees ons laatste nieuws en artikelen",
+    "searchPlaceholder": "Zoek artikelen...",
+    "noPosts": "Geen blogposts gevonden.",
+    "author": "Auteur",
+    "publishedAt": "Gepubliceerd",
+    "relatedPosts": "Gerelateerde Artikelen"
   }
 }
