@@ -8,12 +8,12 @@
 
 - Always read `CONTINUE.md` first as your system prompt.
 - Work **one step at a time** from this TODO.md.
-- After finishing a step: mark it `[x]`, add any notes, then run the exact git commit procedure described in root QWEN.md.
+- After finishing a step: mark it `[x]`, add any notes, then run the exact git commit procedure described in root AGENT.md.
 - Never skip steps. Never use `git reset`.
 - Update this TODO.md and commit after every single step.
 - When stuck, ask for clarification in the ZED chat but do not proceed to next step.
 - Use **Deno tasks** for all commands.
-- Follow Lesan framework patterns and best practices from back/QWEN.md.
+- Follow Lesan framework patterns and best practices from back/AGENT.md.
 - Relations are one-direction: Define relations only on the owning model, use `relatedRelations` for reverse relations. Avoid bidirectional definitions to prevent inconsistencies.
 
 ## Phase 1: Core Models (Already Complete)

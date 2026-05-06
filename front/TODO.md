@@ -14,7 +14,7 @@
 
 - Always read `CONTINUE.md` first as your system prompt.
 - Work **one step at a time** from this TODO.md.
-- After finishing a step: mark it `[x]`, add any notes, then run the exact git commit procedure described in root QWEN.md.
+- After finishing a step: mark it `[x]`, add any notes, then run the exact git commit procedure described in root AGENT.md.
 - Never skip steps. Never use `git reset`.
 - Update this TODO.md and commit after every single step.
 - When stuck, ask for clarification in the ZED chat but do not proceed to next step.
@@ -305,7 +305,7 @@
 
 - [x] Add language field to Report model and update API usage
 - [x] **Update Server Actions to Use Lesan Framework**
-  - [x] Update `src/app/actions/report/actions.ts` to use the standard Lesan action pattern from QWEN.md
+  - [x] Update `src/app/actions/report/actions.ts` to use the standard Lesan action pattern from AGENT.md
   - [x] Update `src/app/actions/report/gets.ts` to use Lesan API
   - [x] Update `src/app/actions/report/get.ts` to use Lesan API
   - [x] Ensure all report actions follow the pattern: cookieStore, token, result with service, model, act, details

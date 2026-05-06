@@ -2,8 +2,8 @@ You are an expert full-stack TypeScript/Deno developer working exclusively on th
 
 **Project Context**:
 
-- Read `back/QWEN.md` for complete backend architecture, conventions, Lesan framework patterns, and tech stack.
-- Read root `QWEN.md`, `TODO.md`, and `CONTINUE.md` for full project context.
+- Read `back/AGENT.md` for complete backend architecture, conventions, Lesan framework patterns, and tech stack.
+- Read root `AGENT.md`, `TODO.md`, and `CONTINUE.md` for full project context.
 - This backend must be 100% identical in technologies and structure to https://github.com/hemedani/yademan (Deno + Lesan backend, MongoDB, JWT auth, etc.).
 - Tech: Deno + Lesan framework + MongoDB + djwt + File upload support.
 - Goal: Secure login → multi-language war crime report submission + war crimes exploration + blog section + advanced admin panel.
@@ -17,18 +17,18 @@ You are an expert full-stack TypeScript/Deno developer working exclusively on th
 - ALWAYS work **one tiny step at a time** from `TODO.md`. Never jump ahead.
 - After completing a step:
   1. Mark it `[x]` in `TODO.md` (add short note if needed).
-  2. Run the exact Git commit procedure described in root QWEN.md (Gitmoji + conventional commits, atomic commits, no git reset ever).
+  2. Run the exact Git commit procedure described in root AGENT.md (Gitmoji + conventional commits, atomic commits, no git reset ever).
   3. Tell the user exactly what was done and what the next step is.
 - Use **Deno tasks** for all commands.
 - Never add unnecessary console.log, unused imports, or complex code. Follow clean architecture.
 - Backend responses are wrapped in `{ success: boolean, body: data }`.
-- Follow Lesan framework patterns strictly (see back/QWEN.md for complete documentation).
+- Follow Lesan framework patterns strictly (see back/AGENT.md for complete documentation).
 - Always use proper validation with Zod-like schemas.
 - Always generate type declarations for frontend after adding new models.
 - **Lesan Relations are One-Direction**: Define relations only on the owning model, use `relatedRelations` for reverse relations. Avoid bidirectional definitions to prevent inconsistencies.
 - Use `objectIdValidation` for ObjectId fields in validators.
 
-**Lesan Framework Patterns** (see back/QWEN.md for complete docs):
+**Lesan Framework Patterns** (see back/AGENT.md for complete docs):
 
 - Model definition with pure fields and relations (one-direction only)
 - Action functions (add, get, gets, update, updateRelations, remove, count)
@@ -38,8 +38,8 @@ You are an expert full-stack TypeScript/Deno developer working exclusively on th
 - Geospatial queries with 2dsphere indexes
 - Aggregation pipelines for complex queries
 
-**Git Commit Rule** (copy-paste from root QWEN.md – use this exact behavior):
-[the full git commit assistant instruction block that appears at the end of the original Naghshe root QWEN.md]
+**Git Commit Rule** (copy-paste from root AGENT.md – use this exact behavior):
+[the full git commit assistant instruction block that appears at the end of the original Naghshe root AGENT.md]
 
 **Current Status**:
 
@@ -122,7 +122,7 @@ back/
 - Use `addRelation`/`removeRelation` for relationships, never manual updates.
 - Use `objectIdValidation` in validators for ObjectId arrays.
 - Generate type declarations after adding new models.
-- Follow the exact Lesan framework patterns from back/QWEN.md.
+- Follow the exact Lesan framework patterns from back/AGENT.md.
 
 **Next Session Prompt**:
 Continue with next unchecked step from TODO.md. Start with Phase 4: Implement BlogPost CRUD Acts.

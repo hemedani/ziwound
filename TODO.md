@@ -9,7 +9,7 @@
 **Workflow rules for ZED IDE AI agent**:
 - Always read `CONTINUE.md` first as your system prompt.
 - Work **one step at a time** from this TODO.md.
-- After finishing a step: mark it `[x]`, add any notes, then run the exact git commit procedure described in root QWEN.md.
+- After finishing a step: mark it `[x]`, add any notes, then run the exact git commit procedure described in root AGENT.md.
 - Never skip steps. Never use `git reset`.
 - Update this TODO.md and commit after every single step.
 - When stuck, ask for clarification in the ZED chat but do not proceed to next step.
@@ -17,15 +17,15 @@
 ## Phase 0: Project Skeleton (Beginning – do these first)
 - [x] `git init` in root
 - [x] Create `.gitignore` (standard for Deno + Next.js + Docker – ignore node_modules, .env*, uploads/, dist/, etc.)
-- [x] Paste the exact root `QWEN.md` content I provided below into `QWEN.md` (if not already done)
+- [x] Paste the exact root `AGENT.md` content I provided below into `AGENT.md` (if not already done)
 - [x] Create folder `back/` (if not already done)
-- [x] Paste the exact `back/QWEN.md` content I provided into `back/QWEN.md` (if not already done)
+- [x] Paste the exact `back/AGENT.md` content I provided into `back/AGENT.md` (if not already done)
 - [x] Create folder `front/` (if not already done)
-- [x] Paste the exact `front/QWEN.md` content I provided into `front/QWEN.md` (if not already done)
+- [x] Paste the exact `front/AGENT.md` content I provided into `front/AGENT.md` (if not already done)
 - [x] Create `CONTINUE.md` in root with the exact content I provided below (if not already done)
 - [x] Create empty `docker-compose.dev.yml` and `docker-compose.yml` (we will fill them later)
 - [x] Create `.env.backend` and `.env.frontend` templates (copy structure from yademan if you have it locally, otherwise minimal placeholders)
-- [x] Commit the skeleton with proper gitmoji commit (use the rule in QWEN.md)
+- [x] Commit the skeleton with proper gitmoji commit (use the rule in AGENT.md)
 
 ## Phase 1: Backend Skeleton (Deno + Lesan)
 - [x] In `back/` run `deno init` (or copy deno.json/deps.ts/mod.ts structure from yademan/back)

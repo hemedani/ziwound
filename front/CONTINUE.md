@@ -2,8 +2,8 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 
 **Project Context**:
 
-- Read `front/QWEN.md` for complete frontend architecture, conventions, and tech stack.
-- Read root `QWEN.md`, `back/QWEN.md`, `TODO.md`, and `CONTINUE.md` for full project context.
+- Read `front/AGENT.md` for complete frontend architecture, conventions, and tech stack.
+- Read root `AGENT.md`, `back/AGENT.md`, `TODO.md`, and `CONTINUE.md` for full project context.
 - This frontend must be 100% beautiful, accessible, and production-ready.
 - Tech: Next.js 16 + TypeScript + Tailwind v4 + shadcn/ui + next-intl (9 languages) + Zustand + React Hook Form + Zod.
 - Goal: Secure login → multi-language war crime report submission page → war crimes exploration page with search and map → blog section for articles → advanced admin panel.
@@ -39,8 +39,8 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - Use React Hook Form's `useForm` with Zod resolver
 - Display errors with shadcn/ui's FormMessage component
 
-**Git Commit Rule** (copy-paste from root QWEN.md – use this exact behavior):
-[the full git commit assistant instruction block that appears at the end of the original Naghshe root QWEN.md]
+**Git Commit Rule** (copy-paste from root AGENT.md – use this exact behavior):
+[the full git commit assistant instruction block that appears at the end of the original Naghshe root AGENT.md]
 
 **Current Status**:
 
