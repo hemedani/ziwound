@@ -2,89 +2,6 @@
 /* eslint-disable */
 
 
-export type userInp = {
-  avatar?: number | fileInp
-  national_card?: number | fileInp
-  province?: number | provinceInp
-  city?: number | cityInp
-  uploadedAssets?: number | fileInp
-  reports?: number | reportInp
-  blogPosts?: number | blogPostInp
-}
-
-
-export type userSchema = {
-  _id?: string;
-  first_name: string;
-  last_name: string;
-  father_name?: string;
-  gender: ("Male" | "Female");
-  birth_date?: Date;
-  summary?: string;
-  address?: string;
-  level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
-  email: string;
-  is_verified: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
-  avatar?: {
-    _id?: string;
-    name: string;
-    mimeType: string;
-    type: ("image" | "video" | "docs");
-    alt_text?: string;
-  };
-  national_card?: {
-    _id?: string;
-    name: string;
-    mimeType: string;
-    type: ("image" | "video" | "docs");
-    alt_text?: string;
-  };
-  province?: {
-    _id?: string;
-    name: string;
-    english_name: string;
-  };
-  city?: {
-    _id?: string;
-    name: string;
-    english_name: string;
-  };
-  uploadedAssets: {
-    _id?: string;
-    name: string;
-    mimeType: string;
-    type: ("image" | "video" | "docs");
-    alt_text?: string;
-  }[];
-  reports: {
-    _id?: string;
-    title: string;
-    description: string;
-    location?: {
-      type: "Point";
-      coordinates: any[];
-    };
-    address?: string;
-    status: ("Pending" | "Approved" | "Rejected" | "InReview");
-    priority?: ("Low" | "Medium" | "High");
-    selected_language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
-    crime_occurred_at: Date;
-  }[];
-  blogPosts: {
-    _id?: string;
-    title: string;
-    slug: string;
-    content: string;
-    isPublished: boolean;
-    isFeatured: boolean;
-    publishedAt?: string;
-  }[];
-};
-;
-
-
 export type fileInp = {
   uploader?: number | userInp
 
@@ -117,9 +34,9 @@ export type fileSchema = {
 export type provinceInp = {
   registrar?: number | userInp
   country?: number | countryInp
-  users?: number | userInp
   cities?: number | cityInp
   capital?: number | cityInp
+  users?: number | userInp
   attackedByReports?: number | reportInp
 }
 
@@ -169,16 +86,6 @@ export type provinceSchema = {
     international_sanctions?: string;
     notable_war_events?: string;
   };
-  users: {
-    _id?: string;
-    first_name: string;
-    last_name: string;
-    gender: ("Male" | "Female");
-    address?: string;
-    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
-    email: string;
-    is_verified: boolean;
-  }[];
   cities: {
     _id?: string;
     name: string;
@@ -212,6 +119,16 @@ export type provinceSchema = {
     mass_graves_info?: string;
     war_crimes_events?: string;
     liberation_info?: string;
+  }[];
+  users: {
+    _id?: string;
+    first_name: string;
+    last_name: string;
+    gender: ("Male" | "Female");
+    address?: string;
+    level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
+    email: string;
+    is_verified: boolean;
   }[];
   attackedByReports: {
     _id?: string;
@@ -325,6 +242,89 @@ export type citySchema = {
     priority?: ("Low" | "Medium" | "High");
     selected_language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
     crime_occurred_at: Date;
+  }[];
+};
+;
+
+
+export type userInp = {
+  avatar?: number | fileInp
+  national_card?: number | fileInp
+  province?: number | provinceInp
+  city?: number | cityInp
+  uploadedAssets?: number | fileInp
+  reports?: number | reportInp
+  blogPosts?: number | blogPostInp
+}
+
+
+export type userSchema = {
+  _id?: string;
+  first_name: string;
+  last_name: string;
+  father_name?: string;
+  gender: ("Male" | "Female");
+  birth_date?: Date;
+  summary?: string;
+  address?: string;
+  level: ("Ghost" | "Manager" | "Editor" | "Ordinary");
+  email: string;
+  is_verified: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+  avatar?: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  };
+  national_card?: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  };
+  province?: {
+    _id?: string;
+    name: string;
+    english_name: string;
+  };
+  city?: {
+    _id?: string;
+    name: string;
+    english_name: string;
+  };
+  uploadedAssets: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  }[];
+  reports: {
+    _id?: string;
+    title: string;
+    description: string;
+    location?: {
+      type: "Point";
+      coordinates: any[];
+    };
+    address?: string;
+    status: ("Pending" | "Approved" | "Rejected" | "InReview");
+    priority?: ("Low" | "Medium" | "High");
+    selected_language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+    crime_occurred_at: Date;
+  }[];
+  blogPosts: {
+    _id?: string;
+    title: string;
+    slug: string;
+    content: string;
+    isPublished: boolean;
+    isFeatured: boolean;
+    publishedAt?: string;
   }[];
 };
 ;
@@ -1088,16 +1088,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -1131,6 +1121,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -1520,16 +1520,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -1563,6 +1553,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -2192,16 +2192,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -2235,6 +2225,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -2601,16 +2601,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -2644,6 +2634,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -3018,16 +3018,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -3061,6 +3051,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -3666,16 +3666,6 @@ export type ReqType = {
             international_sanctions?: (0 | 1);
             notable_war_events?: (0 | 1);
           };
-          users?: {
-            _id?: (0 | 1);
-            first_name?: (0 | 1);
-            last_name?: (0 | 1);
-            gender?: (0 | 1);
-            address?: (0 | 1);
-            level?: (0 | 1);
-            email?: (0 | 1);
-            is_verified?: (0 | 1);
-          };
           cities?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -3709,6 +3699,16 @@ export type ReqType = {
             mass_graves_info?: (0 | 1);
             war_crimes_events?: (0 | 1);
             liberation_info?: (0 | 1);
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           attackedByReports?: {
             _id?: (0 | 1);
@@ -3786,16 +3786,6 @@ export type ReqType = {
             international_sanctions?: (0 | 1);
             notable_war_events?: (0 | 1);
           };
-          users?: {
-            _id?: (0 | 1);
-            first_name?: (0 | 1);
-            last_name?: (0 | 1);
-            gender?: (0 | 1);
-            address?: (0 | 1);
-            level?: (0 | 1);
-            email?: (0 | 1);
-            is_verified?: (0 | 1);
-          };
           cities?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -3829,6 +3819,16 @@ export type ReqType = {
             mass_graves_info?: (0 | 1);
             war_crimes_events?: (0 | 1);
             liberation_info?: (0 | 1);
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
           };
           attackedByReports?: {
             _id?: (0 | 1);
@@ -4012,67 +4012,6 @@ export type ReqType = {
               crime_occurred_at?: (0 | 1);
             };
           };
-          users?: {
-            _id?: (0 | 1);
-            first_name?: (0 | 1);
-            last_name?: (0 | 1);
-            gender?: (0 | 1);
-            address?: (0 | 1);
-            level?: (0 | 1);
-            email?: (0 | 1);
-            is_verified?: (0 | 1);
-            avatar?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              mimeType?: (0 | 1);
-              type?: (0 | 1);
-              alt_text?: (0 | 1);
-            };
-            national_card?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              mimeType?: (0 | 1);
-              type?: (0 | 1);
-              alt_text?: (0 | 1);
-            };
-            province?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              english_name?: (0 | 1);
-            };
-            city?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              english_name?: (0 | 1);
-            };
-            uploadedAssets?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              mimeType?: (0 | 1);
-              type?: (0 | 1);
-              alt_text?: (0 | 1);
-            };
-            reports?: {
-              _id?: (0 | 1);
-              title?: (0 | 1);
-              description?: (0 | 1);
-              location?: (0 | 1);
-              address?: (0 | 1);
-              status?: (0 | 1);
-              priority?: (0 | 1);
-              selected_language?: (0 | 1);
-              crime_occurred_at?: (0 | 1);
-            };
-            blogPosts?: {
-              _id?: (0 | 1);
-              title?: (0 | 1);
-              slug?: (0 | 1);
-              content?: (0 | 1);
-              isPublished?: (0 | 1);
-              isFeatured?: (0 | 1);
-              publishedAt?: (0 | 1);
-            };
-          };
           cities?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -4239,6 +4178,67 @@ export type ReqType = {
               priority?: (0 | 1);
               selected_language?: (0 | 1);
               crime_occurred_at?: (0 | 1);
+            };
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           attackedByReports?: {
@@ -4488,67 +4488,6 @@ export type ReqType = {
               crime_occurred_at?: (0 | 1);
             };
           };
-          users?: {
-            _id?: (0 | 1);
-            first_name?: (0 | 1);
-            last_name?: (0 | 1);
-            gender?: (0 | 1);
-            address?: (0 | 1);
-            level?: (0 | 1);
-            email?: (0 | 1);
-            is_verified?: (0 | 1);
-            avatar?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              mimeType?: (0 | 1);
-              type?: (0 | 1);
-              alt_text?: (0 | 1);
-            };
-            national_card?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              mimeType?: (0 | 1);
-              type?: (0 | 1);
-              alt_text?: (0 | 1);
-            };
-            province?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              english_name?: (0 | 1);
-            };
-            city?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              english_name?: (0 | 1);
-            };
-            uploadedAssets?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              mimeType?: (0 | 1);
-              type?: (0 | 1);
-              alt_text?: (0 | 1);
-            };
-            reports?: {
-              _id?: (0 | 1);
-              title?: (0 | 1);
-              description?: (0 | 1);
-              location?: (0 | 1);
-              address?: (0 | 1);
-              status?: (0 | 1);
-              priority?: (0 | 1);
-              selected_language?: (0 | 1);
-              crime_occurred_at?: (0 | 1);
-            };
-            blogPosts?: {
-              _id?: (0 | 1);
-              title?: (0 | 1);
-              slug?: (0 | 1);
-              content?: (0 | 1);
-              isPublished?: (0 | 1);
-              isFeatured?: (0 | 1);
-              publishedAt?: (0 | 1);
-            };
-          };
           cities?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -4715,6 +4654,67 @@ export type ReqType = {
               priority?: (0 | 1);
               selected_language?: (0 | 1);
               crime_occurred_at?: (0 | 1);
+            };
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           attackedByReports?: {
@@ -4971,67 +4971,6 @@ export type ReqType = {
               crime_occurred_at?: (0 | 1);
             };
           };
-          users?: {
-            _id?: (0 | 1);
-            first_name?: (0 | 1);
-            last_name?: (0 | 1);
-            gender?: (0 | 1);
-            address?: (0 | 1);
-            level?: (0 | 1);
-            email?: (0 | 1);
-            is_verified?: (0 | 1);
-            avatar?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              mimeType?: (0 | 1);
-              type?: (0 | 1);
-              alt_text?: (0 | 1);
-            };
-            national_card?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              mimeType?: (0 | 1);
-              type?: (0 | 1);
-              alt_text?: (0 | 1);
-            };
-            province?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              english_name?: (0 | 1);
-            };
-            city?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              english_name?: (0 | 1);
-            };
-            uploadedAssets?: {
-              _id?: (0 | 1);
-              name?: (0 | 1);
-              mimeType?: (0 | 1);
-              type?: (0 | 1);
-              alt_text?: (0 | 1);
-            };
-            reports?: {
-              _id?: (0 | 1);
-              title?: (0 | 1);
-              description?: (0 | 1);
-              location?: (0 | 1);
-              address?: (0 | 1);
-              status?: (0 | 1);
-              priority?: (0 | 1);
-              selected_language?: (0 | 1);
-              crime_occurred_at?: (0 | 1);
-            };
-            blogPosts?: {
-              _id?: (0 | 1);
-              title?: (0 | 1);
-              slug?: (0 | 1);
-              content?: (0 | 1);
-              isPublished?: (0 | 1);
-              isFeatured?: (0 | 1);
-              publishedAt?: (0 | 1);
-            };
-          };
           cities?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -5198,6 +5137,67 @@ export type ReqType = {
               priority?: (0 | 1);
               selected_language?: (0 | 1);
               crime_occurred_at?: (0 | 1);
+            };
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
             };
           };
           attackedByReports?: {
@@ -5479,16 +5479,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -5522,6 +5512,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -5822,16 +5822,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -5865,6 +5855,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -6497,16 +6497,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -6540,6 +6530,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -6862,6 +6862,12 @@ export type ReqType = {
           cities?: (0 | 1);
           categories?: (0 | 1);
           tags?: (0 | 1);
+          reports?: (0 | 1);
+          documents?: (0 | 1);
+          blogPosts?: (0 | 1);
+          heroSlides?: (0 | 1);
+          countries?: (0 | 1);
+          files?: (0 | 1);
         };
       };
 
@@ -8262,16 +8268,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -8305,6 +8301,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -8774,16 +8780,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -8817,6 +8813,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -9274,16 +9280,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -9317,6 +9313,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -9775,16 +9781,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -9818,6 +9814,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -10488,16 +10494,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -10531,6 +10527,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
@@ -10977,16 +10983,6 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
-            users?: {
-              _id?: (0 | 1);
-              first_name?: (0 | 1);
-              last_name?: (0 | 1);
-              gender?: (0 | 1);
-              address?: (0 | 1);
-              level?: (0 | 1);
-              email?: (0 | 1);
-              is_verified?: (0 | 1);
-            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -11020,6 +11016,16 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
             };
             attackedByReports?: {
               _id?: (0 | 1);
