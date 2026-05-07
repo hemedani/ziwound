@@ -130,16 +130,16 @@ export type provinceSchema = {
   english_name: string;
   createdAt?: Date;
   updatedAt?: Date;
-  wars_history: string;
-  conflict_timeline: string;
-  casualties_info: string;
-  notable_battles: string;
-  occupation_info: string;
-  destruction_level: string;
-  civilian_impact: string;
-  mass_graves_info: string;
-  war_crimes_events: string;
-  liberation_info: string;
+  wars_history?: string;
+  conflict_timeline?: string;
+  casualties_info?: string;
+  notable_battles?: string;
+  occupation_info?: string;
+  destruction_level?: string;
+  civilian_impact?: string;
+  mass_graves_info?: string;
+  war_crimes_events?: string;
+  liberation_info?: string;
   registrar?: {
     _id?: string;
     first_name: string;
@@ -156,18 +156,18 @@ export type provinceSchema = {
     english_name: string;
     createdAt?: Date;
     updatedAt?: Date;
-    wars_history: string;
-    conflict_timeline: string;
-    casualties_info: string;
-    international_response: string;
-    war_crimes_documentation: string;
-    human_rights_violations: string;
-    genocide_info: string;
-    chemical_weapons_info: string;
-    displacement_info: string;
-    reconstruction_status: string;
-    international_sanctions: string;
-    notable_war_events: string;
+    wars_history?: string;
+    conflict_timeline?: string;
+    casualties_info?: string;
+    international_response?: string;
+    war_crimes_documentation?: string;
+    human_rights_violations?: string;
+    genocide_info?: string;
+    chemical_weapons_info?: string;
+    displacement_info?: string;
+    reconstruction_status?: string;
+    international_sanctions?: string;
+    notable_war_events?: string;
   };
   users: {
     _id?: string;
@@ -185,16 +185,16 @@ export type provinceSchema = {
     english_name: string;
     createdAt?: Date;
     updatedAt?: Date;
-    wars_history: string;
-    conflict_timeline: string;
-    casualties_info: string;
-    notable_battles: string;
-    occupation_info: string;
-    destruction_level: string;
-    civilian_impact: string;
-    mass_graves_info: string;
-    war_crimes_events: string;
-    liberation_info: string;
+    wars_history?: string;
+    conflict_timeline?: string;
+    casualties_info?: string;
+    notable_battles?: string;
+    occupation_info?: string;
+    destruction_level?: string;
+    civilian_impact?: string;
+    mass_graves_info?: string;
+    war_crimes_events?: string;
+    liberation_info?: string;
   }[];
   capital: {
     _id?: string;
@@ -202,16 +202,16 @@ export type provinceSchema = {
     english_name: string;
     createdAt?: Date;
     updatedAt?: Date;
-    wars_history: string;
-    conflict_timeline: string;
-    casualties_info: string;
-    notable_battles: string;
-    occupation_info: string;
-    destruction_level: string;
-    civilian_impact: string;
-    mass_graves_info: string;
-    war_crimes_events: string;
-    liberation_info: string;
+    wars_history?: string;
+    conflict_timeline?: string;
+    casualties_info?: string;
+    notable_battles?: string;
+    occupation_info?: string;
+    destruction_level?: string;
+    civilian_impact?: string;
+    mass_graves_info?: string;
+    war_crimes_events?: string;
+    liberation_info?: string;
   }[];
   attackedByReports: {
     _id?: string;
@@ -246,16 +246,16 @@ export type citySchema = {
   english_name: string;
   createdAt?: Date;
   updatedAt?: Date;
-  wars_history: string;
-  conflict_timeline: string;
-  casualties_info: string;
-  notable_battles: string;
-  occupation_info: string;
-  destruction_level: string;
-  civilian_impact: string;
-  mass_graves_info: string;
-  war_crimes_events: string;
-  liberation_info: string;
+  wars_history?: string;
+  conflict_timeline?: string;
+  casualties_info?: string;
+  notable_battles?: string;
+  occupation_info?: string;
+  destruction_level?: string;
+  civilian_impact?: string;
+  mass_graves_info?: string;
+  war_crimes_events?: string;
+  liberation_info?: string;
   registrar?: {
     _id?: string;
     first_name: string;
@@ -272,16 +272,16 @@ export type citySchema = {
     english_name: string;
     createdAt?: Date;
     updatedAt?: Date;
-    wars_history: string;
-    conflict_timeline: string;
-    casualties_info: string;
-    notable_battles: string;
-    occupation_info: string;
-    destruction_level: string;
-    civilian_impact: string;
-    mass_graves_info: string;
-    war_crimes_events: string;
-    liberation_info: string;
+    wars_history?: string;
+    conflict_timeline?: string;
+    casualties_info?: string;
+    notable_battles?: string;
+    occupation_info?: string;
+    destruction_level?: string;
+    civilian_impact?: string;
+    mass_graves_info?: string;
+    war_crimes_events?: string;
+    liberation_info?: string;
   };
   country?: {
     _id?: string;
@@ -289,18 +289,18 @@ export type citySchema = {
     english_name: string;
     createdAt?: Date;
     updatedAt?: Date;
-    wars_history: string;
-    conflict_timeline: string;
-    casualties_info: string;
-    international_response: string;
-    war_crimes_documentation: string;
-    human_rights_violations: string;
-    genocide_info: string;
-    chemical_weapons_info: string;
-    displacement_info: string;
-    reconstruction_status: string;
-    international_sanctions: string;
-    notable_war_events: string;
+    wars_history?: string;
+    conflict_timeline?: string;
+    casualties_info?: string;
+    international_response?: string;
+    war_crimes_documentation?: string;
+    human_rights_violations?: string;
+    genocide_info?: string;
+    chemical_weapons_info?: string;
+    displacement_info?: string;
+    reconstruction_status?: string;
+    international_sanctions?: string;
+    notable_war_events?: string;
   };
   users: {
     _id?: string;
@@ -345,18 +345,18 @@ export type countrySchema = {
   english_name: string;
   createdAt?: Date;
   updatedAt?: Date;
-  wars_history: string;
-  conflict_timeline: string;
-  casualties_info: string;
-  international_response: string;
-  war_crimes_documentation: string;
-  human_rights_violations: string;
-  genocide_info: string;
-  chemical_weapons_info: string;
-  displacement_info: string;
-  reconstruction_status: string;
-  international_sanctions: string;
-  notable_war_events: string;
+  wars_history?: string;
+  conflict_timeline?: string;
+  casualties_info?: string;
+  international_response?: string;
+  war_crimes_documentation?: string;
+  human_rights_violations?: string;
+  genocide_info?: string;
+  chemical_weapons_info?: string;
+  displacement_info?: string;
+  reconstruction_status?: string;
+  international_sanctions?: string;
+  notable_war_events?: string;
   registrar?: {
     _id?: string;
     first_name: string;
@@ -373,16 +373,16 @@ export type countrySchema = {
     english_name: string;
     createdAt?: Date;
     updatedAt?: Date;
-    wars_history: string;
-    conflict_timeline: string;
-    casualties_info: string;
-    notable_battles: string;
-    occupation_info: string;
-    destruction_level: string;
-    civilian_impact: string;
-    mass_graves_info: string;
-    war_crimes_events: string;
-    liberation_info: string;
+    wars_history?: string;
+    conflict_timeline?: string;
+    casualties_info?: string;
+    notable_battles?: string;
+    occupation_info?: string;
+    destruction_level?: string;
+    civilian_impact?: string;
+    mass_graves_info?: string;
+    war_crimes_events?: string;
+    liberation_info?: string;
   }[];
   cities: {
     _id?: string;
@@ -390,16 +390,16 @@ export type countrySchema = {
     english_name: string;
     createdAt?: Date;
     updatedAt?: Date;
-    wars_history: string;
-    conflict_timeline: string;
-    casualties_info: string;
-    notable_battles: string;
-    occupation_info: string;
-    destruction_level: string;
-    civilian_impact: string;
-    mass_graves_info: string;
-    war_crimes_events: string;
-    liberation_info: string;
+    wars_history?: string;
+    conflict_timeline?: string;
+    casualties_info?: string;
+    notable_battles?: string;
+    occupation_info?: string;
+    destruction_level?: string;
+    civilian_impact?: string;
+    mass_graves_info?: string;
+    war_crimes_events?: string;
+    liberation_info?: string;
   }[];
   hostileReports: {
     _id?: string;
@@ -625,29 +625,29 @@ export type reportSchema = {
     _id?: string;
     name: string;
     english_name: string;
-    international_response: string;
-    war_crimes_documentation: string;
-    human_rights_violations: string;
-    genocide_info: string;
-    chemical_weapons_info: string;
-    displacement_info: string;
-    reconstruction_status: string;
-    international_sanctions: string;
-    notable_war_events: string;
+    international_response?: string;
+    war_crimes_documentation?: string;
+    human_rights_violations?: string;
+    genocide_info?: string;
+    chemical_weapons_info?: string;
+    displacement_info?: string;
+    reconstruction_status?: string;
+    international_sanctions?: string;
+    notable_war_events?: string;
   }[];
   attackedCountries?: {
     _id?: string;
     name: string;
     english_name: string;
-    international_response: string;
-    war_crimes_documentation: string;
-    human_rights_violations: string;
-    genocide_info: string;
-    chemical_weapons_info: string;
-    displacement_info: string;
-    reconstruction_status: string;
-    international_sanctions: string;
-    notable_war_events: string;
+    international_response?: string;
+    war_crimes_documentation?: string;
+    human_rights_violations?: string;
+    genocide_info?: string;
+    chemical_weapons_info?: string;
+    displacement_info?: string;
+    reconstruction_status?: string;
+    international_sanctions?: string;
+    notable_war_events?: string;
   }[];
   attackedProvinces?: {
     _id?: string;
@@ -708,6 +708,36 @@ export type blogPostSchema = {
 ;
 
 
+export type heroSlideInp = {
+  image?: number | fileInp
+
+}
+
+
+export type heroSlideSchema = {
+  _id?: string;
+  title: string;
+  subtitle: string;
+  gradient: string;
+  ctaText: string;
+  ctaLink: string;
+  secondaryCtaText?: string;
+  secondaryCtaLink?: string;
+  order: number;
+  isActive: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+  image?: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  };
+};
+;
+
+
 export type ReqType = {
 
 
@@ -723,18 +753,18 @@ export type ReqType = {
           english_name: string;
           createdAt?: Date;
           updatedAt?: Date;
-          wars_history: string;
-          conflict_timeline: string;
-          casualties_info: string;
-          international_response: string;
-          war_crimes_documentation: string;
-          human_rights_violations: string;
-          genocide_info: string;
-          chemical_weapons_info: string;
-          displacement_info: string;
-          reconstruction_status: string;
-          international_sanctions: string;
-          notable_war_events: string;
+          wars_history?: string;
+          conflict_timeline?: string;
+          casualties_info?: string;
+          international_response?: string;
+          war_crimes_documentation?: string;
+          human_rights_violations?: string;
+          genocide_info?: string;
+          chemical_weapons_info?: string;
+          displacement_info?: string;
+          reconstruction_status?: string;
+          international_sanctions?: string;
+          notable_war_events?: string;
         };
         get: {
           _id?: (0 | 1);
@@ -1821,16 +1851,16 @@ export type ReqType = {
           english_name: string;
           createdAt?: Date;
           updatedAt?: Date;
-          wars_history: string;
-          conflict_timeline: string;
-          casualties_info: string;
-          notable_battles: string;
-          occupation_info: string;
-          destruction_level: string;
-          civilian_impact: string;
-          mass_graves_info: string;
-          war_crimes_events: string;
-          liberation_info: string;
+          wars_history?: string;
+          conflict_timeline?: string;
+          casualties_info?: string;
+          notable_battles?: string;
+          occupation_info?: string;
+          destruction_level?: string;
+          civilian_impact?: string;
+          mass_graves_info?: string;
+          war_crimes_events?: string;
+          liberation_info?: string;
           provinceId: string;
           countryId: string;
           isCapital: boolean;
@@ -3579,17 +3609,17 @@ export type ReqType = {
           english_name: string;
           createdAt?: Date;
           updatedAt?: Date;
-          wars_history: string;
-          conflict_timeline: string;
-          casualties_info: string;
-          notable_battles: string;
-          occupation_info: string;
-          destruction_level: string;
-          civilian_impact: string;
-          mass_graves_info: string;
-          war_crimes_events: string;
-          liberation_info: string;
-          countryId?: string;
+          wars_history?: string;
+          conflict_timeline?: string;
+          casualties_info?: string;
+          notable_battles?: string;
+          occupation_info?: string;
+          destruction_level?: string;
+          civilian_impact?: string;
+          mass_graves_info?: string;
+          war_crimes_events?: string;
+          liberation_info?: string;
+          countryId: string;
         };
         get: {
           _id?: (0 | 1);
@@ -12798,6 +12828,185 @@ export type ReqType = {
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
             };
+          };
+        };
+      };
+
+
+    }
+
+
+    heroSlide: {
+
+
+      add: {
+        set: {
+          title: string;
+          subtitle: string;
+          gradient: string;
+          ctaText: string;
+          ctaLink: string;
+          secondaryCtaText?: string;
+          secondaryCtaLink?: string;
+          order: number;
+          isActive: boolean;
+          createdAt?: Date;
+          updatedAt?: Date;
+          image?: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          subtitle?: (0 | 1);
+          gradient?: (0 | 1);
+          ctaText?: (0 | 1);
+          ctaLink?: (0 | 1);
+          secondaryCtaText?: (0 | 1);
+          secondaryCtaLink?: (0 | 1);
+          order?: (0 | 1);
+          isActive?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          image?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
+        };
+      };
+
+
+      update: {
+        set: {
+          _id: string;
+          title: string;
+          subtitle: string;
+          gradient: string;
+          ctaText: string;
+          ctaLink: string;
+          secondaryCtaText?: string;
+          secondaryCtaLink?: string;
+          order: number;
+          isActive: boolean;
+          createdAt?: Date;
+          updatedAt?: Date;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          subtitle?: (0 | 1);
+          gradient?: (0 | 1);
+          ctaText?: (0 | 1);
+          ctaLink?: (0 | 1);
+          secondaryCtaText?: (0 | 1);
+          secondaryCtaLink?: (0 | 1);
+          order?: (0 | 1);
+          isActive?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          image?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
+        };
+      };
+
+
+      get: {
+        set: {
+          _id: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          subtitle?: (0 | 1);
+          gradient?: (0 | 1);
+          ctaText?: (0 | 1);
+          ctaLink?: (0 | 1);
+          secondaryCtaText?: (0 | 1);
+          secondaryCtaLink?: (0 | 1);
+          order?: (0 | 1);
+          isActive?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          image?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
+        };
+      };
+
+
+      gets: {
+        set: {
+          isActive?: string;
+          page?: number;
+          limit?: number;
+          sortBy?: ("order" | "createdAt" | "updatedAt");
+          sortOrder?: ("asc" | "desc");
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          subtitle?: (0 | 1);
+          gradient?: (0 | 1);
+          ctaText?: (0 | 1);
+          ctaLink?: (0 | 1);
+          secondaryCtaText?: (0 | 1);
+          secondaryCtaLink?: (0 | 1);
+          order?: (0 | 1);
+          isActive?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          image?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
+        };
+      };
+
+
+      remove: {
+        set: {
+          _id: string;
+        };
+      };
+
+
+      count: {
+        set: {
+          isActive?: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          title?: (0 | 1);
+          subtitle?: (0 | 1);
+          gradient?: (0 | 1);
+          ctaText?: (0 | 1);
+          ctaLink?: (0 | 1);
+          secondaryCtaText?: (0 | 1);
+          secondaryCtaLink?: (0 | 1);
+          order?: (0 | 1);
+          isActive?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          image?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
         };
       };

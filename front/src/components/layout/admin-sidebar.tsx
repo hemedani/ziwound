@@ -16,6 +16,7 @@ import {
   BookOpen,
   Globe,
   Shield,
+  ImageIcon,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -33,6 +34,7 @@ export function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
 
   const navigation = [
     { name: t("dashboard"), href: "/admin/dashboard", icon: LayoutDashboard },
+    { name: t("heroSlides") || "Hero Slides", href: "/admin/hero-slides", icon: ImageIcon },
     { name: t("reports"), href: "/admin/reports", icon: FileText },
     { name: t("users"), href: "/admin/users", icon: Users, requiresLevel: 3 },
     { name: t("tags"), href: "/admin/tags", icon: Tags },
