@@ -117,7 +117,7 @@ For every page you redesign, verify in Persian (`/fa/`):
 
 ### Current Step: Phase 12 — Backend Integration (Future)
 
-- [ ] Add `HeroSlide` model to backend for dynamic slider content.
+- [x] Add `HeroSlide` model to backend for dynamic slider content.
 - [ ] Connect MapTeaser hotspots to real report coordinates.
 - [ ] Add real-time stats to ImpactStats if backend supports it.
 
