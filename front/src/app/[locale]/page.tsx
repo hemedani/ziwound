@@ -8,11 +8,11 @@ import { TrustMission } from "@/components/landing/TrustMission";
 import { SubmitCTA } from "@/components/landing/SubmitCTA";
 import { Timeline } from "@/components/landing/Timeline";
 import type { HeroSlide } from "@/components/landing/HeroSlider";
-import { count as countReports } from "@/app/actions/report/count";
-import { count as countDocuments } from "@/app/actions/document/count";
 import { gets as getReports } from "@/app/actions/report/gets";
 import { gets as getBlogPosts } from "@/app/actions/blogPost/gets";
 import { gets as getHeroSlides } from "@/app/actions/heroSlide/gets";
+import { statistics as reportStatistics } from "@/app/actions/report/statistics";
+import { dashboardStatistic } from "@/app/actions/user/dashboardStatistic";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -38,9 +38,11 @@ export default async function Home({ params }: HomePageProps) {
   const t = await getTranslations({ locale, namespace: "home" });
 
   // Fetch stats and featured content in parallel
-  const [reportCountRes, docCountRes, reportsRes, blogRes, heroSlidesRes] = await Promise.all([
-    countReports({}, { qty: 1 }).catch(() => ({ success: false, body: { qty: 0 } })),
-    countDocuments({}, { qty: "1" }).catch(() => ({ success: false, body: { qty: 0 } })),
+  const [dashRes, reportsRes, blogRes, heroSlidesRes, statsRes] = await Promise.all([
+    dashboardStatistic(
+      {},
+      { reports: 1, documents: 1, countries: 1, cities: 1, provinces: 1 }
+    ).catch(() => ({ success: false, body: {} })),
     getReports(
       { page: 1, limit: 6 },
       {
@@ -79,10 +81,18 @@ export default async function Home({ params }: HomePageProps) {
         image: { _id: 1, name: 1 },
       }
     ).catch(() => ({ success: false, body: [] })),
+    reportStatistics({}, {}).catch(() => ({ success: false, body: {} })),
   ]);
 
-  const reportCount = reportCountRes.success ? (reportCountRes.body?.qty ?? 0) : 0;
-  const docCount = docCountRes.success ? (docCountRes.body?.qty ?? 0) : 0;
+  const dashBody = dashRes.success && typeof dashRes.body === "object" ? (dashRes.body as Record<string, number>) : {};
+  const reportCount = dashBody.reports ?? 0;
+  const docCount = dashBody.documents ?? 0;
+  const countryCount = dashBody.countries ?? 0;
+
+  // Extract real statistics for map hotspots
+  const statsBody = statsRes.success && typeof statsRes.body === "object" ? statsRes.body : {};
+  const geographicCounts = Array.isArray(statsBody.geographicCounts) ? statsBody.geographicCounts : [];
+  const locationCount = geographicCounts.length;
 
   // Build featured items from real data
   const rawReports = reportsRes.success ? (reportsRes.body ?? []) : [];
@@ -204,9 +214,9 @@ export default async function Home({ params }: HomePageProps) {
       {/* Impact Stats Bar */}
       <ImpactStats
         reports={formatCount(reportCount)}
-        countries="47"
+        countries={formatCount(countryCount)}
         documents={formatCount(docCount)}
-        locations="1,120"
+        locations={formatCount(locationCount)}
         reportsLabel={t("impactStats.reports")}
         countriesLabel={t("impactStats.countries")}
         documentsLabel={t("impactStats.documents")}
@@ -231,6 +241,11 @@ export default async function Home({ params }: HomePageProps) {
         activeZonesLabel={t("mapTeaser.activeZones")}
         verifiedReportsLabel={t("mapTeaser.verifiedReports")}
         ctaText={t("mapTeaser.cta")}
+        hotspots={geographicCounts.slice(0, 12).map((g: any) => ({
+          lat: g._id.lat,
+          lng: g._id.lng,
+          count: g.count,
+        }))}
       />
 
       {/* Timeline */}

@@ -7,6 +7,12 @@ import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
 
+interface Hotspot {
+  lat: number;
+  lng: number;
+  count: number;
+}
+
 interface MapTeaserProps {
   locale: string;
   overline?: string;
@@ -16,10 +22,11 @@ interface MapTeaserProps {
   verifiedReportsLabel?: string;
   ctaText?: string;
   className?: string;
+  hotspots?: Hotspot[];
 }
 
-// Sample report hotspot coordinates (normalized 0-100)
-const hotspots = [
+// Default sample report hotspot coordinates (normalized 0-100) for when no real data
+const defaultHotspots = [
   { x: 52, y: 35, label: "Middle East" },
   { x: 48, y: 28, label: "Eastern Europe" },
   { x: 68, y: 42, label: "Central Asia" },
@@ -30,6 +37,17 @@ const hotspots = [
   { x: 45, y: 22, label: "Balkans" },
 ];
 
+/**
+ * Convert latitude/longitude to SVG viewBox coordinates.
+ * ViewBox is 0-100 width, 0-60 height.
+ * Simple equirectangular projection.
+ */
+function latLngToSvg(lat: number, lng: number): { x: number; y: number } {
+  const x = ((lng + 180) / 360) * 100;
+  const y = ((90 - lat) / 180) * 60;
+  return { x, y };
+}
+
 export function MapTeaser({
   locale,
   overline = "Global Coverage",
@@ -39,7 +57,18 @@ export function MapTeaser({
   verifiedReportsLabel = "Verified reports",
   ctaText = "Explore Interactive Map",
   className,
+  hotspots,
 }: MapTeaserProps) {
+  // Build display hotspots from real data or fallback to defaults
+  const displayHotspots = hotspots && hotspots.length > 0
+    ? hotspots.map((h) => {
+        const { x, y } = latLngToSvg(h.lat, h.lng);
+        return { x, y, label: `${h.count}`, count: h.count };
+      })
+    : defaultHotspots.map((h) => ({ ...h, count: 0 }));
+
+  const hasRealData = hotspots && hotspots.length > 0;
+
   return (
     <section className={cn("relative py-20 md:py-28 overflow-hidden", className)}>
       {/* Background glow */}
@@ -170,9 +199,9 @@ export function MapTeaser({
             </svg>
 
             {/* Hotspot dots */}
-            {hotspots.map((spot, i) => (
+            {displayHotspots.map((spot, i) => (
               <div
-                key={spot.label}
+                key={hasRealData ? `${spot.x}-${spot.y}-${i}` : spot.label}
                 className="absolute"
                 style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
               >
@@ -181,10 +210,16 @@ export function MapTeaser({
                   whileInView={{ scale: 1 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
-                  className="relative"
+                  className="relative group"
                 >
                   <span className="absolute -inset-2 rounded-full bg-crimson/20 animate-ping" />
                   <span className="relative flex h-2.5 w-2.5 rounded-full bg-crimson shadow-[0_0_8px_rgba(153,27,27,0.6)]" />
+                  {/* Tooltip for real data */}
+                  {hasRealData && (
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded-md bg-black/80 text-[10px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                      {spot.count} reports
+                    </div>
+                  )}
                 </motion.div>
               </div>
             ))}
