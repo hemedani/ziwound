@@ -113,7 +113,7 @@ export default async function BlogListingPage({
                       fill
                       unoptimized
                       sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      className="object-cover transition-transform duration-500 group-hover:scale-105"
+                      className="object-cover grayscale transition-all duration-[900ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] will-change-[filter,transform] group-hover:scale-[1.12] group-hover:grayscale-0"
                     />
                   ) : (
                     <div className="absolute inset-0 flex items-center justify-center bg-white/5">
