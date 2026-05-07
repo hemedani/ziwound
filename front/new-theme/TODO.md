@@ -146,14 +146,26 @@
 - [x] Global error page styled with dark theme.
 - [x] Final build verification (`pnpm build` passes with zero errors).
 
-## Phase 12: Backend Integration (Future)
+## Phase 12: Backend Integration (COMPLETE)
 
 - [x] Add `HeroSlide` model to backend for dynamic slider content.
-- [ ] Connect MapTeaser hotspots to real report coordinates.
-- [ ] Add real-time stats to ImpactStats if backend supports it.
+- [x] Connect MapTeaser hotspots to real report coordinates.
+- [x] Add real-time stats to ImpactStats if backend supports it.
+- [x] Switch landing page stats to use `dashboardStatistic` endpoint.
+
+## Phase 13: Explore Page (Countries, Provinces, Cities)
+
+- [x] **Explore listing** (`/[locale]/explore`) — dark theme, grid of country cards with war info preview, search/filter.
+- [x] **Country detail** (`/[locale]/explore/countries/[id]`) — full country war description fields, related reports list, provinces grid.
+- [x] **Province detail** (`/[locale]/explore/provinces/[id]`) — full province war description fields, related reports list, cities grid.
+- [x] **City detail** (`/[locale]/explore/cities/[id]`) — full city war description fields, related reports list, province/country links.
+- [x] Connect to backend APIs (`country/gets`, `country/get`, `province/get`, `city/get`).
+- [x] Add SEO `generateMetadata` for all explore routes.
+- [x] Add translations for `explore.*` keys to all 9 language files.
+- [ ] Test explore pages in Persian (RTL).
 
 ---
 
-**Current Phase**: Phase 12 — Backend Integration (Future)
+**Current Phase**: Phase 13 — Explore Page (Countries, Provinces, Cities)
 
-**Next Immediate Step**: Add `HeroSlide` model to backend for dynamic slider content.
+**Next Immediate Step**: Implement explore listing page at `/[locale]/explore`.

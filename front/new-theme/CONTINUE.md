@@ -113,13 +113,14 @@ For every page you redesign, verify in Persian (`/fa/`):
 ### Remaining Phases:
 
 1. **Phase 11: Polish & optimization** — ✅ COMPLETE
-2. **Phase 12: Backend Integration (Future)** — Add `HeroSlide` model, connect map hotspots, real-time stats
+2. **Phase 12: Backend Integration (Future)** — ✅ COMPLETE
+3. **Phase 13: Explore Page (Countries, Provinces, Cities)** — New public explore section with hierarchical country/province/city browsing
 
-### Current Step: Phase 12 — Backend Integration (Future)
+### Current Step: Phase 13 — Explore Page (Countries, Provinces, Cities)
 
-- [x] Add `HeroSlide` model to backend for dynamic slider content.
-- [ ] Connect MapTeaser hotspots to real report coordinates.
-- [ ] Add real-time stats to ImpactStats if backend supports it.
+- [ ] **Explore listing** (`/[locale]/explore`) — dark theme, grid of country cards with war info preview, search/filter.
+- [ ] **Country detail** (`/[locale]/explore/countries/[id]`) — full country war description fields, related reports list, provinces grid.
+- [ ] **Province detail** (`/[locale]/explore/provinces/[id]`) — full province war description fields, related reports list, cities grid.
 
 ## How to Proceed
 
