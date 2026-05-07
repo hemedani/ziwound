@@ -12,6 +12,7 @@ import { count as countReports } from "@/app/actions/report/count";
 import { count as countDocuments } from "@/app/actions/document/count";
 import { gets as getReports } from "@/app/actions/report/gets";
 import { gets as getBlogPosts } from "@/app/actions/blogPost/gets";
+import { gets as getHeroSlides } from "@/app/actions/heroSlide/gets";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -37,7 +38,7 @@ export default async function Home({ params }: HomePageProps) {
   const t = await getTranslations({ locale, namespace: "home" });
 
   // Fetch stats and featured content in parallel
-  const [reportCountRes, docCountRes, reportsRes, blogRes] = await Promise.all([
+  const [reportCountRes, docCountRes, reportsRes, blogRes, heroSlidesRes] = await Promise.all([
     countReports({}, { qty: 1 }).catch(() => ({ success: false, body: { qty: 0 } })),
     countDocuments({}, { qty: "1" }).catch(() => ({ success: false, body: { qty: 0 } })),
     getReports(
@@ -60,6 +61,22 @@ export default async function Home({ params }: HomePageProps) {
         createdAt: 1,
         coverImage: { _id: 1, name: 1 },
         slug: 1,
+      }
+    ).catch(() => ({ success: false, body: [] })),
+    getHeroSlides(
+      { page: 1, limit: 10, sortBy: "order", sortOrder: "asc" },
+      {
+        _id: 1,
+        title: 1,
+        subtitle: 1,
+        gradient: 1,
+        ctaText: 1,
+        ctaLink: 1,
+        secondaryCtaText: 1,
+        secondaryCtaLink: 1,
+        order: 1,
+        isActive: 1,
+        image: { _id: 1, name: 1 },
       }
     ).catch(() => ({ success: false, body: [] })),
   ]);
@@ -110,41 +127,62 @@ export default async function Home({ params }: HomePageProps) {
   // Combine and take top 3
   const featuredItems = [...reportItems, ...blogItems].slice(0, 3);
 
-  const heroSlides: HeroSlide[] = [
-    {
-      id: "1",
-      gradient:
-        "radial-gradient(ellipse 120% 100% at 50% 0%, rgba(153,27,27,0.25) 0%, #0a0a0a 60%), linear-gradient(to bottom, #0f0f0f, #0a0a0a)",
-      title: t("hero.slide1.title"),
-      subtitle: t("hero.slide1.subtitle"),
-      ctaText: t("hero.slide1.cta"),
-      ctaLink: `/${locale}/reports/new`,
-      secondaryCtaText: t("hero.slide1.secondaryCta"),
-      secondaryCtaLink: `/${locale}/war-crimes`,
-    },
-    {
-      id: "2",
-      gradient:
-        "radial-gradient(ellipse 100% 80% at 20% 40%, rgba(139,0,0,0.2) 0%, transparent 60%), radial-gradient(ellipse 80% 60% at 80% 80%, rgba(212,175,55,0.08) 0%, transparent 50%), linear-gradient(135deg, #0a0a0a, #110808)",
-      title: t("hero.slide2.title"),
-      subtitle: t("hero.slide2.subtitle"),
-      ctaText: t("hero.slide2.cta"),
-      ctaLink: `/${locale}/about`,
-      secondaryCtaText: t("hero.slide2.secondaryCta"),
-      secondaryCtaLink: `/${locale}/war-crimes`,
-    },
-    {
-      id: "3",
-      gradient:
-        "radial-gradient(ellipse 120% 100% at 50% 100%, rgba(153,27,27,0.2) 0%, #0a0a0a 55%), linear-gradient(to top, #0f0505, #0a0a0a)",
-      title: t("hero.slide3.title"),
-      subtitle: t("hero.slide3.subtitle"),
-      ctaText: t("hero.slide3.cta"),
-      ctaLink: `/${locale}/reports/new`,
-      secondaryCtaText: t("hero.slide3.secondaryCta"),
-      secondaryCtaLink: `/${locale}/blog`,
-    },
-  ];
+  // Build hero slides from backend or fallback to static translations
+  const rawHeroSlides = heroSlidesRes.success ? (heroSlidesRes.body ?? []) : [];
+  const backendSlides = Array.isArray(rawHeroSlides)
+    ? rawHeroSlides
+        .filter((s: any) => s.isActive)
+        .map((s: any) => ({
+          id: s._id,
+          title: s.title,
+          subtitle: s.subtitle,
+          gradient: s.gradient,
+          ctaText: s.ctaText,
+          ctaLink: s.ctaLink,
+          secondaryCtaText: s.secondaryCtaText || undefined,
+          secondaryCtaLink: s.secondaryCtaLink || undefined,
+          image: s.image?.name ? getImageUploadUrl(s.image.name) : undefined,
+        }))
+    : [];
+
+  const heroSlides: HeroSlide[] =
+    backendSlides.length > 0
+      ? backendSlides
+      : [
+          {
+            id: "1",
+            gradient:
+              "radial-gradient(ellipse 120% 100% at 50% 0%, rgba(153,27,27,0.25) 0%, #0a0a0a 60%), linear-gradient(to bottom, #0f0f0f, #0a0a0a)",
+            title: t("hero.slide1.title"),
+            subtitle: t("hero.slide1.subtitle"),
+            ctaText: t("hero.slide1.cta"),
+            ctaLink: `/${locale}/reports/new`,
+            secondaryCtaText: t("hero.slide1.secondaryCta"),
+            secondaryCtaLink: `/${locale}/war-crimes`,
+          },
+          {
+            id: "2",
+            gradient:
+              "radial-gradient(ellipse 100% 80% at 20% 40%, rgba(139,0,0,0.2) 0%, transparent 60%), radial-gradient(ellipse 80% 60% at 80% 80%, rgba(212,175,55,0.08) 0%, transparent 50%), linear-gradient(135deg, #0a0a0a, #110808)",
+            title: t("hero.slide2.title"),
+            subtitle: t("hero.slide2.subtitle"),
+            ctaText: t("hero.slide2.cta"),
+            ctaLink: `/${locale}/about`,
+            secondaryCtaText: t("hero.slide2.secondaryCta"),
+            secondaryCtaLink: `/${locale}/war-crimes`,
+          },
+          {
+            id: "3",
+            gradient:
+              "radial-gradient(ellipse 120% 100% at 50% 100%, rgba(153,27,27,0.2) 0%, #0a0a0a 55%), linear-gradient(to top, #0f0505, #0a0a0a)",
+            title: t("hero.slide3.title"),
+            subtitle: t("hero.slide3.subtitle"),
+            ctaText: t("hero.slide3.cta"),
+            ctaLink: `/${locale}/reports/new`,
+            secondaryCtaText: t("hero.slide3.secondaryCta"),
+            secondaryCtaLink: `/${locale}/blog`,
+          },
+        ];
 
   const formatCount = (n: number) => {
     if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;
