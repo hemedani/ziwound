@@ -1,5 +1,17 @@
 import type { ActFn } from "lesan";
-import { category, city, province, tag, user } from "../../../mod.ts";
+import {
+  blogPost,
+  category,
+  city,
+  country,
+  document,
+  file,
+  heroSlide,
+  province,
+  report,
+  tag,
+  user,
+} from "../../../mod.ts";
 
 export const dashboardStatisticFn: ActFn = async () => {
   const categories = await category.countDocument({});
@@ -7,6 +19,12 @@ export const dashboardStatisticFn: ActFn = async () => {
   const provinces = await province.countDocument({});
   const tags = await tag.countDocument({});
   const users = await user.countDocument({});
+  const reports = await report.countDocument({});
+  const documents = await document.countDocument({});
+  const blogPosts = await blogPost.countDocument({});
+  const heroSlides = await heroSlide.countDocument({});
+  const countries = await country.countDocument({});
+  const files = await file.countDocument({});
 
   return {
     categories,
@@ -14,5 +32,11 @@ export const dashboardStatisticFn: ActFn = async () => {
     provinces,
     tags,
     users,
+    reports,
+    documents,
+    blogPosts,
+    heroSlides,
+    countries,
+    files,
   };
 };
