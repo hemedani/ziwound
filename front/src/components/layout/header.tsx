@@ -92,6 +92,7 @@ export function Header() {
         {!pathname.startsWith("/admin") && !pathname.includes("/login") && !pathname.includes("/register") && (
           <nav className="hidden md:flex items-center gap-1">
             {[
+              { href: `/${locale}/explore`, label: t("explore") },
               { href: `/${locale}/war-crimes`, label: t("warCrimes") },
               { href: `/${locale}/blog`, label: t("blog") },
               { href: `/${locale}/documents`, label: t("documents") },
@@ -292,6 +293,7 @@ export function Header() {
                       </>
                     ) : (
                       <>
+                        <MobileLink href={`/${locale}/explore`}>{t("explore")}</MobileLink>
                         <MobileLink href={`/${locale}/war-crimes`}>{t("warCrimes")}</MobileLink>
                         <MobileLink href={`/${locale}/blog`}>{t("blog")}</MobileLink>
                         <MobileLink href={`/${locale}/documents`}>{t("documents")}</MobileLink>
