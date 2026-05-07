@@ -8,6 +8,7 @@ import { reportSetup } from "./report/mod.ts";
 import { documentSetup } from "./document/mod.ts";
 import { blogPostSetup } from "./blogPost/mod.ts";
 import { countrySetup } from "./country/mod.ts";
+import { heroSlideSetup } from "./heroSlide/mod.ts";
 
 export const functionsSetup = () => {
   countrySetup();
@@ -20,4 +21,5 @@ export const functionsSetup = () => {
   reportSetup();
   documentSetup();
   blogPostSetup();
+  heroSlideSetup();
 };

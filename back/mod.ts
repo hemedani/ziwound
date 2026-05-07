@@ -8,6 +8,7 @@ import {
   createUserTextIndex,
   documents,
   files,
+  heroSlides,
   provinces,
   reports,
   tags,
@@ -25,7 +26,6 @@ const client = await new MongoClient(MONGO_URI).connect();
 const db = client.db("gozaresh");
 coreApp.odm.setDb(db);
 
-export const file = files();
 export const user = users();
 export const country = countries();
 export const province = provinces();
@@ -35,6 +35,8 @@ export const category = categories();
 export const report = reports();
 export const document = documents();
 export const blogPost = blogPostModel();
+export const heroSlide = heroSlides();
+export const file = files();
 
 export const rateLimiter = new RateLimiter(100, 60 * 1000); // 100 requests per minute
 
@@ -50,13 +52,10 @@ createUserTextIndex();
 // Create text index for blog post search
 createBlogPostTextIndex();
 
-console.log(`🚀 Gozarish Backend running on port ${APP_PORT}`);
-console.log(`📊 Environment: ${ENV}`);
-
 coreApp.runServer({
   port: Number(APP_PORT),
   typeGeneration: true,
-  playground: true,
+  playground: ENV === "development" ? true : false,
   staticPath: ["/uploads"],
   cors: [
     "http://localhost:3000",

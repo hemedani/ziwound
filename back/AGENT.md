@@ -73,6 +73,18 @@ This section documents key features and implementations added in recent developm
   - Full-text search on title and content
   - Unique slug index
 
+### HeroSlide Model Implementation
+
+- **Schema**: Title, subtitle, gradient (CSS string), ctaText, ctaLink, secondaryCtaText, secondaryCtaLink, order (number), isActive (boolean), image (single file relation)
+- **CRUD Acts**: add, get, gets, update, remove, count
+- **Features**:
+  - Public `gets` endpoint (no auth required) for landing page slider
+  - Admin-only endpoints for managing slides (add, get, update, remove)
+  - Default sorting by `order` ascending for correct slide sequence
+  - Image relation optional - falls back to gradient background
+  - Seed data provided for initial 3 slides
+  - Pagination support with page/limit parameters
+
 ### Enhanced Report Exploration
 
 - **Advanced Filtering**: Date range (createdAt), geospatial (bbox, proximity search), status, priority, category, tags, user
