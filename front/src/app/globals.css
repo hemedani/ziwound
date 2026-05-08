@@ -2,27 +2,27 @@
 @plugin "@tailwindcss/typography";
 
 @font-face {
-  font-family: 'Estedad';
-  src: url('/fonts/Estedad/Estedad[wght].woff2') format('woff2');
-  font-weight: 100 900;
-  font-style: normal;
-  font-display: swap;
+    font-family: "Estedad";
+    src: url("/fonts/Estedad/Estedad[wght].woff2") format("woff2");
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
 }
 
 @theme {
-    --font-sans: 'Estedad', ui-sans-serif, system-ui, sans-serif;
+    --font-sans: "Estedad", ui-sans-serif, system-ui, sans-serif;
     --font-mono: ui-monospace, monospace;
 
     /* Premium Dark Palette — solemn, authoritative, memorial-like */
-    --color-background: hsl(0 0% 4%);           /* #0a0a0a near-black */
-    --color-foreground: hsl(210 40% 96%);      /* #f1f5f9 off-white */
-    --color-card: hsl(0 0% 6%);                /* #0f0f0f slightly lighter */
+    --color-background: hsl(0 0% 4%); /* #0a0a0a near-black */
+    --color-foreground: hsl(210 40% 96%); /* #f1f5f9 off-white */
+    --color-card: hsl(0 0% 6%); /* #0f0f0f slightly lighter */
     --color-card-foreground: hsl(210 40% 96%);
     --color-popover: hsl(0 0% 6%);
     --color-popover-foreground: hsl(210 40% 96%);
-    --color-primary: hsl(0 72% 35%);           /* crimson #991b1b */
+    --color-primary: hsl(0 72% 35%); /* crimson #991b1b */
     --color-primary-foreground: hsl(0 0% 100%);
-    --color-secondary: hsl(45 80% 52%);        /* gold/amber #d4af37 approx */
+    --color-secondary: hsl(45 80% 52%); /* gold/amber #d4af37 approx */
     --color-secondary-foreground: hsl(0 0% 4%);
     --color-muted: hsl(0 0% 12%);
     --color-muted-foreground: hsl(215 16% 65%);
@@ -151,15 +151,15 @@ body {
 }
 
 .gradient-overlay-top {
-    background: linear-gradient(
-        to top,
-        rgba(10, 10, 10, 0) 0%,
-        rgba(10, 10, 10, 0.6) 100%
-    );
+    background: linear-gradient(to top, rgba(10, 10, 10, 0) 0%, rgba(10, 10, 10, 0.6) 100%);
 }
 
 .gradient-radial-hero {
-    background: radial-gradient(ellipse 80% 60% at 50% 0%, rgba(153, 27, 27, 0.12) 0%, transparent 60%);
+    background: radial-gradient(
+        ellipse 80% 60% at 50% 0%,
+        rgba(153, 27, 27, 0.12) 0%,
+        transparent 60%
+    );
 }
 
 /* ─── Animations ─── */
@@ -235,7 +235,8 @@ body {
 }
 
 @keyframes pulse-glow {
-    0%, 100% {
+    0%,
+    100% {
         box-shadow: 0 0 16px -4px rgba(153, 27, 27, 0.3);
     }
     50% {
@@ -283,13 +284,27 @@ body {
 }
 
 /* Stagger delays */
-.delay-100 { animation-delay: 100ms; }
-.delay-200 { animation-delay: 200ms; }
-.delay-300 { animation-delay: 300ms; }
-.delay-400 { animation-delay: 400ms; }
-.delay-500 { animation-delay: 500ms; }
-.delay-600 { animation-delay: 600ms; }
-.delay-700 { animation-delay: 700ms; }
+.delay-100 {
+    animation-delay: 100ms;
+}
+.delay-200 {
+    animation-delay: 200ms;
+}
+.delay-300 {
+    animation-delay: 300ms;
+}
+.delay-400 {
+    animation-delay: 400ms;
+}
+.delay-500 {
+    animation-delay: 500ms;
+}
+.delay-600 {
+    animation-delay: 600ms;
+}
+.delay-700 {
+    animation-delay: 700ms;
+}
 
 /* ─── Scrollbar styling ─── */
 ::-webkit-scrollbar {
@@ -314,4 +329,193 @@ body {
 ::selection {
     background: rgba(153, 27, 27, 0.4);
     color: #f1f5f9;
+}
+
+/* ─── react-multi-date-picker Dark Glassmorphism Theme ─── */
+/* These rules use .calendar-glass wrapper for high specificity.
+   The library injects its own stylesheet dynamically; we force-override
+   every color with !important and very specific selectors.            */
+
+/* ── Glass wrapper ── */
+/*
+   backdrop-filter must be on the element that sits DIRECTLY over
+   the page content.  .rmdp-wrapper is too deep inside the calendar
+   DOM and is isolated by library styles, so the blur is applied here
+   on .calendar-glass (the div that wraps the entire calendar inside
+   the transparent PopoverContent).
+*/
+.calendar-glass {
+    position: relative;
+    border-radius: 0.625rem;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    overflow: hidden;
+    /* True frosted blur — samples the page behind the popover */
+    backdrop-filter: blur(48px) saturate(180%);
+    -webkit-backdrop-filter: blur(48px) saturate(180%);
+    /* Translucent dark tint */
+    background: linear-gradient(
+        160deg,
+        rgba(40, 40, 40, 0.55) 0%,
+        rgba(10, 10, 10, 0.8) 100%
+    );
+    /* Inner top highlight + outer depth shadow */
+    box-shadow:
+        inset 0 1px 0 rgba(255, 255, 255, 0.1),
+        0 8px 32px rgba(0, 0, 0, 0.45);
+}
+
+/* Make the library wrapper fully transparent so the glass shows through */
+.calendar-glass .rmdp-wrapper {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0.625rem;
+}
+
+/* ── Calendar container ── */
+.calendar-glass .rmdp-calendar {
+    background: transparent !important;
+    color: hsl(210 40% 96%) !important;
+    border-radius: 0.625rem;
+    padding: 0.5rem !important;
+}
+
+/* ── Day picker grid ── */
+.calendar-glass .rmdp-day-picker {
+    background: transparent !important;
+    padding: 0.25rem !important;
+}
+
+.calendar-glass .rmdp-day-picker > div:first-child {
+    background: transparent !important;
+}
+
+/* ── Header ── */
+.calendar-glass .rmdp-header {
+    color: hsl(210 40% 96%) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+    padding-bottom: 0.5rem !important;
+    margin-bottom: 0.25rem !important;
+}
+
+.calendar-glass .rmdp-header-values,
+.calendar-glass .rmdp-header-values span,
+.calendar-glass .rmdp-header-values * {
+    color: hsl(210 40% 96%) !important;
+    font-weight: 600 !important;
+}
+
+/* ── Arrows ── */
+.calendar-glass .rmdp-arrow-container {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+.calendar-glass .rmdp-arrow-container:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    box-shadow: none !important;
+}
+
+.calendar-glass .rmdp-arrow {
+    border-color: hsl(210 40% 96%) !important;
+}
+
+.calendar-glass .rmdp-arrow-container:hover .rmdp-arrow {
+    border-color: white !important;
+}
+
+/* ── Weekdays ── */
+.calendar-glass .rmdp-week-day,
+.calendar-glass .rmdp-week-day span {
+    color: hsl(215 16% 65%) !important;
+}
+
+/* ── Day cells ── */
+/* Force the div itself and every child/span to inherit our light color  */
+.calendar-glass .rmdp-day {
+    color: hsl(210 40% 96%) !important;
+    height: 34px !important;
+    width: 34px !important;
+}
+
+.calendar-glass .rmdp-day * {
+    color: hsl(210 40% 96%) !important;
+}
+
+.calendar-glass .rmdp-day span,
+.calendar-glass .rmdp-day span[class] {
+    color: hsl(210 40% 96%) !important;
+}
+
+/* ── Today ── */
+.calendar-glass .rmdp-day.rmdp-today span,
+.calendar-glass .rmdp-day.rmdp-today span[class] {
+    color: hsl(45 80% 52%) !important;
+    font-weight: 700 !important;
+}
+
+/* ── Selected day ── */
+.calendar-glass .rmdp-day.rmdp-selected span,
+.calendar-glass .rmdp-day.rmdp-selected span[class] {
+    background-color: hsl(0 72% 35%) !important;
+    color: white !important;
+    border-radius: 0.375rem !important;
+    box-shadow: none !important;
+}
+
+/* ── Hover ── */
+.calendar-glass .rmdp-day:hover:not(.rmdp-disabled):not(.rmdp-selected) span,
+.calendar-glass .rmdp-day:hover:not(.rmdp-disabled):not(.rmdp-selected) span[class] {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    border-radius: 0.375rem !important;
+}
+
+/* ── Deactive (other month) ── */
+.calendar-glass .rmdp-day.rmdp-deactive,
+.calendar-glass .rmdp-day.rmdp-deactive span,
+.calendar-glass .rmdp-day.rmdp-deactive span[class] {
+    color: hsl(215 16% 40%) !important;
+}
+
+/* ── Disabled ── */
+.calendar-glass .rmdp-day.rmdp-disabled,
+.calendar-glass .rmdp-day.rmdp-disabled span,
+.calendar-glass .rmdp-day.rmdp-disabled span[class] {
+    color: hsl(215 16% 30%) !important;
+}
+
+/* ── Month / Year picker dropdowns ── */
+.calendar-glass .rmdp-month-picker,
+.calendar-glass .rmdp-year-picker {
+    background: rgba(15, 15, 15, 0.95) !important;
+    color: hsl(210 40% 96%) !important;
+    border: 1px solid rgba(255, 255, 255, 0.1) !important;
+    border-radius: 0.5rem !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.6) !important;
+}
+
+.calendar-glass .rmdp-month-picker div,
+.calendar-glass .rmdp-year-picker div {
+    color: hsl(210 40% 96%) !important;
+}
+
+.calendar-glass .rmdp-month-picker div:hover,
+.calendar-glass .rmdp-year-picker div:hover {
+    background-color: rgba(255, 255, 255, 0.1) !important;
+    color: white !important;
+    border-radius: 0.375rem !important;
+}
+
+.calendar-glass .rmdp-month-picker .rmdp-selected,
+.calendar-glass .rmdp-year-picker .rmdp-selected {
+    background-color: hsl(0 72% 35%) !important;
+    color: white !important;
+    box-shadow: none !important;
+    border-radius: 0.375rem !important;
+}
+
+/* ── Remove unwanted shadows ── */
+.calendar-glass .rmdp-shadow {
+    box-shadow: none !important;
 }
