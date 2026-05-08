@@ -84,12 +84,12 @@ export function Timeline({
                     )}
                   >
                     {/* Content card */}
-                    <div className="flex-1 md:px-12">
+                    <div className={cn("flex-1 ps-12 md:ps-16 md:pe-16", isEven ? "text-end ml-17" : "mr-17")}>
                       <Link
                         href={event.href}
                         className="group block rounded-2xl glass-light p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.04]"
                       >
-                        <div className="mb-3 flex flex-wrap items-center gap-4 text-xs text-slate-body">
+                        <div className={cn("mb-3 flex flex-wrap items-center gap-4 text-xs text-slate-body", isEven && "justify-end")}>
                           <span className="flex items-center gap-1">
                             <Calendar className="h-3.5 w-3.5 text-gold" />
                             {event.date}
@@ -109,20 +109,25 @@ export function Timeline({
                           {event.description}
                         </p>
 
-                        <div className="flex items-center gap-1 text-sm font-medium text-crimson transition-colors group-hover:text-gold">
+                        <div className={cn("flex items-center gap-1 text-sm font-medium text-crimson transition-colors group-hover:text-gold", isEven && "justify-end")}>
                           <span>{viewDetails}</span>
                           <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                         </div>
                       </Link>
                     </div>
 
-                    {/* Center dot */}
-                    <div className="absolute start-4 md:start-1/2 top-6 md:top-8 -translate-x-1/2">
-                      <div className="h-4 w-4 rounded-full bg-crimson border-4 border-background shadow-lg shadow-crimson/30" />
-                    </div>
-
                     {/* Spacer for alternating layout */}
                     <div className="hidden md:block flex-1" />
+                  </div>
+
+                  {/* Desktop dot (absolute, between card and center line, on card's side) */}
+                  <div className={cn("absolute top-6 -translate-x-1/2 hidden md:block", isEven ? "start-[calc(50%-2rem)]" : "start-[calc(50%)]")}>
+                    <div className="h-4 w-4 rounded-full bg-crimson border-4 border-background shadow-lg shadow-crimson/30" />
+                  </div>
+
+                  {/* Mobile dot (absolute, left-aligned) */}
+                  <div className="absolute start-4 top-6 -translate-x-1/2 md:hidden">
+                    <div className="h-4 w-4 rounded-full bg-crimson border-4 border-background shadow-lg shadow-crimson/30" />
                   </div>
                 </motion.div>
               );
