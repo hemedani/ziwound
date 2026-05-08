@@ -216,7 +216,7 @@
         "cta": "提交报告",
         "secondaryCta": "阅读故事"
       },
-      "brandLabel": "Ziwound",
+      "brandLabel": "ZiWound",
       "scrollIndicator": "向下滚动"
     },
     "howItWorks": {
@@ -264,7 +264,7 @@
     "mission": {
       "overline": "我们的使命",
       "title": "真相是正义的基石",
-      "p1": "Ziwound的存在是为了确保没有任何反人类罪行不被记录。我们为世界各地冲突地区的战争罪行和人权侵犯提供一个安全、永久且可核实的档案。",
+      "p1": "ZiWound的存在是为了确保没有任何反人类罪行不被记录。我们为世界各地冲突地区的战争罪行和人权侵犯提供一个安全、永久且可核实的档案。",
       "p2": "通过将尖端技术与严格核实相结合，我们赋能幸存者、目击者和调查人员保存能够经受时间考验和法庭审查的证据。",
       "tagline": "为了受害者。为了正义。为了历史。"
     },
@@ -771,9 +771,9 @@
   },
   "about": {
     "title": "关于我们",
-    "mission": "Ziwound 是一个战争罪行记录平台，使个人能够安全、保密地报告侵犯人权和战争罪行。我们的目标是保存历史记忆并确保问责制。",
+    "mission": "ZiWound 是一个战争罪行记录平台，使个人能够安全、保密地报告侵犯人权和战争罪行。我们的目标是保存历史记忆并确保问责制。",
     "vision": "一个没有战争罪行不受惩罚、受害者声音被听到的世界。",
-    "whyChooseUs": "为什么选择 Ziwound？",
+    "whyChooseUs": "为什么选择 ZiWound？",
     "feature1Title": "高安全性",
     "feature1Description": "您的报告受到最高安全标准的保护。",
     "feature2Title": "多语言",
@@ -828,7 +828,7 @@
   },
   "faq": {
     "title": "常见问题",
-    "subtitle": "查找关于Ziwound的常见问题答案。找不到您需要的？欢迎联系我们。",
+    "subtitle": "查找关于ZiWound的常见问题答案。找不到您需要的？欢迎联系我们。",
     "searchPlaceholder": "搜索问题...",
     "categories": {
       "general": "一般问题",
@@ -837,17 +837,17 @@
       "technical": "技术支持"
     },
     "questions": {
-      "whatIsZiwound": {
-        "question": "什么是Ziwound？",
-        "answer": "Ziwound是一个记录战争罪行和侵犯人权行为的安全平台。我们为个人提供一种保密的方式，让他们在保护隐私和安全的同时，报告事件、上传证据并为历史记录做出贡献。"
+      "whatIsZiWound": {
+        "question": "什么是ZiWound？",
+        "answer": "ZiWound是一个记录战争罪行和侵犯人权行为的安全平台。我们为个人提供一种保密的方式，让他们在保护隐私和安全的同时，报告事件、上传证据并为历史记录做出贡献。"
       },
-      "isZiwoundFree": {
-        "question": "Ziwound是免费的吗？",
-        "answer": "是的，Ziwound对所有用户完全免费。我们是一个致力于记录战争罪行并确保问责的非营利性倡议。提交报告或访问公共信息不收取任何费用。"
+      "isZiWoundFree": {
+        "question": "ZiWound是免费的吗？",
+        "answer": "是的，ZiWound对所有用户完全免费。我们是一个致力于记录战争罪行并确保问责的非营利性倡议。提交报告或访问公共信息不收取任何费用。"
       },
       "whoCanUse": {
-        "question": "谁可以使用Ziwound？",
-        "answer": "任何人都可以使用Ziwound提交关于他们目击或经历的战争罪行或侵犯人权行为的报告。我们欢迎受害者、目击者、记者、研究人员和人权组织的报告。"
+        "question": "谁可以使用ZiWound？",
+        "answer": "任何人都可以使用ZiWound提交关于他们目击或经历的战争罪行或侵犯人权行为的报告。我们欢迎受害者、目击者、记者、研究人员和人权组织的报告。"
       },
       "howToReport": {
         "question": "如何提交报告？",
@@ -878,16 +878,16 @@
         "answer": "我们无限期保留报告和相关数据以用于历史记录目的。但是，您可以随时请求删除您的个人帐户信息。即使删除了个人数据，报告内容也可能会被保留。"
       },
       "supportedLanguages": {
-        "question": "Ziwound支持哪些语言？",
-        "answer": "Ziwound目前支持9种语言：波斯语、英语、阿拉伯语、中文、葡萄牙语、西班牙语、荷兰语、土耳其语和俄语。我们不断努力增加更多语言，让每个人都能使用该平台。"
+        "question": "ZiWound支持哪些语言？",
+        "answer": "ZiWound目前支持9种语言：波斯语、英语、阿拉伯语、中文、葡萄牙语、西班牙语、荷兰语、土耳其语和俄语。我们不断努力增加更多语言，让每个人都能使用该平台。"
       },
       "mobileFriendly": {
-        "question": "Ziwound是否支持移动端？",
-        "answer": "是的，Ziwound完全响应式，可在所有设备上运行，包括智能手机和平板电脑。您可以从移动浏览器提交报告、上传照片并访问所有功能，无需下载应用程序。"
+        "question": "ZiWound是否支持移动端？",
+        "answer": "是的，ZiWound完全响应式，可在所有设备上运行，包括智能手机和平板电脑。您可以从移动浏览器提交报告、上传照片并访问所有功能，无需下载应用程序。"
       },
       "browserSupport": {
         "question": "支持哪些浏览器？",
-        "answer": "Ziwound适用于所有现代浏览器，包括Chrome、Firefox、Safari和Edge。我们建议使用浏览器的最新版本以获得最佳体验和安全性。不支持Internet Explorer。"
+        "answer": "ZiWound适用于所有现代浏览器，包括Chrome、Firefox、Safari和Edge。我们建议使用浏览器的最新版本以获得最佳体验和安全性。不支持Internet Explorer。"
       }
     },
     "noResults": "未找到问题",
@@ -921,20 +921,20 @@
     "title": "服务条款",
     "subtitle": "使用我们平台的条款和条件",
     "section1Title": "接受条款",
-    "section1Content": "通过访问或使用Ziwound，您同意受这些服务条款的约束。如果您不同意这些条款，请不要使用我们的平台。我们保留随时修改这些条款的权利，此类修改将在发布后即时生效。",
+    "section1Content": "通过访问或使用ZiWound，您同意受这些服务条款的约束。如果您不同意这些条款，请不要使用我们的平台。我们保留随时修改这些条款的权利，此类修改将在发布后即时生效。",
     "section2Title": "用户责任",
     "section2Content": "您有责任维护账户凭证的机密性以及账户下发生的所有活动。您同意在提交报告时提供准确真实的信息，并且仅将平台用于合法目的。",
     "section3Title": "内容和报告",
-    "section3Content": "通过向Ziwound提交内容，您授予我们非独占性许可，以使用、存储和处理该内容，用于运营和改进我们的服务。您声明您有权提交此类内容，并且它不侵犯任何第三方权利。",
+    "section3Content": "通过向ZiWound提交内容，您授予我们非独占性许可，以使用、存储和处理该内容，用于运营和改进我们的服务。您声明您有权提交此类内容，并且它不侵犯任何第三方权利。",
     "section4Title": "责任限制",
-    "section4Content": "Ziwound及其运营者不对因使用平台而产生的或与之相关的任何间接、附带、特殊、后果性或惩罚性损害承担责任。我们对平台上信息的准确性或完整性不作任何保证。",
+    "section4Content": "ZiWound及其运营者不对因使用平台而产生的或与之相关的任何间接、附带、特殊、后果性或惩罚性损害承担责任。我们对平台上信息的准确性或完整性不作任何保证。",
     "contactTitle": "联系信息",
     "contactContent": "有关这些服务条款的问题，请通过 legal@ziwound.org 或我们的联系页面与我们联系。",
     "overline": "法律"
   },
   "help": {
     "title": "帮助中心",
-    "subtitle": "查找使用Ziwound的指南和支持",
+    "subtitle": "查找使用ZiWound的指南和支持",
     "gettingStartedTitle": "入门指南",
     "gettingStartedDesc": "了解创建账户和浏览平台的基础知识",
     "submittingReportsTitle": "提交报告",

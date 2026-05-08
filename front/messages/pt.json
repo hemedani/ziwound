@@ -216,7 +216,7 @@
         "cta": "Enviar Relatório",
         "secondaryCta": "Ler Histórias"
       },
-      "brandLabel": "Ziwound",
+      "brandLabel": "ZiWound",
       "scrollIndicator": "Rolar"
     },
     "howItWorks": {
@@ -264,7 +264,7 @@
     "mission": {
       "overline": "Nossa Missão",
       "title": "A Verdade é a Base da Justiça",
-      "p1": "A Ziwound existe para garantir que nenhum crime contra a humanidade fique sem ser documentado. Fornecemos um arquivo seguro, permanente e verificável de crimes de guerra e violações de direitos humanos de zonas de conflito em todo o mundo.",
+      "p1": "A ZiWound existe para garantir que nenhum crime contra a humanidade fique sem ser documentado. Fornecemos um arquivo seguro, permanente e verificável de crimes de guerra e violações de direitos humanos de zonas de conflito em todo o mundo.",
       "p2": "Ao combinar tecnologia de ponta com verificação rigorosa, capacitamos sobreviventes, testemunhas e investigadores a preservar evidências que podem resistir ao teste do tempo e ao escrutínio dos tribunais.",
       "tagline": "Pelas vítimas. Pela justiça. Pela história."
     },
@@ -771,9 +771,9 @@
   },
   "about": {
     "title": "Sobre Nós",
-    "mission": "Ziwound é uma plataforma de documentação de crimes de guerra que permite aos indivíduos relatar violações de direitos humanos e crimes de guerra de forma segura e confidencial. Nosso objetivo é preservar a memória histórica e garantir a responsabilidade.",
+    "mission": "ZiWound é uma plataforma de documentação de crimes de guerra que permite aos indivíduos relatar violações de direitos humanos e crimes de guerra de forma segura e confidencial. Nosso objetivo é preservar a memória histórica e garantir a responsabilidade.",
     "vision": "Um mundo onde nenhum crime de guerra fica impune e as vozes das vítimas são ouvidas.",
-    "whyChooseUs": "Por que Ziwound?",
+    "whyChooseUs": "Por que ZiWound?",
     "feature1Title": "Alta Segurança",
     "feature1Description": "Seus relatórios são protegidos com os mais altos padrões de segurança.",
     "feature2Title": "Multilíngue",
@@ -828,7 +828,7 @@
   },
   "faq": {
     "title": "Perguntas Frequentes",
-    "subtitle": "Encontre respostas para perguntas comuns sobre o Ziwound. Não encontrou o que procura? Sinta-se à vontade para entrar em contato.",
+    "subtitle": "Encontre respostas para perguntas comuns sobre o ZiWound. Não encontrou o que procura? Sinta-se à vontade para entrar em contato.",
     "searchPlaceholder": "Pesquisar perguntas...",
     "categories": {
       "general": "Perguntas Gerais",
@@ -837,17 +837,17 @@
       "technical": "Suporte Técnico"
     },
     "questions": {
-      "whatIsZiwound": {
-        "question": "O que é o Ziwound?",
-        "answer": "O Ziwound é uma plataforma segura para documentar crimes de guerra e violações de direitos humanos. Fornecemos uma forma confidencial para indivíduos reportarem incidentes, fazerem upload de evidências e contribuírem para registros históricos, mantendo sua privacidade e segurança."
+      "whatIsZiWound": {
+        "question": "O que é o ZiWound?",
+        "answer": "O ZiWound é uma plataforma segura para documentar crimes de guerra e violações de direitos humanos. Fornecemos uma forma confidencial para indivíduos reportarem incidentes, fazerem upload de evidências e contribuírem para registros históricos, mantendo sua privacidade e segurança."
       },
-      "isZiwoundFree": {
-        "question": "O Ziwound é gratuito?",
-        "answer": "Sim, o Ziwound é completamente gratuito para todos os usuários. Somos uma iniciativa sem fins lucrativos dedicada a documentar crimes de guerra e garantir responsabilidade. Não há taxas para enviar relatórios ou acessar informações públicas."
+      "isZiWoundFree": {
+        "question": "O ZiWound é gratuito?",
+        "answer": "Sim, o ZiWound é completamente gratuito para todos os usuários. Somos uma iniciativa sem fins lucrativos dedicada a documentar crimes de guerra e garantir responsabilidade. Não há taxas para enviar relatórios ou acessar informações públicas."
       },
       "whoCanUse": {
-        "question": "Quem pode usar o Ziwound?",
-        "answer": "Qualquer pessoa pode usar o Ziwound para enviar relatórios sobre crimes de guerra ou violações de direitos humanos que testemunhou ou experimentou. Damos as boas-vindas a relatórios de vítimas, testemunhas, jornalistas, pesquisadores e organizações de direitos humanos."
+        "question": "Quem pode usar o ZiWound?",
+        "answer": "Qualquer pessoa pode usar o ZiWound para enviar relatórios sobre crimes de guerra ou violações de direitos humanos que testemunhou ou experimentou. Damos as boas-vindas a relatórios de vítimas, testemunhas, jornalistas, pesquisadores e organizações de direitos humanos."
       },
       "howToReport": {
         "question": "Como envio um relatório?",
@@ -878,16 +878,16 @@
         "answer": "Retemos relatórios e dados associados indefinidamente para fins de documentação histórica. No entanto, você pode solicitar a exclusão de suas informações pessoais da conta a qualquer momento. O conteúdo do relatório pode ser retido mesmo que os dados pessoais sejam removidos."
       },
       "supportedLanguages": {
-        "question": "Quais idiomas o Ziwound suporta?",
-        "answer": "O Ziwound atualmente suporta 9 idiomas: Persa, Inglês, Árabe, Chinês, Português, Espanhol, Holandês, Turco e Russo. Estamos continuamente trabalhando para adicionar mais idiomas para tornar a plataforma acessível a todos."
+        "question": "Quais idiomas o ZiWound suporta?",
+        "answer": "O ZiWound atualmente suporta 9 idiomas: Persa, Inglês, Árabe, Chinês, Português, Espanhol, Holandês, Turco e Russo. Estamos continuamente trabalhando para adicionar mais idiomas para tornar a plataforma acessível a todos."
       },
       "mobileFriendly": {
-        "question": "O Ziwound é compatível com dispositivos móveis?",
-        "answer": "Sim, o Ziwound é totalmente responsivo e funciona em todos os dispositivos, incluindo smartphones e tablets. Você pode enviar relatórios, fazer upload de fotos e acessar todos os recursos do seu navegador móvel sem precisar baixar um aplicativo."
+        "question": "O ZiWound é compatível com dispositivos móveis?",
+        "answer": "Sim, o ZiWound é totalmente responsivo e funciona em todos os dispositivos, incluindo smartphones e tablets. Você pode enviar relatórios, fazer upload de fotos e acessar todos os recursos do seu navegador móvel sem precisar baixar um aplicativo."
       },
       "browserSupport": {
         "question": "Quais navegadores são suportados?",
-        "answer": "O Ziwound funciona em todos os navegadores modernos, incluindo Chrome, Firefox, Safari e Edge. Recomendamos usar a versão mais recente do seu navegador para a melhor experiência e segurança. O Internet Explorer não é suportado."
+        "answer": "O ZiWound funciona em todos os navegadores modernos, incluindo Chrome, Firefox, Safari e Edge. Recomendamos usar a versão mais recente do seu navegador para a melhor experiência e segurança. O Internet Explorer não é suportado."
       }
     },
     "noResults": "Nenhuma pergunta encontrada",
@@ -921,20 +921,20 @@
     "title": "Termos de Serviço",
     "subtitle": "Termos e condições para usar nossa plataforma",
     "section1Title": "Aceitação dos Termos",
-    "section1Content": "Ao acessar ou usar o Ziwound, você concorda em ficar vinculado a estes Termos de Serviço. Se você não concordar com estes termos, por favor não use nossa plataforma. Reservamo-nos o direito de modificar estes termos a qualquer momento, e tais modificações entrarão em vigor imediatamente após a publicação.",
+    "section1Content": "Ao acessar ou usar o ZiWound, você concorda em ficar vinculado a estes Termos de Serviço. Se você não concordar com estes termos, por favor não use nossa plataforma. Reservamo-nos o direito de modificar estes termos a qualquer momento, e tais modificações entrarão em vigor imediatamente após a publicação.",
     "section2Title": "Responsabilidades do Usuário",
     "section2Content": "Você é responsável por manter a confidencialidade de suas credenciais de conta e por todas as atividades que ocorrem sob sua conta. Você concorda em fornecer informações precisas e verdadeiras ao enviar relatórios e usar a plataforma apenas para fins legítimos.",
     "section3Title": "Conteúdo e Relatórios",
-    "section3Content": "Ao enviar conteúdo para o Ziwound, você nos concede uma licença não exclusiva para usar, armazenar e processar esse conteúdo para os fins de operar e melhorar nossos serviços. Você declara que tem o direito de enviar tal conteúdo e que ele não viola quaisquer direitos de terceiros.",
+    "section3Content": "Ao enviar conteúdo para o ZiWound, você nos concede uma licença não exclusiva para usar, armazenar e processar esse conteúdo para os fins de operar e melhorar nossos serviços. Você declara que tem o direito de enviar tal conteúdo e que ele não viola quaisquer direitos de terceiros.",
     "section4Title": "Limitação de Responsabilidade",
-    "section4Content": "O Ziwound e seus operadores não serão responsáveis por quaisquer danos indiretos, incidentais, especiais, consequenciais ou punitivos decorrentes de ou relacionados ao seu uso da plataforma. Não fazemos garantias sobre a precisão ou integridade das informações na plataforma.",
+    "section4Content": "O ZiWound e seus operadores não serão responsáveis por quaisquer danos indiretos, incidentais, especiais, consequenciais ou punitivos decorrentes de ou relacionados ao seu uso da plataforma. Não fazemos garantias sobre a precisão ou integridade das informações na plataforma.",
     "contactTitle": "Informações de Contato",
     "contactContent": "Para perguntas sobre estes Termos de Serviço, entre em contato conosco em legal@ziwound.org ou através de nossa página de contato.",
     "overline": "Jurídico"
   },
   "help": {
     "title": "Central de Ajuda",
-    "subtitle": "Encontre orientações e suporte para usar o Ziwound",
+    "subtitle": "Encontre orientações e suporte para usar o ZiWound",
     "gettingStartedTitle": "Começando",
     "gettingStartedDesc": "Aprenda o básico de criar uma conta e navegar na plataforma",
     "submittingReportsTitle": "Enviando Relatórios",

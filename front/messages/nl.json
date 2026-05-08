@@ -216,7 +216,7 @@
         "cta": "Rapport Indienen",
         "secondaryCta": "Verhalen Lezen"
       },
-      "brandLabel": "Ziwound",
+      "brandLabel": "ZiWound",
       "scrollIndicator": "Scroll"
     },
     "howItWorks": {
@@ -264,7 +264,7 @@
     "mission": {
       "overline": "Onze Missie",
       "title": "Waarheid is de Basis van Gerechtigheid",
-      "p1": "Ziwound bestaat om ervoor te zorgen dat geen misdaad tegen de menselijkheid ongedocumenteerd blijft. Wij bieden een veilig, permanent en verifieerbaar archief van oorlogsmisdaden en schendingen van de mensenrechten uit conflictgebieden over de hele wereld.",
+      "p1": "ZiWound bestaat om ervoor te zorgen dat geen misdaad tegen de menselijkheid ongedocumenteerd blijft. Wij bieden een veilig, permanent en verifieerbaar archief van oorlogsmisdaden en schendingen van de mensenrechten uit conflictgebieden over de hele wereld.",
       "p2": "Door geavanceerde technologie te combineren met strenge verificatie, empoweren wij overlevenden, getuigen en onderzoekers om bewijs te bewaren dat de tand des tijds en het gerechtelijk onderzoek kan doorstaan.",
       "tagline": "Voor de slachtoffers. Voor gerechtigheid. Voor de geschiedenis."
     },
@@ -824,9 +824,9 @@
   },
   "about": {
     "title": "Over Ons",
-    "mission": "Ziwound is een platform voor documentatie van oorlogsmisdaden waarmee individuen schendingen van mensenrechten en oorlogsmisdaden veilig en vertrouwelijk kunnen melden. Ons doel is het behouden van historisch geheugen en het waarborgen van verantwoording.",
+    "mission": "ZiWound is een platform voor documentatie van oorlogsmisdaden waarmee individuen schendingen van mensenrechten en oorlogsmisdaden veilig en vertrouwelijk kunnen melden. Ons doel is het behouden van historisch geheugen en het waarborgen van verantwoording.",
     "vision": "Een wereld waarin geen oorlogsmisdaad ongestraft blijft en de stemmen van slachtoffers worden gehoord.",
-    "whyChooseUs": "Waarom Ziwound?",
+    "whyChooseUs": "Waarom ZiWound?",
     "feature1Title": "Hoge Veiligheid",
     "feature1Description": "Uw rapporten zijn beschermd met de hoogste beveiligingsnormen.",
     "feature2Title": "Meertalig",
@@ -881,7 +881,7 @@
   },
   "faq": {
     "title": "Veelgestelde Vragen",
-    "subtitle": "Vind antwoorden op veelgestelde vragen over Ziwound. Kunt u niet vinden wat u zoekt? Neem gerust contact met ons op.",
+    "subtitle": "Vind antwoorden op veelgestelde vragen over ZiWound. Kunt u niet vinden wat u zoekt? Neem gerust contact met ons op.",
     "searchPlaceholder": "Zoek vragen...",
     "categories": {
       "general": "Algemene Vragen",
@@ -890,17 +890,17 @@
       "technical": "Technische Ondersteuning"
     },
     "questions": {
-      "whatIsZiwound": {
-        "question": "Wat is Ziwound?",
-        "answer": "Ziwound is een veilig platform voor het documenteren van oorlogsmisdaden en schendingen van mensenrechten. Wij bieden een vertrouwelijke manier voor individuen om incidenten te rapporteren, bewijs te uploaden en bij te dragen aan historische archieven, terwijl hun privacy en veiligheid behouden blijven."
+      "whatIsZiWound": {
+        "question": "Wat is ZiWound?",
+        "answer": "ZiWound is een veilig platform voor het documenteren van oorlogsmisdaden en schendingen van mensenrechten. Wij bieden een vertrouwelijke manier voor individuen om incidenten te rapporteren, bewijs te uploaden en bij te dragen aan historische archieven, terwijl hun privacy en veiligheid behouden blijven."
       },
-      "isZiwoundFree": {
-        "question": "Is Ziwound gratis te gebruiken?",
-        "answer": "Ja, Ziwound is volledig gratis voor alle gebruikers. We zijn een non-profit initiatief dat zich richt op het documenteren van oorlogsmisdaden en het waarborgen van verantwoordelijkheid. Er zijn geen kosten verbonden aan het indienen van rapporten of het openbaar toegankelijk maken van informatie."
+      "isZiWoundFree": {
+        "question": "Is ZiWound gratis te gebruiken?",
+        "answer": "Ja, ZiWound is volledig gratis voor alle gebruikers. We zijn een non-profit initiatief dat zich richt op het documenteren van oorlogsmisdaden en het waarborgen van verantwoordelijkheid. Er zijn geen kosten verbonden aan het indienen van rapporten of het openbaar toegankelijk maken van informatie."
       },
       "whoCanUse": {
-        "question": "Wie kan Ziwound gebruiken?",
-        "answer": "Iedereen kan Ziwound gebruiken om rapporten in te dienen over oorlogsmisdaden of schendingen van mensenrechten die hij/zij heeft gezien of meegemaakt. We verwelkomen rapporten van slachtoffers, getuigen, journalisten, onderzoekers en mensenrechtenorganisaties."
+        "question": "Wie kan ZiWound gebruiken?",
+        "answer": "Iedereen kan ZiWound gebruiken om rapporten in te dienen over oorlogsmisdaden of schendingen van mensenrechten die hij/zij heeft gezien of meegemaakt. We verwelkomen rapporten van slachtoffers, getuigen, journalisten, onderzoekers en mensenrechtenorganisaties."
       },
       "howToReport": {
         "question": "H dien ik een rapport in?",
@@ -931,16 +931,16 @@
         "answer": "We bewaren rapporten en bijbehorende gegevens voor onbepaalde tijd voor historische documentatiedoeleinden. U kunt echter op elk moment verzoeken om verwijdering van uw persoonlijke accountinformatie. Rapportinhoud kan worden bewaard, zelfs als persoonlijke gegevens zijn verwijderd."
       },
       "supportedLanguages": {
-        "question": "Welke talen ondersteunt Ziwound?",
-        "answer": "Ziwound ondersteunt momenteel 9 talen: Perzisch, Engels, Arabisch, Chinees, Portugees, Spaans, Nederlands, Turks en Russisch. We werken continu aan het toevoegen van meer talen om het platform voor iedereen toegankelijk te maken."
+        "question": "Welke talen ondersteunt ZiWound?",
+        "answer": "ZiWound ondersteunt momenteel 9 talen: Perzisch, Engels, Arabisch, Chinees, Portugees, Spaans, Nederlands, Turks en Russisch. We werken continu aan het toevoegen van meer talen om het platform voor iedereen toegankelijk te maken."
       },
       "mobileFriendly": {
-        "question": "Is Ziwound mobielvriendelijk?",
-        "answer": "Ja, Ziwound is volledig responsief en werkt op alle apparaten, inclusief smartphones en tablets. U kunt rapporten indienen, foto's uploaden en toegang krijgen tot alle functies vanuit uw mobiele browser zonder een app te hoeven downloaden."
+        "question": "Is ZiWound mobielvriendelijk?",
+        "answer": "Ja, ZiWound is volledig responsief en werkt op alle apparaten, inclusief smartphones en tablets. U kunt rapporten indienen, foto's uploaden en toegang krijgen tot alle functies vanuit uw mobiele browser zonder een app te hoeven downloaden."
       },
       "browserSupport": {
         "question": "Welke browsers worden ondersteund?",
-        "answer": "Ziwound werkt op alle moderne browsers, inclusief Chrome, Firefox, Safari en Edge. We raden aan om de nieuwste versie van uw browser te gebruiken voor de beste ervaring en beveiliging. Internet Explorer wordt niet ondersteund."
+        "answer": "ZiWound werkt op alle moderne browsers, inclusief Chrome, Firefox, Safari en Edge. We raden aan om de nieuwste versie van uw browser te gebruiken voor de beste ervaring en beveiliging. Internet Explorer wordt niet ondersteund."
       }
     },
     "noResults": "Geen vragen gevonden",
@@ -974,20 +974,20 @@
     "title": "Servicevoorwaarden",
     "subtitle": "Algemene voorwaarden voor het gebruik van ons platform",
     "section1Title": "Acceptatie van Voorwaarden",
-    "section1Content": "Door toegang te krijgen tot of gebruik te maken van Ziwound, gaat u ermee akkoord gebonden te zijn aan deze Servicevoorwaarden. Als u niet akkoord gaat met deze voorwaarden, gebruik ons platform dan niet. We behouden ons het recht voor om deze voorwaarden op elk moment te wijzigen, en dergelijke wijzigingen worden onmiddellijk na publicatie van kracht.",
+    "section1Content": "Door toegang te krijgen tot of gebruik te maken van ZiWound, gaat u ermee akkoord gebonden te zijn aan deze Servicevoorwaarden. Als u niet akkoord gaat met deze voorwaarden, gebruik ons platform dan niet. We behouden ons het recht voor om deze voorwaarden op elk moment te wijzigen, en dergelijke wijzigingen worden onmiddellijk na publicatie van kracht.",
     "section2Title": "Gebruikersverantwoordelijkheden",
     "section2Content": "U bent verantwoordelijk voor het handhaven van de vertrouwelijkheid van uw accountgegevens en voor alle activiteiten die onder uw account plaatsvinden. U stemt ermee in om nauwkeurige en waarheidsgetrouwe informatie te verstrekken bij het indienen van rapporten en het platform alleen voor legitieme doeleinden te gebruiken.",
     "section3Title": "Inhoud en Rapporten",
-    "section3Content": "Door inhoud naar Ziwound te verzenden, verleent u ons een niet-exclusieve licentie om die inhoud te gebruiken, op te slaan en te verwerken voor de doeleinden van het exploiteren en verbeteren van onze diensten. U verklaart dat u het recht heeft om deze inhoud te verzenden en dat het geen inbreuk maakt op rechten van derden.",
+    "section3Content": "Door inhoud naar ZiWound te verzenden, verleent u ons een niet-exclusieve licentie om die inhoud te gebruiken, op te slaan en te verwerken voor de doeleinden van het exploiteren en verbeteren van onze diensten. U verklaart dat u het recht heeft om deze inhoud te verzenden en dat het geen inbreuk maakt op rechten van derden.",
     "section4Title": "Beperking van Aansprakelijkheid",
-    "section4Content": "Ziwound en zijn exploitanten zijn niet aansprakelijk voor enige indirecte, incidentele, speciale, gevolgschade of punitieve schade die voortvloeit uit of verband houdt met uw gebruik van het platform. We geven geen garanties over de nauwkeurigheid of volledigheid van de informatie op het platform.",
+    "section4Content": "ZiWound en zijn exploitanten zijn niet aansprakelijk voor enige indirecte, incidentele, speciale, gevolgschade of punitieve schade die voortvloeit uit of verband houdt met uw gebruik van het platform. We geven geen garanties over de nauwkeurigheid of volledigheid van de informatie op het platform.",
     "contactTitle": "Contactgegevens",
     "contactContent": "Voor vragen over deze Servicevoorwaarden kunt u contact met ons opnemen via legal@ziwound.org of via onze contactpagina.",
     "overline": "Juridisch"
   },
   "help": {
     "title": "Helpcentrum",
-    "subtitle": "Vind begeleiding en ondersteuning voor het gebruik van Ziwound",
+    "subtitle": "Vind begeleiding en ondersteuning voor het gebruik van ZiWound",
     "gettingStartedTitle": "Aan de Slag",
     "gettingStartedDesc": "Leer de basis van het aanmaken van een account en navigeren op het platform",
     "submittingReportsTitle": "Rapporten Indienen",

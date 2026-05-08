@@ -234,7 +234,7 @@
         "cta": "Submit Report",
         "secondaryCta": "Read Stories"
       },
-      "brandLabel": "Ziwound",
+      "brandLabel": "ZiWound",
       "scrollIndicator": "Scroll"
     },
     "howItWorks": {
@@ -282,7 +282,7 @@
     "mission": {
       "overline": "Our Mission",
       "title": "Truth is the Foundation of Justice",
-      "p1": "Ziwound exists to ensure that no crime against humanity goes undocumented. We provide a secure, permanent, and verifiable archive of war crimes and human rights violations from conflict zones around the world.",
+      "p1": "ZiWound exists to ensure that no crime against humanity goes undocumented. We provide a secure, permanent, and verifiable archive of war crimes and human rights violations from conflict zones around the world.",
       "p2": "By combining cutting-edge technology with rigorous verification, we empower survivors, witnesses, and investigators to preserve evidence that can stand the test of time and the scrutiny of courts.",
       "tagline": "For the victims. For justice. For history."
     },
@@ -840,9 +840,9 @@
   },
   "about": {
     "title": "About Us",
-    "mission": "Ziwound is a war crimes documentation platform that enables individuals to securely and confidentially report human rights violations and war crimes. Our goal is to preserve historical memory and ensure accountability.",
+    "mission": "ZiWound is a war crimes documentation platform that enables individuals to securely and confidentially report human rights violations and war crimes. Our goal is to preserve historical memory and ensure accountability.",
     "vision": "A world where no war crime goes unpunished and the voices of victims are heard.",
-    "whyChooseUs": "Why Ziwound?",
+    "whyChooseUs": "Why ZiWound?",
     "feature1Title": "High Security",
     "feature1Description": "Your reports are protected with the highest security standards.",
     "feature2Title": "Multilingual",
@@ -897,7 +897,7 @@
   },
   "faq": {
     "title": "Frequently Asked Questions",
-    "subtitle": "Find answers to common questions about Ziwound. Can't find what you're looking for? Feel free to contact us.",
+    "subtitle": "Find answers to common questions about ZiWound. Can't find what you're looking for? Feel free to contact us.",
     "searchPlaceholder": "Search questions...",
     "categories": {
       "general": "General Questions",
@@ -906,17 +906,17 @@
       "technical": "Technical Support"
     },
     "questions": {
-      "whatIsZiwound": {
-        "question": "What is Ziwound?",
-        "answer": "Ziwound is a secure platform for documenting war crimes and human rights violations. We provide a confidential way for individuals to report incidents, upload evidence, and contribute to historical records while maintaining their privacy and security."
+      "whatIsZiWound": {
+        "question": "What is ZiWound?",
+        "answer": "ZiWound is a secure platform for documenting war crimes and human rights violations. We provide a confidential way for individuals to report incidents, upload evidence, and contribute to historical records while maintaining their privacy and security."
       },
-      "isZiwoundFree": {
-        "question": "Is Ziwound free to use?",
-        "answer": "Yes, Ziwound is completely free for all users. We are a non-profit initiative dedicated to documenting war crimes and ensuring accountability. There are no fees for submitting reports or accessing public information."
+      "isZiWoundFree": {
+        "question": "Is ZiWound free to use?",
+        "answer": "Yes, ZiWound is completely free for all users. We are a non-profit initiative dedicated to documenting war crimes and ensuring accountability. There are no fees for submitting reports or accessing public information."
       },
       "whoCanUse": {
-        "question": "Who can use Ziwound?",
-        "answer": "Anyone can use Ziwound to submit reports about war crimes or human rights violations they have witnessed or experienced. We welcome reports from victims, witnesses, journalists, researchers, and human rights organizations."
+        "question": "Who can use ZiWound?",
+        "answer": "Anyone can use ZiWound to submit reports about war crimes or human rights violations they have witnessed or experienced. We welcome reports from victims, witnesses, journalists, researchers, and human rights organizations."
       },
       "howToReport": {
         "question": "How do I submit a report?",
@@ -947,16 +947,16 @@
         "answer": "We retain reports and associated data indefinitely for historical documentation purposes. However, you can request deletion of your personal account information at any time. Report content may be retained even if personal data is removed."
       },
       "supportedLanguages": {
-        "question": "What languages does Ziwound support?",
-        "answer": "Ziwound currently supports 9 languages: Persian (Farsi), English, Arabic, Chinese, Portuguese, Spanish, Dutch, Turkish, and Russian. We are continuously working to add more languages to make the platform accessible to everyone."
+        "question": "What languages does ZiWound support?",
+        "answer": "ZiWound currently supports 9 languages: Persian (Farsi), English, Arabic, Chinese, Portuguese, Spanish, Dutch, Turkish, and Russian. We are continuously working to add more languages to make the platform accessible to everyone."
       },
       "mobileFriendly": {
-        "question": "Is Ziwound mobile-friendly?",
-        "answer": "Yes, Ziwound is fully responsive and works on all devices including smartphones and tablets. You can submit reports, upload photos, and access all features from your mobile browser without needing to download an app."
+        "question": "Is ZiWound mobile-friendly?",
+        "answer": "Yes, ZiWound is fully responsive and works on all devices including smartphones and tablets. You can submit reports, upload photos, and access all features from your mobile browser without needing to download an app."
       },
       "browserSupport": {
         "question": "Which browsers are supported?",
-        "answer": "Ziwound works on all modern browsers including Chrome, Firefox, Safari, and Edge. We recommend using the latest version of your browser for the best experience and security. Internet Explorer is not supported."
+        "answer": "ZiWound works on all modern browsers including Chrome, Firefox, Safari, and Edge. We recommend using the latest version of your browser for the best experience and security. Internet Explorer is not supported."
       }
     },
     "noResults": "No questions found",
@@ -990,20 +990,20 @@
     "title": "Terms of Service",
     "subtitle": "Terms and conditions for using our platform",
     "section1Title": "Acceptance of Terms",
-    "section1Content": "By accessing or using Ziwound, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our platform. We reserve the right to modify these terms at any time, and such modifications shall be effective immediately upon posting.",
+    "section1Content": "By accessing or using ZiWound, you agree to be bound by these Terms of Service. If you do not agree to these terms, please do not use our platform. We reserve the right to modify these terms at any time, and such modifications shall be effective immediately upon posting.",
     "section2Title": "User Responsibilities",
     "section2Content": "You are responsible for maintaining the confidentiality of your account credentials and for all activities that occur under your account. You agree to provide accurate and truthful information when submitting reports and to use the platform only for lawful purposes.",
     "section3Title": "Content and Reporting",
-    "section3Content": "By submitting content to Ziwound, you grant us a non-exclusive license to use, store, and process that content for the purposes of operating and improving our services. You represent that you have the right to submit such content and that it does not violate any third-party rights.",
+    "section3Content": "By submitting content to ZiWound, you grant us a non-exclusive license to use, store, and process that content for the purposes of operating and improving our services. You represent that you have the right to submit such content and that it does not violate any third-party rights.",
     "section4Title": "Limitation of Liability",
-    "section4Content": "Ziwound and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of the platform. We make no warranties about the accuracy or completeness of information on the platform.",
+    "section4Content": "ZiWound and its operators shall not be liable for any indirect, incidental, special, consequential, or punitive damages arising out of or relating to your use of the platform. We make no warranties about the accuracy or completeness of information on the platform.",
     "contactTitle": "Contact Information",
     "contactContent": "For questions about these Terms of Service, please contact us at legal@ziwound.org or through our contact page.",
     "overline": "Legal"
   },
   "help": {
     "title": "Help Center",
-    "subtitle": "Find guidance and support for using Ziwound",
+    "subtitle": "Find guidance and support for using ZiWound",
     "gettingStartedTitle": "Getting Started",
     "gettingStartedDesc": "Learn the basics of creating an account and navigating the platform",
     "submittingReportsTitle": "Submitting Reports",

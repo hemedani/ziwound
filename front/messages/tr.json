@@ -216,7 +216,7 @@
         "cta": "Rapor Gönder",
         "secondaryCta": "Hikayeleri Oku"
       },
-      "brandLabel": "Ziwound",
+      "brandLabel": "ZiWound",
       "scrollIndicator": "Aşağı"
     },
     "howItWorks": {
@@ -264,7 +264,7 @@
     "mission": {
       "overline": "Misyonumuz",
       "title": "Gerçek, Adaletin Temelidir",
-      "p1": "Ziwound, insanlığa karşı işlenen hiçbir suçun belgelenmeden kalmamasını sağlamak için var. Dünya genelindeki çatışma bölgelerinden savaş suçları ve insan hakları ihlalleri için güvenli, kalıcı ve doğrulanabilir bir arşiv sunuyoruz.",
+      "p1": "ZiWound, insanlığa karşı işlenen hiçbir suçun belgelenmeden kalmamasını sağlamak için var. Dünya genelindeki çatışma bölgelerinden savaş suçları ve insan hakları ihlalleri için güvenli, kalıcı ve doğrulanabilir bir arşiv sunuyoruz.",
       "p2": "En son teknolojiyi titiz doğrulama ile birleştirerek, sağ kalanları, tanıkları ve araştırmacıları zamanın ve mahkemelerin titiz incelemesine dayanabilecek kanıtları korumaya güçlendiriyoruz.",
       "tagline": "Mağdurlar için. Adalet için. Tarih için."
     },
@@ -771,9 +771,9 @@
   },
   "about": {
     "title": "Hakkımızda",
-    "mission": "Ziwound, bireylerin insan hakları ihlallerini ve savaş suçlarını güvenli ve gizli bir şekilde bildirmesini sağlayan bir savaş suçları belgelendirme platformudur. Amacımız tarihi belleği korumak ve hesap verebilirliği sağlamaktır.",
+    "mission": "ZiWound, bireylerin insan hakları ihlallerini ve savaş suçlarını güvenli ve gizli bir şekilde bildirmesini sağlayan bir savaş suçları belgelendirme platformudur. Amacımız tarihi belleği korumak ve hesap verebilirliği sağlamaktır.",
     "vision": "Hiçbir savaş suçunun cezasız kalmadığı ve mağdur seslerinin duyulduğu bir dünya.",
-    "whyChooseUs": "Neden Ziwound?",
+    "whyChooseUs": "Neden ZiWound?",
     "feature1Title": "Yüksek Güvenlik",
     "feature1Description": "Raporlarınız en yüksek güvenlik standartlarıyla korunur.",
     "feature2Title": "Çok Dilli",
@@ -828,7 +828,7 @@
   },
   "faq": {
     "title": "Sıkça Sorulan Sorular",
-    "subtitle": "Ziwound hakkında sık sorulan soruların cevaplarını bulun. Aradığınızı bulamadınız mı? Bizimle iletişime geçmekten çekinmeyin.",
+    "subtitle": "ZiWound hakkında sık sorulan soruların cevaplarını bulun. Aradığınızı bulamadınız mı? Bizimle iletişime geçmekten çekinmeyin.",
     "searchPlaceholder": "Soru ara...",
     "categories": {
       "general": "Genel Sorular",
@@ -837,17 +837,17 @@
       "technical": "Teknik Destek"
     },
     "questions": {
-      "whatIsZiwound": {
-        "question": "Ziwound nedir?",
-        "answer": "Ziwound, savaş suçlarını ve insan hakları ihlallerini belgelemek için güvenli bir platformdur. Bireylere, gizliliklerini ve güvenliklerini korurken olayları bildirmeleri, kanıt yüklemeleri ve tarihi kayıtlara katkıda bulunmaları için gizli bir yol sunuyoruz."
+      "whatIsZiWound": {
+        "question": "ZiWound nedir?",
+        "answer": "ZiWound, savaş suçlarını ve insan hakları ihlallerini belgelemek için güvenli bir platformdur. Bireylere, gizliliklerini ve güvenliklerini korurken olayları bildirmeleri, kanıt yüklemeleri ve tarihi kayıtlara katkıda bulunmaları için gizli bir yol sunuyoruz."
       },
-      "isZiwoundFree": {
-        "question": "Ziwound kullanımı ücretsiz mi?",
-        "answer": "Evet, Ziwound tüm kullanıcılar için tamamen ücretsizdir. Savaş suçlarını belgelemeye ve hesap verebilirliği sağlamaya adanmış kâr amacı gütmeyen bir girişimiz. Rapor göndermek veya kamu bilgilerine erişmek için herhangi bir ücret yoktur."
+      "isZiWoundFree": {
+        "question": "ZiWound kullanımı ücretsiz mi?",
+        "answer": "Evet, ZiWound tüm kullanıcılar için tamamen ücretsizdir. Savaş suçlarını belgelemeye ve hesap verebilirliği sağlamaya adanmış kâr amacı gütmeyen bir girişimiz. Rapor göndermek veya kamu bilgilerine erişmek için herhangi bir ücret yoktur."
       },
       "whoCanUse": {
-        "question": "Kimler Ziwound'u kullanabilir?",
-        "answer": "Herkes Ziwound'u, tanık olduğu veya yaşadığı savaş suçları veya insan hakları ihlalleri hakkında rapor göndermek için kullanabilir. Mağdurlardan, tanıklardan, gazetecilerden, araştırmacılardan ve insan hakları örgütlerinden raporları memnuniyetle karşılıyoruz."
+        "question": "Kimler ZiWound'u kullanabilir?",
+        "answer": "Herkes ZiWound'u, tanık olduğu veya yaşadığı savaş suçları veya insan hakları ihlalleri hakkında rapor göndermek için kullanabilir. Mağdurlardan, tanıklardan, gazetecilerden, araştırmacılardan ve insan hakları örgütlerinden raporları memnuniyetle karşılıyoruz."
       },
       "howToReport": {
         "question": "Nasıl rapor gönderirim?",
@@ -878,16 +878,16 @@
         "answer": "Tarihsel belgeleme amaçlarıyla raporları ve ilgili verileri süresiz olarak saklıyoruz. Ancak, istediğiniz zaman kişisel hesap bilgilerinizin silinmesini talep edebilirsiniz. Kişisel veriler silinse bile rapor içeriği saklanabilir."
       },
       "supportedLanguages": {
-        "question": "Ziwound hangi dilleri destekliyor?",
-        "answer": "Ziwound şu anda 9 dili destekliyor: Farsça, İngilizce, Arapça, Çince, Portekizce, İspanyolca, Hollandaca, Türkçe ve Rusça. Platformu herkes için erişilebilir kılmak için sürekli olarak daha fazla dil eklemek için çalışıyoruz."
+        "question": "ZiWound hangi dilleri destekliyor?",
+        "answer": "ZiWound şu anda 9 dili destekliyor: Farsça, İngilizce, Arapça, Çince, Portekizce, İspanyolca, Hollandaca, Türkçe ve Rusça. Platformu herkes için erişilebilir kılmak için sürekli olarak daha fazla dil eklemek için çalışıyoruz."
       },
       "mobileFriendly": {
-        "question": "Ziwound mobil uyumlu mu?",
-        "answer": "Evet, Ziwound tamamen duyarlıdır ve akıllı telefonlar ve tabletler dahil tüm cihazlarda çalışır. Uygulama indirmeye gerek kalmadan mobil tarayıcınızdan rapor gönderebilir, fotoğraf yükleyebilir ve tüm özelliklere erişebilirsiniz."
+        "question": "ZiWound mobil uyumlu mu?",
+        "answer": "Evet, ZiWound tamamen duyarlıdır ve akıllı telefonlar ve tabletler dahil tüm cihazlarda çalışır. Uygulama indirmeye gerek kalmadan mobil tarayıcınızdan rapor gönderebilir, fotoğraf yükleyebilir ve tüm özelliklere erişebilirsiniz."
       },
       "browserSupport": {
         "question": "Hangi tarayıcılar destekleniyor?",
-        "answer": "Ziwound, Chrome, Firefox, Safari ve Edge dahil olmak üzere tüm modern tarayıcılarda çalışır. En iyi deneyim ve güvenlik için tarayıcınızın en son sürümünü kullanmanızı öneririz. Internet Explorer desteklenmez."
+        "answer": "ZiWound, Chrome, Firefox, Safari ve Edge dahil olmak üzere tüm modern tarayıcılarda çalışır. En iyi deneyim ve güvenlik için tarayıcınızın en son sürümünü kullanmanızı öneririz. Internet Explorer desteklenmez."
       }
     },
     "noResults": "Soru bulunamadı",
@@ -921,20 +921,20 @@
     "title": "Kullanım Koşulları",
     "subtitle": "Platformumuzu kullanmak için koşullar ve şartlar",
     "section1Title": "Koşulların Kabulü",
-    "section1Content": "Ziwound'a erişerek veya kullanarak, bu Kullanım Koşullarına tabi olmayı kabul etmiş olursunuz. Bu koşulları kabul etmiyorsanız, lütfen platformumuzu kullanmayın. Bu koşulları istediğimiz zaman değiştirme hakkını saklı tutarız ve bu değişiklikler yayınlandıktan hemen sonra yürürlüğe girer.",
+    "section1Content": "ZiWound'a erişerek veya kullanarak, bu Kullanım Koşullarına tabi olmayı kabul etmiş olursunuz. Bu koşulları kabul etmiyorsanız, lütfen platformumuzu kullanmayın. Bu koşulları istediğimiz zaman değiştirme hakkını saklı tutarız ve bu değişiklikler yayınlandıktan hemen sonra yürürlüğe girer.",
     "section2Title": "Kullanıcı Sorumlulukları",
     "section2Content": "Hesap kimlik bilgilerinizin gizliliğini korumaktan ve hesabınız altında gerçekleşen tüm faaliyetlerden siz sorumlusunuz. Rapor gönderirken doğru ve dürüst bilgiler sağlamayı ve platformu yalnızca meşru amaçlar için kullanmayı kabul edersiniz.",
     "section3Title": "İçerik ve Raporlama",
-    "section3Content": "Ziwound'a içerik göndererek, hizmetlerimizi işletmek ve iyileştirmek amacıyla bu içeriği kullanmak, depolamak ve işlemek için bize münhasır olmayan bir lisans vermiş olursunuz. Bu içeriği gönderme hakkına sahip olduğunuzu ve üçüncü taraf haklarını ihlal etmediğini beyan edersiniz.",
+    "section3Content": "ZiWound'a içerik göndererek, hizmetlerimizi işletmek ve iyileştirmek amacıyla bu içeriği kullanmak, depolamak ve işlemek için bize münhasır olmayan bir lisans vermiş olursunuz. Bu içeriği gönderme hakkına sahip olduğunuzu ve üçüncü taraf haklarını ihlal etmediğini beyan edersiniz.",
     "section4Title": "Sorumluluk Sınırlaması",
-    "section4Content": "Ziwound ve işletmecileri, platformun kullanımından kaynaklanan veya bununla ilgili herhangi bir dolaylı, arızi, özel, netice veya cezai zarardan sorumlu olmayacaktır. Platformdaki bilgilerin doğruluğu veya bütünlüğü hakkında herhangi bir garanti vermiyoruz.",
+    "section4Content": "ZiWound ve işletmecileri, platformun kullanımından kaynaklanan veya bununla ilgili herhangi bir dolaylı, arızi, özel, netice veya cezai zarardan sorumlu olmayacaktır. Platformdaki bilgilerin doğruluğu veya bütünlüğü hakkında herhangi bir garanti vermiyoruz.",
     "contactTitle": "İletişim Bilgileri",
     "contactContent": "Bu Kullanım Koşulları hakkında sorularınız için lütfen legal@ziwound.org adresinden veya iletişim sayfamızdan bizimle iletişime geçin.",
     "overline": "Yasal"
   },
   "help": {
     "title": "Yardım Merkezi",
-    "subtitle": "Ziwound kullanımı için rehberlik ve destek bulun",
+    "subtitle": "ZiWound kullanımı için rehberlik ve destek bulun",
     "gettingStartedTitle": "Başlarken",
     "gettingStartedDesc": "Hesap oluşturmanın ve platformda gezinmenin temellerini öğrenin",
     "submittingReportsTitle": "Rapor Gönderme",
