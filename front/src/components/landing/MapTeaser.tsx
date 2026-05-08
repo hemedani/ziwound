@@ -53,20 +53,20 @@ function latLngToSvg(lat: number, lng: number): { x: number; y: number } {
  * These are stylized but recognizable continent outlines.
  */
 const CONTINENT_PATHS = [
-  // North America (Alaska → Canadian Arctic → Greenland → Florida → Panama → Mexico → California → Alaska)
-  "M 6.7,11.1 L 33.3,8.9 L 47.2,4.4 L 69.4,4.4 L 86.1,5.6 L 76.1,15.6 L 69.4,21.1 L 55.6,35.0 L 51.1,38.9 L 56.7,45.6 L 41.7,38.9 L 33.3,30.6 L 30.6,22.2 L 16.7,16.7 Z",
-  // South America (Panama → Venezuela → Brazil → Argentina → Chile → Peru → Ecuador → Colombia)
-  "M 57.2,45.6 L 65.6,44.4 L 73.3,51.1 L 78.3,58.3 L 76.1,62.8 L 69.4,69.4 L 62.2,78.9 L 60.0,78.9 L 60.0,69.4 L 56.7,51.1 L 60.0,46.7 Z",
-  // Europe (Portugal → France → Denmark → Norway → Finland → Baltic → Poland → Romania → Greece → Italy → Germany → Netherlands)
-  "M 95.0,28.9 L 95.6,26.1 L 97.8,23.3 L 97.2,19.4 L 102.8,15.0 L 113.9,11.1 L 116.7,13.9 L 116.7,16.7 L 111.1,21.1 L 114.4,24.4 L 113.3,28.9 L 108.9,27.8 L 106.7,26.7 L 104.4,23.9 L 102.8,21.1 Z",
-  // Africa (Morocco → Libya → Egypt → Horn of Africa → Kenya → Mozambique → South Africa → Namibia → Angola → Nigeria → Senegal)
-  "M 96.7,30.6 L 106.7,34.4 L 118.3,35.0 L 121.1,40.0 L 125.0,48.9 L 123.3,52.8 L 122.2,55.6 L 118.3,64.4 L 113.9,68.9 L 107.8,62.2 L 107.2,54.4 L 103.9,46.7 L 91.1,41.7 L 97.2,36.1 Z",
-  // Asia (Turkey → Caucasus → Siberia → Russian Far East → East China → Southeast Asia → India → Iran → Levant)
-  "M 114.4,28.9 L 122.2,26.7 L 127.8,22.2 L 138.9,19.4 L 155.6,16.7 L 169.4,19.4 L 175.0,22.2 L 173.3,26.1 L 172.2,30.6 L 163.3,37.8 L 160.0,41.7 L 155.6,45.6 L 148.9,37.8 L 143.3,36.1 L 127.8,33.3 L 119.4,30.6 Z",
-  // Southeast Asia / Maritime (Sumatra → Java → Bali → Moluccas → Borneo → Philippines → Luzon)
-  "M 153.3,46.7 L 157.8,50.0 L 158.9,51.7 L 158.9,53.3 L 163.9,54.4 L 166.7,54.4 L 169.4,52.2 L 166.7,50.0 L 169.4,46.7 L 168.9,44.4 L 167.8,43.3 Z",
-  // Australia (Darwin → Cape York → Brisbane → Sydney → Melbourne → Adelaide → Perth → NW Australia)
-  "M 172.2,56.7 L 178.9,56.7 L 183.3,62.8 L 183.9,68.9 L 181.7,71.1 L 176.7,69.4 L 163.9,67.8 L 163.3,62.2 L 166.7,61.1 Z",
+  // North America
+  "M 11.1,10.0 L 22.2,7.8 L 44.4,4.4 L 58.3,4.4 L 72.2,4.4 L 86.1,6.7 L 75.0,15.6 L 68.3,17.8 L 63.9,25.0 L 55.6,35.0 L 52.8,37.8 L 52.8,43.3 L 56.7,45.6 L 41.7,38.9 L 32.2,28.9 L 30.6,22.2 L 17.8,16.7 Z",
+  // South America
+  "M 58.3,44.4 L 65.6,44.4 L 72.2,50.0 L 78.3,58.3 L 76.1,62.8 L 72.2,66.7 L 65.0,75.0 L 62.2,78.9 L 58.9,78.9 L 60.6,66.7 L 57.8,55.6 L 56.7,51.1 Z",
+  // Europe
+  "M 95.0,29.4 L 95.0,26.7 L 97.2,23.3 L 98.3,21.1 L 98.3,18.9 L 97.2,17.8 L 102.8,15.6 L 112.2,11.1 L 115.6,13.9 L 114.4,17.8 L 111.1,21.1 L 114.4,23.3 L 115.6,26.7 L 113.3,28.9 L 111.1,27.8 L 110.0,26.7 L 107.8,28.9 L 106.7,26.7 L 105.6,25.6 L 104.4,23.3 L 103.3,21.1 L 101.1,22.2 L 100.0,23.3 Z",
+  // Africa
+  "M 97.2,30.6 L 102.8,32.2 L 108.3,33.3 L 116.7,34.4 L 120.0,37.8 L 124.4,43.3 L 122.2,50.0 L 121.1,58.3 L 114.4,68.9 L 108.9,65.6 L 107.2,58.3 L 106.7,52.8 L 104.4,47.2 L 101.1,45.6 L 97.2,41.7 L 95.6,38.9 L 97.2,36.1 Z",
+  // Asia
+  "M 115.6,28.9 L 122.2,26.7 L 130.6,23.3 L 141.7,19.4 L 155.6,16.7 L 169.4,18.9 L 175.0,22.2 L 175.0,25.0 L 171.1,28.9 L 167.8,33.3 L 163.3,37.8 L 160.0,41.1 L 155.6,44.4 L 153.3,45.6 L 151.1,44.4 L 148.9,40.0 L 144.4,35.6 L 142.2,33.3 L 137.8,34.4 L 133.3,32.2 L 126.7,30.0 L 120.0,28.9 Z",
+  // Southeast Asia / Maritime
+  "M 152.8,46.1 L 156.7,50.0 L 158.3,52.2 L 160.0,53.9 L 163.9,54.4 L 167.8,54.4 L 171.1,52.2 L 168.9,51.1 L 165.6,50.0 L 163.3,47.8 L 170.0,45.6 L 168.9,43.3 L 167.8,42.2 Z",
+  // Australia
+  "M 173.3,56.7 L 177.8,56.7 L 180.6,58.9 L 185.0,65.6 L 183.9,68.9 L 181.7,71.1 L 176.7,69.4 L 164.4,67.8 L 163.3,62.2 L 167.8,60.0 Z",
 ];
 
 export function MapTeaser({
