@@ -146,7 +146,7 @@ export function HeroSlider({
 
       {/* Content */}
       <div className="relative z-20 flex h-full items-center">
-        <div className="container px-4 md:px-8">
+        <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
           <div
             key={slide.id}
             className={cn(

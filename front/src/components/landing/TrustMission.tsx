@@ -50,7 +50,7 @@ export function TrustMission({
       {/* Background accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-crimson/[0.02] to-transparent" />
 
-      <div className="container relative px-4 md:px-8">
+      <div className="mx-auto w-full max-w-7xl relative px-4 md:px-8">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
           {/* Left: mission statement */}
           <motion.div

@@ -39,7 +39,7 @@ export function Timeline({
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-crimson/[0.015] to-transparent" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent" />
 
-      <div className="container relative px-4 md:px-8">
+      <div className="mx-auto w-full max-w-7xl relative px-4 md:px-8">
         {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

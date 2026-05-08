@@ -50,7 +50,7 @@ export function FeaturedReports({
 }: FeaturedReportsProps) {
   return (
     <section className={cn("py-20 md:py-28", className)}>
-      <div className="container px-4 md:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}

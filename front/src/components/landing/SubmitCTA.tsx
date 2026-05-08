@@ -32,7 +32,7 @@ export function SubmitCTA({
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-crimson/50 to-transparent" />
       <div className="absolute bottom-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-crimson/50 to-transparent" />
 
-      <div className="container relative px-4 md:px-8">
+      <div className="mx-auto w-full max-w-7xl relative px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

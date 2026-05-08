@@ -46,7 +46,7 @@ export function ImpactStats({
       {/* Subtle top border glow */}
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-crimson/40 to-transparent" />
 
-      <div className="container px-4 md:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
           {stats.map((stat, i) => (
             <motion.div
