@@ -58,6 +58,8 @@ export function MapTeaser({
 
   return (
     <section className={cn("relative py-20 md:py-28 overflow-hidden", className)}>
+      {/* Glass backdrop */}
+      <div className="absolute inset-0 bg-black/40 backdrop-blur-2xl saturate-150" />
       {/* Background glow */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(153,27,27,0.08)_0%,_transparent_70%)]" />
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-crimson/30 to-transparent" />
