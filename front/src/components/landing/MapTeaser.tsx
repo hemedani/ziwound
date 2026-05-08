@@ -27,26 +27,47 @@ interface MapTeaserProps {
 
 // Default sample report hotspot coordinates (normalized 0-100) for when no real data
 const defaultHotspots = [
-  { x: 52, y: 35, label: "Middle East" },
-  { x: 48, y: 28, label: "Eastern Europe" },
-  { x: 68, y: 42, label: "Central Asia" },
-  { x: 28, y: 38, label: "North Africa" },
-  { x: 78, y: 55, label: "Southeast Asia" },
-  { x: 22, y: 62, label: "Sub-Saharan Africa" },
-  { x: 55, y: 65, label: "Horn of Africa" },
-  { x: 45, y: 22, label: "Balkans" },
+  { x: 52, y: 32, label: "Middle East" },
+  { x: 54, y: 24, label: "Eastern Europe" },
+  { x: 72, y: 30, label: "Central Asia" },
+  { x: 26, y: 36, label: "North Africa" },
+  { x: 80, y: 48, label: "Southeast Asia" },
+  { x: 24, y: 54, label: "Sub-Saharan Africa" },
+  { x: 58, y: 50, label: "Horn of Africa" },
+  { x: 48, y: 20, label: "Balkans" },
 ];
 
 /**
  * Convert latitude/longitude to SVG viewBox coordinates.
- * ViewBox is 0-100 width, 0-60 height.
- * Simple equirectangular projection.
+ * ViewBox is 0-200 width, 0-100 height.
+ * Simple equirectangular projection with proper aspect ratio.
  */
 function latLngToSvg(lat: number, lng: number): { x: number; y: number } {
-  const x = ((lng + 180) / 360) * 100;
-  const y = ((90 - lat) / 180) * 60;
+  const x = ((lng + 180) / 360) * 200;
+  const y = ((90 - lat) / 180) * 100;
   return { x, y };
 }
+
+/**
+ * Simplified world map continent paths.
+ * These are stylized but recognizable continent outlines.
+ */
+const CONTINENT_PATHS = [
+  // North America
+  "M 12,18 L 18,14 L 28,12 L 38,14 L 48,18 L 52,24 L 50,32 L 44,36 L 38,34 L 32,36 L 26,34 L 20,30 L 14,26 Z",
+  // South America
+  "M 32,40 L 38,38 L 42,42 L 44,50 L 42,60 L 38,70 L 34,74 L 30,70 L 28,60 L 28,50 L 30,44 Z",
+  // Europe
+  "M 82,20 L 90,16 L 98,16 L 104,20 L 106,26 L 102,30 L 96,32 L 90,30 L 84,28 L 80,24 Z",
+  // Africa
+  "M 82,34 L 90,32 L 98,34 L 102,42 L 100,52 L 96,62 L 90,70 L 84,68 L 80,60 L 78,50 L 78,40 Z",
+  // Asia
+  "M 108,18 L 120,14 L 134,14 L 146,18 L 156,24 L 162,32 L 160,40 L 152,44 L 142,42 L 132,38 L 122,36 L 114,32 L 108,26 Z",
+  // Southeast Asia / Islands
+  "M 150,46 L 156,44 L 162,48 L 166,56 L 162,62 L 156,60 L 150,56 Z",
+  // Australia
+  "M 152,66 L 162,64 L 172,66 L 176,74 L 172,82 L 162,84 L 154,82 L 150,74 Z",
+];
 
 export function MapTeaser({
   locale,
@@ -60,12 +81,13 @@ export function MapTeaser({
   hotspots,
 }: MapTeaserProps) {
   // Build display hotspots from real data or fallback to defaults
-  const displayHotspots = hotspots && hotspots.length > 0
-    ? hotspots.map((h) => {
-        const { x, y } = latLngToSvg(h.lat, h.lng);
-        return { x, y, label: `${h.count}`, count: h.count };
-      })
-    : defaultHotspots.map((h) => ({ ...h, count: 0 }));
+  const displayHotspots =
+    hotspots && hotspots.length > 0
+      ? hotspots.map((h) => {
+          const { x, y } = latLngToSvg(h.lat, h.lng);
+          return { x, y, label: `${h.count}`, count: h.count };
+        })
+      : defaultHotspots.map((h) => ({ ...h, count: 0 }));
 
   const hasRealData = hotspots && hotspots.length > 0;
 
@@ -125,85 +147,77 @@ export function MapTeaser({
             </Button>
           </motion.div>
 
-          {/* Right: stylized map */}
+          {/* Right: stylized world map */}
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
-            className="relative aspect-[4/3] md:aspect-[16/10] rounded-2xl glass overflow-hidden"
+            className="relative aspect-[2/1] md:aspect-[16/9] rounded-2xl glass overflow-hidden"
           >
-            {/* Abstract world map using SVG dots/paths */}
+            {/* World map SVG */}
             <svg
-              viewBox="0 0 100 60"
-              className="absolute inset-0 w-full h-full opacity-40"
-              preserveAspectRatio="xMidYMid slice"
+              viewBox="0 0 200 100"
+              className="absolute inset-0 w-full h-full"
+              preserveAspectRatio="xMidYMid meet"
             >
-              {/* Simplified continent shapes using paths */}
-              <path
-                d="M20,15 Q25,10 30,15 T40,18 Q45,15 50,20 T55,25 Q50,30 45,28 T35,30 Q30,28 25,25 T20,20 Z"
-                fill="none"
-                stroke="currentColor"
+              {/* Subtle grid lines for longitude/latitude */}
+              <defs>
+                <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
+                  <path
+                    d="M 20 0 L 0 0 0 20"
+                    fill="none"
+                    stroke="rgba(255,255,255,0.03)"
+                    strokeWidth="0.5"
+                  />
+                </pattern>
+              </defs>
+              <rect width="200" height="100" fill="url(#grid)" />
+
+              {/* Continent landmasses */}
+              {CONTINENT_PATHS.map((d, i) => (
+                <path
+                  key={i}
+                  d={d}
+                  fill="rgba(255,255,255,0.06)"
+                  stroke="rgba(255,255,255,0.12)"
+                  strokeWidth="0.5"
+                  className="transition-colors duration-500 hover:fill-white/[0.1]"
+                />
+              ))}
+
+              {/* Equator line */}
+              <line
+                x1="0"
+                y1="50"
+                x2="200"
+                y2="50"
+                stroke="rgba(255,255,255,0.04)"
                 strokeWidth="0.3"
-                className="text-white"
+                strokeDasharray="2,4"
               />
-              <path
-                d="M22,32 Q28,30 32,35 T38,40 Q35,48 30,50 T22,48 Q18,42 20,38 T22,32 Z"
-                fill="none"
-                stroke="currentColor"
+
+              {/* Prime meridian */}
+              <line
+                x1="100"
+                y1="0"
+                x2="100"
+                y2="100"
+                stroke="rgba(255,255,255,0.04)"
                 strokeWidth="0.3"
-                className="text-white"
-              />
-              <path
-                d="M45,12 Q52,8 58,12 T65,18 Q68,25 62,28 T55,26 Q50,22 48,18 T45,12 Z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="0.3"
-                className="text-white"
-              />
-              <path
-                d="M48,30 Q55,28 60,32 T65,40 Q62,48 55,50 T48,48 Q44,42 46,36 T48,30 Z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="0.3"
-                className="text-white"
-              />
-              <path
-                d="M68,20 Q75,18 80,22 T85,30 Q82,38 75,40 T68,38 Q64,32 66,26 T68,20 Z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="0.3"
-                className="text-white"
-              />
-              <path
-                d="M72,42 Q78,40 82,44 T85,52 Q82,58 76,58 T70,54 Q68,48 70,44 T72,42 Z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="0.3"
-                className="text-white"
-              />
-              <path
-                d="M12,18 Q18,15 22,18 T24,24 Q20,28 15,26 T10,22 Q10,18 12,18 Z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="0.3"
-                className="text-white"
-              />
-              <path
-                d="M8,35 Q14,32 18,36 T20,44 Q16,50 10,48 T6,42 Q6,36 8,35 Z"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="0.3"
-                className="text-white"
+                strokeDasharray="2,4"
               />
             </svg>
 
-            {/* Hotspot dots */}
+            {/* Hotspot dots — positioned absolutely over the SVG */}
             {displayHotspots.map((spot, i) => (
               <div
                 key={hasRealData ? `${spot.x}-${spot.y}-${i}` : spot.label}
                 className="absolute"
-                style={{ left: `${spot.x}%`, top: `${spot.y}%` }}
+                style={{
+                  left: `${(spot.x / 200) * 100}%`,
+                  top: `${(spot.y / 100) * 100}%`,
+                }}
               >
                 <motion.div
                   initial={{ scale: 0 }}
@@ -212,11 +226,14 @@ export function MapTeaser({
                   transition={{ duration: 0.4, delay: 0.3 + i * 0.08 }}
                   className="relative group"
                 >
-                  <span className="absolute -inset-2 rounded-full bg-crimson/20 animate-ping" />
-                  <span className="relative flex h-2.5 w-2.5 rounded-full bg-crimson shadow-[0_0_8px_rgba(153,27,27,0.6)]" />
+                  {/* Pulsing ring */}
+                  <span className="absolute -inset-3 rounded-full bg-crimson/15 animate-ping" />
+                  <span className="absolute -inset-1.5 rounded-full bg-crimson/10 animate-pulse" />
+                  {/* Core dot */}
+                  <span className="relative flex h-3 w-3 rounded-full bg-crimson shadow-[0_0_12px_rgba(153,27,27,0.7)]" />
                   {/* Tooltip for real data */}
                   {hasRealData && (
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 rounded-md bg-black/80 text-[10px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none">
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2.5 py-1 rounded-md bg-black/80 text-[10px] text-white whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none border border-white/10">
                       {spot.count} reports
                     </div>
                   )}
@@ -224,21 +241,18 @@ export function MapTeaser({
               </div>
             ))}
 
-            {/* Grid overlay for tech feel */}
-            <div
-              className="absolute inset-0 opacity-[0.03]"
-              style={{
-                backgroundImage:
-                  "linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)",
-                backgroundSize: "20px 20px",
-              }}
-            />
-
-            {/* Corner accents */}
+            {/* Corner frame accents */}
             <div className="absolute top-4 left-4 h-8 w-8 border-l-2 border-t-2 border-crimson/40 rounded-tl-lg" />
             <div className="absolute top-4 right-4 h-8 w-8 border-r-2 border-t-2 border-crimson/40 rounded-tr-lg" />
             <div className="absolute bottom-4 left-4 h-8 w-8 border-l-2 border-b-2 border-crimson/40 rounded-bl-lg" />
             <div className="absolute bottom-4 right-4 h-8 w-8 border-r-2 border-b-2 border-crimson/40 rounded-br-lg" />
+
+            {/* Bottom label bar */}
+            <div className="absolute bottom-0 inset-x-0 h-10 bg-gradient-to-t from-black/60 to-transparent" />
+            <div className="absolute bottom-3 left-4 flex items-center gap-1.5 text-[10px] text-slate-body/60">
+              <MapPin className="h-3 w-3" />
+              <span>Interactive preview</span>
+            </div>
           </motion.div>
         </div>
       </div>

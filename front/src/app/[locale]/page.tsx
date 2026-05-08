@@ -44,14 +44,20 @@ export default async function Home({ params }: HomePageProps) {
       { reports: 1, documents: 1, countries: 1, cities: 1, provinces: 1 }
     ).catch(() => ({ success: false, body: {} })),
     getReports(
-      { page: 1, limit: 6 },
+      { page: 1, limit: 6, status: "Approved" },
       {
         _id: 1,
         title: 1,
         description: 1,
         createdAt: 1,
         location: 1,
+        address: 1,
         category: { _id: 1, name: 1 },
+        documents: {
+          _id: 1,
+          title: 1,
+          documentFiles: { _id: 1, name: 1, mimeType: 1, type: 1, alt_text: 1 },
+        },
       }
     ).catch(() => ({ success: false, body: [] })),
     getBlogPosts(
@@ -99,22 +105,51 @@ export default async function Home({ params }: HomePageProps) {
   const rawBlogs = blogRes.success ? (blogRes.body ?? []) : [];
 
   const reportItems = Array.isArray(rawReports)
-    ? rawReports.slice(0, 3).map((r: any) => ({
-        id: r._id,
-        title: r.title,
-        excerpt: r.description
-          ? r.description.length > 140
-            ? r.description.slice(0, 140) + "..."
-            : r.description
-          : "",
-        image: getImageUploadUrl(r.coverImage?.name || ""),
-        date: r.createdAt
-          ? new Date(r.createdAt).toISOString().split("T")[0]
-          : "",
-        location: r.location?.address || undefined,
-        category: r.category?.name || "Report",
-        href: `/${locale}/reports/${r._id}`,
-      }))
+    ? rawReports.slice(0, 3).map((r: any) => {
+        // Find first image, first video, or location for the card media
+        const docs = r.documents || [];
+        const allFiles = docs.flatMap((d: any) => d.documentFiles || []);
+        const firstImage = allFiles.find((f: any) =>
+          f.mimeType?.startsWith("image/"),
+        );
+        const firstVideo = allFiles.find((f: any) =>
+          f.mimeType?.startsWith("video/"),
+        );
+        const hasLocation = r.location?.coordinates?.length === 2;
+
+        let mediaType: "image" | "video" | "map" | "none" = "none";
+        let mediaSrc = "";
+        if (firstImage) {
+          mediaType = "image";
+          mediaSrc = getImageUploadUrl(firstImage.name, firstImage.type);
+        } else if (firstVideo) {
+          mediaType = "video";
+          mediaSrc = getImageUploadUrl(firstVideo.name, firstVideo.type);
+        } else if (hasLocation) {
+          mediaType = "map";
+        }
+
+        return {
+          id: r._id,
+          title: r.title,
+          excerpt: r.description
+            ? r.description.length > 140
+              ? r.description.slice(0, 140) + "..."
+              : r.description
+            : "",
+          image: mediaType === "image" ? mediaSrc : "",
+          mediaType,
+          mediaSrc,
+          lat: hasLocation ? r.location.coordinates[1] : undefined,
+          lng: hasLocation ? r.location.coordinates[0] : undefined,
+          date: r.createdAt
+            ? new Date(r.createdAt).toISOString().split("T")[0]
+            : "",
+          location: r.address || undefined,
+          category: r.category?.name || "Report",
+          href: `/${locale}/reports/${r._id}`,
+        };
+      })
     : [];
 
   const blogItems = Array.isArray(rawBlogs)

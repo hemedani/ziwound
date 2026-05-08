@@ -4,14 +4,27 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Link } from "@/i18n/routing";
-import { ArrowRight, Calendar, FileText, MapPin } from "lucide-react";
+import { ArrowRight, Calendar, FileText, MapPin, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
+import dynamic from "next/dynamic";
+
+const ReadonlyMap = dynamic(
+  () => import("@/components/map/readonly-map").then((mod) => mod.ReadonlyMap),
+  {
+    ssr: false,
+    loading: () => <div className="h-full w-full animate-pulse bg-white/5" />,
+  },
+);
 
 interface FeaturedItem {
   id: string;
   title: string;
   excerpt: string;
   image: string;
+  mediaType?: "image" | "video" | "map" | "none";
+  mediaSrc?: string;
+  lat?: number;
+  lng?: number;
   date: string;
   location?: string;
   category?: string;
@@ -90,17 +103,51 @@ export function FeaturedReports({
               transition={{ duration: 0.5, delay: i * 0.1 }}
             >
               <Link href={item.href} className="group block">
-                <article className="relative overflow-hidden rounded-2xl glass-light transition-all duration-500 hover:-translate-y-1 hover:glow-crimson">
-                  {/* Image */}
+                <article className="relative overflow-hidden rounded-2xl glass-light transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_0_40px_-12px_rgba(153,27,27,0.3)] border border-white/[0.06]">
+                  {/* Media */}
                   <div className="relative aspect-[16/10] overflow-hidden">
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                      unoptimized
-                    />
+                    {item.mediaType === "image" && item.mediaSrc ? (
+                      <Image
+                        src={item.mediaSrc}
+                        alt={item.title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-105"
+                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                        unoptimized
+                      />
+                    ) : item.mediaType === "video" && item.mediaSrc ? (
+                      <>
+                        <video
+                          src={item.mediaSrc}
+                          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+                          muted
+                          loop
+                          playsInline
+                          preload="metadata"
+                        />
+                        <div className="absolute inset-0 flex items-center justify-center bg-black/30">
+                          <div className="flex h-12 w-12 items-center justify-center rounded-full bg-crimson/90 text-white shadow-lg backdrop-blur-sm transition-transform duration-300 group-hover:scale-110">
+                            <Play className="h-5 w-5 ms-0.5" fill="white" />
+                          </div>
+                        </div>
+                      </>
+                    ) : item.mediaType === "map" &&
+                      item.lat !== undefined &&
+                      item.lng !== undefined ? (
+                      <div className="h-full w-full">
+                        <ReadonlyMap
+                          latitude={item.lat}
+                          longitude={item.lng}
+                          zoom={13}
+                          hideControls
+                          className="h-full w-full"
+                        />
+                      </div>
+                    ) : (
+                      <div className="flex h-full w-full items-center justify-center bg-white/[0.03]">
+                        <FileText className="h-10 w-10 text-slate-body/30" />
+                      </div>
+                    )}
                     <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
                     {item.category && (
                       <span className="absolute top-4 start-4 rounded-full bg-crimson/90 px-3 py-1 text-xs font-medium text-white backdrop-blur-sm">
