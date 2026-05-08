@@ -10,18 +10,27 @@ import MarkerClusterGroup from "react-leaflet-cluster";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
 
-// Fix Leaflet's default icon path issues in Webpack/Turbopack
-const defaultIcon = L.icon({
-  iconUrl: "/images/marker-icon.png",
-  iconRetinaUrl: "/images/marker-icon-2x.png",
-  shadowUrl: "/images/marker-shadow.png",
-  iconSize: [25, 41],
-  iconAnchor: [12, 41],
-  popupAnchor: [1, -34],
-  shadowSize: [41, 41],
+const redDotIcon = L.divIcon({
+  className: "custom-red-dot-marker",
+  html: '<div class="red-dot-inner" />',
+  iconSize: [16, 16],
+  iconAnchor: [8, 8],
+  popupAnchor: [0, -10],
 });
 
-L.Marker.prototype.options.icon = defaultIcon;
+const createClusterIcon = (cluster: any) => {
+  const count = cluster.getChildCount();
+  let size = 36;
+  if (count >= 10 && count < 50) size = 44;
+  else if (count >= 50 && count < 100) size = 52;
+  else if (count >= 100) size = 60;
+
+  return L.divIcon({
+    html: `<div class="custom-cluster-icon" style="width:${size}px;height:${size}px">${count}</div>`,
+    className: "custom-cluster-marker",
+    iconSize: L.point(size, size),
+  });
+};
 
 interface WarCrimesMapProps {
   reports: DeepPartial<reportSchema>[];
@@ -92,6 +101,37 @@ export default function WarCrimesMapInner({ reports, locale }: WarCrimesMapProps
 
   return (
     <div className="relative h-[600px] w-full rounded-lg overflow-hidden border">
+      <style>{`
+        .custom-red-dot-marker {
+          background: transparent !important;
+          border: none !important;
+        }
+        .red-dot-inner {
+          width: 16px;
+          height: 16px;
+          background: #dc2626;
+          border: 2px solid #991b1b;
+          border-radius: 50%;
+          box-shadow: 0 0 6px rgba(220, 38, 38, 0.6);
+        }
+        .custom-cluster-marker {
+          background: transparent !important;
+          border: none !important;
+        }
+        .custom-cluster-icon {
+          background: rgba(220, 38, 38, 0.85);
+          border: 2px solid #991b1b;
+          border-radius: 50%;
+          color: #fff;
+          font-size: 13px;
+          font-weight: 700;
+          text-align: center;
+          box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+        }
+      `}</style>
       <div className="absolute top-4 start-4 z-[400] bg-background/90 backdrop-blur-sm rounded-lg px-3 py-2 text-sm shadow-sm flex items-center gap-3">
         <p className="font-medium text-foreground">
           {reportsWithLocation.length} {t("withLocation")}
@@ -116,17 +156,19 @@ export default function WarCrimesMapInner({ reports, locale }: WarCrimesMapProps
         zoom={6}
         scrollWheelZoom={true}
         className="h-full w-full z-0"
+        style={{ background: "#0a0a0a" }}
       >
         <MapEvents />
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
+          subdomains="abcd"
         />
 
         <MarkerClusterGroup
           chunkedLoading
-          maxClusterRadius={50}
+          maxClusterRadius={60}
           spiderfyOnMaxZoom={true}
+          iconCreateFunction={createClusterIcon}
         >
           {reportsWithLocation.map((report) => (
             <Marker
@@ -135,6 +177,7 @@ export default function WarCrimesMapInner({ reports, locale }: WarCrimesMapProps
                 report.location?.coordinates?.[1] as number,
                 report.location?.coordinates?.[0] as number,
               ]}
+              icon={redDotIcon}
             >
               <Popup className="rounded-lg shadow-sm border">
                 <div className="min-w-[200px] p-1">
