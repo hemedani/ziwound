@@ -56,7 +56,8 @@
     "unknown": "نامشخص",
     "manage": "مدیریت",
     "tryAgain": "تلاش مجدد",
-    "unexpectedError": "خطای غیرمنتظره‌ای رخ داد."
+    "unexpectedError": "خطای غیرمنتظره‌ای رخ داد.",
+    "images": "تصاویر"
   },
   "auth": {
     "email": "ایمیل",

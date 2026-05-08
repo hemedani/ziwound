@@ -56,7 +56,8 @@
     "unknown": "Unknown",
     "manage": "Manage",
     "tryAgain": "Try again",
-    "unexpectedError": "An unexpected error occurred."
+    "unexpectedError": "An unexpected error occurred.",
+    "images": "Images"
   },
   "auth": {
     "email": "Email",

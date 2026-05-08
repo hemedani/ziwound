@@ -55,7 +55,9 @@
     "unknown": "Bilinmiyor",
     "manage": "Yönet",
     "tryAgain": "Tekrar dene",
-    "unexpectedError": "Beklenmeyen bir hata oluştu."
+    "download": "İndir",
+    "unexpectedError": "Beklenmeyen bir hata oluştu.",
+    "images": "Görseller"
   },
   "auth": {
     "email": "E-posta",
@@ -152,6 +154,8 @@
     "lastUpdated": "Son Güncelleme",
     "reportLanguage": "Rapor Dili",
     "coordinates": "Koordinatlar",
+    "crimeOccurredAt": "Suç Tarihi",
+    "documents": "Belgeler",
     "document": "Belge"
   },
   "home": {

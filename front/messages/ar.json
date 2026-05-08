@@ -55,7 +55,9 @@
     "unknown": "غير معروف",
     "manage": "إدارة",
     "tryAgain": "حاول مرة أخرى",
-    "unexpectedError": "حدث خطأ غير متوقع."
+    "download": "تحميل",
+    "unexpectedError": "حدث خطأ غير متوقع.",
+    "images": "صور"
   },
   "auth": {
     "email": "البريد الإلكتروني",
@@ -152,6 +154,8 @@
     "lastUpdated": "آخر تحديث",
     "reportLanguage": "لغة التقرير",
     "coordinates": "الإحداثيات",
+    "crimeOccurredAt": "تاريخ وقوع الجريمة",
+    "documents": "الوثائق",
     "document": "مستند"
   },
   "home": {

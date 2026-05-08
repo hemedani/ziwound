@@ -55,7 +55,9 @@
     "unknown": "Onbekend",
     "manage": "Beheren",
     "tryAgain": "Probeer opnieuw",
-    "unexpectedError": "Er is een onverwachte fout opgetreden."
+    "download": "Downloaden",
+    "unexpectedError": "Er is een onverwachte fout opgetreden.",
+    "images": "Afbeeldingen"
   },
   "auth": {
     "email": "E-mail",
@@ -152,6 +154,8 @@
     "lastUpdated": "Laatst Bijgewerkt",
     "reportLanguage": "Rapporttaal",
     "coordinates": "Coördinaten",
+    "crimeOccurredAt": "Datum van Misdrijf",
+    "documents": "Documenten",
     "document": "Document"
   },
   "home": {

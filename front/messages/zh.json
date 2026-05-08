@@ -55,7 +55,9 @@
     "unknown": "未知",
     "manage": "管理",
     "tryAgain": "再试一次",
-    "unexpectedError": "发生了意外错误。"
+    "download": "下载",
+    "unexpectedError": "发生了意外错误。",
+    "images": "图片"
   },
   "auth": {
     "email": "电子邮箱",
@@ -152,6 +154,8 @@
     "lastUpdated": "最后更新",
     "reportLanguage": "报告语言",
     "coordinates": "坐标",
+    "crimeOccurredAt": "犯罪发生日期",
+    "documents": "文档",
     "document": "文档"
   },
   "home": {

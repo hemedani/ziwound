@@ -55,7 +55,9 @@
     "unknown": "Desconocido",
     "manage": "Gestionar",
     "tryAgain": "Intentar de nuevo",
-    "unexpectedError": "Ocurrió un error inesperado."
+    "download": "Descargar",
+    "unexpectedError": "Ocurrió un error inesperado.",
+    "images": "Imágenes"
   },
   "auth": {
     "email": "Correo electrónico",
@@ -152,6 +154,8 @@
     "lastUpdated": "Última Actualización",
     "reportLanguage": "Idioma del Informe",
     "coordinates": "Coordenadas",
+    "crimeOccurredAt": "Fecha de Ocurrencia del Crimen",
+    "documents": "Documentos",
     "document": "Documento"
   },
   "home": {
