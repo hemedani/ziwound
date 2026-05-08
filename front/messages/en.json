@@ -57,7 +57,8 @@
     "manage": "Manage",
     "tryAgain": "Try again",
     "unexpectedError": "An unexpected error occurred.",
-    "images": "Images"
+    "images": "Images",
+    "warCrimes": "War Crimes"
   },
   "auth": {
     "email": "Email",
@@ -836,6 +837,16 @@
     "sharePage": "Share Page",
     "exportData": "Export Data",
     "exportPDF": "Export PDF (Coming Soon)",
+    "categories": "Categories",
+    "languages": "Languages",
+    "countriesInvolved": "Countries Involved",
+    "reportsByStatus": "Reports by Status",
+    "reportsByPriority": "Reports by Priority",
+    "reportsByLanguage": "Reports by Language",
+    "monthlyCreated": "Monthly Created Reports",
+    "crimeMonthly": "Crime Occurrence by Month",
+    "topLocations": "Top Geographic Locations",
+    "noData": "No data available",
     "overline": "Archive"
   },
   "about": {

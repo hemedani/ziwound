@@ -57,7 +57,8 @@
     "tryAgain": "再试一次",
     "download": "下载",
     "unexpectedError": "发生了意外错误。",
-    "images": "图片"
+    "images": "图片",
+    "warCrimes": "战争罪行"
   },
   "auth": {
     "email": "电子邮箱",
@@ -767,6 +768,16 @@
     "sharePage": "分享页面",
     "exportData": "导出数据",
     "exportPDF": "导出 PDF (即将推出)",
+    "categories": "分类",
+    "languages": "语言",
+    "countriesInvolved": "涉及国家",
+    "reportsByStatus": "按状态统计报告",
+    "reportsByPriority": "按优先级统计报告",
+    "reportsByLanguage": "按语言统计报告",
+    "monthlyCreated": "每月创建的报告",
+    "crimeMonthly": "每月犯罪发生情况",
+    "topLocations": "热门地理位置",
+    "noData": "暂无数据",
     "overline": "档案"
   },
   "about": {

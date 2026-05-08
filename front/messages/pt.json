@@ -57,7 +57,8 @@
     "tryAgain": "Tentar novamente",
     "download": "Baixar",
     "unexpectedError": "Ocorreu um erro inesperado.",
-    "images": "Imagens"
+    "images": "Imagens",
+    "warCrimes": "Crimes de Guerra"
   },
   "auth": {
     "email": "E-mail",
@@ -767,6 +768,16 @@
     "sharePage": "Compartilhar página",
     "exportData": "Exportar dados",
     "exportPDF": "Exportar PDF (Em breve)",
+    "categories": "Categorias",
+    "languages": "Idiomas",
+    "countriesInvolved": "Países Envolvidos",
+    "reportsByStatus": "Relatórios por Status",
+    "reportsByPriority": "Relatórios por Prioridade",
+    "reportsByLanguage": "Relatórios por Idioma",
+    "monthlyCreated": "Relatórios Criados por Mês",
+    "crimeMonthly": "Ocorrência de Crimes por Mês",
+    "topLocations": "Principais Localizações Geográficas",
+    "noData": "Nenhum dado disponível",
     "overline": "Arquivo"
   },
   "about": {

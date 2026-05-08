@@ -57,7 +57,8 @@
     "tryAgain": "Попробовать снова",
     "download": "Скачать",
     "unexpectedError": "Произошла непредвиденная ошибка.",
-    "images": "Изображения"
+    "images": "Изображения",
+    "warCrimes": "Военные преступления"
   },
   "auth": {
     "email": "Электронная почта",
@@ -820,6 +821,16 @@
     "sharePage": "Поделиться страницей",
     "exportData": "Экспорт данных",
     "exportPDF": "Экспорт PDF (Скоро)",
+    "categories": "Категории",
+    "languages": "Языки",
+    "countriesInvolved": "Вовлеченные страны",
+    "reportsByStatus": "Отчеты по статусу",
+    "reportsByPriority": "Отчеты по приоритету",
+    "reportsByLanguage": "Отчеты по языку",
+    "monthlyCreated": "Отчетов создано за месяц",
+    "crimeMonthly": "Преступлений по месяцам",
+    "topLocations": "Топ географических локаций",
+    "noData": "Нет данных",
     "overline": "Архив"
   },
   "about": {

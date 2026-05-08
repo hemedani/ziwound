@@ -57,7 +57,8 @@
     "tryAgain": "Probeer opnieuw",
     "download": "Downloaden",
     "unexpectedError": "Er is een onverwachte fout opgetreden.",
-    "images": "Afbeeldingen"
+    "images": "Afbeeldingen",
+    "warCrimes": "Oorlogsmisdrijven"
   },
   "auth": {
     "email": "E-mail",
@@ -820,6 +821,16 @@
     "sharePage": "Deel pagina",
     "exportData": "Gegevens exporteren",
     "exportPDF": "PDF exporteren (Binnenkort)",
+    "categories": "Categorieën",
+    "languages": "Talen",
+    "countriesInvolved": "Betrokken Landen",
+    "reportsByStatus": "Rapporten per Status",
+    "reportsByPriority": "Rapporten per Prioriteit",
+    "reportsByLanguage": "Rapporten per Taal",
+    "monthlyCreated": "Maandelijks Gemaakte Rapporten",
+    "crimeMonthly": "Misdrijven per Maand",
+    "topLocations": "Top Geografische Locaties",
+    "noData": "Geen gegevens beschikbaar",
     "overline": "Archief"
   },
   "about": {

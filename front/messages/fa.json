@@ -57,7 +57,8 @@
     "manage": "مدیریت",
     "tryAgain": "تلاش مجدد",
     "unexpectedError": "خطای غیرمنتظره‌ای رخ داد.",
-    "images": "تصاویر"
+    "images": "تصاویر",
+    "warCrimes": "جنایات جنگی"
   },
   "auth": {
     "email": "ایمیل",
@@ -838,6 +839,16 @@
     "sharePage": "اشتراک‌گذاری صفحه",
     "exportData": "خروجی اطلاعات",
     "exportPDF": "خروجی PDF (به زودی)",
+    "categories": "دسته‌بندی‌ها",
+    "languages": "زبان‌ها",
+    "countriesInvolved": "کشورهای درگیر",
+    "reportsByStatus": "گزارش‌ها بر اساس وضعیت",
+    "reportsByPriority": "گزارش‌ها بر اساس اولویت",
+    "reportsByLanguage": "گزارش‌ها بر اساس زبان",
+    "monthlyCreated": "گزارش‌های ایجاد شده ماهانه",
+    "crimeMonthly": "وقوع جنایت بر اساس ماه",
+    "topLocations": "موقعیت‌های جغرافیایی برتر",
+    "noData": "داده‌ای موجود نیست",
     "overline": "آرشیو"
   },
   "about": {

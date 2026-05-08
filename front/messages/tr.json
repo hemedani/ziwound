@@ -57,7 +57,8 @@
     "tryAgain": "Tekrar dene",
     "download": "İndir",
     "unexpectedError": "Beklenmeyen bir hata oluştu.",
-    "images": "Görseller"
+    "images": "Görseller",
+    "warCrimes": "Savaş Suçları"
   },
   "auth": {
     "email": "E-posta",
@@ -767,6 +768,16 @@
     "sharePage": "Sayfayı Paylaş",
     "exportData": "Verileri Dışa Aktar",
     "exportPDF": "PDF Dışa Aktar (Yakında)",
+    "categories": "Kategoriler",
+    "languages": "Diller",
+    "countriesInvolved": "İlgili Ülkeler",
+    "reportsByStatus": "Duruma Göre Raporlar",
+    "reportsByPriority": "Önceliğe Göre Raporlar",
+    "reportsByLanguage": "Dile Göre Raporlar",
+    "monthlyCreated": "Aylık Oluşturulan Raporlar",
+    "crimeMonthly": "Aylık Suç Oluşumu",
+    "topLocations": "En İyi Coğrafi Konumlar",
+    "noData": "Kullanılabilir veri yok",
     "overline": "Arşiv"
   },
   "about": {

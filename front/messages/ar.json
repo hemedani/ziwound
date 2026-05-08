@@ -57,7 +57,8 @@
     "tryAgain": "حاول مرة أخرى",
     "download": "تحميل",
     "unexpectedError": "حدث خطأ غير متوقع.",
-    "images": "صور"
+    "images": "صور",
+    "warCrimes": "جرائم الحرب"
   },
   "auth": {
     "email": "البريد الإلكتروني",
@@ -761,6 +762,16 @@
     "sharePage": "مشاركة الصفحة",
     "exportData": "تصدير البيانات",
     "exportPDF": "تصدير PDF (قريباً)",
+    "categories": "الفئات",
+    "languages": "اللغات",
+    "countriesInvolved": "الدول المتورطة",
+    "reportsByStatus": "التقارير حسب الحالة",
+    "reportsByPriority": "التقارير حسب الأولوية",
+    "reportsByLanguage": "التقارير حسب اللغة",
+    "monthlyCreated": "التقارير المنشأة شهرياً",
+    "crimeMonthly": "وقوع الجريمة حسب الشهر",
+    "topLocations": "أفضل المواقع الجغرافية",
+    "noData": "لا توجد بيانات متاحة",
     "overline": "أرشيف"
   },
   "about": {
