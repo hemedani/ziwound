@@ -1,4 +1,4 @@
-import { getTranslations } from "next-intl/server";
+import { getTranslations, getLocale } from "next-intl/server";
 import { gets as getReports } from "@/app/actions/report/gets";
 import { gets as getCategories } from "@/app/actions/category/gets";
 import { gets as getCountries } from "@/app/actions/country/gets";
@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { DatePickerField } from "@/components/form/date-picker-field";
 import Link from "next/link";
 import { ReportsTable } from "./reports-table";
 import { ReqType } from "@/types/declarations";
@@ -34,6 +35,7 @@ export default async function AdminReportsPage({
 }) {
   const resolvedSearchParams = await searchParams;
   const t = await getTranslations("admin");
+  const locale = await getLocale();
   const page = Number(resolvedSearchParams.page) || 1;
   const search = resolvedSearchParams.search || "";
   const status = resolvedSearchParams.status || "all";
@@ -303,14 +305,20 @@ export default async function AdminReportsPage({
             </Select>
           </div>
           <div className="w-full sm:w-48">
-            <Input
-              type="date"
+            <DatePickerField
               name="crimeOccurredFrom"
+              defaultValue={resolvedSearchParams.crimeOccurredFrom || ""}
+              locale={locale}
               placeholder={t("from") || "From"}
             />
           </div>
           <div className="w-full sm:w-48">
-            <Input type="date" name="crimeOccurredTo" placeholder={t("to") || "To"} />
+            <DatePickerField
+              name="crimeOccurredTo"
+              defaultValue={resolvedSearchParams.crimeOccurredTo || ""}
+              locale={locale}
+              placeholder={t("to") || "To"}
+            />
           </div>
           <div className="w-full sm:w-48">
             <Select name="sortBy" defaultValue={sortBy}>

@@ -6,9 +6,8 @@ import { useState, useCallback } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Calendar } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { DatePickerField } from "@/components/form/date-picker-field";
 import type { DeepPartial, categorySchema, tagSchema, ReqType } from "@/types/declarations";
 import { AsyncSelect, AsyncSelectOption, AsyncSelectLoadResult, AsyncSelectValue } from "@/components/form/async-select";
 import { gets as getCountries } from "@/app/actions/country/gets";
@@ -360,20 +359,20 @@ export function WarCrimesFilters({
           <div className="space-y-2">
             <Label>{tFilter("dateRange")}</Label>
             <div className="flex gap-2 items-center">
-              <Input
-                type="date"
+              <DatePickerField
                 value={dateFrom}
-                onChange={(e) => handleDateFromChange(e.target.value)}
-                className="flex-1"
+                onChange={handleDateFromChange}
+                locale={locale}
                 placeholder={tFilter("from")}
+                className="flex-1"
               />
               <span className="text-muted-foreground">-</span>
-              <Input
-                type="date"
+              <DatePickerField
                 value={dateTo}
-                onChange={(e) => handleDateToChange(e.target.value)}
-                className="flex-1"
+                onChange={handleDateToChange}
+                locale={locale}
                 placeholder={tFilter("to")}
+                className="flex-1"
               />
             </div>
           </div>
@@ -451,20 +450,20 @@ export function WarCrimesFilters({
           <div className="space-y-2">
             <Label>{tFilter("crimeOccurredRange") || "Crime Occurrence Date"}</Label>
             <div className="flex gap-2 items-center">
-              <Input
-                type="date"
+              <DatePickerField
                 value={crimeOccurredFrom}
-                onChange={(e) => handleCrimeOccurredFromChange(e.target.value)}
-                className="flex-1"
+                onChange={handleCrimeOccurredFromChange}
+                locale={locale}
                 placeholder={tFilter("from")}
+                className="flex-1"
               />
               <span className="text-muted-foreground">-</span>
-              <Input
-                type="date"
+              <DatePickerField
                 value={crimeOccurredTo}
-                onChange={(e) => handleCrimeOccurredToChange(e.target.value)}
-                className="flex-1"
+                onChange={handleCrimeOccurredToChange}
+                locale={locale}
                 placeholder={tFilter("to")}
+                className="flex-1"
               />
             </div>
           </div>

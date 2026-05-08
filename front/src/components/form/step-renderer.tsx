@@ -19,6 +19,7 @@ import { TagSelector } from "@/components/form/tag-selector";
 import { AsyncSelect, AsyncSelectLoadResult } from "@/components/form/async-select";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { DocumentFormField } from "@/components/form/document-list-field";
+import { DatePickerField } from "@/components/form/date-picker-field";
 import dynamic from "next/dynamic";
 import { REPORT_LANGUAGES, REPORT_PRIORITY, LANGUAGE_MAP } from "@/types/report-schema";
 import { getFieldMetadata } from "@/lib/declaration-parser";
@@ -266,7 +267,13 @@ export function StepRenderer({
                   {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
                 <FormControl>
-                  <Input type="date" {...field} disabled={disabled} />
+                  <DatePickerField
+                    value={field.value}
+                    onChange={field.onChange}
+                    locale={locale}
+                    placeholder={getFieldLabel(fieldName)}
+                    disabled={disabled}
+                  />
                 </FormControl>
                 <FormMessage />
               </FormItem>
