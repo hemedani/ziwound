@@ -29,7 +29,7 @@ interface HeroSliderProps {
 
 export function HeroSlider({
   slides,
-  brandLabel = "Ziwound",
+  brandLabel = "ZiWound",
   scrollIndicator = "Scroll",
   autoPlayInterval = 6000,
   className,

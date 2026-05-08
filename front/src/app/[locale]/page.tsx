@@ -19,10 +19,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "home" });
   return {
-    title: "Ziwound — Documenting War Crimes & Human Rights Violations",
+    title: "ZiWound — Documenting War Crimes & Human Rights Violations",
     description: t("hero.slide1.subtitle"),
     openGraph: {
-      title: "Ziwound — Documenting War Crimes",
+      title: "ZiWound — Documenting War Crimes",
       description: t("hero.slide1.subtitle"),
       type: "website",
     },

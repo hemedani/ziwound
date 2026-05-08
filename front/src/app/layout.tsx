@@ -5,13 +5,13 @@ import { AuthProvider } from "@/components/providers/auth-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Ziwound — Documenting War Crimes",
+  title: "ZiWound — Documenting War Crimes",
   description: "A solemn platform for documenting war crimes and human rights violations.",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
     statusBarStyle: "black-translucent",
-    title: "Ziwound",
+    title: "ZiWound",
   },
   formatDetection: {
     telephone: false,

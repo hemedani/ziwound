@@ -84,7 +84,7 @@ export function Header() {
             <Shield className="h-5 w-5 text-white" />
           </div>
           <span className="font-bold text-xl tracking-tight text-offwhite">
-            Ziwound
+            ZiWound
           </span>
         </Link>
 
@@ -253,7 +253,7 @@ export function Header() {
                   <div className="h-8 w-8 rounded-lg bg-crimson flex items-center justify-center">
                     <Shield className="h-4 w-4 text-white" />
                   </div>
-                  Ziwound
+                  ZiWound
                 </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-1 mt-6">

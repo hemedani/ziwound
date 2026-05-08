@@ -48,7 +48,7 @@ export function WarCrimesExport({ searchParams, locale }: WarCrimesExportProps) 
     if (typeof window === "undefined") return;
 
     const url = encodeURIComponent(window.location.href);
-    const text = encodeURIComponent(t("warCrimes.title") || "Ziwound - War Crimes Documentation");
+    const text = encodeURIComponent(t("warCrimes.title") || "ZiWound - War Crimes Documentation");
 
     let shareUrl = "";
     switch (platform) {

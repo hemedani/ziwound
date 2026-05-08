@@ -29,14 +29,14 @@ export function FAQContent() {
     return [
       {
         id: "what-is-ziwound",
-        question: t("questions.whatIsZiwound.question"),
-        answer: t("questions.whatIsZiwound.answer"),
+        question: t("questions.whatIsZiWound.question"),
+        answer: t("questions.whatIsZiWound.answer"),
         category: "general",
       },
       {
         id: "is-ziwound-free",
-        question: t("questions.isZiwoundFree.question"),
-        answer: t("questions.isZiwoundFree.answer"),
+        question: t("questions.isZiWoundFree.question"),
+        answer: t("questions.isZiWoundFree.answer"),
         category: "general",
       },
       {

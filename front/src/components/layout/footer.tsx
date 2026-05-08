@@ -53,7 +53,7 @@ export function Footer() {
               <div className="h-9 w-9 rounded-xl bg-crimson flex items-center justify-center shadow-lg shadow-crimson/20">
                 <Shield className="h-5 w-5 text-white" />
               </div>
-              <span className="font-bold text-xl tracking-tight text-offwhite">Ziwound</span>
+              <span className="font-bold text-xl tracking-tight text-offwhite">ZiWound</span>
             </Link>
             <p className="text-sm text-slate-body leading-relaxed max-w-sm mb-6">
               {t("description") ||
@@ -97,7 +97,7 @@ export function Footer() {
         <div className="mt-14 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm text-slate-body/70">
             {t("copyright", { year: new Date().getFullYear() }) ||
-              `© ${new Date().getFullYear()} Ziwound. All rights reserved.`}
+              `© ${new Date().getFullYear()} ZiWound. All rights reserved.`}
           </p>
           <div className="flex items-center gap-4">
             <LanguageSwitcher />
