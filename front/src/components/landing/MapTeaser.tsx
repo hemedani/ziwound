@@ -53,20 +53,20 @@ function latLngToSvg(lat: number, lng: number): { x: number; y: number } {
  * These are stylized but recognizable continent outlines.
  */
 const CONTINENT_PATHS = [
-  // North America
-  "M 12,18 L 18,14 L 28,12 L 38,14 L 48,18 L 52,24 L 50,32 L 44,36 L 38,34 L 32,36 L 26,34 L 20,30 L 14,26 Z",
-  // South America
-  "M 32,40 L 38,38 L 42,42 L 44,50 L 42,60 L 38,70 L 34,74 L 30,70 L 28,60 L 28,50 L 30,44 Z",
-  // Europe
-  "M 82,20 L 90,16 L 98,16 L 104,20 L 106,26 L 102,30 L 96,32 L 90,30 L 84,28 L 80,24 Z",
-  // Africa
-  "M 82,34 L 90,32 L 98,34 L 102,42 L 100,52 L 96,62 L 90,70 L 84,68 L 80,60 L 78,50 L 78,40 Z",
-  // Asia
-  "M 108,18 L 120,14 L 134,14 L 146,18 L 156,24 L 162,32 L 160,40 L 152,44 L 142,42 L 132,38 L 122,36 L 114,32 L 108,26 Z",
-  // Southeast Asia / Islands
-  "M 150,46 L 156,44 L 162,48 L 166,56 L 162,62 L 156,60 L 150,56 Z",
-  // Australia
-  "M 152,66 L 162,64 L 172,66 L 176,74 L 172,82 L 162,84 L 154,82 L 150,74 Z",
+  // North America (Alaska → Canadian Arctic → Greenland → Florida → Panama → Mexico → California → Alaska)
+  "M 6.7,11.1 L 33.3,8.9 L 47.2,4.4 L 69.4,4.4 L 86.1,5.6 L 76.1,15.6 L 69.4,21.1 L 55.6,35.0 L 51.1,38.9 L 56.7,45.6 L 41.7,38.9 L 33.3,30.6 L 30.6,22.2 L 16.7,16.7 Z",
+  // South America (Panama → Venezuela → Brazil → Argentina → Chile → Peru → Ecuador → Colombia)
+  "M 57.2,45.6 L 65.6,44.4 L 73.3,51.1 L 78.3,58.3 L 76.1,62.8 L 69.4,69.4 L 62.2,78.9 L 60.0,78.9 L 60.0,69.4 L 56.7,51.1 L 60.0,46.7 Z",
+  // Europe (Portugal → France → Denmark → Norway → Finland → Baltic → Poland → Romania → Greece → Italy → Germany → Netherlands)
+  "M 95.0,28.9 L 95.6,26.1 L 97.8,23.3 L 97.2,19.4 L 102.8,15.0 L 113.9,11.1 L 116.7,13.9 L 116.7,16.7 L 111.1,21.1 L 114.4,24.4 L 113.3,28.9 L 108.9,27.8 L 106.7,26.7 L 104.4,23.9 L 102.8,21.1 Z",
+  // Africa (Morocco → Libya → Egypt → Horn of Africa → Kenya → Mozambique → South Africa → Namibia → Angola → Nigeria → Senegal)
+  "M 96.7,30.6 L 106.7,34.4 L 118.3,35.0 L 121.1,40.0 L 125.0,48.9 L 123.3,52.8 L 122.2,55.6 L 118.3,64.4 L 113.9,68.9 L 107.8,62.2 L 107.2,54.4 L 103.9,46.7 L 91.1,41.7 L 97.2,36.1 Z",
+  // Asia (Turkey → Caucasus → Siberia → Russian Far East → East China → Southeast Asia → India → Iran → Levant)
+  "M 114.4,28.9 L 122.2,26.7 L 127.8,22.2 L 138.9,19.4 L 155.6,16.7 L 169.4,19.4 L 175.0,22.2 L 173.3,26.1 L 172.2,30.6 L 163.3,37.8 L 160.0,41.7 L 155.6,45.6 L 148.9,37.8 L 143.3,36.1 L 127.8,33.3 L 119.4,30.6 Z",
+  // Southeast Asia / Maritime (Sumatra → Java → Bali → Moluccas → Borneo → Philippines → Luzon)
+  "M 153.3,46.7 L 157.8,50.0 L 158.9,51.7 L 158.9,53.3 L 163.9,54.4 L 166.7,54.4 L 169.4,52.2 L 166.7,50.0 L 169.4,46.7 L 168.9,44.4 L 167.8,43.3 Z",
+  // Australia (Darwin → Cape York → Brisbane → Sydney → Melbourne → Adelaide → Perth → NW Australia)
+  "M 172.2,56.7 L 178.9,56.7 L 183.3,62.8 L 183.9,68.9 L 181.7,71.1 L 176.7,69.4 L 163.9,67.8 L 163.3,62.2 L 166.7,61.1 Z",
 ];
 
 export function MapTeaser({
