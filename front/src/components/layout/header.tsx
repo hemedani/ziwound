@@ -70,7 +70,7 @@ export function Header() {
   return (
     <header
       className={cn(
-        "z-50 w-full transition-all duration-500",
+        "z-999 w-full transition-all duration-500",
         pathname.startsWith("/admin") ? "sticky top-0" : "fixed top-0",
         isLanding && !scrolled
           ? "bg-transparent border-b border-white/5"
