@@ -37,6 +37,7 @@
     "of": "/",
     "noDescription": "未提供描述。",
     "optional": "可选",
+    "selectDate": "选择日期",
     "previous": "上一页",
     "register": "注册",
     "reports": "报告",
@@ -47,6 +48,7 @@
     "step": "步骤",
     "submit": "提交",
     "success": "成功",
+    "addTag": "添加标签",
     "tagSelector": {
       "newTag": "创建新标签",
       "search": "搜索标签..."

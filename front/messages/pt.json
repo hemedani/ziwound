@@ -37,6 +37,7 @@
     "of": "de",
     "noDescription": "Nenhuma descrição fornecida.",
     "optional": "Opcional",
+    "selectDate": "Selecionar data",
     "previous": "Anterior",
     "register": "Registrar",
     "reports": "Relatórios",
@@ -47,9 +48,10 @@
     "step": "Etapa",
     "submit": "Enviar",
     "success": "Sucesso",
+    "addTag": "Adicionar etiqueta",
     "tagSelector": {
-      "newTag": "Criar nova tag",
-      "search": "Buscar tags..."
+      "newTag": "Criar nova etiqueta",
+      "search": "Pesquisar etiquetas..."
     },
     "readMore": "Ler Mais",
     "unknown": "Desconhecido",

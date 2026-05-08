@@ -37,6 +37,7 @@
     "of": "van",
     "noDescription": "Geen beschrijving opgegeven.",
     "optional": "Optioneel",
+    "selectDate": "Selecteer datum",
     "previous": "Vorige",
     "register": "Registreren",
     "reports": "Rapporten",
@@ -47,6 +48,7 @@
     "step": "Stap",
     "submit": "Indienen",
     "success": "Succes",
+    "addTag": "Tag toevoegen",
     "tagSelector": {
       "newTag": "Nieuwe tag aanmaken",
       "search": "Tags zoeken..."

@@ -37,6 +37,7 @@
     "of": "من",
     "noDescription": "لم يتم تقديم وصف.",
     "optional": "اختياري",
+    "selectDate": "اختر التاريخ",
     "previous": "السابق",
     "register": "إنشاء حساب",
     "reports": "التقارير",
@@ -47,6 +48,7 @@
     "step": "خطوة",
     "submit": "إرسال",
     "success": "نجاح",
+    "addTag": "إضافة علامة",
     "tagSelector": {
       "newTag": "إنشاء علامة جديدة",
       "search": "البحث في العلامات..."

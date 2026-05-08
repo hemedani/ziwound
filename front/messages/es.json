@@ -37,6 +37,7 @@
     "of": "de",
     "noDescription": "No se proporcionó descripción.",
     "optional": "Opcional",
+    "selectDate": "Seleccionar fecha",
     "previous": "Anterior",
     "register": "Registrarse",
     "reports": "Reportes",
@@ -47,6 +48,7 @@
     "step": "Paso",
     "submit": "Enviar",
     "success": "Éxito",
+    "addTag": "Añadir etiqueta",
     "tagSelector": {
       "newTag": "Crear nueva etiqueta",
       "search": "Buscar etiquetas..."

@@ -37,6 +37,7 @@
     "of": "/",
     "noDescription": "Açıklama sağlanmadı.",
     "optional": "İsteğe Bağlı",
+    "selectDate": "Tarih seçin",
     "previous": "Önceki",
     "register": "Kayıt Ol",
     "reports": "Raporlar",
@@ -47,9 +48,10 @@
     "step": "Adım",
     "submit": "Gönder",
     "success": "Başarılı",
+    "addTag": "Etiket ekle",
     "tagSelector": {
       "newTag": "Yeni etiket oluştur",
-      "search": "Etiketleri ara..."
+      "search": "Etiket ara..."
     },
     "readMore": "Devamını Oku",
     "unknown": "Bilinmiyor",

@@ -38,6 +38,7 @@
     "of": "از",
     "noDescription": "توضیحاتی ارائه نشده است.",
     "optional": "اختیاری",
+    "selectDate": "انتخاب تاریخ",
     "previous": "قبلی",
     "register": "ثبت‌نام",
     "reports": "گزارش‌ها",
@@ -48,6 +49,7 @@
     "step": "قدم",
     "submit": "ارسال",
     "success": "موفق",
+    "addTag": "افزودن برچسب",
     "tagSelector": {
       "newTag": "ایجاد برچسب جدید",
       "search": "جستجوی برچسب‌ها..."
