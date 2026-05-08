@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { gets as getReports } from "@/app/actions/report/gets";
 import { count as countReports } from "@/app/actions/report/count";
+import { statistics as getReportStatistics } from "@/app/actions/report/statistics";
 import { gets as getCategories } from "@/app/actions/category/gets";
 import { gets as getTags } from "@/app/actions/tag/gets";
 import { WarCrimesFilters } from "@/components/war-crimes/war-crimes-filters";
@@ -152,6 +153,11 @@ export default async function WarCrimesPage({
       : tagsResponse.body?.list || []
     : [];
 
+  const statsResponse = await getReportStatistics({}, {});
+  const statsBody = statsResponse?.success && typeof statsResponse.body === "object"
+    ? (statsResponse.body as Record<string, unknown>)
+    : {};
+
   const totalPages = Math.ceil(totalCount / limit);
   const from = (page - 1) * limit + 1;
   const to = Math.min(page * limit, totalCount);
@@ -242,9 +248,9 @@ export default async function WarCrimesPage({
 
           <TabsContent value="statistics" className="mt-0">
             <WarCrimesStatistics
-              reports={reports}
-              categories={categories}
               totalCount={totalCount}
+              categories={categories}
+              statsBody={statsBody}
               locale={locale}
             />
           </TabsContent>
