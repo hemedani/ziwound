@@ -53,7 +53,9 @@
     },
     "readMore": "Читать Далее",
     "unknown": "Неизвестно",
-    "manage": "Управление"
+    "manage": "Управление",
+    "tryAgain": "Попробовать снова",
+    "unexpectedError": "Произошла непредвиденная ошибка."
   },
   "auth": {
     "email": "Электронная почта",
@@ -140,7 +142,17 @@
     "searchCities": "Поиск городов...",
     "noCountriesFound": "Страны не найдены.",
     "noProvincesFound": "Провинции не найдены.",
-    "noCitiesFound": "Города не найдены."
+    "noCitiesFound": "Города не найдены.",
+    "crimeLocationDetails": "Детали места преступления",
+    "reporter": "Заявитель",
+    "verified": "Верифицирован",
+    "reportDetails": "Детали отчёта",
+    "reportId": "ID отчёта",
+    "submittedAt": "Дата подачи",
+    "lastUpdated": "Последнее обновление",
+    "reportLanguage": "Язык отчёта",
+    "coordinates": "Координаты",
+    "document": "Документ"
   },
   "home": {
     "cta": {

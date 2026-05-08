@@ -54,7 +54,9 @@
     },
     "readMore": "Read More",
     "unknown": "Unknown",
-    "manage": "Manage"
+    "manage": "Manage",
+    "tryAgain": "Try again",
+    "unexpectedError": "An unexpected error occurred."
   },
   "auth": {
     "email": "Email",
@@ -161,7 +163,17 @@
     "searchCities": "Search cities...",
     "noCountriesFound": "No countries found.",
     "noProvincesFound": "No provinces found.",
-    "noCitiesFound": "No cities found."
+    "noCitiesFound": "No cities found.",
+    "crimeLocationDetails": "Crime Location Details",
+    "reporter": "Reporter",
+    "verified": "Verified",
+    "reportDetails": "Report Details",
+    "reportId": "Report ID",
+    "submittedAt": "Submitted At",
+    "lastUpdated": "Last Updated",
+    "reportLanguage": "Report Language",
+    "coordinates": "Coordinates",
+    "document": "Document"
   },
   "home": {
     "cta": {

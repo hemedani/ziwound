@@ -53,7 +53,9 @@
     },
     "readMore": "اقرأ المزيد",
     "unknown": "غير معروف",
-    "manage": "إدارة"
+    "manage": "إدارة",
+    "tryAgain": "حاول مرة أخرى",
+    "unexpectedError": "حدث خطأ غير متوقع."
   },
   "auth": {
     "email": "البريد الإلكتروني",
@@ -140,7 +142,17 @@
     "searchCities": "البحث في المدن...",
     "noCountriesFound": "لم يتم العثور على دول.",
     "noProvincesFound": "لم يتم العثور على محافظات.",
-    "noCitiesFound": "لم يتم العثور على مدن."
+    "noCitiesFound": "لم يتم العثور على مدن.",
+    "crimeLocationDetails": "تفاصيل موقع الجريمة",
+    "reporter": "مُبلّغ",
+    "verified": "موثّق",
+    "reportDetails": "تفاصيل التقرير",
+    "reportId": "معرّف التقرير",
+    "submittedAt": "تاريخ التقديم",
+    "lastUpdated": "آخر تحديث",
+    "reportLanguage": "لغة التقرير",
+    "coordinates": "الإحداثيات",
+    "document": "مستند"
   },
   "home": {
     "cta": {

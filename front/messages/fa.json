@@ -54,7 +54,9 @@
     },
     "readMore": "ادامه مطلب",
     "unknown": "نامشخص",
-    "manage": "مدیریت"
+    "manage": "مدیریت",
+    "tryAgain": "تلاش مجدد",
+    "unexpectedError": "خطای غیرمنتظره‌ای رخ داد."
   },
   "auth": {
     "email": "ایمیل",
@@ -164,7 +166,16 @@
     "searchCities": "جستجوی شهرها...",
     "noCountriesFound": "هیچ کشوری یافت نشد.",
     "noProvincesFound": "هیچ استانی یافت نشد.",
-    "noCitiesFound": "هیچ شهری یافت نشد."
+    "noCitiesFound": "هیچ شهری یافت نشد.",
+    "crimeLocationDetails": "جزئیات محل وقوع جرم",
+    "reporter": "گزارش‌دهنده",
+    "verified": "تأیید شده",
+    "reportDetails": "جزئیات گزارش",
+    "reportId": "شناسه گزارش",
+    "submittedAt": "تاریخ ثبت",
+    "lastUpdated": "آخرین به‌روزرسانی",
+    "reportLanguage": "زبان گزارش",
+    "coordinates": "مختصات"
   },
   "home": {
     "cta": {

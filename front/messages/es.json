@@ -53,7 +53,9 @@
     },
     "readMore": "Leer Más",
     "unknown": "Desconocido",
-    "manage": "Gestionar"
+    "manage": "Gestionar",
+    "tryAgain": "Intentar de nuevo",
+    "unexpectedError": "Ocurrió un error inesperado."
   },
   "auth": {
     "email": "Correo electrónico",
@@ -140,7 +142,17 @@
     "searchCities": "Buscar ciudades...",
     "noCountriesFound": "No se encontraron países.",
     "noProvincesFound": "No se encontraron provincias.",
-    "noCitiesFound": "No se encontraron ciudades."
+    "noCitiesFound": "No se encontraron ciudades.",
+    "crimeLocationDetails": "Detalles de la Ubicación del Crimen",
+    "reporter": "Denunciante",
+    "verified": "Verificado",
+    "reportDetails": "Detalles del Informe",
+    "reportId": "ID del Informe",
+    "submittedAt": "Enviado el",
+    "lastUpdated": "Última Actualización",
+    "reportLanguage": "Idioma del Informe",
+    "coordinates": "Coordenadas",
+    "document": "Documento"
   },
   "home": {
     "cta": {

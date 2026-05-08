@@ -1344,3 +1344,174 @@ import { FormField, FormItem, FormLabel, FormControl } from "@/components/ui/for
 - `async`: (boolean) Enable asynchronous loading.
 - `loadOptions`: Promise-based function `(inputValue: string, page?: number)` for async loading.
 - `options`: Static fallback options array of `{ id, name, english_name?, flag? }`.
+
+---
+
+## Application Pages & Routes
+
+### War Crimes Exploration Page (`/[locale]/war-crimes`)
+
+The War Crimes Exploration page is the primary public-facing archive for browsing documented war crimes. It is a Server Component that fetches reports with extensive filtering support.
+
+**Route:** `/(fa|en|ar|zh|pt|es|nl|tr|ru)/war-crimes`
+
+**Features:**
+- **Tabbed Views**: List view, Map view, Timeline view, and Statistics view
+- **Advanced Filters**: Status, priority, category, tags, date range, location bounding box, hostile/attacked countries/provinces/cities, crime occurrence date range, language
+- **URL-driven State**: All filters are reflected in query parameters, enabling shareable links and pre-filtered navigation
+- **Search**: Full-text search across report titles and descriptions
+- **Export**: CSV export of filtered results
+- **Pagination**: Server-side paginated list with result counts
+
+**Key Query Parameters:**
+| Param | Description |
+|-------|-------------|
+| `search` | Free-text search |
+| `status` | `Pending`, `Approved`, `Rejected`, `InReview` |
+| `priority` | `Low`, `Medium`, `High` |
+| `categoryId` | Single category ID |
+| `tagIds` | Comma-separated tag IDs |
+| `dateFrom`, `dateTo` | Report creation date range |
+| `crimeOccurredFrom`, `crimeOccurredTo` | Crime occurrence date range |
+| `hostileCountryIds` | Comma-separated hostile country IDs |
+| `attackedCountryIds` | Comma-separated attacked country IDs |
+| `attackedProvinceIds` | Comma-separated attacked province IDs |
+| `attackedCityIds` | Comma-separated attacked city IDs |
+| `selected_language` | Report language code |
+| `view` | `list`, `map`, `timeline`, `statistics` |
+| `bbox` | Map bounding box for spatial filtering |
+
+**Pre-filtered Navigation Examples:**
+```tsx
+// Link to war crimes filtered by a specific tag
+<Link href="/war-crimes?tagIds=abc123">Tag Name</Link>
+
+// Link to war crimes filtered by a specific category
+<Link href="/war-crimes?categoryId=def456">Category Name</Link>
+
+// Link to war crimes filtered by a specific country
+<Link href="/war-crimes?attackedCountryIds=ghi789">Country Name</Link>
+```
+
+**Components:**
+- `WarCrimesFilters` — Filter sidebar/panel with all filter controls
+- `WarCrimesList` — Paginated list of report cards
+- `WarCrimesMap` — Interactive Leaflet map with report markers
+- `WarCrimesTimeline` — Chronological timeline view
+- `WarCrimesStatistics` — Charts and aggregate statistics
+- `WarCrimesExport` — CSV export button
+
+### Explore Pages (`/[locale]/explore/*`)
+
+The Explore section provides browsable detail pages for geographic entities involved in documented war crimes. Each page displays war information, related reports, and linked sub-entities.
+
+#### Explore Index (`/[locale]/explore`)
+- Searchable grid of all countries
+- Shows country name, English name, war history preview, province/city counts
+- Links to individual country detail pages
+
+#### Country Detail (`/[locale]/explore/countries/[id]`)
+**Route Pattern:** `/(fa|en|...)/explore/countries/:countryId`
+
+**Displays:**
+- Country name and English name
+- Quick stats (provinces, cities, total reports)
+- **War Information** section with rich text fields:
+  - `wars_history`, `conflict_timeline`, `casualties_info`, `international_response`
+  - `war_crimes_documentation`, `human_rights_violations`, `genocide_info`
+  - `chemical_weapons_info`, `displacement_info`, `reconstruction_status`
+  - `international_sanctions`, `notable_war_events`
+- **Hostile Reports** — Reports where this country is the aggressor
+- **Attacked Reports** — Reports where this country is the victim
+- **Provinces sidebar** — Linked provinces with navigation
+- **Cities sidebar** — Linked cities with navigation
+
+#### Province Detail (`/[locale]/explore/provinces/[id]`)
+**Route Pattern:** `/(fa|en|...)/explore/provinces/:provinceId`
+
+**Displays:**
+- Province name and English name
+- Breadcrumb link to parent country
+- Quick stats (cities, total reports)
+- **War Information** section (same fields as country, plus `notable_battles`, `occupation_info`, `destruction_level`, `civilian_impact`, `mass_graves_info`, `war_crimes_events`, `liberation_info`)
+- **Related Reports** — Reports attacking this province
+- **Cities sidebar** — Linked cities with navigation
+- **Country sidebar** — Link to parent country
+
+#### City Detail (`/[locale]/explore/cities/[id]`)
+**Route Pattern:** `/(fa|en|...)/explore/cities/:cityId`
+
+**Displays:**
+- City name and English name
+- Breadcrumb links to parent province and country
+- Quick stats (total reports)
+- **War Information** section (same fields as province)
+- **Related Reports** — Reports attacking this city
+- **Province sidebar** — Link to parent province
+- **Country sidebar** — Link to parent country
+
+### Report Detail Page (`/[locale]/reports/[id]`)
+
+The Report Detail page displays a single war crime report with comprehensive information.
+
+**Route:** `/(fa|en|...)/reports/:reportId`
+
+**Design:**
+- Hero header with radial gradient, status/priority/category badges, title, and date metadata
+- **Image Gallery Hero** — If documents contain images, they are displayed prominently at the top in a responsive grid layout (1 image = full-width banner, 2 images = side-by-side, 3+ images = masonry grid with featured large image)
+- Clickable lightbox for viewing images fullscreen with keyboard navigation (Escape to close, arrow keys to navigate)
+- Two-column layout: main content (left) + metadata sidebar (right)
+
+**Clickable Elements:**
+- **Category badge** → `/war-crimes?categoryId={id}`
+- **Tag badges** → `/war-crimes?tagIds={id}`
+- **Hostile countries** → `/explore/countries/{id}`
+- **Attacked countries** → `/explore/countries/{id}`
+- **Attacked provinces** → `/explore/provinces/{id}`
+- **Attacked cities** → `/explore/cities/{id}`
+
+---
+
+## Design System & Theming
+
+### New Theme Direction (`new-theme/THEME.md`)
+
+The project has a documented new theme direction located at `new-theme/THEME.md`. This defines the visual evolution of the platform toward a **premium, ultra-modern dark aesthetic** suitable for a solemn war crimes documentation platform.
+
+#### Core Principles
+- **Mood**: Solemn, authoritative, trustworthy, emotionally impactful, memorial-like
+- **Background**: Deep charcoal / near-black (`#0a0a0a`)
+- **Primary Accent**: Crimson / Blood Red (`#991b1b`) — represents justice and urgency
+- **Secondary Accent**: Subtle warm gold / amber (`#d4af37`) — represents hope and remembrance
+- **Text**: Off-white (`#f1f5f9`) for headings, softer gray (`#cbd5e1`) for body
+
+#### CSS Custom Properties (Tailwind v4 `@theme`)
+The theme is implemented via CSS custom properties in `globals.css`:
+```
+--color-background: hsl(0 0% 4%)
+--color-foreground: hsl(210 40% 96%)
+--color-primary: hsl(0 72% 35%)    /* crimson */
+--color-secondary: hsl(45 80% 52%) /* gold */
+--color-crimson: #991b1b
+--color-crimson-light: #b91c1c
+--color-gold: #d4af37
+--color-offwhite: #f1f5f9
+--color-slate-body: #cbd5e1
+```
+
+#### Glassmorphism Cards
+The design uses consistent glass-like card surfaces:
+- **`.glass-strong`**: Higher opacity background for sidebars and emphasis cards
+- **`.glass-light`**: Lower opacity background for content sections
+- Both use `backdrop-blur` and subtle white borders (`border-white/[0.06]`)
+
+#### Hero Pattern
+Public-facing detail pages (country, province, city, report) share a consistent hero header pattern:
+```
+<div className="relative pt-32 pb-12 overflow-hidden">
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(153,27,27,0.08)_0%,_transparent_70%)]" />
+  <div className="container relative">...</div>
+</div>
+```
+
+This radial gradient creates a subtle crimson glow behind the page title, establishing visual hierarchy and thematic consistency.

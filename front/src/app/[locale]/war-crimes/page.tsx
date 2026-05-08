@@ -119,6 +119,11 @@ export default async function WarCrimesPage({
     category: { _id: 1, name: 1, color: 1, icon: 1 },
     tags: { _id: 1, name: 1, color: 1, icon: 1 },
     reporter: { _id: 1, first_name: 1, last_name: 1 },
+    documents: {
+      _id: 1,
+      title: 1,
+      documentFiles: { _id: 1, name: 1, mimeType: 1, type: 1 },
+    },
   });
 
   const reports: DeepPartial<reportSchema>[] = response?.success

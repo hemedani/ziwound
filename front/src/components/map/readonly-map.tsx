@@ -22,13 +22,15 @@ interface ReadonlyMapProps {
   longitude: number;
   zoom?: number;
   className?: string;
+  hideControls?: boolean;
 }
 
 export function ReadonlyMap({
   latitude,
   longitude,
   zoom = 15,
-  className = "h-48 w-full rounded-lg overflow-hidden border-2 shadow-sm relative z-0"
+  className = "h-48 w-full rounded-lg overflow-hidden border-2 shadow-sm relative z-0",
+  hideControls = false,
 }: ReadonlyMapProps) {
   const position: [number, number] = [latitude, longitude];
 
@@ -38,6 +40,8 @@ export function ReadonlyMap({
         center={position}
         zoom={zoom}
         scrollWheelZoom={false}
+        zoomControl={!hideControls}
+        attributionControl={!hideControls}
         style={{ height: "100%", width: "100%" }}
       >
         <TileLayer

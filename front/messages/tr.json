@@ -53,7 +53,9 @@
     },
     "readMore": "Devamını Oku",
     "unknown": "Bilinmiyor",
-    "manage": "Yönet"
+    "manage": "Yönet",
+    "tryAgain": "Tekrar dene",
+    "unexpectedError": "Beklenmeyen bir hata oluştu."
   },
   "auth": {
     "email": "E-posta",
@@ -140,7 +142,17 @@
     "searchCities": "Şehir ara...",
     "noCountriesFound": "Ülke bulunamadı.",
     "noProvincesFound": "İl bulunamadı.",
-    "noCitiesFound": "Şehir bulunamadı."
+    "noCitiesFound": "Şehir bulunamadı.",
+    "crimeLocationDetails": "Suç Yeri Detayları",
+    "reporter": "Bildiren",
+    "verified": "Doğrulanmış",
+    "reportDetails": "Rapor Detayları",
+    "reportId": "Rapor ID",
+    "submittedAt": "Gönderilme Tarihi",
+    "lastUpdated": "Son Güncelleme",
+    "reportLanguage": "Rapor Dili",
+    "coordinates": "Koordinatlar",
+    "document": "Belge"
   },
   "home": {
     "cta": {

@@ -2,11 +2,19 @@
 
 import { useTranslations } from "next-intl";
 import Link from "next/link";
+import dynamic from "next/dynamic";
+import Image from "next/image";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { MapPin, Calendar, Eye, ArrowRight, ArrowLeft } from "lucide-react";
+import { getImageUploadUrl } from "@/utils/imageUrl";
 import type { DeepPartial, reportSchema } from "@/types/declarations";
+
+const ReadonlyMap = dynamic(
+  () => import("@/components/map/readonly-map").then((m) => ({ default: m.ReadonlyMap })),
+  { ssr: false },
+);
 
 interface WarCrimesListProps {
   reports: DeepPartial<reportSchema>[];
@@ -34,6 +42,19 @@ export function WarCrimesList({
     );
   }
 
+  const getFirstImage = (report: DeepPartial<reportSchema>): string | null => {
+    const docs = (report as { documents?: Array<{ documentFiles?: Array<{ name: string; mimeType: string; type: string }> }> }).documents;
+    if (!docs) return null;
+    for (const doc of docs) {
+      for (const file of doc.documentFiles ?? []) {
+        if (file.mimeType?.startsWith("image/") && file.name) {
+          return getImageUploadUrl(file.name, (file.type as "image" | "video" | "docs") || "image");
+        }
+      }
+    }
+    return null;
+  };
+
   const getPriorityColor = (priority?: string) => {
     switch (priority) {
       case "High":
@@ -52,6 +73,13 @@ export function WarCrimesList({
     return "outline" as const;
   };
 
+  console.log("[WarCrimesList] reports count:", reports.length);
+  if (reports[0]) {
+    console.log("[WarCrimesList] first report documents:", JSON.parse(JSON.stringify(reports[0]?.documents)));
+    console.log("[WarCrimesList] first report keys:", Object.keys(reports[0]));
+    console.log("[WarCrimesList] first image:", getFirstImage(reports[0]));
+  }
+
   return (
     <div className="space-y-4">
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -60,11 +88,46 @@ export function WarCrimesList({
             key={report._id}
             className="overflow-hidden transition-all hover:shadow-md"
           >
-            {report.location && (
-              <div className="h-32 bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
-                <MapPin className="h-12 w-12 text-muted-foreground/50" />
-              </div>
-            )}
+            {report.location && (() => {
+              const imageUrl = getFirstImage(report);
+              const coords = report.location?.coordinates;
+
+              if (imageUrl) {
+                return (
+                  <div className="relative h-32 overflow-hidden">
+                    <Image
+                      src={imageUrl}
+                      alt={report.title || ""}
+                      fill
+                      unoptimized
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                      className="object-cover"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+                  </div>
+                );
+              }
+
+              if (coords && coords.length >= 2) {
+                return (
+                  <div className="h-32 relative overflow-hidden">
+                    <ReadonlyMap
+                      latitude={coords[1] as number}
+                      longitude={coords[0] as number}
+                      zoom={10}
+                      className="h-full w-full"
+                      hideControls
+                    />
+                  </div>
+                );
+              }
+
+              return (
+                <div className="h-32 bg-gradient-to-br from-muted to-muted/50 flex items-center justify-center">
+                  <MapPin className="h-12 w-12 text-muted-foreground/50" />
+                </div>
+              );
+            })()}
 
             <CardHeader className="pb-2">
               <div className="flex flex-wrap gap-2 mb-2">

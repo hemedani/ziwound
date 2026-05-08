@@ -53,7 +53,9 @@
     },
     "readMore": "Lees Meer",
     "unknown": "Onbekend",
-    "manage": "Beheren"
+    "manage": "Beheren",
+    "tryAgain": "Probeer opnieuw",
+    "unexpectedError": "Er is een onverwachte fout opgetreden."
   },
   "auth": {
     "email": "E-mail",
@@ -140,7 +142,17 @@
     "searchCities": "Zoek steden...",
     "noCountriesFound": "Geen landen gevonden.",
     "noProvincesFound": "Geen provincies gevonden.",
-    "noCitiesFound": "Geen steden gevonden."
+    "noCitiesFound": "Geen steden gevonden.",
+    "crimeLocationDetails": "Details Misdaadlocatie",
+    "reporter": "Melder",
+    "verified": "Geverifieerd",
+    "reportDetails": "Rapportdetails",
+    "reportId": "Rapport ID",
+    "submittedAt": "Ingediend op",
+    "lastUpdated": "Laatst Bijgewerkt",
+    "reportLanguage": "Rapporttaal",
+    "coordinates": "Coördinaten",
+    "document": "Document"
   },
   "home": {
     "cta": {
