@@ -1,4 +1,4 @@
-# Ziwound Backend – API & Models Documentation for Frontend
+# ZiWound Backend – API & Models Documentation for Frontend
 
 > Generated for frontend AI agent to create TODO.md and CONTINUE.md files.
 
@@ -21,7 +21,7 @@
 
 ## Project Overview
 
-**Ziwound** is a war crimes documentation system with multi-language support, document management, blog functionality, and an advanced admin panel. The backend is built with **Deno + Lesan framework** and **MongoDB**.
+**ZiWound** is a war crimes documentation system with multi-language support, document management, blog functionality, and an advanced admin panel. The backend is built with **Deno + Lesan framework** and **MongoDB**.
 
 ### Core Features
 - **User authentication** with JWT (roles: Ghost, Manager, Editor, Ordinary)

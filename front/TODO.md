@@ -1,6 +1,6 @@
-# Ziwound Frontend TODO.md
+# ZiWound Frontend TODO.md
 
-**Project**: Ziwound Frontend – War Crimes Documentation System
+**Project**: ZiWound Frontend – War Crimes Documentation System
 **Goal**: Beautiful, accessible, multi-language Next.js 16 frontend with shadcn/ui components, war crimes exploration page, blog section, and document management
 **Tech stack**: Next.js 16 + TypeScript + Tailwind v4 + shadcn/ui + next-intl + Zustand + React Hook Form + Zod
 

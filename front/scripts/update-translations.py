@@ -40,7 +40,7 @@ new_home_keys = {
     "mission": {
         "overline": "Our Mission",
         "title": "Truth is the Foundation of Justice",
-        "p1": "Ziwound exists to ensure that no crime against humanity goes undocumented. We provide a secure, permanent, and verifiable archive of war crimes and human rights violations from conflict zones around the world.",
+        "p1": "ZiWound exists to ensure that no crime against humanity goes undocumented. We provide a secure, permanent, and verifiable archive of war crimes and human rights violations from conflict zones around the world.",
         "p2": "By combining cutting-edge technology with rigorous verification, we empower survivors, witnesses, and investigators to preserve evidence that can stand the test of time and the scrutiny of courts.",
         "tagline": "For the victims. For justice. For history."
     },

@@ -1,16 +1,16 @@
-# CONTINUE — Ziwound New Theme Redesign
+# CONTINUE — ZiWound New Theme Redesign
 
 **Theme Reference**: Follow the detailed guidelines in [THEME.md](./THEME.md). Always maintain the solemn and respectful tone while using the premium dark style from the crypto landing page inspiration.
 
 **Pictures Reference**: Reference images in `pictures/` folder (00.png, 01.png, 02.png).
 
-**Project Context**: This redesign touches the entire Ziwound frontend. Read `../AGENT.md` for complete architecture, conventions, and tech stack. Read `../TODO.md` and `../CONTINUE.md` for the main project roadmap.
+**Project Context**: This redesign touches the entire ZiWound frontend. Read `../AGENT.md` for complete architecture, conventions, and tech stack. Read `../TODO.md` and `../CONTINUE.md` for the main project roadmap.
 
 ---
 
 ## Current Focus
 
-You are implementing the new sleek dark theme (deep blacks `#0a0a0a`, crimson `#991b1b`, gold `#d4af37`) across **all pages** of the Ziwound frontend. This is not just a landing page redesign — it is a complete visual overhaul of every public page, auth page, report page, blog page, war crimes page, static page, and admin panel.
+You are implementing the new sleek dark theme (deep blacks `#0a0a0a`, crimson `#991b1b`, gold `#d4af37`) across **all pages** of the ZiWound frontend. This is not just a landing page redesign — it is a complete visual overhaul of every public page, auth page, report page, blog page, war crimes page, static page, and admin panel.
 
 ## Key Rules (non-negotiable)
 
@@ -97,7 +97,7 @@ For every page you redesign, verify in Persian (`/fa/`):
 - ✅ Admin dashboard fetches real statistics from backend `report/statistics` endpoint
 - ✅ Phase 10: Translation audit — hardcoded strings fixed across admin, blog, reports
 - ✅ Font updated to Estedad for multi-script support
-- ✅ PWA manifest updated with Ziwound branding and dark colors
+- ✅ PWA manifest updated with ZiWound branding and dark colors
 - ✅ Global error page styled with dark theme
 - ✅ Dark-themed `loading.tsx` added to all admin routes (dashboard, blog, cities, countries, documents, provinces, generic fallback)
 - ✅ Dark-themed `loading.tsx` added to all public routes (locale fallback, auth, dashboard, blog, documents, war-crimes)

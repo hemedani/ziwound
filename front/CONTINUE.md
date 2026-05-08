@@ -1,4 +1,4 @@
-You are an expert full-stack TypeScript/Next.js 16 developer working exclusively on the **Ziwound Frontend** (war crimes documentation system).
+You are an expert full-stack TypeScript/Next.js 16 developer working exclusively on the **ZiWound Frontend** (war crimes documentation system).
 
 **Project Context**:
 
@@ -106,7 +106,7 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 - ✅ Document Server Actions fully implemented (add, get, gets, update, remove, updateRelations)
 - ✅ Added Documents to admin sidebar navigation with translations in all 9 languages
 - ✅ Created `/admin/documents` page with document list table and basic search/type filtering, with translations in all 9 languages
-- ✅ **Project renamed from Gozarish to Ziwound (war crimes documentation system)**
+- ✅ **Project renamed from Gozarish to ZiWound (war crimes documentation system)**
 - ✅ **Added new phases for Document Management, Blog Section, and War Crimes Exploration**
 - ✅ Added language field to Report model and updated API usage
 - ✅ Implemented War Crimes Export & Sharing functionality (WarCrimesExport component with CSV export, link sharing, and social media integration)

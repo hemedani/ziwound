@@ -1,4 +1,4 @@
-# Ziwound New Theme — Design & Style Explanation
+# ZiWound New Theme — Design & Style Explanation
 
 **Visual References** (in `pictures/` folder):
 - [00.png](pictures/00.png) — Overall hero / landing mood
@@ -45,7 +45,7 @@ The new theme keeps the sleek, high-end feel of the inspiration (deep blacks, dr
 - Clean, minimal layout with plenty of negative space
 - Smooth scroll animations and section reveals
 
-### Why This Style Fits Ziwound
+### Why This Style Fits ZiWound
 - The premium dark aesthetic gives a modern, professional, and trustworthy impression (essential for human rights work).
 - Crimson red creates emotional weight and urgency without being sensationalist.
 - Fullscreen hero slider becomes the emotional heart of the site — immediately conveying the gravity of the content.

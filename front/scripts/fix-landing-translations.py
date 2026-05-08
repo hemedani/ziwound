@@ -7,7 +7,7 @@ files = ["ar.json", "en.json", "es.json", "fa.json", "nl.json", "pt.json", "ru.j
 new_keys = {
     "home": {
         "hero": {
-            "brandLabel": "Ziwound",
+            "brandLabel": "ZiWound",
             "scrollIndicator": "Scroll"
         },
         "mapTeaser": {

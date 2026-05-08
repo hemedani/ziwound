@@ -1,6 +1,6 @@
 # Backend Specification: HeroSlide Model
 
-> This document describes the backend model and API actions needed to support the dynamic `HeroSlider` component on the Ziwound landing page.
+> This document describes the backend model and API actions needed to support the dynamic `HeroSlider` component on the ZiWound landing page.
 >
 > **Frontend consumer**: `src/components/landing/HeroSlider.tsx`  
 > **Current phase**: Phase 12 — Backend Integration (Future)

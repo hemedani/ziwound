@@ -1,8 +1,8 @@
-# Ziwound Frontend - Next.js Application
+# ZiWound Frontend - Next.js Application
 
 ## Project Overview
 
-Ziwound frontend is a Next.js 16 application for a war crimes documentation system. It features a war crimes exploration page for searching and exploring documented war crimes, a blog section for articles and updates, a simple and beautiful multi-language report submission page (title, attachments, description, tags, location + minor fields), and a full-featured advanced admin panel for managing reports, documents, blog posts, and users.
+ZiWound frontend is a Next.js 16 application for a war crimes documentation system. It features a war crimes exploration page for searching and exploring documented war crimes, a blog section for articles and updates, a simple and beautiful multi-language report submission page (title, attachments, description, tags, location + minor fields), and a full-featured advanced admin panel for managing reports, documents, blog posts, and users.
 
 ### Key Features
 

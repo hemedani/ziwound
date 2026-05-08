@@ -1,6 +1,6 @@
-# Ziwound New Theme Redesign — Comprehensive Roadmap
+# ZiWound New Theme Redesign — Comprehensive Roadmap
 
-**Goal**: Redesign the entire Ziwound frontend to match a premium, solemn dark aesthetic inspired by https://dribbble.com/shots/25940621-Crypto-landing-page, adapted for a war crimes documentation platform.
+**Goal**: Redesign the entire ZiWound frontend to match a premium, solemn dark aesthetic inspired by https://dribbble.com/shots/25940621-Crypto-landing-page, adapted for a war crimes documentation platform.
 
 **Theme Reference**: See [THEME.md](./THEME.md) for full design explanation, color palette, and adaptation guidelines.
 
@@ -29,7 +29,7 @@
 - [x] Add glow effects (`.glow-crimson`, `.glow-gold`, `.text-glow-*`).
 - [x] Add gradient overlays (`.gradient-overlay`, `.gradient-radial-hero`).
 - [x] Add animation keyframes and utility classes (fade-in-up, scale-in, slow-zoom, pulse-glow).
-- [x] Update `layout.tsx` to default dark theme, update metadata for Ziwound.
+- [x] Update `layout.tsx` to default dark theme, update metadata for ZiWound.
 - [x] Update `components.json` base color if needed.
 - [x] Add custom scrollbar, selection colors, and smooth scroll.
 - [x] Set default font to Estedad for multi-script support.
