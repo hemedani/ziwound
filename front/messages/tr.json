@@ -159,6 +159,8 @@
     "coordinates": "Koordinatlar",
     "crimeOccurredAt": "Suç Tarihi",
     "documents": "Belgeler",
+    "language": "Dil",
+    "languagePlaceholder": "Bir dil seçin",
     "document": "Belge"
   },
   "home": {

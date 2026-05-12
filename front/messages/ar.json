@@ -159,6 +159,8 @@
     "coordinates": "الإحداثيات",
     "crimeOccurredAt": "تاريخ وقوع الجريمة",
     "documents": "الوثائق",
+    "language": "اللغة",
+    "languagePlaceholder": "اختر لغة",
     "document": "مستند"
   },
   "home": {

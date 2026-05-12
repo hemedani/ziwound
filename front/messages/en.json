@@ -177,6 +177,8 @@
     "lastUpdated": "Last Updated",
     "reportLanguage": "Report Language",
     "coordinates": "Coordinates",
+    "language": "Language",
+    "languagePlaceholder": "Select a language",
     "document": "Document"
   },
   "home": {

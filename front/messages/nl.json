@@ -159,6 +159,8 @@
     "coordinates": "Coördinaten",
     "crimeOccurredAt": "Datum van Misdrijf",
     "documents": "Documenten",
+    "language": "Taal",
+    "languagePlaceholder": "Selecteer een taal",
     "document": "Document"
   },
   "home": {

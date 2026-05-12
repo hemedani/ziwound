@@ -159,6 +159,8 @@
     "coordinates": "Координаты",
     "crimeOccurredAt": "Дата совершения преступления",
     "documents": "Документы",
+    "language": "Язык",
+    "languagePlaceholder": "Выберите язык",
     "document": "Документ"
   },
   "home": {

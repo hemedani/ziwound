@@ -159,6 +159,8 @@
     "coordinates": "坐标",
     "crimeOccurredAt": "犯罪发生日期",
     "documents": "文档",
+    "language": "语言",
+    "languagePlaceholder": "选择一种语言",
     "document": "文档"
   },
   "home": {

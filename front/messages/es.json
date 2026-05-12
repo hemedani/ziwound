@@ -159,6 +159,8 @@
     "coordinates": "Coordenadas",
     "crimeOccurredAt": "Fecha de Ocurrencia del Crimen",
     "documents": "Documentos",
+    "language": "Idioma",
+    "languagePlaceholder": "Seleccione un idioma",
     "document": "Documento"
   },
   "home": {

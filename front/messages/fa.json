@@ -119,6 +119,7 @@
     "crimeOccurredRequired": "تاریخ وقوع جرم الزامی است",
     "filterByStatus": "فیلتر بر اساس وضعیت",
     "language": "زبان",
+    "languagePlaceholder": "زبان را انتخاب کنید",
     "location": "موقعیت مکانی",
     "mapPlaceholder": "نقشه در اینجا نمایش داده می‌شود",
     "myReports": "گزارش‌های من",
