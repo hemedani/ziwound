@@ -85,6 +85,31 @@ This section documents key features and implementations added in recent developm
   - Seed data provided for initial 3 slides
   - Pagination support with page/limit parameters
 
+### Language Support Pattern
+
+Models that need per-language content (e.g., BlogPost, HeroSlide) use a `selected_language` field:
+
+**In model definition:**
+```typescript
+import { coerce, string } from "lesan";
+import { language_enums, LanguageCode } from "./document.ts";
+
+export const model_pure = {
+  // ...
+  selected_language: optional(
+    coerce(language_enums, string(), (value) => value as LanguageCode),
+  ),
+};
+```
+
+**In `gets` and `count` validators:** Add `selected_language: optional(enums(language_array))` as a filter option.
+
+**In `gets` and `count` functions:** Add `if (selected_language) pipeline.push({ $match: { selected_language } });`
+
+**In `update` validator and function:** Include `selected_language` as an updatable pure field.
+
+**Important:** Do NOT add `selected_language` to `get` or `getBySlug` methods - these retrieve a single record by unique identifier, so language filtering is unnecessary.
+
 ### Enhanced Report Exploration
 
 - **Advanced Filtering**: Date range (createdAt), geospatial (bbox, proximity search), status, priority, category, tags, user
@@ -1162,134 +1187,448 @@ export const addSetup = () =>
 
 ## Common CRUD Patterns
 
+Each action follows a three-file pattern inside `src/[model]/[action]/`:
+- `[action].val.ts` - Validator (input validation + output projection)
+- `[action].fn.ts` - Function (business logic)
+- `mod.ts` - Setup (registers action with Lesan, defines auth middleware)
+
 ### Add (Create)
 
-```typescript
-// Extract relations from set
-const { relationField, ...rest } = set;
+**Purpose:** Create a new document with optional relations. Pure fields go in `doc`, relations go in `relations`.
 
-await model.insertOne({
-  doc: rest,
-  relations: {
-    relationField: {
-      _ids: [new ObjectId(relationField)],
-      relatedRelations: { reverseRelation: true },
-    },
-  },
-  projection: get,
-});
+**Validator (`add.val.ts`):**
+```typescript
+import { array, object, objectIdValidation, optional, string } from "lesan";
+import { selectStruct } from "../../../mod.ts";
+import { model_pure } from "@model";
+
+export const addValidator = () => {
+  const { ...basePure } = model_pure as Record<string, unknown>;
+
+  return object({
+    set: object({
+      ...basePure,
+      // Override complex fields (GeoJSON, enums, etc.)
+      singleRelation: optional(objectIdValidation),
+      multipleRelations: optional(array(objectIdValidation)),
+    }),
+    get: selectStruct("model", 1),
+  });
+};
 ```
+
+**Function (`add.fn.ts`):**
+```typescript
+import { type ActFn, ObjectId } from "lesan";
+import { coreApp, model } from "../../../mod.ts";
+import type { MyContext } from "@lib";
+
+export const addFn: ActFn = async (body) => {
+  const { user }: MyContext = coreApp.contextFns.getContextModel() as MyContext;
+  const { set, get } = body.details;
+  const { singleRelation, multipleRelations, ...rest } = set;
+
+  return await model.insertOne({
+    doc: rest,
+    relations: {
+      // Auto-set from context (e.g., owner/author)
+      owner: { _ids: user._id },
+      // Single relation
+      singleRelation: singleRelation
+        ? { _ids: new ObjectId(singleRelation) }
+        : undefined,
+      // Multiple relation (always use arrays for _ids)
+      multipleRelations: multipleRelations
+        ? {
+            _ids: multipleRelations.map((id: string) => new ObjectId(id)),
+            relatedRelations: {
+              reverseRelation: { replace: true },
+            },
+          }
+        : undefined,
+    },
+    projection: get,
+  });
+};
+```
+
+**Setup (`mod.ts`):**
+```typescript
+import { grantAccess, setTokens, setUser } from "@lib";
+import { coreApp } from "../../../mod.ts";
+import { addFn } from "./add.fn.ts";
+import { addValidator } from "./add.val.ts";
+
+export const addSetup = () =>
+  coreApp.acts.setAct({
+    schema: "model",
+    fn: addFn,
+    actName: "add",
+    preAct: [setTokens, setUser, grantAccess({ levels: ["Manager", "Editor"] })],
+    validator: addValidator(),
+    validationRunType: "create",
+  });
+```
+
+**Key rules:**
+- Always use arrays for `_ids`, even for single relations: `_ids: new ObjectId(id)` (Lesan accepts single ObjectId)
+- Extract relations from `set` before passing rest to `doc`
+- Use `relatedRelations: { reverseRelation: { replace: true } }` for many-to-many relations
+- Pure fields only in `doc`, relations only in `relations`
+
+---
 
 ### Get (Read One)
 
-```typescript
-const { _id, get } = body.details;
+**Purpose:** Retrieve a single document by `_id` or other unique identifier. No collection-level filters needed.
 
-return await model
-  .aggregation({
-    pipeline: [{ $match: { _id: new ObjectId(_id) } }],
-    projection: get,
-  })
-  .toArray();
+**Validator (`get.val.ts`):**
+```typescript
+import { object, objectIdValidation } from "lesan";
+import { selectStruct } from "../../../mod.ts";
+
+export const getValidator = () => {
+  return object({
+    set: object({
+      _id: objectIdValidation,
+    }),
+    get: selectStruct("model", 2),
+  });
+};
 ```
+
+**Function (`get.fn.ts`):**
+```typescript
+import { type ActFn, ObjectId } from "lesan";
+import { model } from "../../../mod.ts";
+
+export const getFn: ActFn = async (body) => {
+  const { _id } = body.details.set;
+  const { get } = body.details;
+
+  return await model.findOne({
+    filters: { _id: new ObjectId(_id) },
+    projection: get,
+  });
+};
+```
+
+**Key rules:**
+- Single record retrieval by unique identifier (`_id`, `slug`, etc.)
+- Do NOT add collection-level filters (like `isPublished`, `selected_language`) - the identifier is enough
+- Use `findOne` for simple lookups, `aggregation` if you need complex pipeline logic
+
+---
 
 ### Gets (Read Many with Pagination)
 
+**Purpose:** Retrieve multiple documents with pagination, sorting, and collection-level filters. This is where filters like `selected_language`, `status`, `category`, etc. belong.
+
+**Validator (`gets.val.ts`):**
 ```typescript
-const { page, limit, ...filters } = body.details;
-const pipeline: Document[] = [];
+import { boolean, enums, object, objectIdValidation, optional, string } from "lesan";
+import { selectStruct } from "../../../mod.ts";
+import { pagination } from "@lib";
+import { language_array } from "@model";
 
-// Apply filters
-status && pipeline.push({ $match: { status } });
-categoryId && pipeline.push({ $match: { "category._id": categoryId } });
-tagId && pipeline.push({ $match: { "tags._id": tagId } });
-
-// Sort and paginate
-pipeline.push({ $sort: { _id: -1 } });
-pipeline.push({ $skip: (page - 1) * limit });
-pipeline.push({ $limit: limit });
-
-return await model.aggregation({ pipeline, projection: get }).toArray();
-```
-
-### Update (Pure Fields Only)
-
-```typescript
-const { _id, ...rest } = body.details;
-
-const pureStruct = object(model_pure);
-const updateObj: Partial<Infer<typeof pureStruct>> = {
-  updatedAt: new Date(),
+export const getsValidator = () => {
+  return object({
+    set: object({
+      ...pagination,
+      // Collection-level filters
+      status: optional(string()),
+      categoryId: optional(objectIdValidation),
+      selected_language: optional(enums(language_array)),
+      isPublished: optional(boolean()),
+      // Text search
+      search: optional(string()),
+      // Sort options
+      sortBy: optional(enums(["createdAt", "updatedAt", "title"])),
+      sortOrder: optional(enums(["asc", "desc"])),
+    }),
+    get: selectStruct("model", 2),
+  });
 };
-
-// Conditionally update fields
-rest.title && (updateObj.title = rest.title);
-rest.description && (updateObj.description = rest.description);
-rest.status && (updateObj.status = rest.status);
-
-return await model.findOneAndUpdate({
-  filter: { _id: new ObjectId(_id as string) },
-  update: { $set: updateObj },
-  projection: get,
-});
 ```
 
-### Update Relations (Separate Endpoint)
-
+**Function (`gets.fn.ts`):**
 ```typescript
-// Use addRelation/removeRelation for relationship changes
-if (attachments) {
-  await model.addRelation({
-    filters: { _id: new ObjectId(_id) },
-    relations: {
-      attachments: {
-        _ids: attachments.map((id) => new ObjectId(id)),
-      },
-    },
-    projection: get,
-    replace: true, // Replaces existing relations
-  });
-}
+import { type ActFn, ObjectId, type Document } from "lesan";
+import { model } from "../../../mod.ts";
 
-if (tags) {
-  await model.addRelation({
-    filters: { _id: new ObjectId(_id) },
-    relations: {
-      tags: {
-        _ids: tags.map((id) => new ObjectId(id)),
-        relatedRelations: {
-          reports: { replace: true },
-        },
-      },
-    },
-    projection: get,
-    replace: true,
-  });
-}
+export const getsFn: ActFn = async (body) => {
+  const {
+    set: { page, limit, skip, status, categoryId, selected_language, isPublished, search, sortBy, sortOrder },
+    get,
+  } = body.details;
 
-// Return updated document
-return await model.findOne({
-  filters: { _id: new ObjectId(_id) },
-  projection: get,
-});
+  const pipeline: Document[] = [];
+
+  // Text search (if text index exists)
+  if (search) {
+    pipeline.push({ $match: { $text: { $search: search } } });
+  }
+
+  // Collection-level filters
+  if (status) pipeline.push({ $match: { status } });
+  if (categoryId) pipeline.push({ $match: { "category._id": new ObjectId(categoryId) } });
+  if (selected_language) pipeline.push({ $match: { selected_language } });
+  if (isPublished !== undefined) pipeline.push({ $match: { isPublished } });
+
+  // Text score for relevance sorting
+  if (search && (!sortBy || sortBy === "relevance")) {
+    pipeline.push({ $addFields: { textScore: { $meta: "textScore" } } });
+  }
+
+  // Sorting
+  const sortField = sortBy === "relevance" ? "textScore" : sortBy || "createdAt";
+  const sortDirection = sortOrder === "asc" ? 1 : -1;
+  pipeline.push({ $sort: { [sortField]: sortDirection } });
+
+  // Pagination
+  const calculatedSkip = skip ?? limit * (page - 1);
+  pipeline.push({ $skip: calculatedSkip });
+  pipeline.push({ $limit: limit });
+
+  return await model.aggregation({ pipeline, projection: get }).toArray();
+};
 ```
 
-### Remove (Delete)
+**Key rules:**
+- This is the primary place for collection-level filters (`selected_language`, `status`, date ranges, etc.)
+- Always use aggregation pipeline for filtering + sorting + pagination
+- Use `pagination` utility from `@lib` for consistent page/limit/skip
+- Add text score only when search term exists
 
-```typescript
-return await model.deleteOne({
-  filter: { _id: new ObjectId(_id) },
-  get,
-  // hardCascade: true,  // Optional: cascade delete related docs
-});
-```
+---
 
 ### Count
 
+**Purpose:** Count documents matching filters. Mirrors the filters available in `gets`.
+
+**Validator (`count.val.ts`):**
 ```typescript
-const { filters } = body.details;
-return await model.countDocument({ filter: filters || {} });
+import { boolean, enums, object, objectIdValidation, optional, string } from "lesan";
+import { language_array } from "@model";
+
+export const countValidator = () => {
+  return object({
+    set: object({
+      // Same filters as gets (minus pagination/sorting)
+      status: optional(string()),
+      selected_language: optional(enums(language_array)),
+      isPublished: optional(boolean()),
+      search: optional(string()),
+    }),
+    get: object({
+      qty: optional(string()),
+    }),
+  });
+};
 ```
+
+**Function (`count.fn.ts`):**
+```typescript
+import { type ActFn, ObjectId } from "lesan";
+import { model } from "../../../mod.ts";
+
+export const countFn: ActFn = async (body) => {
+  const { set: { status, selected_language, isPublished, search } } = body.details;
+
+  const filter: any = {};
+
+  if (search) filter.$text = { $search: search };
+  if (status) filter.status = status;
+  if (selected_language) filter.selected_language = selected_language;
+  if (isPublished !== undefined) filter.isPublished = isPublished;
+
+  return await model.countDocument({ filter });
+};
+```
+
+**Key rules:**
+- Keep filters consistent with `gets` (minus pagination/sorting)
+- Use simple filter object, not aggregation pipeline
+
+---
+
+### Update (Pure Fields Only)
+
+**Purpose:** Update only pure (non-relation) fields. Never update relations here.
+
+**Validator (`update.val.ts`):**
+```typescript
+import { enums, object, objectIdValidation, optional, string } from "lesan";
+import { selectStruct } from "../../../mod.ts";
+import { language_array } from "@model";
+
+export const updateValidator = () => {
+  return object({
+    set: object({
+      _id: objectIdValidation,
+      title: optional(string()),
+      content: optional(string()),
+      selected_language: optional(enums(language_array)),
+      // ... all other pure fields as optional
+    }),
+    get: selectStruct("model", 2),
+  });
+};
+```
+
+**Function (`update.fn.ts`):**
+```typescript
+import { type ActFn, ObjectId } from "lesan";
+import { model } from "../../../mod.ts";
+
+export const updateFn: ActFn = async (body) => {
+  const { set: { _id, ...rest }, get } = body.details;
+
+  const updateObj: any = { updatedAt: new Date() };
+
+  // Conditionally update only provided fields
+  if (rest.title !== undefined) updateObj.title = rest.title;
+  if (rest.content !== undefined) updateObj.content = rest.content;
+  if (rest.selected_language !== undefined) updateObj.selected_language = rest.selected_language;
+
+  return await model.findOneAndUpdate({
+    filter: { _id: new ObjectId(_id) },
+    update: { $set: updateObj },
+    projection: get,
+  });
+};
+```
+
+**Key rules:**
+- Only pure fields, NEVER relations
+- All fields must be `optional()` in validator
+- Use `!== undefined` checks to allow falsy values (empty strings, false, 0)
+- Always set `updatedAt`
+
+---
+
+### Update Relations (Separate Endpoint)
+
+**Purpose:** Manage relationships separately from pure field updates. Uses `addRelation` and `removeRelation`.
+
+**Validator (`updateRelations.val.ts`):**
+```typescript
+import { array, object, objectIdValidation, optional } from "lesan";
+import { selectStruct } from "../../../mod.ts";
+
+export const updateRelationsValidator = () => {
+  return object({
+    set: object({
+      _id: objectIdValidation,
+      coverImage: optional(objectIdValidation),
+      tags: optional(array(objectIdValidation)),
+      removeTags: optional(array(objectIdValidation)),
+    }),
+    get: selectStruct("model", 2),
+  });
+};
+```
+
+**Function (`updateRelations.fn.ts`):**
+```typescript
+import { type ActFn, ObjectId } from "lesan";
+import { model } from "../../../mod.ts";
+
+export const updateRelationsFn: ActFn = async (body) => {
+  const { set: { _id, coverImage, tags, removeTags }, get } = body.details;
+  const modelId = new ObjectId(_id);
+
+  // Replace single relation
+  if (coverImage) {
+    await model.addRelation({
+      filters: { _id: modelId },
+      relations: { coverImage: { _ids: new ObjectId(coverImage) } },
+      projection: get,
+      replace: true,
+    });
+  }
+
+  // Replace multiple relation
+  if (tags) {
+    await model.addRelation({
+      filters: { _id: modelId },
+      relations: {
+        tags: {
+          _ids: tags.map((id: string) => new ObjectId(id)),
+          relatedRelations: { modelPlural: { replace: true } },
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
+
+  // Remove from multiple relation
+  if (removeTags) {
+    await model.removeRelation({
+      filters: { _id: modelId },
+      relations: {
+        tags: {
+          _ids: removeTags.map((id: string) => new ObjectId(id)),
+          relatedRelations: { modelPlural: true },
+        },
+      },
+      projection: get,
+    });
+  }
+
+  // Return updated document
+  return await model.findOne({ filters: { _id: modelId }, projection: get });
+};
+```
+
+**Key rules:**
+- Separate endpoint from pure field update
+- Use `addRelation` with `replace: true` to replace all relations
+- Use `removeRelation` to selectively remove relations
+- Always include `relatedRelations` when the target model has a reverse relation
+- Return the final document state after all relation changes
+
+---
+
+### Remove (Delete)
+
+**Purpose:** Delete a document by `_id`.
+
+**Validator (`remove.val.ts`):**
+```typescript
+import { boolean, object, objectIdValidation, optional } from "lesan";
+import { selectStruct } from "../../../mod.ts";
+
+export const removeValidator = () => {
+  return object({
+    set: object({
+      _id: objectIdValidation,
+      hardCascade: optional(boolean()),
+    }),
+    get: selectStruct("model", 1),
+  });
+};
+```
+
+**Function (`remove.fn.ts`):**
+```typescript
+import { type ActFn, ObjectId } from "lesan";
+import { model } from "../../../mod.ts";
+
+export const removeFn: ActFn = async (body) => {
+  const { set: { _id, hardCascade } } = body.details;
+
+  return await model.deleteOne({
+    filter: { _id: new ObjectId(_id) },
+    hardCascade,
+  });
+};
+```
+
+**Key rules:**
+- `hardCascade: true` recursively deletes related documents
+- Lesan prevents deletion if related documents would become orphaned (unless hardCascade)
 
 ---
 
