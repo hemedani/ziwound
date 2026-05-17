@@ -7,6 +7,5 @@ export const getsSetup = () =>
     schema: "heroSlide",
     fn: getsFn,
     actName: "gets",
-    preAct: [], // Public access - no authentication required
     validator: getsValidator(),
   });
