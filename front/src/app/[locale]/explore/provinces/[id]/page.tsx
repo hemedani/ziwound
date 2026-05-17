@@ -136,7 +136,12 @@ export default async function ProvinceDetailPage({ params }: ProvinceDetailPageP
 
               <div className="space-y-6">
                 {warInfoFields.map((field) => {
-                  const value = (province as any)[field];
+                  const fieldValue = (province as Record<string, unknown>)[field] as Record<string, string> | string | undefined;
+                  const value = typeof fieldValue === "object" && fieldValue !== null
+                    ? (fieldValue[locale] || fieldValue.en || "")
+                    : typeof fieldValue === "string"
+                      ? fieldValue
+                      : "";
                   if (!value) return null;
                   return (
                     <div key={field}>

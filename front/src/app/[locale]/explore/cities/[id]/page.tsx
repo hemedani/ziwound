@@ -139,7 +139,12 @@ export default async function CityDetailPage({ params }: CityDetailPageProps) {
 
               <div className="space-y-6">
                 {warInfoFields.map((field) => {
-                  const value = (city as any)[field];
+                  const fieldValue = (city as Record<string, unknown>)[field] as Record<string, string> | string | undefined;
+                  const value = typeof fieldValue === "object" && fieldValue !== null
+                    ? (fieldValue[locale] || fieldValue.en || "")
+                    : typeof fieldValue === "string"
+                      ? fieldValue
+                      : "";
                   if (!value) return null;
                   return (
                     <div key={field}>

@@ -131,12 +131,30 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
 
                   {/* War info preview */}
                   <div className="space-y-2 mb-4">
-                    {country.wars_history && (
-                      <p className="text-sm text-slate-body line-clamp-2">{country.wars_history}</p>
-                    )}
-                    {country.casualties_info && (
-                      <p className="text-sm text-slate-body/70 line-clamp-1">{country.casualties_info}</p>
-                    )}
+                    {(() => {
+                      const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
+                      type Language = (typeof LANGUAGES)[number];
+                      const warsHistory = typeof country.wars_history === "object" && country.wars_history !== null
+                        ? ((country.wars_history as Record<Language, string>)[locale as Language] || (country.wars_history as Record<Language, string>).en || "")
+                        : typeof country.wars_history === "string"
+                          ? country.wars_history
+                          : "";
+                      const casualtiesInfo = typeof country.casualties_info === "object" && country.casualties_info !== null
+                        ? ((country.casualties_info as Record<Language, string>)[locale as Language] || (country.casualties_info as Record<Language, string>).en || "")
+                        : typeof country.casualties_info === "string"
+                          ? country.casualties_info
+                          : "";
+                      return (
+                        <>
+                          {warsHistory && (
+                            <p className="text-sm text-slate-body line-clamp-2" dangerouslySetInnerHTML={{ __html: warsHistory }} />
+                          )}
+                          {casualtiesInfo && (
+                            <p className="text-sm text-slate-body/70 line-clamp-1" dangerouslySetInnerHTML={{ __html: casualtiesInfo }} />
+                          )}
+                        </>
+                      );
+                    })()}
                   </div>
 
                   {/* Stats badges */}

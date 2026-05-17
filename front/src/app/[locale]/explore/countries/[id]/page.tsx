@@ -140,7 +140,12 @@ export default async function CountryDetailPage({ params }: CountryDetailPagePro
 
               <div className="space-y-6">
                 {warInfoFields.map((field) => {
-                  const value = (country as any)[field];
+                  const fieldValue = (country as Record<string, unknown>)[field] as Record<string, string> | string | undefined;
+                  const value = typeof fieldValue === "object" && fieldValue !== null
+                    ? (fieldValue[locale] || fieldValue.en || "")
+                    : typeof fieldValue === "string"
+                      ? fieldValue
+                      : "";
                   if (!value) return null;
                   return (
                     <div key={field}>

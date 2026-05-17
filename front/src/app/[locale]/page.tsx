@@ -14,6 +14,7 @@ import { gets as getHeroSlides } from "@/app/actions/heroSlide/gets";
 import { statistics as reportStatistics } from "@/app/actions/report/statistics";
 import { dashboardStatistic } from "@/app/actions/user/dashboardStatistic";
 import { getImageUploadUrl } from "@/utils/imageUrl";
+import { ReqType } from "@/types/declarations";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -44,7 +45,7 @@ export default async function Home({ params }: HomePageProps) {
       { reports: 1, documents: 1, countries: 1, cities: 1, provinces: 1 }
     ).catch(() => ({ success: false, body: {} })),
     getReports(
-      { page: 1, limit: 6, status: "Approved" },
+      { page: 1, limit: 6, status: "Approved", selected_language: (locale as ReqType["main"]["report"]["gets"]["set"]["selected_language"]) },
       {
         _id: 1,
         title: 1,
@@ -61,7 +62,7 @@ export default async function Home({ params }: HomePageProps) {
       }
     ).catch(() => ({ success: false, body: [] })),
     getBlogPosts(
-      { page: 1, limit: 6 },
+      { page: 1, limit: 6, selected_language: (locale as ReqType["main"]["blogPost"]["gets"]["set"]["selected_language"]) },
       {
         _id: 1,
         title: 1,
@@ -72,7 +73,7 @@ export default async function Home({ params }: HomePageProps) {
       }
     ).catch(() => ({ success: false, body: [] })),
     getHeroSlides(
-      { page: 1, limit: 10, sortBy: "order", sortOrder: "asc" },
+      { page: 1, limit: 10, sortBy: "order", sortOrder: "asc", selected_language: (locale as ReqType["main"]["heroSlide"]["gets"]["set"]["selected_language"]) },
       {
         _id: 1,
         title: 1,
@@ -84,6 +85,7 @@ export default async function Home({ params }: HomePageProps) {
         secondaryCtaLink: 1,
         order: 1,
         isActive: 1,
+        selected_language: 1,
         image: { _id: 1, name: 1 },
       }
     ).catch(() => ({ success: false, body: [] })),
@@ -106,67 +108,67 @@ export default async function Home({ params }: HomePageProps) {
 
   const reportItems = Array.isArray(rawReports)
     ? rawReports.slice(0, 3).map((r: any) => {
-        // Find first image, first video, or location for the card media
-        const docs = r.documents || [];
-        const allFiles = docs.flatMap((d: any) => d.documentFiles || []);
-        const firstImage = allFiles.find((f: any) =>
-          f.mimeType?.startsWith("image/"),
-        );
-        const firstVideo = allFiles.find((f: any) =>
-          f.mimeType?.startsWith("video/"),
-        );
-        const hasLocation = r.location?.coordinates?.length === 2;
+      // Find first image, first video, or location for the card media
+      const docs = r.documents || [];
+      const allFiles = docs.flatMap((d: any) => d.documentFiles || []);
+      const firstImage = allFiles.find((f: any) =>
+        f.mimeType?.startsWith("image/"),
+      );
+      const firstVideo = allFiles.find((f: any) =>
+        f.mimeType?.startsWith("video/"),
+      );
+      const hasLocation = r.location?.coordinates?.length === 2;
 
-        let mediaType: "image" | "video" | "map" | "none" = "none";
-        let mediaSrc = "";
-        if (firstImage) {
-          mediaType = "image";
-          mediaSrc = getImageUploadUrl(firstImage.name, firstImage.type);
-        } else if (firstVideo) {
-          mediaType = "video";
-          mediaSrc = getImageUploadUrl(firstVideo.name, firstVideo.type);
-        } else if (hasLocation) {
-          mediaType = "map";
-        }
+      let mediaType: "image" | "video" | "map" | "none" = "none";
+      let mediaSrc = "";
+      if (firstImage) {
+        mediaType = "image";
+        mediaSrc = getImageUploadUrl(firstImage.name, firstImage.type);
+      } else if (firstVideo) {
+        mediaType = "video";
+        mediaSrc = getImageUploadUrl(firstVideo.name, firstVideo.type);
+      } else if (hasLocation) {
+        mediaType = "map";
+      }
 
-        return {
-          id: r._id,
-          title: r.title,
-          excerpt: r.description
-            ? r.description.length > 140
-              ? r.description.slice(0, 140) + "..."
-              : r.description
-            : "",
-          image: mediaType === "image" ? mediaSrc : "",
-          mediaType,
-          mediaSrc,
-          lat: hasLocation ? r.location.coordinates[1] : undefined,
-          lng: hasLocation ? r.location.coordinates[0] : undefined,
-          date: r.createdAt
-            ? new Date(r.createdAt).toISOString().split("T")[0]
-            : "",
-          location: r.address || undefined,
-          category: r.category?.name || "Report",
-          href: `/${locale}/reports/${r._id}`,
-        };
-      })
+      return {
+        id: r._id,
+        title: r.title,
+        excerpt: r.description
+          ? r.description.length > 140
+            ? r.description.slice(0, 140) + "..."
+            : r.description
+          : "",
+        image: mediaType === "image" ? mediaSrc : "",
+        mediaType,
+        mediaSrc,
+        lat: hasLocation ? r.location.coordinates[1] : undefined,
+        lng: hasLocation ? r.location.coordinates[0] : undefined,
+        date: r.createdAt
+          ? new Date(r.createdAt).toISOString().split("T")[0]
+          : "",
+        location: r.address || undefined,
+        category: r.category?.name || "Report",
+        href: `/${locale}/reports/${r._id}`,
+      };
+    })
     : [];
 
   const blogItems = Array.isArray(rawBlogs)
     ? rawBlogs.slice(0, 3).map((b: any) => ({
-        id: b._id,
-        title: b.title,
-        excerpt: b.content
-            ? b.content.replace(/<[^>]+>/g, "").slice(0, 140) + "..."
-            : "",
-        image: getImageUploadUrl(b.coverImage?.name || ""),
-        date: b.createdAt
-          ? new Date(b.createdAt).toISOString().split("T")[0]
-          : "",
-        location: undefined,
-        category: "Story",
-        href: `/${locale}/blog/${b.slug || b._id}`,
-      }))
+      id: b._id,
+      title: b.title,
+      excerpt: b.content
+        ? b.content.replace(/<[^>]+>/g, "").slice(0, 140) + "..."
+        : "",
+      image: getImageUploadUrl(b.coverImage?.name || ""),
+      date: b.createdAt
+        ? new Date(b.createdAt).toISOString().split("T")[0]
+        : "",
+      location: undefined,
+      category: "Story",
+      href: `/${locale}/blog/${b.slug || b._id}`,
+    }))
     : [];
 
   // Combine and take top 3
@@ -176,63 +178,63 @@ export default async function Home({ params }: HomePageProps) {
   const rawHeroSlides = heroSlidesRes.success ? (heroSlidesRes.body ?? []) : [];
   const backendSlides = Array.isArray(rawHeroSlides)
     ? rawHeroSlides
-        .filter((s: any) => s.isActive)
-        // Filter by locale: show slides matching the locale or without a language set
-        .filter((s: any) => {
-          const slideLang = s.selected_language as string | undefined;
-          return !slideLang || slideLang === locale;
-        })
-        .map((s: any) => ({
-          id: s._id,
-          title: s.title,
-          subtitle: s.subtitle,
-          gradient: s.gradient,
-          ctaText: s.ctaText,
-          ctaLink: s.ctaLink,
-          secondaryCtaText: s.secondaryCtaText || undefined,
-          secondaryCtaLink: s.secondaryCtaLink || undefined,
-          image: s.image?.name ? getImageUploadUrl(s.image.name) : undefined,
-        }))
+      .filter((s: any) => s.isActive)
+      // Filter by locale: show slides matching the locale or without a language set
+      .filter((s: any) => {
+        const slideLang = s.selected_language as string | undefined;
+        return !slideLang || slideLang === locale;
+      })
+      .map((s: any) => ({
+        id: s._id,
+        title: s.title,
+        subtitle: s.subtitle,
+        gradient: s.gradient,
+        ctaText: s.ctaText,
+        ctaLink: s.ctaLink,
+        secondaryCtaText: s.secondaryCtaText || undefined,
+        secondaryCtaLink: s.secondaryCtaLink || undefined,
+        image: s.image?.name ? getImageUploadUrl(s.image.name) : undefined,
+      }))
     : [];
 
   const heroSlides: HeroSlide[] =
     backendSlides.length > 0
       ? backendSlides
       : [
-          {
-            id: "1",
-            gradient:
-              "radial-gradient(ellipse 120% 100% at 50% 0%, rgba(153,27,27,0.25) 0%, #0a0a0a 60%), linear-gradient(to bottom, #0f0f0f, #0a0a0a)",
-            title: t("hero.slide1.title"),
-            subtitle: t("hero.slide1.subtitle"),
-            ctaText: t("hero.slide1.cta"),
-            ctaLink: `/${locale}/reports/new`,
-            secondaryCtaText: t("hero.slide1.secondaryCta"),
-            secondaryCtaLink: `/${locale}/war-crimes`,
-          },
-          {
-            id: "2",
-            gradient:
-              "radial-gradient(ellipse 100% 80% at 20% 40%, rgba(139,0,0,0.2) 0%, transparent 60%), radial-gradient(ellipse 80% 60% at 80% 80%, rgba(212,175,55,0.08) 0%, transparent 50%), linear-gradient(135deg, #0a0a0a, #110808)",
-            title: t("hero.slide2.title"),
-            subtitle: t("hero.slide2.subtitle"),
-            ctaText: t("hero.slide2.cta"),
-            ctaLink: `/${locale}/about`,
-            secondaryCtaText: t("hero.slide2.secondaryCta"),
-            secondaryCtaLink: `/${locale}/war-crimes`,
-          },
-          {
-            id: "3",
-            gradient:
-              "radial-gradient(ellipse 120% 100% at 50% 100%, rgba(153,27,27,0.2) 0%, #0a0a0a 55%), linear-gradient(to top, #0f0505, #0a0a0a)",
-            title: t("hero.slide3.title"),
-            subtitle: t("hero.slide3.subtitle"),
-            ctaText: t("hero.slide3.cta"),
-            ctaLink: `/${locale}/reports/new`,
-            secondaryCtaText: t("hero.slide3.secondaryCta"),
-            secondaryCtaLink: `/${locale}/blog`,
-          },
-        ];
+        {
+          id: "1",
+          gradient:
+            "radial-gradient(ellipse 120% 100% at 50% 0%, rgba(153,27,27,0.25) 0%, #0a0a0a 60%), linear-gradient(to bottom, #0f0f0f, #0a0a0a)",
+          title: t("hero.slide1.title"),
+          subtitle: t("hero.slide1.subtitle"),
+          ctaText: t("hero.slide1.cta"),
+          ctaLink: `/${locale}/reports/new`,
+          secondaryCtaText: t("hero.slide1.secondaryCta"),
+          secondaryCtaLink: `/${locale}/war-crimes`,
+        },
+        {
+          id: "2",
+          gradient:
+            "radial-gradient(ellipse 100% 80% at 20% 40%, rgba(139,0,0,0.2) 0%, transparent 60%), radial-gradient(ellipse 80% 60% at 80% 80%, rgba(212,175,55,0.08) 0%, transparent 50%), linear-gradient(135deg, #0a0a0a, #110808)",
+          title: t("hero.slide2.title"),
+          subtitle: t("hero.slide2.subtitle"),
+          ctaText: t("hero.slide2.cta"),
+          ctaLink: `/${locale}/about`,
+          secondaryCtaText: t("hero.slide2.secondaryCta"),
+          secondaryCtaLink: `/${locale}/war-crimes`,
+        },
+        {
+          id: "3",
+          gradient:
+            "radial-gradient(ellipse 120% 100% at 50% 100%, rgba(153,27,27,0.2) 0%, #0a0a0a 55%), linear-gradient(to top, #0f0505, #0a0a0a)",
+          title: t("hero.slide3.title"),
+          subtitle: t("hero.slide3.subtitle"),
+          ctaText: t("hero.slide3.cta"),
+          ctaLink: `/${locale}/reports/new`,
+          secondaryCtaText: t("hero.slide3.secondaryCta"),
+          secondaryCtaLink: `/${locale}/blog`,
+        },
+      ];
 
   const formatCount = (n: number) => {
     if (n >= 1000) return `${(n / 1000).toFixed(1)}k`;
