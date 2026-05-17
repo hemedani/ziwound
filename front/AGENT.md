@@ -1515,3 +1515,109 @@ Public-facing detail pages (country, province, city, report) share a consistent 
 ```
 
 This radial gradient creates a subtle crimson glow behind the page title, establishing visual hierarchy and thematic consistency.
+
+---
+
+## Localized War Info Fields (Country, Province, City)
+
+The backend stores war information fields on Country, Province, and City models as **multi-language objects** (not plain strings). Each field stores content per language key.
+
+### Data Shape
+
+```json
+{
+  "wars_history": {
+    "fa": "<p>متن فارسی...</p>",
+    "en": "<p>English text...</p>",
+    "ar": "<p>نص عربي...</p>"
+  }
+}
+```
+
+Only populated language keys are stored — MongoDB doesn't persist `undefined` keys.
+
+### Country Fields (12)
+`wars_history`, `conflict_timeline`, `casualties_info`, `international_response`, `war_crimes_documentation`, `human_rights_violations`, `genocide_info`, `chemical_weapons_info`, `displacement_info`, `reconstruction_status`, `international_sanctions`, `notable_war_events`
+
+### Province/City Fields (10)
+`wars_history`, `conflict_timeline`, `casualties_info`, `notable_battles`, `occupation_info`, `destruction_level`, `civilian_impact`, `mass_graves_info`, `war_crimes_events`, `liberation_info`
+
+### Admin Form Pattern
+
+When a backend field becomes a localized object:
+
+1. **Zod schema**: Each war field becomes `z.object({ fa: z.string().optional(), en: ..., ... }).optional()`
+2. **UI**: Tabbed RichTextEditor with one tab per language (fa, en, ar, zh, pt, es, nl, tr, ru) using shadcn/ui `Tabs`
+3. **Form submission**: Build object from flat form values, omit empty keys:
+   ```ts
+   const buildLocalizedObject = (values: FormValues, fieldName: string) => {
+     const obj: Record<string, string> = {};
+     for (const lang of LANGUAGES) {
+       const val = (values as unknown as Record<string, Record<string, string> | undefined>)[fieldName]?.[lang];
+       if (val && val.trim()) obj[lang] = val;
+     }
+     return Object.keys(obj).length > 0 ? obj : undefined;
+   };
+   ```
+4. **Pre-fill on edit**: Extract language-specific content from objects, with backward compatibility for old string values:
+   ```ts
+   const extractLangValue = (field: Record<string, string> | string | undefined, lang: string): string => {
+     if (typeof field === "object" && field !== null) return field[lang] || "";
+     if (typeof field === "string") return lang === "en" ? field : "";
+     return "";
+   };
+   ```
+
+### Public Pages Pattern
+
+When displaying localized war info fields on public explore pages:
+
+```ts
+const fieldValue = (entity as Record<string, unknown>)[field] as Record<string, string> | string | undefined;
+const value = typeof fieldValue === "object" && fieldValue !== null
+  ? (fieldValue[locale] || fieldValue.en || "")
+  : typeof fieldValue === "string"
+    ? fieldValue
+    : "";
+```
+
+**Fallback strategy:** current locale → English → empty string.
+
+---
+
+## Server Actions: Filter vs Field Selection
+
+### Two Distinct Parameters
+
+When calling `gets` server actions, understand the difference between `filter` (in `set`) and field selection (in `get`):
+
+| Parameter | Purpose | Example |
+|-----------|---------|---------|
+| `set.filter` | **Backend filtering** — tells the backend which records to return | `{ filter: { selected_language: locale } }` |
+| `get` | **Field projection** — tells the backend which fields to include in the response | `{ _id: 1, title: 1, selected_language: 1 }` |
+
+### Common Pitfall
+
+If you want to filter by a field AND use that field in your code:
+1. Include it in `filter` to narrow down results
+2. Include it in `get` to receive it in the response
+
+```ts
+// ✅ CORRECT: Filter by selected_language AND request it in response
+const res = await gets(
+  { page: 1, limit: 10, filter: { selected_language: locale } },
+  { _id: 1, title: 1, selected_language: 1 }
+);
+
+// ❌ WRONG: Only requesting field without filtering (returns all records)
+const res = await gets(
+  { page: 1, limit: 10 },
+  { _id: 1, title: 1, selected_language: 1 }
+);
+
+// ❌ WRONG: Filtering but not requesting field (can't access selected_language in code)
+const res = await gets(
+  { page: 1, limit: 10, filter: { selected_language: locale } },
+  { _id: 1, title: 1 }
+);
+```
