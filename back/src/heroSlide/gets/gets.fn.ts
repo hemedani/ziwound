@@ -5,6 +5,7 @@ export const getsFn: ActFn = async (body) => {
   const {
     set: {
       isActive,
+      selected_language,
       page = 1,
       limit = 20,
       sortBy = "order",
@@ -19,6 +20,11 @@ export const getsFn: ActFn = async (body) => {
   if (isActive !== undefined) {
     const isActiveBool = isActive === "true" || isActive === true;
     pipeline.push({ $match: { isActive: isActiveBool } });
+  }
+
+  // Filter by language if provided
+  if (selected_language) {
+    pipeline.push({ $match: { selected_language } });
   }
 
   // Sort

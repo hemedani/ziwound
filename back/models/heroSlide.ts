@@ -1,5 +1,6 @@
 import {
   boolean,
+  coerce,
   defaulted,
   nullable,
   number,
@@ -10,6 +11,7 @@ import {
 import { coreApp } from "../mod.ts";
 import { createUpdateAt } from "@lib";
 import { file_excludes } from "./excludes.ts";
+import { language_enums, LanguageCode } from "./document.ts";
 
 export const heroSlide_pure = {
   title: string(),
@@ -19,6 +21,9 @@ export const heroSlide_pure = {
   ctaLink: string(),
   secondaryCtaText: optional(nullable(string())),
   secondaryCtaLink: optional(nullable(string())),
+  selected_language: optional(
+    coerce(language_enums, string(), (value) => value as LanguageCode),
+  ),
   order: defaulted(number(), 0),
   isActive: defaulted(boolean(), true),
   ...createUpdateAt,
