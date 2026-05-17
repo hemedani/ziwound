@@ -3,24 +3,23 @@ import {
   optional,
   type RelationDataType,
   type RelationSortOrderType,
-  string,
 } from "lesan";
-import { pure_location } from "@model";
-import { user_excludes } from "./excludes.ts";
+import { pure_location, user_excludes } from "@model";
+import { localizedWarInfo } from "./utils/localizedFields.ts";
 
 export const city_pure = {
   ...pure_location,
 
-  wars_history: optional(string()),
-  conflict_timeline: optional(string()),
-  casualties_info: optional(string()),
-  notable_battles: optional(string()),
-  occupation_info: optional(string()),
-  destruction_level: optional(string()),
-  civilian_impact: optional(string()),
-  mass_graves_info: optional(string()),
-  war_crimes_events: optional(string()),
-  liberation_info: optional(string()),
+  wars_history: optional(localizedWarInfo),
+  conflict_timeline: optional(localizedWarInfo),
+  casualties_info: optional(localizedWarInfo),
+  notable_battles: optional(localizedWarInfo),
+  occupation_info: optional(localizedWarInfo),
+  destruction_level: optional(localizedWarInfo),
+  civilian_impact: optional(localizedWarInfo),
+  mass_graves_info: optional(localizedWarInfo),
+  war_crimes_events: optional(localizedWarInfo),
+  liberation_info: optional(localizedWarInfo),
 };
 
 export const city_relations = {

@@ -1,6 +1,7 @@
 export * from "./utils/geoJSONStruct.ts";
 export * from "./utils/sharedRelations.ts";
 export * from "./utils/pureLocation.ts";
+export * from "./utils/localizedFields.ts";
 export * from "./excludes.ts";
 export * from "./file.ts";
 export * from "./user.ts";

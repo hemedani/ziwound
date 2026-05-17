@@ -1,6 +1,6 @@
 import { number, object, objectIdValidation, optional, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
-import { geoJSONStruct } from "@model";
+import { geoJSONStruct, localizedWarInfo } from "@model";
 
 export const updateValidator = () => {
 	return object({
@@ -11,16 +11,16 @@ export const updateValidator = () => {
 			area: optional(geoJSONStruct("Polygon")),
 			center: optional(geoJSONStruct("Point")),
 			countryId: optional(objectIdValidation),
-			wars_history: optional(string()),
-			conflict_timeline: optional(string()),
-			casualties_info: optional(string()),
-			notable_battles: optional(string()),
-			occupation_info: optional(string()),
-			destruction_level: optional(string()),
-			civilian_impact: optional(string()),
-			mass_graves_info: optional(string()),
-			war_crimes_events: optional(string()),
-			liberation_info: optional(string()),
+			wars_history: optional(localizedWarInfo),
+			conflict_timeline: optional(localizedWarInfo),
+			casualties_info: optional(localizedWarInfo),
+			notable_battles: optional(localizedWarInfo),
+			occupation_info: optional(localizedWarInfo),
+			destruction_level: optional(localizedWarInfo),
+			civilian_impact: optional(localizedWarInfo),
+			mass_graves_info: optional(localizedWarInfo),
+			war_crimes_events: optional(localizedWarInfo),
+			liberation_info: optional(localizedWarInfo),
 		}),
 		get: selectStruct("city", 1),
 	});

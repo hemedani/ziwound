@@ -1,22 +1,23 @@
 import { coreApp } from "../mod.ts";
-import { optional, type RelationDataType, string } from "lesan";
+import { optional, type RelationDataType } from "lesan";
 import { pure_location, user_excludes } from "@model";
+import { localizedWarInfo } from "./utils/localizedFields.ts";
 
 export const country_pure = {
   ...pure_location,
 
-  wars_history: optional(string()),
-  conflict_timeline: optional(string()),
-  casualties_info: optional(string()),
-  international_response: optional(string()),
-  war_crimes_documentation: optional(string()),
-  human_rights_violations: optional(string()),
-  genocide_info: optional(string()),
-  chemical_weapons_info: optional(string()),
-  displacement_info: optional(string()),
-  reconstruction_status: optional(string()),
-  international_sanctions: optional(string()),
-  notable_war_events: optional(string()),
+  wars_history: optional(localizedWarInfo),
+  conflict_timeline: optional(localizedWarInfo),
+  casualties_info: optional(localizedWarInfo),
+  international_response: optional(localizedWarInfo),
+  war_crimes_documentation: optional(localizedWarInfo),
+  human_rights_violations: optional(localizedWarInfo),
+  genocide_info: optional(localizedWarInfo),
+  chemical_weapons_info: optional(localizedWarInfo),
+  displacement_info: optional(localizedWarInfo),
+  reconstruction_status: optional(localizedWarInfo),
+  international_sanctions: optional(localizedWarInfo),
+  notable_war_events: optional(localizedWarInfo),
 };
 
 export const country_relations = {
