@@ -627,6 +627,8 @@
     "create": "Create",
     "update": "Update",
     "namePlaceholder": "Enter name",
+    "warDescriptionFields": "War Description Fields",
+    "languageTabs": "Languages",
     "wars_history": "War History",
     "wars_historyPlaceholder": "Enter war history details",
     "conflict_timeline": "Conflict Timeline",
