@@ -22,6 +22,18 @@ import { EditSlideDialog } from "./edit-slide-dialog";
 import Image from "next/image";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 
+const LANGUAGES = [
+  { code: "fa", name: "فارسی" },
+  { code: "en", name: "English" },
+  { code: "ar", name: "العربية" },
+  { code: "zh", name: "中文" },
+  { code: "pt", name: "Português" },
+  { code: "es", name: "Español" },
+  { code: "nl", name: "Nederlands" },
+  { code: "tr", name: "Türkçe" },
+  { code: "ru", name: "Русский" },
+];
+
 export function HeroSlidesTable({ slides, error }: { slides: heroSlideSchema[]; error?: string | null }) {
   const t = useTranslations("admin");
   const { toast } = useToast();
@@ -78,6 +90,7 @@ export function HeroSlidesTable({ slides, error }: { slides: heroSlideSchema[]; 
               <TableHead className="text-slate-body">{t("image") || "Image"}</TableHead>
               <TableHead className="text-slate-body">{t("title")}</TableHead>
               <TableHead className="text-slate-body">{t("subtitle") || "Subtitle"}</TableHead>
+              <TableHead className="text-slate-body">{t("language") || "Language"}</TableHead>
               <TableHead className="text-slate-body">{t("status") || "Status"}</TableHead>
               <TableHead className="text-end pe-4 text-slate-body">{t("actions")}</TableHead>
             </TableRow>
@@ -85,7 +98,7 @@ export function HeroSlidesTable({ slides, error }: { slides: heroSlideSchema[]; 
           <TableBody>
             {slides.length === 0 ? (
               <TableRow className="border-white/[0.06] hover:bg-white/[0.02]">
-                <TableCell colSpan={6} className="h-24 text-center text-slate-body">
+                <TableCell colSpan={7} className="h-24 text-center text-slate-body">
                   {t("noSlides") || "No hero slides found"}
                 </TableCell>
               </TableRow>
@@ -114,6 +127,15 @@ export function HeroSlidesTable({ slides, error }: { slides: heroSlideSchema[]; 
                   </TableCell>
                   <TableCell className="font-medium text-offwhite max-w-xs truncate">{slide.title}</TableCell>
                   <TableCell className="max-w-xs truncate text-slate-body">{slide.subtitle}</TableCell>
+                  <TableCell>
+                    {slide.selected_language ? (
+                      <Badge variant="outline" className="bg-white/5 text-slate-body border-white/10 text-xs">
+                        {LANGUAGES.find((l) => l.code === slide.selected_language)?.name || slide.selected_language}
+                      </Badge>
+                    ) : (
+                      <span className="text-slate-body text-xs">-</span>
+                    )}
+                  </TableCell>
                   <TableCell>
                     {slide.isActive ? (
                       <Badge className="bg-emerald-500/20 text-emerald-400 border-emerald-500/30">

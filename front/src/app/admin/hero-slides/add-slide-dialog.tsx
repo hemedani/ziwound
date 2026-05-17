@@ -37,6 +37,7 @@ export function AddSlideDialog() {
           order: data.order,
           isActive: data.isActive,
           image: data.image || undefined,
+          ...(data.selected_language && data.selected_language !== "all" ? { selected_language: data.selected_language } : {}),
         },
         { _id: 1, title: 1 }
       );

@@ -177,6 +177,11 @@ export default async function Home({ params }: HomePageProps) {
   const backendSlides = Array.isArray(rawHeroSlides)
     ? rawHeroSlides
         .filter((s: any) => s.isActive)
+        // Filter by locale: show slides matching the locale or without a language set
+        .filter((s: any) => {
+          const slideLang = s.selected_language as string | undefined;
+          return !slideLang || slideLang === locale;
+        })
         .map((s: any) => ({
           id: s._id,
           title: s.title,

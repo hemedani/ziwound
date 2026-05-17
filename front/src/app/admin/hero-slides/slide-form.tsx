@@ -13,6 +13,19 @@ import { Loader2 } from "lucide-react";
 import { heroSlideSchema } from "@/types/declarations";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { Checkbox } from "@/components/ui/checkbox";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+const LANGUAGES = [
+  { code: "fa", name: "فارسی" },
+  { code: "en", name: "English" },
+  { code: "ar", name: "العربية" },
+  { code: "zh", name: "中文" },
+  { code: "pt", name: "Português" },
+  { code: "es", name: "Español" },
+  { code: "nl", name: "Nederlands" },
+  { code: "tr", name: "Türkçe" },
+  { code: "ru", name: "Русский" },
+];
 
 const slideFormSchema = z.object({
   title: z.string().min(2, JSON.stringify({ key: "validation.minLength", values: { min: 2 } })),
@@ -25,6 +38,7 @@ const slideFormSchema = z.object({
   order: z.coerce.number().int().min(0),
   isActive: z.boolean().default(true),
   image: z.string().optional(),
+  selected_language: z.string().optional(),
 });
 
 export type SlideFormValues = z.infer<typeof slideFormSchema>;
@@ -53,6 +67,7 @@ export function SlideForm({ initialData, onSubmit, onCancel }: SlideFormProps) {
       order: initialData?.order ?? 0,
       isActive: initialData?.isActive ?? true,
       image: initialData?.image?._id || "",
+      selected_language: initialData?.selected_language || "all",
     },
   });
 
@@ -204,24 +219,52 @@ export function SlideForm({ initialData, onSubmit, onCancel }: SlideFormProps) {
             />
           </FormItem>
 
-          <FormField
-            control={form.control}
-            name="isActive"
-            render={({ field }) => (
-              <FormItem className="flex flex-row items-center justify-between rounded-lg border border-white/10 p-4 bg-white/5">
-                <div className="space-y-0.5">
-                  <FormLabel className="text-base">{t("slideIsActive") || "Active"}</FormLabel>
-                  <p className="text-sm text-slate-body">{t("slideIsActiveDescription") || "Show this slide on the homepage"}</p>
-                </div>
-                <FormControl>
-                  <Checkbox
-                    checked={field.value}
-                    onCheckedChange={field.onChange}
-                  />
-                </FormControl>
-              </FormItem>
-            )}
-          />
+          <div className="space-y-4">
+            <FormField
+              control={form.control}
+              name="selected_language"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("language") || "Language"}</FormLabel>
+                  <Select value={field.value || ""} onValueChange={field.onChange}>
+                    <FormControl>
+                      <SelectTrigger className="bg-white/5 border-white/10 text-offwhite focus:ring-crimson">
+                        <SelectValue placeholder={t("selectLanguage") || "Select language"} />
+                      </SelectTrigger>
+                    </FormControl>
+                    <SelectContent className="glass-strong border-white/10">
+                      <SelectItem value="all">{t("allLanguages") || "All Languages"}</SelectItem>
+                      {LANGUAGES.map((lang) => (
+                        <SelectItem key={lang.code} value={lang.code}>
+                          {lang.name}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+
+            <FormField
+              control={form.control}
+              name="isActive"
+              render={({ field }) => (
+                <FormItem className="flex flex-row items-center justify-between rounded-lg border border-white/10 p-4 bg-white/5">
+                  <div className="space-y-0.5">
+                    <FormLabel className="text-base">{t("slideIsActive") || "Active"}</FormLabel>
+                    <p className="text-sm text-slate-body">{t("slideIsActiveDescription") || "Show this slide on the homepage"}</p>
+                  </div>
+                  <FormControl>
+                    <Checkbox
+                      checked={field.value}
+                      onCheckedChange={field.onChange}
+                    />
+                  </FormControl>
+                </FormItem>
+              )}
+            />
+          </div>
         </div>
 
         <div className="flex justify-end gap-2 pt-4">

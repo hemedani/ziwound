@@ -41,6 +41,7 @@ export function EditSlideDialog({ slide, open, onOpenChange }: EditSlideDialogPr
           secondaryCtaLink: data.secondaryCtaLink || undefined,
           order: data.order,
           isActive: data.isActive,
+          ...(data.selected_language && data.selected_language !== "all" ? { selected_language: data.selected_language } : {}),
         },
         { _id: 1, title: 1 }
       );

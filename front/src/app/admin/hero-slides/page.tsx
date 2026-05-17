@@ -1,12 +1,25 @@
-import { getTranslations } from "next-intl/server";
 import { gets } from "@/app/actions/heroSlide/gets";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import Link from "next/link";
 import { HeroSlidesTable } from "./hero-slides-table";
 import { ReqType, heroSlideSchema } from "@/types/declarations";
 import { AddSlideDialog } from "./add-slide-dialog";
+import { getTranslations } from "next-intl/server";
+
+const LANGUAGES = [
+  { code: "fa", name: "فارسی" },
+  { code: "en", name: "English" },
+  { code: "ar", name: "العربية" },
+  { code: "zh", name: "中文" },
+  { code: "pt", name: "Português" },
+  { code: "es", name: "Español" },
+  { code: "nl", name: "Nederlands" },
+  { code: "tr", name: "Türkçe" },
+  { code: "ru", name: "Русский" },
+];
 
 export default async function AdminHeroSlidesPage({
   searchParams,
@@ -16,14 +29,17 @@ export default async function AdminHeroSlidesPage({
     search?: string;
     sortBy?: string;
     sortOrder?: string;
+    language?: string;
   }>;
 }) {
   const resolvedSearchParams = await searchParams;
   const t = await getTranslations("admin");
+
   const page = Number(resolvedSearchParams.page) || 1;
   const search = resolvedSearchParams.search || "";
   const sortBy = resolvedSearchParams.sortBy || "order";
   const sortOrder = resolvedSearchParams.sortOrder || "asc";
+  const language = resolvedSearchParams.language || "all";
 
   const setQuery: ReqType["main"]["heroSlide"]["gets"]["set"] = {
     page,
@@ -33,6 +49,9 @@ export default async function AdminHeroSlidesPage({
   };
   if (search) {
     setQuery.isActive = search;
+  }
+  if (language !== "all") {
+    setQuery.selected_language = language as ReqType["main"]["heroSlide"]["gets"]["set"]["selected_language"];
   }
 
   const response = await gets(setQuery, {
@@ -47,6 +66,7 @@ export default async function AdminHeroSlidesPage({
     order: 1,
     isActive: 1,
     createdAt: 1,
+    selected_language: 1,
     image: { _id: 1, name: 1, mimeType: 1, type: 1 },
   });
 
@@ -89,6 +109,21 @@ export default async function AdminHeroSlidesPage({
               className="ps-8 bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
             />
           </div>
+          <div className="w-full sm:w-48">
+            <Select name="language" defaultValue={language}>
+              <SelectTrigger className="bg-white/5 border-white/10 text-offwhite focus:ring-crimson">
+                <SelectValue placeholder={t("language") || "Language"} />
+              </SelectTrigger>
+              <SelectContent className="glass-strong border-white/10">
+                <SelectItem value="all">{t("allLanguages") || "All Languages"}</SelectItem>
+                {LANGUAGES.map((lang) => (
+                  <SelectItem key={lang.code} value={lang.code}>
+                    {lang.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
           <Button type="submit" className="bg-crimson hover:bg-crimson-light text-white">
             {t("search") || "Search"}
           </Button>
@@ -101,7 +136,7 @@ export default async function AdminHeroSlidesPage({
         {page > 1 ? (
           <Button variant="outline" size="sm" className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white" asChild>
             <Link
-              href={`/admin/hero-slides?page=${page - 1}${search ? `&search=${search}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/hero-slides?page=${page - 1}${search ? `&search=${search}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}${language !== "all" ? `&language=${language}` : ""}`}
             >
               {t("previous") || "Previous"}
             </Link>
@@ -114,7 +149,7 @@ export default async function AdminHeroSlidesPage({
         {slides.length >= 20 ? (
           <Button variant="outline" size="sm" className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white" asChild>
             <Link
-              href={`/admin/hero-slides?page=${page + 1}${search ? `&search=${search}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
+              href={`/admin/hero-slides?page=${page + 1}${search ? `&search=${search}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}${language !== "all" ? `&language=${language}` : ""}`}
             >
               {t("next") || "Next"}
             </Link>
