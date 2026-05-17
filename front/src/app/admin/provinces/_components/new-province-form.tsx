@@ -8,6 +8,19 @@ import { Button } from "@/components/ui/button";
 import { ProvinceForm, ProvinceFormValues } from "../province-form";
 import { add } from "@/app/actions/province/add";
 
+const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
+
+function buildLocalizedObject(values: ProvinceFormValues, fieldName: string) {
+  const obj: Record<string, string> = {};
+  for (const lang of LANGUAGES) {
+    const val = (values as unknown as Record<string, Record<string, string> | undefined>)[fieldName]?.[lang];
+    if (val && val.trim()) {
+      obj[lang] = val;
+    }
+  }
+  return Object.keys(obj).length > 0 ? obj : undefined;
+}
+
 interface NewProvinceFormProps {
   countries?: Array<{ _id: string; name: string; english_name: string }>;
 }
@@ -28,16 +41,16 @@ export function NewProvinceForm({ countries = [] }: NewProvinceFormProps) {
           name: data.name,
           english_name: data.english_name,
           countryId: data.countryId,
-          wars_history: data.wars_history || "",
-          conflict_timeline: data.conflict_timeline || "",
-          casualties_info: data.casualties_info || "",
-          notable_battles: data.notable_battles || "",
-          occupation_info: data.occupation_info || "",
-          destruction_level: data.destruction_level || "",
-          civilian_impact: data.civilian_impact || "",
-          mass_graves_info: data.mass_graves_info || "",
-          war_crimes_events: data.war_crimes_events || "",
-          liberation_info: data.liberation_info || "",
+          wars_history: buildLocalizedObject(data, "wars_history"),
+          conflict_timeline: buildLocalizedObject(data, "conflict_timeline"),
+          casualties_info: buildLocalizedObject(data, "casualties_info"),
+          notable_battles: buildLocalizedObject(data, "notable_battles"),
+          occupation_info: buildLocalizedObject(data, "occupation_info"),
+          destruction_level: buildLocalizedObject(data, "destruction_level"),
+          civilian_impact: buildLocalizedObject(data, "civilian_impact"),
+          mass_graves_info: buildLocalizedObject(data, "mass_graves_info"),
+          war_crimes_events: buildLocalizedObject(data, "war_crimes_events"),
+          liberation_info: buildLocalizedObject(data, "liberation_info"),
         },
         { _id: 1, name: 1 },
       );

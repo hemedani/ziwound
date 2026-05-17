@@ -14,23 +14,41 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RichTextEditor } from "@/components/form/rich-text-editor";
+
+const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
+type Language = (typeof LANGUAGES)[number];
+
+type LocalizedWarField = Partial<Record<Language, string>>;
+
+const localizedWarFieldSchema = z.object({
+  fa: z.string().optional(),
+  en: z.string().optional(),
+  ar: z.string().optional(),
+  zh: z.string().optional(),
+  pt: z.string().optional(),
+  es: z.string().optional(),
+  nl: z.string().optional(),
+  tr: z.string().optional(),
+  ru: z.string().optional(),
+}).optional();
 
 const countryFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
   english_name: z.string().min(1, "English name is required"),
-  wars_history: z.string().optional(),
-  conflict_timeline: z.string().optional(),
-  casualties_info: z.string().optional(),
-  international_response: z.string().optional(),
-  war_crimes_documentation: z.string().optional(),
-  human_rights_violations: z.string().optional(),
-  genocide_info: z.string().optional(),
-  chemical_weapons_info: z.string().optional(),
-  displacement_info: z.string().optional(),
-  reconstruction_status: z.string().optional(),
-  international_sanctions: z.string().optional(),
-  notable_war_events: z.string().optional(),
+  wars_history: localizedWarFieldSchema,
+  conflict_timeline: localizedWarFieldSchema,
+  casualties_info: localizedWarFieldSchema,
+  international_response: localizedWarFieldSchema,
+  war_crimes_documentation: localizedWarFieldSchema,
+  human_rights_violations: localizedWarFieldSchema,
+  genocide_info: localizedWarFieldSchema,
+  chemical_weapons_info: localizedWarFieldSchema,
+  displacement_info: localizedWarFieldSchema,
+  reconstruction_status: localizedWarFieldSchema,
+  international_sanctions: localizedWarFieldSchema,
+  notable_war_events: localizedWarFieldSchema,
 });
 
 export type CountryFormValues = z.infer<typeof countryFormSchema>;
@@ -57,6 +75,65 @@ const warDescriptionFields = [
   "notable_war_events",
 ] as const;
 
+type WarFieldName = (typeof warDescriptionFields)[number];
+
+const languageLabels: Record<Language, string> = {
+  fa: "فارسی",
+  en: "English",
+  ar: "العربية",
+  zh: "中文",
+  pt: "Português",
+  es: "Español",
+  nl: "Nederlands",
+  tr: "Türkçe",
+  ru: "Русский",
+};
+
+function LocalizedRichTextField({
+  control,
+  fieldName,
+  label,
+}: {
+  control: ReturnType<typeof useForm<CountryFormValues>>["control"];
+  fieldName: WarFieldName;
+  label: string;
+}) {
+  const t = useTranslations("admin");
+
+  return (
+    <FormItem>
+      <FormLabel>{label}</FormLabel>
+      <FormControl>
+        <Tabs defaultValue="fa">
+          <TabsList className="w-full justify-start">
+            {LANGUAGES.map((lang) => (
+              <TabsTrigger key={lang} value={lang} className="text-xs">
+                {languageLabels[lang]}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {LANGUAGES.map((lang) => (
+            <TabsContent key={lang} value={lang} className="mt-2">
+              <FormField
+                control={control}
+                name={`${fieldName}.${lang}` as const}
+                render={({ field }) => (
+                  <RichTextEditor
+                    value={field.value || ""}
+                    onChange={field.onChange}
+                    placeholder={t(`${fieldName}Placeholder`) || `Enter ${fieldName.replace(/_/g, " ")}`}
+                  />
+                )}
+              />
+            </TabsContent>
+          ))}
+        </Tabs>
+      </FormControl>
+      <FormMessage />
+    </FormItem>
+  );
+}
+
 export function CountryForm({
   onSubmit,
   onCancel,
@@ -65,23 +142,25 @@ export function CountryForm({
 }: CountryFormProps) {
   const t = useTranslations("admin");
 
+  const emptyLocalized: LocalizedWarField = { fa: "", en: "", ar: "", zh: "", pt: "", es: "", nl: "", tr: "", ru: "" };
+
   const form = useForm<CountryFormValues>({
     resolver: zodResolver(countryFormSchema),
     defaultValues: {
       name: "",
       english_name: "",
-      wars_history: "",
-      conflict_timeline: "",
-      casualties_info: "",
-      international_response: "",
-      war_crimes_documentation: "",
-      human_rights_violations: "",
-      genocide_info: "",
-      chemical_weapons_info: "",
-      displacement_info: "",
-      reconstruction_status: "",
-      international_sanctions: "",
-      notable_war_events: "",
+      wars_history: emptyLocalized,
+      conflict_timeline: emptyLocalized,
+      casualties_info: emptyLocalized,
+      international_response: emptyLocalized,
+      war_crimes_documentation: emptyLocalized,
+      human_rights_violations: emptyLocalized,
+      genocide_info: emptyLocalized,
+      chemical_weapons_info: emptyLocalized,
+      displacement_info: emptyLocalized,
+      reconstruction_status: emptyLocalized,
+      international_sanctions: emptyLocalized,
+      notable_war_events: emptyLocalized,
       ...defaultValues,
     },
   });
@@ -122,25 +201,11 @@ export function CountryForm({
           <h4 className="text-sm font-semibold">{t("warDescriptionFields") || "War Description Fields"}</h4>
           <div className="space-y-6">
             {warDescriptionFields.map((fieldName) => (
-              <FormField
+              <LocalizedRichTextField
                 key={fieldName}
                 control={form.control}
-                name={fieldName}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
-                      {t(fieldName) || fieldName.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase())}
-                    </FormLabel>
-                    <FormControl>
-                      <RichTextEditor
-                        value={field.value || ""}
-                        onChange={field.onChange}
-                        placeholder={t(`${fieldName}Placeholder`) || `Enter ${fieldName.replace(/_/g, " ")}`}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                fieldName={fieldName}
+                label={t(fieldName) || fieldName.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
               />
             ))}
           </div>

@@ -14,23 +14,41 @@ import {
 } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RichTextEditor } from "@/components/form/rich-text-editor";
 import { AsyncSelect, AsyncSelectOption } from "@/components/form/async-select";
+
+const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
+type Language = (typeof LANGUAGES)[number];
+
+type LocalizedWarField = Partial<Record<Language, string>>;
+
+const localizedWarFieldSchema = z.object({
+  fa: z.string().optional(),
+  en: z.string().optional(),
+  ar: z.string().optional(),
+  zh: z.string().optional(),
+  pt: z.string().optional(),
+  es: z.string().optional(),
+  nl: z.string().optional(),
+  tr: z.string().optional(),
+  ru: z.string().optional(),
+}).optional();
 
 const provinceFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
   english_name: z.string().min(1, "English name is required"),
   countryId: z.string().min(1, "Country is required"),
-  wars_history: z.string().optional(),
-  conflict_timeline: z.string().optional(),
-  casualties_info: z.string().optional(),
-  notable_battles: z.string().optional(),
-  occupation_info: z.string().optional(),
-  destruction_level: z.string().optional(),
-  civilian_impact: z.string().optional(),
-  mass_graves_info: z.string().optional(),
-  war_crimes_events: z.string().optional(),
-  liberation_info: z.string().optional(),
+  wars_history: localizedWarFieldSchema,
+  conflict_timeline: localizedWarFieldSchema,
+  casualties_info: localizedWarFieldSchema,
+  notable_battles: localizedWarFieldSchema,
+  occupation_info: localizedWarFieldSchema,
+  destruction_level: localizedWarFieldSchema,
+  civilian_impact: localizedWarFieldSchema,
+  mass_graves_info: localizedWarFieldSchema,
+  war_crimes_events: localizedWarFieldSchema,
+  liberation_info: localizedWarFieldSchema,
 });
 
 export type ProvinceFormValues = z.infer<typeof provinceFormSchema>;
@@ -56,6 +74,65 @@ const warDescriptionFields = [
   "liberation_info",
 ] as const;
 
+const languageLabels: Record<Language, string> = {
+  fa: "فارسی",
+  en: "English",
+  ar: "العربية",
+  zh: "中文",
+  pt: "Português",
+  es: "Español",
+  nl: "Nederlands",
+  tr: "Türkçe",
+  ru: "Русский",
+};
+
+type WarFieldName = (typeof warDescriptionFields)[number];
+
+function LocalizedRichTextField({
+  control,
+  fieldName,
+  label,
+}: {
+  control: ReturnType<typeof useForm<ProvinceFormValues>>["control"];
+  fieldName: WarFieldName;
+  label: string;
+}) {
+  const t = useTranslations("admin");
+
+  return (
+    <FormItem>
+      <FormLabel>{label}</FormLabel>
+      <FormControl>
+        <Tabs defaultValue="fa">
+          <TabsList className="w-full justify-start">
+            {LANGUAGES.map((lang) => (
+              <TabsTrigger key={lang} value={lang} className="text-xs">
+                {languageLabels[lang]}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+          {LANGUAGES.map((lang) => (
+            <TabsContent key={lang} value={lang} className="mt-2">
+              <FormField
+                control={control}
+                name={`${fieldName}.${lang}` as `${typeof fieldName}.${Language}`}
+                render={({ field }) => (
+                  <RichTextEditor
+                    value={field.value || ""}
+                    onChange={field.onChange}
+                    placeholder={t(`${fieldName}Placeholder`) || `Enter ${fieldName.replace(/_/g, " ")}`}
+                  />
+                )}
+              />
+            </TabsContent>
+          ))}
+        </Tabs>
+      </FormControl>
+      <FormMessage />
+    </FormItem>
+  );
+}
+
 export function ProvinceForm({
   onSubmit,
   onCancel,
@@ -65,22 +142,24 @@ export function ProvinceForm({
 }: ProvinceFormProps) {
   const t = useTranslations("admin");
 
+  const emptyLocalized: LocalizedWarField = { fa: "", en: "", ar: "", zh: "", pt: "", es: "", nl: "", tr: "", ru: "" };
+
   const form = useForm<ProvinceFormValues>({
     resolver: zodResolver(provinceFormSchema),
     defaultValues: {
       name: "",
       english_name: "",
       countryId: "",
-      wars_history: "",
-      conflict_timeline: "",
-      casualties_info: "",
-      notable_battles: "",
-      occupation_info: "",
-      destruction_level: "",
-      civilian_impact: "",
-      mass_graves_info: "",
-      war_crimes_events: "",
-      liberation_info: "",
+      wars_history: emptyLocalized,
+      conflict_timeline: emptyLocalized,
+      casualties_info: emptyLocalized,
+      notable_battles: emptyLocalized,
+      occupation_info: emptyLocalized,
+      destruction_level: emptyLocalized,
+      civilian_impact: emptyLocalized,
+      mass_graves_info: emptyLocalized,
+      war_crimes_events: emptyLocalized,
+      liberation_info: emptyLocalized,
       ...defaultValues,
     },
   });
@@ -146,25 +225,11 @@ export function ProvinceForm({
           <h4 className="text-sm font-semibold">{t("warDescriptionFields") || "War Description Fields"}</h4>
           <div className="space-y-6">
             {warDescriptionFields.map((fieldName) => (
-              <FormField
+              <LocalizedRichTextField
                 key={fieldName}
                 control={form.control}
-                name={fieldName}
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>
-                      {t(fieldName) || fieldName.replace(/_/g, " ").replace(/\b\w/g, l => l.toUpperCase())}
-                    </FormLabel>
-                    <FormControl>
-                      <RichTextEditor
-                        value={field.value || ""}
-                        onChange={field.onChange}
-                        placeholder={t(`${fieldName}Placeholder`) || `Enter ${fieldName.replace(/_/g, " ")}`}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                fieldName={fieldName}
+                label={t(fieldName) || fieldName.replace(/_/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
               />
             ))}
           </div>
