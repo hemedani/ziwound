@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Link from "@tiptap/extension-link";
@@ -10,6 +11,16 @@ import TableCell from "@tiptap/extension-table-cell";
 import TableHeader from "@tiptap/extension-table-header";
 import { Toggle } from "@/components/ui/toggle";
 import { Button } from "@/components/ui/button";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import { Textarea } from "@/components/ui/textarea";
+import { useTranslations } from "next-intl";
 import {
   Bold,
   Italic,
@@ -25,6 +36,7 @@ import {
   Link as LinkIcon,
   Image as ImageIcon,
   Table as TableIcon,
+  Code,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -36,6 +48,10 @@ interface RichTextEditorProps {
 }
 
 export function RichTextEditor({ value, onChange, placeholder, className }: RichTextEditorProps) {
+  const [parseDialogOpen, setParseDialogOpen] = useState(false);
+  const [htmlInput, setHtmlInput] = useState("");
+  const t = useTranslations("admin");
+
   const editor = useEditor({
     immediatelyRender: false,
     extensions: [
@@ -104,6 +120,14 @@ export function RichTextEditor({ value, onChange, placeholder, className }: Rich
     const url = window.prompt("Image URL");
     if (url) {
       editor.chain().focus().setImage({ src: url }).run();
+    }
+  };
+
+  const handleParseHtml = () => {
+    if (htmlInput.trim()) {
+      editor.chain().focus().insertContent(htmlInput).run();
+      setHtmlInput("");
+      setParseDialogOpen(false);
     }
   };
 
@@ -217,6 +241,19 @@ export function RichTextEditor({ value, onChange, placeholder, className }: Rich
           variant="ghost"
           size="sm"
           className="h-8 px-2"
+          onClick={() => setParseDialogOpen(true)}
+          type="button"
+          title={t("parseHtml") || "Parse HTML"}
+        >
+          <Code className="h-4 w-4" />
+        </Button>
+
+        <div className="w-px h-6 bg-border mx-1" />
+
+        <Button
+          variant="ghost"
+          size="sm"
+          className="h-8 px-2"
           onClick={() => editor.chain().focus().undo().run()}
           disabled={!editor.can().undo()}
           type="button"
@@ -235,6 +272,31 @@ export function RichTextEditor({ value, onChange, placeholder, className }: Rich
         </Button>
       </div>
       <EditorContent editor={editor} />
+
+      <Dialog open={parseDialogOpen} onOpenChange={setParseDialogOpen}>
+        <DialogContent className="max-w-2xl">
+          <DialogHeader>
+            <DialogTitle>{t("parseHtmlTitle") || "Parse HTML Content"}</DialogTitle>
+            <DialogDescription>
+              {t("parseHtmlDescription") || "Paste HTML content (e.g., from AI chatbot) to insert it into the editor. The HTML will be parsed and rendered as rich text."}
+            </DialogDescription>
+          </DialogHeader>
+          <Textarea
+            value={htmlInput}
+            onChange={(e) => setHtmlInput(e.target.value)}
+            placeholder="Paste HTML here, e.g.: <h2>Title</h2><p>Content with <strong>bold</strong> text</p>"
+            className="min-h-[200px] font-mono text-sm"
+          />
+          <DialogFooter>
+            <Button variant="outline" onClick={() => { setHtmlInput(""); setParseDialogOpen(false); }}>
+              {t("cancel") || "Cancel"}
+            </Button>
+            <Button onClick={handleParseHtml} disabled={!htmlInput.trim()}>
+              {t("insertIntoEditor") || "Insert into Editor"}
+            </Button>
+          </DialogFooter>
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
