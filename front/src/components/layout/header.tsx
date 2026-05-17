@@ -5,8 +5,6 @@ import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import {
-  Moon,
-  Sun,
   Menu,
   User,
   LogOut,
@@ -18,7 +16,6 @@ import {
   FileImage,
   Shield,
 } from "lucide-react";
-import { useTheme } from "@/components/providers/theme-provider";
 import { Button } from "@/components/ui/button";
 import {
   DropdownMenu,
@@ -39,15 +36,8 @@ export function Header() {
   const pathname = usePathname();
   const router = useRouter();
   const locale = useLocale();
-  const { theme, setTheme } = useTheme();
   const { user, isAuthenticated, logout } = useAuthStore();
-  const [mounted, setMounted] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const timer = setTimeout(() => setMounted(true), 0);
-    return () => clearTimeout(timer);
-  }, []);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -59,10 +49,6 @@ export function Header() {
     await logoutAction();
     logout();
     router.push(`/${locale}`);
-  };
-
-  const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
   };
 
   const isLanding = pathname === `/${locale}` || pathname === "/";
@@ -134,25 +120,6 @@ export function Header() {
         {/* Right side actions */}
         <div className="flex items-center gap-1">
           <LanguageSwitcher />
-
-          <Button
-            variant="ghost"
-            size="icon"
-            className="h-10 w-10 rounded-lg text-slate-body hover:text-offwhite hover:bg-white/[0.04]"
-            onClick={toggleTheme}
-            title={mounted && theme === "dark" ? t("lightMode") : t("darkMode")}
-            aria-label={mounted && theme === "dark" ? t("lightMode") : t("darkMode")}
-          >
-            {mounted ? (
-              theme === "dark" ? (
-                <Sun className="h-5 w-5" />
-              ) : (
-                <Moon className="h-5 w-5" />
-              )
-            ) : (
-              <div className="h-5 w-5" />
-            )}
-          </Button>
 
           {isAuthenticated && user ? (
             <DropdownMenu>
