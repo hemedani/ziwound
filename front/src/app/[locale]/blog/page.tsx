@@ -53,6 +53,12 @@ export default async function BlogListingPage({
 
   posts = posts.filter((post) => post.isPublished !== false);
 
+  // Filter by locale: show posts matching the locale or without a language set
+  posts = posts.filter((post) => {
+    const postLang = (post as Record<string, unknown>).selected_language as string | undefined;
+    return !postLang || postLang === locale;
+  });
+
   return (
     <div className="container mx-auto py-12 px-4 md:px-6">
       {/* Header */}

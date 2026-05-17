@@ -322,6 +322,7 @@ export type userSchema = {
     title: string;
     slug: string;
     content: string;
+    selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
     isPublished: boolean;
     isFeatured: boolean;
     publishedAt?: string;
@@ -477,6 +478,7 @@ export type tagSchema = {
     title: string;
     slug: string;
     content: string;
+    selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
     isPublished: boolean;
     isFeatured: boolean;
     publishedAt?: string;
@@ -676,6 +678,7 @@ export type blogPostSchema = {
   title: string;
   slug: string;
   content: string;
+  selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
   isPublished: boolean;
   isFeatured: boolean;
   publishedAt?: string;
@@ -723,6 +726,7 @@ export type heroSlideSchema = {
   ctaLink: string;
   secondaryCtaText?: string;
   secondaryCtaLink?: string;
+  selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
   order: number;
   isActive: boolean;
   createdAt?: Date;
@@ -1038,6 +1042,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -1470,6 +1475,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -2142,6 +2148,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -2389,6 +2396,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -2551,6 +2559,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -2798,6 +2807,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -2968,6 +2978,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -3215,6 +3226,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -3397,6 +3409,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -3480,6 +3493,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -3559,6 +3573,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -3922,6 +3937,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -4236,6 +4252,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -4398,6 +4415,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -4712,6 +4730,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -4881,6 +4900,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -5195,6 +5215,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -5387,6 +5408,7 @@ export type ReqType = {
             title?: (0 | 1);
             slug?: (0 | 1);
             content?: (0 | 1);
+            selected_language?: (0 | 1);
             isPublished?: (0 | 1);
             isFeatured?: (0 | 1);
             publishedAt?: (0 | 1);
@@ -5706,6 +5728,7 @@ export type ReqType = {
             title?: (0 | 1);
             slug?: (0 | 1);
             content?: (0 | 1);
+            selected_language?: (0 | 1);
             isPublished?: (0 | 1);
             isFeatured?: (0 | 1);
             publishedAt?: (0 | 1);
@@ -6049,6 +6072,7 @@ export type ReqType = {
             title?: (0 | 1);
             slug?: (0 | 1);
             content?: (0 | 1);
+            selected_language?: (0 | 1);
             isPublished?: (0 | 1);
             isFeatured?: (0 | 1);
             publishedAt?: (0 | 1);
@@ -6148,6 +6172,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -6232,6 +6257,7 @@ export type ReqType = {
             title?: (0 | 1);
             slug?: (0 | 1);
             content?: (0 | 1);
+            selected_language?: (0 | 1);
             isPublished?: (0 | 1);
             isFeatured?: (0 | 1);
             publishedAt?: (0 | 1);
@@ -6312,6 +6338,7 @@ export type ReqType = {
             title?: (0 | 1);
             slug?: (0 | 1);
             content?: (0 | 1);
+            selected_language?: (0 | 1);
             isPublished?: (0 | 1);
             isFeatured?: (0 | 1);
             publishedAt?: (0 | 1);
@@ -6395,6 +6422,7 @@ export type ReqType = {
             title?: (0 | 1);
             slug?: (0 | 1);
             content?: (0 | 1);
+            selected_language?: (0 | 1);
             isPublished?: (0 | 1);
             isFeatured?: (0 | 1);
             publishedAt?: (0 | 1);
@@ -6724,6 +6752,7 @@ export type ReqType = {
             title?: (0 | 1);
             slug?: (0 | 1);
             content?: (0 | 1);
+            selected_language?: (0 | 1);
             isPublished?: (0 | 1);
             isFeatured?: (0 | 1);
             publishedAt?: (0 | 1);
@@ -6845,6 +6874,7 @@ export type ReqType = {
             title?: (0 | 1);
             slug?: (0 | 1);
             content?: (0 | 1);
+            selected_language?: (0 | 1);
             isPublished?: (0 | 1);
             isFeatured?: (0 | 1);
             publishedAt?: (0 | 1);
@@ -6921,6 +6951,7 @@ export type ReqType = {
             title?: (0 | 1);
             slug?: (0 | 1);
             content?: (0 | 1);
+            selected_language?: (0 | 1);
             isPublished?: (0 | 1);
             isFeatured?: (0 | 1);
             publishedAt?: (0 | 1);
@@ -6971,6 +7002,7 @@ export type ReqType = {
             title?: (0 | 1);
             slug?: (0 | 1);
             content?: (0 | 1);
+            selected_language?: (0 | 1);
             isPublished?: (0 | 1);
             isFeatured?: (0 | 1);
             publishedAt?: (0 | 1);
@@ -7047,6 +7079,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -7134,6 +7167,7 @@ export type ReqType = {
             title?: (0 | 1);
             slug?: (0 | 1);
             content?: (0 | 1);
+            selected_language?: (0 | 1);
             isPublished?: (0 | 1);
             isFeatured?: (0 | 1);
             publishedAt?: (0 | 1);
@@ -7238,6 +7272,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -7325,6 +7360,7 @@ export type ReqType = {
             title?: (0 | 1);
             slug?: (0 | 1);
             content?: (0 | 1);
+            selected_language?: (0 | 1);
             isPublished?: (0 | 1);
             isFeatured?: (0 | 1);
             publishedAt?: (0 | 1);
@@ -7534,6 +7570,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -7693,6 +7730,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -7983,6 +8021,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -8043,6 +8082,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -8495,6 +8535,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -8555,6 +8596,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -8995,6 +9037,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -9055,6 +9098,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -9496,6 +9540,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -9556,6 +9601,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -10209,6 +10255,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -10269,6 +10316,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -10698,6 +10746,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -10758,6 +10807,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -11663,6 +11713,7 @@ export type ReqType = {
           title: string;
           slug: string;
           content: string;
+          selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
           isPublished: boolean;
           isFeatured: boolean;
           publishedAt?: string;
@@ -11676,6 +11727,7 @@ export type ReqType = {
           title?: (0 | 1);
           slug?: (0 | 1);
           content?: (0 | 1);
+          selected_language?: (0 | 1);
           isPublished?: (0 | 1);
           isFeatured?: (0 | 1);
           publishedAt?: (0 | 1);
@@ -11718,6 +11770,7 @@ export type ReqType = {
           title?: (0 | 1);
           slug?: (0 | 1);
           content?: (0 | 1);
+          selected_language?: (0 | 1);
           isPublished?: (0 | 1);
           isFeatured?: (0 | 1);
           publishedAt?: (0 | 1);
@@ -11779,6 +11832,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -11832,6 +11886,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -11851,6 +11906,7 @@ export type ReqType = {
           isFeatured?: boolean;
           authorId?: string;
           tagIds?: string[];
+          selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
           sortBy?: ("publishedAt" | "createdAt" | "updatedAt" | "title");
           sortOrder?: ("asc" | "desc");
         };
@@ -11859,6 +11915,7 @@ export type ReqType = {
           title?: (0 | 1);
           slug?: (0 | 1);
           content?: (0 | 1);
+          selected_language?: (0 | 1);
           isPublished?: (0 | 1);
           isFeatured?: (0 | 1);
           publishedAt?: (0 | 1);
@@ -11920,6 +11977,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -11973,6 +12031,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -11988,6 +12047,7 @@ export type ReqType = {
           title?: string;
           slug?: string;
           content?: string;
+          selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
           isPublished?: boolean;
           isFeatured?: boolean;
           publishedAt?: string;
@@ -11997,6 +12057,7 @@ export type ReqType = {
           title?: (0 | 1);
           slug?: (0 | 1);
           content?: (0 | 1);
+          selected_language?: (0 | 1);
           isPublished?: (0 | 1);
           isFeatured?: (0 | 1);
           publishedAt?: (0 | 1);
@@ -12058,6 +12119,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -12111,6 +12173,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -12132,6 +12195,7 @@ export type ReqType = {
           title?: (0 | 1);
           slug?: (0 | 1);
           content?: (0 | 1);
+          selected_language?: (0 | 1);
           isPublished?: (0 | 1);
           isFeatured?: (0 | 1);
           publishedAt?: (0 | 1);
@@ -12193,6 +12257,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -12246,6 +12311,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -12265,6 +12331,7 @@ export type ReqType = {
           title?: (0 | 1);
           slug?: (0 | 1);
           content?: (0 | 1);
+          selected_language?: (0 | 1);
           isPublished?: (0 | 1);
           isFeatured?: (0 | 1);
           publishedAt?: (0 | 1);
@@ -12303,6 +12370,7 @@ export type ReqType = {
           isPublished?: boolean;
           authorId?: string;
           tagIds?: string[];
+          selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
         };
         get: {
           qty?: string;
@@ -12319,6 +12387,7 @@ export type ReqType = {
           title?: (0 | 1);
           slug?: (0 | 1);
           content?: (0 | 1);
+          selected_language?: (0 | 1);
           isPublished?: (0 | 1);
           isFeatured?: (0 | 1);
           publishedAt?: (0 | 1);
@@ -12380,6 +12449,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -12433,6 +12503,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -12451,6 +12522,7 @@ export type ReqType = {
           title?: (0 | 1);
           slug?: (0 | 1);
           content?: (0 | 1);
+          selected_language?: (0 | 1);
           isPublished?: (0 | 1);
           isFeatured?: (0 | 1);
           publishedAt?: (0 | 1);
@@ -12512,6 +12584,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -12565,6 +12638,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -12578,12 +12652,14 @@ export type ReqType = {
         set: {
           slug: string;
           limit?: number;
+          selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
         };
         get: {
           _id?: (0 | 1);
           title?: (0 | 1);
           slug?: (0 | 1);
           content?: (0 | 1);
+          selected_language?: (0 | 1);
           isPublished?: (0 | 1);
           isFeatured?: (0 | 1);
           publishedAt?: (0 | 1);
@@ -12645,6 +12721,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -12698,6 +12775,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -12716,6 +12794,7 @@ export type ReqType = {
           title?: (0 | 1);
           slug?: (0 | 1);
           content?: (0 | 1);
+          selected_language?: (0 | 1);
           isPublished?: (0 | 1);
           isFeatured?: (0 | 1);
           publishedAt?: (0 | 1);
@@ -12777,6 +12856,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -12830,6 +12910,7 @@ export type ReqType = {
               title?: (0 | 1);
               slug?: (0 | 1);
               content?: (0 | 1);
+              selected_language?: (0 | 1);
               isPublished?: (0 | 1);
               isFeatured?: (0 | 1);
               publishedAt?: (0 | 1);
@@ -12854,6 +12935,7 @@ export type ReqType = {
           ctaLink: string;
           secondaryCtaText?: string;
           secondaryCtaLink?: string;
+          selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
           order: number;
           isActive: boolean;
           createdAt?: Date;
@@ -12869,6 +12951,7 @@ export type ReqType = {
           ctaLink?: (0 | 1);
           secondaryCtaText?: (0 | 1);
           secondaryCtaLink?: (0 | 1);
+          selected_language?: (0 | 1);
           order?: (0 | 1);
           isActive?: (0 | 1);
           createdAt?: (0 | 1);
@@ -12894,10 +12977,12 @@ export type ReqType = {
           ctaLink: string;
           secondaryCtaText?: string;
           secondaryCtaLink?: string;
+          selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
           order: number;
           isActive: boolean;
           createdAt?: Date;
           updatedAt?: Date;
+          image?: string;
         };
         get: {
           _id?: (0 | 1);
@@ -12908,6 +12993,7 @@ export type ReqType = {
           ctaLink?: (0 | 1);
           secondaryCtaText?: (0 | 1);
           secondaryCtaLink?: (0 | 1);
+          selected_language?: (0 | 1);
           order?: (0 | 1);
           isActive?: (0 | 1);
           createdAt?: (0 | 1);
@@ -12936,6 +13022,7 @@ export type ReqType = {
           ctaLink?: (0 | 1);
           secondaryCtaText?: (0 | 1);
           secondaryCtaLink?: (0 | 1);
+          selected_language?: (0 | 1);
           order?: (0 | 1);
           isActive?: (0 | 1);
           createdAt?: (0 | 1);
@@ -12954,6 +13041,7 @@ export type ReqType = {
       gets: {
         set: {
           isActive?: string;
+          selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
           page?: number;
           limit?: number;
           sortBy?: ("order" | "createdAt" | "updatedAt");
@@ -12968,6 +13056,7 @@ export type ReqType = {
           ctaLink?: (0 | 1);
           secondaryCtaText?: (0 | 1);
           secondaryCtaLink?: (0 | 1);
+          selected_language?: (0 | 1);
           order?: (0 | 1);
           isActive?: (0 | 1);
           createdAt?: (0 | 1);
@@ -12993,6 +13082,7 @@ export type ReqType = {
       count: {
         set: {
           isActive?: string;
+          selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
         };
         get: {
           _id?: (0 | 1);
@@ -13003,6 +13093,7 @@ export type ReqType = {
           ctaLink?: (0 | 1);
           secondaryCtaText?: (0 | 1);
           secondaryCtaLink?: (0 | 1);
+          selected_language?: (0 | 1);
           order?: (0 | 1);
           isActive?: (0 | 1);
           createdAt?: (0 | 1);

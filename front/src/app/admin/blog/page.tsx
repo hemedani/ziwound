@@ -14,6 +14,19 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { ReqType } from "@/types/declarations";
 import { DeleteBlogPostMenuItem } from "./_components/delete-blog-post-button";
+import { Badge } from "@/components/ui/badge";
+
+const LANGUAGES = [
+  { code: "fa", name: "فارسی" },
+  { code: "en", name: "English" },
+  { code: "ar", name: "العربية" },
+  { code: "zh", name: "中文" },
+  { code: "pt", name: "Português" },
+  { code: "es", name: "Español" },
+  { code: "nl", name: "Nederlands" },
+  { code: "tr", name: "Türkçe" },
+  { code: "ru", name: "Русский" },
+];
 
 export default async function AdminBlogPage({
   searchParams,
@@ -22,6 +35,7 @@ export default async function AdminBlogPage({
     page?: string;
     search?: string;
     status?: string;
+    language?: string;
   }>;
 }) {
   const resolvedSearchParams = await searchParams;
@@ -31,11 +45,13 @@ export default async function AdminBlogPage({
   const page = Number(resolvedSearchParams.page) || 1;
   const search = resolvedSearchParams.search || "";
   const status = resolvedSearchParams.status || "all";
+  const language = resolvedSearchParams.language || "all";
 
   const setQuery: ReqType["main"]["blogPost"]["gets"]["set"] = { page, limit: 10 };
   if (search) setQuery.search = search;
   if (status === "published") setQuery.isPublished = true;
   if (status === "draft") setQuery.isPublished = false;
+  if (language !== "all") setQuery.selected_language = language as ReqType["main"]["blogPost"]["gets"]["set"]["selected_language"];
 
   const response = await getBlogPosts(setQuery, {
     _id: 1,
@@ -57,6 +73,7 @@ export default async function AdminBlogPage({
     createdAt?: string;
     author?: { _id: string; first_name?: string; last_name?: string };
     tags?: { _id: string; name: string }[];
+    selected_language?: string;
   };
 
   let posts: BlogPost[] = [];
@@ -120,6 +137,21 @@ export default async function AdminBlogPage({
               </SelectContent>
             </Select>
           </div>
+          <div className="w-full sm:w-48">
+            <Select name="language" defaultValue={language}>
+              <SelectTrigger className="bg-white/5 border-white/10 text-offwhite focus:ring-crimson">
+                <SelectValue placeholder={t("language") || "Language"} />
+              </SelectTrigger>
+              <SelectContent className="glass-strong border-white/10">
+                <SelectItem value="all">{t("allLanguages") || "All Languages"}</SelectItem>
+                {LANGUAGES.map((lang) => (
+                  <SelectItem key={lang.code} value={lang.code}>
+                    {lang.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          </div>
           <Button type="submit" className="bg-crimson hover:bg-crimson-light text-white">
             {t("applyFilters") || "Filter"}
           </Button>
@@ -136,6 +168,7 @@ export default async function AdminBlogPage({
             <TableHeader>
               <TableRow className="border-white/[0.06] hover:bg-transparent">
                 <TableHead className="text-slate-body">{t("title") || "Title"}</TableHead>
+                <TableHead className="text-slate-body">{t("language") || "Language"}</TableHead>
                 <TableHead className="text-slate-body">{t("status") || "Status"}</TableHead>
                 <TableHead className="text-slate-body">{t("author") || "Author"}</TableHead>
                 <TableHead className="text-slate-body">{t("tags") || "Tags"}</TableHead>
@@ -146,7 +179,7 @@ export default async function AdminBlogPage({
             <TableBody>
               {posts.length === 0 ? (
                 <TableRow className="border-white/[0.06] hover:bg-white/[0.02]">
-                  <TableCell colSpan={6} className="text-center py-8 text-slate-body">
+                  <TableCell colSpan={7} className="text-center py-8 text-slate-body">
                     {t("noPosts") || "No blog posts found"}
                   </TableCell>
                 </TableRow>
@@ -158,6 +191,15 @@ export default async function AdminBlogPage({
                         <span className="text-offwhite">{post.title}</span>
                         <span className="text-xs text-slate-body">/{post.slug}</span>
                       </div>
+                    </TableCell>
+                    <TableCell>
+                      {post.selected_language ? (
+                        <Badge variant="outline" className="bg-white/5 text-slate-body border-white/10 text-xs">
+                          {LANGUAGES.find((l) => l.code === post.selected_language)?.name || post.selected_language}
+                        </Badge>
+                      ) : (
+                        <span className="text-slate-body text-xs">-</span>
+                      )}
                     </TableCell>
                     <TableCell>
                       {post.isPublished ? (
@@ -243,7 +285,7 @@ export default async function AdminBlogPage({
             <Link
               href={`/admin/blog?page=${page - 1}${search ? `&search=${search}` : ""}${
                 status !== "all" ? `&status=${status}` : ""
-              }`}
+              }${language !== "all" ? `&language=${language}` : ""}`}
             >
               {tCommon("previous") || "Previous"}
             </Link>
@@ -261,7 +303,7 @@ export default async function AdminBlogPage({
             <Link
               href={`/admin/blog?page=${page + 1}${search ? `&search=${search}` : ""}${
                 status !== "all" ? `&status=${status}` : ""
-              }`}
+              }${language !== "all" ? `&language=${language}` : ""}`}
             >
               {tCommon("next") || "Next"}
             </Link>

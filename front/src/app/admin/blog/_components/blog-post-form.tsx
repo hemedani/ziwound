@@ -27,6 +27,19 @@ import { useToast } from "@/components/ui/use-toast";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { TagSelector } from "@/components/form/tag-selector";
 import { Loader2 } from "lucide-react";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+
+const LANGUAGES = [
+  { code: "fa", name: "فارسی" },
+  { code: "en", name: "English" },
+  { code: "ar", name: "العربية" },
+  { code: "zh", name: "中文" },
+  { code: "pt", name: "Português" },
+  { code: "es", name: "Español" },
+  { code: "nl", name: "Nederlands" },
+  { code: "tr", name: "Türkçe" },
+  { code: "ru", name: "Русский" },
+];
 
 const formSchema = z.object({
   title: z.string().min(2, "Title is required"),
@@ -36,6 +49,7 @@ const formSchema = z.object({
   isFeatured: z.boolean().default(false),
   coverImage: z.array(z.string()).optional(),
   tags: z.array(z.string()).optional(),
+  selected_language: z.string().optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -50,6 +64,7 @@ interface BlogPostFormProps {
     isFeatured: boolean;
     coverImage?: { _id: string; name?: string };
     tags?: Array<{ _id: string; name: string }>;
+    selected_language?: string;
   };
 }
 
@@ -88,6 +103,7 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
       isFeatured: initialData?.isFeatured || false,
       coverImage: initialData?.coverImage ? [initialData.coverImage._id] : [],
       tags: initialData?.tags?.map((t) => t._id) || [],
+      selected_language: initialData?.selected_language || "all",
     },
   });
 
@@ -122,6 +138,7 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
           content: data.content,
           isPublished: data.isPublished,
           isFeatured: data.isFeatured,
+          ...(data.selected_language && data.selected_language !== "all" ? { selected_language: data.selected_language } : {}),
         });
 
         if (!updateRes.success) {
@@ -167,6 +184,7 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
           isFeatured: data.isFeatured,
           coverImage: coverImageId,
           tags: tagIds,
+          ...(data.selected_language && data.selected_language !== "all" ? { selected_language: data.selected_language } : {}),
         });
 
         if (!addRes.success) {
@@ -258,6 +276,32 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
             />
 
             <div className="space-y-4 rounded-2xl glass-light p-5 border border-white/[0.06]">
+              <FormField
+                control={form.control}
+                name="selected_language"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>{t("language") || "Language"}</FormLabel>
+                    <Select value={field.value || ""} onValueChange={field.onChange}>
+                      <FormControl>
+                        <SelectTrigger className="bg-white/5 border-white/10 text-offwhite focus:ring-crimson">
+                          <SelectValue placeholder={t("selectLanguage") || "Select language"} />
+                        </SelectTrigger>
+                      </FormControl>
+                      <SelectContent className="glass-strong border-white/10">
+                        <SelectItem value="all">{t("allLanguages") || "All Languages"}</SelectItem>
+                        {LANGUAGES.map((lang) => (
+                          <SelectItem key={lang.code} value={lang.code}>
+                            {lang.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
               <FormField
                 control={form.control}
                 name="isPublished"
