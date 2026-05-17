@@ -3,7 +3,7 @@ import { blogPost } from "../../../mod.ts";
 
 export const countFn: ActFn = async (body) => {
   const {
-    set: { search, isPublished, authorId, tagIds },
+    set: { search, isPublished, authorId, tagIds, selected_language },
   } = body.details;
 
   const filter: any = {};
@@ -22,6 +22,10 @@ export const countFn: ActFn = async (body) => {
 
   if (tagIds && tagIds.length > 0) {
     filter["tags._id"] = { $in: tagIds.map((id: string) => new ObjectId(id)) };
+  }
+
+  if (selected_language) {
+    filter.selected_language = selected_language;
   }
 
   return await blogPost.countDocument({ filter });

@@ -15,6 +15,7 @@ export const updateFn: ActFn = async (body) => {
   if (rest.title !== undefined) updateObj.title = rest.title;
   if (rest.slug !== undefined) updateObj.slug = rest.slug;
   if (rest.content !== undefined) updateObj.content = rest.content;
+  if (rest.selected_language !== undefined) updateObj.selected_language = rest.selected_language;
   if (rest.isPublished !== undefined) updateObj.isPublished = rest.isPublished;
   if (rest.isFeatured !== undefined) updateObj.isFeatured = rest.isFeatured;
   if (rest.publishedAt !== undefined) updateObj.publishedAt = rest.publishedAt;

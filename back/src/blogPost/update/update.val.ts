@@ -1,5 +1,6 @@
-import { boolean, object, objectIdValidation, optional, string } from "lesan";
+import { boolean, enums, object, objectIdValidation, optional, string } from "lesan";
 import { selectStruct } from "../../../mod.ts";
+import { language_array } from "@model";
 
 export const updateValidator = () => {
   return object({
@@ -8,6 +9,7 @@ export const updateValidator = () => {
       title: optional(string()),
       slug: optional(string()),
       content: optional(string()),
+      selected_language: optional(enums(language_array)),
       isPublished: optional(boolean()),
       isFeatured: optional(boolean()),
       publishedAt: optional(string()),

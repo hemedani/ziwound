@@ -12,6 +12,7 @@ export const getsFn: ActFn = async (body) => {
       isFeatured,
       authorId,
       tagIds,
+      selected_language,
       sortBy,
       sortOrder,
     },
@@ -54,6 +55,13 @@ export const getsFn: ActFn = async (body) => {
       $match: {
         "tags._id": { $in: tagIds.map((id: string) => new ObjectId(id)) },
       },
+    });
+  }
+
+  // Language filter
+  if (selected_language) {
+    pipeline.push({
+      $match: { selected_language },
     });
   }
 

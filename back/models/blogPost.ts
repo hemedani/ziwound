@@ -1,5 +1,6 @@
 import {
   boolean,
+  coerce,
   defaulted,
   optional,
   type RelationDataType,
@@ -13,11 +14,15 @@ import {
   shared_relation_excludes,
   user_excludes,
 } from "./excludes.ts";
+import { language_enums, LanguageCode } from "./document.ts";
 
 export const blogPost_pure = {
   title: string(),
   slug: string(),
   content: string(),
+  selected_language: optional(
+    coerce(language_enums, string(), (value) => value as LanguageCode),
+  ),
   isPublished: defaulted(boolean(), false),
   isFeatured: defaulted(boolean(), false),
   publishedAt: optional(string()), // Date as string

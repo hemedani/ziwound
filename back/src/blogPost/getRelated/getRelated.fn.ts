@@ -3,7 +3,7 @@ import { blogPost } from "../../../mod.ts";
 
 export const getRelatedFn: ActFn = async (body) => {
   const {
-    set: { slug, limit = 5 },
+    set: { slug, limit = 5, selected_language },
     get,
   } = body.details;
 
@@ -23,20 +23,20 @@ export const getRelatedFn: ActFn = async (body) => {
     return [];
   }
 
+  const matchConditions: any = {
+    "tags._id": { $in: tagIds.map((id: any) => new ObjectId(id)) },
+    _id: { $ne: currentPost._id },
+    isPublished: true,
+  };
+
+  if (selected_language) {
+    matchConditions.selected_language = selected_language;
+  }
+
   const pipeline: any[] = [
-    {
-      $match: {
-        "tags._id": { $in: tagIds.map((id: any) => new ObjectId(id)) },
-        _id: { $ne: currentPost._id },
-        isPublished: true, // Only published posts
-      },
-    },
-    {
-      $sort: { createdAt: -1 },
-    },
-    {
-      $limit: limit,
-    },
+    { $match: matchConditions },
+    { $sort: { createdAt: -1 } },
+    { $limit: limit },
   ];
 
   return await blogPost
