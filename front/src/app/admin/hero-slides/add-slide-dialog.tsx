@@ -37,7 +37,7 @@ export function AddSlideDialog() {
           order: data.order,
           isActive: data.isActive,
           image: data.image || undefined,
-          ...(data.selected_language && data.selected_language !== "all" ? { selected_language: data.selected_language } : {}),
+          ...(data.selected_language && data.selected_language !== "all" ? { selected_language: data.selected_language as "fa" | "en" | "ar" | "zh" | "pt" | "es" | "nl" | "tr" | "ru" | "id" | "hi" | "fr" | "ja" | "pa" | "de" | "te" | "mr" | "ta" | "vi" | "ko" | "it" | "sv" | "pl" | "uk" | "ro" } : {}),
         },
         { _id: 1, title: 1 }
       );

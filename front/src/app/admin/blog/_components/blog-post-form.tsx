@@ -138,7 +138,7 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
           content: data.content,
           isPublished: data.isPublished,
           isFeatured: data.isFeatured,
-          ...(data.selected_language && data.selected_language !== "all" ? { selected_language: data.selected_language } : {}),
+          ...(data.selected_language && data.selected_language !== "all" ? { selected_language: data.selected_language as "fa" | "en" | "ar" | "zh" | "pt" | "es" | "nl" | "tr" | "ru" | "id" | "hi" | "fr" | "ja" | "pa" | "de" | "te" | "mr" | "ta" | "vi" | "ko" | "it" | "sv" | "pl" | "uk" | "ro" } : {}),
         });
 
         if (!updateRes.success) {
@@ -184,7 +184,7 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
           isFeatured: data.isFeatured,
           coverImage: coverImageId,
           tags: tagIds,
-          ...(data.selected_language && data.selected_language !== "all" ? { selected_language: data.selected_language } : {}),
+          ...(data.selected_language && data.selected_language !== "all" ? { selected_language: data.selected_language as "fa" | "en" | "ar" | "zh" | "pt" | "es" | "nl" | "tr" | "ru" | "id" | "hi" | "fr" | "ja" | "pa" | "de" | "te" | "mr" | "ta" | "vi" | "ko" | "it" | "sv" | "pl" | "uk" | "ro" } : {}),
         });
 
         if (!addRes.success) {
