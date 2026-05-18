@@ -1,0 +1,3 @@
+#!/bin/bash
+export OBSCURA_ALLOW_PRIVATE_NETWORK=1
+exec /usr/local/bin/obscura "$@"
