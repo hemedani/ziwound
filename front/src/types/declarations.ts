@@ -1496,6 +1496,7 @@ export type countrySchema = {
 
 export type tagInp = {
   registrar?: number | userInp
+  warCriminals?: number | warCriminalInp
   reports?: number | reportInp
   blogPosts?: number | blogPostInp
 }
@@ -1519,6 +1520,50 @@ export type tagSchema = {
     email: string;
     is_verified: boolean;
   };
+  warCriminals: {
+    _id?: string;
+    fullName: string;
+    aliases?: string[];
+    dateOfBirth?: Date;
+    nationality?: string[];
+    affiliation?: ("Military" | "Paramilitary" | "Government" | "Rebel Group" | "Private Military Company" | "Political" | "Other");
+    rankOrPosition?: string;
+    knownFor?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    biography?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    status: ("Accused" | "Indicted" | "Convicted" | "At Large" | "Deceased" | "Unknown" | "Sanctioned");
+    convictionDetails?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    isEntity: boolean;
+  }[];
   reports: {
     _id?: string;
     title: string;
@@ -1627,6 +1672,101 @@ export type documentSchema = {
 ;
 
 
+export type warCriminalInp = {
+  tags?: number | tagInp
+  photo?: number | fileInp
+  reports?: number | reportInp
+}
+
+
+export type warCriminalSchema = {
+  _id?: string;
+  fullName: string;
+  aliases?: string[];
+  dateOfBirth?: Date;
+  nationality?: string[];
+  affiliation?: ("Military" | "Paramilitary" | "Government" | "Rebel Group" | "Private Military Company" | "Political" | "Other");
+  rankOrPosition?: string;
+  knownFor?: {
+    fa?: string;
+    en?: string;
+    ar?: string;
+    zh?: string;
+    pt?: string;
+    es?: string;
+    nl?: string;
+    tr?: string;
+    ru?: string;
+  };
+  biography?: {
+    fa?: string;
+    en?: string;
+    ar?: string;
+    zh?: string;
+    pt?: string;
+    es?: string;
+    nl?: string;
+    tr?: string;
+    ru?: string;
+  };
+  description?: {
+    fa?: string;
+    en?: string;
+    ar?: string;
+    zh?: string;
+    pt?: string;
+    es?: string;
+    nl?: string;
+    tr?: string;
+    ru?: string;
+  };
+  status: ("Accused" | "Indicted" | "Convicted" | "At Large" | "Deceased" | "Unknown" | "Sanctioned");
+  convictionDetails?: {
+    fa?: string;
+    en?: string;
+    ar?: string;
+    zh?: string;
+    pt?: string;
+    es?: string;
+    nl?: string;
+    tr?: string;
+    ru?: string;
+  };
+  isEntity: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+  tags?: {
+    _id?: string;
+    name: string;
+    color?: string;
+    icon?: string;
+  }[];
+  photo?: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    size: number;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  };
+  reports: {
+    _id?: string;
+    title: string;
+    description: string;
+    location?: {
+      type: "Point";
+      coordinates: any[];
+    };
+    address?: string;
+    status: ("Pending" | "Approved" | "Rejected" | "InReview");
+    priority?: ("Low" | "Medium" | "High");
+    selected_language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+    crime_occurred_at: Date;
+  }[];
+};
+;
+
+
 export type reportInp = {
   reporter?: number | userInp
   documents?: number | documentInp
@@ -1636,6 +1776,7 @@ export type reportInp = {
   attackedCountries?: number | countryInp
   attackedProvinces?: number | provinceInp
   attackedCities?: number | cityInp
+  warCriminals?: number | warCriminalInp
 
 }
 
@@ -1900,6 +2041,61 @@ export type reportSchema = {
     _id?: string;
     name: string;
     english_name: string;
+  }[];
+  warCriminals?: {
+    _id?: string;
+    fullName: string;
+    aliases?: string[];
+    dateOfBirth?: Date;
+    nationality?: string[];
+    affiliation?: ("Military" | "Paramilitary" | "Government" | "Rebel Group" | "Private Military Company" | "Political" | "Other");
+    rankOrPosition?: string;
+    knownFor?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    biography?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    description?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    status: ("Accused" | "Indicted" | "Convicted" | "At Large" | "Deceased" | "Unknown" | "Sanctioned");
+    convictionDetails?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    isEntity: boolean;
   }[];
 };
 ;
@@ -2789,6 +2985,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
           attackedReports?: {
             _id?: (0 | 1);
@@ -2865,6 +3076,21 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
             };
           };
         };
@@ -3222,6 +3448,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
           attackedReports?: {
             _id?: (0 | 1);
@@ -3298,6 +3539,21 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
             };
           };
         };
@@ -4158,6 +4414,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
         };
       };
@@ -4568,6 +4839,21 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
             };
           };
         };
@@ -4988,6 +5274,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
         };
       };
@@ -5105,7 +5406,12 @@ export type ReqType = {
           limit?: number;
           skip?: number;
           search?: string;
-          sortBy?: ("createdAt" | "updatedAt" | "name");
+          type?: ("image" | "video" | "docs");
+          mimeType?: string;
+          uploaderId?: string;
+          minSize?: number;
+          maxSize?: number;
+          sortBy?: ("createdAt" | "updatedAt" | "name" | "size");
           sortOrder?: ("asc" | "desc");
         };
         get: {
@@ -6214,6 +6520,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
         };
       };
@@ -6691,6 +7012,21 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
             };
           };
         };
@@ -7177,6 +7513,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
         };
       };
@@ -7602,6 +7953,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -7945,6 +8311,21 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
             };
           };
           blogPosts?: {
@@ -8626,6 +9007,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
           blogPosts?: {
             _id?: (0 | 1);
@@ -8815,6 +9211,20 @@ export type ReqType = {
             email?: (0 | 1);
             is_verified?: (0 | 1);
           };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
+          };
           reports?: {
             _id?: (0 | 1);
             title?: (0 | 1);
@@ -8865,6 +9275,20 @@ export type ReqType = {
             level?: (0 | 1);
             email?: (0 | 1);
             is_verified?: (0 | 1);
+          };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
           };
           reports?: {
             _id?: (0 | 1);
@@ -8965,6 +9389,45 @@ export type ReqType = {
               publishedAt?: (0 | 1);
             };
           };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              size?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
           reports?: {
             _id?: (0 | 1);
             title?: (0 | 1);
@@ -9040,6 +9503,21 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
             };
           };
           blogPosts?: {
@@ -9158,6 +9636,45 @@ export type ReqType = {
               publishedAt?: (0 | 1);
             };
           };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              size?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
           reports?: {
             _id?: (0 | 1);
             title?: (0 | 1);
@@ -9233,6 +9750,21 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
             };
           };
           blogPosts?: {
@@ -9532,6 +10064,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
         };
       };
@@ -9692,6 +10239,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
         };
       };
@@ -9746,6 +10308,7 @@ export type ReqType = {
           attackedCountryIds?: string[];
           attackedProvinceIds?: string[];
           attackedCityIds?: string[];
+          warCriminalIds?: string[];
         };
         get: {
           _id?: (0 | 1);
@@ -9824,6 +10387,21 @@ export type ReqType = {
             _id?: (0 | 1);
             name?: (0 | 1);
             english_name?: (0 | 1);
+          };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            description?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
           };
         };
       };
@@ -9945,6 +10523,20 @@ export type ReqType = {
               level?: (0 | 1);
               email?: (0 | 1);
               is_verified?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
             };
             reports?: {
               _id?: (0 | 1);
@@ -10316,6 +10908,46 @@ export type ReqType = {
               crime_occurred_at?: (0 | 1);
             };
           };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            description?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              size?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
         };
       };
 
@@ -10336,6 +10968,7 @@ export type ReqType = {
           attackedCountryIds?: string[];
           attackedProvinceIds?: string[];
           attackedCityIds?: string[];
+          warCriminalIds?: string[];
           createdAtFrom?: Date;
           createdAtTo?: Date;
           crimeOccurredFrom?: Date;
@@ -10460,6 +11093,20 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -10819,6 +11466,46 @@ export type ReqType = {
               is_verified?: (0 | 1);
             };
             attackedByReports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            description?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              size?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
               description?: (0 | 1);
@@ -10962,6 +11649,20 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -11332,6 +12033,46 @@ export type ReqType = {
               crime_occurred_at?: (0 | 1);
             };
           };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            description?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              size?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
         };
       };
 
@@ -11351,6 +12092,8 @@ export type ReqType = {
           attackedProvinceIdsToRemove?: string[];
           attackedCityIds?: string[];
           attackedCityIdsToRemove?: string[];
+          warCriminalIds?: string[];
+          warCriminalIdsToRemove?: string[];
         };
         get: {
           _id?: (0 | 1);
@@ -11465,6 +12208,20 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -11835,6 +12592,46 @@ export type ReqType = {
               crime_occurred_at?: (0 | 1);
             };
           };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            description?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              size?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
         };
       };
 
@@ -11921,6 +12718,21 @@ export type ReqType = {
             _id?: (0 | 1);
             name?: (0 | 1);
             english_name?: (0 | 1);
+          };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            description?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
           };
         };
       };
@@ -12037,6 +12849,21 @@ export type ReqType = {
             _id?: (0 | 1);
             name?: (0 | 1);
             english_name?: (0 | 1);
+          };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            description?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
           };
         };
       };
@@ -12180,6 +13007,20 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -12539,6 +13380,46 @@ export type ReqType = {
               is_verified?: (0 | 1);
             };
             attackedByReports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            description?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              size?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
               description?: (0 | 1);
@@ -12671,6 +13552,20 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -13030,6 +13925,46 @@ export type ReqType = {
               is_verified?: (0 | 1);
             };
             attackedByReports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
+          warCriminals?: {
+            _id?: (0 | 1);
+            fullName?: (0 | 1);
+            aliases?: (0 | 1);
+            dateOfBirth?: (0 | 1);
+            nationality?: (0 | 1);
+            affiliation?: (0 | 1);
+            rankOrPosition?: (0 | 1);
+            knownFor?: (0 | 1);
+            biography?: (0 | 1);
+            description?: (0 | 1);
+            status?: (0 | 1);
+            convictionDetails?: (0 | 1);
+            isEntity?: (0 | 1);
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              size?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
               description?: (0 | 1);
@@ -13193,6 +14128,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
         };
       };
@@ -13310,6 +14260,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
         };
       };
@@ -13422,6 +14387,21 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
           };
         };
       };
@@ -13532,6 +14512,21 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
             };
           };
         };
@@ -13750,6 +14745,20 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -13895,6 +14904,20 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -14037,6 +15060,20 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -14174,6 +15211,20 @@ export type ReqType = {
               level?: (0 | 1);
               email?: (0 | 1);
               is_verified?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
             };
             reports?: {
               _id?: (0 | 1);
@@ -14367,6 +15418,20 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -14501,6 +15566,20 @@ export type ReqType = {
               level?: (0 | 1);
               email?: (0 | 1);
               is_verified?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
             };
             reports?: {
               _id?: (0 | 1);
@@ -14639,6 +15718,20 @@ export type ReqType = {
               email?: (0 | 1);
               is_verified?: (0 | 1);
             };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
             reports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -14773,6 +15866,20 @@ export type ReqType = {
               level?: (0 | 1);
               email?: (0 | 1);
               is_verified?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
             };
             reports?: {
               _id?: (0 | 1);
@@ -14985,6 +16092,986 @@ export type ReqType = {
             type?: (0 | 1);
             alt_text?: (0 | 1);
           };
+        };
+      };
+
+
+    }
+
+
+    warCriminal: {
+
+
+      add: {
+        set: {
+          fullName: string;
+          aliases?: string[];
+          dateOfBirth?: Date;
+          nationality?: string[];
+          affiliation?: ("Military" | "Paramilitary" | "Government" | "Rebel Group" | "Private Military Company" | "Political" | "Other");
+          rankOrPosition?: string;
+          knownFor?: {
+            fa?: string;
+            en?: string;
+            ar?: string;
+            zh?: string;
+            pt?: string;
+            es?: string;
+            nl?: string;
+            tr?: string;
+            ru?: string;
+          };
+          biography?: {
+            fa?: string;
+            en?: string;
+            ar?: string;
+            zh?: string;
+            pt?: string;
+            es?: string;
+            nl?: string;
+            tr?: string;
+            ru?: string;
+          };
+          description?: {
+            fa?: string;
+            en?: string;
+            ar?: string;
+            zh?: string;
+            pt?: string;
+            es?: string;
+            nl?: string;
+            tr?: string;
+            ru?: string;
+          };
+          status: ("Accused" | "Indicted" | "Convicted" | "At Large" | "Deceased" | "Unknown" | "Sanctioned");
+          convictionDetails?: {
+            fa?: string;
+            en?: string;
+            ar?: string;
+            zh?: string;
+            pt?: string;
+            es?: string;
+            nl?: string;
+            tr?: string;
+            ru?: string;
+          };
+          isEntity: boolean;
+          createdAt?: Date;
+          updatedAt?: Date;
+          tagIds?: string[];
+          photoId?: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          fullName?: (0 | 1);
+          aliases?: (0 | 1);
+          dateOfBirth?: (0 | 1);
+          nationality?: (0 | 1);
+          affiliation?: (0 | 1);
+          rankOrPosition?: (0 | 1);
+          knownFor?: (0 | 1);
+          biography?: (0 | 1);
+          description?: (0 | 1);
+          status?: (0 | 1);
+          convictionDetails?: (0 | 1);
+          isEntity?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            size?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
+          reports?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+            selected_language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
+          };
+        };
+      };
+
+
+      get: {
+        set: {
+          _id: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          fullName?: (0 | 1);
+          aliases?: (0 | 1);
+          dateOfBirth?: (0 | 1);
+          nationality?: (0 | 1);
+          affiliation?: (0 | 1);
+          rankOrPosition?: (0 | 1);
+          knownFor?: (0 | 1);
+          biography?: (0 | 1);
+          description?: (0 | 1);
+          status?: (0 | 1);
+          convictionDetails?: (0 | 1);
+          isEntity?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              selected_language?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            size?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          reports?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+            selected_language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
+            reporter?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            documents?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              selected_language?: (0 | 1);
+            };
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            hostileCountries?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            attackedCountries?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            attackedProvinces?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            attackedCities?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      gets: {
+        set: {
+          page?: number;
+          limit?: number;
+          skip?: number;
+          search?: string;
+          status?: ("Accused" | "Indicted" | "Convicted" | "At Large" | "Deceased" | "Unknown" | "Sanctioned");
+          affiliation?: ("Military" | "Paramilitary" | "Government" | "Rebel Group" | "Private Military Company" | "Political" | "Other");
+          isEntity?: boolean;
+          tagIds?: string[];
+          nationality?: string;
+          createdAtFrom?: Date;
+          createdAtTo?: Date;
+          sortBy?: ("createdAt" | "updatedAt" | "fullName" | "status" | "affiliation");
+          sortOrder?: ("asc" | "desc");
+        };
+        get: {
+          _id?: (0 | 1);
+          fullName?: (0 | 1);
+          aliases?: (0 | 1);
+          dateOfBirth?: (0 | 1);
+          nationality?: (0 | 1);
+          affiliation?: (0 | 1);
+          rankOrPosition?: (0 | 1);
+          knownFor?: (0 | 1);
+          biography?: (0 | 1);
+          description?: (0 | 1);
+          status?: (0 | 1);
+          convictionDetails?: (0 | 1);
+          isEntity?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              selected_language?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            size?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          reports?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+            selected_language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
+            reporter?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            documents?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              selected_language?: (0 | 1);
+            };
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            hostileCountries?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            attackedCountries?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            attackedProvinces?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            attackedCities?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      update: {
+        set: {
+          _id: string;
+          fullName?: string;
+          aliases?: string[];
+          dateOfBirth?: Date;
+          nationality?: string[];
+          affiliation?: ("Military" | "Paramilitary" | "Government" | "Rebel Group" | "Private Military Company" | "Political" | "Other");
+          rankOrPosition?: string;
+          knownFor?: {
+            fa?: string;
+            en?: string;
+            ar?: string;
+            zh?: string;
+            pt?: string;
+            es?: string;
+            nl?: string;
+            tr?: string;
+            ru?: string;
+          };
+          biography?: {
+            fa?: string;
+            en?: string;
+            ar?: string;
+            zh?: string;
+            pt?: string;
+            es?: string;
+            nl?: string;
+            tr?: string;
+            ru?: string;
+          };
+          description?: {
+            fa?: string;
+            en?: string;
+            ar?: string;
+            zh?: string;
+            pt?: string;
+            es?: string;
+            nl?: string;
+            tr?: string;
+            ru?: string;
+          };
+          status?: ("Accused" | "Indicted" | "Convicted" | "At Large" | "Deceased" | "Unknown" | "Sanctioned");
+          convictionDetails?: {
+            fa?: string;
+            en?: string;
+            ar?: string;
+            zh?: string;
+            pt?: string;
+            es?: string;
+            nl?: string;
+            tr?: string;
+            ru?: string;
+          };
+          isEntity?: boolean;
+        };
+        get: {
+          _id?: (0 | 1);
+          fullName?: (0 | 1);
+          aliases?: (0 | 1);
+          dateOfBirth?: (0 | 1);
+          nationality?: (0 | 1);
+          affiliation?: (0 | 1);
+          rankOrPosition?: (0 | 1);
+          knownFor?: (0 | 1);
+          biography?: (0 | 1);
+          description?: (0 | 1);
+          status?: (0 | 1);
+          convictionDetails?: (0 | 1);
+          isEntity?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              selected_language?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            size?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          reports?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+            selected_language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
+            reporter?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            documents?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              selected_language?: (0 | 1);
+            };
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            hostileCountries?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            attackedCountries?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            attackedProvinces?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            attackedCities?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      updateRelations: {
+        set: {
+          _id: string;
+          tagIds?: string[];
+          tagIdsToRemove?: string[];
+          photoId?: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          fullName?: (0 | 1);
+          aliases?: (0 | 1);
+          dateOfBirth?: (0 | 1);
+          nationality?: (0 | 1);
+          affiliation?: (0 | 1);
+          rankOrPosition?: (0 | 1);
+          knownFor?: (0 | 1);
+          biography?: (0 | 1);
+          description?: (0 | 1);
+          status?: (0 | 1);
+          convictionDetails?: (0 | 1);
+          isEntity?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              selected_language?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            size?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+          };
+          reports?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+            selected_language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
+            reporter?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+            };
+            documents?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              selected_language?: (0 | 1);
+            };
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            hostileCountries?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            attackedCountries?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            attackedProvinces?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            attackedCities?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      remove: {
+        set: {
+          _id: string;
+          hardCascade?: boolean;
+        };
+        get: {
+          _id?: (0 | 1);
+          fullName?: (0 | 1);
+          aliases?: (0 | 1);
+          dateOfBirth?: (0 | 1);
+          nationality?: (0 | 1);
+          affiliation?: (0 | 1);
+          rankOrPosition?: (0 | 1);
+          knownFor?: (0 | 1);
+          biography?: (0 | 1);
+          description?: (0 | 1);
+          status?: (0 | 1);
+          convictionDetails?: (0 | 1);
+          isEntity?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          tags?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            color?: (0 | 1);
+            icon?: (0 | 1);
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            size?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
+          reports?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+            selected_language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
+          };
+        };
+      };
+
+
+      count: {
+        set: {
+          search?: string;
+          status?: ("Accused" | "Indicted" | "Convicted" | "At Large" | "Deceased" | "Unknown" | "Sanctioned");
+          affiliation?: ("Military" | "Paramilitary" | "Government" | "Rebel Group" | "Private Military Company" | "Political" | "Other");
+          isEntity?: boolean;
+        };
+        get: {
+          qty?: string;
         };
       };
 
