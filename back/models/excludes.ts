@@ -75,3 +75,9 @@ export const document_excludes: (string)[] = [
   "createdAt",
   "updatedAt",
 ];
+
+// WarCriminal model excludes
+export const warCriminal_excludes: (string)[] = [
+  "createdAt",
+  "updatedAt",
+];

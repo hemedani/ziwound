@@ -13,6 +13,7 @@ import {
   reports,
   tags,
   users,
+  warCriminals,
 } from "@model";
 import { functionsSetup } from "./src/mod.ts";
 import { RateLimiter } from "./utils/rateLimiter.ts";
@@ -37,6 +38,7 @@ export const document = documents();
 export const blogPost = blogPostModel();
 export const heroSlide = heroSlides();
 export const file = files();
+export const warCriminal = warCriminals();
 
 export const rateLimiter = new RateLimiter(100, 60 * 1000); // 100 requests per minute
 

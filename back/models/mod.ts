@@ -14,3 +14,4 @@ export * from "./document.ts";
 export * from "./country.ts";
 export * from "./blogPost.ts";
 export * from "./heroSlide.ts";
+export * from "./warCriminal.ts";
