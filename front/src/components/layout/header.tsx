@@ -15,6 +15,7 @@ import {
   FolderOpen,
   FileImage,
   Shield,
+  ChevronDown,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -78,12 +79,13 @@ export function Header() {
         {!pathname.startsWith("/admin") && !pathname.includes("/login") && !pathname.includes("/register") && (
           <nav className="hidden md:flex items-center gap-1">
             {[
+              { href: `/${locale}`, label: t("home") },
               { href: `/${locale}/explore`, label: t("explore") },
               { href: `/${locale}/war-crimes`, label: t("warCrimes") },
-              { href: `/${locale}/blog`, label: t("blog") },
               { href: `/${locale}/documents`, label: t("documents") },
-              { href: `/${locale}/about`, label: t("about") },
-              { href: `/${locale}/contact`, label: t("contact") },
+              { href: `/${locale}/war-criminals`, label: t("warCriminals") },
+              { href: `/${locale}/reporters`, label: t("reporters") },
+              { href: `/${locale}/blog`, label: t("blog") },
             ].map((item) => (
               <Link
                 key={item.href}
@@ -98,6 +100,43 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+
+            {/* More Dropdown */}
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  className={cn(
+                    "flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-all duration-200",
+                    "text-slate-body hover:text-offwhite hover:bg-white/[0.04]"
+                  )}
+                >
+                  {t("more")}
+                  <ChevronDown className="h-3 w-3" />
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent align="end" className="w-48 glass-strong border-white/10">
+                <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                  <Link href={`/${locale}/about`}>{t("about")}</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                  <Link href={`/${locale}/contact`}>{t("contact")}</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                  <Link href={`/${locale}/faq`}>{t("faq")}</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                  <Link href={`/${locale}/help`}>{t("help")}</Link>
+                </DropdownMenuItem>
+                <DropdownMenuSeparator className="bg-white/10" />
+                <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                  <Link href={`/${locale}/privacy`}>{t("privacy")}</Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                  <Link href={`/${locale}/terms`}>{t("terms")}</Link>
+                </DropdownMenuItem>
+              </DropdownMenuContent>
+            </DropdownMenu>
+
             {isAuthenticated && (
               <>
                 <Link
@@ -260,15 +299,23 @@ export function Header() {
                       </>
                     ) : (
                       <>
+                        <MobileLink href={`/${locale}`}>{t("home")}</MobileLink>
                         <MobileLink href={`/${locale}/explore`}>{t("explore")}</MobileLink>
                         <MobileLink href={`/${locale}/war-crimes`}>{t("warCrimes")}</MobileLink>
-                        <MobileLink href={`/${locale}/blog`}>{t("blog")}</MobileLink>
                         <MobileLink href={`/${locale}/documents`}>{t("documents")}</MobileLink>
+                        <MobileLink href={`/${locale}/war-criminals`}>{t("warCriminals")}</MobileLink>
+                        <MobileLink href={`/${locale}/reporters`}>{t("reporters")}</MobileLink>
+                        <MobileLink href={`/${locale}/blog`}>{t("blog")}</MobileLink>
+                        <div className="my-2 h-px bg-white/10" />
                         <MobileLink href={`/${locale}/about`}>{t("about")}</MobileLink>
                         <MobileLink href={`/${locale}/contact`}>{t("contact")}</MobileLink>
                         <MobileLink href={`/${locale}/faq`}>{t("faq")}</MobileLink>
+                        <MobileLink href={`/${locale}/help`}>{t("help")}</MobileLink>
+                        <MobileLink href={`/${locale}/privacy`}>{t("privacy")}</MobileLink>
+                        <MobileLink href={`/${locale}/terms`}>{t("terms")}</MobileLink>
                         {isAuthenticated && (
                           <>
+                            <div className="my-2 h-px bg-white/10" />
                             <MobileLink href={`/${locale}/reports/my`}>{t("myReports")}</MobileLink>
                             <MobileLink href={`/${locale}/reports/new`}>{t("newReport")}</MobileLink>
                           </>

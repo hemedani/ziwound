@@ -12,8 +12,11 @@ import { useState, useTransition } from "react";
 import { Loader2 } from "lucide-react";
 import { heroSlideSchema } from "@/types/declarations";
 import { FileUploadField } from "@/components/form/file-upload-field";
+import { ImagePicker } from "@/components/form/image-picker";
+import { GradientInput } from "@/components/form/gradient-input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 
 const LANGUAGES = [
   { code: "fa", name: "فارسی" },
@@ -135,11 +138,10 @@ export function SlideForm({ initialData, onSubmit, onCancel }: SlideFormProps) {
             <FormItem>
               <FormLabel>{t("slideGradient") || "Gradient CSS"}</FormLabel>
               <FormControl>
-                <Textarea
+                <GradientInput
+                  value={field.value}
+                  onChange={field.onChange}
                   placeholder={t("enterSlideGradient") || "Enter CSS gradient"}
-                  className="resize-none bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
-                  rows={3}
-                  {...field}
                 />
               </FormControl>
               <FormMessage />
@@ -210,13 +212,27 @@ export function SlideForm({ initialData, onSubmit, onCancel }: SlideFormProps) {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 items-start">
           <FormItem>
             <FormLabel>{t("slideImage") || "Background Image"}</FormLabel>
-            <FileUploadField
-              label=""
-              maxFiles={1}
-              accept="image/*"
-              value={imageId ? [imageId] : []}
-              onChange={(ids) => setImageId(ids[0] || "")}
-            />
+            <Tabs defaultValue="library">
+              <TabsList className="grid w-full grid-cols-2 bg-white/5 border-white/10">
+                <TabsTrigger value="library">{t("imageLibrary") || "Library"}</TabsTrigger>
+                <TabsTrigger value="upload">{t("uploadNew") || "Upload"}</TabsTrigger>
+              </TabsList>
+              <TabsContent value="library" className="mt-3">
+                <ImagePicker
+                  value={imageId}
+                  onChange={(id) => setImageId(id)}
+                />
+              </TabsContent>
+              <TabsContent value="upload" className="mt-3">
+                <FileUploadField
+                  label=""
+                  maxFiles={1}
+                  accept="image/*"
+                  value={imageId ? [imageId] : []}
+                  onChange={(ids) => setImageId(ids[0] || "")}
+                />
+              </TabsContent>
+            </Tabs>
           </FormItem>
 
           <div className="space-y-4">
