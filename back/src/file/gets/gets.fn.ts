@@ -1,4 +1,5 @@
 import type { ActFn, Document } from "lesan";
+import { ObjectId } from "lesan";
 import { file } from "../../../mod.ts";
 
 export const getsFn: ActFn = async (body) => {
@@ -8,6 +9,11 @@ export const getsFn: ActFn = async (body) => {
 			limit,
 			skip,
 			search,
+			type,
+			mimeType,
+			uploaderId,
+			minSize,
+			maxSize,
 			sortBy,
 			sortOrder,
 		},
@@ -21,6 +27,29 @@ export const getsFn: ActFn = async (body) => {
 		pipeline.push({
 			$match: { $text: { $search: search } },
 		});
+
+	// File type filter
+	if (type) {
+		pipeline.push({ $match: { type } });
+	}
+
+	// MIME type filter (exact match or prefix match)
+	if (mimeType) {
+		pipeline.push({ $match: { mimeType } });
+	}
+
+	// Uploader filter
+	if (uploaderId) {
+		pipeline.push({ $match: { "uploader._id": new ObjectId(uploaderId) } });
+	}
+
+	// Size range filters
+	if (minSize !== undefined || maxSize !== undefined) {
+		const sizeFilter: Document = {};
+		if (minSize !== undefined) sizeFilter.$gte = minSize;
+		if (maxSize !== undefined) sizeFilter.$lte = maxSize;
+		pipeline.push({ $match: { size: sizeFilter } });
+	}
 
 	// Add text search score for sorting if search term exists
 	if (search && (!sortBy || sortBy === "relevance")) {
