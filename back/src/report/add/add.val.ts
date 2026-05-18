@@ -13,6 +13,7 @@ export const addValidator = () => {
       attackedCountryIds: optional(array(objectIdValidation)),
       attackedProvinceIds: optional(array(objectIdValidation)),
       attackedCityIds: optional(array(objectIdValidation)),
+      warCriminalIds: optional(array(objectIdValidation)),
     }),
     get: selectStruct("report", 1),
   });

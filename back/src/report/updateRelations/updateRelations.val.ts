@@ -17,6 +17,8 @@ export const updateRelationsValidator = () => {
       attackedProvinceIdsToRemove: optional(array(objectIdValidation)),
       attackedCityIds: optional(array(objectIdValidation)),
       attackedCityIdsToRemove: optional(array(objectIdValidation)),
+      warCriminalIds: optional(array(objectIdValidation)),
+      warCriminalIdsToRemove: optional(array(objectIdValidation)),
     }),
     get: selectStruct("report", 2),
   });

@@ -19,6 +19,7 @@ export const getsFn: ActFn = async (body) => {
       attackedCountryIds,
       attackedProvinceIds,
       attackedCityIds,
+      warCriminalIds,
       createdAtFrom,
       createdAtTo,
       crimeOccurredFrom,
@@ -121,6 +122,16 @@ export const getsFn: ActFn = async (body) => {
       $match: {
         "attackedCities._id": {
           $in: attackedCityIds.map((id: string) => new ObjectId(id)),
+        },
+      },
+    });
+
+  // War Criminals filter
+  warCriminalIds && warCriminalIds.length > 0 &&
+    pipeline.push({
+      $match: {
+        "warCriminals._id": {
+          $in: warCriminalIds.map((id: string) => new ObjectId(id)),
         },
       },
     });

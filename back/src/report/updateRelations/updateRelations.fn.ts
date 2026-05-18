@@ -3,7 +3,7 @@ import { report } from "../../../mod.ts";
 
 export const updateRelationsFn: ActFn = async (body) => {
   const {
-    set: { _id, tags, category, documentIds, documentIdsToRemove, hostileCountryIds, hostileCountryIdsToRemove, attackedCountryIds, attackedCountryIdsToRemove, attackedProvinceIds, attackedProvinceIdsToRemove, attackedCityIds, attackedCityIdsToRemove },
+    set: { _id, tags, category, documentIds, documentIdsToRemove, hostileCountryIds, hostileCountryIdsToRemove, attackedCountryIds, attackedCountryIdsToRemove, attackedProvinceIds, attackedProvinceIdsToRemove, attackedCityIds, attackedCityIdsToRemove, warCriminalIds, warCriminalIdsToRemove },
     get,
   } = body.details;
 
@@ -189,6 +189,37 @@ export const updateRelationsFn: ActFn = async (body) => {
           _ids: attackedCityIdsToRemove.map((id: string) => new ObjectId(id)),
           relatedRelations: {
             attackedByReports: true,
+          },
+        },
+      },
+      projection: get,
+    });
+  }
+
+  if (warCriminalIds) {
+    await report.addRelation({
+      filters: { _id: reportId },
+      relations: {
+        warCriminals: {
+          _ids: warCriminalIds.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            reports: true,
+          },
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
+
+  if (warCriminalIdsToRemove) {
+    await report.removeRelation({
+      filters: { _id: reportId },
+      relations: {
+        warCriminals: {
+          _ids: warCriminalIdsToRemove.map((id: string) => new ObjectId(id)),
+          relatedRelations: {
+            reports: true,
           },
         },
       },

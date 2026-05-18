@@ -16,6 +16,7 @@ import {
   report_excludes,
   shared_relation_excludes,
   user_excludes,
+  warCriminal_excludes,
 } from "./excludes.ts";
 import { geoJSONStruct } from "./utils/geoJSONStruct.ts";
 import { language_enums, type LanguageCode } from "./document.ts";
@@ -179,6 +180,23 @@ export const report_relations = {
     excludes: location_excludes,
     relatedRelations: {
       attackedByReports: {
+        type: "multiple" as RelationDataType,
+        limit: 50,
+        excludes: report_excludes,
+        sort: {
+          field: "_id",
+          order: "desc" as RelationSortOrderType,
+        },
+      },
+    },
+  },
+  warCriminals: {
+    schemaName: "warCriminal",
+    type: "multiple" as RelationDataType,
+    optional: true,
+    excludes: warCriminal_excludes,
+    relatedRelations: {
+      reports: {
         type: "multiple" as RelationDataType,
         limit: 50,
         excludes: report_excludes,

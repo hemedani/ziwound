@@ -30,6 +30,7 @@ export const getsValidator = () => {
       attackedCountryIds: optional(array(objectIdValidation)),
       attackedProvinceIds: optional(array(objectIdValidation)),
       attackedCityIds: optional(array(objectIdValidation)),
+      warCriminalIds: optional(array(objectIdValidation)),
       // Date range filters
       createdAtFrom: optional(date()),
       createdAtTo: optional(date()),
