@@ -49,6 +49,7 @@ The backend defines the following core models:
 - Reports - War crime reports with title, description, attachments (files), tags (multiple), location (GeoJSON Point), status, priority, reporter relation, category relation
 - Documents - Supporting documents related to reports (title, description, document files (multiple), multiple relations to Reports - each report can have several documents)
 - Blog Posts - Blog articles with title, content, author, cover image, publish status, tags, and publication date
+- WarCriminals - Individuals or entities accused/convicted of war crimes (fullName, aliases, affiliation, status, knownFor, biography, convictionDetails, isEntity, photo, tags)
 
 ## Recent Implementation Notes
 
@@ -84,6 +85,31 @@ This section documents key features and implementations added in recent developm
   - Image relation optional - falls back to gradient background
   - Seed data provided for initial 3 slides
   - Pagination support with page/limit parameters
+
+### WarCriminal Model Implementation
+
+- **Schema**: fullName (required), aliases, dateOfBirth, nationality, affiliation (enum), rankOrPosition, knownFor/biography/description/convictionDetails (localizedWarInfo), status (enum: Accused/Indicted/Convicted/At Large/Deceased/Unknown/Sanctioned), isEntity (boolean), photo (single file relation), tags (multiple)
+- **CRUD Acts**: add, get, gets, update, updateRelations, remove, count
+- **Features**:
+  - Text index on fullName, aliases, and localized sub-fields (en/fa/ar)
+  - One-direction relation: `report.ts` owns `warCriminals` relation; `warCriminal.ts` only owns `tags` and `photo`
+  - No `selected_language` field — i18n handled entirely via `localizedWarInfo` sub-fields
+  - `gets` filters: status, affiliation, isEntity, tagIds, nationality, date range, full-text search
+  - Link WarCriminals to Reports via `warCriminalIds` in `report.add` and `report.updateRelations`
+  - Seed data: 3 entries (Slobodan Milosevic, Wagner Group, Radovan Karadzic)
+
+### Important Lessons Learned
+
+**1. One-Directional Relations — Never Duplicate**
+In Lesan, relations are strictly one-directional. When Model A defines a relation to Model B with `relatedRelations`, Lesan automatically creates the reverse on Model B. **Never** define the same relation on both models. For example:
+- `report.ts` defines `warCriminals` → Lesan auto-creates `reports` on `warCriminal`
+- `warCriminal.ts` should **NOT** define `reports` or `documents` relations
+- Only define relations that the model *owns* (e.g., `tags`, `photo` on `warCriminal`)
+
+**2. `localizedWarInfo` vs `selected_language` — When to Use Each**
+- **Use `selected_language`** when the model has flat text fields that need language switching per-record (e.g., BlogPost, HeroSlide, Document). The field acts as a filter to select which language version of the content to display.
+- **Do NOT use `selected_language`** when the model uses `localizedWarInfo` (or similar nested language objects) for its rich text fields. The `localizedWarInfo` type already stores all language versions inline (`{ fa, en, ar, zh, ... }`), so no separate language selector is needed. The frontend picks the right sub-field directly.
+- Example: `country.ts` and `warCriminal.ts` use `localizedWarInfo` for fields like `knownFor`, `biography`, etc. — they do **not** have `selected_language`.
 
 ### Language Support Pattern
 

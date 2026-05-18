@@ -80,3 +80,4 @@ dump.rdb
 
 # Front development assets
 front/ignoreAssets
+front/.playwright-mcp

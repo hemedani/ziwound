@@ -479,6 +479,20 @@ import { getImageUploadUrl } from "@/utils/imageUrl";
 />;
 ```
 
+**CRITICAL: Always use `file.name` (NOT `file._id`) when constructing image URLs.**
+
+The backend stores uploaded files with a `name` field that represents the actual filename on disk. The proxy URL is constructed as `uploads/{type}/{name}`. Using `_id` will result in broken images.
+
+```tsx
+// ✅ CORRECT - Use file.name
+<Image src={getImageUploadUrl(file.name, "image")} alt={file.name} fill unoptimized />
+
+// ❌ WRONG - Never use file._id for URLs
+<Image src={getImageUploadUrl(file._id, "image")} alt={file.name} fill unoptimized />
+```
+
+This applies to all file-related models: `fileSchema`, `heroSlide.image`, `warCriminal.photo`, `user.avatar`, `blogPost.coverImage`, `document.documentFiles`, etc. Always access the `.name` property of the nested file object.
+
 #### Download Links
 
 For download links (not rendered as images), use the URL directly:
