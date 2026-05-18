@@ -45,6 +45,7 @@ export function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
     { name: t("files"), href: "/admin/files", icon: FileImage },
     { name: t("documents"), href: "/admin/documents", icon: FileText },
     { name: t("blog") || "Blog", href: "/admin/blog", icon: BookOpen },
+    { name: t("warCriminals") || "War Criminals", href: "/admin/war-criminals", icon: Shield },
   ];
 
   const filteredNavigation = navigation.filter(
