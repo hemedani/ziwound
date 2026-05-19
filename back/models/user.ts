@@ -1,5 +1,6 @@
 import { coreApp } from "../mod.ts";
 import {
+  array,
   boolean,
   coerce,
   date,
@@ -16,8 +17,18 @@ import {
 } from "lesan";
 import { createUpdateAt, isValidNationalNumber } from "@lib";
 import { file_excludes, location_excludes, user_excludes } from "./excludes.ts";
+import { localizedWarInfo } from "./utils/localizedFields.ts";
 
-export const user_level_array = ["Ghost", "Manager", "Editor", "Ordinary"];
+export const user_level_array = [
+  "Ghost",
+  "Manager",
+  "Editor",
+  "Reporter",
+  "Artist",
+  "Diplomat",
+  "Researcher",
+  "Ordinary",
+];
 export const user_level_emums = enums(user_level_array);
 
 export const mobile_pattern = pattern(
@@ -81,6 +92,11 @@ export const user_pure = {
   email: emailPattern,
   password: string(),
   is_verified: defaulted(boolean(), false),
+  bio: optional(localizedWarInfo),
+  expertise: optional(array(string())),
+  verified: defaulted(boolean(), false),
+  verificationBadge: optional(string()),
+  isPublic: defaulted(boolean(), true),
   ...createUpdateAt,
 };
 
