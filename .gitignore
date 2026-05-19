@@ -78,6 +78,9 @@ data/db/
 # Redis dump (if used)
 dump.rdb
 
+# Git bundle
+*.bundle
+
 # Front development assets
 front/ignoreAssets
 front/.playwright-mcp
