@@ -61,7 +61,10 @@
     "unexpectedError": "Произошла непредвиденная ошибка.",
     "images": "Изображения",
     "warCrimes": "Военные преступления",
-    "details": "Детали"
+    "details": "Детали",
+    "confirmations": "Подтверждения",
+    "noConfirmations": "Пока нет подтверждений",
+    "language": "Язык"
   },
   "auth": {
     "email": "Электронная почта",
@@ -162,7 +165,8 @@
     "documents": "Документы",
     "language": "Язык",
     "languagePlaceholder": "Выберите язык",
-    "document": "Документ"
+    "document": "Документ",
+    "confirmations": "Подтверждения"
   },
   "home": {
     "cta": {
@@ -795,7 +799,46 @@
     "searchImages": "Поиск изображений...",
     "noImagesFound": "Изображения не найдены",
     "page": "Страница",
-    "presets": "Пресеты"
+    "presets": "Пресеты",
+    "all": "Все",
+    "unverified": "Не Подтверждено",
+    "badge": "Значок",
+    "bio": "Биография",
+    "expertise": "Экспертиза",
+    "verified": "Подтверждено",
+    "verificationBadge": "Значок Подтверждения",
+    "isPublic": "Общедоступный",
+    "Reporter": "Репортер",
+    "Artist": "Художник",
+    "Diplomat": "Дипломат",
+    "Researcher": "Исследователь",
+    "confirmations": "Подтверждения",
+    "confirmationsManagement": "Управление Подтверждениями",
+    "confirmationsManagementDescription": "Управление подтверждениями и связанной документацией",
+    "addConfirmation": "Добавить Подтверждение",
+    "addConfirmationDescription": "Создать новое подтверждение",
+    "editConfirmation": "Редактировать Подтверждение",
+    "editConfirmationDescription": "Обновить детали этого подтверждения",
+    "deleteConfirmation": "Удалить Подтверждение",
+    "viewConfirmation": "Просмотр Подтверждения",
+    "searchConfirmations": "Поиск подтверждений...",
+    "noConfirmations": "Подтверждения не найдены",
+    "confirmationCreated": "Подтверждение успешно создано.",
+    "confirmationUpdated": "Подтверждение успешно обновлено.",
+    "confirmationDeleted": "Подтверждение успешно удалено.",
+    "failedToCreateConfirmation": "Не удалось создать подтверждение.",
+    "failedToUpdateConfirmation": "Не удалось обновить подтверждение.",
+    "failedToDeleteConfirmation": "Не удалось удалить подтверждение.",
+    "deleteConfirmationConfirm": "Вы уверены, что хотите удалить это подтверждение?",
+    "confirmation": {
+      "types": {
+        "Diary": "Дневник",
+        "Eyewitness": "Очевидец",
+        "OfficialStatement": "Официальное Заявление",
+        "MediaNote": "Заметка СМИ",
+        "Other": "Другое"
+      }
+    }
   },
   "notFound": {
     "backHome": "Вернуться на главную",
@@ -1198,5 +1241,28 @@
     "result": "результат",
     "results": "результаты",
     "organization": "Орг"
+  },
+  "confirmation": {
+    "title": "Подтверждение",
+    "addConfirmation": "Добавить Подтверждение",
+    "editConfirmation": "Редактировать Подтверждение",
+    "deleteConfirmation": "Удалить Подтверждение",
+    "confirmations": "Подтверждения",
+    "noConfirmations": "Пока нет подтверждений",
+    "titleLabel": "Заголовок",
+    "contentLabel": "Содержание",
+    "typeLabel": "Тип",
+    "types": {
+      "Diary": "Дневник",
+      "Eyewitness": "Очевидец",
+      "OfficialStatement": "Официальное Заявление",
+      "MediaNote": "Заметка СМИ",
+      "Other": "Другое"
+    },
+    "supportingFiles": "Поддерживающие Файлы",
+    "isVerified": "Подтверждено",
+    "badge": "Значок",
+    "author": "Автор",
+    "report": "Отчет"
   }
 }

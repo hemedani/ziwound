@@ -61,7 +61,10 @@
     "unexpectedError": "Er is een onverwachte fout opgetreden.",
     "images": "Afbeeldingen",
     "warCrimes": "Oorlogsmisdaden",
-    "details": "Details"
+    "details": "Details",
+    "confirmations": "Bevestigingen",
+    "noConfirmations": "Nog geen bevestigingen",
+    "language": "Taal"
   },
   "auth": {
     "email": "E-mail",
@@ -162,7 +165,8 @@
     "documents": "Documenten",
     "language": "Taal",
     "languagePlaceholder": "Selecteer een taal",
-    "document": "Document"
+    "document": "Document",
+    "confirmations": "Bevestigingen"
   },
   "home": {
     "cta": {
@@ -795,7 +799,46 @@
     "searchImages": "Afbeeldingen zoeken...",
     "noImagesFound": "Geen afbeeldingen gevonden",
     "page": "Pagina",
-    "presets": "Voorinstellingen"
+    "presets": "Voorinstellingen",
+    "all": "Alle",
+    "unverified": "Niet Geverifieerd",
+    "badge": "Badge",
+    "bio": "Biografie",
+    "expertise": "Expertise",
+    "verified": "Geverifieerd",
+    "verificationBadge": "Verificatiebadge",
+    "isPublic": "Openbaar",
+    "Reporter": "Verslaggever",
+    "Artist": "Artiest",
+    "Diplomat": "Diplomaat",
+    "Researcher": "Onderzoeker",
+    "confirmations": "Bevestigingen",
+    "confirmationsManagement": "Bevestigingen Beheer",
+    "confirmationsManagementDescription": "Beheer bevestigingen en gerelateerde documentatie",
+    "addConfirmation": "Bevestiging Toevoegen",
+    "addConfirmationDescription": "Maak een nieuwe bevestiging aan",
+    "editConfirmation": "Bevestiging Bewerken",
+    "editConfirmationDescription": "Werk de details van deze bevestiging bij",
+    "deleteConfirmation": "Bevestiging Verwijderen",
+    "viewConfirmation": "Bevestiging Bekijken",
+    "searchConfirmations": "Zoek bevestigingen...",
+    "noConfirmations": "Geen bevestigingen gevonden",
+    "confirmationCreated": "Bevestiging succesvol aangemaakt.",
+    "confirmationUpdated": "Bevestiging succesvol bijgewerkt.",
+    "confirmationDeleted": "Bevestiging succesvol verwijderd.",
+    "failedToCreateConfirmation": "Aanmaken van bevestiging mislukt.",
+    "failedToUpdateConfirmation": "Bijwerken van bevestiging mislukt.",
+    "failedToDeleteConfirmation": "Verwijderen van bevestiging mislukt.",
+    "deleteConfirmationConfirm": "Weet u zeker dat u deze bevestiging wilt verwijderen?",
+    "confirmation": {
+      "types": {
+        "Diary": "Dagboek",
+        "Eyewitness": "Ooggetuige",
+        "OfficialStatement": "Officiële Verklaring",
+        "MediaNote": "Media Notitie",
+        "Other": "Overig"
+      }
+    }
   },
   "notFound": {
     "backHome": "Terug naar startpagina",
@@ -1198,5 +1241,28 @@
     "result": "resultaat",
     "results": "resultaten",
     "organization": "Org"
+  },
+  "confirmation": {
+    "title": "Bevestiging",
+    "addConfirmation": "Bevestiging Toevoegen",
+    "editConfirmation": "Bevestiging Bewerken",
+    "deleteConfirmation": "Bevestiging Verwijderen",
+    "confirmations": "Bevestigingen",
+    "noConfirmations": "Nog geen bevestigingen",
+    "titleLabel": "Titel",
+    "contentLabel": "Inhoud",
+    "typeLabel": "Type",
+    "types": {
+      "Diary": "Dagboek",
+      "Eyewitness": "Ooggetuige",
+      "OfficialStatement": "Officiële Verklaring",
+      "MediaNote": "Media Notitie",
+      "Other": "Overig"
+    },
+    "supportingFiles": "Ondersteunende Bestanden",
+    "isVerified": "Geverifieerd",
+    "badge": "Badge",
+    "author": "Auteur",
+    "report": "Rapport"
   }
 }

@@ -61,7 +61,10 @@
     "unexpectedError": "An unexpected error occurred.",
     "images": "Images",
     "warCrimes": "War Crimes",
-    "details": "Details"
+    "details": "Details",
+    "confirmations": "Confirmations",
+    "noConfirmations": "No confirmations yet",
+    "language": "Language"
   },
   "auth": {
     "email": "Email",
@@ -180,7 +183,8 @@
     "coordinates": "Coordinates",
     "language": "Language",
     "languagePlaceholder": "Select a language",
-    "document": "Document"
+    "document": "Document",
+    "confirmations": "Confirmations"
   },
   "home": {
     "cta": {
@@ -816,7 +820,46 @@
     "searchImages": "Search images...",
     "noImagesFound": "No images found",
     "page": "Page",
-    "presets": "Presets"
+    "presets": "Presets",
+    "all": "All",
+    "unverified": "Unverified",
+    "badge": "Badge",
+    "bio": "Bio",
+    "expertise": "Expertise",
+    "verified": "Verified",
+    "verificationBadge": "Verification Badge",
+    "isPublic": "Is Public",
+    "Reporter": "Reporter",
+    "Artist": "Artist",
+    "Diplomat": "Diplomat",
+    "Researcher": "Researcher",
+    "confirmations": "Confirmations",
+    "confirmationsManagement": "Confirmations Management",
+    "confirmationsManagementDescription": "Manage confirmations and related documentation",
+    "addConfirmation": "Add Confirmation",
+    "addConfirmationDescription": "Create a new confirmation",
+    "editConfirmation": "Edit Confirmation",
+    "editConfirmationDescription": "Update this confirmation details",
+    "deleteConfirmation": "Delete Confirmation",
+    "viewConfirmation": "View Confirmation",
+    "searchConfirmations": "Search confirmations...",
+    "noConfirmations": "No confirmations found",
+    "confirmationCreated": "Confirmation has been created successfully.",
+    "confirmationUpdated": "Confirmation has been updated successfully.",
+    "confirmationDeleted": "Confirmation deleted successfully.",
+    "failedToCreateConfirmation": "Failed to create confirmation.",
+    "failedToUpdateConfirmation": "Failed to update confirmation.",
+    "failedToDeleteConfirmation": "Failed to delete confirmation.",
+    "deleteConfirmationConfirm": "Are you sure you want to delete this confirmation?",
+    "confirmation": {
+      "types": {
+        "Diary": "Diary",
+        "Eyewitness": "Eyewitness",
+        "OfficialStatement": "Official Statement",
+        "MediaNote": "Media Note",
+        "Other": "Other"
+      }
+    }
   },
   "notFound": {
     "backHome": "Back to Home",
@@ -1213,5 +1256,28 @@
     "result": "result",
     "results": "results",
     "organization": "Org"
+  },
+  "confirmation": {
+    "title": "Confirmation",
+    "addConfirmation": "Add Confirmation",
+    "editConfirmation": "Edit Confirmation",
+    "deleteConfirmation": "Delete Confirmation",
+    "confirmations": "Confirmations",
+    "noConfirmations": "No confirmations yet",
+    "titleLabel": "Title",
+    "contentLabel": "Content",
+    "typeLabel": "Type",
+    "types": {
+      "Diary": "Diary",
+      "Eyewitness": "Eyewitness",
+      "OfficialStatement": "Official Statement",
+      "MediaNote": "Media Note",
+      "Other": "Other"
+    },
+    "supportingFiles": "Supporting Files",
+    "isVerified": "Verified",
+    "badge": "Badge",
+    "author": "Author",
+    "report": "Report"
   }
 }

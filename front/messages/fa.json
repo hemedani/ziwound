@@ -61,7 +61,10 @@
     "unexpectedError": "خطای غیرمنتظره‌ای رخ داد.",
     "images": "تصاویر",
     "warCrimes": "جنایات جنگی",
-    "details": "جزئیات"
+    "details": "جزئیات",
+    "confirmations": "تأییدیه‌ها",
+    "noConfirmations": "هنوز تأییدیه‌ای وجود ندارد",
+    "language": "زبان"
   },
   "auth": {
     "email": "ایمیل",
@@ -181,7 +184,8 @@
     "submittedAt": "تاریخ ثبت",
     "lastUpdated": "آخرین به‌روزرسانی",
     "reportLanguage": "زبان گزارش",
-    "coordinates": "مختصات"
+    "coordinates": "مختصات",
+    "confirmations": "تأییدیه‌ها"
   },
   "home": {
     "cta": {
@@ -817,7 +821,46 @@
     "searchImages": "جستجوی تصاویر...",
     "noImagesFound": "هیچ تصویری یافت نشد",
     "page": "صفحه",
-    "presets": "پیش‌فرض‌ها"
+    "presets": "پیش‌فرض‌ها",
+    "all": "همه",
+    "unverified": "تأیید نشده",
+    "badge": "نشان",
+    "bio": "بیوگرافی",
+    "expertise": "تخصص‌ها",
+    "verified": "تأیید شده",
+    "verificationBadge": "نشان تأیید",
+    "isPublic": "عمومی",
+    "Reporter": "خبرنگار",
+    "Artist": "هنرمند",
+    "Diplomat": "دیپلمات",
+    "Researcher": "پژوهشگر",
+    "confirmations": "تأییدیه‌ها",
+    "confirmationsManagement": "مدیریت تأییدیه‌ها",
+    "confirmationsManagementDescription": "مدیریت تأییدیه‌ها و مستندات مرتبط",
+    "addConfirmation": "افزودن تأییدیه",
+    "addConfirmationDescription": "ایجاد تأییدیه جدید",
+    "editConfirmation": "ویرایش تأییدیه",
+    "editConfirmationDescription": "به‌روزرسانی اطلاعات این تأییدیه",
+    "deleteConfirmation": "حذف تأییدیه",
+    "viewConfirmation": "مشاهده تأییدیه",
+    "searchConfirmations": "جستجوی تأییدیه‌ها...",
+    "noConfirmations": "تأییدیه‌ای یافت نشد",
+    "confirmationCreated": "تأییدیه با موفقیت ایجاد شد.",
+    "confirmationUpdated": "تأییدیه با موفقیت به‌روزرسانی شد.",
+    "confirmationDeleted": "تأییدیه با موفقیت حذف شد.",
+    "failedToCreateConfirmation": "خطا در ایجاد تأییدیه.",
+    "failedToUpdateConfirmation": "خطا در به‌روزرسانی تأییدیه.",
+    "failedToDeleteConfirmation": "خطا در حذف تأییدیه.",
+    "deleteConfirmationConfirm": "آیا از حذف این تأییدیه اطمینان دارید؟",
+    "confirmation": {
+      "types": {
+        "Diary": "دفترچه روزانه",
+        "Eyewitness": "شاهد عینی",
+        "OfficialStatement": "بیانیه رسمی",
+        "MediaNote": "یادداشت رسانه‌ای",
+        "Other": "سایر"
+      }
+    }
   },
   "notFound": {
     "backHome": "بازگشت به صفحه اصلی",
@@ -1214,5 +1257,28 @@
     "result": "نتیجه",
     "results": "نتیجه",
     "organization": "سازمان"
+  },
+  "confirmation": {
+    "title": "تأییدیه",
+    "addConfirmation": "افزودن تأییدیه",
+    "editConfirmation": "ویرایش تأییدیه",
+    "deleteConfirmation": "حذف تأییدیه",
+    "confirmations": "تأییدیه‌ها",
+    "noConfirmations": "هنوز تأییدیه‌ای وجود ندارد",
+    "titleLabel": "عنوان",
+    "contentLabel": "محتوا",
+    "typeLabel": "نوع",
+    "types": {
+      "Diary": "دفترچه روزانه",
+      "Eyewitness": "شاهد عینی",
+      "OfficialStatement": "بیانیه رسمی",
+      "MediaNote": "یادداشت رسانه‌ای",
+      "Other": "سایر"
+    },
+    "supportingFiles": "فایل‌های پشتیبان",
+    "isVerified": "تأیید شده",
+    "badge": "نشان",
+    "author": "نویسنده",
+    "report": "گزارش"
   }
 }

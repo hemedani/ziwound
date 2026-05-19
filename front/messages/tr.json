@@ -61,7 +61,10 @@
     "unexpectedError": "Beklenmeyen bir hata oluştu.",
     "images": "Görseller",
     "warCrimes": "Savaş suçları",
-    "details": "Detaylar"
+    "details": "Detaylar",
+    "confirmations": "Onaylar",
+    "noConfirmations": "Henüz onay yok",
+    "language": "Dil"
   },
   "auth": {
     "email": "E-posta",
@@ -162,7 +165,8 @@
     "documents": "Belgeler",
     "language": "Dil",
     "languagePlaceholder": "Bir dil seçin",
-    "document": "Belge"
+    "document": "Belge",
+    "confirmations": "Onaylar"
   },
   "home": {
     "cta": {
@@ -742,7 +746,46 @@
     "searchImages": "Resim ara...",
     "noImagesFound": "Resim bulunamadı",
     "page": "Sayfa",
-    "presets": "Ön Ayarlar"
+    "presets": "Ön Ayarlar",
+    "all": "Tümü",
+    "unverified": "Doğrulanmamış",
+    "badge": "Rozet",
+    "bio": "Biyografi",
+    "expertise": "Uzmanlıklar",
+    "verified": "Doğrulandı",
+    "verificationBadge": "Doğrulama Rozeti",
+    "isPublic": "Herkese Açık",
+    "Reporter": "Muhabir",
+    "Artist": "Sanatçı",
+    "Diplomat": "Diplomat",
+    "Researcher": "Araştırmacı",
+    "confirmations": "Onaylar",
+    "confirmationsManagement": "Onay Yönetimi",
+    "confirmationsManagementDescription": "Onayları ve ilgili belgeleri yönetin",
+    "addConfirmation": "Onay Ekle",
+    "addConfirmationDescription": "Yeni bir onay oluştur",
+    "editConfirmation": "Onayı Düzenle",
+    "editConfirmationDescription": "Bu onayın ayrıntılarını güncelle",
+    "deleteConfirmation": "Onayı Sil",
+    "viewConfirmation": "Onayı Görüntüle",
+    "searchConfirmations": "Onaylarda ara...",
+    "noConfirmations": "Onay bulunamadı",
+    "confirmationCreated": "Onay başarıyla oluşturuldu.",
+    "confirmationUpdated": "Onay başarıyla güncellendi.",
+    "confirmationDeleted": "Onay başarıyla silindi.",
+    "failedToCreateConfirmation": "Onay oluşturulamadı.",
+    "failedToUpdateConfirmation": "Onay güncellenemedi.",
+    "failedToDeleteConfirmation": "Onay silinemedi.",
+    "deleteConfirmationConfirm": "Bu onayı silmek istediğinizden emin misiniz?",
+    "confirmation": {
+      "types": {
+        "Diary": "Günlük",
+        "Eyewitness": "Görgü Tanığı",
+        "OfficialStatement": "Resmi Açıklama",
+        "MediaNote": "Medya Notu",
+        "Other": "Diğer"
+      }
+    }
   },
   "notFound": {
     "backHome": "Ana Sayfaya Dön",
@@ -1145,5 +1188,28 @@
     "result": "sonuç",
     "results": "sonuç",
     "organization": "Kuruluş"
+  },
+  "confirmation": {
+    "title": "Onay",
+    "addConfirmation": "Onay Ekle",
+    "editConfirmation": "Onayı Düzenle",
+    "deleteConfirmation": "Onayı Sil",
+    "confirmations": "Onaylar",
+    "noConfirmations": "Henüz onay yok",
+    "titleLabel": "Başlık",
+    "contentLabel": "İçerik",
+    "typeLabel": "Tür",
+    "types": {
+      "Diary": "Günlük",
+      "Eyewitness": "Görgü Tanığı",
+      "OfficialStatement": "Resmi Açıklama",
+      "MediaNote": "Medya Notu",
+      "Other": "Diğer"
+    },
+    "supportingFiles": "Destekleyici Dosyalar",
+    "isVerified": "Doğrulandı",
+    "badge": "Rozet",
+    "author": "Yazar",
+    "report": "Rapor"
   }
 }

@@ -61,7 +61,10 @@
     "unexpectedError": "发生了意外错误。",
     "images": "图片",
     "warCrimes": "战争罪",
-    "details": "详情"
+    "details": "详情",
+    "confirmations": "确认",
+    "noConfirmations": "暂无确认",
+    "language": "语言"
   },
   "auth": {
     "email": "电子邮箱",
@@ -162,7 +165,8 @@
     "documents": "文档",
     "language": "语言",
     "languagePlaceholder": "选择一种语言",
-    "document": "文档"
+    "document": "文档",
+    "confirmations": "确认"
   },
   "home": {
     "cta": {
@@ -742,7 +746,46 @@
     "searchImages": "搜索图片...",
     "noImagesFound": "未找到图片",
     "page": "页",
-    "presets": "预设"
+    "presets": "预设",
+    "all": "全部",
+    "unverified": "未验证",
+    "badge": "徽章",
+    "bio": "个人简介",
+    "expertise": "专业领域",
+    "verified": "已验证",
+    "verificationBadge": "验证徽章",
+    "isPublic": "公开",
+    "Reporter": "记者",
+    "Artist": "艺术家",
+    "Diplomat": "外交官",
+    "Researcher": "研究员",
+    "confirmations": "确认",
+    "confirmationsManagement": "确认管理",
+    "confirmationsManagementDescription": "管理确认及相关文档",
+    "addConfirmation": "添加确认",
+    "addConfirmationDescription": "创建新确认",
+    "editConfirmation": "编辑确认",
+    "editConfirmationDescription": "更新此确认详情",
+    "deleteConfirmation": "删除确认",
+    "viewConfirmation": "查看确认",
+    "searchConfirmations": "搜索确认...",
+    "noConfirmations": "未找到确认",
+    "confirmationCreated": "确认已成功创建。",
+    "confirmationUpdated": "确认已成功更新。",
+    "confirmationDeleted": "确认已成功删除。",
+    "failedToCreateConfirmation": "创建确认失败。",
+    "failedToUpdateConfirmation": "更新确认失败。",
+    "failedToDeleteConfirmation": "删除确认失败。",
+    "deleteConfirmationConfirm": "您确定要删除此确认吗？",
+    "confirmation": {
+      "types": {
+        "Diary": "日记",
+        "Eyewitness": "目击者",
+        "OfficialStatement": "官方声明",
+        "MediaNote": "媒体说明",
+        "Other": "其他"
+      }
+    }
   },
   "notFound": {
     "backHome": "返回首页",
@@ -1145,5 +1188,28 @@
     "result": "结果",
     "results": "结果",
     "organization": "组织"
+  },
+  "confirmation": {
+    "title": "确认",
+    "addConfirmation": "添加确认",
+    "editConfirmation": "编辑确认",
+    "deleteConfirmation": "删除确认",
+    "confirmations": "确认",
+    "noConfirmations": "暂无确认",
+    "titleLabel": "标题",
+    "contentLabel": "内容",
+    "typeLabel": "类型",
+    "types": {
+      "Diary": "日记",
+      "Eyewitness": "目击者",
+      "OfficialStatement": "官方声明",
+      "MediaNote": "媒体说明",
+      "Other": "其他"
+    },
+    "supportingFiles": "支持文件",
+    "isVerified": "已验证",
+    "badge": "徽章",
+    "author": "作者",
+    "report": "报告"
   }
 }

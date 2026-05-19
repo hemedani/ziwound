@@ -61,7 +61,10 @@
     "unexpectedError": "Ocurrió un error inesperado.",
     "images": "Imágenes",
     "warCrimes": "Crímenes de guerra",
-    "details": "Detalles"
+    "details": "Detalles",
+    "confirmations": "Confirmaciones",
+    "noConfirmations": "Aún no hay confirmaciones",
+    "language": "Idioma"
   },
   "auth": {
     "email": "Correo electrónico",
@@ -162,7 +165,8 @@
     "documents": "Documentos",
     "language": "Idioma",
     "languagePlaceholder": "Seleccione un idioma",
-    "document": "Documento"
+    "document": "Documento",
+    "confirmations": "Confirmaciones"
   },
   "home": {
     "cta": {
@@ -795,7 +799,46 @@
     "searchImages": "Buscar imágenes...",
     "noImagesFound": "No se encontraron imágenes",
     "page": "Página",
-    "presets": "Preajustes"
+    "presets": "Preajustes",
+    "all": "Todos",
+    "unverified": "No Verificado",
+    "badge": "Insignia",
+    "bio": "Biografía",
+    "expertise": "Especialidades",
+    "verified": "Verificado",
+    "verificationBadge": "Insignia de Verificación",
+    "isPublic": "Público",
+    "Reporter": "Reportero",
+    "Artist": "Artista",
+    "Diplomat": "Diplomático",
+    "Researcher": "Investigador",
+    "confirmations": "Confirmaciones",
+    "confirmationsManagement": "Gestión de Confirmaciones",
+    "confirmationsManagementDescription": "Gestionar confirmaciones y documentación relacionada",
+    "addConfirmation": "Agregar Confirmación",
+    "addConfirmationDescription": "Crear una nueva confirmación",
+    "editConfirmation": "Editar Confirmación",
+    "editConfirmationDescription": "Actualizar detalles de esta confirmación",
+    "deleteConfirmation": "Eliminar Confirmación",
+    "viewConfirmation": "Ver Confirmación",
+    "searchConfirmations": "Buscar confirmaciones...",
+    "noConfirmations": "No se encontraron confirmaciones",
+    "confirmationCreated": "Confirmación creada exitosamente.",
+    "confirmationUpdated": "Confirmación actualizada exitosamente.",
+    "confirmationDeleted": "Confirmación eliminada exitosamente.",
+    "failedToCreateConfirmation": "Error al crear confirmación.",
+    "failedToUpdateConfirmation": "Error al actualizar confirmación.",
+    "failedToDeleteConfirmation": "Error al eliminar confirmación.",
+    "deleteConfirmationConfirm": "¿Está seguro de que desea eliminar esta confirmación?",
+    "confirmation": {
+      "types": {
+        "Diary": "Diario",
+        "Eyewitness": "Testigo Presencial",
+        "OfficialStatement": "Declaración Oficial",
+        "MediaNote": "Nota de Prensa",
+        "Other": "Otro"
+      }
+    }
   },
   "notFound": {
     "backHome": "Volver al inicio",
@@ -1198,5 +1241,28 @@
     "result": "resultado",
     "results": "resultados",
     "organization": "Org"
+  },
+  "confirmation": {
+    "title": "Confirmación",
+    "addConfirmation": "Agregar Confirmación",
+    "editConfirmation": "Editar Confirmación",
+    "deleteConfirmation": "Eliminar Confirmación",
+    "confirmations": "Confirmaciones",
+    "noConfirmations": "Aún no hay confirmaciones",
+    "titleLabel": "Título",
+    "contentLabel": "Contenido",
+    "typeLabel": "Tipo",
+    "types": {
+      "Diary": "Diario",
+      "Eyewitness": "Testigo Presencial",
+      "OfficialStatement": "Declaración Oficial",
+      "MediaNote": "Nota de Prensa",
+      "Other": "Otro"
+    },
+    "supportingFiles": "Archivos de Soporte",
+    "isVerified": "Verificado",
+    "badge": "Insignia",
+    "author": "Autor",
+    "report": "Informe"
   }
 }

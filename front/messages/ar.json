@@ -61,7 +61,10 @@
     "unexpectedError": "حدث خطأ غير متوقع.",
     "images": "صور",
     "warCrimes": "جرائم الحرب",
-    "details": "التفاصيل"
+    "details": "التفاصيل",
+    "confirmations": "التأكيدات",
+    "noConfirmations": "لا توجد تأكيدات بعد",
+    "language": "اللغة"
   },
   "auth": {
     "email": "البريد الإلكتروني",
@@ -162,7 +165,8 @@
     "documents": "الوثائق",
     "language": "اللغة",
     "languagePlaceholder": "اختر لغة",
-    "document": "مستند"
+    "document": "مستند",
+    "confirmations": "التأكيدات"
   },
   "home": {
     "cta": {
@@ -742,7 +746,46 @@
     "searchImages": "البحث في الصور...",
     "noImagesFound": "لم يتم العثور على صور",
     "page": "صفحة",
-    "presets": "الإعدادات المسبقة"
+    "presets": "الإعدادات المسبقة",
+    "all": "الكل",
+    "unverified": "غير موثّق",
+    "badge": "الشارة",
+    "bio": "السيرة الذاتية",
+    "expertise": "الخبرات",
+    "verified": "موثّق",
+    "verificationBadge": "شارة التحقق",
+    "isPublic": "عام",
+    "Reporter": "مراسل",
+    "Artist": "فنان",
+    "Diplomat": "دبلوماسي",
+    "Researcher": "باحث",
+    "confirmations": "التأكيدات",
+    "confirmationsManagement": "إدارة التأكيدات",
+    "confirmationsManagementDescription": "إدارة التأكيدات والوثائق ذات الصلة",
+    "addConfirmation": "إضافة تأكيد",
+    "addConfirmationDescription": "إنشاء تأكيد جديد",
+    "editConfirmation": "تحرير التأكيد",
+    "editConfirmationDescription": "تحديث تفاصيل هذا التأكيد",
+    "deleteConfirmation": "حذف التأكيد",
+    "viewConfirmation": "عرض التأكيد",
+    "searchConfirmations": "البحث في التأكيدات...",
+    "noConfirmations": "لم يتم العثور على تأكيد",
+    "confirmationCreated": "تم إنشاء التأكيد بنجاح.",
+    "confirmationUpdated": "تم تحديث التأكيد بنجاح.",
+    "confirmationDeleted": "تم حذف التأكيد بنجاح.",
+    "failedToCreateConfirmation": "فشل في إنشاء التأكيد.",
+    "failedToUpdateConfirmation": "فشل في تحديث التأكيد.",
+    "failedToDeleteConfirmation": "فشل في حذف التأكيد.",
+    "deleteConfirmationConfirm": "هل أنت متأكد من حذف هذا التأكيد؟",
+    "confirmation": {
+      "types": {
+        "Diary": "يوميات",
+        "Eyewitness": "شاهد عيان",
+        "OfficialStatement": "بيان رسمي",
+        "MediaNote": "ملاحظة إعلامية",
+        "Other": "أخرى"
+      }
+    }
   },
   "notFound": {
     "backHome": "العودة إلى الصفحة الرئيسية",
@@ -1139,5 +1182,28 @@
     "result": "نتيجة",
     "results": "نتائج",
     "organization": "منظمة"
+  },
+  "confirmation": {
+    "title": "التأكيد",
+    "addConfirmation": "إضافة تأكيد",
+    "editConfirmation": "تحرير التأكيد",
+    "deleteConfirmation": "حذف التأكيد",
+    "confirmations": "التأكيدات",
+    "noConfirmations": "لا توجد تأكيدات بعد",
+    "titleLabel": "العنوان",
+    "contentLabel": "المحتوى",
+    "typeLabel": "النوع",
+    "types": {
+      "Diary": "يوميات",
+      "Eyewitness": "شاهد عيان",
+      "OfficialStatement": "بيان رسمي",
+      "MediaNote": "ملاحظة إعلامية",
+      "Other": "أخرى"
+    },
+    "supportingFiles": "الملفات الداعمة",
+    "isVerified": "موثّق",
+    "badge": "الشارة",
+    "author": "الكاتب",
+    "report": "التقرير"
   }
 }
