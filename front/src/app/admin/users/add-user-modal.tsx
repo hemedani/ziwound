@@ -32,7 +32,7 @@ const formSchema = z.object({
     .min(10, JSON.stringify({ key: "validation.minLength", values: { min: 10 } })),
   address: z.string().min(1, "validation.required"),
   gender: z.enum(["Male", "Female"]),
-  level: z.enum(["Ghost", "Manager", "Editor", "Ordinary"]),
+  level: z.enum(["Ghost", "Manager", "Editor", "Reporter", "Artist", "Diplomat", "Researcher", "Ordinary"]),
   is_verified: z.boolean().default(true),
 });
 
@@ -202,6 +202,10 @@ export function AddUserModal() {
                       </FormControl>
                       <SelectContent>
                         <SelectItem value="Ordinary">{t("level_Ordinary") || "Ordinary"}</SelectItem>
+                        <SelectItem value="Reporter">{t("Reporter") || "Reporter"}</SelectItem>
+                        <SelectItem value="Artist">{t("Artist") || "Artist"}</SelectItem>
+                        <SelectItem value="Diplomat">{t("Diplomat") || "Diplomat"}</SelectItem>
+                        <SelectItem value="Researcher">{t("Researcher") || "Researcher"}</SelectItem>
                         <SelectItem value="Editor">{t("level_Editor") || "Editor"}</SelectItem>
                         <SelectItem value="Manager">{t("level_Manager") || "Manager"}</SelectItem>
                         <SelectItem value="Ghost">{t("level_Ghost") || "Ghost"}</SelectItem>

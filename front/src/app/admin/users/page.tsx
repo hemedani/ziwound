@@ -96,6 +96,10 @@ export default async function AdminUsersPage({
                 <SelectItem value="Ghost">{t("level_Ghost") || "Ghost"}</SelectItem>
                 <SelectItem value="Manager">{t("level_Manager") || "Manager"}</SelectItem>
                 <SelectItem value="Editor">{t("level_Editor") || "Editor"}</SelectItem>
+                <SelectItem value="Reporter">{t("Reporter") || "Reporter"}</SelectItem>
+                <SelectItem value="Artist">{t("Artist") || "Artist"}</SelectItem>
+                <SelectItem value="Diplomat">{t("Diplomat") || "Diplomat"}</SelectItem>
+                <SelectItem value="Researcher">{t("Researcher") || "Researcher"}</SelectItem>
                 <SelectItem value="Ordinary">{t("level_Ordinary") || "Ordinary"}</SelectItem>
               </SelectContent>
             </Select>

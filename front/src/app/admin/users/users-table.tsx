@@ -55,6 +55,30 @@ export function UsersTable({ users, error }: { users: userSchema[]; error?: stri
             {t("level_Editor") || "Editor"}
           </span>
         );
+      case "Reporter":
+        return (
+          <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-green-500/10 text-green-400 border border-green-500/20">
+            {t("Reporter") || "Reporter"}
+          </span>
+        );
+      case "Artist":
+        return (
+          <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-purple-500/10 text-purple-400 border border-purple-500/20">
+            {t("Artist") || "Artist"}
+          </span>
+        );
+      case "Diplomat":
+        return (
+          <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-amber-500/10 text-amber-400 border border-amber-500/20">
+            {t("Diplomat") || "Diplomat"}
+          </span>
+        );
+      case "Researcher":
+        return (
+          <span className="inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
+            {t("Researcher") || "Researcher"}
+          </span>
+        );
       case "Ordinary":
       default:
         return (
