@@ -38,18 +38,18 @@ Ziwound backend is a Deno + Lesan application for a war crimes documentation sys
 
 The backend defines the following core models:
 
-- Users - User authentication and authorization
-- Files - File upload management
-- Places - Location-based entities with GeoJSON support
-- Categories - Categorization system
-- Provinces/Cities/City Zones - Geographic hierarchy
-- Comments - User feedback and reviews
-- Tags - Metadata categorization
-- Virtual Tours - 360-degree tour functionality
-- Reports - War crime reports with title, description, attachments (files), tags (multiple), location (GeoJSON Point), status, priority, reporter relation, category relation
-- Documents - Supporting documents related to reports (title, description, document files (multiple), multiple relations to Reports - each report can have several documents)
-- Blog Posts - Blog articles with title, content, author, cover image, publish status, tags, and publication date
-- WarCriminals - Individuals or entities accused/convicted of war crimes (fullName, aliases, affiliation, status, knownFor, biography, convictionDetails, isEntity, photo, tags)
+- **User** - User authentication and authorization (first_name, last_name, email, password, level, gender, birth_date, address, province, city, avatar, national_card, is_verified)
+- **File** - File upload management (name, mimeType, size, type: image/video/docs, alt_text, uploader relation)
+- **Country** - Country entities with GeoJSON and war history (name, english_name, area, center, registrar, wars_history, conflict_timeline, casualties_info, international_response, war_crimes_documentation, human_rights_violations, genocide_info, chemical_weapons_info, displacement_info, reconstruction_status, international_sanctions, notable_war_events - all localized via localizedWarInfo)
+- **Province** - Province entities with GeoJSON and war history (name, english_name, area, center, registrar, country relation, wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info - all localized)
+- **City** - City entities with GeoJSON and war history (name, english_name, area, center, registrar, province relation, country relation, capital reverse relation, wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info - all localized)
+- **Category** - Categorization system (name, description, color, icon, registrar) - uses shared_relation pattern
+- **Tag** - Metadata categorization (name, description, color, icon, registrar) - uses shared_relation pattern
+- **Report** - War crime reports with extensive relations (title, description, location GeoJSON Point, address, status, priority, selected_language, crime_occurred_at, reporter, documents, tags, category, hostileCountries, attackedCountries, attackedProvinces, attackedCities, warCriminals)
+- **Document** - Supporting documents related to reports (title, description, selected_language, documentFiles, owns report relation)
+- **BlogPost** - Blog articles (title, slug unique, content, selected_language, isPublished, isFeatured, publishedAt, author, coverImage, tags)
+- **HeroSlide** - Landing page slider (title, subtitle, gradient, ctaText, ctaLink, secondaryCtaText, secondaryCtaLink, selected_language, order, isActive, image)
+- **WarCriminal** - Individuals/entities accused of war crimes (fullName, aliases, dateOfBirth, nationality, affiliation, rankOrPosition, knownFor, biography, description, status, convictionDetails, isEntity, photo, tags - uses localizedWarInfo for rich text, no selected_language)
 
 ## Recent Implementation Notes
 
@@ -171,6 +171,203 @@ export const model_pure = {
 - **Geospatial**: 2dsphere indexes, GeoJSON Point/MultiPolygon support
 - **Search**: MongoDB text indexes with relevance scoring
 - **Security**: HS512 JWT, bcrypt hashing, role-based access control
+
+## Complete Model & API Reference
+
+### Model Summary Table
+
+| Model | Acts | Special Endpoints | Auth Required |
+|-------|------|-------------------|---------------|
+| **User** | add, get, gets, update, updateRelations, remove, count | login, register, tempUser, getMe, dashboardStatistic | Mixed |
+| **File** | get, gets, update, uploadFile | getFiles (by IDs) | Yes (except gets) |
+| **Country** | add, get, gets, update, updateRelations, remove, count | - | Yes |
+| **Province** | add, get, gets, update, updateRelations, remove, count | - | Yes |
+| **City** | add, get, gets, update, updateRelations, remove, count | - | Yes |
+| **Category** | add, get, gets, update, remove, count | - | Yes |
+| **Tag** | add, get, gets, update, remove, count | - | Yes |
+| **Report** | add, get, gets, update, updateRelations, remove, count | statistics, exportCSV, exportPDF | Yes |
+| **Document** | add, get, gets, update, updateRelations, remove, count | - | Yes |
+| **BlogPost** | add, get, gets, update, updateRelations, remove, count | publish, unpublish, getBySlug, getRelated | Mixed |
+| **HeroSlide** | add, get, gets, update, remove, count | - | gets=public, others=admin |
+| **WarCriminal** | add, get, gets, update, updateRelations, remove, count | - | Yes |
+
+### User Model Details
+
+**Schema**: first_name, last_name, father_name (optional), gender (Male/Female), birth_date (optional), summary (optional), address (optional), level (Ghost/Manager/Editor/Ordinary), email (unique), password, is_verified, avatar (File), national_card (File), province (Province), city (City)
+
+**Endpoints**:
+- `user.login` - Authenticate with email/password, returns JWT token
+- `user.register` - Create new user account
+- `user.tempUser` - Create temporary user account
+- `user.getMe` - Get current authenticated user profile
+- `user.getUser` - Get single user by ID (admin)
+- `user.getUsers` - List users with pagination, search, level filter
+- `user.addUser` - Create user (admin)
+- `user.updateUser` - Update user pure fields
+- `user.updateUserRelations` - Update user relations (avatar, national_card, province, city)
+- `user.removeUser` - Delete user
+- `user.countUsers` - Count users with filters
+- `user.dashboardStatistic` - Get dashboard statistics
+
+**Text Index**: first_name, last_name, email
+**Unique Index**: email
+
+### File Model Details
+
+**Schema**: name, mimeType, size, type (image/video/docs), alt_text, uploader (User relation)
+
+**Endpoints**:
+- `file.uploadFile` - Upload a file (multipart/form-data)
+- `file.get` - Get single file by ID
+- `file.gets` - List files with pagination and search
+- `file.getFiles` - Get multiple files by array of IDs
+- `file.update` - Update file metadata (name, alt_text, type)
+
+**Text Index**: name, alt_text
+**Note**: Files are stored in `/uploads/{type}/` directory based on type field
+
+### Country Model Details
+
+**Schema**: name, english_name, area (GeoJSON MultiPolygon), center (GeoJSON Point), registrar (User), wars_history, conflict_timeline, casualties_info, international_response, war_crimes_documentation, human_rights_violations, genocide_info, chemical_weapons_info, displacement_info, reconstruction_status, international_sanctions, notable_war_events (all localizedWarInfo)
+
+**Endpoints**: add, get, gets, update, updateRelations, remove, count
+
+**Text Index**: name, english_name, wars_history, conflict_timeline, war_crimes_documentation, human_rights_violations, genocide_info, notable_war_events
+**Note**: Uses `localizedWarInfo` for rich text fields, no `selected_language`
+
+### Province Model Details
+
+**Schema**: name, english_name, area (GeoJSON MultiPolygon), center (GeoJSON Point), registrar (User), country (Country), wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info (all localizedWarInfo)
+
+**Endpoints**: add, get, gets, update, updateRelations, remove, count
+
+**Relations**: country → creates `provinces` and `capital` reverse relations on Country
+**Note**: Uses `localizedWarInfo` for rich text fields, no `selected_language`
+
+### City Model Details
+
+**Schema**: name, english_name, area (GeoJSON MultiPolygon), center (GeoJSON Point), registrar (User), province (Province), country (Country), wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info (all localizedWarInfo)
+
+**Endpoints**: add, get, gets, update, updateRelations, remove, count
+
+**Relations**: 
+- province → creates `cities` and `capital` reverse relations on Province
+- country → creates `cities` reverse relation on Country
+
+**Text Index**: name, english_name, wars_history, conflict_timeline, war_crimes_events, notable_battles
+**Note**: Uses `localizedWarInfo` for rich text fields, no `selected_language`
+
+### Category Model Details
+
+**Schema**: name, description, color (optional), icon (optional), registrar (User) - uses shared_relation pattern
+
+**Endpoints**: add, get, gets, update, remove, count
+
+**Text Index**: name, description
+
+### Tag Model Details
+
+**Schema**: name, description, color (optional), icon (optional), registrar (User) - uses shared_relation pattern
+
+**Endpoints**: add, get, gets, update, remove, count
+
+**Text Index**: name, description
+
+### Report Model Details
+
+**Schema**: title, description, location (GeoJSON Point), address, status (Pending/Approved/Rejected/InReview), priority (Low/Medium/High), selected_language, crime_occurred_at, reporter (User), documents (Document[]), tags (Tag[]), category (Category), hostileCountries (Country[]), attackedCountries (Country[]), attackedProvinces (Province[]), attackedCities (City[]), warCriminals (WarCriminal[])
+
+**Endpoints**:
+- `report.add` - Create report with relations
+- `report.get` - Get single report by ID
+- `report.gets` - List reports with advanced filtering
+- `report.update` - Update report pure fields
+- `report.updateRelations` - Update report relations (tags, category, documents, hostileCountries, attackedCountries, attackedProvinces, attackedCities, warCriminals)
+- `report.remove` - Delete report
+- `report.count` - Count reports with filters
+- `report.statistics` - Get analytics (counts by status, category, priority, monthly timeline, geographic distribution)
+- `report.exportCSV` - Export reports to CSV
+- `report.exportPDF` - Export single report to PDF
+
+**Text Index**: title, description
+**Geospatial Index**: location (2dsphere)
+
+**Advanced `gets` Filters**:
+- Text search: `search`
+- Status: `status`
+- Priority: `priority`
+- Language: `selected_language`
+- Categories: `categoryIds` (array)
+- Tags: `tagIds` (array)
+- Users: `userIds` (array)
+- Hostile countries: `hostileCountryIds` (array)
+- Attacked countries: `attackedCountryIds` (array)
+- Attacked provinces: `attackedProvinceIds` (array)
+- Attacked cities: `attackedCityIds` (array)
+- War criminals: `warCriminalIds` (array)
+- Date ranges: `createdAtFrom`, `createdAtTo`, `crimeOccurredFrom`, `crimeOccurredTo`
+- Geospatial: `bbox` (array of 4 coords), `nearLng`, `nearLat`, `maxDistance`
+- Sorting: `sortBy`, `sortOrder`
+
+**updateRelations Parameters**:
+- `tags` (replace all), `category` (replace)
+- `documentIds` (replace all), `documentIdsToRemove` (selective remove)
+- `hostileCountryIds` (replace), `hostileCountryIdsToRemove` (remove)
+- `attackedCountryIds` (replace), `attackedCountryIdsToRemove` (remove)
+- `attackedProvinceIds` (replace), `attackedProvinceIdsToRemove` (remove)
+- `attackedCityIds` (replace), `attackedCityIdsToRemove` (remove)
+- `warCriminalIds` (replace), `warCriminalIdsToRemove` (remove)
+
+### Document Model Details
+
+**Schema**: title, description, selected_language, documentFiles (File[]), owns report relation (single to Report)
+
+**Endpoints**: add, get, gets, update, updateRelations, remove, count
+
+**Text Index**: title, description
+**Note**: Owned by Report - one-direction relation from Report to Document
+
+### BlogPost Model Details
+
+**Schema**: title, slug (unique), content, selected_language, isPublished, isFeatured, publishedAt, author (User), coverImage (File), tags (Tag[])
+
+**Endpoints**:
+- `blogPost.add` - Create blog post
+- `blogPost.get` - Get single post by ID
+- `blogPost.gets` - List posts with filtering
+- `blogPost.update` - Update pure fields
+- `blogPost.updateRelations` - Update relations (coverImage, tags)
+- `blogPost.remove` - Delete post
+- `blogPost.count` - Count posts
+- `blogPost.publish` - Publish a post (sets isPublished=true, publishedAt=now)
+- `blogPost.unpublish` - Unpublish a post (sets isPublished=false)
+- `blogPost.getBySlug` - Get post by slug (SEO-friendly URLs)
+- `blogPost.getRelated` - Get related posts based on shared tags
+
+**Unique Index**: slug
+**Text Index**: title, content (created separately)
+
+**`gets` Filters**: search, isPublished, isFeatured, authorId, tagIds, selected_language, sortBy, sortOrder
+
+### HeroSlide Model Details
+
+**Schema**: title, subtitle, gradient (nullable string), ctaText, ctaLink, secondaryCtaText (nullable), secondaryCtaLink (nullable), selected_language, order (number, default 0), isActive (boolean, default true), image (File)
+
+**Endpoints**: add, get, gets, update, remove, count
+
+**Note**: `gets` endpoint is PUBLIC (no auth required) for landing page display. Admin endpoints require authentication.
+
+### WarCriminal Model Details
+
+**Schema**: fullName, aliases (string[]), dateOfBirth, nationality (string[]), affiliation (Military/Paramilitary/Government/Rebel Group/Private Military Company/Political/Other), rankOrPosition, knownFor (localizedWarInfo), biography (localizedWarInfo), description (localizedWarInfo), status (Accused/Indicted/Convicted/At Large/Deceased/Unknown/Sanctioned), convictionDetails (localizedWarInfo), isEntity (boolean), photo (File), tags (Tag[])
+
+**Endpoints**: add, get, gets, update, updateRelations, remove, count
+
+**Text Index**: fullName, aliases, knownFor.en/fa/ar, biography.en/fa/ar, description.en/fa/ar, convictionDetails.en/fa/ar
+
+**`gets` Filters**: search, status, affiliation, isEntity, tagIds, nationality, dateOfBirthFrom, dateOfBirthTo
+
+**Note**: Uses `localizedWarInfo` for rich text fields, NO `selected_language`. Report owns the warCriminals relation.
 
 ## Project Structure
 
@@ -1841,14 +2038,33 @@ export const user_excludes: string[] = [
   "summary",
 ];
 
-// Location model excludes
-export const location_excludes: string[] = ["area", "center"];
-
 // Shared relation model excludes
 export const shared_relation_excludes: string[] = ["createdAt", "updatedAt", "description"];
 
-// Comment model excludes
-export const comment_excludes: string[] = ["createdAt", "updatedAt"];
+// Location model excludes (for city, province, country)
+export const location_excludes: string[] = [
+  "createdAt",
+  "updatedAt",
+  "wars_history",
+  "conflict_timeline",
+  "casualties_info",
+  "notable_battles",
+  "occupation_info",
+  "destruction_level",
+  "civilian_impact",
+  "mass_graves_info",
+  "war_crimes_events",
+  "liberation_info",
+];
+
+// Report model excludes
+export const report_excludes: string[] = ["createdAt", "updatedAt"];
+
+// Document model excludes
+export const document_excludes: string[] = ["createdAt", "updatedAt"];
+
+// WarCriminal model excludes
+export const warCriminal_excludes: string[] = ["createdAt", "updatedAt"];
 ```
 
 ---
@@ -1895,13 +2111,11 @@ export const createSharedRelations = () => ({
 export const pure_location = {
   name: string(),
   english_name: string(),
-  area: geoJSONStruct("MultiPolygon"),
-  center: geoJSONStruct("Point"),
   ...createUpdateAt,
 };
 
-// Usage in province/city models
-export const province_pure = { ...pure_location };
+// Usage in province/city models - they add area/center via GeoJSON
+export const province_pure = { ...pure_location, area: geoJSONStruct("MultiPolygon"), center: geoJSONStruct("Point"), ... };
 ```
 
 ---
@@ -1984,25 +2198,6 @@ All API calls use POST with this structure:
 | `MONGO_URI` | `mongodb://127.0.0.1:27017/` | MongoDB connection string |
 | `APP_PORT`  | `1406`                       | Server port               |
 | `ENV`       | `development`                | Environment mode          |
-
----
-
-## Running the Application
-
-### Development
-
-```bash
-cd back/
-deno task bc-dev  # Auto-reload development
-```
-
-### Production
-
-```bash
-docker build --target production -t gozaresh-backend:production .
-# Or via docker-compose from project root
-docker-compose up --build
-```
 
 ---
 

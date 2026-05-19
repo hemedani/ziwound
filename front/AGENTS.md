@@ -144,6 +144,16 @@ The project has a comprehensive library of shadcn/ui components located in `/src
   - `DropdownMenuItem`, `DropdownMenuCheckboxItem`, `DropdownMenuRadioItem`
   - `DropdownMenuLabel`, `DropdownMenuSeparator`, `DropdownMenuShortcut`
 - **Separator** (`separator.tsx`) - Visual dividers (horizontal/vertical)
+- **Popover** (`popover.tsx`) - Floating overlay containers:
+  - `Popover`, `PopoverTrigger`, `PopoverContent`, `PopoverAnchor`
+- **Sheet** (`sheet.tsx`) - Slide-out panel component (side drawer):
+  - `Sheet`, `SheetTrigger`, `SheetContent`, `SheetHeader`, `SheetFooter`, `SheetTitle`, `SheetDescription`, `SheetClose`
+- **Accordion** (`accordion.tsx`) - Collapsible content sections:
+  - `Accordion`, `AccordionItem`, `AccordionTrigger`, `AccordionContent`
+- **Toggle** (`toggle.tsx`) - Two-state button (on/off):
+  - `Toggle` with variants (default, outline) and sizes (default, sm, lg)
+- **Command** (`command.tsx`) - Command palette / combobox primitive:
+  - `Command`, `CommandInput`, `CommandList`, `CommandEmpty`, `CommandGroup`, `CommandItem`, `CommandSeparator`, `CommandShortcut`, `CommandDialog`
 
 #### Feedback & Display Components
 
@@ -155,6 +165,12 @@ The project has a comprehensive library of shadcn/ui components located in `/src
 - **Badge** (`badge.tsx`) - Status indicators and tags (default, secondary, destructive, outline)
 - **Avatar** (`avatar.tsx`) - User profile images:
   - `Avatar`, `AvatarImage`, `AvatarFallback`
+- **Skeleton** (`skeleton.tsx`) - Loading placeholder with pulse animation
+- **Skeleton States** (`skeleton-states.tsx`) - Pre-built skeleton layouts:
+  - `SkeletonTable` - Skeleton for table loading states
+  - `SkeletonList` - Skeleton for list/card loading states
+- **EmptyState** (`empty-state.tsx`) - Empty/no data state component
+- **ErrorState** (`error-state.tsx`) - Error state with retry action
 
 ### Reusable Form Components
 
@@ -180,7 +196,71 @@ Located in `/src/components/form/`, these components provide higher-level form f
   />
   ```
 
-- **EmojiPicker** (`tag-form.tsx`) - Integrated `emoji-picker-react` via `next/dynamic` for icons
+- **RichTextEditor** (`rich-text-editor.tsx`) - TipTap-based rich text editor with toolbar
+
+  ```tsx
+  import { RichTextEditor } from "@/components/form/rich-text-editor";
+
+  <RichTextEditor
+    value={content}
+    onChange={(html) => setContent(html)}
+    placeholder="Enter content..."
+  />
+  ```
+
+  **Features:**
+  - **Formatting**: Bold, Italic, Strikethrough
+  - **Headings**: H1, H2, H3
+  - **Lists**: Bullet list, Ordered list
+  - **Blocks**: Blockquote, Code
+  - **Media**: Links, Images (via URL)
+  - **Tables**: Insert resizable tables with header rows
+  - **HTML Import**: Dialog to paste raw HTML and parse it into the editor
+  - **Undo/Redo**: Full history support
+  - **Extensions**: Uses `@tiptap/react`, `@tiptap/starter-kit`, `@tiptap/extension-link`, `@tiptap/extension-image`, `@tiptap/extension-table`
+
+- **AsyncSelect** (`async-select.tsx`) - Powerful combobox with async/sync loading, search, and multi-select
+
+  ```tsx
+  import { AsyncSelect } from "@/components/form/async-select";
+
+  // Static options
+  <AsyncSelect
+    value={selectedId}
+    onChange={(val) => setSelectedId(val)}
+    options={[
+      { id: "1", label: "Option 1", subLabel: "Description" },
+      { id: "2", label: "Option 2" },
+    ]}
+    placeholder="Select an option..."
+  />
+
+  // Async loading with search
+  <AsyncSelect
+    value={selectedId}
+    onChange={(val) => setSelectedId(val)}
+    async={true}
+    loadOptions={async (inputValue, page) => {
+      const res = await fetchOptions({ search: inputValue, page });
+      return {
+        options: res.body.map(item => ({ id: item._id, label: item.name })),
+        hasMore: res.hasMore
+      };
+    }}
+    placeholder="Search..."
+  />
+  ```
+
+  **Props:**
+  - `value`: Current selected value (`string | string[] | null`)
+  - `onChange`: Callback on selection change
+  - `isMulti`: Enable multi-select (default: false)
+  - `isClearable`: Enable clearing selection (default: true)
+  - `async`: Enable async loading mode
+  - `loadOptions`: `(inputValue: string, page?: number) => Promise<{ options, hasMore? }>`
+  - `options`: Static options array of `{ id, label, subLabel?, prefix?, data? }`
+  - `renderOption`: Custom option renderer
+  - `disabled`, `loading`, `placeholder`, `searchPlaceholder`, `emptyText`
 
 - **TagSelector** (`tag-selector.tsx`) - Multi-select tags with chips and search
 
@@ -195,6 +275,7 @@ Located in `/src/components/form/`, these components provide higher-level form f
   ```
 
 - **LocationPicker** (`location-picker.tsx`) - Address input with map placeholder
+
   ```tsx
   <LocationPicker
     label="Location"
@@ -203,6 +284,119 @@ Located in `/src/components/form/`, these components provide higher-level form f
     showMap={true}
   />
   ```
+
+- **DatePickerField** (`date-picker-field.tsx`) - Calendar date picker with locale-aware calendar (Gregorian/Persian)
+
+  ```tsx
+  import { DatePickerField } from "@/components/form/date-picker-field";
+
+  <DatePickerField
+    value={dateValue}
+    onChange={(date) => setDateValue(date)}
+    locale="fa"  // "fa" for Persian calendar, "en" for Gregorian
+    placeholder="Select date..."
+  />
+  ```
+
+  **Features:**
+  - Automatic calendar switching based on locale (Persian Jalali for `fa`, Gregorian for others)
+  - Stores dates as ISO strings (`YYYY-MM-DD`) internally
+  - Display format adapts to locale (`YYYY/MM/DD` for Persian, `YYYY-MM-DD` for Gregorian)
+  - Uses `react-multi-date-picker` and `react-date-object`
+  - Popover-based UI with glass styling
+
+- **GradientInput** (`gradient-input.tsx`) - CSS gradient selector with live preview and presets
+
+  ```tsx
+  import { GradientInput } from "@/components/form/gradient-input";
+
+  <GradientInput
+    value={gradient}
+    onChange={(val) => setGradient(val)}
+    placeholder="Enter CSS gradient..."
+  />
+  ```
+
+  **Features:**
+  - Live preview of the gradient
+  - 8 preset gradients (Crimson Glow, Midnight, Blood Moon, Ember, Obsidian, Steel, Gold Dust, Abyss)
+  - Custom CSS input for manual gradients
+  - Used for hero slide backgrounds
+
+- **ImagePicker** (`image-picker.tsx`) - Image gallery selector from uploaded files
+
+  ```tsx
+  import { ImagePicker } from "@/components/form/image-picker";
+
+  <ImagePicker
+    value={selectedImageId}
+    onChange={(id) => setSelectedImageId(id)}
+  />
+  ```
+
+  **Features:**
+  - Fetches images from backend via `gets` file action
+  - Search by filename
+  - Paginated grid view (3 columns)
+  - Selection highlight with crimson border
+  - Uses `next/image` with proxy URLs
+
+- **DocumentListField** (`document-list-field.tsx`) - Document management field for report forms
+
+  ```tsx
+  import { DocumentFormField } from "@/components/form/document-list-field";
+
+  <DocumentFormField
+    value={documentIds}
+    onChange={(ids) => setDocumentIds(ids)}
+    locale={locale}
+  />
+  ```
+
+  **Features:**
+  - Displays list of attached documents with remove capability
+  - Dialog to create new documents (title, description, language, file upload)
+  - Creates Document records via server action and returns IDs
+  - Integrates with `FileUploadField` for file attachment
+
+- **Stepper** (`stepper.tsx`) - Multi-step form navigation indicator
+
+  ```tsx
+  import { Stepper } from "@/components/form/stepper";
+
+  <Stepper
+    currentStep={2}
+    totalSteps={5}
+    completedSteps={[1]}
+    onStepClick={(step) => goToStep(step)}
+    labels={["Step 1", "Step 2", "Step 3", "Step 4", "Step 5"]}
+  />
+  ```
+
+- **StepRenderer** (`step-renderer.tsx`) - Renders form fields based on current step in multi-step forms
+
+  ```tsx
+  import { StepRenderer } from "@/components/form/step-renderer";
+
+  <StepRenderer
+    step={currentStep}
+    control={form.control}
+    errors={form.formState.errors}
+    setValue={form.setValue}
+    watch={form.watch}
+    categories={categories}
+    availableTags={tags}
+    locale={locale}
+  />
+  ```
+
+  **Step mapping:**
+  - Step 1: title, description, selected_language
+  - Step 2: crime_occurred_at, priority, tags, category
+  - Step 3: location, address, hostileCountryIds, attackedCountryIds, attackedProvinceIds, attackedCityIds
+  - Step 4: documents
+
+- **EmojiPicker** (`tag-form.tsx`) - Integrated `emoji-picker-react` via `next/dynamic` for icons
 
 ### Layout Components
 
@@ -1283,81 +1477,6 @@ This three-step process ensures that files are securely stored, properly grouped
 - Ghost user level has full admin access.
 - Keep the report submission page **simple and elegant**.
 - Do not run `pnpm dev` or build commands automatically — only suggest them.
-
-### Form Components: CountrySelect
-
-The `CountrySelect` component (`@/components/form/country-select.tsx`) is a comprehensive, production-ready dropdown component built on top of Radix UI Popover and `cmdk` (Command). It provides advanced capabilities similar to `react-select` but is fully integrated with the project's Shadcn UI design system.
-
-#### Key Features
-- **Async & Static Search:** Supports both static options arrays and asynchronous fetching via the `loadOptions` prop (with built-in debouncing).
-- **Clearable & Searchable:** Users can clear selections and search through items easily.
-- **Form Integration:** Seamlessly works with React Hook Form, controlled mode, and uncontrolled mode.
-- **Multi-select Ready:** Has base support for `isMulti` selection.
-- **Accessible & Responsive:** Fully accessible via keyboard and screen readers, adapting properly to dark/light modes.
-
-#### Usage Example
-
-```tsx
-import { CountrySelect } from "@/components/form/country-select";
-import { FormField, FormItem, FormLabel, FormControl } from "@/components/ui/form";
-
-// Inside a React Hook Form:
-<FormField
-  control={form.control}
-  name="country_id"
-  render={({ field }) => (
-    <FormItem className="flex flex-col">
-      <FormLabel>Country</FormLabel>
-      <FormControl>
-        <CountrySelect
-          value={field.value}
-          onChange={(val) => field.onChange(val || "")}
-          options={[
-            { id: "1", name: "Iran", english_name: "Iran", flag: "🇮🇷" },
-            { id: "2", name: "United States", english_name: "United States", flag: "🇺🇸" },
-          ]}
-          placeholder="Select a country..."
-          searchPlaceholder="Search countries..."
-          emptyText="No country found."
-        />
-      </FormControl>
-    </FormItem>
-  )}
-/>
-```
-
-#### Async Fetching Example
-
-```tsx
-<CountrySelect
-  value={field.value}
-  onChange={(val) => field.onChange(val || "")}
-  async={true}
-  loadOptions={async (inputValue, page) => {
-    const res = await getCountries({ search: inputValue, page });
-    return {
-      options: res.body.map(c => ({ id: c._id, name: c.name, english_name: c.english_name })),
-      hasMore: res.hasMore
-    };
-  }}
-  placeholder="Search for a country..."
-/>
-```
-
-#### Component API (Props)
-- `value`: Current selected value (`string | string[] | null`).
-- `onChange`: Callback function when selection changes.
-- `defaultValue`: Initial value for uncontrolled usage.
-- `isMulti`: (boolean) Enable multi-select (default: false).
-- `isClearable`: (boolean) Enable clearing the selection (default: true).
-- `placeholder`: Text to show when no item is selected.
-- `searchPlaceholder`: Text for the inner search input.
-- `emptyText`: Text to show when no results are found.
-- `disabled`: (boolean) Disable the input.
-- `loading`: (boolean) Show external loading state.
-- `async`: (boolean) Enable asynchronous loading.
-- `loadOptions`: Promise-based function `(inputValue: string, page?: number)` for async loading.
-- `options`: Static fallback options array of `{ id, name, english_name?, flag? }`.
 
 ---
 
