@@ -33,14 +33,17 @@ import {
   ChevronRight,
   ExternalLink,
   X,
+  MessageSquare,
 } from "lucide-react";
 import { format } from "date-fns";
 import Image from "next/image";
 import { get as getReport } from "@/app/actions/report/get";
+import { gets as getConfirmations } from "@/app/actions/confirmation/gets";
 import dynamic from "next/dynamic";
-import { documentSchema, reportSchema } from "@/types/declarations";
+import { confirmationSchema, documentSchema, reportSchema } from "@/types/declarations";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 import { cn } from "@/lib/utils";
+import { AddConfirmationDialog } from "./add-confirmation-dialog";
 
 const ReadonlyMap = dynamic(
   () => import("@/components/map/readonly-map").then((mod) => mod.ReadonlyMap),
@@ -58,7 +61,7 @@ interface Report extends Omit<reportSchema, "documents" | "reporter"> {
     last_name: string;
     gender: "Male" | "Female";
     address?: string;
-    level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+    level: "Ghost" | "Manager" | "Editor" | "Reporter" | "Artist" | "Diplomat" | "Researcher" | "Ordinary";
     email: string;
     is_verified: boolean;
     avatar?: {
@@ -211,14 +214,38 @@ export default function ReportDetailPage() {
   const locale = params.locale as string;
 
   const [report, setReport] = useState<Report | null>(null);
+  const [confirmations, setConfirmations] = useState<confirmationSchema[]>([]);
   const [loading, setLoading] = useState(true);
   const [lightbox, setLightbox] = useState<{ open: boolean; index: number }>({
     open: false,
     index: 0,
   });
 
+  const refreshConfirmations = useCallback(async () => {
+    const confResult = await getConfirmations(
+      { page: 1, limit: 50, reportId },
+      {
+        _id: 1,
+        title: 1,
+        content: 1,
+        type: 1,
+        badge: 1,
+        isVerified: 1,
+        selected_language: 1,
+        author: { _id: 1, first_name: 1, last_name: 1, level: 1, verificationBadge: 1 },
+        supportingFiles: { _id: 1, name: 1, mimeType: 1, type: 1 },
+        createdAt: 1,
+      },
+    );
+
+    if (confResult.success && confResult.body) {
+      const confs = Array.isArray(confResult.body) ? confResult.body : confResult.body?.list || [];
+      setConfirmations(confs);
+    }
+  }, [reportId]);
+
   useEffect(() => {
-    const fetchReport = async () => {
+    const fetchData = async () => {
       setLoading(true);
       try {
         const result = await getReport(
@@ -267,6 +294,8 @@ export default function ReportDetailPage() {
           const fetchedReport = Array.isArray(result.body) ? result.body[0] : result.body;
           setReport(fetchedReport as unknown as Report);
         }
+
+        await refreshConfirmations();
       } catch (error) {
         console.error("Failed to fetch report details:", error);
       } finally {
@@ -274,8 +303,8 @@ export default function ReportDetailPage() {
       }
     };
 
-    fetchReport();
-  }, [reportId]);
+    fetchData();
+  }, [reportId, refreshConfirmations]);
 
   const getStatusConfig = (status: string) => {
     switch (status) {
@@ -431,6 +460,13 @@ export default function ReportDetailPage() {
                 </Badge>
               </Link>
             )}
+            <Badge
+              variant="outline"
+              className="text-sm gap-1.5 px-2.5 py-1 bg-gold/10 text-gold border-gold/20"
+            >
+              <MessageSquare className="h-3.5 w-3.5" />
+              {confirmations.length} {tCommon("confirmations") || "Confirmations"}
+            </Badge>
           </div>
 
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-offwhite mb-4 leading-tight max-w-4xl">
@@ -551,8 +587,120 @@ export default function ReportDetailPage() {
                 </div>
               ))}
             </div>
-          )}
-        </div>
+            )}
+
+            {/* Confirmations */}
+            <div className="rounded-2xl glass-light p-6 md:p-8 border border-white/[0.06]">
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center gap-2">
+                  <div className="bg-white/5 rounded-lg p-1.5">
+                    <MessageSquare className="h-4 w-4 text-gold" />
+                  </div>
+                  <h2 className="text-lg font-semibold text-offwhite">
+                    {tCommon("confirmations") || "Confirmations"}
+                  </h2>
+                  <Badge variant="outline" className="bg-gold/10 text-gold border-gold/20 text-xs">
+                    {confirmations.length}
+                  </Badge>
+                </div>
+                <AddConfirmationDialog reportId={reportId} onAdded={refreshConfirmations} />
+              </div>
+
+              {confirmations.length === 0 ? (
+                <div className="text-center py-12">
+                  <MessageSquare className="mx-auto h-12 w-12 text-slate-body/30 mb-4" />
+                  <p className="text-slate-body text-sm">
+                    {tCommon("noConfirmations") || "No confirmations yet. Be the first to add one."}
+                  </p>
+                </div>
+              ) : (
+                <div className="space-y-4">
+                  {confirmations.map((conf: confirmationSchema) => {
+                    const contentValue = conf.content || "";
+                    return (
+                      <div
+                        key={conf._id}
+                        className="rounded-xl bg-white/[0.02] border border-white/[0.04] p-5 hover:border-white/[0.08] transition-colors"
+                      >
+                        <div className="flex items-start justify-between gap-4 mb-3">
+                          <div className="flex-1">
+                            <h3 className="font-semibold text-offwhite flex items-center gap-2">
+                              {conf.title}
+                            </h3>
+                            <div className="flex items-center gap-2 mt-1.5">
+                              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border bg-white/5 text-slate-body border-white/10">
+                                {conf.type}
+                              </span>
+                              <span className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium border bg-gold/10 text-gold border-gold/20">
+                                {conf.badge}
+                              </span>
+                              {conf.isVerified && (
+                                <span className="inline-flex items-center rounded-full px-2 py-0.5 text-xs font-medium bg-emerald-500/10 text-emerald-400 border border-emerald-500/20">
+                                  {t("verified") || "Verified"}
+                                </span>
+                              )}
+                            </div>
+                          </div>
+                          <div className="text-xs text-slate-body whitespace-nowrap">
+                            {conf.createdAt ? new Date(conf.createdAt).toLocaleDateString() : ""}
+                          </div>
+                        </div>
+
+                        {conf.author && (
+                          <div className="flex items-center gap-2 mb-3 text-sm">
+                            <User className="h-3.5 w-3.5 text-slate-body/60" />
+                            <span className="text-slate-body">
+                              {(conf.author as { first_name?: string; last_name?: string }).first_name}{" "}
+                              {(conf.author as { first_name?: string; last_name?: string }).last_name}
+                            </span>
+                            {(conf.author as { level?: string }).level && (
+                              <span className="text-xs text-slate-body/60">
+                                · {(conf.author as { level?: string }).level}
+                              </span>
+                            )}
+                          </div>
+                        )}
+
+                        {contentValue && (
+                          <div
+                            className="prose prose-invert prose-sm max-w-none text-slate-body mt-3 pt-3 border-t border-white/[0.04]"
+                            dangerouslySetInnerHTML={{ __html: contentValue }}
+                          />
+                        )}
+
+                        {conf.supportingFiles && conf.supportingFiles.length > 0 && (
+                          <div className="mt-4 pt-3 border-t border-white/[0.04]">
+                            <p className="text-xs uppercase tracking-wider text-slate-body/60 mb-2">
+                              {t("attachments") || "Attachments"}
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {conf.supportingFiles.map((file: { _id?: string; name: string; mimeType?: string; type: string }) => (
+                                <Button
+                                  key={file._id}
+                                  variant="outline"
+                                  size="sm"
+                                  asChild
+                                  className="border-white/10 bg-white/5 text-slate-body hover:bg-white/10 hover:text-offwhite gap-1.5 h-7"
+                                >
+                                  <a
+                                    href={file._id ? getImageUploadUrl(file.name, file.type as "image" | "video" | "docs") : "#"}
+                                    download={file.name}
+                                  >
+                                    {getFileIcon(file.mimeType)}
+                                    <span className="truncate max-w-[120px]">{file.name}</span>
+                                  </a>
+                                </Button>
+                              ))}
+                            </div>
+                          </div>
+                        )}
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
+            </div>
+          </div>
       )}
 
       <div className="container mx-auto max-w-6xl px-4 pb-20">
