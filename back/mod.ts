@@ -3,6 +3,7 @@ import {
   blogPostModel,
   categories,
   cities,
+  confirmations,
   countries,
   createBlogPostTextIndex,
   createUserTextIndex,
@@ -39,6 +40,7 @@ export const blogPost = blogPostModel();
 export const heroSlide = heroSlides();
 export const file = files();
 export const warCriminal = warCriminals();
+export const confirmation = confirmations();
 
 export const rateLimiter = new RateLimiter(100, 60 * 1000); // 100 requests per minute
 

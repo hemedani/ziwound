@@ -10,6 +10,7 @@ import { blogPostSetup } from "./blogPost/mod.ts";
 import { countrySetup } from "./country/mod.ts";
 import { heroSlideSetup } from "./heroSlide/mod.ts";
 import { warCriminalSetup } from "./warCriminal/mod.ts";
+import { confirmationSetup } from "./confirmation/mod.ts";
 
 export const functionsSetup = () => {
   countrySetup();
@@ -24,4 +25,5 @@ export const functionsSetup = () => {
   blogPostSetup();
   heroSlideSetup();
   warCriminalSetup();
+  confirmationSetup();
 };

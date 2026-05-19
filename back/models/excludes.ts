@@ -81,3 +81,9 @@ export const warCriminal_excludes: (string)[] = [
   "createdAt",
   "updatedAt",
 ];
+
+// Confirmation model excludes
+export const confirmation_excludes: (string)[] = [
+  "createdAt",
+  "updatedAt",
+];
