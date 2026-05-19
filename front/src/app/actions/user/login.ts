@@ -43,9 +43,10 @@ export const login = async (
 
     // Securely set the token in an HTTP-only cookie
     const cookieStore = await cookies();
+    const isSecureCookie = process.env.COOKIE_SECURE !== "false" && process.env.NODE_ENV === "production";
     cookieStore.set("token", result.body.token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
+      secure: isSecureCookie,
       sameSite: "lax",
       maxAge: 90 * 24 * 60 * 60, // 90 days
       path: "/",
