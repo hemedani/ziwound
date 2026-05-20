@@ -10,6 +10,8 @@ import { countrySchema } from "@/types/declarations";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Trash2, Pencil } from "lucide-react";
+import Image from "next/image";
+import { getImageUploadUrl } from "@/utils/imageUrl";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -63,6 +65,7 @@ export function CountriesTable({ countries, error }: { countries: countrySchema[
       <Table>
         <TableHeader>
           <TableRow className="border-white/[0.06] hover:bg-transparent">
+            <TableHead className="text-slate-body w-[60px]">{t("photo") || "Photo"}</TableHead>
             <TableHead className="text-slate-body">{t("name") || "Name (Local)"}</TableHead>
             <TableHead className="text-slate-body">{t("englishName") || "Name (English)"}</TableHead>
             <TableHead className="text-end pe-4 text-slate-body">{t("actions")}</TableHead>
@@ -71,13 +74,29 @@ export function CountriesTable({ countries, error }: { countries: countrySchema[
         <TableBody>
           {countries.length === 0 ? (
             <TableRow className="border-white/[0.06] hover:bg-white/[0.02]">
-              <TableCell colSpan={3} className="h-24 text-center text-slate-body">
+              <TableCell colSpan={4} className="h-24 text-center text-slate-body">
                 {t("noCountries") || "No countries found"}
               </TableCell>
             </TableRow>
           ) : (
-            countries.map((country: countrySchema) => (
+            countries.map((country) => (
               <TableRow key={country._id} className="border-white/[0.06] hover:bg-white/[0.02]">
+                <TableCell>
+                  {country.photo ? (
+                    <Image
+                      src={getImageUploadUrl(country.photo.name, "image")}
+                      alt={country.name}
+                      width={48}
+                      height={48}
+                      unoptimized
+                      className="rounded object-cover"
+                    />
+                  ) : (
+                    <div className="h-12 w-12 rounded bg-white/5 flex items-center justify-center text-slate-body/30 text-xs">
+                      -
+                    </div>
+                  )}
+                </TableCell>
                 <TableCell className="font-medium text-offwhite">{country.name}</TableCell>
                 <TableCell className="text-slate-body">{country.english_name}</TableCell>
                 <TableCell className="text-end pe-4">

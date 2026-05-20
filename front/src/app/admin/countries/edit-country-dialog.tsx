@@ -13,6 +13,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { useRouter } from "next/navigation";
 import { CountryForm, CountryFormValues } from "./country-form";
 import { update } from "@/app/actions/country/update";
+import { updateRelations } from "@/app/actions/country/updateRelations";
 import { countrySchema } from "@/types/declarations";
 
 const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
@@ -64,6 +65,13 @@ export function EditCountryDialog({ country, open, onOpenChange }: EditCountryDi
         { _id: 1, name: 1 },
       );
 
+      if (res?.success && data.photoId !== country.photo?._id) {
+        await updateRelations(
+          { _id: country._id, photo: data.photoId || undefined },
+          { _id: 1, photo: { _id: 1, name: 1 } },
+        );
+      }
+
       if (res?.success) {
         toast({
           title: t("success") || "Success",
@@ -102,6 +110,7 @@ export function EditCountryDialog({ country, open, onOpenChange }: EditCountryDi
     ? {
         name: country.name,
         english_name: country.english_name,
+        photoId: country.photo?._id || "",
         wars_history: {
           fa: extractLangValue(country.wars_history, "fa"),
           en: extractLangValue(country.wars_history, "en"),

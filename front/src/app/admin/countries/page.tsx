@@ -38,6 +38,7 @@ export default async function AdminCountriesPage({
     _id: 1,
     name: 1,
     english_name: 1,
+    photo: { _id: 1, name: 1 },
   });
 
   let countries: countrySchema[] = [];
