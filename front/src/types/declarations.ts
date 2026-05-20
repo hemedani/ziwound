@@ -8409,15 +8409,29 @@ export type ReqType = {
         set: {
           first_name: string;
           last_name: string;
-          father_name: string;
-          mobile: string;
           gender: ("Male" | "Female");
-          birth_date?: Date;
+          birth_date?: string;
           summary?: string;
-          national_number: string;
-          address: string;
+          address?: string;
           level: ("Ghost" | "Manager" | "Editor" | "Reporter" | "Artist" | "Diplomat" | "Researcher" | "Ordinary");
+          email: string;
+          password: string;
           is_verified: boolean;
+          bio?: {
+            fa?: string;
+            en?: string;
+            ar?: string;
+            zh?: string;
+            pt?: string;
+            es?: string;
+            nl?: string;
+            tr?: string;
+            ru?: string;
+          };
+          expertise?: string[];
+          verified: boolean;
+          verificationBadge?: string;
+          isPublic: boolean;
           nationalCard?: string;
           avatar?: string;
           provinceId?: string;
@@ -9636,11 +9650,29 @@ export type ReqType = {
           _id: string;
           first_name?: string;
           last_name?: string;
-          father_name?: string;
           gender?: ("Male" | "Female");
-          birth_date?: Date;
+          birth_date?: string;
           summary?: string;
           address?: string;
+          level?: ("Ghost" | "Manager" | "Editor" | "Reporter" | "Artist" | "Diplomat" | "Researcher" | "Ordinary");
+          email?: string;
+          password?: string;
+          is_verified?: boolean;
+          bio?: {
+            fa?: string;
+            en?: string;
+            ar?: string;
+            zh?: string;
+            pt?: string;
+            es?: string;
+            nl?: string;
+            tr?: string;
+            ru?: string;
+          };
+          expertise?: string[];
+          verified?: boolean;
+          verificationBadge?: string;
+          isPublic?: boolean;
         };
         get: {
           _id?: (0 | 1);

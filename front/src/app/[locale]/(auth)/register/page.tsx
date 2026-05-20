@@ -7,7 +7,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { registerUser } from "@/app/actions/user/registerUser";
 import { Link, useRouter } from "@/i18n/routing";
-import { Loader2, Shield, ArrowRight } from "lucide-react";
+import { Loader2, Shield, ArrowRight, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
@@ -19,6 +19,7 @@ const registerSchema = z.object({
   last_name: z.string().min(1, "auth.lastNameRequired"),
   email: z.string().email("auth.emailInvalid"),
   password: z.string().min(6, JSON.stringify({ key: "validation.minLength", values: { min: 6 } })),
+  expertise: z.array(z.string()).optional(),
 });
 
 type RegisterFormData = z.infer<typeof registerSchema>;
@@ -43,6 +44,7 @@ export default function RegisterPage() {
       last_name: "",
       email: "",
       password: "",
+      expertise: [],
     },
   });
 
@@ -57,6 +59,7 @@ export default function RegisterPage() {
       gender: "Male",
       verified: false,
       isPublic: true,
+      ...(data.expertise && data.expertise.length > 0 ? { expertise: data.expertise } : {}),
     });
 
     if (result.success) {
@@ -172,6 +175,64 @@ export default function RegisterPage() {
                         disabled={loading}
                         className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson h-11"
                       />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+
+              <FormField
+                control={form.control}
+                name="expertise"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel className="text-offwhite">{t("admin.expertise") || "Expertise"}</FormLabel>
+                    <FormControl>
+                      <div className="space-y-2">
+                        <div className="flex gap-2">
+                          <Input
+                            placeholder={t("admin.expertisePlaceholder") || "Add an expertise..."}
+                            disabled={loading}
+                            className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson h-11"
+                            onKeyDown={(e) => {
+                              if (e.key === "Enter") {
+                                e.preventDefault();
+                                const input = e.currentTarget;
+                                const value = input.value.trim();
+                                if (value) {
+                                  const currentExpertise = field.value || [];
+                                  if (!currentExpertise.includes(value)) {
+                                    field.onChange([...currentExpertise, value]);
+                                  }
+                                  input.value = "";
+                                }
+                              }
+                            }}
+                          />
+                        </div>
+                        {field.value && field.value.length > 0 && (
+                          <div className="flex flex-wrap gap-2">
+                            {field.value.map((expertise, index) => (
+                              <div
+                                key={index}
+                                className="inline-flex items-center gap-2 bg-crimson/10 text-crimson px-3 py-1 rounded-full text-sm"
+                              >
+                                {expertise}
+                                <button
+                                  type="button"
+                                  onClick={() => {
+                                    const newExpertise = field.value?.filter((_, i) => i !== index) || [];
+                                    field.onChange(newExpertise);
+                                  }}
+                                  className="hover:opacity-70"
+                                >
+                                  <X className="h-4 w-4" />
+                                </button>
+                              </div>
+                            ))}
+                          </div>
+                        )}
+                      </div>
                     </FormControl>
                     <FormMessage />
                   </FormItem>

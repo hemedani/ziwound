@@ -1,264 +1,106 @@
 "use client";
 
-import { useState, useTransition } from "react";
-import { useForm } from "react-hook-form";
-import { zodResolver } from "@hookform/resolvers/zod";
-import * as z from "zod";
-import { useTranslations } from "next-intl";
-import { useRouter } from "next/navigation";
-import { addUser } from "@/app/actions/user/addUser";
-import { useToast } from "@/components/ui/use-toast";
-import { Button } from "@/components/ui/button";
+import { useState } from "react";
+import { Plus } from "lucide-react";
 import {
   Dialog,
   DialogContent,
+  DialogDescription,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Plus, Loader2 } from "lucide-react";
-
-const formSchema = z.object({
-  first_name: z.string().min(1, "validation.required"),
-  last_name: z.string().min(1, "validation.required"),
-  father_name: z.string().min(1, "validation.required"),
-  mobile: z.string().min(10, JSON.stringify({ key: "validation.minLength", values: { min: 10 } })),
-  national_number: z
-    .string()
-    .min(10, JSON.stringify({ key: "validation.minLength", values: { min: 10 } })),
-  address: z.string().min(1, "validation.required"),
-  gender: z.enum(["Male", "Female"]),
-  level: z.enum(["Ghost", "Manager", "Editor", "Reporter", "Artist", "Diplomat", "Researcher", "Ordinary"]),
-  is_verified: z.boolean().default(true),
-});
+import { useTranslations } from "next-intl";
+import { useToast } from "@/components/ui/use-toast";
+import { useRouter } from "next/navigation";
+import { Button } from "@/components/ui/button";
+import { AddUserForm, AddUserFormValues } from "./add-user-form";
+import { addUser } from "@/app/actions/user/addUser";
 
 export function AddUserModal() {
   const t = useTranslations("admin");
   const { toast } = useToast();
   const router = useRouter();
-  const [isOpen, setIsOpen] = useState(false);
-  const [_isPending, startTransition] = useTransition();
+  const [open, setOpen] = useState(false);
 
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      first_name: "",
-      last_name: "",
-      father_name: "",
-      mobile: "",
-      national_number: "",
-      address: "",
-      gender: "Male",
-      level: "Ordinary",
-      is_verified: true,
-    },
-  });
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
+  const handleSubmit = async (data: AddUserFormValues) => {
     try {
-      const res = await addUser(values, { _id: 1 });
+      const expertise = data.expertise && data.expertise.length > 0 ? data.expertise : undefined;
+
+      const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
+
+      const buildLocalizedObject = (values: Record<string, string> | undefined) => {
+        if (!values) return undefined;
+        const obj: Record<string, string> = {};
+        for (const lang of LANGUAGES) {
+          const val = values[lang];
+          if (val && val.trim()) {
+            obj[lang] = val;
+          }
+        }
+        return Object.keys(obj).length > 0 ? obj : undefined;
+      };
+
+      const res = await addUser(
+        {
+          first_name: data.first_name,
+          last_name: data.last_name,
+          email: data.email,
+          password: data.password,
+          gender: data.gender,
+          level: data.level,
+          address: data.address || undefined,
+          bio: buildLocalizedObject(data.bio),
+          expertise: expertise,
+          verified: data.verified,
+          verificationBadge: data.verificationBadge || undefined,
+          isPublic: data.isPublic,
+          is_verified: data.is_verified,
+        },
+        { _id: 1, first_name: 1, last_name: 1 },
+      );
+
       if (res?.success) {
         toast({
           title: t("success") || "Success",
-          description: t("userAdded"),
+          description: t("userAdded") || "User has been created successfully.",
         });
-        setIsOpen(false);
-        form.reset();
-        startTransition(() => {
-          router.refresh();
-        });
+        setOpen(false);
+        router.refresh();
       } else {
         toast({
           variant: "destructive",
           title: t("error") || "Error",
-          description: res?.error || t("userAddFailed"),
+          description: res?.error || res?.body?.message || t("userAddFailed") || "Failed to create user.",
         });
       }
-    } catch (error) {
+    } catch (_error) {
       toast({
         variant: "destructive",
         title: t("error") || "Error",
-        description: t("unexpectedError"),
+        description: t("unexpectedError") || "An unexpected error occurred.",
       });
     }
   }
 
   return (
-    <Dialog open={isOpen} onOpenChange={setIsOpen}>
+    <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button>
+        <Button type="button">
           <Plus className="me-2 h-4 w-4" />
           {t("addUser") || "Add User"}
         </Button>
       </DialogTrigger>
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
+      <DialogContent className="glass-strong max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle>{t("addUser") || "Add New User"}</DialogTitle>
+          <DialogTitle className="text-offwhite">{t("addUser") || "Add New User"}</DialogTitle>
+          <DialogDescription className="text-slate-body">
+            {t("addUserDescription") || "Create a new user account with roles and permissions"}
+          </DialogDescription>
         </DialogHeader>
-        <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <FormField
-                control={form.control}
-                name="first_name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("firstName") || "First Name"}</FormLabel>
-                    <FormControl>
-                      <Input placeholder={t("firstNamePlaceholder") || "First name"} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="last_name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("lastName") || "Last Name"}</FormLabel>
-                    <FormControl>
-                      <Input placeholder={t("lastNamePlaceholder") || "Last name"} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="father_name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("fatherName") || "Father Name"}</FormLabel>
-                    <FormControl>
-                      <Input placeholder={t("fatherNamePlaceholder") || "Father name"} {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="national_number"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("nationalNumber") || "National Number"}</FormLabel>
-                    <FormControl>
-                      <Input placeholder="1234567890" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="mobile"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("mobile") || "Mobile"}</FormLabel>
-                    <FormControl>
-                      <Input placeholder="09123456789" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="gender"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("gender") || "Gender"}</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder={t("selectGender")} />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="Male">{t("gender_Male") || "Male"}</SelectItem>
-                        <SelectItem value="Female">{t("gender_Female") || "Female"}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="level"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("level") || "Role/Level"}</FormLabel>
-                    <Select onValueChange={field.onChange} defaultValue={field.value}>
-                      <FormControl>
-                        <SelectTrigger>
-                          <SelectValue placeholder={t("selectLevel")} />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent>
-                        <SelectItem value="Ordinary">{t("level_Ordinary") || "Ordinary"}</SelectItem>
-                        <SelectItem value="Reporter">{t("Reporter") || "Reporter"}</SelectItem>
-                        <SelectItem value="Artist">{t("Artist") || "Artist"}</SelectItem>
-                        <SelectItem value="Diplomat">{t("Diplomat") || "Diplomat"}</SelectItem>
-                        <SelectItem value="Researcher">{t("Researcher") || "Researcher"}</SelectItem>
-                        <SelectItem value="Editor">{t("level_Editor") || "Editor"}</SelectItem>
-                        <SelectItem value="Manager">{t("level_Manager") || "Manager"}</SelectItem>
-                        <SelectItem value="Ghost">{t("level_Ghost") || "Ghost"}</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="is_verified"
-                render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-x-reverse space-y-0 rounded-md border p-4 mt-6">
-                    <FormControl>
-                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                    </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel>{t("isVerified") || "Is Verified"}</FormLabel>
-                    </div>
-                  </FormItem>
-                )}
-              />
-            </div>
-            <FormField
-              control={form.control}
-              name="address"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("address") || "Address"}</FormLabel>
-                  <FormControl>
-                    <Input placeholder={t("addressPlaceholder") || "Full address"} {...field} />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-            <div className="flex justify-end space-x-2 space-x-reverse pt-4">
-              <Button
-                type="button"
-                variant="outline"
-                onClick={() => setIsOpen(false)}
-                disabled={form.formState.isSubmitting}
-              >
-                {t("cancel") || "Cancel"}
-              </Button>
-              <Button type="submit" disabled={form.formState.isSubmitting}>
-                {form.formState.isSubmitting && <Loader2 className="me-2 h-4 w-4 animate-spin" />}
-                {form.formState.isSubmitting ? t("loading") || "Loading..." : t("submit") || "Submit"}
-              </Button>
-            </div>
-          </form>
-        </Form>
+        <div className="py-4">
+          <AddUserForm onSubmit={handleSubmit} onCancel={() => setOpen(false)} />
+        </div>
       </DialogContent>
     </Dialog>
   );
