@@ -6,7 +6,6 @@ import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { useTranslations, useLocale } from "next-intl";
@@ -16,19 +15,23 @@ import { warCriminalSchema } from "@/types/declarations";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { DatePickerField } from "@/components/form/date-picker-field";
 
-const LANGUAGES = ["en", "fa", "ar"] as const;
+import { RichTextEditor } from "@/components/form/rich-text-editor";
+
+const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
 type Language = (typeof LANGUAGES)[number];
 
-const languageLabels: Record<Language, string> = {
-  en: "English",
-  fa: "فارسی",
-  ar: "العربية",
-};
+type LocalizedField = Partial<Record<Language, string>>;
 
 const localizedFieldSchema = z.object({
-  en: z.string().optional(),
   fa: z.string().optional(),
+  en: z.string().optional(),
   ar: z.string().optional(),
+  zh: z.string().optional(),
+  pt: z.string().optional(),
+  es: z.string().optional(),
+  nl: z.string().optional(),
+  tr: z.string().optional(),
+  ru: z.string().optional(),
 }).optional();
 
 const warCriminalFormSchema = z.object({
@@ -56,20 +59,34 @@ interface WarCriminalFormProps {
   isEditing?: boolean;
 }
 
-function LocalizedTextareaField({
+const languageLabels: Record<Language, string> = {
+  fa: "فارسی",
+  en: "English",
+  ar: "العربية",
+  zh: "中文",
+  pt: "Português",
+  es: "Español",
+  nl: "Nederlands",
+  tr: "Türkçe",
+  ru: "Русский",
+};
+
+type LocalizedFieldName = "knownFor" | "biography" | "description" | "convictionDetails";
+
+function LocalizedRichTextField({
   control,
   fieldName,
   label,
 }: {
   control: ReturnType<typeof useForm<WarCriminalFormValues>>["control"];
-  fieldName: "knownFor" | "biography" | "description" | "convictionDetails";
+  fieldName: LocalizedFieldName;
   label: string;
 }) {
   return (
     <FormItem>
       <FormLabel>{label}</FormLabel>
       <FormControl>
-        <Tabs defaultValue="en">
+        <Tabs defaultValue="fa">
           <TabsList className="w-full justify-start">
             {LANGUAGES.map((lang) => (
               <TabsTrigger key={lang} value={lang} className="text-xs">
@@ -83,11 +100,10 @@ function LocalizedTextareaField({
                 control={control}
                 name={`${fieldName}.${lang}` as const}
                 render={({ field }) => (
-                  <Textarea
+                  <RichTextEditor
                     value={field.value || ""}
                     onChange={field.onChange}
-                    className="resize-none bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
-                    rows={4}
+                    placeholder={`Enter ${fieldName.replace(/([A-Z])/g, " $1").toLowerCase()}`}
                   />
                 )}
               />
@@ -106,7 +122,7 @@ export function WarCriminalForm({ initialData, onSubmit, onCancel, isEditing = f
   const [isPending, startTransition] = useTransition();
   const [photoIds, setPhotoIds] = useState<string[]>(initialData?.photoId ? [initialData.photoId] : []);
 
-  const emptyLocalized = { en: "", fa: "", ar: "" };
+  const emptyLocalized: LocalizedField = { fa: "", en: "", ar: "", zh: "", pt: "", es: "", nl: "", tr: "", ru: "" };
 
   const form = useForm<WarCriminalFormValues>({
     resolver: zodResolver(warCriminalFormSchema),
@@ -117,11 +133,11 @@ export function WarCriminalForm({ initialData, onSubmit, onCancel, isEditing = f
       nationality: initialData?.nationality ? initialData.nationality.join(", ") : "",
       affiliation: initialData?.affiliation || undefined,
       rankOrPosition: initialData?.rankOrPosition || "",
-      knownFor: (initialData?.knownFor as Record<string, string> | undefined) ? { en: initialData?.knownFor?.en || "", fa: initialData?.knownFor?.fa || "", ar: initialData?.knownFor?.ar || "" } : emptyLocalized,
-      biography: (initialData?.biography as Record<string, string> | undefined) ? { en: initialData?.biography?.en || "", fa: initialData?.biography?.fa || "", ar: initialData?.biography?.ar || "" } : emptyLocalized,
-      description: (initialData?.description as Record<string, string> | undefined) ? { en: initialData?.description?.en || "", fa: initialData?.description?.fa || "", ar: initialData?.description?.ar || "" } : emptyLocalized,
+      knownFor: (initialData?.knownFor as Record<string, string> | undefined) ? { fa: initialData?.knownFor?.fa || "", en: initialData?.knownFor?.en || "", ar: initialData?.knownFor?.ar || "", zh: initialData?.knownFor?.zh || "", pt: initialData?.knownFor?.pt || "", es: initialData?.knownFor?.es || "", nl: initialData?.knownFor?.nl || "", tr: initialData?.knownFor?.tr || "", ru: initialData?.knownFor?.ru || "" } : emptyLocalized,
+      biography: (initialData?.biography as Record<string, string> | undefined) ? { fa: initialData?.biography?.fa || "", en: initialData?.biography?.en || "", ar: initialData?.biography?.ar || "", zh: initialData?.biography?.zh || "", pt: initialData?.biography?.pt || "", es: initialData?.biography?.es || "", nl: initialData?.biography?.nl || "", tr: initialData?.biography?.tr || "", ru: initialData?.biography?.ru || "" } : emptyLocalized,
+      description: (initialData?.description as Record<string, string> | undefined) ? { fa: initialData?.description?.fa || "", en: initialData?.description?.en || "", ar: initialData?.description?.ar || "", zh: initialData?.description?.zh || "", pt: initialData?.description?.pt || "", es: initialData?.description?.es || "", nl: initialData?.description?.nl || "", tr: initialData?.description?.tr || "", ru: initialData?.description?.ru || "" } : emptyLocalized,
       status: initialData?.status || "Unknown",
-      convictionDetails: (initialData?.convictionDetails as Record<string, string> | undefined) ? { en: initialData?.convictionDetails?.en || "", fa: initialData?.convictionDetails?.fa || "", ar: initialData?.convictionDetails?.ar || "" } : emptyLocalized,
+      convictionDetails: (initialData?.convictionDetails as Record<string, string> | undefined) ? { fa: initialData?.convictionDetails?.fa || "", en: initialData?.convictionDetails?.en || "", ar: initialData?.convictionDetails?.ar || "", zh: initialData?.convictionDetails?.zh || "", pt: initialData?.convictionDetails?.pt || "", es: initialData?.convictionDetails?.es || "", nl: initialData?.convictionDetails?.nl || "", tr: initialData?.convictionDetails?.tr || "", ru: initialData?.convictionDetails?.ru || "" } : emptyLocalized,
       isEntity: initialData?.isEntity || false,
       photoId: initialData?.photoId || "",
     },
@@ -305,10 +321,10 @@ export function WarCriminalForm({ initialData, onSubmit, onCancel, isEditing = f
 
         <div className="space-y-6">
           <h4 className="text-sm font-semibold text-offwhite">{t("localizedFields") || "Localized Fields"}</h4>
-          <LocalizedTextareaField control={form.control} fieldName="knownFor" label={t("knownFor") || "Known For"} />
-          <LocalizedTextareaField control={form.control} fieldName="biography" label={t("biography") || "Biography"} />
-          <LocalizedTextareaField control={form.control} fieldName="description" label={t("description") || "Description"} />
-          <LocalizedTextareaField control={form.control} fieldName="convictionDetails" label={t("convictionDetails") || "Conviction Details"} />
+          <LocalizedRichTextField control={form.control} fieldName="knownFor" label={t("knownFor") || "Known For"} />
+          <LocalizedRichTextField control={form.control} fieldName="biography" label={t("biography") || "Biography"} />
+          <LocalizedRichTextField control={form.control} fieldName="description" label={t("description") || "Description"} />
+          <LocalizedRichTextField control={form.control} fieldName="convictionDetails" label={t("convictionDetails") || "Conviction Details"} />
         </div>
 
         <div className="flex justify-end gap-2 pt-4">

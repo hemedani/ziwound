@@ -33,25 +33,19 @@ export function EditWarCriminalDialog({ warCriminal, open, onOpenChange }: EditW
       const aliases = data.aliases ? data.aliases.split(",").map((a) => a.trim()).filter(Boolean) : undefined;
       const nationality = data.nationality ? data.nationality.split(",").map((n) => n.trim()).filter(Boolean) : undefined;
 
-      const knownFor: Record<string, string> = {};
-      if (data.knownFor?.en) knownFor.en = data.knownFor.en;
-      if (data.knownFor?.fa) knownFor.fa = data.knownFor.fa;
-      if (data.knownFor?.ar) knownFor.ar = data.knownFor.ar;
+      const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
 
-      const biography: Record<string, string> = {};
-      if (data.biography?.en) biography.en = data.biography.en;
-      if (data.biography?.fa) biography.fa = data.biography.fa;
-      if (data.biography?.ar) biography.ar = data.biography.ar;
-
-      const description: Record<string, string> = {};
-      if (data.description?.en) description.en = data.description.en;
-      if (data.description?.fa) description.fa = data.description.fa;
-      if (data.description?.ar) description.ar = data.description.ar;
-
-      const convictionDetails: Record<string, string> = {};
-      if (data.convictionDetails?.en) convictionDetails.en = data.convictionDetails.en;
-      if (data.convictionDetails?.fa) convictionDetails.fa = data.convictionDetails.fa;
-      if (data.convictionDetails?.ar) convictionDetails.ar = data.convictionDetails.ar;
+      const buildLocalizedObject = (values: Record<string, string> | undefined) => {
+        if (!values) return undefined;
+        const obj: Record<string, string> = {};
+        for (const lang of LANGUAGES) {
+          const val = values[lang];
+          if (val && val.trim()) {
+            obj[lang] = val;
+          }
+        }
+        return Object.keys(obj).length > 0 ? obj : undefined;
+      };
 
       const res = await update(
         {
@@ -62,11 +56,11 @@ export function EditWarCriminalDialog({ warCriminal, open, onOpenChange }: EditW
           ...(nationality !== undefined && nationality.length > 0 ? { nationality } : {}),
           affiliation: data.affiliation,
           rankOrPosition: data.rankOrPosition,
-          ...(Object.keys(knownFor).length > 0 ? { knownFor } : {}),
-          ...(Object.keys(biography).length > 0 ? { biography } : {}),
-          ...(Object.keys(description).length > 0 ? { description } : {}),
+          ...(buildLocalizedObject(data.knownFor) ? { knownFor: buildLocalizedObject(data.knownFor) } : {}),
+          ...(buildLocalizedObject(data.biography) ? { biography: buildLocalizedObject(data.biography) } : {}),
+          ...(buildLocalizedObject(data.description) ? { description: buildLocalizedObject(data.description) } : {}),
           status: data.status,
-          ...(Object.keys(convictionDetails).length > 0 ? { convictionDetails } : {}),
+          ...(buildLocalizedObject(data.convictionDetails) ? { convictionDetails: buildLocalizedObject(data.convictionDetails) } : {}),
           isEntity: data.isEntity,
         },
         { _id: 1, fullName: 1 },
@@ -107,7 +101,7 @@ export function EditWarCriminalDialog({ warCriminal, open, onOpenChange }: EditW
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="glass-strong border-white/10 max-h-[80vh] overflow-y-auto">
+      <DialogContent className="glass-strong max-w-4xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-offwhite">{t("editWarCriminal") || "Edit War Criminal"}</DialogTitle>
           <DialogDescription className="text-slate-body">
