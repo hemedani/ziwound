@@ -526,8 +526,89 @@ setTheme("dark"); // or 'light' or 'system'
 ### Authentication
 
 - JWT-based with secure cookie handling.
-- Role-based access (Normal, Editor, Manager, Ghost – Ghost has highest privileges).
 - Auth state managed via React Context + Zustand where needed.
+
+### User Model
+
+The user model defines the schema for all user accounts in the system.
+
+#### Fields
+
+| Field | Type | Required | Description |
+|-------|------|----------|-------------|
+| `first_name` | `string` | Yes | User's first name |
+| `last_name` | `string` | Yes | User's last name |
+| `gender` | `"Male" \| "Female"` | Yes | User's gender |
+| `birth_date` | `Date` (stored) / `ISO string` (sent) | No | Date of birth |
+| `summary` | `string` | No | Short bio/summary |
+| `address` | `string` | No | Physical address |
+| `level` | `enum` | Yes (default: `"Ordinary"`) | Role/permission level |
+| `email` | `string` (unique) | Yes | Email address |
+| `password` | `string` | Yes | Hashed on backend |
+| `is_verified` | `boolean` (default: `false`) | Auto | **Email verification** – indicates whether the user's email address has been verified |
+| `bio` | `localizedWarInfo` | No | Localized biography object with keys: `fa`, `en`, `ar`, `zh`, `pt`, `es`, `nl`, `tr`, `ru` |
+| `expertise` | `string[]` | No | Array of expertise strings |
+| `verified` | `boolean` (default: `false`) | Auto | **Role-level verification** – indicates whether the user has been verified for their role level (e.g., Diplomat, Researcher). Distinct from `is_verified` |
+| `verificationBadge` | `string` | No | Badge identifier for verified users |
+| `isPublic` | `boolean` (default: `true`) | Auto | Profile visibility flag |
+| `createdAt` | `Date` | Auto | Creation timestamp |
+| `updatedAt` | `Date` | Auto | Last update timestamp |
+
+#### Relations
+
+| Relation | Type | Description |
+|----------|------|-------------|
+| `avatar` | single `File` | User's profile image |
+| `national_card` | single `File` | National card document |
+| `province` | single `Province` | User's province |
+| `city` | single `City` | User's city |
+
+#### User Levels
+
+```
+"Ghost" | "Manager" | "Editor" | "Reporter" | "Artist" | "Diplomat" | "Researcher" | "Ordinary"
+```
+
+- **Ghost** – Highest privileges, full admin access
+- **Manager** – Administrative management
+- **Editor** – Content editing capabilities
+- **Reporter** – Can submit and manage reports
+- **Artist** – Media/content creation
+- **Diplomat** – Verified diplomatic role
+- **Researcher** – Verified research role
+- **Ordinary** – Default level for new registrations
+
+#### Important Distinction: `is_verified` vs `verified`
+
+- **`is_verified`** – Email verification flag. Set to `true` when the user's email address has been confirmed.
+- **`verified`** – Role-level verification flag. Set to `true` when the user has been manually verified for their assigned role level (e.g., a Diplomat or Researcher has been vetted and approved).
+
+These are two separate concepts and should not be confused. Forms should display helper text to clarify the distinction.
+
+#### Server Actions
+
+User-related server actions are located in `src/app/actions/user/`:
+
+- `addUser.ts` – Create a new user (requires `email`, `password`, `first_name`, `last_name`, `gender`, `level`)
+- `updateUser.ts` – Update an existing user (partial updates, all fields optional)
+- `updateUserRelations.ts` – Update user relations (`avatar`, `national_card`, `province`, `city`)
+- `registerUser.ts` – Public registration (auto-sets `level: "Ordinary"`, `is_verified: false`, `verified: false`, `isPublic: true`)
+- `getUsers.ts` – Fetch multiple users with pagination/filtering
+- `getUser.ts` – Fetch a single user by ID
+- `getMe.ts` – Fetch the authenticated user's own data
+- `removeUser.ts` – Delete a user
+- `countUsers.ts` – Get user count
+- `login.ts` / `logout.ts` – Authentication
+- `tempUser.ts` – Temporary user handling
+- `dashboardStatistic.ts` – User statistics for dashboard
+
+#### Removed Fields (Deprecated)
+
+The following fields were removed from the user model and should NOT be used:
+
+- `father_name` – Was optional, now removed
+- `mobile` – Was pattern-validated, now commented out
+- `national_number` – Was national number validation, now commented out
 
 ## Key Configuration Files
 
@@ -1516,7 +1597,6 @@ This three-step process ensures that files are securely stored, properly grouped
 - Use types from `/src/types/declarations` for consistency with the backend.
 - **STRICT RULE FOR AI AGENTS**: NEVER use the `any` type in this project. Always resolve and use the proper types, mostly available inside `/src/types/declarations.ts`.
 - **STRICT RULE FOR AI AGENTS**: When calling `getTranslations()` in Server Components, you MUST explicitly pass the `locale` parameter (e.g., `await getTranslations({ locale })`). Also, ensure new translation keys are present across ALL available language files in the `/messages` folder.
-- Ghost user level has full admin access.
 - Keep the report submission page **simple and elegant**.
 - Do not run `pnpm dev` or build commands automatically — only suggest them.
 

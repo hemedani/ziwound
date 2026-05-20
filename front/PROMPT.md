@@ -1,92 +1,213 @@
-# Refactor: Change Confirmation `content` from `localizedWarInfo` to `string()`
+# Frontend Update Prompt: Sync User Methods with Backend Changes
 
-**Context**: The backend `confirmation.content` field changed from `localizedWarInfo` (nested object with 9 language keys) to a simple `string()`. The `selected_language` field already determines the language. You need to update all frontend code that reads/writes `content`.
+## Context
+The backend user model (`models/user.ts`) and user methods (`src/user/addUser/`, `src/user/updateUser/`, `src/user/register/`) have been updated. The frontend must be synced to match these changes.
 
-**What changed on backend**:
-- `content: localizedWarInfo` → `content: string()`
-- Text index: `content.en`, `content.fa`, etc. → `content`
-- Types in `/src/types/declarations.ts` need to be regenerated (`deno task gen-types` on backend)
+## Backend Changes Summary
 
-### Files to Update
+### User Model (`user_pure`) - Field Changes
 
-#### 1. Regenerate Types
-Run on backend: `deno task gen-types` (or equivalent) to update `/src/types/declarations.ts`. The `confirmationSchema.content` will change from `{ fa?: string; en?: string; ... }` to `string`.
+**Removed fields:**
+- `father_name` (was optional, now removed)
+- `mobile` (was pattern-validated, now commented out)
+- `national_number` (was national number validation, now commented out)
 
-#### 2. Admin Forms (`/admin/confirmations/new`, `/admin/confirmations/[id]/edit`)
+**New fields added:**
+- `bio` - `optional(localizedWarInfo)` - Localized biography object with keys: `fa`, `en`, `ar`, `zh`, `pt`, `es`, `nl`, `tr`, `ru` (all optional strings)
+- `expertise` - `optional(array(string()))` - Array of expertise strings
+- `verified` - `defaulted(boolean(), false)` - Verification status flag
+- `verificationBadge` - `optional(string())` - Badge identifier string
+- `isPublic` - `defaulted(boolean(), true)` - Profile visibility flag
 
-**Before**:
-```tsx
-// 9 language tabs, each with its own content field
-content: {
-  [locale]: z.object({ fa: z.string(), en: z.string(), ... })
+**Existing fields (unchanged but important):**
+- `first_name` (required)
+- `last_name` (required)
+- `gender` (required: "Male" | "Female")
+- `birth_date` (optional, stored as Date, sent as ISO string)
+- `summary` (optional)
+- `address` (optional)
+- `level` (defaulted: "Ghost" | "Manager" | "Editor" | "Reporter" | "Artist" | "Diplomat" | "Researcher" | "Ordinary")
+- `email` (required, unique)
+- `password` (required, hashed on backend)
+- `is_verified` (defaulted: false)
+- `createdAt`, `updatedAt` (auto-managed)
+
+**Relations (unchanged):**
+- `avatar` (single File relation)
+- `national_card` (single File relation)
+- `province` (single Province relation)
+- `city` (single City relation)
+
+### API Method Changes
+
+#### `user.addUser`
+- **Removed from set:** `father_name`, `mobile`, `national_number`
+- **Added to set:** `email` (required), `password` (required), `bio`, `expertise`, `verified`, `verificationBadge`, `isPublic`
+- **Changed:** `birth_date` now accepts ISO string (backend converts to Date)
+- **Changed:** `address` is now optional
+- **Relations:** `nationalCard`, `avatar`, `provinceId`, `cityId` (unchanged)
+
+#### `user.updateUser`
+- **Removed from set:** `father_name`
+- **Added to set:** `level`, `email`, `password`, `is_verified`, `bio`, `expertise`, `verified`, `verificationBadge`, `isPublic`
+- **Changed:** `birth_date` now accepts ISO string (backend converts to Date)
+- **Note:** All fields are optional (partial updates)
+
+#### `user.register`
+- **Removed from set:** `father_name`, `national_number`, `address`
+- **Added to set:** `bio`, `expertise`
+- **Changed:** `birth_date` now accepts ISO string
+- **Note:** Registration auto-sets `level: "Ordinary"`, `is_verified: false`, `verified: false`, `isPublic: true`
+
+#### `user.updateUserRelations`
+- **No changes** - still handles: `avatar`, `national_card`, `province`, `city`
+
+---
+
+## Required Frontend Updates
+
+### 1. Regenerate Type Declarations
+Run the backend type generation to update `ReqType`:
+```bash
+# In backend directory
+deno task gen-types  # or equivalent command
+```
+Then copy updated declarations to `front/src/types/declarations.ts`.
+
+### 2. Update Server Actions
+
+**`src/app/actions/user/add.ts`**
+- Update the `set` parameter type to match new `addUser` validator
+- Remove `father_name`, `mobile`, `national_number` fields
+- Add `email`, `password`, `bio`, `expertise`, `verified`, `verificationBadge`, `isPublic`
+- Make `address` optional
+
+**`src/app/actions/user/update.ts`**
+- Update the `set` parameter type to match new `updateUser` validator
+- Remove `father_name`
+- Add `level`, `email`, `password`, `is_verified`, `bio`, `expertise`, `verified`, `verificationBadge`, `isPublic`
+
+**`src/app/actions/auth/register.ts`**
+- Update the registration payload
+- Remove `father_name`, `national_number`, `address`
+- Add `bio`, `expertise`
+
+### 3. Update User Forms
+
+**Admin User Management Forms:**
+- Remove `father_name`, `mobile`, `national_number` inputs
+- Add new fields:
+  - `bio` - Use a localized text editor or simple text inputs for each language
+  - `expertise` - Use a tag-like input for adding multiple expertise items
+  - `verified` - Toggle/checkbox
+  - `verificationBadge` - Text input
+  - `isPublic` - Toggle/checkbox
+- Make `address` optional
+- Add `email` and `password` fields to user creation form
+- Add `level` dropdown to user edit form
+
+**Registration Form:**
+- Remove `father_name`, `national_number`, `address` inputs
+- Add `bio` (optional, localized) and `expertise` (optional, array) fields
+
+**User Profile/Edit Form:**
+- Sync with the same field changes as admin forms
+
+### 4. Update TypeScript Interfaces
+
+Any custom interfaces extending the user schema need updating:
+```typescript
+// Before
+interface UserWithRelations extends userSchema {
+  father_name?: string;
+  mobile?: string;
+  national_number?: string;
 }
-// Form renders tabs, each tab has a RichTextEditor
-<FormField name={`content.${locale}`} />
+
+// After
+interface UserWithRelations extends userSchema {
+  bio?: { fa?: string; en?: string; ar?: string; ... };
+  expertise?: string[];
+  verified?: boolean;
+  verificationBadge?: string;
+  isPublic?: boolean;
+}
 ```
 
-**After**:
-```tsx
-// Single content field, language determined by selected_language
-content: z.string().min(1, "Content is required")
+### 5. Update Translations
 
-// Single Textarea or RichTextEditor
-<FormField name="content" />
-```
+Add translation keys for new fields in ALL language files (`/messages/*.json`):
+- `user.bio` / `user.bio.label` / `user.bio.placeholder`
+- `user.expertise` / `user.expertise.label` / `user.expertise.placeholder` / `user.expertise.add`
+- `user.verified` / `user.verified.label`
+- `user.verificationBadge` / `user.verificationBadge.label`
+- `user.isPublic` / `user.isPublic.label`
 
-Remove the language tab loop for content. The `selected_language` select field already exists — it controls which language this confirmation is written in.
+Remove or deprecate:
+- `user.father_name`
+- `user.mobile`
+- `user.national_number`
 
-#### 3. Display Components (tables, cards, detail views)
+### 6. Update Zod Validation Schemas
 
-**Before**:
-```tsx
-// Accessing nested language
-{confirmation.content?.[locale] || confirmation.content?.en}
-```
+Update any Zod schemas used for user form validation:
+```typescript
+// Remove
+father_name: z.string()...
+mobile: z.string().regex(...)
+national_number: z.string()...
 
-**After**:
-```tsx
-// Direct string access
-{confirmation.content}
-```
-
-Search for patterns like `confirmation.content[` or `confirmation.content?.` and simplify.
-
-#### 4. Server Actions
-
-No code changes needed — types are auto-generated. But verify that `add.ts` and `update.ts` send `content` as a string, not an object.
-
-#### 5. Zod Schemas
-
-Update any Zod schemas that validate confirmation content:
-
-**Before**:
-```ts
-content: z.object({
+// Add
+bio: z.object({
   fa: z.string().optional(),
   en: z.string().optional(),
-  // ... 7 more
-})
+  ar: z.string().optional(),
+  zh: z.string().optional(),
+  pt: z.string().optional(),
+  es: z.string().optional(),
+  nl: z.string().optional(),
+  tr: z.string().optional(),
+  ru: z.string().optional(),
+}).optional(),
+expertise: z.array(z.string()).optional(),
+verified: z.boolean().optional(),
+verificationBadge: z.string().optional(),
+isPublic: z.boolean().optional(),
 ```
 
-**After**:
-```ts
-content: z.string().min(1, "Content is required")
-```
+### 7. Update User Display Components
 
-### Search Patterns
+Wherever user information is displayed (admin tables, profile pages, etc.):
+- Remove columns/fields for `father_name`, `mobile`, `national_number`
+- Add display for new fields:
+  - `bio` - Show current language version
+  - `expertise` - Show as badges/tags
+  - `verified` - Show badge/icon
+  - `verificationBadge` - Show if present
+  - `isPublic` - Show visibility indicator
 
-Use these to find all occurrences:
-- `content\.\[locale\]` or `content\[locale\]`
-- `content\?\.en` or `content\.en`
-- `content: z.object`
-- `content: localizedWarInfo`
-- `content\.fa`, `content\.ar`, etc.
-- Form fields named `content.fa`, `content.en`, etc.
+---
 
-### Checklist
-- [ ] Regenerate types from backend
-- [ ] Update Zod schemas (new/edit forms)
-- [ ] Remove language tabs for content input
-- [ ] Update display components (`content[locale]` → `content`)
-- [ ] Update any API call payloads that send `content` as object
-- [ ] Test in both RTL (fa) and LTR (en)
+## Priority Order
+
+1. **Regenerate types** - Foundation for everything else
+2. **Update server actions** - API layer
+3. **Update Zod schemas** - Validation layer
+4. **Update forms** - UI layer
+5. **Update translations** - i18n layer
+6. **Update display components** - Presentation layer
+
+## Testing Checklist
+
+- [ ] User registration works without removed fields
+- [ ] User creation in admin panel works with new fields
+- [ ] User editing updates new fields correctly
+- [ ] `bio` field saves and loads in all languages
+- [ ] `expertise` array adds/removes items correctly
+- [ ] `verified`, `isPublic` toggles work
+- [ ] `birth_date` is properly sent as ISO string
+- [ ] All form validations pass/fail correctly
+- [ ] Translations appear in all 9 languages
+- [ ] RTL layouts render correctly for fa/ar
+- [ ] TypeScript compiles without errors
+- [ ] `pnpm build:strict` passes
