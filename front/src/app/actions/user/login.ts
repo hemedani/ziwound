@@ -2,7 +2,7 @@
 
 import { AppApi } from "@/lib/api";
 import { ReqType, DeepPartial } from "@/types/declarations";
-import { cookies } from "next/headers";
+import { cookies, headers } from "next/headers";
 
 export const login = async (
   data: ReqType["main"]["user"]["login"]["set"],
@@ -41,9 +41,21 @@ export const login = async (
       };
     }
 
+    // Detect whether the request is actually HTTPS so we don't set Secure
+    // cookies over HTTP (browsers reject them). Falls back to env override.
+    const headerList = await headers();
+    const forwardedProto = headerList.get("x-forwarded-proto");
+    const isActuallyHttps = forwardedProto
+      ? forwardedProto === "https"
+      : headerList.get("host")?.startsWith("localhost") === false;
+
+    const isSecureCookie =
+      process.env.COOKIE_SECURE !== "false" &&
+      process.env.NODE_ENV === "production" &&
+      isActuallyHttps;
+
     // Securely set the token in an HTTP-only cookie
     const cookieStore = await cookies();
-    const isSecureCookie = process.env.COOKIE_SECURE !== "false" && process.env.NODE_ENV === "production";
     cookieStore.set("token", result.body.token, {
       httpOnly: true,
       secure: isSecureCookie,
