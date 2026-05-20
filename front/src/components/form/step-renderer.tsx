@@ -28,6 +28,7 @@ import { ReqType } from "@/types/declarations";
 import { gets as getCountries } from "@/app/actions/country/gets";
 import { gets as getProvinces } from "@/app/actions/province/gets";
 import { gets as getCities } from "@/app/actions/city/gets";
+import { gets as getWarCriminals } from "@/app/actions/warCriminal/gets";
 
 const LocationPicker = dynamic(
   () => import("@/components/form/location-picker").then((mod) => mod.LocationPicker),
@@ -124,6 +125,27 @@ export function StepRenderer({
     }
     return { options: [], hasMore: false };
   };
+
+  const loadWarCriminals = async (inputValue: string): Promise<AsyncSelectLoadResult> => {
+    const query: ReqType["main"]["warCriminal"]["gets"]["set"] = {
+      page: 1,
+      limit: 50,
+    };
+    if (inputValue) {
+      query.search = inputValue;
+    }
+    const result = await getWarCriminals(query, { _id: 1, fullName: 1 });
+    if (result.success && result.body) {
+      return {
+        options: result.body.map((c: { _id: string; fullName: string }) => ({
+          id: c._id,
+          label: c.fullName,
+        })),
+        hasMore: false,
+      };
+    }
+    return { options: [], hasMore: false };
+  };
   const fieldComponents: Record<number, string[]> = {
     1: ["title", "description", "selected_language"],
     2: ["crime_occurred_at", "priority", "tags", "category"],
@@ -134,6 +156,7 @@ export function StepRenderer({
       "attackedCountryIds",
       "attackedProvinceIds",
       "attackedCityIds",
+      "warCriminalIds",
     ],
     4: ["documents"],
   };
@@ -154,6 +177,7 @@ export function StepRenderer({
       documents: t("report.documents"),
       tags: t("report.tags"),
       category: t("report.category"),
+      warCriminalIds: t("report.warCriminals"),
     };
     return labels[fieldName] || fieldName;
   };
@@ -466,6 +490,36 @@ export function StepRenderer({
                     placeholder={t("report.selectAttackedCities") || "Select attacked cities..."}
                     searchPlaceholder={t("report.searchCities") || "Search cities..."}
                     emptyText={t("report.noCitiesFound") || "No cities found."}
+                    disabled={disabled}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        );
+
+      case "warCriminalIds":
+        return (
+          <FormField
+            control={control}
+            name="warCriminalIds"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>
+                  {t("report.warCriminals") || "War Criminals"}{" "}
+                  {isRequired(fieldName) && <span className="text-destructive">*</span>}
+                </FormLabel>
+                <FormControl>
+                  <AsyncSelect
+                    value={field.value || []}
+                    onChange={(value) => field.onChange(value)}
+                    isMulti
+                    async
+                    loadOptions={loadWarCriminals}
+                    placeholder={t("report.selectWarCriminals") || "Select war criminals..."}
+                    searchPlaceholder={t("report.searchWarCriminals") || "Search war criminals..."}
+                    emptyText={t("report.noWarCriminalsFound") || "No war criminals found."}
                     disabled={disabled}
                   />
                 </FormControl>

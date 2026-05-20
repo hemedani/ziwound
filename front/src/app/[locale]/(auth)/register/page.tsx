@@ -55,6 +55,8 @@ export default function RegisterPage() {
       email: data.email,
       password: data.password,
       gender: "Male",
+      verified: false,
+      isPublic: true,
     });
 
     if (result.success) {

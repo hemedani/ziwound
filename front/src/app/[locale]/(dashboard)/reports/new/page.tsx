@@ -86,6 +86,7 @@ export default function MultiStepReportPage() {
       attackedCountryIds: [],
       attackedProvinceIds: [],
       attackedCityIds: [],
+      warCriminalIds: [],
       location: undefined,
       status: "Pending",
       priority: undefined,
@@ -116,6 +117,7 @@ export default function MultiStepReportPage() {
         attackedCountryIds: data.attackedCountryIds,
         attackedProvinceIds: data.attackedProvinceIds,
         attackedCityIds: data.attackedCityIds,
+        warCriminalIds: data.warCriminalIds,
         selected_language: data.selected_language,
         priority: data.priority,
       } as ReqType["main"]["report"]["add"]["set"]);
@@ -156,6 +158,7 @@ export default function MultiStepReportPage() {
         "attackedCountryIds",
         "attackedProvinceIds",
         "attackedCityIds",
+        "warCriminalIds",
       ],
       4: ["documents"],
     };
@@ -276,6 +279,10 @@ export default function MultiStepReportPage() {
                       <div className="flex justify-between py-2 border-b border-white/5">
                         <span className="font-medium text-slate-body">{t("report.attackedCities") || "Attacked Cities"}</span>
                         <span className="text-offwhite">{(form.getValues("attackedCityIds") || []).length > 0 ? (form.getValues("attackedCityIds") || []).join(", ") : "-"}</span>
+                      </div>
+                      <div className="flex justify-between py-2 border-b border-white/5">
+                        <span className="font-medium text-slate-body">{t("report.warCriminals") || "War Criminals"}</span>
+                        <span className="text-offwhite">{(form.getValues("warCriminalIds") || []).length > 0 ? (form.getValues("warCriminalIds") || []).join(", ") : "-"}</span>
                       </div>
                       <div className="flex justify-between py-2 border-b border-white/5">
                         <span className="font-medium text-slate-body">{t("report.crimeOccurredAt")}</span>

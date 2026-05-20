@@ -34,6 +34,7 @@ import {
   ExternalLink,
   X,
   MessageSquare,
+  Building2,
 } from "lucide-react";
 import { format } from "date-fns";
 import Image from "next/image";
@@ -262,6 +263,19 @@ export default function ReportDetailPage() {
             attackedCountries: { _id: 1, name: 1, english_name: 1 },
             attackedProvinces: { _id: 1, name: 1, english_name: 1 },
             attackedCities: { _id: 1, name: 1, english_name: 1 },
+            warCriminals: {
+              _id: 1,
+              fullName: 1,
+              status: 1,
+              aliases: 1,
+              nationality: 1,
+              affiliation: 1,
+              rankOrPosition: 1,
+              knownFor: 1,
+              description: 1,
+              isEntity: 1,
+              photo: { _id: 1, name: 1, mimeType: 1, type: 1 },
+            },
             crime_occurred_at: 1,
             createdAt: 1,
             updatedAt: 1,
@@ -859,6 +873,203 @@ export default function ReportDetailPage() {
                 )}
               </div>
             )}
+
+            {/* War Criminals - Full Detail Cards */}
+                  {report.warCriminals && report.warCriminals.length > 0 && (
+                    <div>
+                      <div className="flex items-center gap-3 mb-6">
+                        <div className="rounded-xl bg-crimson/20 p-2">
+                          <User className="h-5 w-5 text-crimson-light" />
+                        </div>
+                        <h2 className="text-xl font-semibold text-offwhite">{t("warCriminals")}</h2>
+                        <Badge variant="outline" className="border-white/10 text-slate-body">
+                          {report.warCriminals.length}
+                        </Badge>
+                      </div>
+
+                      <div className="space-y-6">
+                        {report.warCriminals.map((wc) => {
+                          const statusColors: Record<string, string> = {
+                            Accused: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
+                            Indicted: "bg-orange-500/20 text-orange-400 border-orange-500/30",
+                            Convicted: "bg-red-500/20 text-red-400 border-red-500/30",
+                            "At Large": "bg-blue-500/20 text-blue-400 border-blue-500/30",
+                            Deceased: "bg-gray-500/20 text-gray-400 border-gray-500/30",
+                            Unknown: "bg-slate-500/20 text-slate-400 border-slate-500/30",
+                            Sanctioned: "bg-purple-500/20 text-purple-400 border-purple-500/30",
+                          };
+
+                          const affiliationColors: Record<string, string> = {
+                            Military: "bg-blue-500/20 text-blue-400 border-blue-500/30",
+                            Paramilitary: "bg-indigo-500/20 text-indigo-400 border-indigo-500/30",
+                            Government: "bg-emerald-500/20 text-emerald-400 border-emerald-500/30",
+                            "Rebel Group": "bg-red-500/20 text-red-400 border-red-500/30",
+                            "Private Military Company": "bg-amber-500/20 text-amber-400 border-amber-500/30",
+                            Political: "bg-violet-500/20 text-violet-400 border-violet-500/30",
+                            Other: "bg-slate-500/20 text-slate-400 border-slate-500/30",
+                          };
+
+                          const getStatusTranslation = (status: string) => {
+                            const keyMap: Record<string, string> = {
+                              "Accused": "warCriminalsStatusAccused",
+                              "Indicted": "warCriminalsStatusIndicted",
+                              "Convicted": "warCriminalsStatusConvicted",
+                              "At Large": "warCriminalsStatusAtLarge",
+                              "Deceased": "warCriminalsStatusDeceased",
+                              "Unknown": "warCriminalsStatusUnknown",
+                              "Sanctioned": "warCriminalsStatusSanctioned",
+                            };
+                            const key = keyMap[status];
+                            return key ? t(key) : status;
+                          };
+
+                          const getAffiliationTranslation = (affiliation: string) => {
+                            const keyMap: Record<string, string> = {
+                              "Military": "warCriminalsAffiliationMilitary",
+                              "Paramilitary": "warCriminalsAffiliationParamilitary",
+                              "Government": "warCriminalsAffiliationGovernment",
+                              "Rebel Group": "warCriminalsAffiliationRebelGroup",
+                              "Private Military Company": "warCriminalsAffiliationPrivateMilitaryCompany",
+                              "Political": "warCriminalsAffiliationPolitical",
+                              "Other": "warCriminalsAffiliationOther",
+                            };
+                            const key = keyMap[affiliation];
+                            return key ? t(key) : affiliation;
+                          };
+
+                          const wcTyped = wc as {
+                            _id?: string;
+                            fullName: string;
+                            status: string;
+                            aliases?: string[];
+                            nationality?: string[];
+                            affiliation?: string;
+                            rankOrPosition?: string;
+                            knownFor?: Record<string, string>;
+                            description?: Record<string, string>;
+                            isEntity?: boolean;
+                            photo?: { _id?: string; name: string; mimeType?: string; type: string };
+                          };
+
+                          const knownForText = wcTyped.knownFor?.[locale] || wcTyped.knownFor?.en || "";
+                          const descriptionText = wcTyped.description?.[locale] || wcTyped.description?.en || "";
+
+                          return (
+                            <Link
+                              key={wc._id}
+                              href={`/war-criminals/${wc._id}`}
+                              className="group block rounded-2xl glass-light border border-white/[0.06] overflow-hidden hover:border-crimson/30 transition-all duration-200"
+                            >
+                              <div className="p-6">
+                                <div className="flex flex-col sm:flex-row gap-5">
+                                  {/* Photo */}
+                                  <div className="shrink-0">
+                                    <div className="relative w-24 h-24 rounded-2xl overflow-hidden bg-white/5 border border-white/[0.08]">
+                                      {wcTyped.photo ? (
+                                        <Image
+                                          src={getImageUploadUrl(wcTyped.photo.name, wcTyped.photo.type as "image" | "video" | "docs")}
+                                          alt={wcTyped.fullName}
+                                          fill
+                                          unoptimized
+                                          sizes="96px"
+                                          className="object-cover"
+                                        />
+                                      ) : (
+                                        <div className="flex items-center justify-center h-full bg-gradient-to-br from-crimson/20 via-background to-gold/10">
+                                          {wcTyped.isEntity ? (
+                                            <Building2 className="h-10 w-10 text-offwhite/20" />
+                                          ) : (
+                                            <User className="h-10 w-10 text-offwhite/20" />
+                                          )}
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+
+                                  {/* Info */}
+                                  <div className="flex-1 min-w-0">
+                                    {/* Name & Status */}
+                                    <div className="flex items-start justify-between gap-3 mb-2">
+                                      <h3 className="text-xl font-bold text-offwhite group-hover:text-crimson-light transition-colors">
+                                        {wcTyped.fullName}
+                                      </h3>
+                                      <ExternalLink className="h-4 w-4 text-slate-body/50 group-hover:text-crimson-light transition-colors shrink-0 mt-1" />
+                                    </div>
+
+                                    {/* Badges */}
+                                    <div className="flex flex-wrap items-center gap-2 mb-3">
+                                      <Badge className={`${statusColors[wcTyped.status] || "bg-slate-500/20 text-slate-400"} border text-xs`}>
+                                        {getStatusTranslation(wcTyped.status)}
+                                      </Badge>
+                                      {wcTyped.affiliation && (
+                                        <Badge className={`${affiliationColors[wcTyped.affiliation] || "bg-slate-500/20 text-slate-400"} text-xs`}>
+                                          {getAffiliationTranslation(wcTyped.affiliation)}
+                                        </Badge>
+                                      )}
+                                      {wcTyped.isEntity && (
+                                        <Badge variant="outline" className="border-white/10 text-slate-body text-xs">
+                                          {t("warCriminalsOrganizations") || "Organization"}
+                                        </Badge>
+                                      )}
+                                    </div>
+
+                                    {/* Meta Info */}
+                                    <div className="flex flex-wrap gap-4 text-sm text-slate-body mb-3">
+                                      {wcTyped.nationality && wcTyped.nationality.length > 0 && (
+                                        <div className="flex items-center gap-1.5">
+                                          <MapPin className="h-3.5 w-3.5 text-gold/80" />
+                                          <span>{wcTyped.nationality.join(", ")}</span>
+                                        </div>
+                                      )}
+                                      {wcTyped.rankOrPosition && (
+                                        <div className="flex items-center gap-1.5">
+                                          <FileText className="h-3.5 w-3.5 text-gold/80" />
+                                          <span>{wcTyped.rankOrPosition}</span>
+                                        </div>
+                                      )}
+                                    </div>
+
+                                    {/* Aliases */}
+                                    {wcTyped.aliases && wcTyped.aliases.length > 0 && (
+                                      <div className="mb-3">
+                                        <p className="text-xs text-slate-body/60 mb-1">{t("warCriminalsAliases") || "Also known as"}</p>
+                                        <div className="flex flex-wrap gap-1.5">
+                                          {wcTyped.aliases.slice(0, 3).map((alias, i) => (
+                                            <Badge key={i} variant="outline" className="border-white/[0.08] text-slate-body text-xs">
+                                              {alias}
+                                            </Badge>
+                                          ))}
+                                          {wcTyped.aliases.length > 3 && (
+                                            <span className="text-xs text-slate-body/60">+{wcTyped.aliases.length - 3}</span>
+                                          )}
+                                        </div>
+                                      </div>
+                                    )}
+
+                                    {/* Known For */}
+                                    {knownForText && (
+                                      <div className="mb-3">
+                                        <p className="text-xs text-slate-body/60 mb-1">{t("warCriminalsKnownFor") || "Known For"}</p>
+                                        <p className="text-sm text-slate-body line-clamp-2">{knownForText}</p>
+                                      </div>
+                                    )}
+
+                                    {/* Description */}
+                                    {descriptionText && (
+                                      <div>
+                                        <p className="text-xs text-slate-body/60 mb-1">{t("description")}</p>
+                                        <p className="text-sm text-slate-body line-clamp-2">{descriptionText}</p>
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            </Link>
+                          );
+                        })}
+                      </div>
+                    </div>
+                  )}
 
             {/* Tags */}
             {report.tags && report.tags.length > 0 && (

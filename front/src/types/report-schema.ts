@@ -86,6 +86,7 @@ const baseReportSchema = z.object({
   attackedCountryIds: z.array(z.string()).optional(),
   attackedProvinceIds: z.array(z.string()).optional(),
   attackedCityIds: z.array(z.string()).optional(),
+  warCriminalIds: z.array(z.string()).optional(),
   location: locationSchema.optional(),
   status: z.enum(REPORT_STATUS).default("Pending"),
   priority: z.enum(REPORT_PRIORITY).optional(),
@@ -128,6 +129,7 @@ export const reportStepSchemas = {
     attackedCountryIds: true,
     attackedProvinceIds: true,
     attackedCityIds: true,
+    warCriminalIds: true,
   }),
   step4: baseReportSchema.pick({
     documents: true,
