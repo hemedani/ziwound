@@ -1,7 +1,6 @@
 import {
+	array,
 	boolean,
-	coerce,
-	date,
 	defaulted,
 	object,
 	objectIdValidation,
@@ -9,32 +8,27 @@ import {
 	string,
 } from "lesan";
 import { selectStruct } from "../../../mod.ts";
-import {
-	is_valid_national_number_struct,
-	mobile_pattern,
-	user_genders,
-	user_level_emums,
-} from "@model";
+import { user_genders, user_level_emums } from "@model";
+import { localizedWarInfo } from "@model";
 
 export const addUserValidator = () => {
 	return object({
 		set: object({
 			first_name: string(),
 			last_name: string(),
-			father_name: string(),
-			mobile: mobile_pattern,
 			gender: user_genders,
-			birth_date: optional(
-				coerce(date(), string(), (value) => new Date(value)),
-			),
+			birth_date: optional(string()),
 			summary: optional(string()),
-
-			// شماره ملی
-			national_number: is_valid_national_number_struct,
-			address: string(),
-
+			address: optional(string()),
 			level: user_level_emums,
+			email: string(),
+			password: string(),
 			is_verified: defaulted(boolean(), false),
+			bio: optional(localizedWarInfo),
+			expertise: optional(array(string())),
+			verified: defaulted(boolean(), false),
+			verificationBadge: optional(string()),
+			isPublic: defaulted(boolean(), true),
 			nationalCard: optional(objectIdValidation),
 			avatar: optional(objectIdValidation),
 			provinceId: optional(objectIdValidation),

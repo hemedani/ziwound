@@ -3,20 +3,24 @@ import { user } from "../../../mod.ts";
 import { user_pure } from "../../../models/user.ts";
 
 export const updateUserFn: ActFn = async (body) => {
-	// const {
-	// 	user,
-	// }: MyContext = coreApp.contextFns.getContextModel() as MyContext;
-
 	const {
 		set: {
 			_id,
 			first_name,
 			last_name,
-			father_name,
 			gender,
 			birth_date,
 			summary,
 			address,
+			level,
+			email,
+			password,
+			is_verified,
+			bio,
+			expertise,
+			verified,
+			verificationBadge,
+			isPublic,
 		},
 		get,
 	} = body.details;
@@ -24,13 +28,21 @@ export const updateUserFn: ActFn = async (body) => {
 	const pureStruct = object(user_pure);
 	const updateObj: Partial<Infer<typeof pureStruct>> = {
 		updatedAt: new Date(),
-		...(first_name && { first_name }),
-		...(last_name && { last_name }),
-		...(father_name && { father_name }),
-		...(gender && { gender }),
-		...(birth_date && { birth_date }),
-		...(summary && { summary }),
-		...(address && { address }),
+		...(first_name !== undefined && { first_name }),
+		...(last_name !== undefined && { last_name }),
+		...(gender !== undefined && { gender }),
+		...(birth_date !== undefined && { birth_date: new Date(birth_date as string) }),
+		...(summary !== undefined && { summary }),
+		...(address !== undefined && { address }),
+		...(level !== undefined && { level }),
+		...(email !== undefined && { email }),
+		...(password !== undefined && { password }),
+		...(is_verified !== undefined && { is_verified }),
+		...(bio !== undefined && { bio }),
+		...(expertise !== undefined && { expertise }),
+		...(verified !== undefined && { verified }),
+		...(verificationBadge !== undefined && { verificationBadge }),
+		...(isPublic !== undefined && { isPublic }),
 	};
 
 	return await user.findOneAndUpdate({

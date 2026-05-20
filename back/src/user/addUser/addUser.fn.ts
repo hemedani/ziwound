@@ -38,6 +38,7 @@ export const addUserFn: ActFn = async (body) => {
 	const addedUser = await user.insertOne({
 		doc: {
 			...rest,
+			birth_date: rest.birth_date ? new Date(rest.birth_date as string) : undefined,
 		},
 		relations,
 		projection: get,
