@@ -49,6 +49,7 @@ export type fileSchema = {
 export type provinceInp = {
   registrar?: number | userInp
   country?: number | countryInp
+  photo?: number | fileInp
   cities?: number | cityInp
   capital?: number | cityInp
   users?: number | userInp
@@ -336,6 +337,13 @@ export type provinceSchema = {
       ru?: string;
     };
   };
+  photo?: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  };
   cities: {
     _id?: string;
     name: string;
@@ -617,6 +625,7 @@ export type cityInp = {
   registrar?: number | userInp
   province?: number | provinceInp
   country?: number | countryInp
+  photo?: number | fileInp
   users?: number | userInp
   attackedByReports?: number | reportInp
 }
@@ -1019,6 +1028,13 @@ export type citySchema = {
       ru?: string;
     };
   };
+  photo?: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  };
   users: {
     _id?: string;
     first_name: string;
@@ -1173,6 +1189,7 @@ export type userSchema = {
 
 export type countryInp = {
   registrar?: number | userInp
+  photo?: number | fileInp
   provinces?: number | provinceInp
   cities?: number | cityInp
   hostileReports?: number | reportInp
@@ -1342,6 +1359,13 @@ export type countrySchema = {
     verified: boolean;
     verificationBadge?: string;
     isPublic: boolean;
+  };
+  photo?: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
   };
   provinces: {
     _id?: string;
@@ -2577,6 +2601,7 @@ export type ReqType = {
             tr?: string;
             ru?: string;
           };
+          photoId?: string;
         };
         get: {
           _id?: (0 | 1);
@@ -2610,6 +2635,13 @@ export type ReqType = {
             verified?: (0 | 1);
             verificationBadge?: (0 | 1);
             isPublic?: (0 | 1);
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           provinces?: {
             _id?: (0 | 1);
@@ -2842,6 +2874,13 @@ export type ReqType = {
             verificationBadge?: (0 | 1);
             isPublic?: (0 | 1);
           };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
           provinces?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -2902,9 +2941,10 @@ export type ReqType = {
       };
 
 
-      get: {
+      updateRelations: {
         set: {
           _id: string;
+          photo?: string;
         };
         get: {
           _id?: (0 | 1);
@@ -3000,6 +3040,28 @@ export type ReqType = {
               selected_language?: (0 | 1);
             };
           };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+          };
           provinces?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -3049,6 +3111,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             cities?: {
               _id?: (0 | 1);
@@ -3177,6 +3246,568 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+            attackedByReports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
+          hostileReports?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+            selected_language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
+            reporter?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+            documents?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              selected_language?: (0 | 1);
+            };
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            hostileCountries?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            attackedCountries?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            attackedProvinces?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            attackedCities?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
+            confirmations?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              content?: (0 | 1);
+              type?: (0 | 1);
+              badge?: (0 | 1);
+              isVerified?: (0 | 1);
+              selected_language?: (0 | 1);
+            };
+          };
+          attackedReports?: {
+            _id?: (0 | 1);
+            title?: (0 | 1);
+            description?: (0 | 1);
+            location?: (0 | 1);
+            address?: (0 | 1);
+            status?: (0 | 1);
+            priority?: (0 | 1);
+            selected_language?: (0 | 1);
+            crime_occurred_at?: (0 | 1);
+            reporter?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+            documents?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              selected_language?: (0 | 1);
+            };
+            tags?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            category?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              color?: (0 | 1);
+              icon?: (0 | 1);
+            };
+            hostileCountries?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            attackedCountries?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            attackedProvinces?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            attackedCities?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            warCriminals?: {
+              _id?: (0 | 1);
+              fullName?: (0 | 1);
+              aliases?: (0 | 1);
+              dateOfBirth?: (0 | 1);
+              nationality?: (0 | 1);
+              affiliation?: (0 | 1);
+              rankOrPosition?: (0 | 1);
+              knownFor?: (0 | 1);
+              biography?: (0 | 1);
+              description?: (0 | 1);
+              status?: (0 | 1);
+              convictionDetails?: (0 | 1);
+              isEntity?: (0 | 1);
+            };
+            confirmations?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              content?: (0 | 1);
+              type?: (0 | 1);
+              badge?: (0 | 1);
+              isVerified?: (0 | 1);
+              selected_language?: (0 | 1);
+            };
+          };
+        };
+      };
+
+
+      get: {
+        set: {
+          _id: string;
+        };
+        get: {
+          _id?: (0 | 1);
+          name?: (0 | 1);
+          english_name?: (0 | 1);
+          createdAt?: (0 | 1);
+          updatedAt?: (0 | 1);
+          wars_history?: (0 | 1);
+          conflict_timeline?: (0 | 1);
+          casualties_info?: (0 | 1);
+          international_response?: (0 | 1);
+          war_crimes_documentation?: (0 | 1);
+          human_rights_violations?: (0 | 1);
+          genocide_info?: (0 | 1);
+          chemical_weapons_info?: (0 | 1);
+          displacement_info?: (0 | 1);
+          reconstruction_status?: (0 | 1);
+          international_sanctions?: (0 | 1);
+          notable_war_events?: (0 | 1);
+          registrar?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            bio?: (0 | 1);
+            expertise?: (0 | 1);
+            verified?: (0 | 1);
+            verificationBadge?: (0 | 1);
+            isPublic?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              selected_language?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+            confirmations?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              content?: (0 | 1);
+              type?: (0 | 1);
+              badge?: (0 | 1);
+              isVerified?: (0 | 1);
+              selected_language?: (0 | 1);
+            };
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+          };
+          provinces?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
+            wars_history?: (0 | 1);
+            conflict_timeline?: (0 | 1);
+            casualties_info?: (0 | 1);
+            notable_battles?: (0 | 1);
+            occupation_info?: (0 | 1);
+            destruction_level?: (0 | 1);
+            civilian_impact?: (0 | 1);
+            mass_graves_info?: (0 | 1);
+            war_crimes_events?: (0 | 1);
+            liberation_info?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+              wars_history?: (0 | 1);
+              conflict_timeline?: (0 | 1);
+              casualties_info?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            cities?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+              wars_history?: (0 | 1);
+              conflict_timeline?: (0 | 1);
+              casualties_info?: (0 | 1);
+              notable_battles?: (0 | 1);
+              occupation_info?: (0 | 1);
+              destruction_level?: (0 | 1);
+              civilian_impact?: (0 | 1);
+              mass_graves_info?: (0 | 1);
+              war_crimes_events?: (0 | 1);
+              liberation_info?: (0 | 1);
+            };
+            capital?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+              wars_history?: (0 | 1);
+              conflict_timeline?: (0 | 1);
+              casualties_info?: (0 | 1);
+              notable_battles?: (0 | 1);
+              occupation_info?: (0 | 1);
+              destruction_level?: (0 | 1);
+              civilian_impact?: (0 | 1);
+              mass_graves_info?: (0 | 1);
+              war_crimes_events?: (0 | 1);
+              liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+            attackedByReports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
+          cities?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            createdAt?: (0 | 1);
+            updatedAt?: (0 | 1);
+            wars_history?: (0 | 1);
+            conflict_timeline?: (0 | 1);
+            casualties_info?: (0 | 1);
+            notable_battles?: (0 | 1);
+            occupation_info?: (0 | 1);
+            destruction_level?: (0 | 1);
+            civilian_impact?: (0 | 1);
+            mass_graves_info?: (0 | 1);
+            war_crimes_events?: (0 | 1);
+            liberation_info?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+              wars_history?: (0 | 1);
+              conflict_timeline?: (0 | 1);
+              casualties_info?: (0 | 1);
+              notable_battles?: (0 | 1);
+              occupation_info?: (0 | 1);
+              destruction_level?: (0 | 1);
+              civilian_impact?: (0 | 1);
+              mass_graves_info?: (0 | 1);
+              war_crimes_events?: (0 | 1);
+              liberation_info?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+              wars_history?: (0 | 1);
+              conflict_timeline?: (0 | 1);
+              casualties_info?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -3525,6 +4156,28 @@ export type ReqType = {
               selected_language?: (0 | 1);
             };
           };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+          };
           provinces?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -3574,6 +4227,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             cities?: {
               _id?: (0 | 1);
@@ -3702,6 +4362,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -4092,6 +4759,7 @@ export type ReqType = {
           provinceId: string;
           countryId: string;
           isCapital: boolean;
+          photoId?: string;
         };
         get: {
           _id?: (0 | 1);
@@ -4160,6 +4828,13 @@ export type ReqType = {
             international_sanctions?: (0 | 1);
             notable_war_events?: (0 | 1);
           };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
           users?: {
             _id?: (0 | 1);
             first_name?: (0 | 1);
@@ -4195,15 +4870,6 @@ export type ReqType = {
           _id: string;
           name?: string;
           english_name?: string;
-          area?: {
-            type: "Polygon";
-            coordinates: any[];
-          };
-          center?: {
-            type: "Point";
-            coordinates: any[];
-          };
-          countryId?: string;
           wars_history?: {
             fa?: string;
             en?: string;
@@ -4382,6 +5048,13 @@ export type ReqType = {
             international_sanctions?: (0 | 1);
             notable_war_events?: (0 | 1);
           };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
           users?: {
             _id?: (0 | 1);
             first_name?: (0 | 1);
@@ -4417,6 +5090,7 @@ export type ReqType = {
           _id: string;
           province?: string;
           country?: string;
+          photo?: string;
         };
         get: {
           _id?: (0 | 1);
@@ -4560,6 +5234,13 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -4654,6 +5335,13 @@ export type ReqType = {
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             provinces?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -4709,6 +5397,28 @@ export type ReqType = {
               priority?: (0 | 1);
               selected_language?: (0 | 1);
               crime_occurred_at?: (0 | 1);
+            };
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
           };
           users?: {
@@ -5043,6 +5753,13 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -5137,6 +5854,13 @@ export type ReqType = {
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             provinces?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -5192,6 +5916,28 @@ export type ReqType = {
               priority?: (0 | 1);
               selected_language?: (0 | 1);
               crime_occurred_at?: (0 | 1);
+            };
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
           };
           users?: {
@@ -5534,6 +6280,13 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -5628,6 +6381,13 @@ export type ReqType = {
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             provinces?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -5683,6 +6443,28 @@ export type ReqType = {
               priority?: (0 | 1);
               selected_language?: (0 | 1);
               crime_occurred_at?: (0 | 1);
+            };
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
           };
           users?: {
@@ -6345,6 +7127,7 @@ export type ReqType = {
             ru?: string;
           };
           countryId: string;
+          photoId?: string;
         };
         get: {
           _id?: (0 | 1);
@@ -6395,6 +7178,13 @@ export type ReqType = {
             reconstruction_status?: (0 | 1);
             international_sanctions?: (0 | 1);
             notable_war_events?: (0 | 1);
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
           };
           cities?: {
             _id?: (0 | 1);
@@ -6626,6 +7416,13 @@ export type ReqType = {
             international_sanctions?: (0 | 1);
             notable_war_events?: (0 | 1);
           };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+          };
           cities?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -6694,6 +7491,7 @@ export type ReqType = {
         set: {
           _id: string;
           country?: string;
+          photo?: string;
         };
         get: {
           _id?: (0 | 1);
@@ -6820,6 +7618,13 @@ export type ReqType = {
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             provinces?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -6875,6 +7680,28 @@ export type ReqType = {
               priority?: (0 | 1);
               selected_language?: (0 | 1);
               crime_occurred_at?: (0 | 1);
+            };
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
           };
           cities?: {
@@ -6943,6 +7770,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -7037,6 +7871,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -7380,6 +8221,13 @@ export type ReqType = {
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             provinces?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -7435,6 +8283,28 @@ export type ReqType = {
               priority?: (0 | 1);
               selected_language?: (0 | 1);
               crime_occurred_at?: (0 | 1);
+            };
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
           };
           cities?: {
@@ -7503,6 +8373,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -7597,6 +8474,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -7947,6 +8831,13 @@ export type ReqType = {
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             provinces?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -8002,6 +8893,28 @@ export type ReqType = {
               priority?: (0 | 1);
               selected_language?: (0 | 1);
               crime_occurred_at?: (0 | 1);
+            };
+          };
+          photo?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            mimeType?: (0 | 1);
+            type?: (0 | 1);
+            alt_text?: (0 | 1);
+            uploader?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
           };
           cities?: {
@@ -8070,6 +8983,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -8164,6 +9084,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -8625,6 +9552,13 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -8740,6 +9674,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -9085,6 +10026,13 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -9200,6 +10148,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -9985,6 +10940,13 @@ export type ReqType = {
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             cities?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -10100,6 +11062,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -12089,6 +13058,13 @@ export type ReqType = {
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             provinces?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -12173,6 +13149,13 @@ export type ReqType = {
               verified?: (0 | 1);
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             provinces?: {
               _id?: (0 | 1);
@@ -12268,6 +13251,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             cities?: {
               _id?: (0 | 1);
@@ -12384,6 +13374,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -12754,6 +13751,13 @@ export type ReqType = {
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             provinces?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -12838,6 +13842,13 @@ export type ReqType = {
               verified?: (0 | 1);
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             provinces?: {
               _id?: (0 | 1);
@@ -12933,6 +13944,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             cities?: {
               _id?: (0 | 1);
@@ -13049,6 +14067,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -13406,6 +14431,13 @@ export type ReqType = {
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             provinces?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -13490,6 +14522,13 @@ export type ReqType = {
               verified?: (0 | 1);
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             provinces?: {
               _id?: (0 | 1);
@@ -13585,6 +14624,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             cities?: {
               _id?: (0 | 1);
@@ -13701,6 +14747,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -14061,6 +15114,13 @@ export type ReqType = {
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             provinces?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -14145,6 +15205,13 @@ export type ReqType = {
               verified?: (0 | 1);
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             provinces?: {
               _id?: (0 | 1);
@@ -14240,6 +15307,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             cities?: {
               _id?: (0 | 1);
@@ -14356,6 +15430,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -14984,6 +16065,13 @@ export type ReqType = {
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             provinces?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -15068,6 +16156,13 @@ export type ReqType = {
               verified?: (0 | 1);
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             provinces?: {
               _id?: (0 | 1);
@@ -15163,6 +16258,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             cities?: {
               _id?: (0 | 1);
@@ -15279,6 +16381,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
@@ -15625,6 +16734,13 @@ export type ReqType = {
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
             };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
             provinces?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -15709,6 +16825,13 @@ export type ReqType = {
               verified?: (0 | 1);
               verificationBadge?: (0 | 1);
               isPublic?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             provinces?: {
               _id?: (0 | 1);
@@ -15804,6 +16927,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             cities?: {
               _id?: (0 | 1);
@@ -15920,6 +17050,13 @@ export type ReqType = {
               reconstruction_status?: (0 | 1);
               international_sanctions?: (0 | 1);
               notable_war_events?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
             };
             users?: {
               _id?: (0 | 1);
