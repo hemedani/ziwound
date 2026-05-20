@@ -1143,10 +1143,18 @@
     "description": "浏览受战争罪行和侵犯人权行为影响的国家、省份和城市。",
     "overline": "档案",
     "searchPlaceholder": "搜索国家...",
+    "searchProvincesPlaceholder": "搜索省份...",
+    "searchCitiesPlaceholder": "搜索城市...",
     "search": "搜索",
     "clear": "清除",
     "noCountries": "未找到国家",
+    "noProvinces": "未找到省份",
+    "noCities": "未找到城市",
     "noCountriesDescription": "尝试调整搜索或稍后再查看。",
+    "noResultsDescription": "尝试调整搜索或稍后再查看。",
+    "countriesTab": "国家",
+    "provincesTab": "省份",
+    "citiesTab": "城市",
     "provinces": "省份",
     "cities": "城市",
     "reports": "报告",
@@ -1182,7 +1190,8 @@
     "war_crimes_events": "战争罪行事件",
     "liberation_info": "解放信息",
     "city": "城市",
-    "cityDescription": "探索{name}的战争罪行记录和侵犯人权行为。"
+    "cityDescription": "探索{name}的战争罪行记录和侵犯人权行为。",
+    "page": "页"
   },
   "warCriminals": {
     "overline": "罪犯数据库",

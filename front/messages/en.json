@@ -1214,10 +1214,18 @@
     "description": "Browse countries, provinces, and cities affected by war crimes and human rights violations.",
     "overline": "Archive",
     "searchPlaceholder": "Search countries...",
+    "searchProvincesPlaceholder": "Search provinces...",
+    "searchCitiesPlaceholder": "Search cities...",
     "search": "Search",
     "clear": "Clear",
     "noCountries": "No countries found",
+    "noProvinces": "No provinces found",
+    "noCities": "No cities found",
     "noCountriesDescription": "Try adjusting your search or check back later.",
+    "noResultsDescription": "Try adjusting your search or check back later.",
+    "countriesTab": "Countries",
+    "provincesTab": "Provinces",
+    "citiesTab": "Cities",
     "provinces": "Provinces",
     "cities": "Cities",
     "reports": "Reports",
@@ -1253,7 +1261,8 @@
     "war_crimes_events": "War Crimes Events",
     "liberation_info": "Liberation Information",
     "city": "City",
-    "cityDescription": "Explore war crimes documentation and human rights violations in {name}."
+    "cityDescription": "Explore war crimes documentation and human rights violations in {name}.",
+    "page": "Page"
   },
   "warCriminals": {
     "overline": "Perpetrator Database",

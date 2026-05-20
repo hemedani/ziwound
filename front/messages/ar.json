@@ -1137,10 +1137,18 @@
     "description": "تصفح البلدان والمحافظات والمدن المتأثرة بالجرائم الحربية وانتهاكات حقوق الإنسان.",
     "overline": "أرشيف",
     "searchPlaceholder": "البحث في البلدان...",
+    "searchProvincesPlaceholder": "البحث في المحافظات...",
+    "searchCitiesPlaceholder": "البحث في المدن...",
     "search": "بحث",
     "clear": "مسح",
     "noCountries": "لم يتم العثور على بلدان",
+    "noProvinces": "لم يتم العثور على محافظات",
+    "noCities": "لم يتم العثور على مدن",
     "noCountriesDescription": "حاول تعديل البحث أو تحقق لاحقًا.",
+    "noResultsDescription": "حاول تعديل البحث أو تحقق لاحقًا.",
+    "countriesTab": "البلدان",
+    "provincesTab": "المحافظات",
+    "citiesTab": "المدن",
     "provinces": "المحافظات",
     "cities": "المدن",
     "reports": "التقارير",
@@ -1176,7 +1184,8 @@
     "war_crimes_events": "أحداث جرائم الحرب",
     "liberation_info": "معلومات التحرير",
     "city": "المدينة",
-    "cityDescription": "استكشف توثيق جرائم الحرب وانتهاكات حقوق الإنسان في {name}."
+    "cityDescription": "استكشف توثيق جرائم الحرب وانتهاكات حقوق الإنسان في {name}.",
+    "page": "صفحة"
   },
   "warCriminals": {
     "overline": "قاعدة بيانات المجرمين",

@@ -1196,10 +1196,18 @@
     "description": "Blader door landen, provincies en steden getroffen door oorlogsmisdaden en schendingen van de mensenrechten.",
     "overline": "Archief",
     "searchPlaceholder": "Zoek landen...",
+    "searchProvincesPlaceholder": "Zoek provincies...",
+    "searchCitiesPlaceholder": "Zoek steden...",
     "search": "Zoeken",
     "clear": "Wissen",
     "noCountries": "Geen landen gevonden",
+    "noProvinces": "Geen provincies gevonden",
+    "noCities": "Geen steden gevonden",
     "noCountriesDescription": "Probeer uw zoekopdracht aan te passen of kom later terug.",
+    "noResultsDescription": "Probeer uw zoekopdracht aan te passen of kom later terug.",
+    "countriesTab": "Landen",
+    "provincesTab": "Provincies",
+    "citiesTab": "Steden",
     "provinces": "Provincies",
     "cities": "Steden",
     "reports": "Rapporten",
@@ -1235,7 +1243,8 @@
     "war_crimes_events": "Oorlogsmisdaden Gebeurtenissen",
     "liberation_info": "Bevrijdingsinformatie",
     "city": "Stad",
-    "cityDescription": "Ontdek documentatie over oorlogsmisdaden en schendingen van de mensenrechten in {name}."
+    "cityDescription": "Ontdek documentatie over oorlogsmisdaden en schendingen van de mensenrechten in {name}.",
+    "page": "Pagina"
   },
   "warCriminals": {
     "overline": "Criminele Database",

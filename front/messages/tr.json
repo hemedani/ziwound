@@ -1143,10 +1143,18 @@
     "description": "Savaş suçları ve insan hakları ihlallerinden etkilenen ülkeleri, illeri ve şehirleri keşfedin.",
     "overline": "Arşiv",
     "searchPlaceholder": "Ülke ara...",
+    "searchProvincesPlaceholder": "İl ara...",
+    "searchCitiesPlaceholder": "Şehir ara...",
     "search": "Ara",
     "clear": "Temizle",
     "noCountries": "Ülke bulunamadı",
+    "noProvinces": "İl bulunamadı",
+    "noCities": "Şehir bulunamadı",
     "noCountriesDescription": "Aramanızı ayarlamayı deneyin veya daha sonra tekrar kontrol edin.",
+    "noResultsDescription": "Aramanızı ayarlamayı deneyin veya daha sonra tekrar kontrol edin.",
+    "countriesTab": "Ülkeler",
+    "provincesTab": "İller",
+    "citiesTab": "Şehirler",
     "provinces": "İller",
     "cities": "Şehirler",
     "reports": "Raporlar",
@@ -1182,7 +1190,8 @@
     "war_crimes_events": "Savaş Suçları Olayları",
     "liberation_info": "Kurtuluş Bilgisi",
     "city": "Şehir",
-    "cityDescription": "{name} içindeki savaş suçları ve insan hakları ihlalleri dokümantasyonunu keşfedin."
+    "cityDescription": "{name} içindeki savaş suçları ve insan hakları ihlalleri dokümantasyonunu keşfedin.",
+    "page": "Sayfa"
   },
   "warCriminals": {
     "overline": "Suçlu Veritabanı",

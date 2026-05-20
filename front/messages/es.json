@@ -1196,10 +1196,18 @@
     "description": "Explore países, provincias y ciudades afectados por crímenes de guerra y violaciones de derechos humanos.",
     "overline": "Archivo",
     "searchPlaceholder": "Buscar países...",
+    "searchProvincesPlaceholder": "Buscar provincias...",
+    "searchCitiesPlaceholder": "Buscar ciudades...",
     "search": "Buscar",
     "clear": "Borrar",
     "noCountries": "No se encontraron países",
+    "noProvinces": "No se encontraron provincias",
+    "noCities": "No se encontraron ciudades",
     "noCountriesDescription": "Intente ajustar su búsqueda o vuelva más tarde.",
+    "noResultsDescription": "Intente ajustar su búsqueda o vuelva más tarde.",
+    "countriesTab": "Países",
+    "provincesTab": "Provincias",
+    "citiesTab": "Ciudades",
     "provinces": "Provincias",
     "cities": "Ciudades",
     "reports": "Informes",
@@ -1235,7 +1243,8 @@
     "war_crimes_events": "Eventos de Crímenes de Guerra",
     "liberation_info": "Información sobre Liberación",
     "city": "Ciudad",
-    "cityDescription": "Explore la documentación de crímenes de guerra y violaciones de derechos humanos en {name}."
+    "cityDescription": "Explore la documentación de crímenes de guerra y violaciones de derechos humanos en {name}.",
+    "page": "Página"
   },
   "warCriminals": {
     "overline": "Base de Datos de Criminales",

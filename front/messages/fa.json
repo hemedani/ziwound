@@ -1215,10 +1215,18 @@
     "description": "کشورها، استان‌ها و شهرهای تحت تأثیر جنایات جنگی و نقض حقوق بشر را مرور کنید.",
     "overline": "آرشیو",
     "searchPlaceholder": "جستجوی کشورها...",
+    "searchProvincesPlaceholder": "جستجوی استان‌ها...",
+    "searchCitiesPlaceholder": "جستجوی شهرها...",
     "search": "جستجو",
     "clear": "پاک کردن",
     "noCountries": "هیچ کشوری یافت نشد",
+    "noProvinces": "هیچ استانی یافت نشد",
+    "noCities": "هیچ شهری یافت نشد",
     "noCountriesDescription": "جستجوی خود را تنظیم کنید یا بعداً دوباره بررسی کنید.",
+    "noResultsDescription": "جستجوی خود را تنظیم کنید یا بعداً دوباره بررسی کنید.",
+    "countriesTab": "کشورها",
+    "provincesTab": "استان‌ها",
+    "citiesTab": "شهرها",
     "provinces": "استان‌ها",
     "cities": "شهرها",
     "reports": "گزارش‌ها",
@@ -1254,7 +1262,8 @@
     "war_crimes_events": "رویدادهای جنایات جنگی",
     "liberation_info": "اطلاعات آزادی",
     "city": "شهر",
-    "cityDescription": "مستندات جنایات جنگی و نقض حقوق بشر در {name} را کاوش کنید."
+    "cityDescription": "مستندات جنایات جنگی و نقض حقوق بشر در {name} را کاوش کنید.",
+    "page": "صفحه"
   },
   "warCriminals": {
     "overline": "پایگاه داده مجرمان",
