@@ -32,14 +32,15 @@ RUN corepack enable && corepack prepare pnpm@latest --activate
 # Copy package files
 COPY package.json pnpm-lock.yaml* ./
 
-# Install dependencies
+# Install dependencies (frozen lockfile for reproducibility)
 RUN pnpm install --frozen-lockfile --prod=false
 
 # Copy source files
 COPY . .
 
-# Build application
-RUN pnpm build
+# Build application with optimized memory for server
+ENV NODE_OPTIONS='--max-old-space-size=2048 --no-warnings'
+RUN pnpm build:server
 
 # Production stage
 FROM node:20-alpine AS production

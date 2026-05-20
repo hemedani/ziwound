@@ -50,12 +50,54 @@ The app will be available at `http://localhost:3000` (or the configured port).
 The project is configured to use Next.js `standalone` output mode for highly optimized Docker builds.
 In production (`Dockerfile`), we extract `.next/standalone` and run it natively via `node server.js` without reinstalling `node_modules`.
 
+#### Build Scripts
+
+This project provides multiple build configurations optimized for different environments:
+
+| Script | Memory | Use Case | Speed |
+|--------|--------|----------|-------|
+| `pnpm build:server` | 2GB | **VPS/Production** (limited resources) | ⚡ Fastest |
+| `pnpm build:local` | 8GB | Local machine (full optimization) | 🐢 Thorough |
+| `pnpm build:strict` | 8GB | Pre-deploy (type-check + lint + build) | 🐌 Safest |
+| `pnpm build` | 4GB | General purpose | ⚖️ Balanced |
+
 ```bash
-# Build for production (uses pnpm, not npm)
+# On your VPS / Docker (optimized for limited resources)
+pnpm build:server
+
+# On your local machine (full optimization)
+pnpm build:local
+
+# Before deploying to production (full validation: TypeScript + ESLint + Build)
+pnpm build:strict
+
+# General purpose build
 pnpm build
 
 # Start production server
 pnpm start
+```
+
+**`pnpm build:strict`** runs three validation steps in sequence:
+1. TypeScript type checking (`tsc --noEmit`)
+2. ESLint validation (`eslint .`)
+3. Next.js build with 8GB memory limit
+
+This ensures comprehensive error detection before production deployments.
+
+#### TypeScript Configuration Optimizations
+
+The `tsconfig.json` includes performance optimizations:
+
+```json
+{
+  "compilerOptions": {
+    "incremental": true,           // Faster subsequent builds
+    "skipLibCheck": true,          // Skip type checking of declaration files
+    "noEmit": true,                // Don't emit output (Next.js handles this)
+    "moduleResolution": "bundler"  // Modern module resolution
+  }
+}
 ```
 
 ### Environment Configuration
