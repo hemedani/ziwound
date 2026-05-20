@@ -18,6 +18,8 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RichTextEditor } from "@/components/form/rich-text-editor";
 import { AsyncSelect } from "@/components/form/async-select";
+import { ImagePicker } from "@/components/form/image-picker";
+import { FileUploadField } from "@/components/form/file-upload-field";
 
 const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
 type Language = (typeof LANGUAGES)[number];
@@ -41,6 +43,7 @@ const cityFormSchema = z.object({
   english_name: z.string().min(1, "English name is required"),
   countryId: z.string().min(1, "Country is required"),
   provinceId: z.string().min(1, "Province is required"),
+  photoId: z.string().optional(),
   wars_history: localizedWarFieldSchema,
   conflict_timeline: localizedWarFieldSchema,
   casualties_info: localizedWarFieldSchema,
@@ -148,6 +151,7 @@ export function CityForm({
   const [selectedCountry, setSelectedCountry] = useState<string | string[] | null>(
     defaultValues?.countryId || null
   );
+  const [photoId, setPhotoId] = useState<string>(defaultValues?.photoId || "");
 
   const emptyLocalized: LocalizedWarField = { fa: "", en: "", ar: "", zh: "", pt: "", es: "", nl: "", tr: "", ru: "" };
 
@@ -158,6 +162,7 @@ export function CityForm({
       english_name: "",
       countryId: "",
       provinceId: "",
+      photoId: "",
       wars_history: emptyLocalized,
       conflict_timeline: emptyLocalized,
       casualties_info: emptyLocalized,
@@ -170,7 +175,13 @@ export function CityForm({
       liberation_info: emptyLocalized,
       ...defaultValues,
     },
+    mode: "onChange",
+    shouldUnregister: false,
   });
+
+  const handleSubmit = (values: CityFormValues) => {
+    onSubmit({ ...values, photoId: photoId || undefined });
+  };
 
   const filteredProvinces = useMemo(() => {
     if (!selectedCountry || typeof selectedCountry !== "string") return provinces;
@@ -195,7 +206,7 @@ export function CityForm({
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <FormField
             control={form.control}
@@ -271,6 +282,32 @@ export function CityForm({
             </FormItem>
           )}
         />
+
+        <FormItem>
+          <FormLabel>{t("photo") || "Photo"}</FormLabel>
+          <Tabs defaultValue="library">
+            <TabsList className="grid w-full grid-cols-2 bg-white/5 border-white/10">
+              <TabsTrigger value="library">{t("imageLibrary") || "Library"}</TabsTrigger>
+              <TabsTrigger value="upload">{t("uploadNew") || "Upload"}</TabsTrigger>
+            </TabsList>
+            <TabsContent value="library" className="mt-3">
+              <ImagePicker
+                value={photoId}
+                onChange={(id) => setPhotoId(id || "")}
+              />
+            </TabsContent>
+            <TabsContent value="upload" className="mt-3">
+              <FileUploadField
+                label=""
+                maxFiles={1}
+                accept="image/*"
+                value={photoId ? [photoId] : []}
+                onChange={(ids) => setPhotoId(ids[0] || "")}
+              />
+            </TabsContent>
+          </Tabs>
+          <FormMessage />
+        </FormItem>
 
         <div className="space-y-6">
           <h4 className="text-sm font-semibold">{t("warDescriptionFields") || "War Description Fields"}</h4>

@@ -44,6 +44,7 @@ export function NewCityForm({ countries = [], provinces = [] }: NewCityFormProps
           provinceId: data.provinceId,
           countryId: data.countryId,
           isCapital: false,
+          ...(data.photoId ? { photoId: data.photoId } : {}),
           wars_history: buildLocalizedObject(data, "wars_history"),
           conflict_timeline: buildLocalizedObject(data, "conflict_timeline"),
           casualties_info: buildLocalizedObject(data, "casualties_info"),

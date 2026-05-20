@@ -45,7 +45,6 @@ export function EditCityForm({ city, countries = [], provinces = [] }: EditCityF
           _id: city._id!,
           name: data.name,
           english_name: data.english_name,
-          countryId: data.countryId,
           wars_history: buildLocalizedObject(data, "wars_history"),
           conflict_timeline: buildLocalizedObject(data, "conflict_timeline"),
           casualties_info: buildLocalizedObject(data, "casualties_info"),
@@ -70,12 +69,13 @@ export function EditCityForm({ city, countries = [], provinces = [] }: EditCityF
         return;
       }
 
-      if (data.provinceId !== city.province?._id) {
+      if (data.provinceId !== city.province?._id || data.photoId !== city.photo?._id) {
         const relationRes = await updateRelations(
           {
             _id: city._id!,
-            province: data.provinceId,
-            country: data.countryId,
+            ...(data.provinceId !== city.province?._id ? { province: data.provinceId } : {}),
+            ...(data.countryId !== city.country?._id ? { country: data.countryId } : {}),
+            ...(data.photoId !== city.photo?._id ? { photo: data.photoId || undefined } : {}),
           },
           { _id: 1 },
         );
@@ -127,6 +127,7 @@ export function EditCityForm({ city, countries = [], provinces = [] }: EditCityF
     english_name: city.english_name,
     countryId: city.country?._id || "",
     provinceId: city.province?._id || "",
+    photoId: city.photo?._id || "",
     wars_history: {
       fa: extractLangValue(city.wars_history, "fa"),
       en: extractLangValue(city.wars_history, "en"),

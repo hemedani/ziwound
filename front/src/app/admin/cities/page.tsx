@@ -42,6 +42,7 @@ export default async function AdminCitiesPage({
     province: {
       _id: 1,
     },
+    photo: { _id: 1, name: 1 },
   });
 
   const provincesResponse = await getProvinces(
