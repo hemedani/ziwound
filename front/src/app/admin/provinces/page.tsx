@@ -42,6 +42,7 @@ export default async function AdminProvincesPage({
     country: {
       _id: 1,
     },
+    photo: { _id: 1, name: 1 },
   });
 
   const countriesResponse = await getCountries(

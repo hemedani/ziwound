@@ -3,6 +3,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { useState } from "react";
 import { useTranslations } from "next-intl";
 import {
   Form,
@@ -17,6 +18,8 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RichTextEditor } from "@/components/form/rich-text-editor";
 import { AsyncSelect, AsyncSelectOption } from "@/components/form/async-select";
+import { ImagePicker } from "@/components/form/image-picker";
+import { FileUploadField } from "@/components/form/file-upload-field";
 
 const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
 type Language = (typeof LANGUAGES)[number];
@@ -39,6 +42,7 @@ const provinceFormSchema = z.object({
   name: z.string().min(1, "Name is required"),
   english_name: z.string().min(1, "English name is required"),
   countryId: z.string().min(1, "Country is required"),
+  photoId: z.string().optional(),
   wars_history: localizedWarFieldSchema,
   conflict_timeline: localizedWarFieldSchema,
   casualties_info: localizedWarFieldSchema,
@@ -141,6 +145,7 @@ export function ProvinceForm({
   countries = [],
 }: ProvinceFormProps) {
   const t = useTranslations("admin");
+  const [photoId, setPhotoId] = useState<string>(defaultValues?.photoId || "");
 
   const emptyLocalized: LocalizedWarField = { fa: "", en: "", ar: "", zh: "", pt: "", es: "", nl: "", tr: "", ru: "" };
 
@@ -150,6 +155,7 @@ export function ProvinceForm({
       name: "",
       english_name: "",
       countryId: "",
+      photoId: "",
       wars_history: emptyLocalized,
       conflict_timeline: emptyLocalized,
       casualties_info: emptyLocalized,
@@ -162,11 +168,17 @@ export function ProvinceForm({
       liberation_info: emptyLocalized,
       ...defaultValues,
     },
+    mode: "onChange",
+    shouldUnregister: false,
   });
+
+  const handleSubmit = (values: ProvinceFormValues) => {
+    onSubmit({ ...values, photoId: photoId || undefined });
+  };
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
+      <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
           <FormField
             control={form.control}
@@ -220,6 +232,32 @@ export function ProvinceForm({
             </FormItem>
           )}
         />
+
+        <FormItem>
+          <FormLabel>{t("photo") || "Photo"}</FormLabel>
+          <Tabs defaultValue="library">
+            <TabsList className="grid w-full grid-cols-2 bg-white/5 border-white/10">
+              <TabsTrigger value="library">{t("imageLibrary") || "Library"}</TabsTrigger>
+              <TabsTrigger value="upload">{t("uploadNew") || "Upload"}</TabsTrigger>
+            </TabsList>
+            <TabsContent value="library" className="mt-3">
+              <ImagePicker
+                value={photoId}
+                onChange={(id) => setPhotoId(id || "")}
+              />
+            </TabsContent>
+            <TabsContent value="upload" className="mt-3">
+              <FileUploadField
+                label=""
+                maxFiles={1}
+                accept="image/*"
+                value={photoId ? [photoId] : []}
+                onChange={(ids) => setPhotoId(ids[0] || "")}
+              />
+            </TabsContent>
+          </Tabs>
+          <FormMessage />
+        </FormItem>
 
         <div className="space-y-6">
           <h4 className="text-sm font-semibold">{t("warDescriptionFields") || "War Description Fields"}</h4>

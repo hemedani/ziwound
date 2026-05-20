@@ -10,6 +10,8 @@ import { provinceSchema } from "@/types/declarations";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
 import { MoreHorizontal, Trash2, Pencil } from "lucide-react";
+import Image from "next/image";
+import { getImageUploadUrl } from "@/utils/imageUrl";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,7 +22,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 interface ProvincesTableProps {
-  provinces: (provinceSchema & { country?: { _id?: string } })[];
+  provinces: provinceSchema[];
   countries: Array<{ _id: string; name: string; english_name: string }>;
   error?: string | null;
 }
@@ -75,6 +77,7 @@ export function ProvincesTable({ provinces, countries, error }: ProvincesTablePr
       <Table>
         <TableHeader>
           <TableRow className="border-white/[0.06] hover:bg-transparent">
+            <TableHead className="text-slate-body w-[60px]">{t("photo") || "Photo"}</TableHead>
             <TableHead className="text-slate-body">{t("name") || "Name (Local)"}</TableHead>
             <TableHead className="text-slate-body">{t("englishName") || "Name (English)"}</TableHead>
             <TableHead className="text-slate-body">{t("country") || "Country"}</TableHead>
@@ -84,13 +87,29 @@ export function ProvincesTable({ provinces, countries, error }: ProvincesTablePr
         <TableBody>
           {provinces.length === 0 ? (
             <TableRow className="border-white/[0.06] hover:bg-white/[0.02]">
-              <TableCell colSpan={4} className="h-24 text-center text-slate-body">
+              <TableCell colSpan={5} className="h-24 text-center text-slate-body">
                 {t("noProvinces") || "No provinces found"}
               </TableCell>
             </TableRow>
           ) : (
             provinces.map((province) => (
               <TableRow key={province._id} className="border-white/[0.06] hover:bg-white/[0.02]">
+                <TableCell>
+                  {province.photo ? (
+                    <Image
+                      src={getImageUploadUrl(province.photo.name, "image")}
+                      alt={province.name}
+                      width={48}
+                      height={48}
+                      unoptimized
+                      className="rounded object-cover"
+                    />
+                  ) : (
+                    <div className="h-12 w-12 rounded bg-white/5 flex items-center justify-center text-slate-body/30 text-xs">
+                      -
+                    </div>
+                  )}
+                </TableCell>
                 <TableCell className="font-medium text-offwhite">{province.name}</TableCell>
                 <TableCell className="text-slate-body">{province.english_name}</TableCell>
                 <TableCell className="text-slate-body">{getCountryName(province.country?._id)}</TableCell>

@@ -41,6 +41,7 @@ export function NewProvinceForm({ countries = [] }: NewProvinceFormProps) {
           name: data.name,
           english_name: data.english_name,
           countryId: data.countryId,
+          ...(data.photoId ? { photoId: data.photoId } : {}),
           wars_history: buildLocalizedObject(data, "wars_history"),
           conflict_timeline: buildLocalizedObject(data, "conflict_timeline"),
           casualties_info: buildLocalizedObject(data, "casualties_info"),

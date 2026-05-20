@@ -68,11 +68,12 @@ export function EditProvinceForm({ province, countries = [] }: EditProvinceFormP
         return;
       }
 
-      if (data.countryId !== province.country?._id) {
+      if (data.countryId !== province.country?._id || data.photoId !== province.photo?._id) {
         const relationRes = await updateRelations(
           {
             _id: province._id!,
-            country: data.countryId,
+            ...(data.countryId !== province.country?._id ? { country: data.countryId } : {}),
+            ...(data.photoId !== province.photo?._id ? { photo: data.photoId || undefined } : {}),
           },
           { _id: 1 },
         );
@@ -123,6 +124,7 @@ export function EditProvinceForm({ province, countries = [] }: EditProvinceFormP
     name: province.name,
     english_name: province.english_name,
     countryId: province.country?._id || "",
+    photoId: province.photo?._id || "",
     wars_history: {
       fa: extractLangValue(province.wars_history, "fa"),
       en: extractLangValue(province.wars_history, "en"),
