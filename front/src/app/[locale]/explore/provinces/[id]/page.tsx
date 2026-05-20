@@ -2,11 +2,19 @@ import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { get } from "@/app/actions/province/get";
 import { provinceSchema } from "@/types/declarations";
-import Link from "next/link";
 import { notFound } from "next/navigation";
-import { MapPin, ArrowLeft, ChevronRight, FileText, Globe, Shield } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Globe, Building2 } from "lucide-react";
+import { LocationHero } from "@/components/organisms/location-hero";
+import { WarInfoSection } from "@/components/organisms/war-info-section";
+import { RelatedLocationsGrid } from "@/components/organisms/related-locations-grid";
+import { ReportListCard } from "@/components/organisms/report-list-card";
+import { ParentLocationCard } from "@/components/organisms/parent-location-card";
+
+type ProvinceWithPhoto = provinceSchema & {
+  photo?: { _id?: string; name: string; mimeType: string; type: "image" | "video" | "docs"; alt_text?: string };
+  country?: { _id?: string; name: string; english_name: string; photo?: { _id?: string; name: string; mimeType: string; type: "image" | "video" | "docs"; alt_text?: string } };
+  cities?: Array<{ _id?: string; name: string; english_name: string; photo?: { _id?: string; name: string; mimeType: string; type: "image" | "video" | "docs"; alt_text?: string } }>;
+};
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }): Promise<Metadata> {
   const { locale, id } = await params;
@@ -23,7 +31,7 @@ interface ProvinceDetailPageProps {
   params: Promise<{ locale: string; id: string }>;
 }
 
-const warInfoFields = [
+const provinceWarFields = [
   "wars_history",
   "conflict_timeline",
   "casualties_info",
@@ -46,6 +54,7 @@ export default async function ProvinceDetailPage({ params }: ProvinceDetailPageP
       _id: 1,
       name: 1,
       english_name: 1,
+      photo: { _id: 1, name: 1 },
       wars_history: 1,
       conflict_timeline: 1,
       casualties_info: 1,
@@ -56,8 +65,8 @@ export default async function ProvinceDetailPage({ params }: ProvinceDetailPageP
       mass_graves_info: 1,
       war_crimes_events: 1,
       liberation_info: 1,
-      country: { _id: 1, name: 1, english_name: 1 },
-      cities: { _id: 1, name: 1, english_name: 1 },
+      country: { _id: 1, name: 1, english_name: 1, photo: { _id: 1, name: 1 } },
+      cities: { _id: 1, name: 1, english_name: 1, photo: { _id: 1, name: 1 } },
       attackedByReports: { _id: 1, title: 1, description: 1, status: 1 },
     }
   );
@@ -66,177 +75,82 @@ export default async function ProvinceDetailPage({ params }: ProvinceDetailPageP
     notFound();
   }
 
-  const province = provinceRes.body[0] as provinceSchema;
+  const province = provinceRes.body[0] as ProvinceWithPhoto;
 
   const relatedReports = province.attackedByReports || [];
+  const cities = province.cities || [];
+  const country = province.country;
+
+  const warFields = provinceWarFields.map((key) => ({
+    key,
+    label: t(key),
+    value: (province as unknown as Record<string, unknown>)[key] as Record<string, string> | string | undefined,
+  }));
 
   return (
     <div className="flex min-h-screen flex-col">
-      {/* Hero header */}
-      <div className="relative pt-32 pb-12 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(153,27,27,0.08)_0%,_transparent_70%)]" />
-        <div className="container relative px-4 md:px-8">
-          <Button variant="ghost" asChild className="mb-4 text-slate-body hover:text-offwhite hover:bg-white/5 -ms-3">
-            <Link href={`/${locale}/explore`}>
-              <ArrowLeft className="h-4 w-4 me-2 rtl:rotate-180" />
-              {t("backToExplore")}
-            </Link>
-          </Button>
+      {/* Hero */}
+      <LocationHero
+        locale={locale}
+        type="province"
+        name={province.name}
+        englishName={province.english_name}
+        photo={province.photo}
+        breadcrumbs={
+          country
+            ? [{ label: country.name, href: `/${locale}/explore/countries/${country._id}`, icon: Globe }]
+            : []
+        }
+        stats={[
+          ...(cities.length > 0 ? [{ icon: Building2, value: cities.length, label: t("cities") }] : []),
+          ...(relatedReports.length > 0 ? [{ icon: Globe, value: relatedReports.length, label: t("reports"), variant: "crimson" as const }] : []),
+        ]}
+        typeLabel={t("province")}
+        backToExploreLabel={t("backToExplore")}
+      />
 
-          {province.country && (
-            <Button variant="ghost" asChild className="mb-2 text-slate-body hover:text-offwhite hover:bg-white/5 -ms-3 text-xs">
-              <Link href={`/${locale}/explore/countries/${province.country._id}`}>
-                <Globe className="h-3 w-3 me-1.5" />
-                {province.country.name}
-              </Link>
-            </Button>
-          )}
-
-          <div className="mb-2 flex items-center gap-3">
-            <div className="h-px w-8 bg-crimson" />
-            <span className="text-xs font-medium uppercase tracking-[0.15em] text-gold">
-              {t("province")}
-            </span>
-          </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-offwhite mb-2 leading-tight">
-            {province.name}
-          </h1>
-          <p className="text-lg text-slate-body mb-6">{province.english_name}</p>
-
-          {/* Quick stats */}
-          <div className="flex flex-wrap gap-3">
-            {province.cities && province.cities.length > 0 && (
-              <Badge className="bg-white/5 text-slate-body border-white/10 px-3 py-1">
-                <Globe className="h-3.5 w-3.5 me-1.5" />
-                {province.cities.length} {t("cities")}
-              </Badge>
-            )}
-            {relatedReports.length > 0 && (
-              <Badge className="bg-crimson/10 text-crimson-light border-crimson/20 px-3 py-1">
-                <FileText className="h-3.5 w-3.5 me-1.5" />
-                {relatedReports.length} {t("reports")}
-              </Badge>
-            )}
-          </div>
-        </div>
-      </div>
-
+      {/* Content */}
       <div className="container px-4 md:px-8 pb-20">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main content */}
           <div className="lg:col-span-2 space-y-8">
             {/* War Information */}
-            <div className="rounded-2xl glass-light p-6 border border-white/[0.06]">
-              <div className="flex items-center gap-2 mb-6">
-                <div className="bg-white/5 rounded-lg p-1.5">
-                  <Shield className="h-4 w-4 text-gold" />
-                </div>
-                <h2 className="text-lg font-semibold text-offwhite">{t("warInformation")}</h2>
-              </div>
-
-              <div className="space-y-6">
-                {warInfoFields.map((field) => {
-                  const fieldValue = (province as Record<string, unknown>)[field] as Record<string, string> | string | undefined;
-                  const value = typeof fieldValue === "object" && fieldValue !== null
-                    ? (fieldValue[locale] || fieldValue.en || "")
-                    : typeof fieldValue === "string"
-                      ? fieldValue
-                      : "";
-                  if (!value) return null;
-                  return (
-                    <div key={field}>
-                      <h3 className="text-sm font-medium text-gold mb-2 uppercase tracking-wider">
-                        {t(field)}
-                      </h3>
-                      <div
-                        className="text-sm text-slate-body leading-relaxed prose prose-invert prose-sm max-w-none"
-                        dangerouslySetInnerHTML={{ __html: value }}
-                      />
-                    </div>
-                  );
-                })}
-              </div>
-            </div>
+            <WarInfoSection
+              fields={warFields}
+              locale={locale}
+              sectionTitle={t("warInformation")}
+            />
 
             {/* Related Reports */}
-            {relatedReports.length > 0 && (
-              <div className="rounded-2xl glass-light p-6 border border-white/[0.06]">
-                <div className="flex items-center gap-2 mb-6">
-                  <div className="bg-white/5 rounded-lg p-1.5">
-                    <FileText className="h-4 w-4 text-gold" />
-                  </div>
-                  <h2 className="text-lg font-semibold text-offwhite">{t("relatedReports")}</h2>
-                </div>
-                <div className="space-y-3">
-                  {relatedReports.map((report: any) => (
-                    <Link
-                      key={report._id}
-                      href={`/${locale}/reports/${report._id}`}
-                      className="flex items-center justify-between rounded-xl bg-white/[0.02] px-4 py-3 border border-white/[0.04] hover:border-white/10 transition-colors"
-                    >
-                      <div className="min-w-0">
-                        <p className="text-sm font-medium text-offwhite truncate">{report.title}</p>
-                        <p className="text-xs text-slate-body mt-0.5 line-clamp-1">
-                          {report.description}
-                        </p>
-                      </div>
-                      <span className={`shrink-0 rounded-full px-2.5 py-0.5 text-xs font-medium ${
-                        report.status === "Approved" ? "bg-emerald-500/10 text-emerald-400 border border-emerald-500/20" :
-                        report.status === "Pending" ? "bg-amber-500/10 text-amber-400 border border-amber-500/20" :
-                        report.status === "Rejected" ? "bg-crimson/10 text-crimson-light border border-crimson/20" :
-                        "bg-blue-500/10 text-blue-400 border border-blue-500/20"
-                      }`}>{report.status}</span>
-                    </Link>
-                  ))}
-                </div>
-              </div>
-            )}
+            <ReportListCard
+              reports={relatedReports}
+              locale={locale}
+              title={t("relatedReports")}
+            />
           </div>
 
           {/* Sidebar */}
           <div className="space-y-6">
-            {/* Cities */}
-            {province.cities && province.cities.length > 0 && (
-              <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
-                <div className="flex items-center gap-2 mb-4">
-                  <Globe className="h-4 w-4 text-gold" />
-                  <h3 className="text-sm font-semibold text-offwhite">{t("cities")}</h3>
-                </div>
-                <div className="space-y-2">
-                  {province.cities.map((city) => (
-                    <Link
-                      key={city._id}
-                      href={`/${locale}/explore/cities/${city._id}`}
-                      className="flex items-center justify-between rounded-xl bg-white/[0.02] px-3 py-2.5 border border-white/[0.04] hover:border-white/10 hover:bg-white/[0.03] transition-colors group"
-                    >
-                      <div>
-                        <p className="text-sm font-medium text-offwhite group-hover:text-gold transition-colors">
-                          {city.name}
-                        </p>
-                        <p className="text-xs text-slate-body">{city.english_name}</p>
-                      </div>
-                      <ChevronRight className="h-4 w-4 text-slate-body/50 rtl:rotate-180" />
-                    </Link>
-                  ))}
-                </div>
-              </div>
+            {/* Country parent */}
+            {country && (
+              <ParentLocationCard
+                type="country"
+                label={t("country")}
+                name={country.name}
+                englishName={country.english_name}
+                href={`/${locale}/explore/countries/${country._id}`}
+                photo={country.photo}
+              />
             )}
 
-            {/* Country link */}
-            {province.country && (
-              <Link
-                href={`/${locale}/explore/countries/${province.country._id}`}
-                className="flex items-center justify-between rounded-2xl glass-light p-5 border border-white/[0.06] hover:border-white/10 hover:bg-white/[0.03] transition-colors group"
-              >
-                <div>
-                  <p className="text-xs text-slate-body mb-1">{t("country")}</p>
-                  <p className="text-lg font-semibold text-offwhite group-hover:text-gold transition-colors">
-                    {province.country.name}
-                  </p>
-                </div>
-                <ChevronRight className="h-5 w-5 text-slate-body/50 rtl:rotate-180" />
-              </Link>
-            )}
+            {/* Cities */}
+            <RelatedLocationsGrid
+              locations={cities}
+              locale={locale}
+              type="city"
+              title={t("cities")}
+              hrefPrefix={`/${locale}/explore/cities`}
+            />
           </div>
         </div>
       </div>

@@ -1,12 +1,17 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { gets } from "@/app/actions/country/gets";
-import { countrySchema } from "@/types/declarations";
+import { gets as getCountries } from "@/app/actions/country/gets";
+import { gets as getProvinces } from "@/app/actions/province/gets";
+import { gets as getCities } from "@/app/actions/city/gets";
+import { countrySchema, provinceSchema, citySchema } from "@/types/declarations";
+import { Globe, MapPin, Building2 } from "lucide-react";
+import { EmptyState } from "@/components/ui/empty-state";
+import { LocationCard } from "@/components/organisms/location-card";
+import { ExploreHero } from "@/components/organisms/explore-hero";
 import Link from "next/link";
-import { Search, Globe, MapPin, ChevronRight } from "lucide-react";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
-import { Badge } from "@/components/ui/badge";
+
+type LocationType = "countries" | "provinces" | "cities";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
   const { locale } = await params;
@@ -19,189 +24,223 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 interface ExplorePageProps {
   params: Promise<{ locale: string }>;
-  searchParams: Promise<{ search?: string; page?: string }>;
+  searchParams: Promise<{ search?: string; page?: string; tab?: string }>;
 }
 
 export default async function ExplorePage({ params, searchParams }: ExplorePageProps) {
   const { locale } = await params;
   const resolvedSearchParams = await searchParams;
   const t = await getTranslations({ locale, namespace: "explore" });
+
   const page = Number(resolvedSearchParams.page) || 1;
   const search = resolvedSearchParams.search || "";
+  const tab = (resolvedSearchParams.tab as LocationType) || "countries";
 
-  const response = await gets(
-    {
-      page,
-      limit: 24,
-      search,
-      sortBy: "name",
-      sortOrder: "asc",
-    },
-    {
-      _id: 1,
-      name: 1,
-      english_name: 1,
-      wars_history: 1,
-      conflict_timeline: 1,
-      casualties_info: 1,
-      provinces: { _id: 1, name: 1, english_name: 1 },
-      cities: { _id: 1, name: 1, english_name: 1 },
+  const translations = {
+    countriesTab: t("countriesTab"),
+    provincesTab: t("provincesTab"),
+    citiesTab: t("citiesTab"),
+    country: t("country"),
+    province: t("province"),
+    city: t("city"),
+    provinces: t("provinces"),
+    cities: t("cities"),
+    reports: t("reports"),
+    viewDetails: t("viewDetails"),
+    overline: t("overline"),
+    title: t("title"),
+    description: t("description"),
+    searchPlaceholder:
+      tab === "countries"
+        ? t("searchPlaceholder")
+        : tab === "provinces"
+          ? t("searchProvincesPlaceholder")
+          : t("searchCitiesPlaceholder"),
+    search: t("search"),
+    noResults: tab === "countries" ? t("noCountries") : tab === "provinces" ? t("noProvinces") : t("noCities"),
+    noResultsDescription: t("noResultsDescription"),
+    previous: t("previous"),
+    next: t("next"),
+    backToExplore: t("backToExplore"),
+  };
+
+  let locations: Array<countrySchema | provinceSchema | citySchema> = [];
+  let hasMore = false;
+
+  if (tab === "countries") {
+    const response = await getCountries(
+      {
+        page,
+        limit: 24,
+        search,
+        sortBy: "name",
+        sortOrder: "asc",
+      },
+      {
+        _id: 1,
+        name: 1,
+        english_name: 1,
+        photo: { _id: 1, name: 1 },
+        wars_history: 1,
+        casualties_info: 1,
+        provinces: { _id: 1, name: 1 },
+        cities: { _id: 1, name: 1 },
+        hostileReports: { _id: 1 },
+        attackedReports: { _id: 1 },
+      }
+    );
+    if (response?.success) {
+      locations = response.body || [];
+      hasMore = locations.length >= 24;
     }
-  );
-
-  let countries: countrySchema[] = [];
-  if (response?.success) {
-    countries = response.body || [];
+  } else if (tab === "provinces") {
+    const response = await getProvinces(
+      {
+        page,
+        limit: 24,
+        search,
+        sortBy: "name",
+        sortOrder: "asc",
+      },
+      {
+        _id: 1,
+        name: 1,
+        english_name: 1,
+        photo: { _id: 1, name: 1 },
+        wars_history: 1,
+        casualties_info: 1,
+        country: { _id: 1, name: 1 },
+        cities: { _id: 1, name: 1 },
+        attackedByReports: { _id: 1 },
+      }
+    );
+    if (response?.success) {
+      locations = response.body || [];
+      hasMore = locations.length >= 24;
+    }
+  } else {
+    const response = await getCities(
+      {
+        page,
+        limit: 24,
+        search,
+        sortBy: "name",
+        sortOrder: "asc",
+      },
+      {
+        _id: 1,
+        name: 1,
+        english_name: 1,
+        photo: { _id: 1, name: 1 },
+        wars_history: 1,
+        casualties_info: 1,
+        country: { _id: 1, name: 1 },
+        province: { _id: 1, name: 1 },
+        attackedByReports: { _id: 1 },
+      }
+    );
+    if (response?.success) {
+      locations = response.body || [];
+      hasMore = locations.length >= 24;
+    }
   }
+
+  const paginationHref = (p: number) => {
+    const base = `/${locale}/explore`;
+    const params = new URLSearchParams();
+    if (tab !== "countries") params.set("tab", tab);
+    if (search) params.set("search", search);
+    params.set("page", String(p));
+    const qs = params.toString();
+    return qs ? `${base}?${qs}` : base;
+  };
+
+  const clearHref = `/${locale}/explore${tab !== "countries" ? `?tab=${tab}` : ""}`;
+
+  const tabIcons = {
+    countries: Globe,
+    provinces: MapPin,
+    cities: Building2,
+  };
+
+  const TabIcon = tabIcons[tab];
 
   return (
     <div className="flex min-h-screen flex-col">
-      {/* Hero header */}
-      <div className="relative pt-32 pb-16 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_rgba(153,27,27,0.08)_0%,_transparent_70%)]" />
-        <div className="container relative px-4 md:px-8">
-          <div className="mb-2 flex items-center gap-3">
-            <div className="h-px w-8 bg-crimson" />
-            <span className="text-xs font-medium uppercase tracking-[0.15em] text-gold">
-              {t("overline")}
-            </span>
-          </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-offwhite mb-4 leading-tight">
-            {t("title")}
-          </h1>
-          <p className="text-lg text-slate-body max-w-2xl leading-relaxed">
-            {t("description")}
-          </p>
-        </div>
-      </div>
+      {/* Hero */}
+      <ExploreHero
+        locale={locale}
+        search={search}
+        activeTab={tab}
+        translations={translations}
+      />
 
-      {/* Search bar */}
-      <div className="container px-4 md:px-8 -mt-4 mb-8">
-        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
-          <form method="GET" className="flex flex-wrap gap-3 w-full items-start sm:items-center">
-            <div className="relative w-full sm:w-96">
-              <Search className="absolute start-2 top-2.5 h-4 w-4 text-muted-foreground" />
-              <Input
-                name="search"
-                placeholder={t("searchPlaceholder")}
-                defaultValue={search}
-                className="ps-8 bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
-              />
-            </div>
-            <Button type="submit" className="bg-crimson hover:bg-crimson-light text-white">
-              {t("search")}
-            </Button>
-            {search && (
-              <Button type="button" variant="outline" asChild className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10">
-                <Link href={`/${locale}/explore`}>{t("clear")}</Link>
-              </Button>
-            )}
-          </form>
-        </div>
-      </div>
-
-      {/* Countries grid */}
+      {/* Content */}
       <div className="container px-4 md:px-8 pb-20">
-        {countries.length === 0 ? (
-          <div className="flex flex-col items-center justify-center py-20 text-center">
-            <Globe className="h-16 w-16 text-slate-body/20 mb-4" />
-            <p className="text-xl font-medium text-offwhite mb-2">{t("noCountries")}</p>
-            <p className="text-slate-body">{t("noCountriesDescription")}</p>
+        {/* Results count */}
+        {locations.length > 0 && (
+          <div className="mb-6 flex items-center justify-between">
+            <p className="text-sm text-slate-body/60">
+              {locations.length} {tab === "countries" ? translations.countriesTab?.toLowerCase() : tab === "provinces" ? translations.provincesTab?.toLowerCase() : translations.citiesTab?.toLowerCase()}
+              {hasMore ? "+" : ""}
+            </p>
           </div>
+        )}
+
+        {/* Grid or Empty */}
+        {locations.length === 0 ? (
+          <EmptyState
+            icon={TabIcon}
+            title={translations.noResults}
+            description={translations.noResultsDescription}
+            action={
+              search ? (
+                <Button variant="outline" asChild className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10">
+                  <Link href={clearHref}>{t("clear")}</Link>
+                </Button>
+              ) : undefined
+            }
+            className="border-white/[0.06] bg-white/[0.02] min-h-[500px]"
+          />
         ) : (
           <>
-            <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-              {countries.map((country) => (
-                <Link
-                  key={country._id}
-                  href={`/${locale}/explore/countries/${country._id}`}
-                  className="group relative overflow-hidden rounded-2xl glass-light p-6 transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.04] border border-white/[0.06]"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <h3 className="text-xl font-bold text-offwhite group-hover:text-gold transition-colors">
-                        {country.name}
-                      </h3>
-                      <p className="text-sm text-slate-body">{country.english_name}</p>
-                    </div>
-                    <div className="rounded-xl p-2 bg-crimson/10 border border-crimson/20">
-                      <Globe className="h-5 w-5 text-crimson-light" />
-                    </div>
-                  </div>
-
-                  {/* War info preview */}
-                  <div className="space-y-2 mb-4">
-                    {(() => {
-                      const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
-                      type Language = (typeof LANGUAGES)[number];
-                      const warsHistory = typeof country.wars_history === "object" && country.wars_history !== null
-                        ? ((country.wars_history as Record<Language, string>)[locale as Language] || (country.wars_history as Record<Language, string>).en || "")
-                        : typeof country.wars_history === "string"
-                          ? country.wars_history
-                          : "";
-                      const casualtiesInfo = typeof country.casualties_info === "object" && country.casualties_info !== null
-                        ? ((country.casualties_info as Record<Language, string>)[locale as Language] || (country.casualties_info as Record<Language, string>).en || "")
-                        : typeof country.casualties_info === "string"
-                          ? country.casualties_info
-                          : "";
-                      return (
-                        <>
-                          {warsHistory && (
-                            <p className="text-sm text-slate-body line-clamp-2" dangerouslySetInnerHTML={{ __html: warsHistory }} />
-                          )}
-                          {casualtiesInfo && (
-                            <p className="text-sm text-slate-body/70 line-clamp-1" dangerouslySetInnerHTML={{ __html: casualtiesInfo }} />
-                          )}
-                        </>
-                      );
-                    })()}
-                  </div>
-
-                  {/* Stats badges */}
-                  <div className="flex flex-wrap gap-2 mb-4">
-                    {country.provinces && country.provinces.length > 0 && (
-                      <Badge className="bg-white/5 text-slate-body border-white/10">
-                        <MapPin className="h-3 w-3 me-1" />
-                        {country.provinces.length} {t("provinces")}
-                      </Badge>
-                    )}
-                    {country.cities && country.cities.length > 0 && (
-                      <Badge className="bg-white/5 text-slate-body border-white/10">
-                        {country.cities.length} {t("cities")}
-                      </Badge>
-                    )}
-                  </div>
-
-                  <div className="flex items-center gap-1 text-sm font-medium text-crimson opacity-0 transition-opacity group-hover:opacity-100">
-                    <span>{t("viewDetails")}</span>
-                    <ChevronRight className="h-4 w-4 rtl:rotate-180" />
-                  </div>
-                </Link>
+            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {locations.map((location) => (
+                <LocationCard
+                  key={location._id}
+                  location={location as Parameters<typeof LocationCard>[0]["location"]}
+                  locale={locale}
+                  type={tab === "countries" ? "country" : tab === "provinces" ? "province" : "city"}
+                  translations={translations}
+                />
               ))}
             </div>
 
             {/* Pagination */}
-            <div className="flex items-center justify-end gap-2 py-8">
+            <div className="flex items-center justify-center gap-3 pt-10">
               {page > 1 ? (
                 <Button variant="outline" size="sm" className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white" asChild>
-                  <Link href={`/${locale}/explore?page=${page - 1}${search ? `&search=${search}` : ""}`}>
-                    {t("previous")}
+                  <Link href={paginationHref(page - 1)}>
+                    {translations.previous}
                   </Link>
                 </Button>
               ) : (
                 <Button variant="outline" size="sm" disabled className="border-white/10 bg-white/5 text-offwhite opacity-30">
-                  {t("previous")}
+                  {translations.previous}
                 </Button>
               )}
-              {countries.length >= 24 ? (
+              <span className="text-sm text-slate-body/50 px-3">
+                {t("page")} {page}
+              </span>
+              {hasMore ? (
                 <Button variant="outline" size="sm" className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white" asChild>
-                  <Link href={`/${locale}/explore?page=${page + 1}${search ? `&search=${search}` : ""}`}>
-                    {t("next")}
+                  <Link href={paginationHref(page + 1)}>
+                    {translations.next}
                   </Link>
                 </Button>
               ) : (
                 <Button variant="outline" size="sm" disabled className="border-white/10 bg-white/5 text-offwhite opacity-30">
-                  {t("next")}
+                  {translations.next}
                 </Button>
               )}
             </div>
