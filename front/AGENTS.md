@@ -1210,6 +1210,156 @@ const city: CityWithRelations = await getCity(...);
 console.log(city.province?._id);  // Access nested ID
 ```
 
+### Location Models (Country, Province, City)
+
+The location models (`country`, `province`, `city`) share a common pattern for photo management and relation updates.
+
+#### Photo Relation
+
+All three location models have a `photo` relation (single `File`). The photo is managed differently depending on the operation:
+
+**Creating a record (`add`):**
+Pass `photoId` directly in the `set` parameter:
+
+```ts
+// ✅ CORRECT - Include photoId in add
+await add(
+  {
+    name: "Country Name",
+    english_name: "Country Name (EN)",
+    ...(photoId ? { photoId } : {}),  // Only include if set
+    // ... other fields
+  },
+  { _id: 1, name: 1 }
+);
+```
+
+**Updating a record (`update` + `updateRelations`):**
+Photo updates must go through `updateRelations`, NOT `update`. Basic fields go to `update`, relations go to `updateRelations`:
+
+```ts
+// ✅ CORRECT - Update basic fields via update
+await update(
+  {
+    _id: countryId,
+    name: "Updated Name",
+    english_name: "Updated English Name",
+    // ... other non-relation fields
+  },
+  { _id: 1, name: 1 }
+);
+
+// ✅ CORRECT - Update photo via updateRelations
+await updateRelations(
+  {
+    _id: countryId,
+    photo: photoId || undefined,  // Use relation name 'photo', not 'photoId'
+  },
+  { _id: 1, photo: { _id: 1, name: 1 } }
+);
+```
+
+**Fetching records (`gets`):**
+Include `photo` in the field selection to get photo data for display:
+
+```ts
+// ✅ CORRECT - Request photo in gets
+const response = await gets(
+  { page: 1, limit: 20 },
+  {
+    _id: 1,
+    name: 1,
+    english_name: 1,
+    photo: { _id: 1, name: 1 },  // Required to display photo in tables
+  }
+);
+```
+
+#### Country UpdateRelations
+
+The `country.updateRelations` server action is located at `src/app/actions/country/updateRelations.ts`. Use it to update the `photo` relation for countries:
+
+```ts
+import { updateRelations } from "@/app/actions/country/updateRelations";
+
+await updateRelations(
+  { _id: countryId, photo: photoId || undefined },
+  { _id: 1, photo: { _id: 1, name: 1 } }
+);
+```
+
+Province and city models use their respective `updateRelations` actions for updating `country`, `province`, and `photo` relations.
+
+#### Image Picker with Upload Pattern
+
+For admin forms that need image selection, use a tabbed interface with `ImagePicker` (library) and `FileUploadField` (upload):
+
+```tsx
+import { useState } from "react";
+import { ImagePicker } from "@/components/form/image-picker";
+import { FileUploadField } from "@/components/form/file-upload-field";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+
+// Manage photoId as external state (NOT inside React Hook Form)
+const [photoId, setPhotoId] = useState<string>(initialData?.photo?._id || "");
+
+<Tabs defaultValue="library">
+  <TabsList className="grid w-full grid-cols-2 bg-white/5 border-white/10">
+    <TabsTrigger value="library">{t("imageLibrary") || "Library"}</TabsTrigger>
+    <TabsTrigger value="upload">{t("uploadNew") || "Upload"}</TabsTrigger>
+  </TabsList>
+  <TabsContent value="library" className="mt-3">
+    <ImagePicker
+      value={photoId}
+      onChange={(id) => setPhotoId(id || "")}
+    />
+  </TabsContent>
+  <TabsContent value="upload" className="mt-3">
+    <FileUploadField
+      label=""
+      maxFiles={1}
+      accept="image/*"
+      value={photoId ? [photoId] : []}
+      onChange={(ids) => setPhotoId(ids[0] || "")}
+    />
+  </TabsContent>
+</Tabs>
+```
+
+**Critical:** Manage `photoId` as external `useState`, NOT as a React Hook Form field. `TabsContent` conditionally renders children, which causes RHF to lose track of fields when switching tabs. Merge the photo ID with form values on submit:
+
+```tsx
+const handleSubmit = (values: FormValues) => {
+  onSubmit({ ...values, photoId: photoId || undefined });
+};
+```
+
+#### Displaying Photos in Tables
+
+When displaying photos in admin tables, use `next/image` with the proxy URL helper:
+
+```tsx
+import Image from "next/image";
+import { getImageUploadUrl } from "@/utils/imageUrl";
+
+{record.photo ? (
+  <Image
+    src={getImageUploadUrl(record.photo.name, "image")}
+    alt={record.name}
+    width={48}
+    height={48}
+    unoptimized
+    className="rounded object-cover"
+  />
+) : (
+  <div className="h-12 w-12 rounded bg-white/5 flex items-center justify-center text-slate-body/30 text-xs">
+    -
+  </div>
+)}
+```
+
+**CRITICAL:** Always use `file.name` (NOT `file._id`) when constructing image URLs. The backend stores files with a `name` field representing the actual filename on disk.
+
 ### Authentication Flow
 
 All actions automatically handle authentication:

@@ -38,11 +38,11 @@ Ziwound backend is a Deno + Lesan application for a war crimes documentation sys
 
 The backend defines the following core models:
 
-- **User** - User authentication and authorization (first_name, last_name, email, password, level, gender, birth_date, address, province, city, avatar, national_card, is_verified)
+- **User** - User authentication and authorization (first_name, last_name, email, password, level, gender, birth_date, address, province, city, avatar, national_card, is_verified, bio, expertise, verified, verificationBadge, isPublic)
 - **File** - File upload management (name, mimeType, size, type: image/video/docs, alt_text, uploader relation)
-- **Country** - Country entities with GeoJSON and war history (name, english_name, area, center, registrar, wars_history, conflict_timeline, casualties_info, international_response, war_crimes_documentation, human_rights_violations, genocide_info, chemical_weapons_info, displacement_info, reconstruction_status, international_sanctions, notable_war_events - all localized via localizedWarInfo)
-- **Province** - Province entities with GeoJSON and war history (name, english_name, area, center, registrar, country relation, wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info - all localized)
-- **City** - City entities with GeoJSON and war history (name, english_name, area, center, registrar, province relation, country relation, capital reverse relation, wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info - all localized)
+- **Country** - Country entities with war history (name, english_name, registrar, photo, wars_history, conflict_timeline, casualties_info, international_response, war_crimes_documentation, human_rights_violations, genocide_info, chemical_weapons_info, displacement_info, reconstruction_status, international_sanctions, notable_war_events - all localized via localizedWarInfo)
+- **Province** - Province entities with war history (name, english_name, registrar, country relation, photo, wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info - all localized)
+- **City** - City entities with war history (name, english_name, registrar, province relation, country relation, capital reverse relation, photo, wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info - all localized)
 - **Category** - Categorization system (name, description, color, icon, registrar) - uses shared_relation pattern
 - **Tag** - Metadata categorization (name, description, color, icon, registrar) - uses shared_relation pattern
 - **Report** - War crime reports with extensive relations (title, description, location GeoJSON Point, address, status, priority, selected_language, crime_occurred_at, reporter, documents, tags, category, hostileCountries, attackedCountries, attackedProvinces, attackedCities, warCriminals)
@@ -54,6 +54,36 @@ The backend defines the following core models:
 ## Recent Implementation Notes
 
 This section documents key features and implementations added in recent development sessions:
+
+### User Model Updates
+
+- **New Fields Added**:
+  - `bio` - `optional(localizedWarInfo)` - Localized biography object with keys: `fa`, `en`, `ar`, `zh`, `pt`, `es`, `nl`, `tr`, `ru`
+  - `expertise` - `optional(array(string()))` - Array of expertise strings
+  - `verified` - `defaulted(boolean(), false)` - Verification status flag
+  - `verificationBadge` - `optional(string())` - Badge identifier string
+  - `isPublic` - `defaulted(boolean(), true)` - Profile visibility flag
+- **Removed Fields**:
+  - `father_name` - Removed from model and all API methods
+  - `mobile` - Commented out (pattern validation removed)
+  - `national_number` - Commented out (validation removed)
+- **API Method Updates**:
+  - `user.addUser` - Added `email` (required), `password` (required), `bio`, `expertise`, `verified`, `verificationBadge`, `isPublic`; removed `father_name`, `mobile`, `national_number`; `address` is now optional
+  - `user.updateUser` - Added `level`, `email`, `password`, `is_verified`, `bio`, `expertise`, `verified`, `verificationBadge`, `isPublic`; removed `father_name`; all fields are optional for partial updates
+  - `user.register` - Added `bio`, `expertise`; removed `father_name`, `national_number`, `address`; auto-sets `verified: false`, `isPublic: true`
+  - `birth_date` now accepts ISO string in all methods (backend converts to Date)
+
+### Location Model Updates (Country, Province, City)
+
+- **Photo Relation Added**:
+  - All three models now have a `photo` relation (single File, one-directional, optional)
+  - `add` methods accept optional `photoId` parameter
+  - `updateRelations` methods accept optional `photo` parameter
+  - Country now has `updateRelations` endpoint (previously didn't exist)
+- **Area and Center Removed**:
+  - `area` (GeoJSON MultiPolygon/Polygon) and `center` (GeoJSON Point) fields completely removed from all three models
+  - `update` validators and functions no longer accept these fields
+  - City `update` also removed `countryId` (belongs in `updateRelations` only)
 
 ### Document Model Implementation
 
@@ -193,7 +223,7 @@ export const model_pure = {
 
 ### User Model Details
 
-**Schema**: first_name, last_name, father_name (optional), gender (Male/Female), birth_date (optional), summary (optional), address (optional), level (Ghost/Manager/Editor/Ordinary), email (unique), password, is_verified, avatar (File), national_card (File), province (Province), city (City)
+**Schema**: first_name, last_name, gender (Male/Female), birth_date (optional, ISO string), summary (optional), address (optional), level (Ghost/Manager/Editor/Reporter/Artist/Diplomat/Researcher/Ordinary), email (unique), password, is_verified, bio (localizedWarInfo), expertise (string[]), verified, verificationBadge, isPublic, avatar (File), national_card (File), province (Province), city (City)
 
 **Endpoints**:
 - `user.login` - Authenticate with email/password, returns JWT token
@@ -228,25 +258,25 @@ export const model_pure = {
 
 ### Country Model Details
 
-**Schema**: name, english_name, area (GeoJSON MultiPolygon), center (GeoJSON Point), registrar (User), wars_history, conflict_timeline, casualties_info, international_response, war_crimes_documentation, human_rights_violations, genocide_info, chemical_weapons_info, displacement_info, reconstruction_status, international_sanctions, notable_war_events (all localizedWarInfo)
+**Schema**: name, english_name, registrar (User), photo (File), wars_history, conflict_timeline, casualties_info, international_response, war_crimes_documentation, human_rights_violations, genocide_info, chemical_weapons_info, displacement_info, reconstruction_status, international_sanctions, notable_war_events (all localizedWarInfo)
 
 **Endpoints**: add, get, gets, update, updateRelations, remove, count
 
 **Text Index**: name, english_name, wars_history, conflict_timeline, war_crimes_documentation, human_rights_violations, genocide_info, notable_war_events
-**Note**: Uses `localizedWarInfo` for rich text fields, no `selected_language`
+**Note**: Uses `localizedWarInfo` for rich text fields, no `selected_language`. Photo is a one-directional single File relation.
 
 ### Province Model Details
 
-**Schema**: name, english_name, area (GeoJSON MultiPolygon), center (GeoJSON Point), registrar (User), country (Country), wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info (all localizedWarInfo)
+**Schema**: name, english_name, registrar (User), country (Country), photo (File), wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info (all localizedWarInfo)
 
 **Endpoints**: add, get, gets, update, updateRelations, remove, count
 
 **Relations**: country → creates `provinces` and `capital` reverse relations on Country
-**Note**: Uses `localizedWarInfo` for rich text fields, no `selected_language`
+**Note**: Uses `localizedWarInfo` for rich text fields, no `selected_language`. Photo is a one-directional single File relation.
 
 ### City Model Details
 
-**Schema**: name, english_name, area (GeoJSON MultiPolygon), center (GeoJSON Point), registrar (User), province (Province), country (Country), wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info (all localizedWarInfo)
+**Schema**: name, english_name, registrar (User), province (Province), country (Country), photo (File), wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info (all localizedWarInfo)
 
 **Endpoints**: add, get, gets, update, updateRelations, remove, count
 
@@ -255,7 +285,7 @@ export const model_pure = {
 - country → creates `cities` reverse relation on Country
 
 **Text Index**: name, english_name, wars_history, conflict_timeline, war_crimes_events, notable_battles
-**Note**: Uses `localizedWarInfo` for rich text fields, no `selected_language`
+**Note**: Uses `localizedWarInfo` for rich text fields, no `selected_language`. Photo is a one-directional single File relation. `countryId` is handled in `updateRelations`, not `update`.
 
 ### Category Model Details
 
