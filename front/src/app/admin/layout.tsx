@@ -5,6 +5,11 @@ import { getMessages } from "next-intl/server";
 import { AdminLayoutShell } from "@/components/layout/admin-layout-shell";
 import { Toaster } from "@/components/ui/toaster";
 
+// Force dynamic rendering — admin routes must read the auth token cookie at request time.
+// Without this, Next.js may statically generate the layout at build time (empty cookie store)
+// and bake the redirect into the HTML, breaking admin access in production.
+export const dynamic = "force-dynamic";
+
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
   const { success, body: user } = await getMe();
 
