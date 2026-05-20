@@ -7,6 +7,7 @@ export const updateRelationsValidator = () => {
 			_id: objectIdValidation,
 			province: optional(objectIdValidation),
 			country: optional(objectIdValidation),
+			photo: optional(objectIdValidation),
 		}),
 		get: selectStruct("city", 2),
 	});

@@ -8,7 +8,6 @@ export const updateFn: ActFn = async (body) => {
 			_id,
 			name,
 			english_name,
-			countryId,
 			wars_history,
 			conflict_timeline,
 			casualties_info,
@@ -28,34 +27,24 @@ export const updateFn: ActFn = async (body) => {
 		updatedAt: new Date(),
 	};
 
-	name && (updateObj.name = name);
-	english_name && (updateObj.english_name = english_name);
-	wars_history && (updateObj.wars_history = wars_history);
-	conflict_timeline && (updateObj.conflict_timeline = conflict_timeline);
-	casualties_info && (updateObj.casualties_info = casualties_info);
-	notable_battles && (updateObj.notable_battles = notable_battles);
-	occupation_info && (updateObj.occupation_info = occupation_info);
-	destruction_level && (updateObj.destruction_level = destruction_level);
-	civilian_impact && (updateObj.civilian_impact = civilian_impact);
-	mass_graves_info && (updateObj.mass_graves_info = mass_graves_info);
-	war_crimes_events && (updateObj.war_crimes_events = war_crimes_events);
-	liberation_info && (updateObj.liberation_info = liberation_info);
-
-	const updateQuery: any = {
-		$set: updateObj,
-	};
-
-	if (countryId) {
-		updateQuery.$setRelations = {
-			country: {
-				_ids: new ObjectId(countryId as string),
-			},
-		};
-	}
+	name !== undefined && (updateObj.name = name);
+	english_name !== undefined && (updateObj.english_name = english_name);
+	wars_history !== undefined && (updateObj.wars_history = wars_history);
+	conflict_timeline !== undefined && (updateObj.conflict_timeline = conflict_timeline);
+	casualties_info !== undefined && (updateObj.casualties_info = casualties_info);
+	notable_battles !== undefined && (updateObj.notable_battles = notable_battles);
+	occupation_info !== undefined && (updateObj.occupation_info = occupation_info);
+	destruction_level !== undefined && (updateObj.destruction_level = destruction_level);
+	civilian_impact !== undefined && (updateObj.civilian_impact = civilian_impact);
+	mass_graves_info !== undefined && (updateObj.mass_graves_info = mass_graves_info);
+	war_crimes_events !== undefined && (updateObj.war_crimes_events = war_crimes_events);
+	liberation_info !== undefined && (updateObj.liberation_info = liberation_info);
 
 	return await city.findOneAndUpdate({
 		filter: { _id: new ObjectId(_id as string) },
-		update: updateQuery,
+		update: {
+			$set: updateObj,
+		},
 		projection: get,
 	});
 };

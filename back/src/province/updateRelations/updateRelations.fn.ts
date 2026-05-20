@@ -3,7 +3,7 @@ import { province } from "../../../mod.ts";
 
 export const updateRelationsFn: ActFn = async (body) => {
 	const {
-		set: { _id, country },
+		set: { _id, country, photo },
 		get,
 	} = body.details;
 
@@ -18,6 +18,19 @@ export const updateRelationsFn: ActFn = async (body) => {
 					relatedRelations: {
 						provinces: true,
 					},
+				},
+			},
+			projection: get,
+			replace: true,
+		});
+	}
+
+	if (photo) {
+		await province.addRelation({
+			filters: { _id: provinceId },
+			relations: {
+				photo: {
+					_ids: new ObjectId(photo),
 				},
 			},
 			projection: get,

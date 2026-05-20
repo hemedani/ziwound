@@ -5,9 +5,8 @@ export const updateRelationsValidator = () => {
 	return object({
 		set: object({
 			_id: objectIdValidation,
-			country: optional(objectIdValidation),
 			photo: optional(objectIdValidation),
 		}),
-		get: selectStruct("province", 2),
+		get: selectStruct("country", 2),
 	});
 };

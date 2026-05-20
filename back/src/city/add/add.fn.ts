@@ -7,7 +7,7 @@ export const addFn: ActFn = async (body) => {
   const { user }: MyContext = coreApp.contextFns
     .getContextModel() as MyContext;
 
-  const { provinceId, countryId, isCapital, ...rest } = set;
+  const { provinceId, countryId, isCapital, photoId, ...rest } = set;
 
   return await city.insertOne({
     doc: rest,
@@ -28,6 +28,11 @@ export const addFn: ActFn = async (body) => {
           cities: true,
         },
       },
+      ...(photoId && {
+        photo: {
+          _ids: new ObjectId(photoId as string),
+        },
+      }),
     },
     projection: get,
   });

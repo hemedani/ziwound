@@ -4,7 +4,7 @@ import {
   type RelationDataType,
   type RelationSortOrderType,
 } from "lesan";
-import { pure_location, user_excludes } from "@model";
+import { file_excludes, pure_location, user_excludes } from "@model";
 import { localizedWarInfo } from "./utils/localizedFields.ts";
 
 export const city_pure = {
@@ -62,6 +62,13 @@ export const city_relations = {
         },
       },
     },
+  },
+  photo: {
+    schemaName: "file",
+    type: "single" as RelationDataType,
+    optional: true,
+    excludes: file_excludes,
+    relatedRelations: {},
   },
 };
 

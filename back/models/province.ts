@@ -1,6 +1,6 @@
 import { coreApp } from "../mod.ts";
 import { optional, type RelationDataType, type RelationSortOrderType } from "lesan";
-import { pure_location, user_excludes } from "@model";
+import { file_excludes, pure_location, user_excludes } from "@model";
 import { localizedWarInfo } from "./utils/localizedFields.ts";
 
 export const province_pure = {
@@ -40,6 +40,13 @@ export const province_relations = {
         },
       },
     },
+  },
+  photo: {
+    schemaName: "file",
+    type: "single" as RelationDataType,
+    optional: true,
+    excludes: file_excludes,
+    relatedRelations: {},
   },
 };
 

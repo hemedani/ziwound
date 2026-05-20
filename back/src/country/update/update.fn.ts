@@ -29,20 +29,20 @@ export const updateFn: ActFn = async (body) => {
 		updatedAt: new Date(),
 	};
 
-	name && (updateObj.name = name);
-	english_name && (updateObj.english_name = english_name);
-	wars_history && (updateObj.wars_history = wars_history);
-	conflict_timeline && (updateObj.conflict_timeline = conflict_timeline);
-	casualties_info && (updateObj.casualties_info = casualties_info);
-	international_response && (updateObj.international_response = international_response);
-	war_crimes_documentation && (updateObj.war_crimes_documentation = war_crimes_documentation);
-	human_rights_violations && (updateObj.human_rights_violations = human_rights_violations);
-	genocide_info && (updateObj.genocide_info = genocide_info);
-	chemical_weapons_info && (updateObj.chemical_weapons_info = chemical_weapons_info);
-	displacement_info && (updateObj.displacement_info = displacement_info);
-	reconstruction_status && (updateObj.reconstruction_status = reconstruction_status);
-	international_sanctions && (updateObj.international_sanctions = international_sanctions);
-	notable_war_events && (updateObj.notable_war_events = notable_war_events);
+	name !== undefined && (updateObj.name = name);
+	english_name !== undefined && (updateObj.english_name = english_name);
+	wars_history !== undefined && (updateObj.wars_history = wars_history);
+	conflict_timeline !== undefined && (updateObj.conflict_timeline = conflict_timeline);
+	casualties_info !== undefined && (updateObj.casualties_info = casualties_info);
+	international_response !== undefined && (updateObj.international_response = international_response);
+	war_crimes_documentation !== undefined && (updateObj.war_crimes_documentation = war_crimes_documentation);
+	human_rights_violations !== undefined && (updateObj.human_rights_violations = human_rights_violations);
+	genocide_info !== undefined && (updateObj.genocide_info = genocide_info);
+	chemical_weapons_info !== undefined && (updateObj.chemical_weapons_info = chemical_weapons_info);
+	displacement_info !== undefined && (updateObj.displacement_info = displacement_info);
+	reconstruction_status !== undefined && (updateObj.reconstruction_status = reconstruction_status);
+	international_sanctions !== undefined && (updateObj.international_sanctions = international_sanctions);
+	notable_war_events !== undefined && (updateObj.notable_war_events = notable_war_events);
 
 	return await country.findOneAndUpdate({
 		filter: { _id: new ObjectId(_id as string) },

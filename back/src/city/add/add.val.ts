@@ -1,4 +1,4 @@
-import { boolean, object, objectIdValidation } from "lesan";
+import { boolean, object, objectIdValidation, optional } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { city_pure } from "@model";
 
@@ -9,6 +9,7 @@ export const addValidator = () => {
 			provinceId: objectIdValidation,
 			countryId: objectIdValidation,
 			isCapital: boolean(),
+			photoId: optional(objectIdValidation),
 		}),
 		get: selectStruct("city", 1),
 	});

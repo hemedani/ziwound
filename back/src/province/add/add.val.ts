@@ -1,4 +1,4 @@
-import { object, objectIdValidation } from "lesan";
+import { object, objectIdValidation, optional } from "lesan";
 import { selectStruct } from "../../../mod.ts";
 import { province_pure } from "@model";
 
@@ -7,6 +7,7 @@ export const addValidator = () => {
     set: object({
       ...province_pure,
       countryId: objectIdValidation,
+      photoId: optional(objectIdValidation),
     }),
     get: selectStruct("province", 1),
   });
