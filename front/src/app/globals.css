@@ -331,6 +331,41 @@ body {
     color: #f1f5f9;
 }
 
+/* ─── Neon Marker Animations ─── */
+/* Premium neon glowing marker for map locations — crimson/red with multi-layered glow */
+
+@keyframes neon-pulse {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 6px rgba(239, 68, 68, 0.8)) drop-shadow(0 0 16px rgba(239, 68, 68, 0.5)) drop-shadow(0 0 32px rgba(239, 68, 68, 0.3));
+    }
+    50% {
+        transform: scale(1.08);
+        filter: drop-shadow(0 0 10px rgba(239, 68, 68, 1)) drop-shadow(0 0 24px rgba(239, 68, 68, 0.7)) drop-shadow(0 0 48px rgba(239, 68, 68, 0.45));
+    }
+}
+
+@keyframes neon-ring-pulse {
+    0%, 100% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.5);
+        opacity: 0;
+    }
+}
+
+.neon-marker {
+    animation: neon-pulse 2.5s ease-in-out infinite;
+    transform-origin: center bottom;
+}
+
+.neon-marker-ring {
+    animation: neon-ring-pulse 2.5s ease-out infinite;
+    transform-origin: center center;
+}
+
 /* ─── react-multi-date-picker Dark Glassmorphism Theme ─── */
 /* These rules use .calendar-glass wrapper for high specificity.
    The library injects its own stylesheet dynamically; we force-override
