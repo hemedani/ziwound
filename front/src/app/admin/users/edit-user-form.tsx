@@ -78,14 +78,14 @@ function extractLangValue(field: Record<string, string> | string | undefined, la
 export function EditUserForm({ user, onSubmit, onCancel }: EditUserFormProps) {
   const t = useTranslations("admin");
 
-  const form = useForm<EditUserFormValues>({
+  const form = useForm<EditUserFormValues, any, EditUserFormValues>({
     resolver: zodResolver(editUserFormSchema),
     defaultValues: {
       first_name: user.first_name || "",
       last_name: user.last_name || "",
       email: user.email || "",
       gender: user.gender || "Male",
-      level: user.level || "Ordinary",
+      level: (user.level === "Ghost" ? undefined : user.level) || "Ordinary",
       address: user.address || "",
       bio: {
         fa: extractLangValue(user.bio, "fa"),
