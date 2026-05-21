@@ -33,6 +33,7 @@ export const addUserValidator = () => {
 			avatar: optional(objectIdValidation),
 			provinceId: optional(objectIdValidation),
 			cityId: optional(objectIdValidation),
+			countryId: optional(objectIdValidation),
 		}),
 		get: selectStruct("user", 1),
 	});

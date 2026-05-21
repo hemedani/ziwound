@@ -9,6 +9,7 @@ export const updateUserRelationsValidator = () => {
 			national_card: optional(objectIdValidation),
 			province: optional(objectIdValidation),
 			city: optional(objectIdValidation),
+			country: optional(objectIdValidation),
 		}),
 		get: selectStruct("user", 1),
 	});

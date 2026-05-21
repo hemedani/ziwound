@@ -124,7 +124,7 @@ export const user_relations = {
       users: {
         type: "multiple" as RelationDataType,
         excludes: user_excludes,
-        limit: 500,
+        limit: 50,
         sort: {
           field: "_id",
           order: "desc" as RelationSortOrderType,
@@ -141,7 +141,24 @@ export const user_relations = {
       users: {
         type: "multiple" as RelationDataType,
         excludes: user_excludes,
-        limit: 500,
+        limit: 50,
+        sort: {
+          field: "_id",
+          order: "desc" as RelationSortOrderType,
+        },
+      },
+    },
+  },
+  country: {
+    schemaName: "country",
+    type: "single" as RelationDataType,
+    optional: true,
+    excludes: location_excludes,
+    relatedRelations: {
+      users: {
+        type: "multiple" as RelationDataType,
+        excludes: user_excludes,
+        limit: 50,
         sort: {
           field: "_id",
           order: "desc" as RelationSortOrderType,

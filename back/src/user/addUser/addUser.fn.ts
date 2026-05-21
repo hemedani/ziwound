@@ -6,35 +6,43 @@ import { hash } from "@da/bcrypt";
 export const addUserFn: ActFn = async (body) => {
 	const { set, get } = body.details;
 
-	const { nationalCard, avatar, provinceId, cityId, password, ...rest } = set;
+  const { nationalCard, avatar, provinceId, cityId, countryId, password, ...rest } = set;
 
-	const relations: TInsertRelations<typeof user_relations> = {};
+  const relations: TInsertRelations<typeof user_relations> = {};
 
-	nationalCard &&
-		(relations.national_card = {
-			_ids: new ObjectId(nationalCard as string),
-		});
+  nationalCard &&
+    (relations.national_card = {
+      _ids: new ObjectId(nationalCard as string),
+    });
 
-	avatar &&
-		(relations.avatar = {
-			_ids: new ObjectId(avatar as string),
-		});
+  avatar &&
+    (relations.avatar = {
+      _ids: new ObjectId(avatar as string),
+    });
 
-	provinceId &&
-		(relations.province = {
-			_ids: [new ObjectId(provinceId as string)],
-			relatedRelations: {
-				users: true,
-			},
-		});
+  provinceId &&
+    (relations.province = {
+      _ids: [new ObjectId(provinceId as string)],
+      relatedRelations: {
+        users: true,
+      },
+    });
 
-	cityId &&
-		(relations.city = {
-			_ids: [new ObjectId(cityId as string)],
-			relatedRelations: {
-				users: true,
-			},
-		});
+  cityId &&
+    (relations.city = {
+      _ids: [new ObjectId(cityId as string)],
+      relatedRelations: {
+        users: true,
+      },
+    });
+
+  countryId &&
+    (relations.country = {
+      _ids: [new ObjectId(countryId as string)],
+      relatedRelations: {
+        users: true,
+      },
+    });
 
 	const addedUser = await user.insertOne({
 		doc: {

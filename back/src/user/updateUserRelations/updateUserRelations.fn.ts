@@ -1,47 +1,92 @@
-import { type ActFn, ObjectId, type TInsertRelations } from "lesan";
+import { type ActFn, ObjectId } from "lesan";
 import { user } from "../../../mod.ts";
-import type { user_relations } from "@model";
 
 export const updateUserRelationsFn: ActFn = async (body) => {
-	const {
-		set: { _id, avatar, national_card, province, city },
-		get,
-	} = body.details;
+  const {
+    set: { _id, avatar, national_card, province, city, country },
+    get,
+  } = body.details;
 
-	const relations: TInsertRelations<typeof user_relations> = {};
+  const modelId = new ObjectId(_id as string);
 
-	avatar &&
-		(relations.avatar = {
-			_ids: new ObjectId(avatar as string),
-			relatedRelations: {},
-		});
+  if (avatar) {
+    await user.addRelation({
+      filters: { _id: modelId },
+      relations: {
+        avatar: {
+          _ids: new ObjectId(avatar as string),
+          relatedRelations: {},
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
 
-	national_card &&
-		(relations.national_card = {
-			_ids: new ObjectId(national_card as string),
-			relatedRelations: {},
-		});
+  if (national_card) {
+    await user.addRelation({
+      filters: { _id: modelId },
+      relations: {
+        national_card: {
+          _ids: new ObjectId(national_card as string),
+          relatedRelations: {},
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
 
-	province &&
-		(relations.province = {
-			_ids: [new ObjectId(province as string)],
-			relatedRelations: {
-				users: true,
-			},
-		});
+  if (province) {
+    await user.addRelation({
+      filters: { _id: modelId },
+      relations: {
+        province: {
+          _ids: new ObjectId(province as string),
+          relatedRelations: {
+            users: true,
+          },
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
 
-	city &&
-		(relations.city = {
-			_ids: [new ObjectId(city as string)],
-			relatedRelations: {
-				users: true,
-			},
-		});
+  if (city) {
+    await user.addRelation({
+      filters: { _id: modelId },
+      relations: {
+        city: {
+          _ids: new ObjectId(city as string),
+          relatedRelations: {
+            users: true,
+          },
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
 
-	return await user.addRelation({
-		filters: { _id: new ObjectId(_id as string) },
-		relations,
-		projection: get,
-		replace: true,
-	});
+  if (country) {
+    await user.addRelation({
+      filters: { _id: modelId },
+      relations: {
+        country: {
+          _ids: new ObjectId(country as string),
+          relatedRelations: {
+            users: true,
+          },
+        },
+      },
+      projection: get,
+      replace: true,
+    });
+  }
+
+  return await user.findOne({
+    filters: { _id: modelId },
+    projection: get,
+  });
 };
