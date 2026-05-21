@@ -25,11 +25,11 @@ import { useToast } from "@/components/ui/use-toast";
 import { exportCSV } from "@/app/actions/report/export";
 
 interface WarCrimesExportProps {
-  searchParams?: Record<string, any>;
+  searchParams?: Record<string, string | string[] | undefined>;
   locale: string;
 }
 
-export function WarCrimesExport({ searchParams, locale }: WarCrimesExportProps) {
+export function WarCrimesExport({ searchParams }: WarCrimesExportProps) {
   const t = useTranslations();
   const { toast } = useToast();
   const [isExporting, setIsExporting] = useState(false);
@@ -79,7 +79,7 @@ export function WarCrimesExport({ searchParams, locale }: WarCrimesExportProps) 
       } else {
         throw new Error(response.body?.message || "Export failed");
       }
-    } catch (error) {
+    } catch {
       toast({
         title: t("common.error") || "Error",
         description: t("warCrimes.exportError") || "Failed to export data.",
