@@ -9,7 +9,7 @@ import { useToast } from "@/components/ui/use-toast";
 import { citySchema } from "@/types/declarations";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, Trash2, Pencil } from "lucide-react";
+import { MoreHorizontal, Trash2, Pencil, ImageUp } from "lucide-react";
 import Image from "next/image";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 import {
@@ -127,6 +127,12 @@ export function CitiesTable({ cities, provinces, error }: CitiesTableProps) {
                         <Link href={`/admin/cities/${city._id}/edit`}>
                           <Pencil className="me-2 h-4 w-4" />
                           {t("edit")}
+                        </Link>
+                      </DropdownMenuItem>
+                      <DropdownMenuItem className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer" asChild>
+                        <Link href={`/admin/cities/${city._id}/update-relations`}>
+                          <ImageUp className="me-2 h-4 w-4" />
+                          {t("updateRelations") || "Update Relations"}
                         </Link>
                       </DropdownMenuItem>
                       <DropdownMenuSeparator className="bg-white/10" />

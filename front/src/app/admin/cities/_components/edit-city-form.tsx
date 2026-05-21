@@ -7,7 +7,6 @@ import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { CityForm, CityFormValues } from "../city-form";
 import { update } from "@/app/actions/city/update";
-import { updateRelations } from "@/app/actions/city/updateRelations";
 import { citySchema } from "@/types/declarations";
 
 const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
@@ -67,28 +66,6 @@ export function EditCityForm({ city, countries = [], provinces = [] }: EditCityF
             res?.error || res?.body?.message || t("failedToUpdateCity") || "Failed to update city.",
         });
         return;
-      }
-
-      if (data.provinceId !== city.province?._id || data.photoId !== city.photo?._id) {
-        const relationRes = await updateRelations(
-          {
-            _id: city._id!,
-            ...(data.provinceId !== city.province?._id ? { province: data.provinceId } : {}),
-            ...(data.countryId !== city.country?._id ? { country: data.countryId } : {}),
-            ...(data.photoId !== city.photo?._id ? { photo: data.photoId || undefined } : {}),
-          },
-          { _id: 1 },
-        );
-
-        if (!relationRes?.success) {
-          toast({
-            variant: "destructive",
-            title: tCommon("error"),
-            description:
-              relationRes?.error || relationRes?.body?.message || t("failedToUpdateCityRelations") || "Failed to update city relations.",
-          });
-          return;
-        }
       }
 
       toast({

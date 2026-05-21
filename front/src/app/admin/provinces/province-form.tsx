@@ -180,30 +180,32 @@ export function ProvinceForm({
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
         <div className="grid grid-cols-2 gap-4">
-          <FormField
-            control={form.control}
-            name="countryId"
-            render={({ field }) => (
-              <FormItem>
-                <FormLabel>{t("country") || "Country"}</FormLabel>
-                <FormControl>
-                  <AsyncSelect
-                    value={field.value}
-                    onChange={(val) => field.onChange(val || "")}
-                    options={countries.map((c) => ({
-                      id: c._id,
-                      label: c.name,
-                      subLabel: c.english_name,
-                    }))}
-                    placeholder={t("selectCountry") || "Select a country"}
-                    searchPlaceholder="Search countries..."
-                    emptyText="No country found."
-                  />
-                </FormControl>
-                <FormMessage />
-              </FormItem>
-            )}
-          />
+          {!isEditing && (
+            <FormField
+              control={form.control}
+              name="countryId"
+              render={({ field }) => (
+                <FormItem>
+                  <FormLabel>{t("country") || "Country"}</FormLabel>
+                  <FormControl>
+                    <AsyncSelect
+                      value={field.value}
+                      onChange={(val) => field.onChange(val || "")}
+                      options={countries.map((c) => ({
+                        id: c._id,
+                        label: c.name,
+                        subLabel: c.english_name,
+                      }))}
+                      placeholder={t("selectCountry") || "Select a country"}
+                      searchPlaceholder="Search countries..."
+                      emptyText="No country found."
+                    />
+                  </FormControl>
+                  <FormMessage />
+                </FormItem>
+              )}
+            />
+          )}
           <FormField
             control={form.control}
             name="name"
@@ -233,31 +235,33 @@ export function ProvinceForm({
           )}
         />
 
-        <FormItem>
-          <FormLabel>{t("photo") || "Photo"}</FormLabel>
-          <Tabs defaultValue="library">
-            <TabsList className="grid w-full grid-cols-2 bg-white/5 border-white/10">
-              <TabsTrigger value="library">{t("imageLibrary") || "Library"}</TabsTrigger>
-              <TabsTrigger value="upload">{t("uploadNew") || "Upload"}</TabsTrigger>
-            </TabsList>
-            <TabsContent value="library" className="mt-3">
-              <ImagePicker
-                value={photoId}
-                onChange={(id) => setPhotoId(id || "")}
-              />
-            </TabsContent>
-            <TabsContent value="upload" className="mt-3">
-              <FileUploadField
-                label=""
-                maxFiles={1}
-                accept="image/*"
-                value={photoId ? [photoId] : []}
-                onChange={(ids) => setPhotoId(ids[0] || "")}
-              />
-            </TabsContent>
-          </Tabs>
-          <FormMessage />
-        </FormItem>
+        {!isEditing && (
+          <FormItem>
+            <FormLabel>{t("photo") || "Photo"}</FormLabel>
+            <Tabs defaultValue="library">
+              <TabsList className="grid w-full grid-cols-2 bg-white/5 border-white/10">
+                <TabsTrigger value="library">{t("imageLibrary") || "Library"}</TabsTrigger>
+                <TabsTrigger value="upload">{t("uploadNew") || "Upload"}</TabsTrigger>
+              </TabsList>
+              <TabsContent value="library" className="mt-3">
+                <ImagePicker
+                  value={photoId}
+                  onChange={(id) => setPhotoId(id || "")}
+                />
+              </TabsContent>
+              <TabsContent value="upload" className="mt-3">
+                <FileUploadField
+                  label=""
+                  maxFiles={1}
+                  accept="image/*"
+                  value={photoId ? [photoId] : []}
+                  onChange={(ids) => setPhotoId(ids[0] || "")}
+                />
+              </TabsContent>
+            </Tabs>
+            <FormMessage />
+          </FormItem>
+        )}
 
         <div className="space-y-6">
           <h4 className="text-sm font-semibold">{t("warDescriptionFields") || "War Description Fields"}</h4>

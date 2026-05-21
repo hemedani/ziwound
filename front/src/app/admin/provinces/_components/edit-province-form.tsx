@@ -7,7 +7,6 @@ import { useToast } from "@/components/ui/use-toast";
 import { Button } from "@/components/ui/button";
 import { ProvinceForm, ProvinceFormValues } from "../province-form";
 import { update } from "@/app/actions/province/update";
-import { updateRelations } from "@/app/actions/province/updateRelations";
 import { provinceSchema } from "@/types/declarations";
 
 const LANGUAGES = ["fa", "en", "ar", "zh", "pt", "es", "nl", "tr", "ru"] as const;
@@ -66,27 +65,6 @@ export function EditProvinceForm({ province, countries = [] }: EditProvinceFormP
             res?.error || res?.body?.message || t("failedToUpdateProvince") || "Failed to update province.",
         });
         return;
-      }
-
-      if (data.countryId !== province.country?._id || data.photoId !== province.photo?._id) {
-        const relationRes = await updateRelations(
-          {
-            _id: province._id!,
-            ...(data.countryId !== province.country?._id ? { country: data.countryId } : {}),
-            ...(data.photoId !== province.photo?._id ? { photo: data.photoId || undefined } : {}),
-          },
-          { _id: 1 },
-        );
-
-        if (!relationRes?.success) {
-          toast({
-            variant: "destructive",
-            title: tCommon("error"),
-            description:
-              relationRes?.error || relationRes?.body?.message || t("failedToUpdateProvinceRelations") || "Failed to update province relations.",
-          });
-          return;
-        }
       }
 
       toast({
