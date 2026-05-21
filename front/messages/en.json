@@ -435,6 +435,7 @@
     "approve": "Approve",
     "approvedReports": "Approved Reports",
     "ascending": "Ascending",
+    "avatar": "Avatar",
     "cancel": "Cancel",
     "parseHtml": "Parse HTML",
     "parseHtmlTitle": "Parse HTML Content",
@@ -625,6 +626,7 @@
     "level_Manager": "Manager",
     "level_Ordinary": "Ordinary User",
     "linkedReports": "Linked Reports",
+    "loading": "Loading...",
     "name": "Name",
     "next": "Next",
     "noCategories": "No categories found",
@@ -998,7 +1000,9 @@
     "crimeMonthly": "Crime Occurrence by Month",
     "topLocations": "Top Geographic Locations",
     "noData": "No data available",
-    "overline": "Archive"
+    "overline": "Archive",
+    "newestFirst": "Newest First",
+    "oldestFirst": "Oldest First"
   },
   "about": {
     "title": "About Us",

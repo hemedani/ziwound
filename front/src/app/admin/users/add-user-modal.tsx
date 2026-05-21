@@ -56,6 +56,7 @@ export function AddUserModal() {
           verificationBadge: data.verificationBadge || undefined,
           isPublic: data.isPublic,
           is_verified: data.is_verified,
+          ...(data.avatar ? { avatar: data.avatar } : {}),
         },
         { _id: 1, first_name: 1, last_name: 1 },
       );

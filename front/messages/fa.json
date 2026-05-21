@@ -437,6 +437,7 @@
     "approve": "تایید",
     "approvedReports": "گزارش‌های تایید شده",
     "ascending": "صعودی",
+    "avatar": "آواتار",
     "cancel": "انصراف",
     "parseHtml": "تجزیه HTML",
     "parseHtmlTitle": "تجزیه محتوای HTML",
@@ -627,6 +628,7 @@
     "level_Manager": "مدیر",
     "level_Ordinary": "کاربر عادی",
     "linkedReports": "گزارش‌های مرتبط",
+    "loading": "در حال بارگذاری...",
     "name": "نام",
     "next": "بعدی",
     "noCategories": "هیچ دسته‌بندی یافت نشد",
@@ -999,7 +1001,9 @@
     "crimeMonthly": "وقوع جنایت بر اساس ماه",
     "topLocations": "موقعیت‌های جغرافیایی برتر",
     "noData": "داده‌ای موجود نیست",
-    "overline": "آرشیو"
+    "overline": "آرشیو",
+    "newestFirst": "جدیدترین ابتدا",
+    "oldestFirst": "قدیمی‌ترین ابتدا"
   },
   "about": {
     "title": "درباره ما",

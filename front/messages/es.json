@@ -412,6 +412,7 @@
     "approve": "Aprobar",
     "approvedReports": "Informes Aprobados",
     "ascending": "Ascendente",
+    "avatar": "Avatar",
     "cancel": "Cancelar",
     "parseHtml": "Analizar HTML",
     "parseHtmlTitle": "Analizar Contenido HTML",
@@ -558,6 +559,7 @@
     "level_Manager": "Gerente",
     "level_Ordinary": "Usuario Ordinario",
     "linkedReports": "Reportes Vinculados",
+    "loading": "Cargando...",
     "name": "Nombre",
     "next": "Siguiente",
     "noCategories": "No se encontraron categorías",
@@ -980,7 +982,9 @@
     "crimeMonthly": "Ocurrencia de Delitos por Mes",
     "topLocations": "Principales Ubicaciones Geográficas",
     "noData": "No hay datos disponibles",
-    "overline": "Archivo"
+    "overline": "Archivo",
+    "newestFirst": "Más Recientes Primero",
+    "oldestFirst": "Más Antiguos Primero"
   },
   "about": {
     "title": "Sobre Nosotros",

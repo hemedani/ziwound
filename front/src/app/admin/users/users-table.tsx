@@ -18,6 +18,8 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import Image from "next/image";
+import { getImageUploadUrl } from "@/utils/imageUrl";
 
 export function UsersTable({ users, error }: { users: userSchema[]; error?: string | null }) {
   const t = useTranslations("admin");
@@ -118,6 +120,7 @@ export function UsersTable({ users, error }: { users: userSchema[]; error?: stri
         <Table>
           <TableHeader>
             <TableRow className="border-white/[0.06] hover:bg-transparent">
+              <TableHead className="text-slate-body w-12"></TableHead>
               <TableHead className="text-slate-body">{t("name")}</TableHead>
               <TableHead className="text-slate-body">{t("email") || "Email"}</TableHead>
               <TableHead className="text-slate-body">{t("level")}</TableHead>
@@ -128,13 +131,29 @@ export function UsersTable({ users, error }: { users: userSchema[]; error?: stri
           <TableBody>
             {users.length === 0 ? (
               <TableRow className="border-white/[0.06]">
-                <TableCell colSpan={5} className="h-24 text-center text-slate-body">
+                <TableCell colSpan={6} className="h-24 text-center text-slate-body">
                   {t("noUsers") || "No users found"}
                 </TableCell>
               </TableRow>
             ) : (
               users.map((user: userSchema) => (
                 <TableRow key={user._id} className="border-white/[0.06] hover:bg-white/[0.02]">
+                  <TableCell>
+                    {user.avatar ? (
+                      <Image
+                        src={getImageUploadUrl(user.avatar.name, "image")}
+                        alt={`${user.first_name} ${user.last_name}`}
+                        width={40}
+                        height={40}
+                        unoptimized
+                        className="rounded-full object-cover"
+                      />
+                    ) : (
+                      <div className="h-10 w-10 rounded-full bg-white/5 flex items-center justify-center text-slate-body/50 text-sm font-medium">
+                        {user.first_name?.charAt(0)}{user.last_name?.charAt(0)}
+                      </div>
+                    )}
+                  </TableCell>
                   <TableCell className="font-medium text-offwhite">
                     {user.first_name} {user.last_name}
                   </TableCell>

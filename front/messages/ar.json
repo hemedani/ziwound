@@ -412,6 +412,7 @@
     "approve": "موافقة",
     "approvedReports": "التقارير المعتمدة",
     "ascending": "تصاعدي",
+    "avatar": "الصورة الشخصية",
     "cancel": "إلغاء",
     "parseHtml": "تحليل HTML",
     "parseHtmlTitle": "تحليل محتوى HTML",
@@ -503,6 +504,7 @@
     "level_Manager": "مدير",
     "level_Ordinary": "مستخدم عادي",
     "linkedReports": "التقارير المرتبطة",
+    "loading": "جار التحميل...",
     "name": "الاسم",
     "next": "التالي",
     "noCategories": "لم يتم العثور على فئات",
@@ -921,7 +923,9 @@
     "crimeMonthly": "وقوع الجريمة حسب الشهر",
     "topLocations": "أفضل المواقع الجغرافية",
     "noData": "لا توجد بيانات متاحة",
-    "overline": "أرشيف"
+    "overline": "أرشيف",
+    "newestFirst": "الأحدث أولاً",
+    "oldestFirst": "الأقدم أولاً"
   },
   "about": {
     "title": "معلومات عنا",

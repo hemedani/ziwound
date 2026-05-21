@@ -412,6 +412,7 @@
     "approve": "Goedkeuren",
     "approvedReports": "Goedgekeurde Rapporten",
     "ascending": "Oplopend",
+    "avatar": "Avatar",
     "cancel": "Annuleren",
     "parseHtml": "HTML Parseren",
     "parseHtmlTitle": "HTML-inhoud Parseren",
@@ -558,6 +559,7 @@
     "level_Manager": "Manager",
     "level_Ordinary": "Gewone Gebruiker",
     "linkedReports": "Gekoppelde Rapporten",
+    "loading": "Laden...",
     "name": "Naam",
     "next": "Volgende",
     "noCategories": "Geen categorieën gevonden",
@@ -980,7 +982,9 @@
     "crimeMonthly": "Misdrijven per Maand",
     "topLocations": "Top Geografische Locaties",
     "noData": "Geen gegevens beschikbaar",
-    "overline": "Archief"
+    "overline": "Archief",
+    "newestFirst": "Nieuwste Eerst",
+    "oldestFirst": "Oudste Eerst"
   },
   "about": {
     "title": "Over Ons",

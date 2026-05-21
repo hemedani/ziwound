@@ -45,6 +45,7 @@ export default async function AdminUsersPage({
     email: 1,
     level: 1,
     createdAt: 1,
+    avatar: { _id: 1, name: 1 },
   });
 
   let users: userSchema[] = [];

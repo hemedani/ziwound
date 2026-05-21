@@ -412,6 +412,7 @@
     "approve": "Onayla",
     "approvedReports": "Onaylanmış Raporlar",
     "ascending": "Artan",
+    "avatar": "Avatar",
     "cancel": "İptal",
     "parseHtml": "HTML Ayrıştır",
     "parseHtmlTitle": "HTML İçeriğini Ayrıştır",
@@ -503,6 +504,7 @@
     "level_Manager": "Yönetici",
     "level_Ordinary": "Normal Kullanıcı",
     "linkedReports": "Bağlantılı Raporlar",
+    "loading": "Yükleniyor...",
     "name": "İsim",
     "next": "İleri",
     "noCategories": "Kategori bulunamadı",
@@ -927,7 +929,9 @@
     "crimeMonthly": "Aylık Suç Oluşumu",
     "topLocations": "En İyi Coğrafi Konumlar",
     "noData": "Kullanılabilir veri yok",
-    "overline": "Arşiv"
+    "overline": "Arşiv",
+    "newestFirst": "En Yeni Önce",
+    "oldestFirst": "En Eski Önce"
   },
   "about": {
     "title": "Hakkımızda",

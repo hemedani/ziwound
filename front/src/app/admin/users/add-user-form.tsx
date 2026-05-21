@@ -11,6 +11,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Checkbox } from "@/components/ui/checkbox";
 import { RichTextEditor } from "@/components/form/rich-text-editor";
+import { FileUploadField } from "@/components/form/file-upload-field";
+import { ImagePicker } from "@/components/form/image-picker";
 import { Loader2, X } from "lucide-react";
 import { useState } from "react";
 
@@ -56,6 +58,7 @@ const addUserFormSchema = z.object({
   verificationBadge: z.string().optional(),
   isPublic: z.boolean().default(true),
   is_verified: z.boolean().default(false),
+  avatar: z.string().optional(),
 });
 
 export type AddUserFormValues = z.infer<typeof addUserFormSchema>;
@@ -94,6 +97,7 @@ export function AddUserForm({ initialData, onSubmit, onCancel }: AddUserFormProp
   });
 
   const [newExpertise, setNewExpertise] = useState("");
+  const [avatarId, setAvatarId] = useState<string>(initialData?.avatar as string || "");
 
   const addExpertise = () => {
     const value = newExpertise.trim();
@@ -112,7 +116,7 @@ export function AddUserForm({ initialData, onSubmit, onCancel }: AddUserFormProp
   };
 
   const handleSubmit = async (data: AddUserFormValues) => {
-    await onSubmit(data);
+    await onSubmit({ ...data, avatar: avatarId || undefined });
   };
 
   return (
@@ -243,6 +247,32 @@ export function AddUserForm({ initialData, onSubmit, onCancel }: AddUserFormProp
             </FormItem>
           )}
         />
+
+        {/* Avatar Field - Image Picker + Upload */}
+        <FormItem>
+          <FormLabel>{t("avatar") || "Avatar"}</FormLabel>
+          <Tabs defaultValue="library">
+            <TabsList className="grid w-full grid-cols-2 bg-white/5 border-white/10">
+              <TabsTrigger value="library">{t("imageLibrary") || "Library"}</TabsTrigger>
+              <TabsTrigger value="upload">{t("uploadNew") || "Upload"}</TabsTrigger>
+            </TabsList>
+            <TabsContent value="library" className="mt-3">
+              <ImagePicker
+                value={avatarId}
+                onChange={(id) => setAvatarId(id || "")}
+              />
+            </TabsContent>
+            <TabsContent value="upload" className="mt-3">
+              <FileUploadField
+                label=""
+                maxFiles={1}
+                accept="image/*"
+                value={avatarId ? [avatarId] : []}
+                onChange={(ids) => setAvatarId(ids[0] || "")}
+              />
+            </TabsContent>
+          </Tabs>
+        </FormItem>
 
         {/* Bio Field - Localized by Language */}
         <FormField

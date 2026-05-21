@@ -412,6 +412,7 @@
     "approve": "Утвердить",
     "approvedReports": "Утверждённые отчёты",
     "ascending": "По возрастанию",
+    "avatar": "Аватар",
     "cancel": "Отмена",
     "parseHtml": "Разобрать HTML",
     "parseHtmlTitle": "Разбор HTML-контента",
@@ -558,6 +559,7 @@
     "level_Manager": "Менеджер",
     "level_Ordinary": "Обычный пользователь",
     "linkedReports": "Связанные отчеты",
+    "loading": "Загрузка...",
     "name": "Имя",
     "next": "Далее",
     "noCategories": "Категории не найдены",
@@ -980,7 +982,9 @@
     "crimeMonthly": "Преступлений по месяцам",
     "topLocations": "Топ географических локаций",
     "noData": "Нет данных",
-    "overline": "Архив"
+    "overline": "Архив",
+    "newestFirst": "Сначала Новые",
+    "oldestFirst": "Сначала Старые"
   },
   "about": {
     "title": "О нас",

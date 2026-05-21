@@ -412,6 +412,7 @@
     "approve": "批准",
     "approvedReports": "已批准的报告",
     "ascending": "升序",
+    "avatar": "头像",
     "cancel": "取消",
     "parseHtml": "解析 HTML",
     "parseHtmlTitle": "解析 HTML 内容",
@@ -503,6 +504,7 @@
     "level_Manager": "经理",
     "level_Ordinary": "普通用户",
     "linkedReports": "关联报告",
+    "loading": "加载中...",
     "name": "姓名",
     "next": "下一页",
     "noCategories": "未找到类别",
@@ -927,7 +929,9 @@
     "crimeMonthly": "每月犯罪发生情况",
     "topLocations": "热门地理位置",
     "noData": "暂无数据",
-    "overline": "档案"
+    "overline": "档案",
+    "newestFirst": "最新优先",
+    "oldestFirst": "最早优先"
   },
   "about": {
     "title": "关于我们",
