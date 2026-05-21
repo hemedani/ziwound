@@ -57,7 +57,7 @@ const priorityCfg = [
 function StatCard({ title, value, icon: Icon, colorClass }:
   { title: string; value: string | number; icon: React.ElementType; colorClass: string }) {
   return (
-    <div className="rounded-2xl glass-light p-5 border border-white/[0.06] transition-all duration-300 hover:bg-white/[0.04]">
+    <div className="rounded-2xl glass-light p-5 border border-white/[0.06] transition-all duration-300 hover:bg-white/[0.04] hover:-translate-y-0.5">
       <div className="flex items-start justify-between">
         <div>
           <p className="text-sm font-medium text-slate-body">{title}</p>
@@ -90,8 +90,8 @@ function ProgressRow({ label, count, total, colorClass, barColor, icon: Icon }:
   );
 }
 
-function MiniBarChart({ items, total, barColor = "bg-crimson-light", noDataText = "No data" }:
-  { items: CountItem[]; total: number; barColor?: string; noDataText?: string }) {
+function MiniBarChart({ items, barColor = "bg-crimson-light", noDataText = "No data" }:
+  { items: CountItem[]; barColor?: string; noDataText?: string }) {
   const max = Math.max(...items.map((i) => i.count), 1);
   if (items.length === 0) {
     return <div className="flex h-20 items-center justify-center text-xs text-slate-body/60">{noDataText}</div>;
@@ -251,11 +251,11 @@ export async function WarCrimesStatistics({
       <div className="grid gap-4 md:grid-cols-2">
         <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
           <SectionHeader icon={Layers} title={t("byCategory")} />
-          <MiniBarChart items={namedCategoryCounts} total={totalStatCount} barColor="bg-violet-400" noDataText={t("noData")} />
+          <MiniBarChart items={namedCategoryCounts} barColor="bg-violet-400" noDataText={t("noData")} />
         </div>
         <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
           <SectionHeader icon={Languages} title={t("reportsByLanguage")} />
-          <MiniBarChart items={namedLanguageCounts} total={totalStatCount} barColor="bg-gold" noDataText={t("noData")} />
+          <MiniBarChart items={namedLanguageCounts} barColor="bg-gold" noDataText={t("noData")} />
         </div>
       </div>
 
@@ -275,19 +275,19 @@ export async function WarCrimesStatistics({
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
         <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
           <SectionHeader icon={Flag} title={t("filters.hostileCountries")} />
-          <MiniBarChart items={statsBody.hostileCountryCounts || []} total={totalStatCount} barColor="bg-crimson-light" noDataText={t("noData")} />
+          <MiniBarChart items={statsBody.hostileCountryCounts || []} barColor="bg-crimson-light" noDataText={t("noData")} />
         </div>
         <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
           <SectionHeader icon={ShieldCheck} title={t("filters.attackedCountries")} />
-          <MiniBarChart items={statsBody.attackedCountryCounts || []} total={totalStatCount} barColor="bg-amber-400" noDataText={t("noData")} />
+          <MiniBarChart items={statsBody.attackedCountryCounts || []} barColor="bg-amber-400" noDataText={t("noData")} />
         </div>
         <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
           <SectionHeader icon={Building2} title={t("filters.attackedProvinces")} />
-          <MiniBarChart items={statsBody.attackedProvinceCounts || []} total={totalStatCount} barColor="bg-blue-400" noDataText={t("noData")} />
+          <MiniBarChart items={statsBody.attackedProvinceCounts || []} barColor="bg-blue-400" noDataText={t("noData")} />
         </div>
         <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
           <SectionHeader icon={MapIcon} title={t("filters.attackedCities")} />
-          <MiniBarChart items={statsBody.attackedCityCounts || []} total={totalStatCount} barColor="bg-emerald-400" noDataText={t("noData")} />
+          <MiniBarChart items={statsBody.attackedCityCounts || []} barColor="bg-emerald-400" noDataText={t("noData")} />
         </div>
       </div>
 
