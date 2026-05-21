@@ -1078,120 +1078,12 @@ export type citySchema = {
 ;
 
 
-export type userInp = {
-  avatar?: number | fileInp
-  national_card?: number | fileInp
-  province?: number | provinceInp
-  city?: number | cityInp
-  uploadedAssets?: number | fileInp
-  reports?: number | reportInp
-  blogPosts?: number | blogPostInp
-  confirmations?: number | confirmationInp
-}
-
-
-export type userSchema = {
-  _id?: string;
-  first_name: string;
-  last_name: string;
-  father_name?: string;
-  gender: ("Male" | "Female");
-  birth_date?: Date;
-  summary?: string;
-  address?: string;
-  level: ("Ghost" | "Manager" | "Editor" | "Reporter" | "Artist" | "Diplomat" | "Researcher" | "Ordinary");
-  email: string;
-  is_verified: boolean;
-  bio?: {
-    fa?: string;
-    en?: string;
-    ar?: string;
-    zh?: string;
-    pt?: string;
-    es?: string;
-    nl?: string;
-    tr?: string;
-    ru?: string;
-  };
-  expertise?: string[];
-  verified: boolean;
-  verificationBadge?: string;
-  isPublic: boolean;
-  createdAt?: Date;
-  updatedAt?: Date;
-  avatar?: {
-    _id?: string;
-    name: string;
-    mimeType: string;
-    type: ("image" | "video" | "docs");
-    alt_text?: string;
-  };
-  national_card?: {
-    _id?: string;
-    name: string;
-    mimeType: string;
-    type: ("image" | "video" | "docs");
-    alt_text?: string;
-  };
-  province?: {
-    _id?: string;
-    name: string;
-    english_name: string;
-  };
-  city?: {
-    _id?: string;
-    name: string;
-    english_name: string;
-  };
-  uploadedAssets: {
-    _id?: string;
-    name: string;
-    mimeType: string;
-    type: ("image" | "video" | "docs");
-    alt_text?: string;
-  }[];
-  reports: {
-    _id?: string;
-    title: string;
-    description: string;
-    location?: {
-      type: "Point";
-      coordinates: any[];
-    };
-    address?: string;
-    status: ("Pending" | "Approved" | "Rejected" | "InReview");
-    priority?: ("Low" | "Medium" | "High");
-    selected_language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
-    crime_occurred_at: Date;
-  }[];
-  blogPosts: {
-    _id?: string;
-    title: string;
-    slug: string;
-    content: string;
-    selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
-    isPublished: boolean;
-    isFeatured: boolean;
-    publishedAt?: string;
-  }[];
-  confirmations: {
-    _id?: string;
-    title: string;
-    content: string;
-    type: ("Diary" | "Eyewitness" | "OfficialStatement" | "MediaNote" | "Other");
-    badge: string;
-    isVerified: boolean;
-    selected_language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
-  }[];
-};
-;
-
-
 export type countryInp = {
   registrar?: number | userInp
   photo?: number | fileInp
   provinces?: number | provinceInp
   cities?: number | cityInp
+  users?: number | userInp
   hostileReports?: number | reportInp
   attackedReports?: number | reportInp
 }
@@ -1601,6 +1493,31 @@ export type countrySchema = {
       ru?: string;
     };
   }[];
+  users: {
+    _id?: string;
+    first_name: string;
+    last_name: string;
+    gender: ("Male" | "Female");
+    address?: string;
+    level: ("Ghost" | "Manager" | "Editor" | "Reporter" | "Artist" | "Diplomat" | "Researcher" | "Ordinary");
+    email: string;
+    is_verified: boolean;
+    bio?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    expertise?: string[];
+    verified: boolean;
+    verificationBadge?: string;
+    isPublic: boolean;
+  }[];
   hostileReports: {
     _id?: string;
     title: string;
@@ -1628,6 +1545,220 @@ export type countrySchema = {
     priority?: ("Low" | "Medium" | "High");
     selected_language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
     crime_occurred_at: Date;
+  }[];
+};
+;
+
+
+export type userInp = {
+  avatar?: number | fileInp
+  national_card?: number | fileInp
+  province?: number | provinceInp
+  city?: number | cityInp
+  country?: number | countryInp
+  uploadedAssets?: number | fileInp
+  reports?: number | reportInp
+  blogPosts?: number | blogPostInp
+  confirmations?: number | confirmationInp
+}
+
+
+export type userSchema = {
+  _id?: string;
+  first_name: string;
+  last_name: string;
+  father_name?: string;
+  gender: ("Male" | "Female");
+  birth_date?: Date;
+  summary?: string;
+  address?: string;
+  level: ("Ghost" | "Manager" | "Editor" | "Reporter" | "Artist" | "Diplomat" | "Researcher" | "Ordinary");
+  email: string;
+  is_verified: boolean;
+  bio?: {
+    fa?: string;
+    en?: string;
+    ar?: string;
+    zh?: string;
+    pt?: string;
+    es?: string;
+    nl?: string;
+    tr?: string;
+    ru?: string;
+  };
+  expertise?: string[];
+  verified: boolean;
+  verificationBadge?: string;
+  isPublic: boolean;
+  createdAt?: Date;
+  updatedAt?: Date;
+  avatar?: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  };
+  national_card?: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  };
+  province?: {
+    _id?: string;
+    name: string;
+    english_name: string;
+  };
+  city?: {
+    _id?: string;
+    name: string;
+    english_name: string;
+  };
+  country?: {
+    _id?: string;
+    name: string;
+    english_name: string;
+    international_response?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    war_crimes_documentation?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    human_rights_violations?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    genocide_info?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    chemical_weapons_info?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    displacement_info?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    reconstruction_status?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    international_sanctions?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+    notable_war_events?: {
+      fa?: string;
+      en?: string;
+      ar?: string;
+      zh?: string;
+      pt?: string;
+      es?: string;
+      nl?: string;
+      tr?: string;
+      ru?: string;
+    };
+  };
+  uploadedAssets: {
+    _id?: string;
+    name: string;
+    mimeType: string;
+    type: ("image" | "video" | "docs");
+    alt_text?: string;
+  }[];
+  reports: {
+    _id?: string;
+    title: string;
+    description: string;
+    location?: {
+      type: "Point";
+      coordinates: any[];
+    };
+    address?: string;
+    status: ("Pending" | "Approved" | "Rejected" | "InReview");
+    priority?: ("Low" | "Medium" | "High");
+    selected_language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+    crime_occurred_at: Date;
+  }[];
+  blogPosts: {
+    _id?: string;
+    title: string;
+    slug: string;
+    content: string;
+    selected_language?: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
+    isPublished: boolean;
+    isFeatured: boolean;
+    publishedAt?: string;
+  }[];
+  confirmations: {
+    _id?: string;
+    title: string;
+    content: string;
+    type: ("Diary" | "Eyewitness" | "OfficialStatement" | "MediaNote" | "Other");
+    badge: string;
+    isVerified: boolean;
+    selected_language: ("en" | "zh" | "hi" | "es" | "fr" | "ar" | "pt" | "ru" | "ja" | "pa" | "de" | "id" | "te" | "mr" | "tr" | "ta" | "vi" | "ko" | "it" | "fa" | "nl" | "sv" | "pl" | "uk" | "ro");
   }[];
 };
 ;
@@ -2677,6 +2808,21 @@ export type ReqType = {
             war_crimes_events?: (0 | 1);
             liberation_info?: (0 | 1);
           };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            bio?: (0 | 1);
+            expertise?: (0 | 1);
+            verified?: (0 | 1);
+            verificationBadge?: (0 | 1);
+            isPublic?: (0 | 1);
+          };
           hostileReports?: {
             _id?: (0 | 1);
             title?: (0 | 1);
@@ -2915,6 +3061,21 @@ export type ReqType = {
             war_crimes_events?: (0 | 1);
             liberation_info?: (0 | 1);
           };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            bio?: (0 | 1);
+            expertise?: (0 | 1);
+            verified?: (0 | 1);
+            verificationBadge?: (0 | 1);
+            isPublic?: (0 | 1);
+          };
           hostileReports?: {
             _id?: (0 | 1);
             title?: (0 | 1);
@@ -3001,6 +3162,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -3279,6 +3454,96 @@ export type ReqType = {
               priority?: (0 | 1);
               selected_language?: (0 | 1);
               crime_occurred_at?: (0 | 1);
+            };
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            bio?: (0 | 1);
+            expertise?: (0 | 1);
+            verified?: (0 | 1);
+            verificationBadge?: (0 | 1);
+            isPublic?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              selected_language?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+            confirmations?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              content?: (0 | 1);
+              type?: (0 | 1);
+              badge?: (0 | 1);
+              isVerified?: (0 | 1);
+              selected_language?: (0 | 1);
             };
           };
           hostileReports?: {
@@ -3557,6 +3822,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -3834,6 +4113,96 @@ export type ReqType = {
               priority?: (0 | 1);
               selected_language?: (0 | 1);
               crime_occurred_at?: (0 | 1);
+            };
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            bio?: (0 | 1);
+            expertise?: (0 | 1);
+            verified?: (0 | 1);
+            verificationBadge?: (0 | 1);
+            isPublic?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              selected_language?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+            confirmations?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              content?: (0 | 1);
+              type?: (0 | 1);
+              badge?: (0 | 1);
+              isVerified?: (0 | 1);
+              selected_language?: (0 | 1);
             };
           };
           hostileReports?: {
@@ -4118,6 +4487,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -4395,6 +4778,96 @@ export type ReqType = {
               priority?: (0 | 1);
               selected_language?: (0 | 1);
               crime_occurred_at?: (0 | 1);
+            };
+          };
+          users?: {
+            _id?: (0 | 1);
+            first_name?: (0 | 1);
+            last_name?: (0 | 1);
+            gender?: (0 | 1);
+            address?: (0 | 1);
+            level?: (0 | 1);
+            email?: (0 | 1);
+            is_verified?: (0 | 1);
+            bio?: (0 | 1);
+            expertise?: (0 | 1);
+            verified?: (0 | 1);
+            verificationBadge?: (0 | 1);
+            isPublic?: (0 | 1);
+            avatar?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            national_card?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            province?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            city?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
+            uploadedAssets?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            reports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            blogPosts?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              slug?: (0 | 1);
+              content?: (0 | 1);
+              selected_language?: (0 | 1);
+              isPublished?: (0 | 1);
+              isFeatured?: (0 | 1);
+              publishedAt?: (0 | 1);
+            };
+            confirmations?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              content?: (0 | 1);
+              type?: (0 | 1);
+              badge?: (0 | 1);
+              isVerified?: (0 | 1);
+              selected_language?: (0 | 1);
             };
           };
           hostileReports?: {
@@ -5146,6 +5619,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -5376,6 +5863,21 @@ export type ReqType = {
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
             hostileReports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -5458,6 +5960,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -5665,6 +6181,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -5895,6 +6425,21 @@ export type ReqType = {
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
             hostileReports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -5977,6 +6522,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -6192,6 +6751,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -6422,6 +6995,21 @@ export type ReqType = {
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
             hostileReports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -6504,6 +7092,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -6731,6 +7333,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -6834,6 +7450,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -6927,6 +7557,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -7547,6 +8191,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -7658,6 +8316,21 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
             hostileReports?: {
               _id?: (0 | 1);
@@ -7943,6 +8616,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -8150,6 +8837,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -8261,6 +8962,21 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
             hostileReports?: {
               _id?: (0 | 1);
@@ -8546,6 +9262,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -8760,6 +9490,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -8871,6 +9615,21 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
             hostileReports?: {
               _id?: (0 | 1);
@@ -9157,6 +9916,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -9363,6 +10136,7 @@ export type ReqType = {
           avatar?: string;
           provinceId?: string;
           cityId?: string;
+          countryId?: string;
         };
         get: {
           _id?: (0 | 1);
@@ -9406,6 +10180,20 @@ export type ReqType = {
             _id?: (0 | 1);
             name?: (0 | 1);
             english_name?: (0 | 1);
+          };
+          country?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            international_response?: (0 | 1);
+            war_crimes_documentation?: (0 | 1);
+            human_rights_violations?: (0 | 1);
+            genocide_info?: (0 | 1);
+            chemical_weapons_info?: (0 | 1);
+            displacement_info?: (0 | 1);
+            reconstruction_status?: (0 | 1);
+            international_sanctions?: (0 | 1);
+            notable_war_events?: (0 | 1);
           };
           uploadedAssets?: {
             _id?: (0 | 1);
@@ -9698,6 +10486,113 @@ export type ReqType = {
               isPublic?: (0 | 1);
             };
             attackedByReports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
+          country?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            international_response?: (0 | 1);
+            war_crimes_documentation?: (0 | 1);
+            human_rights_violations?: (0 | 1);
+            genocide_info?: (0 | 1);
+            chemical_weapons_info?: (0 | 1);
+            displacement_info?: (0 | 1);
+            reconstruction_status?: (0 | 1);
+            international_sanctions?: (0 | 1);
+            notable_war_events?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            provinces?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+              wars_history?: (0 | 1);
+              conflict_timeline?: (0 | 1);
+              casualties_info?: (0 | 1);
+              notable_battles?: (0 | 1);
+              occupation_info?: (0 | 1);
+              destruction_level?: (0 | 1);
+              civilian_impact?: (0 | 1);
+              mass_graves_info?: (0 | 1);
+              war_crimes_events?: (0 | 1);
+              liberation_info?: (0 | 1);
+            };
+            cities?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+              wars_history?: (0 | 1);
+              conflict_timeline?: (0 | 1);
+              casualties_info?: (0 | 1);
+              notable_battles?: (0 | 1);
+              occupation_info?: (0 | 1);
+              destruction_level?: (0 | 1);
+              civilian_impact?: (0 | 1);
+              mass_graves_info?: (0 | 1);
+              war_crimes_events?: (0 | 1);
+              liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+            hostileReports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            attackedReports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
               description?: (0 | 1);
@@ -10183,6 +11078,113 @@ export type ReqType = {
               crime_occurred_at?: (0 | 1);
             };
           };
+          country?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            international_response?: (0 | 1);
+            war_crimes_documentation?: (0 | 1);
+            human_rights_violations?: (0 | 1);
+            genocide_info?: (0 | 1);
+            chemical_weapons_info?: (0 | 1);
+            displacement_info?: (0 | 1);
+            reconstruction_status?: (0 | 1);
+            international_sanctions?: (0 | 1);
+            notable_war_events?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            provinces?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+              wars_history?: (0 | 1);
+              conflict_timeline?: (0 | 1);
+              casualties_info?: (0 | 1);
+              notable_battles?: (0 | 1);
+              occupation_info?: (0 | 1);
+              destruction_level?: (0 | 1);
+              civilian_impact?: (0 | 1);
+              mass_graves_info?: (0 | 1);
+              war_crimes_events?: (0 | 1);
+              liberation_info?: (0 | 1);
+            };
+            cities?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+              wars_history?: (0 | 1);
+              conflict_timeline?: (0 | 1);
+              casualties_info?: (0 | 1);
+              notable_battles?: (0 | 1);
+              occupation_info?: (0 | 1);
+              destruction_level?: (0 | 1);
+              civilian_impact?: (0 | 1);
+              mass_graves_info?: (0 | 1);
+              war_crimes_events?: (0 | 1);
+              liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+            hostileReports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            attackedReports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
           uploadedAssets?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -10445,6 +11447,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -10559,6 +11575,20 @@ export type ReqType = {
             name?: (0 | 1);
             english_name?: (0 | 1);
           };
+          country?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            international_response?: (0 | 1);
+            war_crimes_documentation?: (0 | 1);
+            human_rights_violations?: (0 | 1);
+            genocide_info?: (0 | 1);
+            chemical_weapons_info?: (0 | 1);
+            displacement_info?: (0 | 1);
+            reconstruction_status?: (0 | 1);
+            international_sanctions?: (0 | 1);
+            notable_war_events?: (0 | 1);
+          };
           uploadedAssets?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -10672,6 +11702,20 @@ export type ReqType = {
             name?: (0 | 1);
             english_name?: (0 | 1);
           };
+          country?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            international_response?: (0 | 1);
+            war_crimes_documentation?: (0 | 1);
+            human_rights_violations?: (0 | 1);
+            genocide_info?: (0 | 1);
+            chemical_weapons_info?: (0 | 1);
+            displacement_info?: (0 | 1);
+            reconstruction_status?: (0 | 1);
+            international_sanctions?: (0 | 1);
+            notable_war_events?: (0 | 1);
+          };
           uploadedAssets?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -10784,6 +11828,20 @@ export type ReqType = {
             _id?: (0 | 1);
             name?: (0 | 1);
             english_name?: (0 | 1);
+          };
+          country?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            international_response?: (0 | 1);
+            war_crimes_documentation?: (0 | 1);
+            human_rights_violations?: (0 | 1);
+            genocide_info?: (0 | 1);
+            chemical_weapons_info?: (0 | 1);
+            displacement_info?: (0 | 1);
+            reconstruction_status?: (0 | 1);
+            international_sanctions?: (0 | 1);
+            notable_war_events?: (0 | 1);
           };
           uploadedAssets?: {
             _id?: (0 | 1);
@@ -11097,6 +12155,113 @@ export type ReqType = {
               crime_occurred_at?: (0 | 1);
             };
           };
+          country?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            international_response?: (0 | 1);
+            war_crimes_documentation?: (0 | 1);
+            human_rights_violations?: (0 | 1);
+            genocide_info?: (0 | 1);
+            chemical_weapons_info?: (0 | 1);
+            displacement_info?: (0 | 1);
+            reconstruction_status?: (0 | 1);
+            international_sanctions?: (0 | 1);
+            notable_war_events?: (0 | 1);
+            registrar?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+            photo?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              mimeType?: (0 | 1);
+              type?: (0 | 1);
+              alt_text?: (0 | 1);
+            };
+            provinces?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+              wars_history?: (0 | 1);
+              conflict_timeline?: (0 | 1);
+              casualties_info?: (0 | 1);
+              notable_battles?: (0 | 1);
+              occupation_info?: (0 | 1);
+              destruction_level?: (0 | 1);
+              civilian_impact?: (0 | 1);
+              mass_graves_info?: (0 | 1);
+              war_crimes_events?: (0 | 1);
+              liberation_info?: (0 | 1);
+            };
+            cities?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              createdAt?: (0 | 1);
+              updatedAt?: (0 | 1);
+              wars_history?: (0 | 1);
+              conflict_timeline?: (0 | 1);
+              casualties_info?: (0 | 1);
+              notable_battles?: (0 | 1);
+              occupation_info?: (0 | 1);
+              destruction_level?: (0 | 1);
+              civilian_impact?: (0 | 1);
+              mass_graves_info?: (0 | 1);
+              war_crimes_events?: (0 | 1);
+              liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
+            hostileReports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+            attackedReports?: {
+              _id?: (0 | 1);
+              title?: (0 | 1);
+              description?: (0 | 1);
+              location?: (0 | 1);
+              address?: (0 | 1);
+              status?: (0 | 1);
+              priority?: (0 | 1);
+              selected_language?: (0 | 1);
+              crime_occurred_at?: (0 | 1);
+            };
+          };
           uploadedAssets?: {
             _id?: (0 | 1);
             name?: (0 | 1);
@@ -11337,6 +12502,7 @@ export type ReqType = {
           national_card?: string;
           province?: string;
           city?: string;
+          country?: string;
         };
         get: {
           _id?: (0 | 1);
@@ -11380,6 +12546,20 @@ export type ReqType = {
             _id?: (0 | 1);
             name?: (0 | 1);
             english_name?: (0 | 1);
+          };
+          country?: {
+            _id?: (0 | 1);
+            name?: (0 | 1);
+            english_name?: (0 | 1);
+            international_response?: (0 | 1);
+            war_crimes_documentation?: (0 | 1);
+            human_rights_violations?: (0 | 1);
+            genocide_info?: (0 | 1);
+            chemical_weapons_info?: (0 | 1);
+            displacement_info?: (0 | 1);
+            reconstruction_status?: (0 | 1);
+            international_sanctions?: (0 | 1);
+            notable_war_events?: (0 | 1);
           };
           uploadedAssets?: {
             _id?: (0 | 1);
@@ -11637,6 +12817,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -11917,6 +13111,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -12313,6 +13521,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -12515,6 +13737,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -12880,6 +14116,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -13099,6 +14349,21 @@ export type ReqType = {
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
             hostileReports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -13190,6 +14455,21 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
             hostileReports?: {
               _id?: (0 | 1);
@@ -13573,6 +14853,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -13792,6 +15086,21 @@ export type ReqType = {
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
             hostileReports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -13883,6 +15192,21 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
             hostileReports?: {
               _id?: (0 | 1);
@@ -14253,6 +15577,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -14472,6 +15810,21 @@ export type ReqType = {
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
             hostileReports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -14563,6 +15916,21 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
             hostileReports?: {
               _id?: (0 | 1);
@@ -14936,6 +16304,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -15155,6 +16537,21 @@ export type ReqType = {
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
             hostileReports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -15246,6 +16643,21 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
             hostileReports?: {
               _id?: (0 | 1);
@@ -15887,6 +17299,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -16106,6 +17532,21 @@ export type ReqType = {
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
             hostileReports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -16197,6 +17638,21 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
             hostileReports?: {
               _id?: (0 | 1);
@@ -16556,6 +18012,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -16775,6 +18245,21 @@ export type ReqType = {
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
             };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
+            };
             hostileReports?: {
               _id?: (0 | 1);
               title?: (0 | 1);
@@ -16866,6 +18351,21 @@ export type ReqType = {
               mass_graves_info?: (0 | 1);
               war_crimes_events?: (0 | 1);
               liberation_info?: (0 | 1);
+            };
+            users?: {
+              _id?: (0 | 1);
+              first_name?: (0 | 1);
+              last_name?: (0 | 1);
+              gender?: (0 | 1);
+              address?: (0 | 1);
+              level?: (0 | 1);
+              email?: (0 | 1);
+              is_verified?: (0 | 1);
+              bio?: (0 | 1);
+              expertise?: (0 | 1);
+              verified?: (0 | 1);
+              verificationBadge?: (0 | 1);
+              isPublic?: (0 | 1);
             };
             hostileReports?: {
               _id?: (0 | 1);
@@ -17961,6 +19461,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -18144,6 +19658,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -18324,6 +19852,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -18499,6 +20041,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -18735,6 +20291,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -18907,6 +20477,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -19083,6 +20667,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -19255,6 +20853,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
@@ -20758,6 +22370,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -20992,6 +22618,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -21219,6 +22859,20 @@ export type ReqType = {
               name?: (0 | 1);
               english_name?: (0 | 1);
             };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
+            };
             uploadedAssets?: {
               _id?: (0 | 1);
               name?: (0 | 1);
@@ -21444,6 +23098,20 @@ export type ReqType = {
               _id?: (0 | 1);
               name?: (0 | 1);
               english_name?: (0 | 1);
+            };
+            country?: {
+              _id?: (0 | 1);
+              name?: (0 | 1);
+              english_name?: (0 | 1);
+              international_response?: (0 | 1);
+              war_crimes_documentation?: (0 | 1);
+              human_rights_violations?: (0 | 1);
+              genocide_info?: (0 | 1);
+              chemical_weapons_info?: (0 | 1);
+              displacement_info?: (0 | 1);
+              reconstruction_status?: (0 | 1);
+              international_sanctions?: (0 | 1);
+              notable_war_events?: (0 | 1);
             };
             uploadedAssets?: {
               _id?: (0 | 1);
