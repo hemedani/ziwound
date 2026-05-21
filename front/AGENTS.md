@@ -570,6 +570,8 @@ The user model defines the schema for all user accounts in the system.
 ```
 
 - **Ghost** – Highest privileges, full admin access. **CRITICAL SECURITY**: Ghost users must NEVER be displayed on public-facing pages (e.g., `/reporters`, `/reporters/[id]`). There is only one Ghost user in the system. This user can perform fundamental and dangerous operations. Always filter out `level === "Ghost"` from any public user listings or profile pages.
+- **Ghost in edit forms**: The Ghost level is hidden from the admin edit user form and Zod schema — it is only assignable via the backend `tempUser` setup.
+- **level_XXX translation keys**: When translating user level names, use `t("level_Ghost")`, `t("level_Manager")`, `t("level_Editor")`, `t("level_Ordinary")`, etc. For Reporter, Artist, Diplomat, Researcher, use `t("Reporter")`, `t("Artist")`, `t("Diplomat")`, `t("Researcher")`.
 - **Manager** – Administrative management
 - **Editor** – Content editing capabilities
 - **Reporter** – Can submit and manage reports
@@ -829,6 +831,18 @@ For download links (not rendered as images), use the URL directly:
 
 - Interactive elements (Buttons, Inputs, etc.) must have proper focus rings: `focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-offset-background`.
 - Use `aria-label` on icon-only buttons (e.g., Theme Switcher, Language Switcher, Hamburger Menu).
+
+### RichTextEditor Content Sync
+
+The `RichTextEditor` component (`src/components/form/rich-text-editor.tsx`) uses TipTap's `useEditor` which only reads the `content` prop on mount. If the `value` prop changes after the initial render (e.g., when editing a form with pre-populated data), the editor content won't update. A `useEffect` is required to sync:
+
+```tsx
+useEffect(() => {
+  if (editor && value) {
+    editor.commands.setContent(value, { emitUpdate: false });
+  }
+}, [editor, value]);
+```
 
 ### Form Validation Localization
 
@@ -1360,6 +1374,32 @@ import { getImageUploadUrl } from "@/utils/imageUrl";
 
 **CRITICAL:** Always use `file.name` (NOT `file._id`) when constructing image URLs. The backend stores files with a `name` field representing the actual filename on disk.
 
+### Admin Update Relations Pages
+
+Each entity (country, province, city, user) has a dedicated `/admin/<entity>/[id]/update-relations` page for managing relation/photo fields separately from the edit form. This pattern keeps edit forms focused on text fields and prevents Radix UI Select visual state issues.
+
+**Route Pattern:** `/admin/<entity>/[id]/update-relations`
+
+**Pages:**
+- `/admin/countries/[id]/update-relations` — `CountryRelationsForm` with photo picker
+- `/admin/provinces/[id]/update-relations` — `ProvinceRelationsForm` with country `AsyncSelect` + photo picker
+- `/admin/cities/[id]/update-relations` — `CityRelationsForm` with country/province cascading `AsyncSelect` + photo picker
+- `/admin/users/[id]/update-relations` — `UserRelationsForm` with avatar, national card, country/province/city cascading `AsyncSelect`
+
+**Table Action Link:**
+Each entity's table (`countries-table.tsx`, `provinces-table.tsx`, `cities-table.tsx`, `users-table.tsx`) has an "Update Relations" action with `ImageUp` icon in the dropdown menu, between Edit and Delete.
+
+**Edit Form Pattern:**
+In entity edit forms (e.g., `country-form.tsx`), photo/relation sections are wrapped in `{!isEditing && (...)}` so they only show during creation. During editing, users navigate to the dedicated update-relations page instead.
+
+**`updateRelations.set` parameter format:**
+| Entity | Fields in `set` |
+|--------|----------------|
+| country | `{ _id; photo? }` — photo accepts file ID string |
+| province | `{ _id; country?; photo? }` — country accepts relation ID string |
+| city | `{ _id; country?; province?; photo? }` — country/province accept relation ID strings |
+| user | `{ _id; avatar?; national_card?; province?; city?; country? }` — all accept file/relation ID strings |
+
 ### Authentication Flow
 
 All actions automatically handle authentication:
@@ -1400,6 +1440,25 @@ return result; // { success: boolean, body: data }
 ```
 
 This allows callers to check `result.success` and access `result.body` as needed, providing more flexibility for error handling.
+
+#### Response Body Format: `get` vs Custom-Named Actions
+
+**CRITICAL: The response body format differs between standard `get` actions and custom-named single-record actions.**
+
+- **`act: "get"`** (standard, e.g., country `get`, province `get`, city `get`) → `response.body` is an **array** with one element. Access via `response.body[0]`.
+- **`act: "getUser"`, `act: "getMe"`** (custom-named single-record actions) → `response.body` is a **single object**. Access directly via `response.body`.
+
+```ts
+// ✅ Standard get (act: "get") — returns array
+const response = await get({ _id: id }, { name: 1 });
+const entity = response.body[0];  // array access
+
+// ✅ Custom get (act: "getUser") — returns single object
+const response = await getUser({ _id: id }, { first_name: 1 });
+const user = response.body;  // direct access, NOT response.body[0]
+```
+
+Always check whether the action uses `act: "get"` or a custom name (like `getUser`, `getMe`) before deciding how to access `response.body`. When in doubt, check the `act` value in the action file, or check if existing callers use `[0]` indexing.
 
 **Usage Pattern:**
 
