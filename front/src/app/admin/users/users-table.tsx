@@ -1,15 +1,16 @@
 "use client";
 
-import { useEffect, useTransition } from "react";
+import { useEffect, useState, useTransition } from "react";
 import { useTranslations } from "next-intl";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { removeUser } from "@/app/actions/user/removeUser";
 import { useToast } from "@/components/ui/use-toast";
 import { userSchema } from "@/types/declarations";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Eye, MoreHorizontal, Shield, Trash2, Ban } from "lucide-react";
+import { Eye, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -20,12 +21,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import Image from "next/image";
 import { getImageUploadUrl } from "@/utils/imageUrl";
+import { EditUserDialog } from "./edit-user-dialog";
 
 export function UsersTable({ users, error }: { users: userSchema[]; error?: string | null }) {
   const t = useTranslations("admin");
   const { toast } = useToast();
   const router = useRouter();
   const [isPending, startTransition] = useTransition();
+  const [editingUser, setEditingUser] = useState<userSchema | null>(null);
+  const [editDialogOpen, setEditDialogOpen] = useState(false);
 
   useEffect(() => {
     if (error) {
@@ -170,20 +174,24 @@ export function UsersTable({ users, error }: { users: userSchema[]; error?: stri
                           <MoreHorizontal className="h-4 w-4" />
                         </Button>
                       </DropdownMenuTrigger>
-                      <DropdownMenuContent align="end" className="glass-strong border-white/10">
+                       <DropdownMenuContent align="end" className="glass-strong border-white/10">
                         <DropdownMenuLabel className="text-slate-body">{t("actions")}</DropdownMenuLabel>
-                        <DropdownMenuItem className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
-                          <Eye className="me-2 h-4 w-4 text-gold" />
-                          {t("viewDetails")}
+                        <DropdownMenuItem
+                          className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer"
+                          onClick={() => {
+                            setEditingUser(user);
+                            setEditDialogOpen(true);
+                          }}
+                        >
+                          <Pencil className="me-2 h-4 w-4 text-blue-400" />
+                          {t("edit")}
                         </DropdownMenuItem>
                         <DropdownMenuSeparator className="bg-white/10" />
-                        <DropdownMenuItem className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
-                          <Shield className="me-2 h-4 w-4 text-blue-400" />
-                          {t("editRole") || "Edit Role"}
-                        </DropdownMenuItem>
-                        <DropdownMenuItem className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
-                          <Ban className="me-2 h-4 w-4 text-amber-400" />
-                          {t("deactivate") || "Deactivate"}
+                        <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                          <Link href={`/fa/reporters/${user._id}`} target="_blank">
+                            <Eye className="me-2 h-4 w-4 text-gold" />
+                            {t("publicProfile") || "Public Profile"}
+                          </Link>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator className="bg-white/10" />
                         <DropdownMenuItem
@@ -203,6 +211,15 @@ export function UsersTable({ users, error }: { users: userSchema[]; error?: stri
           </TableBody>
         </Table>
       </div>
+
+      <EditUserDialog
+        user={editingUser}
+        open={editDialogOpen}
+        onOpenChange={(open) => {
+          setEditDialogOpen(open);
+          if (!open) setEditingUser(null);
+        }}
+      />
     </div>
   );
 }
