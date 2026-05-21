@@ -938,7 +938,12 @@
         "backToCities": "Назад к Городам",
         "updateCityRelations": "Обновить Связи Города",
         "updateCityRelationsDescription": "Управление связями для: ",
-        "cityRelationsDescription": "Управление страной, провинцией и фото города"
+        "cityRelationsDescription": "Управление страной, провинцией и фото города",
+        "nationalCard": "Национальная Карта",
+        "backToUsers": "Назад к Пользователям",
+        "updateUserRelations": "Обновить Связи Пользователя",
+        "updateUserRelationsDescription": "Управление связями пользователя: ",
+        "userRelationsDescription": "Управление аватаром, национальной картой и местоположением пользователя"
     },
     "notFound": {
         "backHome": "Вернуться на главную",

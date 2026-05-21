@@ -885,7 +885,12 @@
         "backToCities": "返回城市列表",
         "updateCityRelations": "更新城市关系",
         "updateCityRelationsDescription": "管理关系: ",
-        "cityRelationsDescription": "管理城市的国家、省份和照片"
+        "cityRelationsDescription": "管理城市的国家、省份和照片",
+        "nationalCard": "国民身份证",
+        "backToUsers": "返回用户列表",
+        "updateUserRelations": "更新用户关系",
+        "updateUserRelationsDescription": "管理用户关系: ",
+        "userRelationsDescription": "管理用户头像、国民身份证和位置"
     },
     "notFound": {
         "backHome": "返回首页",

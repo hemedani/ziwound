@@ -885,7 +885,12 @@
         "backToCities": "Şehirlere Dön",
         "updateCityRelations": "Şehir İlişkilerini Güncelle",
         "updateCityRelationsDescription": "İlişkileri yönet: ",
-        "cityRelationsDescription": "Şehir ülkesini, ilini ve fotoğrafını yönet"
+        "cityRelationsDescription": "Şehir ülkesini, ilini ve fotoğrafını yönet",
+        "nationalCard": "Ulusal Kimlik Kartı",
+        "backToUsers": "Kullanıcılara Dön",
+        "updateUserRelations": "Kullanıcı İlişkilerini Güncelle",
+        "updateUserRelationsDescription": "Kullanıcı ilişkilerini yönet: ",
+        "userRelationsDescription": "Kullanıcı avatarını, ulusal kimlik kartını ve konumunu yönet"
     },
     "notFound": {
         "backHome": "Ana Sayfaya Dön",

@@ -962,7 +962,12 @@
         "backToCities": "Back to Cities",
         "updateCityRelations": "Update City Relations",
         "updateCityRelationsDescription": "Manage relations for: ",
-        "cityRelationsDescription": "Manage city country, province, and photo"
+        "cityRelationsDescription": "Manage city country, province, and photo",
+        "nationalCard": "National Card",
+        "backToUsers": "Back to Users",
+        "updateUserRelations": "Update User Relations",
+        "updateUserRelationsDescription": "Manage relations for user: ",
+        "userRelationsDescription": "Manage user avatar, national card, and location"
     },
     "notFound": {
         "backHome": "Back to Home",

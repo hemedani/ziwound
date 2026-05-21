@@ -938,7 +938,12 @@
         "backToCities": "Volver a Ciudades",
         "updateCityRelations": "Actualizar Relaciones de la Ciudad",
         "updateCityRelationsDescription": "Gestionar relaciones para: ",
-        "cityRelationsDescription": "Gestionar el país, provincia y foto de la ciudad"
+        "cityRelationsDescription": "Gestionar el país, provincia y foto de la ciudad",
+        "nationalCard": "Cédula Nacional",
+        "backToUsers": "Volver a Usuarios",
+        "updateUserRelations": "Actualizar Relaciones del Usuario",
+        "updateUserRelationsDescription": "Gestionar relaciones para usuario: ",
+        "userRelationsDescription": "Gestionar avatar del usuario, cédula nacional y ubicación"
     },
     "notFound": {
         "backHome": "Volver al inicio",

@@ -915,7 +915,12 @@
         "backToCities": "بازگشت به شهرها",
         "updateCityRelations": "به‌روزرسانی روابط شهر",
         "updateCityRelationsDescription": "مدیریت روابط برای: ",
-        "cityRelationsDescription": "مدیریت کشور، استان و عکس شهر"
+        "cityRelationsDescription": "مدیریت کشور، استان و عکس شهر",
+        "nationalCard": "کارت ملی",
+        "backToUsers": "بازگشت به کاربران",
+        "updateUserRelations": "به‌روزرسانی روابط کاربر",
+        "updateUserRelationsDescription": "مدیریت روابط کاربر: ",
+        "userRelationsDescription": "مدیریت آواتار کاربر، کارت ملی و موقعیت"
     },
     "reporters": {
         "pageTitle": "خبرنگاران و مشارکت‌کنندگان - زی‌ووند",

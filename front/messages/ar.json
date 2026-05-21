@@ -885,7 +885,12 @@
         "backToCities": "العودة إلى المدن",
         "updateCityRelations": "تحديث علاقات المدينة",
         "updateCityRelationsDescription": "إدارة علاقات المدينة: ",
-        "cityRelationsDescription": "إدارة دولة المدينة ومحافظتها وصورتها"
+        "cityRelationsDescription": "إدارة دولة المدينة ومحافظتها وصورتها",
+        "nationalCard": "البطاقة الوطنية",
+        "backToUsers": "العودة إلى المستخدمين",
+        "updateUserRelations": "تحديث علاقات المستخدم",
+        "updateUserRelationsDescription": "إدارة علاقات المستخدم: ",
+        "userRelationsDescription": "إدارة صورة المستخدم الرمزية والبطاقة الوطنية والموقع"
     },
     "notFound": {
         "backHome": "العودة إلى الصفحة الرئيسية",

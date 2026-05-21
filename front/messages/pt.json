@@ -885,7 +885,12 @@
         "backToCities": "Voltar para Cidades",
         "updateCityRelations": "Atualizar Relações da Cidade",
         "updateCityRelationsDescription": "Gerenciar relações para: ",
-        "cityRelationsDescription": "Gerenciar país, província e foto da cidade"
+        "cityRelationsDescription": "Gerenciar país, província e foto da cidade",
+        "nationalCard": "Cartão Nacional",
+        "backToUsers": "Voltar para Usuários",
+        "updateUserRelations": "Atualizar Relações do Usuário",
+        "updateUserRelationsDescription": "Gerenciar relações para usuário: ",
+        "userRelationsDescription": "Gerenciar avatar do usuário, cartão nacional e localização"
     },
     "notFound": {
         "backHome": "Voltar ao início",

@@ -938,7 +938,12 @@
         "backToCities": "Terug naar Steden",
         "updateCityRelations": "Stadsrelaties Bijwerken",
         "updateCityRelationsDescription": "Beheer relaties voor: ",
-        "cityRelationsDescription": "Beheer stad land, provincie en foto"
+        "cityRelationsDescription": "Beheer stad land, provincie en foto",
+        "nationalCard": "Nationale Kaart",
+        "backToUsers": "Terug naar Gebruikers",
+        "updateUserRelations": "Gebruikersrelaties Bijwerken",
+        "updateUserRelationsDescription": "Beheer relaties voor gebruiker: ",
+        "userRelationsDescription": "Beheer gebruikersavatar, nationale kaart en locatie"
     },
     "notFound": {
         "backHome": "Terug naar startpagina",
