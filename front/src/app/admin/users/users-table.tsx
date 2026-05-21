@@ -10,7 +10,7 @@ import { userSchema } from "@/types/declarations";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Eye, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
+import { Eye, ImageUp, MoreHorizontal, Pencil, Trash2 } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -191,6 +191,13 @@ export function UsersTable({ users, error }: { users: userSchema[]; error?: stri
                           <Link href={`/fa/reporters/${user._id}`} target="_blank">
                             <Eye className="me-2 h-4 w-4 text-gold" />
                             {t("publicProfile") || "Public Profile"}
+                          </Link>
+                        </DropdownMenuItem>
+                        <DropdownMenuSeparator className="bg-white/10" />
+                        <DropdownMenuItem className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer" asChild>
+                          <Link href={`/admin/users/${user._id}/update-relations`}>
+                            <ImageUp className="me-2 h-4 w-4" />
+                            {t("updateRelations") || "Update Relations"}
                           </Link>
                         </DropdownMenuItem>
                         <DropdownMenuSeparator className="bg-white/10" />
