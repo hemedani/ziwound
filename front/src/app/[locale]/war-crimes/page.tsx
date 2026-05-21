@@ -4,6 +4,7 @@ import { count as countReports } from "@/app/actions/report/count";
 import { statistics as getReportStatistics } from "@/app/actions/report/statistics";
 import { gets as getCategories } from "@/app/actions/category/gets";
 import { gets as getTags } from "@/app/actions/tag/gets";
+import { WarCrimesHero } from "@/components/war-crimes/war-crimes-hero";
 import { WarCrimesFilters } from "@/components/war-crimes/war-crimes-filters";
 import { WarCrimesList } from "@/components/war-crimes/war-crimes-list";
 import { WarCrimesMap } from "@/components/war-crimes/war-crimes-map";
@@ -162,103 +163,127 @@ export default async function WarCrimesPage({
   const from = (page - 1) * limit + 1;
   const to = Math.min(page * limit, totalCount);
 
+  const statsBodyTyped = statsBody as {
+    total?: { count: number }[];
+    languageCounts?: { _id: string; count: number }[];
+    hostileCountryCounts?: { _id: string; count: number }[];
+    attackedCountryCounts?: { _id: string; count: number }[];
+  };
+
+  const totalStatCount = statsBodyTyped.total?.[0]?.count ?? totalCount;
+  const langCount = statsBodyTyped.languageCounts?.length ?? 0;
+  const uniqueCountries = new Set([
+    ...(statsBodyTyped.hostileCountryCounts || []).map((c) => c._id),
+    ...(statsBodyTyped.attackedCountryCounts || []).map((c) => c._id),
+  ]).size;
+
+  const heroTranslations = {
+    overline: t("warCrimes.overline"),
+    title: t("warCrimes.title"),
+    description: t("warCrimes.description"),
+    searchPlaceholder: t("warCrimes.searchPlaceholder"),
+    search: t("common.search"),
+    totalReports: t("warCrimes.totalReports"),
+    countriesInvolved: t("warCrimes.countriesInvolved"),
+    languages: t("warCrimes.languages"),
+  };
+
   return (
-    <div className="container mx-auto py-8 px-4 md:px-6">
-      <div className="flex flex-col gap-6">
-        <div className="text-center">
-          <div className="mb-4 flex items-center justify-center gap-3">
-            <div className="h-px w-12 bg-crimson" />
-            <span className="text-sm font-medium uppercase tracking-[0.15em] text-gold">
-              {t("warCrimes.overline") || "Archive"}
-            </span>
-            <div className="h-px w-12 bg-crimson" />
-          </div>
-          <h1 className="text-3xl md:text-4xl font-bold tracking-tight mb-3 text-offwhite">
-            {t("warCrimes.title")}
-          </h1>
-          <p className="text-lg text-slate-body max-w-2xl mx-auto leading-relaxed">
-            {t("warCrimes.description")}
-          </p>
-        </div>
+    <div className="min-h-screen">
+      {/* Hero Section */}
+      <WarCrimesHero
+        locale={locale}
+        search={search}
+        totalCount={totalStatCount}
+        countriesInvolved={uniqueCountries}
+        languagesCount={langCount}
+        translations={heroTranslations}
+      />
 
-        <WarCrimesFilters
-          locale={locale}
-          categories={categories}
-          tags={tags}
-          initialSearch={search}
-          initialStatus={status}
-          initialPriority={priority}
-          initialCategoryId={categoryId}
-          initialTagIds={tagIds}
-          initialDateFrom={dateFrom?.toISOString().split("T")[0]}
-          initialDateTo={dateTo?.toISOString().split("T")[0]}
-          initialHostileCountryIds={hostileCountryIds}
-          initialAttackedCountryIds={attackedCountryIds}
-          initialAttackedProvinceIds={attackedProvinceIds}
-          initialAttackedCityIds={attackedCityIds}
-          initialLanguage={selected_language}
-          initialCrimeOccurredFrom={crimeOccurredFrom?.toISOString().split("T")[0]}
-          initialCrimeOccurredTo={crimeOccurredTo?.toISOString().split("T")[0]}
-        />
+      {/* Main Content */}
+      <div className="container mx-auto px-4 md:px-8 py-8">
+        <div className="flex flex-col gap-6">
+          {/* Filters */}
+          <WarCrimesFilters
+            locale={locale}
+            categories={categories}
+            tags={tags}
+            initialSearch={search}
+            initialStatus={status}
+            initialPriority={priority}
+            initialCategoryId={categoryId}
+            initialTagIds={tagIds}
+            initialDateFrom={dateFrom?.toISOString().split("T")[0]}
+            initialDateTo={dateTo?.toISOString().split("T")[0]}
+            initialHostileCountryIds={hostileCountryIds}
+            initialAttackedCountryIds={attackedCountryIds}
+            initialAttackedProvinceIds={attackedProvinceIds}
+            initialAttackedCityIds={attackedCityIds}
+            initialLanguage={selected_language}
+            initialCrimeOccurredFrom={crimeOccurredFrom?.toISOString().split("T")[0]}
+            initialCrimeOccurredTo={crimeOccurredTo?.toISOString().split("T")[0]}
+          />
 
-        <Tabs defaultValue={view} className="w-full">
-          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-4">
-            <TabsList>
-              <TabsTrigger value="list" className="gap-2">
-                <List className="h-4 w-4" />
-                {t("warCrimes.exploreList")}
-              </TabsTrigger>
-              <TabsTrigger value="map" className="gap-2">
-                <Map className="h-4 w-4" />
-                {t("warCrimes.exploreMap")}
-              </TabsTrigger>
-              <TabsTrigger value="timeline" className="gap-2">
-                <Clock className="h-4 w-4" />
-                {t.has("warCrimes.timeline") ? t("warCrimes.timeline") : "Timeline"}
-              </TabsTrigger>
-              <TabsTrigger value="statistics" className="gap-2">
-                <BarChart3 className="h-4 w-4" />
-                {t("warCrimes.statistics")}
-              </TabsTrigger>
-            </TabsList>
+          {/* View Tabs */}
+          <Tabs defaultValue={view} className="w-full">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
+              <TabsList className="bg-white/[0.03] border border-white/[0.06] p-1 rounded-xl">
+                <TabsTrigger value="list" className="gap-2 rounded-lg data-[state=active]:bg-crimson/15 data-[state=active]:text-crimson-light data-[state=active]:border data-[state=active]:border-crimson/30">
+                  <List className="h-4 w-4" />
+                  {t("warCrimes.exploreList")}
+                </TabsTrigger>
+                <TabsTrigger value="map" className="gap-2 rounded-lg data-[state=active]:bg-crimson/15 data-[state=active]:text-crimson-light data-[state=active]:border data-[state=active]:border-crimson/30">
+                  <Map className="h-4 w-4" />
+                  {t("warCrimes.exploreMap")}
+                </TabsTrigger>
+                <TabsTrigger value="timeline" className="gap-2 rounded-lg data-[state=active]:bg-crimson/15 data-[state=active]:text-crimson-light data-[state=active]:border data-[state=active]:border-crimson/30">
+                  <Clock className="h-4 w-4" />
+                  {t.has("warCrimes.timeline") ? t("warCrimes.timeline") : "Timeline"}
+                </TabsTrigger>
+                <TabsTrigger value="statistics" className="gap-2 rounded-lg data-[state=active]:bg-crimson/15 data-[state=active]:text-crimson-light data-[state=active]:border data-[state=active]:border-crimson/30">
+                  <BarChart3 className="h-4 w-4" />
+                  {t("warCrimes.statistics")}
+                </TabsTrigger>
+              </TabsList>
 
-            <div className="flex items-center gap-4">
-              {totalCount > 0 && (
-                <p className="text-sm text-muted-foreground">
-                  {t("warCrimes.showing", { from, to, total: totalCount })}
-                </p>
-              )}
-              <WarCrimesExport searchParams={resolvedSearchParams} locale={locale} />
+              <div className="flex items-center gap-4">
+                {totalCount > 0 && (
+                  <p className="text-sm text-slate-body/50">
+                    {t("warCrimes.showing", { from, to, total: totalCount })}
+                  </p>
+                )}
+                <WarCrimesExport searchParams={resolvedSearchParams} locale={locale} />
+              </div>
             </div>
-          </div>
 
-          <TabsContent value="list" className="mt-0">
-            <WarCrimesList
-              reports={reports}
-              locale={locale}
-              page={page}
-              totalPages={totalPages}
-              view={view}
-            />
-          </TabsContent>
+            <TabsContent value="list" className="mt-0">
+              <WarCrimesList
+                reports={reports}
+                locale={locale}
+                page={page}
+                totalPages={totalPages}
+                view={view}
+              />
+            </TabsContent>
 
-          <TabsContent value="map" className="mt-0">
-            <WarCrimesMap reports={reports} locale={locale} />
-          </TabsContent>
+            <TabsContent value="map" className="mt-0">
+              <WarCrimesMap reports={reports} locale={locale} />
+            </TabsContent>
 
-          <TabsContent value="statistics" className="mt-0">
-            <WarCrimesStatistics
-              totalCount={totalCount}
-              categories={categories}
-              statsBody={statsBody}
-              locale={locale}
-            />
-          </TabsContent>
+            <TabsContent value="statistics" className="mt-0">
+              <WarCrimesStatistics
+                totalCount={totalCount}
+                categories={categories}
+                statsBody={statsBody as Record<string, unknown>}
+                locale={locale}
+              />
+            </TabsContent>
 
-          <TabsContent value="timeline" className="mt-0">
-            <WarCrimesTimeline reports={reports} locale={locale} />
-          </TabsContent>
-        </Tabs>
+            <TabsContent value="timeline" className="mt-0">
+              <WarCrimesTimeline reports={reports} locale={locale} />
+            </TabsContent>
+          </Tabs>
+        </div>
       </div>
     </div>
   );
