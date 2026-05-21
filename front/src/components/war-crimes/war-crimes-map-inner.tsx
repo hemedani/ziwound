@@ -1,24 +1,23 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
+import Link from "next/link";
+import Image from "next/image";
 import type { DeepPartial, reportSchema } from "@/types/declarations";
 import { MapContainer, TileLayer, Marker, Popup, useMapEvents } from "react-leaflet";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { ExternalLink, MapPin, Calendar } from "lucide-react";
 import MarkerClusterGroup from "react-leaflet-cluster";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
+import { getImageUploadUrl } from "@/utils/imageUrl";
+import { createNeonMarkerIcon } from "@/components/map/neon-marker";
 
-const redDotIcon = L.divIcon({
-  className: "custom-red-dot-marker",
-  html: '<div class="red-dot-inner" />',
-  iconSize: [16, 16],
-  iconAnchor: [8, 8],
-  popupAnchor: [0, -10],
-});
-
-const createClusterIcon = (cluster: any) => {
+// Neon cluster icon — matches the neon marker aesthetic
+const createClusterIcon = (cluster: { getChildCount: () => number }) => {
   const count = cluster.getChildCount();
   let size = 36;
   if (count >= 10 && count < 50) size = 44;
@@ -26,15 +25,40 @@ const createClusterIcon = (cluster: any) => {
   else if (count >= 100) size = 60;
 
   return L.divIcon({
-    html: `<div class="custom-cluster-icon" style="width:${size}px;height:${size}px">${count}</div>`,
+    html: `<div style="width:${size}px;height:${size}px;background:rgba(239,68,68,0.85);border:2px solid rgba(239,68,68,0.6);border-radius:50%;color:#fff;font-size:13px;font-weight:700;display:flex;align-items:center;justify-content:center;box-shadow:0 0 16px rgba(239,68,68,0.6),0 0 32px rgba(239,68,68,0.3);">${count}</div>`,
     className: "custom-cluster-marker",
     iconSize: L.point(size, size),
   });
 };
 
+function getFirstImage(report: DeepPartial<reportSchema>): string | null {
+  const docs = (report as { documents?: Array<{ documentFiles?: Array<{ name: string; mimeType: string; type: string }> }> }).documents;
+  if (!docs) return null;
+  for (const doc of docs) {
+    for (const file of doc.documentFiles ?? []) {
+      if (file.mimeType?.startsWith("image/") && file.name) {
+        return getImageUploadUrl(file.name, (file.type as "image" | "video" | "docs") || "image");
+      }
+    }
+  }
+  return null;
+}
+
 interface WarCrimesMapProps {
   reports: DeepPartial<reportSchema>[];
   locale: string;
+}
+
+function MapEvents({ onMoveEnd }: { onMoveEnd: (bbox: number[]) => void }) {
+  useMapEvents({
+    moveend: (e) => {
+      const bounds = e.target.getBounds();
+      const sw = bounds.getSouthWest();
+      const ne = bounds.getNorthEast();
+      onMoveEnd([sw.lng, sw.lat, ne.lng, ne.lat]);
+    },
+  });
+  return null;
 }
 
 export default function WarCrimesMapInner({ reports, locale }: WarCrimesMapProps) {
@@ -45,9 +69,11 @@ export default function WarCrimesMapInner({ reports, locale }: WarCrimesMapProps
   const searchParams = useSearchParams();
   const [currentBbox, setCurrentBbox] = useState<number[] | null>(null);
 
+  /* eslint-disable react-hooks/set-state-in-effect */
   useEffect(() => {
     setMounted(true);
   }, []);
+  /* eslint-enable react-hooks/set-state-in-effect */
 
   const reportsWithLocation = reports.filter(
     (r) => r.location?.coordinates && r.location.coordinates.length >= 2
@@ -69,25 +95,20 @@ export default function WarCrimesMapInner({ reports, locale }: WarCrimesMapProps
     setCurrentBbox(null);
   };
 
-  const MapEvents = () => {
-    useMapEvents({
-      moveend: (e) => {
-        const bounds = e.target.getBounds();
-        const sw = bounds.getSouthWest();
-        const ne = bounds.getNorthEast();
-        setCurrentBbox([sw.lng, sw.lat, ne.lng, ne.lat]);
-      },
-    });
-    return null;
-  };
+  const handleMapMoveEnd = useCallback((bbox: number[]) => {
+    setCurrentBbox(bbox);
+  }, []);
 
   if (!mounted) return null;
 
   if (reportsWithLocation.length === 0) {
     return (
-      <div className="text-center py-20 border rounded-lg bg-muted/20">
-        <p className="text-xl text-muted-foreground mb-2">{t("noResults")}</p>
-        <p className="text-sm text-muted-foreground">{t("noResultsDescription")}</p>
+      <div className="flex h-[500px] items-center justify-center rounded-2xl border border-white/[0.06] bg-white/[0.02]">
+        <div className="text-center">
+          <MapPin className="h-12 w-12 text-slate-body/30 mx-auto mb-4" />
+          <p className="text-lg text-slate-body/60 mb-1">{t("noResults")}</p>
+          <p className="text-sm text-slate-body/40">{t("noResultsDescription")}</p>
+        </div>
       </div>
     );
   }
@@ -100,50 +121,53 @@ export default function WarCrimesMapInner({ reports, locale }: WarCrimesMapProps
   }
 
   return (
-    <div className="relative h-[600px] w-full rounded-lg overflow-hidden border">
+    <div className="relative h-[70vh] min-h-[500px] w-full rounded-2xl overflow-hidden border border-white/[0.06]">
       <style>{`
-        .custom-red-dot-marker {
-          background: transparent !important;
-          border: none !important;
+        .custom-marker { background: transparent !important; border: none !important; }
+        .neon-leaflet-marker { background: transparent !important; border: none !important; }
+        .custom-cluster-marker { background: transparent !important; border: none !important; }
+        .leaflet-popup-content-wrapper {
+          background: rgba(10, 10, 10, 0.95) !important;
+          backdrop-filter: blur(16px) !important;
+          border: 1px solid rgba(255, 255, 255, 0.08) !important;
+          border-radius: 12px !important;
+          color: #f1f5f9 !important;
+          box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5) !important;
         }
-        .red-dot-inner {
-          width: 16px;
-          height: 16px;
-          background: #dc2626;
-          border: 2px solid #991b1b;
-          border-radius: 50%;
-          box-shadow: 0 0 6px rgba(220, 38, 38, 0.6);
+        .leaflet-popup-tip {
+          background: rgba(10, 10, 10, 0.95) !important;
+          border: 1px solid rgba(255, 255, 255, 0.08) !important;
+          box-shadow: none !important;
         }
-        .custom-cluster-marker {
-          background: transparent !important;
-          border: none !important;
+        .leaflet-popup-close-button {
+          color: #cbd5e1 !important;
         }
-        .custom-cluster-icon {
-          background: rgba(220, 38, 38, 0.85);
-          border: 2px solid #991b1b;
-          border-radius: 50%;
-          color: #fff;
-          font-size: 13px;
-          font-weight: 700;
-          text-align: center;
-          box-shadow: 0 0 10px rgba(220, 38, 38, 0.5);
-          display: flex;
-          align-items: center;
-          justify-content: center;
+        .leaflet-popup-close-button:hover {
+          color: #f1f5f9 !important;
+        }
+        .leaflet-control-zoom a {
+          background: rgba(10, 10, 10, 0.85) !important;
+          color: #f1f5f9 !important;
+          border-color: rgba(255, 255, 255, 0.08) !important;
+        }
+        .leaflet-control-zoom a:hover {
+          background: rgba(30, 30, 30, 0.95) !important;
         }
       `}</style>
-      <div className="absolute top-4 start-4 z-[400] bg-background/90 backdrop-blur-sm rounded-lg px-3 py-2 text-sm shadow-sm flex items-center gap-3">
-        <p className="font-medium text-foreground">
+
+      {/* Map overlay info */}
+      <div className="absolute top-4 start-4 z-[400] glass-strong rounded-xl px-3 py-2 text-sm shadow-sm flex items-center gap-3">
+        <p className="font-medium text-offwhite">
           {reportsWithLocation.length} {t("withLocation")}
         </p>
         {currentBbox && (
           <>
-            <div className="w-px h-4 bg-border" />
-            <Button size="sm" variant="default" onClick={handleSearchInArea} className="h-7 px-2 text-xs">
+            <div className="w-px h-4 bg-white/10" />
+            <Button size="sm" variant="default" onClick={handleSearchInArea} className="h-7 px-2 text-xs bg-crimson hover:bg-crimson-light">
               Search this area
             </Button>
             {searchParams.has("bbox") && (
-              <Button size="sm" variant="ghost" onClick={clearAreaSearch} className="h-7 px-2 text-xs text-muted-foreground hover:text-foreground">
+              <Button size="sm" variant="ghost" onClick={clearAreaSearch} className="h-7 px-2 text-xs text-slate-body/60 hover:text-offwhite hover:bg-white/10">
                 Clear
               </Button>
             )}
@@ -158,7 +182,7 @@ export default function WarCrimesMapInner({ reports, locale }: WarCrimesMapProps
         className="h-full w-full z-0"
         style={{ background: "#0a0a0a" }}
       >
-        <MapEvents />
+        <MapEvents onMoveEnd={handleMapMoveEnd} />
         <TileLayer
           url="https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png"
           subdomains="abcd"
@@ -170,36 +194,77 @@ export default function WarCrimesMapInner({ reports, locale }: WarCrimesMapProps
           spiderfyOnMaxZoom={true}
           iconCreateFunction={createClusterIcon}
         >
-          {reportsWithLocation.map((report) => (
-            <Marker
-              key={report._id}
-              position={[
-                report.location?.coordinates?.[1] as number,
-                report.location?.coordinates?.[0] as number,
-              ]}
-              icon={redDotIcon}
-            >
-              <Popup className="rounded-lg shadow-sm border">
-                <div className="min-w-[200px] p-1">
-                  <h4 className="font-bold text-sm mb-1 leading-tight">{report.title}</h4>
-                  {report.category && (
-                    <span className="inline-block bg-primary/10 text-primary text-xs px-2 py-0.5 rounded mb-2">
-                      {report.category.name}
-                    </span>
-                  )}
-                  {report.address && (
-                    <p className="text-xs text-muted-foreground truncate mb-2">{report.address}</p>
-                  )}
-                  <a
-                    href={`/${locale}/reports/${report._id}`}
-                    className="block text-center text-xs bg-primary text-primary-foreground py-1.5 rounded-md hover:bg-primary/90 transition-colors"
-                  >
-                    View Details
-                  </a>
-                </div>
-              </Popup>
-            </Marker>
-          ))}
+          {reportsWithLocation.map((report) => {
+            const imageUrl = getFirstImage(report);
+            return (
+              <Marker
+                key={report._id}
+                position={[
+                  report.location?.coordinates?.[1] as number,
+                  report.location?.coordinates?.[0] as number,
+                ]}
+                icon={createNeonMarkerIcon({
+                  size: 32,
+                  showIcon: true,
+                  priority: report.priority as "High" | "Medium" | "Low" | undefined,
+                })}
+              >
+                <Popup maxWidth={300}>
+                  <div className="min-w-[240px]">
+                    {imageUrl && (
+                      <div className="relative h-28 -mx-3 -mt-3 mb-3 overflow-hidden rounded-t-xl">
+                        <Image
+                          src={imageUrl}
+                          alt={report.title || ""}
+                          fill
+                          unoptimized
+                          sizes="240px"
+                          className="object-cover"
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,10,10,0.95)] to-transparent" />
+                      </div>
+                    )}
+                    <h4 className="font-bold text-sm mb-1.5 leading-tight text-offwhite">{report.title}</h4>
+                    <div className="flex flex-wrap gap-1.5 mb-2">
+                      {report.category && (
+                        <Badge className="bg-white/5 text-slate-body border-white/10 text-[10px]">
+                          {report.category.name}
+                        </Badge>
+                      )}
+                      {report.priority && (
+                        <Badge className={`text-[10px] ${
+                          report.priority === "High" ? "bg-crimson/10 text-crimson-light border-crimson/20" :
+                          report.priority === "Medium" ? "bg-amber-500/10 text-amber-400 border-amber-500/20" :
+                          "bg-emerald-500/10 text-emerald-400 border-emerald-500/20"
+                        }`}>
+                          {report.priority}
+                        </Badge>
+                      )}
+                    </div>
+                    {report.address && (
+                      <p className="text-xs text-slate-body/60 flex items-center gap-1 mb-1">
+                        <MapPin className="h-3 w-3" />
+                        {report.address}
+                      </p>
+                    )}
+                    {report.crime_occurred_at && (
+                      <p className="text-xs text-slate-body/60 flex items-center gap-1 mb-2">
+                        <Calendar className="h-3 w-3" />
+                        {new Date(report.crime_occurred_at as string).toLocaleDateString(locale, { year: "numeric", month: "short", day: "numeric" })}
+                      </p>
+                    )}
+                    <Link
+                      href={`/${locale}/reports/${report._id}`}
+                      className="flex items-center justify-center gap-1.5 text-xs bg-crimson/20 text-crimson-light py-2 rounded-lg hover:bg-crimson/30 transition-colors font-medium"
+                    >
+                      <ExternalLink className="h-3 w-3" />
+                      View Details
+                    </Link>
+                  </div>
+                </Popup>
+              </Marker>
+            );
+          })}
         </MarkerClusterGroup>
       </MapContainer>
     </div>
