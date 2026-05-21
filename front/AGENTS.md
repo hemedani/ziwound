@@ -569,7 +569,7 @@ The user model defines the schema for all user accounts in the system.
 "Ghost" | "Manager" | "Editor" | "Reporter" | "Artist" | "Diplomat" | "Researcher" | "Ordinary"
 ```
 
-- **Ghost** – Highest privileges, full admin access
+- **Ghost** – Highest privileges, full admin access. **CRITICAL SECURITY**: Ghost users must NEVER be displayed on public-facing pages (e.g., `/reporters`, `/reporters/[id]`). There is only one Ghost user in the system. This user can perform fundamental and dangerous operations. Always filter out `level === "Ghost"` from any public user listings or profile pages.
 - **Manager** – Administrative management
 - **Editor** – Content editing capabilities
 - **Reporter** – Can submit and manage reports
