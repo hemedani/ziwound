@@ -1,69 +1,84 @@
+import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { gets as getDocuments } from "@/app/actions/document/gets";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
-import { Search, FileText, Download, Calendar, Globe } from "lucide-react";
+import { count as countDocuments } from "@/app/actions/document/count";
+import { DocumentHero } from "@/components/documents/document-hero";
+import { DocumentStatsBar } from "@/components/documents/document-stats-bar";
+import { DocumentFilters } from "@/components/documents/document-filters";
+import { DocumentCard } from "@/components/documents/document-card";
+import { EmptyState } from "@/components/ui/empty-state";
+import { ErrorState } from "@/components/ui/error-state";
 import { Link } from "@/i18n/routing";
-import { ReqType } from "@/types/declarations";
+import { ArrowLeft, ArrowRight, ChevronRight, LayoutGrid, List, FileText } from "lucide-react";
 import { getImageUploadUrl } from "@/utils/imageUrl";
+import { ReqType } from "@/types/declarations";
 
-const languages = [
-  { code: "en", name: "English" },
-  { code: "zh", name: "Chinese" },
-  { code: "hi", name: "Hindi" },
-  { code: "es", name: "Spanish" },
-  { code: "fr", name: "French" },
-  { code: "ar", name: "Arabic" },
-  { code: "pt", name: "Portuguese" },
-  { code: "ru", name: "Russian" },
-  { code: "ja", name: "Japanese" },
-  { code: "pa", name: "Punjabi" },
-  { code: "de", name: "German" },
-  { code: "id", name: "Indonesian" },
-  { code: "te", name: "Telugu" },
-  { code: "mr", name: "Marathi" },
-  { code: "tr", name: "Turkish" },
-  { code: "ta", name: "Tamil" },
-  { code: "vi", name: "Vietnamese" },
-  { code: "ko", name: "Korean" },
-  { code: "it", name: "Italian" },
-  { code: "fa", name: "Persian" },
-  { code: "nl", name: "Dutch" },
-  { code: "sv", name: "Swedish" },
-  { code: "pl", name: "Polish" },
-  { code: "uk", name: "Ukrainian" },
-  { code: "ro", name: "Romanian" },
-];
-
-export default async function PublicDocumentsPage({
-  searchParams,
-  params,
-}: {
+interface PageProps {
   searchParams: Promise<{
     page?: string;
     search?: string;
     selected_language?: string;
+    documentType?: string;
+    dateFrom?: string;
+    dateTo?: string;
+    view?: string;
   }>;
   params: Promise<{ locale: string }>;
-}) {
+}
+
+interface DocumentFile {
+  _id: string;
+  name: string;
+  mimeType?: string;
+  type?: "image" | "video" | "docs";
+}
+
+interface LinkedReport {
+  _id: string;
+  title: string;
+}
+
+interface DocumentItem {
+  _id: string;
+  title: string;
+  description?: string;
+  selected_language?: string;
+  createdAt: string;
+  documentFiles?: DocumentFile[];
+  report?: LinkedReport[];
+}
+
+type DocumentTypeFilter = "image" | "video" | "docs" | "all";
+
+export default async function PublicDocumentsPage({
+  searchParams,
+  params,
+}: PageProps) {
   const resolvedSearchParams = await searchParams;
   const resolvedParams = await params;
   const { locale } = resolvedParams;
 
   const t = await getTranslations({ locale, namespace: "documents" });
-  const tCommon = await getTranslations({ locale, namespace: "common" });
 
   const page = Number(resolvedSearchParams.page) || 1;
   const search = resolvedSearchParams.search || "";
-  const selected_language = resolvedSearchParams.selected_language || "all";
+  const selected_language = resolvedSearchParams.selected_language || "";
+  const documentType = (resolvedSearchParams.documentType || "all") as DocumentTypeFilter;
+  const dateFrom = resolvedSearchParams.dateFrom || "";
+  const dateTo = resolvedSearchParams.dateTo || "";
+  const view = resolvedSearchParams.view || "grid";
 
-  const setQuery: ReqType["main"]["document"]["gets"]["set"] = { page, limit: 12 };
-  if (search) setQuery.search = search;
-  if (selected_language !== "all")
-    setQuery.selected_language = selected_language as ReqType["main"]["document"]["gets"]["set"]["selected_language"];
+  const limit = 12;
+
+  const filter: Record<string, unknown> = {};
+  if (search) filter.search = search;
+  if (selected_language) filter.selected_language = selected_language;
+
+  const setQuery: ReqType["main"]["document"]["gets"]["set"] = {
+    page,
+    limit,
+    ...(Object.keys(filter).length > 0 ? { filter } : {}),
+  };
 
   const response = await getDocuments(setQuery, {
     _id: 1,
@@ -74,7 +89,8 @@ export default async function PublicDocumentsPage({
     documentFiles: {
       _id: 1,
       name: 1,
-      mimeType: 1, type: 1,
+      mimeType: 1,
+      type: 1,
     },
     report: {
       _id: 1,
@@ -82,17 +98,7 @@ export default async function PublicDocumentsPage({
     },
   });
 
-  type DocumentFile = { _id: string; name: string; mimeType?: string; type?: "image" | "video" | "docs" };
-  type LinkedReport = { _id: string; title: string };
-  type DocumentItem = {
-    _id: string;
-    title: string;
-    description?: string;
-    selected_language?: string;
-    createdAt: string;
-    documentFiles?: DocumentFile[];
-    report?: LinkedReport[];
-  };
+  const countResponse = await countDocuments({});
 
   let documents: DocumentItem[] = [];
   let totalPages = 1;
@@ -104,215 +110,302 @@ export default async function PublicDocumentsPage({
       | { list: DocumentItem[]; totalPages?: number; totalCount?: number }
       | DocumentItem[];
     documents = Array.isArray(responseData) ? responseData : responseData?.list || [];
-    totalPages =
-      !Array.isArray(responseData) && responseData?.totalPages ? responseData.totalPages : 1;
     totalCount =
       !Array.isArray(responseData) && responseData?.totalCount
         ? responseData.totalCount
         : documents.length;
   } else {
-    error = response?.error || response?.body?.message || "Failed to fetch documents";
+    error =
+      response?.body && typeof response.body === "object" && "message" in response.body
+        ? (response.body as { message: string }).message
+        : t("errorOccurred");
   }
 
+  if (countResponse?.success && countResponse.body) {
+    const countBody = countResponse.body as Record<string, unknown>;
+    const countVal = Object.values(countBody).find((v): v is number => typeof v === "number");
+    if (countVal !== undefined) totalCount = countVal;
+  }
+
+  if (documentType !== "all") {
+    documents = documents.filter((doc) =>
+      doc.documentFiles?.some((f) => f.type === documentType)
+    );
+  }
+
+  if (dateFrom) {
+    const fromDate = new Date(dateFrom);
+    documents = documents.filter((doc) => new Date(doc.createdAt) >= fromDate);
+  }
+  if (dateTo) {
+    const toDate = new Date(dateTo);
+    toDate.setHours(23, 59, 59, 999);
+    documents = documents.filter((doc) => new Date(doc.createdAt) <= toDate);
+  }
+
+  totalPages = Math.max(1, Math.ceil(totalCount / limit));
+
+  const totalFiles = documents.reduce(
+    (sum, doc) => sum + (doc.documentFiles?.length || 0),
+    0
+  );
+  const languagesCovered = new Set(
+    documents.map((doc) => doc.selected_language).filter(Boolean)
+  ).size;
+  const reportsLinked = documents.reduce(
+    (sum, doc) => sum + (doc.report?.length || 0),
+    0
+  );
+
+  const queryParams = new URLSearchParams();
+  if (search) queryParams.set("search", search);
+  if (selected_language) queryParams.set("selected_language", selected_language);
+  if (documentType !== "all") queryParams.set("documentType", documentType);
+  if (dateFrom) queryParams.set("dateFrom", dateFrom);
+  if (dateTo) queryParams.set("dateTo", dateTo);
+  if (view) queryParams.set("view", view);
+
+  const getPageUrl = (p: number) => {
+    const qp = new URLSearchParams(queryParams);
+    qp.set("page", String(p));
+    return `/documents?${qp.toString()}`;
+  };
+
+  const getViewUrl = (v: string) => {
+    const qp = new URLSearchParams(queryParams);
+    qp.set("view", v);
+    qp.set("page", "1");
+    return `/documents?${qp.toString()}`;
+  };
+
+  const translations = {
+    overline: t("overline"),
+    title: t("pageTitle"),
+    description: t("pageDescription"),
+    documentsLabel: t("documentsLabel"),
+    filesLabel: t("filesLabel"),
+    languagesLabel: t("languagesLabel"),
+    totalDocuments: t("totalDocuments"),
+    totalFiles: t("totalFiles"),
+    languagesCovered: t("languagesCovered"),
+    reportsLinked: t("reportsLinked"),
+  };
+
   return (
-    <div className="container mx-auto px-4 py-12 max-w-7xl">
-      <div className="flex flex-col space-y-6 md:space-y-8">
-        <div className="text-center max-w-3xl mx-auto space-y-4">
-          <h1 className="text-4xl font-extrabold tracking-tight lg:text-5xl">
-            {t("title") || "Public Documents"}
-          </h1>
-          <p className="text-xl text-muted-foreground">
-            {t("description") ||
-              "Explore and download public documents, evidence, and reports related to documented incidents."}
-          </p>
+    <div className="min-h-screen bg-background">
+      <DocumentHero
+        totalDocuments={totalCount}
+        totalFiles={totalFiles}
+        languagesCovered={languagesCovered}
+        translations={translations}
+      />
+
+      <DocumentStatsBar
+        totalDocuments={totalCount}
+        totalFiles={totalFiles}
+        languagesCovered={languagesCovered}
+        reportsLinked={reportsLinked}
+        translations={translations}
+      />
+
+      <div className="container px-4 md:px-8 py-10">
+        <div className="mb-8">
+          <DocumentFilters
+            locale={locale}
+            initialSearch={search}
+            initialLanguage={selected_language || "all"}
+            initialDocumentType={documentType}
+            initialDateFrom={dateFrom}
+            initialDateTo={dateTo}
+          />
         </div>
 
-        <div className="bg-card border rounded-lg p-4 sm:p-6 shadow-sm">
-          <form
-            action={`/${locale}/documents`}
-            method="GET"
-            className="flex flex-col sm:flex-row gap-4"
-          >
-            <div className="relative flex-1">
-              <Search className="absolute start-3 top-3 h-4 w-4 text-muted-foreground" />
-              <Input
-                name="search"
-                placeholder={t("searchPlaceholder") || "Search by title or description..."}
-                defaultValue={search}
-                className="ps-10"
-              />
-            </div>
-            <div className="w-full sm:w-48">
-              <Select name="selected_language" defaultValue={selected_language}>
-                <SelectTrigger>
-                  <SelectValue placeholder={t("language") || "Language"} />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="all">{t("allLanguages") || "All Languages"}</SelectItem>
-                  {languages.map((lang) => (
-                    <SelectItem key={lang.code} value={lang.code}>
-                      {lang.name}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-            </div>
-            <Button type="submit" className="w-full sm:w-auto">
-              {t("search") || "Search"}
-            </Button>
-            {(search || selected_language !== "all") && (
-              <Button type="button" variant="outline" asChild className="w-full sm:w-auto">
-                <Link href="/documents">{tCommon("clear") || "Clear"}</Link>
-              </Button>
-            )}
-          </form>
+        <div className="flex items-center justify-between mb-6">
+          <div className="text-sm text-slate-body/60">
+            {totalCount > 0
+              ? `${Math.min((page - 1) * limit + 1, totalCount)}–${Math.min(page * limit, totalCount)} ${t("of")} ${totalCount} ${t("documentsLabel").toLowerCase()}`
+              : t("noDocuments")}
+          </div>
+
+          <div className="flex items-center gap-1.5 rounded-xl border border-white/[0.06] bg-white/[0.02] p-1">
+            <Link
+              href={getViewUrl("grid")}
+              className={`p-2 rounded-lg transition-colors ${
+                view === "grid"
+                  ? "bg-crimson/15 text-crimson-light"
+                  : "text-slate-body/40 hover:text-offwhite hover:bg-white/5"
+              }`}
+              aria-label={t("gridView")}
+            >
+              <LayoutGrid className="h-4 w-4" />
+            </Link>
+            <Link
+              href={getViewUrl("list")}
+              className={`p-2 rounded-lg transition-colors ${
+                view === "list"
+                  ? "bg-crimson/15 text-crimson-light"
+                  : "text-slate-body/40 hover:text-offwhite hover:bg-white/5"
+              }`}
+              aria-label={t("listView")}
+            >
+              <List className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
 
         {error ? (
-          <div className="text-center py-12 text-destructive bg-destructive/10 rounded-lg border border-destructive/20">
-            <p>{error}</p>
-          </div>
+          <ErrorState
+            title={t("error")}
+            description={error}
+            className="py-16"
+          />
         ) : documents.length === 0 ? (
-          <div className="text-center py-24 bg-card border rounded-lg">
-            <FileText className="mx-auto h-12 w-12 text-muted-foreground opacity-50 mb-4" />
-            <h3 className="text-lg font-medium">{t("noDocuments") || "No documents found"}</h3>
-            <p className="text-muted-foreground mt-2">
-              {t("tryAdjustingSearch") || "Try adjusting your search criteria or clear the filters."}
-            </p>
+          <EmptyState
+            icon={FileText}
+            title={t("noDocuments")}
+            description={t("tryAdjustingSearch")}
+            className="py-20"
+          />
+        ) : view === "grid" ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            {documents.map((doc, i) => (
+              <DocumentCard
+                key={doc._id}
+                document={doc}
+                locale={locale}
+                index={i}
+              />
+            ))}
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {documents.map((doc) => (
-              <Card key={doc._id} className="flex flex-col h-full hover:shadow-md transition-shadow">
-                <CardHeader className="pb-4">
-                  <div className="flex justify-between items-start gap-4 mb-2">
-                    <Badge variant="outline" className="flex items-center gap-1 shrink-0">
-                      <Globe className="h-3 w-3" />
-                      {languages.find((l) => l.code === doc.selected_language)?.name ||
-                        doc.selected_language ||
-                        "Unknown"}
-                    </Badge>
-                    <div className="flex items-center text-xs text-muted-foreground whitespace-nowrap">
-                      <Calendar className="mr-1 h-3 w-3" />
-                      {new Date(doc.createdAt).toLocaleDateString(locale)}
-                    </div>
-                  </div>
-                  <CardTitle className="line-clamp-2 leading-tight">{doc.title}</CardTitle>
-                  <CardDescription className="line-clamp-3 mt-2 text-sm">
-                    {doc.description || t("noDescription") || "No description provided."}
-                  </CardDescription>
-                </CardHeader>
-                <CardContent className="flex-1 flex flex-col justify-end pt-0">
-                  {doc.report && doc.report.length > 0 && (
-                    <div className="mb-4">
-                      <p className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">
-                        {t("linkedReports") || "Linked Reports"}
-                      </p>
-                      <div className="flex flex-wrap gap-1">
-                        {doc.report.slice(0, 2).map((r) => (
-                          <Badge
-                            key={r._id}
-                            variant="secondary"
-                            className="text-xs font-normal max-w-full truncate"
-                          >
-                            {r.title}
-                          </Badge>
-                        ))}
-                        {doc.report.length > 2 && (
-                          <Badge variant="secondary" className="text-xs font-normal">
-                            +{doc.report.length - 2}
-                          </Badge>
-                        )}
-                      </div>
-                    </div>
-                  )}
-
-                  <div className="space-y-2 mt-auto pt-4 border-t">
-                    <p className="text-xs font-semibold text-muted-foreground mb-2 uppercase tracking-wider">
-                      {t("files") || "Files"} ({doc.documentFiles?.length || 0})
-                    </p>
-                    {doc.documentFiles && doc.documentFiles.length > 0 ? (
-                      <div className="flex flex-col gap-2">
-                        {doc.documentFiles.slice(0, 3).map((file) => (
-                          <div
-                            key={file._id}
-                            className="flex items-center justify-between bg-muted/50 rounded-md p-2 text-sm"
-                          >
-                            <span
-                              className="truncate mr-2 max-w-[150px] font-medium"
-                              title={file.name}
-                            >
-                              {file.name || "Document"}
-                            </span>
-                            <Button variant="ghost" size="sm" className="h-7 w-7 p-0 shrink-0" asChild>
-                              <a
-                                href={`${getImageUploadUrl(file.name, file.type)}`}
-                                download
-                              >
-                                <Download className="h-4 w-4" />
-                                <span className="sr-only">{tCommon("download")}</span>
-                              </a>
-                            </Button>
-                          </div>
-                        ))}
-                        {doc.documentFiles.length > 3 && (
-                          <div className="text-xs text-center text-muted-foreground mt-1">
-                            +{doc.documentFiles.length - 3} {t("moreFiles") || "more files"}
-                          </div>
-                        )}
-                      </div>
-                    ) : (
-                      <p className="text-sm text-muted-foreground italic">
-                        {t("noFiles") || "No files attached"}
-                      </p>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
+          <div className="space-y-3">
+            {documents.map((doc, i) => (
+              <ListDocumentRow key={doc._id} document={doc} locale={locale} index={i} />
             ))}
           </div>
         )}
 
-        {/* Pagination */}
-        {!error && documents.length > 0 && (
-          <div className="flex items-center justify-center space-x-2 pt-8">
-            <Button
-              variant="outline"
-              size="sm"
-              asChild
-              disabled={page <= 1}
-              className={page <= 1 ? "pointer-events-none opacity-50" : ""}
+        {!error && totalPages > 1 && (
+          <div className="flex justify-center items-center gap-3 pt-10 pb-6">
+            <Link
+              href={getPageUrl(page - 1)}
+              className={`inline-flex items-center gap-1.5 h-10 px-4 rounded-xl border border-white/10 bg-white/5 text-sm text-offwhite hover:bg-white/10 transition-all ${
+                page <= 1 ? "pointer-events-none opacity-40" : ""
+              }`}
+              aria-disabled={page <= 1}
+              tabIndex={page <= 1 ? -1 : undefined}
             >
-              <Link
-                href={`/documents?page=${page - 1}${search ? `&search=${search}` : ""}${
-                  selected_language !== "all" ? `&selected_language=${selected_language}` : ""
-                }`}
-              >
-                {tCommon("previous")}
-              </Link>
-            </Button>
-            <span className="text-sm text-muted-foreground px-4">
-              {t("pageInfo", { page, totalPages }) ||
-                `Page ${page} of ${totalPages || Math.ceil(totalCount / 12) || 1}`}
-            </span>
-            <Button
-              variant="outline"
-              size="sm"
-              asChild
-              disabled={documents.length < 12}
-              className={documents.length < 12 ? "pointer-events-none opacity-50" : ""}
+              <ArrowLeft className="h-4 w-4" />
+              {t("previous")}
+            </Link>
+
+            <div className="flex items-center gap-1.5">
+              {Array.from({ length: totalPages }, (_, i) => i + 1)
+                .filter((p) => {
+                  if (totalPages <= 7) return true;
+                  if (p === 1 || p === totalPages) return true;
+                  if (Math.abs(p - page) <= 1) return true;
+                  return false;
+                })
+                .map((p, idx, arr) => {
+                  const showEllipsis = idx > 0 && p - arr[idx - 1] > 1;
+                  return (
+                    <span key={p} className="flex items-center">
+                      {showEllipsis && (
+                        <span className="text-xs text-slate-body/40 px-1">...</span>
+                      )}
+                      {p === page ? (
+                        <span className="h-9 w-9 flex items-center justify-center rounded-xl bg-crimson/20 text-crimson-light text-sm font-semibold border border-crimson/30">
+                          {p}
+                        </span>
+                      ) : (
+                        <Link
+                          href={getPageUrl(p)}
+                          className="h-9 w-9 flex items-center justify-center rounded-xl text-sm text-slate-body/60 hover:text-offwhite hover:bg-white/5 transition-colors"
+                        >
+                          {p}
+                        </Link>
+                      )}
+                    </span>
+                  );
+                })}
+            </div>
+
+            <Link
+              href={getPageUrl(page + 1)}
+              className={`inline-flex items-center gap-1.5 h-10 px-4 rounded-xl border border-white/10 bg-white/5 text-sm text-offwhite hover:bg-white/10 transition-all ${
+                page >= totalPages ? "pointer-events-none opacity-40" : ""
+              }`}
+              aria-disabled={page >= totalPages}
+              tabIndex={page >= totalPages ? -1 : undefined}
             >
-              <Link
-                href={`/documents?page=${page + 1}${search ? `&search=${search}` : ""}${
-                  selected_language !== "all" ? `&selected_language=${selected_language}` : ""
-                }`}
-              >
-                {tCommon("next")}
-              </Link>
-            </Button>
+              {t("next")}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
           </div>
         )}
       </div>
+    </div>
+  );
+}
+
+function ListDocumentRow({
+  document: doc,
+  locale,
+  index,
+}: {
+  document: DocumentItem;
+  locale: string;
+  index: number;
+}) {
+  const firstImage = doc.documentFiles?.find(
+    (f) => f.mimeType?.startsWith("image/") && f.name
+  );
+
+  return (
+    <div
+      className="animate-fade-in-up"
+      style={{
+        animationDelay: `${index * 40}ms`,
+        animationFillMode: "both",
+      }}
+    >
+      <Link
+        href={`/${locale}/reports/${doc.report?.[0]?._id || ""}`}
+        className="group flex items-center gap-4 p-4 rounded-2xl border border-white/[0.04] bg-white/[0.01] hover:bg-white/[0.03] hover:border-white/[0.08] transition-all duration-300"
+      >
+        <div className="h-14 w-14 shrink-0 rounded-xl overflow-hidden bg-white/[0.03] border border-white/[0.06] flex items-center justify-center">
+          {firstImage ? (
+            <Image
+              src={getImageUploadUrl(firstImage.name, firstImage.type || "image")}
+              alt=""
+              width={56}
+              height={56}
+              unoptimized
+              className="h-full w-full object-cover"
+            />
+          ) : (
+            <FileText className="h-5 w-5 text-slate-body/30" />
+          )}
+        </div>
+
+        <div className="flex-1 min-w-0">
+          <h3 className="text-sm font-semibold text-offwhite truncate group-hover:text-gold transition-colors">
+            {doc.title}
+          </h3>
+          <div className="flex items-center gap-3 mt-1 text-xs text-slate-body/50">
+            {doc.selected_language && <span>{doc.selected_language.toUpperCase()}</span>}
+            <span>{new Date(doc.createdAt).toLocaleDateString(locale)}</span>
+            {doc.documentFiles && (
+              <span>
+                {doc.documentFiles.length} {doc.documentFiles.length === 1 ? "file" : "files"}
+              </span>
+            )}
+          </div>
+        </div>
+
+        <ChevronRight className="h-4 w-4 text-slate-body/20 group-hover:text-crimson-light transition-colors shrink-0" />
+      </Link>
     </div>
   );
 }
