@@ -148,9 +148,10 @@ const FormMessage = React.forwardRef<HTMLParagraphElement, React.HTMLAttributes<
         if (parsed?.key) {
           translatedMessage = t(parsed.key as Parameters<typeof t>[0], parsed.values);
         }
-      } catch (e) {
-        const isTranslationKey = errorMessage.includes(".");
-        translatedMessage = isTranslationKey ? t(errorMessage as Parameters<typeof t>[0]) : errorMessage;
+      } catch {
+        if (/^[a-zA-Z][\w]*(\.[a-zA-Z][\w]*)+$/.test(errorMessage)) {
+          translatedMessage = t(errorMessage as Parameters<typeof t>[0]);
+        }
       }
     }
 
