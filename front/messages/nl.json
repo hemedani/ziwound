@@ -187,7 +187,25 @@
     "language": "Taal",
     "languagePlaceholder": "Selecteer een taal",
     "document": "Document",
-    "confirmations": "Bevestigingen"
+    "confirmations": "Bevestigingen",
+    "successTitle": "Rapport Succesvol Ingediend",
+    "successDescription": "Uw rapport is ontvangen en wordt beoordeeld door ons team. Dank u voor uw bijdrage aan de documentatie van oorlogsmisdaden.",
+    "submitAnother": "Nog een Rapport Indienen",
+    "backToHome": "Terug naar Home",
+    "draftSaved": "Concept opgeslagen",
+    "draftSavedDescription": "Uw voortgang is lokaal opgeslagen.",
+    "draftRestored": "Concept hersteld",
+    "draftRestoredDescription": "Uw eerder opgeslagen concept is hersteld.",
+    "saveDraft": "Concept Opslaan",
+    "saved": "Opgeslagen",
+    "reviewShield": "Controleer zorgvuldig alle onderstaande informatie voordat u verzendt. Na verzending wordt uw rapport beoordeeld door ons team.",
+    "reviewConfirm": "Door dit rapport in te dienen bevestigt u dat de verstrekte informatie naar uw beste weten accuraat is. Valse melding kan juridische gevolgen hebben.",
+    "edit": "Bewerken",
+    "reportSubmittedSuccess": "Uw rapport is succesvol ingediend.",
+    "reportFailedError": "Het indienen van het rapport is mislukt. Probeer het opnieuw.",
+    "documentsAttached": "{count} document(en) bijgevoegd",
+    "noneAttached": "Geen",
+    "selected": "{count} geselecteerd"
   },
   "home": {
     "cta": {

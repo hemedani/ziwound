@@ -187,7 +187,25 @@
     "language": "Dil",
     "languagePlaceholder": "Bir dil seçin",
     "document": "Belge",
-    "confirmations": "Onaylar"
+    "confirmations": "Onaylar",
+    "successTitle": "Rapor Başarıyla Gönderildi",
+    "successDescription": "Raporunuz alındı ve ekibimiz tarafından incelenecektir. Savaş suçlarının belgelenmesine katkıda bulunduğunuz için teşekkür ederiz.",
+    "submitAnother": "Başka Bir Rapor Gönder",
+    "backToHome": "Ana Sayfaya Dön",
+    "draftSaved": "Taslak kaydedildi",
+    "draftSavedDescription": "İlerlemeniz yerel olarak kaydedildi.",
+    "draftRestored": "Taslak geri yüklendi",
+    "draftRestoredDescription": "Daha önce kaydedilen taslağınız geri yüklendi.",
+    "saveDraft": "Taslağı Kaydet",
+    "saved": "Kaydedildi",
+    "reviewShield": "Göndermeden önce lütfen aşağıdaki tüm bilgileri dikkatlice inceleyin. Gönderdikten sonra raporunuz ekibimiz tarafından incelenecektir.",
+    "reviewConfirm": "Bu raporu göndererek, sağlanan bilgilerin en iyi bilginiz dahilinde doğru olduğunu onaylıyorsunuz. Yanlış raporlama yasal sonuçlar doğurabilir.",
+    "edit": "Düzenle",
+    "reportSubmittedSuccess": "Raporunuz başarıyla gönderildi.",
+    "reportFailedError": "Rapor gönderilemedi. Lütfen tekrar deneyin.",
+    "documentsAttached": "{count} belge eklendi",
+    "noneAttached": "Hiçbiri",
+    "selected": "{count} seçildi"
   },
   "home": {
     "cta": {

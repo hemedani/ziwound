@@ -187,7 +187,25 @@
     "language": "اللغة",
     "languagePlaceholder": "اختر لغة",
     "document": "مستند",
-    "confirmations": "التأكيدات"
+    "confirmations": "التأكيدات",
+    "successTitle": "تم إرسال التقرير بنجاح",
+    "successDescription": "تم استلام تقريرك وسيتم مراجعته من قبل فريقنا. شكرًا لك على المساهمة في توثيق جرائم الحرب.",
+    "submitAnother": "تقديم تقرير آخر",
+    "backToHome": "العودة إلى الصفحة الرئيسية",
+    "draftSaved": "تم حفظ المسودة",
+    "draftSavedDescription": "تم حفظ تقدمك محليًا.",
+    "draftRestored": "تم استعادة المسودة",
+    "draftRestoredDescription": "تم استعادة مسودتك السابقة.",
+    "saveDraft": "حفظ المسودة",
+    "saved": "تم الحفظ",
+    "reviewShield": "يرجى مراجعة جميع المعلومات أدناه بعناية قبل الإرسال. بعد الإرسال، سيتم مراجعة تقريرك من قبل فريقنا.",
+    "reviewConfirm": "بتقديم هذا التقرير، تؤكد أن المعلومات المقدمة دقيقة وفقًا لأفضل معرفتك. قد يكون للإبلاغ الكاذب عواقب قانونية.",
+    "edit": "تعديل",
+    "reportSubmittedSuccess": "تم إرسال تقريرك بنجاح.",
+    "reportFailedError": "فشل إرسال التقرير. يرجى المحاولة مرة أخرى.",
+    "documentsAttached": "{count} مستند(مستندات) مرفقة",
+    "noneAttached": "لا يوجد",
+    "selected": "{count} تم الاختيار"
   },
   "home": {
     "cta": {

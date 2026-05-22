@@ -187,7 +187,25 @@
     "language": "Idioma",
     "languagePlaceholder": "Selecione um idioma",
     "document": "Documento",
-    "confirmations": "Confirmações"
+    "confirmations": "Confirmações",
+    "successTitle": "Relatório Enviado com Sucesso",
+    "successDescription": "Seu relatório foi recebido e será revisado por nossa equipe. Obrigado por contribuir para a documentação de crimes de guerra.",
+    "submitAnother": "Enviar Outro Relatório",
+    "backToHome": "Voltar ao Início",
+    "draftSaved": "Rascunho salvo",
+    "draftSavedDescription": "Seu progresso foi salvo localmente.",
+    "draftRestored": "Rascunho restaurado",
+    "draftRestoredDescription": "Seu rascunho salvo anteriormente foi restaurado.",
+    "saveDraft": "Salvar Rascunho",
+    "saved": "Salvo",
+    "reviewShield": "Revise cuidadosamente todas as informações abaixo antes de enviar. Após o envio, seu relatório será analisado por nossa equipe.",
+    "reviewConfirm": "Ao enviar este relatório, você confirma que as informações fornecidas são precisas de acordo com seu conhecimento. Denúncias falsas podem ter consequências legais.",
+    "edit": "Editar",
+    "reportSubmittedSuccess": "Seu relatório foi enviado com sucesso.",
+    "reportFailedError": "Falha ao enviar o relatório. Por favor, tente novamente.",
+    "documentsAttached": "{count} documento(s) anexado(s)",
+    "noneAttached": "Nenhum",
+    "selected": "{count} selecionado(s)"
   },
   "home": {
     "cta": {
