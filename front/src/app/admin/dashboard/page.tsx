@@ -9,6 +9,7 @@ import {
   FileText, Users, CheckCircle, BookOpen, Tag, ArrowRight,
   BarChart3, TrendingUp, AlertTriangle, ShieldCheck, Clock,
   Globe, MapPin, Calendar, Languages, Layers, Building2, Flag,
+  Gavel, Image, File, UserCheck, UserX, Activity, ScrollText, Video, HardDrive,
 } from "lucide-react";
 import Link from "next/link";
 import { DeepPartial, reportSchema } from "@/types/declarations";
@@ -35,6 +36,20 @@ interface ReportStatsBody {
 interface DashboardStatsBody {
   users?: number; provinces?: number; cities?: number;
   categories?: number; tags?: number;
+  reports?: number; documents?: number; blogPosts?: number;
+  heroSlides?: number; countries?: number; files?: number; warCriminals?: number;
+  userByLevel?: { _id: string; count: number }[];
+  userByVerification?: { _id: boolean; count: number }[];
+  reportByStatus?: { _id: string; count: number }[];
+  reportByPriority?: { _id: string; count: number }[];
+  reportByLanguage?: { _id: string; count: number }[];
+  blogPostByStatus?: { _id: boolean; count: number }[];
+  heroSlideByStatus?: { _id: boolean; count: number }[];
+  fileByType?: { _id: string; count: number; totalSize: number }[];
+  warCriminalByStatus?: { _id: string; count: number }[];
+  warCriminalByAffiliation?: { _id: string; count: number }[];
+  reportsLastWeek?: number;
+  reportsLastMonth?: number;
 }
 
 /* ─── Components ─── */
@@ -103,11 +118,11 @@ function TimelineBarChart({ items, barColor = "bg-crimson-light" }:
   { items: CountItem[]; barColor?: string }) {
   const max = Math.max(...items.map((i) => i.count), 1);
   return (
-    <div className="flex items-end gap-2 h-24">
+    <div className="flex items-end gap-2 h-24 overflow-x-auto pb-1">
       {items.map((item) => {
         const height = max > 0 ? Math.round((item.count / max) * 100) : 0;
         return (
-          <div key={item._id} className="flex-1 flex flex-col items-center gap-1">
+          <div key={item._id} className="min-w-[36px] flex flex-col items-center gap-1 shrink-0">
             <span className="text-[10px] font-bold text-offwhite">{item.count}</span>
             <div className="w-full bg-white/5 rounded-t-md overflow-hidden flex items-end" style={{ height: "64px" }}>
               <div className={`w-full ${barColor} rounded-t-md transition-all duration-700 opacity-80 hover:opacity-100`} style={{ height: `${height}%` }} />
@@ -148,7 +163,15 @@ export default async function AdminDashboardPage() {
     getBlogPosts({ page: 1, limit: 1 }, { _id: 1 }),
     getReports({ page: 1, limit: 5 }, { _id: 1, title: 1, status: 1, createdAt: 1, category: { name: 1 } }),
     reportStatistics({}, {}),
-    dashboardStatistic({}, { users: 1, provinces: 1, cities: 1, categories: 1, tags: 1 }),
+    dashboardStatistic({}, {
+      users: 1, provinces: 1, cities: 1, categories: 1, tags: 1,
+      reports: 1, documents: 1, blogPosts: 1, heroSlides: 1, countries: 1, files: 1, warCriminals: 1,
+      userByLevel: 1, userByVerification: 1,
+      reportByStatus: 1, reportByPriority: 1, reportByLanguage: 1,
+      blogPostByStatus: 1, heroSlideByStatus: 1, fileByType: 1,
+      warCriminalByStatus: 1, warCriminalByAffiliation: 1,
+      reportsLastWeek: 1, reportsLastMonth: 1,
+    }),
   ]);
 
   const totalReports = reportsCountRes?.success && typeof reportsCountRes.body === "object"
@@ -196,17 +219,60 @@ export default async function AdminDashboardPage() {
   statsBody.statusCounts?.forEach((i) => { statusCounts[i._id] = i.count; });
 
   const priorityCounts: Record<string, number> = {};
-  statsBody.priorityCounts?.forEach((i) => { priorityCounts[i._id] = i.count; });
+  statsBody.priorityCounts?.forEach((i) => { priorityCounts[i._id || "Unknown"] = i.count; });
+
+  const userLevelLabel: Record<string, string> = {
+    Ordinary: t("admin.level_Ordinary"), Manager: t("admin.level_Manager"), Editor: t("admin.level_Editor"),
+    Reporter: t("admin.Reporter"), Artist: t("admin.Artist"), Diplomat: t("admin.Diplomat"), Researcher: t("admin.Researcher"),
+  };
+  const userByLevelItems = (dashBody.userByLevel || []).map((i) => ({ ...i, _id: userLevelLabel[i._id] || i._id }));
+  const userVerificationItems = dashBody.userByVerification || [];
+  const blogStatusItems = dashBody.blogPostByStatus || [];
+  const heroSlideStatusItems = dashBody.heroSlideByStatus || [];
+  const fileByTypeItems = dashBody.fileByType || [];
+  const wcStatusLabel: Record<string, string> = {
+    "At Large": t("admin.atLarge"), Deceased: t("admin.Deceased"), Accused: t("admin.Accused"),
+    Indicted: t("admin.Indicted"), Convicted: t("admin.Convicted"), Sanctioned: t("admin.Sanctioned"),
+  };
+  const warCriminalStatusItems = (dashBody.warCriminalByStatus || []).map((i) => ({ ...i, _id: wcStatusLabel[i._id] || i._id }));
+  const wcAffiliationLabel: Record<string, string> = {
+    Military: t("admin.Military"), Paramilitary: t("admin.Paramilitary"), Government: t("admin.Government"),
+    "Rebel Group": t("admin.rebelGroup"), "Private Military Company": t("admin.privateMilitaryCompany"),
+    Political: t("admin.Political"), Other: t("admin.Other"),
+  };
+  const warCriminalAffiliationItems = (dashBody.warCriminalByAffiliation || []).map((i) => ({ ...i, _id: wcAffiliationLabel[i._id] || i._id }));
+  const verifiedCount = userVerificationItems.find(v => v._id === true)?.count ?? 0;
+  const unverifiedCount = userVerificationItems.filter(v => v._id === false || v._id === null).reduce((sum, v) => sum + v.count, 0);
+  const totalUserVerification = verifiedCount + unverifiedCount;
+  const publishedCount = blogStatusItems.find(v => v._id === true)?.count ?? 0;
+  const draftCount = blogStatusItems.find(v => v._id === false)?.count ?? 0;
+  const totalBlogStatus = publishedCount + draftCount;
+  const activeSlideCount = heroSlideStatusItems.find(v => v._id === true)?.count ?? 0;
+  const inactiveSlideCount = heroSlideStatusItems.find(v => v._id === false)?.count ?? 0;
+  const totalSlideStatus = activeSlideCount + inactiveSlideCount;
+  const formatBytes = (bytes: number) => {
+    if (!bytes || bytes === 0) return "0 B";
+    const k = 1024;
+    const sizes = ["B", "KB", "MB", "GB"];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return `${parseFloat((bytes / Math.pow(k, i)).toFixed(1))} ${sizes[i]}`;
+  };
 
   const topStats = [
-    { title: t("admin.totalReports"), value: totalReports, icon: FileText, href: "/admin/reports", colorClass: "bg-crimson shadow-lg shadow-crimson/20" },
-    { title: t("admin.totalUsers"), value: dashBody.users ?? 0, icon: Users, href: "/admin/users", colorClass: "bg-gold shadow-lg shadow-gold/20" },
-    { title: t("admin.categories"), value: dashBody.categories ?? 0, icon: Layers, href: "/admin/categories", colorClass: "bg-violet-600 shadow-lg shadow-violet-600/20" },
-    { title: t("admin.tags"), value: dashBody.tags ?? 0, icon: Tag, href: "/admin/tags", colorClass: "bg-blue-600 shadow-lg shadow-blue-600/20" },
-    { title: t("admin.provinces"), value: dashBody.provinces ?? 0, icon: Building2, href: "/admin/provinces", colorClass: "bg-teal-600 shadow-lg shadow-teal-600/20" },
-    { title: t("admin.cities"), value: dashBody.cities ?? 0, icon: Globe, href: "/admin/cities", colorClass: "bg-orange-600 shadow-lg shadow-orange-600/20" },
-    { title: t("admin.documents"), value: totalDocuments, icon: CheckCircle, href: "/admin/documents", colorClass: "bg-emerald-600 shadow-lg shadow-emerald-600/20" },
-    { title: t("admin.blog"), value: totalBlogPosts, icon: BookOpen, href: "/admin/blog", colorClass: "bg-indigo-600 shadow-lg shadow-indigo-600/20" },
+    { id: "reports", title: t("admin.totalReports"), value: totalReports, icon: FileText, href: "/admin/reports", colorClass: "bg-crimson shadow-lg shadow-crimson/20" },
+    { id: "users", title: t("admin.totalUsers"), value: dashBody.users ?? 0, icon: Users, href: "/admin/users", colorClass: "bg-gold shadow-lg shadow-gold/20" },
+    { id: "categories", title: t("admin.categories"), value: dashBody.categories ?? 0, icon: Layers, href: "/admin/categories", colorClass: "bg-violet-600 shadow-lg shadow-violet-600/20" },
+    { id: "tags", title: t("admin.tags"), value: dashBody.tags ?? 0, icon: Tag, href: "/admin/tags", colorClass: "bg-blue-600 shadow-lg shadow-blue-600/20" },
+    { id: "provinces", title: t("admin.provinces"), value: dashBody.provinces ?? 0, icon: Building2, href: "/admin/provinces", colorClass: "bg-teal-600 shadow-lg shadow-teal-600/20" },
+    { id: "cities", title: t("admin.cities"), value: dashBody.cities ?? 0, icon: Globe, href: "/admin/cities", colorClass: "bg-orange-600 shadow-lg shadow-orange-600/20" },
+    { id: "documents", title: t("admin.documents"), value: totalDocuments, icon: CheckCircle, href: "/admin/documents", colorClass: "bg-emerald-600 shadow-lg shadow-emerald-600/20" },
+    { id: "blog", title: t("admin.blog"), value: totalBlogPosts, icon: BookOpen, href: "/admin/blog", colorClass: "bg-indigo-600 shadow-lg shadow-indigo-600/20" },
+    { id: "warCriminals", title: t("admin.warCriminals"), value: dashBody.warCriminals ?? 0, icon: Gavel, href: "/admin/war-criminals", colorClass: "bg-rose-800 shadow-lg shadow-rose-800/20" },
+    { id: "heroSlides", title: t("admin.heroSlides") || "Hero Slides", value: dashBody.heroSlides ?? 0, icon: Image, href: "/admin/hero-slides", colorClass: "bg-purple-600 shadow-lg shadow-purple-600/20" },
+    { id: "countries", title: t("admin.countries") || "Countries", value: dashBody.countries ?? 0, icon: Globe, href: "/admin/countries", colorClass: "bg-cyan-600 shadow-lg shadow-cyan-600/20" },
+    { id: "files", title: t("admin.files"), value: dashBody.files ?? 0, icon: File, href: "/admin/files", colorClass: "bg-rose-600 shadow-lg shadow-rose-600/20" },
+    { id: "reportsLastWeek", title: t("admin.reportsLastWeek") || "Reports (7 days)", value: dashBody.reportsLastWeek ?? 0, icon: Activity, href: "/admin/reports", colorClass: "bg-amber-600 shadow-lg shadow-amber-600/20" },
+    { id: "reportsLastMonth", title: t("admin.reportsLastMonth") || "Reports (30 days)", value: dashBody.reportsLastMonth ?? 0, icon: Calendar, href: "/admin/reports", colorClass: "bg-orange-600 shadow-lg shadow-orange-600/20" },
   ];
 
   return (
@@ -221,10 +287,10 @@ export default async function AdminDashboardPage() {
         <p className="text-slate-body mt-1">{t("admin.dashboardDescription")}</p>
       </div>
 
-      {/* Top Stats Grid — 8 cards */}
+      {/* Top Stats Grid */}
       <div className="grid gap-4 grid-cols-2 md:grid-cols-4 lg:grid-cols-4">
         {topStats.map((s) => (
-          <StatCard key={s.href} {...s} manageLabel={t("common.manage")} />
+          <StatCard key={s.id} {...s} manageLabel={t("common.manage")} />
         ))}
       </div>
 
@@ -247,6 +313,10 @@ export default async function AdminDashboardPage() {
               <ProgressRow key={p.key} label={p.label} count={priorityCounts[p.key] || 0} total={totalStatCount}
                 colorClass={p.color} barColor={p.bar} icon={p.icon} />
             ))}
+            {(priorityCounts["Unknown"] ?? 0) > 0 && (
+              <ProgressRow key="Unknown" label={t("common.unknown")} count={priorityCounts["Unknown"]} total={totalStatCount}
+                colorClass="bg-slate-500/10 text-slate-400" barColor="bg-slate-400" icon={AlertTriangle} />
+            )}
           </div>
         </div>
       </div>
@@ -327,6 +397,106 @@ export default async function AdminDashboardPage() {
                 </div>
               ))}
             </div>
+          ) : (
+            <div className="flex h-20 items-center justify-center text-xs text-slate-body/60">{t("admin.noData") || "No data available"}</div>
+          )}
+        </div>
+      </div>
+
+      {/* New Charts Row 1: Users + Verification + Blog */}
+      <div className="grid gap-4 md:grid-cols-3">
+        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+          <SectionHeader icon={Users} title={t("admin.usersByLevel") || "Users by Level"} />
+          {userByLevelItems.length > 0 ? (
+            <MiniBarChart items={userByLevelItems} total={dashBody.users ?? 0} barColor="bg-gold" />
+          ) : (
+            <div className="flex h-20 items-center justify-center text-xs text-slate-body/60">{t("admin.noData") || "No data available"}</div>
+          )}
+        </div>
+        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+          <SectionHeader icon={UserCheck} title={t("admin.verifiedUsers") || "Verified Users"} />
+          {totalUserVerification > 0 ? (
+            <div className="space-y-3">
+              <ProgressRow label={t("admin.verified")} count={verifiedCount} total={totalUserVerification}
+                colorClass="bg-emerald-500/10 text-emerald-400" barColor="bg-emerald-400" icon={UserCheck} />
+              <ProgressRow label={t("admin.unverified")} count={unverifiedCount} total={totalUserVerification}
+                colorClass="bg-slate-500/10 text-slate-400" barColor="bg-slate-400" icon={UserX} />
+            </div>
+          ) : (
+            <div className="flex h-20 items-center justify-center text-xs text-slate-body/60">{t("admin.noData") || "No data available"}</div>
+          )}
+        </div>
+        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+          <SectionHeader icon={BookOpen} title={t("admin.blogByStatus") || "Blog Posts by Status"} />
+          {totalBlogStatus > 0 ? (
+            <div className="space-y-3">
+              <ProgressRow label={t("admin.published")} count={publishedCount} total={totalBlogStatus}
+                colorClass="bg-emerald-500/10 text-emerald-400" barColor="bg-emerald-400" icon={BookOpen} />
+              <ProgressRow label={t("admin.draft")} count={draftCount} total={totalBlogStatus}
+                colorClass="bg-amber-500/10 text-amber-400" barColor="bg-amber-400" icon={FileText} />
+            </div>
+          ) : (
+            <div className="flex h-20 items-center justify-center text-xs text-slate-body/60">{t("admin.noData") || "No data available"}</div>
+          )}
+        </div>
+      </div>
+
+      {/* New Charts Row 2: Hero Slides + Files by Type */}
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+          <SectionHeader icon={Image} title={t("admin.heroSlidesByStatus") || "Hero Slides by Status"} />
+          {totalSlideStatus > 0 ? (
+            <div className="space-y-3">
+              <ProgressRow label={t("admin.active")} count={activeSlideCount} total={totalSlideStatus}
+                colorClass="bg-emerald-500/10 text-emerald-400" barColor="bg-emerald-400" icon={Image} />
+              <ProgressRow label={t("admin.inactive")} count={inactiveSlideCount} total={totalSlideStatus}
+                colorClass="bg-slate-500/10 text-slate-400" barColor="bg-slate-400" icon={Image} />
+            </div>
+          ) : (
+            <div className="flex h-20 items-center justify-center text-xs text-slate-body/60">{t("admin.noData") || "No data available"}</div>
+          )}
+        </div>
+        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+          <SectionHeader icon={HardDrive} title={t("admin.filesByType") || "Files by Type"} />
+          {fileByTypeItems.length > 0 ? (
+            <div className="space-y-2.5">
+              {fileByTypeItems.map((item) => {
+                const maxCount = Math.max(...fileByTypeItems.map((i) => i.count), 1);
+                const barWidth = Math.round((item.count / maxCount) * 100);
+                const IconType = item._id === "image" ? Image : item._id === "video" ? Video : ScrollText;
+                const barColor = item._id === "image" ? "bg-violet-400" : item._id === "video" ? "bg-crimson-light" : "bg-gold";
+                return (
+                  <div key={item._id} className="flex items-center gap-3">
+                    <div className="rounded-lg p-1.5 bg-white/5"><IconType className="h-3.5 w-3.5 text-slate-body" /></div>
+                    <span className="text-xs font-medium text-offwhite w-14 truncate shrink-0 capitalize">{item._id}</span>
+                    <div className="flex-1 h-2 rounded-full bg-white/5 overflow-hidden">
+                      <div className={`h-full rounded-full ${barColor} transition-all duration-700`} style={{ width: `${barWidth}%` }} />
+                    </div>
+                    <span className="text-xs font-bold text-offwhite w-20 text-end shrink-0">{item.count} · {formatBytes(item.totalSize)}</span>
+                  </div>
+                );
+              })}
+            </div>
+          ) : (
+            <div className="flex h-20 items-center justify-center text-xs text-slate-body/60">{t("admin.noData") || "No data available"}</div>
+          )}
+        </div>
+      </div>
+
+      {/* New Charts Row 3: War Criminals */}
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+          <SectionHeader icon={Gavel} title={t("admin.warCriminalStatus") || "War Criminals by Status"} />
+          {warCriminalStatusItems.length > 0 ? (
+            <MiniBarChart items={warCriminalStatusItems} total={0} barColor="bg-crimson-light" />
+          ) : (
+            <div className="flex h-20 items-center justify-center text-xs text-slate-body/60">{t("admin.noData") || "No data available"}</div>
+          )}
+        </div>
+        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+          <SectionHeader icon={Gavel} title={t("admin.warCriminalAffiliation") || "War Criminals by Affiliation"} />
+          {warCriminalAffiliationItems.length > 0 ? (
+            <MiniBarChart items={warCriminalAffiliationItems} total={0} barColor="bg-gold" />
           ) : (
             <div className="flex h-20 items-center justify-center text-xs text-slate-body/60">{t("admin.noData") || "No data available"}</div>
           )}
