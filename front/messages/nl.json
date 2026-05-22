@@ -248,25 +248,61 @@
         "secondaryCta": "Verhalen Lezen"
       },
       "brandLabel": "ZiWound",
-      "scrollIndicator": "Scroll"
+      "scrollIndicator": "Scroll",
+      "trust": {
+        "locales": "Gedocumenteerd in 9 talen",
+        "reports": "{count} Rapporten",
+        "countries": "{count} Landen",
+        "verified": "Geverifieerd & Geauthenticeerd"
+      }
+    },
+    "quote": {
+      "slides": [
+        {
+          "text": "De belangrijkste gegevens die in de moderne wereld hebben geleden onder desinformatie en verkeerde informatie zijn oorlogsmisdaadgegevens; dit probleem heeft ongelooflijke neveneffecten, zelfs bij AI-leren!",
+          "attribution": "ZiWound Onderzoek"
+        },
+        {
+          "text": "Waarheid is het eerste slachtoffer van oorlog. Wij bestaan om ervoor te zorgen dat het nooit het laatste is — elke misdaad documenteren, elke getuigenis bewaren, elk antwoord eisen.",
+          "attribution": "ZiWound Manifest"
+        },
+        {
+          "text": "Wanneer bewijs wordt gewist, wordt geschiedenis herschreven. Wanneer geschiedenis wordt herschreven, sterft gerechtigheid. Wij archiveren de waarheid zodat gerechtigheid kan leven.",
+          "attribution": "ZiWound Documentatieteam"
+        },
+        {
+          "text": "Elk ingediend rapport is een baksteen in de muur tegen straffeloosheid. Elke bewaarde getuigenis is een stem die niet langer tot zwijgen kan worden gebracht.",
+          "attribution": "ZiWound Bijdragersnetwerk"
+        },
+        {
+          "text": "In de strijd tussen herinnering en ontkenning is documentatie ons krachtigste wapen. Wij kijken niet weg — wij registreren, wij verifiëren, wij herinneren.",
+          "attribution": "ZiWound Archief"
+        }
+      ]
+    },
+    "whyMatters": {
+      "overline": "Waarom ZiWound Belangrijk Is",
+      "title": "Desinformatie Bestrijden, Waarheid Bewaren",
+      "subtitle": "In een tijdperk van informatieoorlogvoering is gedocumenteerd bewijs ons sterkste wapen tegen ontkenning en verdraaiing.",
+      "card1": { "title": "Desinformatie Bestrijden", "desc": "We bestrijden de opzettelijke verdraaiing van historische waarheid door middel van grondige documentatie, verificatie en het bewaren van bewijs." },
+      "card2": { "title": "Waarheid Bewaren", "desc": "Elk stuk bewijs wordt permanent gearchiveerd met behulp van veilige, onveranderlijke opslag om ervoor te zorgen dat de waarheid generaties overleeft." },
+      "card3": { "title": "Gerechtigheid Ondersteunen", "desc": "Ons gedocumenteerde archief ondersteunt juridische procedures, oorlogsmisdadentribunalen en internationale hoven." },
+      "card4": { "title": "Wereldwijde Solidariteit", "desc": "We verenigen overlevenden, onderzoekers, journalisten en voorvechters wereldwijd tegen straffeloosheid." }
+    },
+    "locations": {
+      "overline": "Verken Locaties",
+      "title": "Getroffen Regio's Wereldwijd",
+      "subtitle": "Blader door gedocumenteerde conflictzones en regio's getroffen door oorlogsmisdaden en mensenrechtenschendingen.",
+      "viewAll": "Bekijk Alle Landen"
     },
     "howItWorks": {
-      "title": "Hoe het werkt",
-      "description": "Drie simpele stappen om een verschil te maken."
-    },
-    "steps": {
-      "create": {
-        "title": "Aanmaken",
-        "description": "Maak een account aan."
-      },
-      "submit": {
-        "title": "Indienen",
-        "description": "Dien uw rapport in met foto's."
-      },
-      "track": {
-        "title": "Volgen",
-        "description": "Volg de status van uw rapport."
-      }
+      "overline": "Hoe Het Werkt",
+      "title": "Van Bewijs tot Gerechtigheid",
+      "subtitle": "Een eenvoudig, veilig proces voor het documenteren van oorlogsmisdaden en het bijdragen aan de wereldwijde zoektocht naar gerechtigheid.",
+      "step1": { "title": "Bewijs Indienen", "desc": "Upload rapporten, documenten en afbeeldingen via ons beveiligde, versleutelde platform." },
+      "step2": { "title": "Verificatie & Beoordeling", "desc": "Ons team verifieert elke inzending zorgvuldig op authenticiteit." },
+      "step3": { "title": "Permanent Archief", "desc": "Geverifieerde rapporten worden opgenomen in ons permanente, onveranderlijke archief." },
+      "step4": { "title": "Gerechtigheid & Verantwoording", "desc": "Gearchiveerd bewijs ondersteunt internationale hoven wereldwijd." }
     },
     "subtitle": "Meld problemen eenvoudig",
     "title": "Burgerrapportagesysteem",
@@ -281,17 +317,28 @@
       ]
     },
     "impactStats": {
-      "reports": "Gedocumenteerde Rapporten",
+      "overline": "In Cijfers",
+      "title": "Onze Wereldwijde Impact",
+      "subtitle": "Echte gegevens uit ons steeds groeiende archief van geverifieerde documentatie.",
+      "reports": "Rapporten Gedocumenteerd",
       "countries": "Landen",
-      "locations": "Gekarteerde Locaties",
-      "documents": "Gearchiveerde Documenten",
-      "warCriminals": "War Criminals"
+      "locations": "Locaties in Kaart Gebracht",
+      "documents": "Documenten Gearchiveerd",
+      "warCriminals": "Oorlogsmisdadigers",
+      "reporters": "Verslaggevers"
     },
     "featured": {
       "overline": "Uitgelicht",
       "title": "Gedocumenteerde Zaken en Verhalen",
       "subtitle": "Een selectie van geverifieerde rapporten en getuigenissen van overlevenden uit ons wereldwijde archief.",
       "readMore": "Lees Meer"
+    },
+    "finalCta": {
+      "title": "Uw Stem Kan Gerechtigheid Brengen",
+      "subtitle": "Als u getuige bent geweest van oorlogsmisdaden of bewijs heeft, doet uw getuigenis ertoe.",
+      "exploreCta": "Verken het Archief",
+      "reportCta": "Dien een Rapport In",
+      "note": "Alle inzendingen zijn versleuteld en kunnen anoniem worden gedaan."
     },
     "mission": {
       "overline": "Onze Missie",

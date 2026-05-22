@@ -248,25 +248,61 @@
         "secondaryCta": "Leer Historias"
       },
       "brandLabel": "ZiWound",
-      "scrollIndicator": "Desplazar"
+      "scrollIndicator": "Desplazar",
+      "trust": {
+        "locales": "Documentado en 9 idiomas",
+        "reports": "{count} Informes",
+        "countries": "{count} Países",
+        "verified": "Verificado y Autenticado"
+      }
+    },
+    "quote": {
+      "slides": [
+        {
+          "text": "Los datos más importantes que han sufrido desinformación y mala información en el mundo moderno son los datos de crímenes de guerra; este problema tiene efectos secundarios increíbles, ¡incluso en el aprendizaje de IA!",
+          "attribution": "ZiWound Investigación"
+        },
+        {
+          "text": "La verdad es la primera víctima de la guerra. Existimos para asegurar que nunca sea la última: documentando cada crimen, preservando cada testimonio, exigiendo cada respuesta.",
+          "attribution": "Manifiesto ZiWound"
+        },
+        {
+          "text": "Cuando la evidencia se borra, la historia se reescribe. Cuando la historia se reescribe, la justicia muere. Archivamos la verdad para que la justicia viva.",
+          "attribution": "Equipo de Documentación ZiWound"
+        },
+        {
+          "text": "Cada informe presentado es un ladrillo en el muro contra la impunidad. Cada testimonio preservado es una voz que ya no puede ser silenciada.",
+          "attribution": "Red de Colaboradores ZiWound"
+        },
+        {
+          "text": "En la lucha entre la memoria y la negación, la documentación es nuestra arma más poderosa. No miramos hacia otro lado: registramos, verificamos, recordamos.",
+          "attribution": "Archivo ZiWound"
+        }
+      ]
+    },
+    "whyMatters": {
+      "overline": "Por Qué ZiWound Importa",
+      "title": "Combatiendo la Desinformación, Preservando la Verdad",
+      "subtitle": "En una era de guerra de información, la evidencia documentada es nuestra arma más fuerte contra la negación y la distorsión.",
+      "card1": { "title": "Combatiendo la Desinformación", "desc": "Luchamos contra la distorsión deliberada de la verdad histórica mediante documentación rigurosa, verificación y preservación de evidencia." },
+      "card2": { "title": "Preservando la Verdad", "desc": "Cada pieza de evidencia se archiva permanentemente utilizando almacenamiento seguro e inmutable para garantizar que la verdad sobreviva generaciones." },
+      "card3": { "title": "Apoyando la Justicia", "desc": "Nuestro archivo documentado respalda procesos legales, tribunales de crímenes de guerra y cortes internacionales." },
+      "card4": { "title": "Solidaridad Global", "desc": "Unimos a sobrevivientes, investigadores, periodistas y defensores en todo el mundo contra la impunidad." }
+    },
+    "locations": {
+      "overline": "Explorar Ubicaciones",
+      "title": "Regiones Afectadas en Todo el Mundo",
+      "subtitle": "Explore zonas de conflicto documentadas y regiones afectadas por crímenes de guerra y violaciones de derechos humanos.",
+      "viewAll": "Ver Todos los Países"
     },
     "howItWorks": {
-      "title": "Cómo funciona",
-      "description": "Tres sencillos pasos para marcar la diferencia."
-    },
-    "steps": {
-      "create": {
-        "title": "Crear",
-        "description": "Crea una cuenta."
-      },
-      "submit": {
-        "title": "Enviar",
-        "description": "Envíe su reporte con fotos."
-      },
-      "track": {
-        "title": "Seguimiento",
-        "description": "Haga un seguimiento del estado de su reporte."
-      }
+      "overline": "Cómo Funciona",
+      "title": "De la Evidencia a la Justicia",
+      "subtitle": "Un proceso simple y seguro para documentar crímenes de guerra y contribuir a la búsqueda global de justicia.",
+      "step1": { "title": "Enviar Evidencia", "desc": "Sube informes, documentos e imágenes a través de nuestra plataforma segura y encriptada." },
+      "step2": { "title": "Verificación y Revisión", "desc": "Nuestro equipo verifica cuidadosamente la autenticidad de cada envío." },
+      "step3": { "title": "Archivo Permanente", "desc": "Los informes verificados ingresan a nuestro archivo permanente e inmutable." },
+      "step4": { "title": "Justicia y Responsabilidad", "desc": "La evidencia archivada respalda a tribunales internacionales en todo el mundo." }
     },
     "subtitle": "Reportar problemas fácilmente",
     "title": "Sistema de Reportes Ciudadanos",
@@ -281,17 +317,28 @@
       ]
     },
     "impactStats": {
+      "overline": "En Números",
+      "title": "Nuestro Impacto Global",
+      "subtitle": "Datos reales de nuestro archivo en constante crecimiento de documentación verificada.",
       "reports": "Informes Documentados",
       "countries": "Países",
       "locations": "Ubicaciones Mapeadas",
       "documents": "Documentos Archivados",
-      "warCriminals": "War Criminals"
+      "warCriminals": "Criminales de Guerra",
+      "reporters": "Denunciantes"
     },
     "featured": {
       "overline": "Destacados",
       "title": "Casos e Historias Documentados",
       "subtitle": "Una selección de informes verificados y testimonios de sobrevivientes de nuestro archivo global.",
       "readMore": "Leer Más"
+    },
+    "finalCta": {
+      "title": "Tu Voz Puede Traer Justicia",
+      "subtitle": "Si has sido testigo o tienes evidencia de crímenes de guerra, tu testimonio importa.",
+      "exploreCta": "Explorar el Archivo",
+      "reportCta": "Enviar un Informe",
+      "note": "Todos los envíos están encriptados y pueden hacerse de forma anónima."
     },
     "mission": {
       "overline": "Nuestra Misión",

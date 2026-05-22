@@ -248,25 +248,61 @@
         "secondaryCta": "Hikayeleri Oku"
       },
       "brandLabel": "ZiWound",
-      "scrollIndicator": "Aşağı"
+      "scrollIndicator": "Aşağı",
+      "trust": {
+        "locales": "9 dilde belgelenmiştir",
+        "reports": "{count} Rapor",
+        "countries": "{count} Ülke",
+        "verified": "Doğrulanmış ve Onaylanmış"
+      }
+    },
+    "quote": {
+      "slides": [
+        {
+          "text": "Modern dünyada yanlış ve dezenformasyondan en çok etkilenen veriler savaş suçu verileridir; bu durumun inanılmaz yan etkileri vardır, hatta yapay zeka öğreniminde bile!",
+          "attribution": "ZiWound Araştırma"
+        },
+        {
+          "text": "Gerçek, savaşın ilk kurbanıdır. Bunun son olmamasını sağlamak için varız — her suçu belgelemek, her ifadeyi korumak, her cevabı talep etmek.",
+          "attribution": "ZiWound Manifestosu"
+        },
+        {
+          "text": "Kanıtlar silindiğinde, tarih yeniden yazılır. Tarih yeniden yazıldığında, adalet ölür. Adalet yaşasın diye gerçeği arşivliyoruz.",
+          "attribution": "ZiWound Dokümantasyon Ekibi"
+        },
+        {
+          "text": "Gönderilen her rapor, cezasızlığa karşı duvarda bir tuğladır. Korunan her ifade, artık susturulamayacak bir sestir.",
+          "attribution": "ZiWound Katkıda Bulunanlar Ağı"
+        },
+        {
+          "text": "Hafıza ile inkâr arasındaki mücadelede, belgeleme en güçlü silahımızdır. Gözlerimizi kaçırmıyoruz — kaydediyoruz, doğruluyoruz, hatırlıyoruz.",
+          "attribution": "ZiWound Arşivi"
+        }
+      ]
+    },
+    "whyMatters": {
+      "overline": "ZiWound Neden Önemlidir",
+      "title": "Dezenformasyonla Mücadele, Gerçeği Korumak",
+      "subtitle": "Bilgi savaşı çağında, belgelenmiş kanıtlar inkâr ve çarpıtmaya karşı en güçlü silahımızdır.",
+      "card1": { "title": "Dezenformasyonla Mücadele", "desc": "Tarihsel gerçeğin kasıtlı olarak çarpıtılmasına karşı titiz belgeleme, doğrulama ve kanıtların korunması yoluyla mücadele ediyoruz." },
+      "card2": { "title": "Gerçeği Korumak", "desc": "Her kanıt parçası, gerçeğin nesiller boyu yaşamasını sağlamak için güvenli, değiştirilemez depolama kullanılarak kalıcı olarak arşivlenir." },
+      "card3": { "title": "Adaleti Desteklemek", "desc": "Belgelenmiş arşivimiz hukuki süreçleri, savaş suçu mahkemelerini ve uluslararası mahkemeleri desteklemektedir." },
+      "card4": { "title": "Küresel Dayanışma", "desc": "Dünya çapında hayatta kalanları, araştırmacıları, gazetecileri ve savunucuları cezasızlığa karşı birleştiriyoruz." }
+    },
+    "locations": {
+      "overline": "Konumları Keşfet",
+      "title": "Dünya Genelinde Etkilenen Bölgeler",
+      "subtitle": "Belgelenmiş çatışma bölgelerine ve savaş suçları ile insan hakları ihlallerinden etkilenen bölgelere göz atın.",
+      "viewAll": "Tüm Ülkeleri Gör"
     },
     "howItWorks": {
-      "title": "Nasıl çalışır",
-      "description": "Fark yaratmak için üç basit adım."
-    },
-    "steps": {
-      "create": {
-        "title": "Oluştur",
-        "description": "Bir hesap oluşturun."
-      },
-      "submit": {
-        "title": "Gönder",
-        "description": "Raporunuzu fotoğraflarla gönderin."
-      },
-      "track": {
-        "title": "Takip et",
-        "description": "Raporunuzun durumunu takip edin."
-      }
+      "overline": "Nasıl Çalışır",
+      "title": "Kanıttan Adalete",
+      "subtitle": "Savaş suçlarını belgelemek ve küresel adalet arayışına katkıda bulunmak için basit ve güvenli bir süreç.",
+      "step1": { "title": "Kanıt Gönder", "desc": "Güvenli şifrelenmiş platformumuz üzerinden raporlar, belgeler ve görseller yükleyin." },
+      "step2": { "title": "Doğrulama ve İnceleme", "desc": "Ekibimiz her gönderimi özgünlük açısından titizlikle doğrular." },
+      "step3": { "title": "Kalıcı Arşiv", "desc": "Doğrulanmış raporlar kalıcı, değiştirilemez arşivimize girer." },
+      "step4": { "title": "Adalet ve Hesap Verebilirlik", "desc": "Arşivlenmiş kanıtlar dünya çapındaki uluslararası mahkemeleri destekler." }
     },
     "subtitle": "Sorunları kolayca bildirin",
     "title": "Vatandaş Rapor Sistemi",
@@ -281,17 +317,28 @@
       ]
     },
     "impactStats": {
-      "reports": "Belgelenen Rapor",
-      "countries": "Ülke",
-      "locations": "Haritalanan Konum",
-      "documents": "Arşivlenen Belge",
-      "warCriminals": "War Criminals"
+      "overline": "Rakamlarla",
+      "title": "Küresel Etkimiz",
+      "subtitle": "Sürekli büyüyen doğrulanmış belgeleme arşivimizden gerçek veriler.",
+      "reports": "Belgelenen Raporlar",
+      "countries": "Ülkeler",
+      "locations": "Haritalanan Konumlar",
+      "documents": "Arşivlenen Belgeler",
+      "warCriminals": "Savaş Suçluları",
+      "reporters": "Muhabirler"
     },
     "featured": {
       "overline": "Öne Çıkanlar",
       "title": "Belgelenen Olaylar ve Hikayeler",
       "subtitle": "Küresel arşivimizden doğrulanmış raporların ve sağ kalan tanıklıklarının seçkisi.",
       "readMore": "Devamını Oku"
+    },
+    "finalCta": {
+      "title": "Sesiniz Adalet Getirebilir",
+      "subtitle": "Savaş suçlarına tanık olduysanız veya kanıtınız varsa, tanıklığınız önemlidir.",
+      "exploreCta": "Arşivi Keşfet",
+      "reportCta": "Rapor Gönder",
+      "note": "Tüm gönderiler şifrelenir ve anonim olarak yapılabilir."
     },
     "mission": {
       "overline": "Misyonumuz",

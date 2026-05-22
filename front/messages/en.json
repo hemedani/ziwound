@@ -269,50 +269,109 @@
         "secondaryCta": "Read Stories"
       },
       "brandLabel": "ZiWound",
-      "scrollIndicator": "Scroll"
-    },
-    "howItWorks": {
-      "title": "How it works",
-      "description": "Three simple steps to make a difference."
-    },
-    "steps": {
-      "create": {
-        "title": "Create",
-        "description": "Create an account."
-      },
-      "submit": {
-        "title": "Submit",
-        "description": "Submit your report with photos."
-      },
-      "track": {
-        "title": "Track",
-        "description": "Track the status of your report."
+      "scrollIndicator": "Scroll",
+      "trust": {
+        "locales": "Documented in 9 languages",
+        "reports": "{count} Reports",
+        "countries": "{count} Countries",
+        "verified": "Verified & Authenticated"
       }
     },
-    "subtitle": "Report issues easily",
-    "title": "Citizen Report System",
-    "trust": {
-      "title": "Trusted by thousands",
-      "description": "Join our community of active citizens.",
-      "benefits": [
-        "Direct communication with officials",
-        "Transparent process",
-        "Fast resolution",
-        "Community impact"
+    "quote": {
+      "slides": [
+        {
+          "text": "The most important data that have suffered from miss and disinformation in the modern world are war crimes data; this issue has unbelievably side effects, even in AI learning!",
+          "attribution": "ZiWound Research"
+        },
+        {
+          "text": "Truth is the first casualty of war. We exist to ensure it is never the last — documenting every crime, preserving every testimony, demanding every answer.",
+          "attribution": "ZiWound Manifesto"
+        },
+        {
+          "text": "When evidence is erased, history is rewritten. When history is rewritten, justice dies. We archive the truth so that justice may live.",
+          "attribution": "ZiWound Documentation Team"
+        },
+        {
+          "text": "Every report filed is a brick in the wall against impunity. Every testimony preserved is a voice that can no longer be silenced.",
+          "attribution": "ZiWound Contributor Network"
+        },
+        {
+          "text": "In the fight between memory and denial, documentation is our most powerful weapon. We do not look away — we record, we verify, we remember.",
+          "attribution": "ZiWound Archive"
+        }
       ]
     },
+    "whyMatters": {
+      "overline": "Why ZiWound Matters",
+      "title": "Combating Disinformation, Preserving Truth",
+      "subtitle": "In an age of information warfare, documented evidence is our strongest weapon against denial and distortion.",
+      "card1": {
+        "title": "Combating Disinformation",
+        "desc": "We fight against the deliberate distortion of historical truth through rigorous documentation, verification, and preservation of evidence."
+      },
+      "card2": {
+        "title": "Preserving Truth",
+        "desc": "Every piece of evidence is permanently archived using secure, immutable storage to ensure that truth survives generations."
+      },
+      "card3": {
+        "title": "Supporting Justice",
+        "desc": "Our documented archive supports legal proceedings, war crimes tribunals, and international courts in their pursuit of accountability."
+      },
+      "card4": {
+        "title": "Global Solidarity",
+        "desc": "We unite survivors, researchers, journalists, and advocates worldwide in a shared mission against impunity."
+      }
+    },
+    "locations": {
+      "overline": "Explore Locations",
+      "title": "Affected Regions Across the Globe",
+      "subtitle": "Browse documented conflict zones and regions affected by war crimes and human rights violations.",
+      "viewAll": "View All Countries"
+    },
     "impactStats": {
+      "overline": "By the Numbers",
+      "title": "Our Global Impact",
+      "subtitle": "Real data from our ever-growing archive of verified documentation.",
       "reports": "Reports Documented",
       "countries": "Countries",
       "locations": "Locations Mapped",
       "documents": "Documents Archived",
-      "warCriminals": "War Criminals"
+      "warCriminals": "War Criminals",
+      "reporters": "Reporters"
     },
     "featured": {
       "overline": "Featured",
       "title": "Documented Cases & Stories",
       "subtitle": "A selection of verified reports and survivor testimonies from our global archive.",
       "readMore": "Read More"
+    },
+    "howItWorks": {
+      "overline": "How It Works",
+      "title": "From Evidence to Justice",
+      "subtitle": "A simple, secure process for documenting war crimes and contributing to the global pursuit of justice.",
+      "step1": {
+        "title": "Submit Evidence",
+        "desc": "Upload your reports, documents, images, and videos through our secure encrypted platform — anonymously if you choose."
+      },
+      "step2": {
+        "title": "Verification & Review",
+        "desc": "Our expert team of researchers and legal analysts carefully verifies every submission for authenticity and accuracy."
+      },
+      "step3": {
+        "title": "Permanent Archive",
+        "desc": "Verified reports enter our permanent, immutable archive — accessible globally and preserved for future generations."
+      },
+      "step4": {
+        "title": "Justice & Accountability",
+        "desc": "Archived evidence supports international courts, human rights organizations, and truth commissions worldwide."
+      }
+    },
+    "finalCta": {
+      "title": "Your Voice Can Bring Justice",
+      "subtitle": "If you have witnessed or have evidence of war crimes or human rights violations, your testimony matters. Join us in the fight against impunity.",
+      "exploreCta": "Explore the Archive",
+      "reportCta": "Submit a Report",
+      "note": "All submissions are encrypted and can be made anonymously. We protect your identity at every step."
     },
     "mission": {
       "overline": "Our Mission",

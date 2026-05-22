@@ -248,25 +248,61 @@
         "secondaryCta": "阅读故事"
       },
       "brandLabel": "ZiWound",
-      "scrollIndicator": "向下滚动"
+      "scrollIndicator": "向下滚动",
+      "trust": {
+        "locales": "以9种语言记录",
+        "reports": "{count} 份报告",
+        "countries": "{count} 个国家",
+        "verified": "已验证与认证"
+      }
+    },
+    "quote": {
+      "slides": [
+        {
+          "text": "现代世界中最受错误和虚假信息影响的数据就是战争罪行数据；这个问题甚至对人工智能学习都产生了难以想象的副作用！",
+          "attribution": "ZiWound 研究团队"
+        },
+        {
+          "text": "真相是战争的第一受害者。我们的存在就是为了确保它永远不会成为最后一个——记录每一起罪行，保存每一份证词，追问每一个答案。",
+          "attribution": "ZiWound 宣言"
+        },
+        {
+          "text": "当证据被抹去，历史就被改写。当历史被改写，正义便会消亡。我们存档真相，以期正义永存。",
+          "attribution": "ZiWound 记录团队"
+        },
+        {
+          "text": "每一份提交的报告都是筑起反有罪不罚之墙的一块砖。每一份保存的证词都是一个再也无法被压制的声音。",
+          "attribution": "ZiWound 贡献者网络"
+        },
+        {
+          "text": "在记忆与否认的较量中，记录是我们最强大的武器。我们不会视而不见——我们记录，我们核实，我们铭记。",
+          "attribution": "ZiWound 档案馆"
+        }
+      ]
+    },
+    "whyMatters": {
+      "overline": "为什么ZiWound至关重要",
+      "title": "打击虚假信息，守护真相",
+      "subtitle": "在信息战的时代，有记录的证据是我们对抗否认与歪曲的最强武器。",
+      "card1": { "title": "打击虚假信息", "desc": "我们通过严格的记录、核实和证据保存，对抗对历史真相的蓄意歪曲。" },
+      "card2": { "title": "守护真相", "desc": "每份证据都通过安全、不可篡改的存储永久存档，确保真相世代相传。" },
+      "card3": { "title": "支持正义", "desc": "我们的记录档案支持法律诉讼、战争罪行法庭和国际法院的工作。" },
+      "card4": { "title": "全球团结", "desc": "我们联合全球的幸存者、研究人员、记者和倡导者，共同反对有罪不罚。" }
+    },
+    "locations": {
+      "overline": "探索地点",
+      "title": "全球受影响地区",
+      "subtitle": "浏览有记录的冲突地区和受战争罪行与侵犯人权影响的区域。",
+      "viewAll": "查看所有国家"
     },
     "howItWorks": {
-      "title": "运作方式",
-      "description": "简单的三个步骤就能带来改变。"
-    },
-    "steps": {
-      "create": {
-        "title": "创建账户",
-        "description": "创建一个账户。"
-      },
-      "submit": {
-        "title": "提交",
-        "description": "附带照片提交您的报告。"
-      },
-      "track": {
-        "title": "跟踪",
-        "description": "跟踪您的报告进度。"
-      }
+      "overline": "工作原理",
+      "title": "从证据到正义",
+      "subtitle": "一个简单、安全的流程，用于记录战争罪行并为全球追求正义做出贡献。",
+      "step1": { "title": "提交证据", "desc": "通过我们安全的加密平台上传报告、文件和图片。" },
+      "step2": { "title": "核实与审查", "desc": "我们的团队仔细核实每份提交内容的真实性。" },
+      "step3": { "title": "永久存档", "desc": "经过核实的报告进入我们永久、不可篡改的档案库。" },
+      "step4": { "title": "正义与问责", "desc": "存档证据支持全球国际法院的工作。" }
     },
     "subtitle": "轻松报告问题",
     "title": "市民报告系统",
@@ -281,17 +317,28 @@
       ]
     },
     "impactStats": {
+      "overline": "数据一览",
+      "title": "我们的全球影响",
+      "subtitle": "来自我们不断增长的已验证文档档案的真实数据。",
       "reports": "已记录报告",
       "countries": "国家",
       "locations": "已标注地点",
-      "documents": "已归档文件",
-      "warCriminals": "War Criminals"
+      "documents": "已存档文档",
+      "warCriminals": "战犯",
+      "reporters": "报告者"
     },
     "featured": {
       "overline": "精选",
       "title": "已记录案例与故事",
       "subtitle": "从我们全球档案中精选的已核实报告和幸存者证词。",
       "readMore": "阅读更多"
+    },
+    "finalCta": {
+      "title": "您的声音可以带来正义",
+      "subtitle": "如果您目击了战争罪行或掌握相关证据，您的证词至关重要。",
+      "exploreCta": "探索档案库",
+      "reportCta": "提交报告",
+      "note": "所有提交均经过加密，可以匿名进行。"
     },
     "mission": {
       "overline": "我们的使命",
