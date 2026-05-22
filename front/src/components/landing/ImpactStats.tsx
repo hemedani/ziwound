@@ -2,7 +2,7 @@
 
 import React from "react";
 import { motion } from "framer-motion";
-import { FileText, Globe, MapPin, Users } from "lucide-react";
+import { FileText, Globe, MapPin, Users, Gavel } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface StatItem {
@@ -16,10 +16,12 @@ interface ImpactStatsProps {
   countries?: string;
   documents?: string;
   locations?: string;
+  warCriminals?: string;
   reportsLabel?: string;
   countriesLabel?: string;
   documentsLabel?: string;
   locationsLabel?: string;
+  warCriminalsLabel?: string;
   className?: string;
 }
 
@@ -28,10 +30,12 @@ export function ImpactStats({
   countries = "47",
   documents = "85,200+",
   locations = "1,120",
+  warCriminals,
   reportsLabel = "Reports Documented",
   countriesLabel = "Countries",
   documentsLabel = "Documents Archived",
   locationsLabel = "Locations Mapped",
+  warCriminalsLabel = "War Criminals",
   className,
 }: ImpactStatsProps) {
   const stats: StatItem[] = [
@@ -40,6 +44,11 @@ export function ImpactStats({
     { icon: MapPin, value: locations, label: locationsLabel },
     { icon: Users, value: documents, label: documentsLabel },
   ];
+  if (warCriminals) {
+    stats.push({ icon: Gavel, value: warCriminals, label: warCriminalsLabel });
+  }
+
+  const cols = stats.length > 4 ? "md:grid-cols-5" : "md:grid-cols-4";
 
   return (
     <section className={cn("relative py-16 md:py-20 overflow-hidden", className)}>
@@ -47,7 +56,7 @@ export function ImpactStats({
       <div className="absolute top-0 inset-x-0 h-px bg-gradient-to-r from-transparent via-crimson/40 to-transparent" />
 
       <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div className={`grid grid-cols-2 ${cols} gap-8 md:gap-12`}>
           {stats.map((stat, i) => (
             <motion.div
               key={stat.label}

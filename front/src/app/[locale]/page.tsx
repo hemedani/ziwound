@@ -42,7 +42,7 @@ export default async function Home({ params }: HomePageProps) {
   const [dashRes, reportsRes, blogRes, heroSlidesRes, statsRes] = await Promise.all([
     dashboardStatistic(
       {},
-      { reports: 1, documents: 1, countries: 1, cities: 1, provinces: 1 }
+      { reports: 1, documents: 1, countries: 1, cities: 1, provinces: 1, warCriminals: 1 }
     ).catch(() => ({ success: false, body: {} })),
     getReports(
       { page: 1, limit: 6, status: "Approved", selected_language: (locale as ReqType["main"]["report"]["gets"]["set"]["selected_language"]) },
@@ -96,6 +96,7 @@ export default async function Home({ params }: HomePageProps) {
   const reportCount = dashBody.reports ?? 0;
   const docCount = dashBody.documents ?? 0;
   const countryCount = dashBody.countries ?? 0;
+  const warCriminalCount = dashBody.warCriminals ?? 0;
 
   // Extract real statistics for map hotspots
   const statsBody = statsRes.success && typeof statsRes.body === "object" ? statsRes.body : {};
@@ -259,10 +260,12 @@ export default async function Home({ params }: HomePageProps) {
         countries={formatCount(countryCount)}
         documents={formatCount(docCount)}
         locations={formatCount(locationCount)}
+        warCriminals={formatCount(warCriminalCount)}
         reportsLabel={t("impactStats.reports")}
         countriesLabel={t("impactStats.countries")}
         documentsLabel={t("impactStats.documents")}
         locationsLabel={t("impactStats.locations")}
+        warCriminalsLabel={t("impactStats.warCriminals") || "War Criminals"}
       />
 
       {/* Featured Reports / Stories */}

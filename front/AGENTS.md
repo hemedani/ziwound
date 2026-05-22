@@ -1936,6 +1936,157 @@ The Report Detail page displays a single war crime report with comprehensive inf
 
 ---
 
+## Dashboard & Statistics Architecture
+
+This section covers the admin dashboard and war crimes statistics pages, which display backend aggregation data via chart primitives.
+
+### Chart Primitive Components
+
+Reusable chart components used in both the admin dashboard and war crimes statistics page:
+
+- **`StatCard`** — Glass card with icon, title, and large number value. Links to management pages. Used for raw counts (reports, users, war criminals, etc.).
+- **`ProgressRow`** — Horizontal progress bar with label, icon, and count. For binary breakdowns (verified/unverified, published/draft, active/inactive).
+- **`MiniBarChart`** — Vertical bar list with labels and counts. For multi-value breakdowns (userByLevel, fileByType, warCriminalByStatus, tagCounts).
+- **`TimelineBarChart`** — Timeline bar chart with date labels. Uses `overflow-x-auto` + `min-w-[36px] shrink-0` on items for horizontal scrolling when data overflows.
+- **`SectionHeader`** — Section title with icon in a rounded container.
+
+### Admin Dashboard (`/admin/dashboard`)
+
+Uses two backend endpoints:
+
+1. **`dashboardStatistic`** — Returns aggregate counts and breakdowns:
+   - Raw counts: `users`, `provinces`, `cities`, `categories`, `tags`, `reports`, `documents`, `blogPosts`, `heroSlides`, `countries`, `files`, `warCriminals`
+   - Breakdowns (array of `{ _id, count }`): `userByLevel`, `userByVerification` (`_id: boolean | null`), `reportByStatus`, `reportByPriority`, `reportByLanguage`, `blogPostByStatus`, `heroSlideByStatus`, `fileByType` (includes `totalSize`), `warCriminalByStatus`, `warCriminalByAffiliation`
+   - Time series: `reportsLastWeek`, `reportsLastMonth`
+
+2. **`reportStatistics`** — Returns report-specific aggregations: `total`, `statusCounts`, `priorityCounts`, `categoryCounts`, `languageCounts`, `hostileCountryCounts`, `attackedCountryCounts`, `attackedProvinceCounts`, `attackedCityCounts`, `monthlyCounts`, `crimeOccurredMonthlyCounts`, `geographicCounts`
+
+**Interface:**
+```ts
+interface DashboardStatsBody {
+  users?: number; provinces?: number; cities?: number;
+  categories?: number; tags?: number;
+  reports?: number; documents?: number; blogPosts?: number;
+  heroSlides?: number; countries?: number; files?: number; warCriminals?: number;
+  userByLevel?: { _id: string; count: number }[];
+  userByVerification?: { _id: boolean; count: number }[];
+  reportByStatus?: { _id: string; count: number }[];
+  reportByPriority?: { _id: string; count: number }[];
+  reportByLanguage?: { _id: string; count: number }[];
+  blogPostByStatus?: { _id: boolean; count: number }[];
+  heroSlideByStatus?: { _id: boolean; count: number }[];
+  fileByType?: { _id: string; count: number; totalSize: number }[];
+  warCriminalByStatus?: { _id: string; count: number }[];
+  warCriminalByAffiliation?: { _id: string; count: number }[];
+  reportsLastWeek?: number;
+  reportsLastMonth?: number;
+}
+```
+
+### Null Handling Patterns
+
+Backend responses may include `null` values for `_id` in breakdowns. Handle them explicitly:
+
+```ts
+// userByVerification – treat null _id as unverified
+const unverifiedCount = userVerificationItems
+  .filter(v => v._id === false || v._id === null)
+  .reduce((sum, v) => sum + v.count, 0);
+
+// priorityCounts – map null to "Unknown"
+statsBody.priorityCounts?.forEach((i) => {
+  priorityCounts[i._id || "Unknown"] = i.count;
+});
+// Then render extra ProgressRow for "Unknown"
+{(priorityCounts["Unknown"] ?? 0) > 0 && (
+  <ProgressRow key="Unknown" label={t("common.unknown")} ... />
+)}
+```
+
+### Label Mapping & Translation
+
+Backend returns raw `_id` values (e.g., `"Ordinary"`, `"At Large"`, `"Private Military Company"`). Map them to translated labels before passing to charts:
+
+```ts
+// User levels – use existing admin.level_* keys
+const userLevelLabel: Record<string, string> = {
+  Ordinary: t("admin.level_Ordinary"), Manager: t("admin.level_Manager"),
+  Editor: t("admin.level_Editor"), Reporter: t("admin.Reporter"),
+  Artist: t("admin.Artist"), Diplomat: t("admin.Diplomat"),
+  Researcher: t("admin.Researcher"),
+};
+const userByLevelItems = (dashBody.userByLevel || []).map((i) => ({
+  ...i, _id: userLevelLabel[i._id] || i._id,
+}));
+
+// War criminal status – use existing admin.{camelCase} keys
+const wcStatusLabel: Record<string, string> = {
+  "At Large": t("admin.atLarge"), Deceased: t("admin.Deceased"),
+  Accused: t("admin.Accused"), Indicted: t("admin.Indicted"),
+  Convicted: t("admin.Convicted"), Sanctioned: t("admin.Sanctioned"),
+};
+
+// War criminal affiliation – use existing admin.{camelCase} keys
+const wcAffiliationLabel: Record<string, string> = {
+  Military: t("admin.Military"), Paramilitary: t("admin.Paramilitary"),
+  Government: t("admin.Government"),
+  "Rebel Group": t("admin.rebelGroup"),
+  "Private Military Company": t("admin.privateMilitaryCompany"),
+  Political: t("admin.Political"), Other: t("admin.Other"),
+};
+```
+
+### War Crimes Statistics (`/[locale]/war-crimes` → Statistics tab)
+
+Uses `reportStatistics` endpoint with additional aggregation fields:
+
+**Interface:**
+```ts
+interface ReportStatsBody {
+  total?: { count: number }[];
+  statusCounts?: CountItem[];
+  priorityCounts?: CountItem[];
+  categoryCounts?: CountItem[];
+  languageCounts?: CountItem[];
+  hostileCountryCounts?: CountItem[];
+  attackedCountryCounts?: CountItem[];
+  attackedProvinceCounts?: CountItem[];
+  attackedCityCounts?: CountItem[];
+  monthlyCounts?: CountItem[];
+  crimeOccurredMonthlyCounts?: CountItem[];
+  geographicCounts?: GeoCountItem[];
+  tagCounts?: CountItem[];
+  warCriminalCounts?: CountItem[];
+  reporterCounts?: { _id: string; firstName: string; lastName: string; count: number }[];
+  weeklyCounts?: CountItem[];
+  dailyCounts?: CountItem[];
+}
+```
+
+### Chart Sections Reference
+
+| Section | Data Source | Component | Translation Keys |
+|---------|-------------|-----------|------------------|
+| Reports by Status | `statsBody.statusCounts` | `ProgressRow` | `admin.status_pending`, `admin.status_approved`, etc. |
+| Reports by Priority | `statsBody.priorityCounts` | `ProgressRow` | `admin.priority_high`, `admin.priority_medium`, `admin.priority_low` |
+| Reports by Category | `statsBody.categoryCounts` | `MiniBarChart` | `admin.reportsByCategory` |
+| Reports by Language | `statsBody.languageCounts` | `MiniBarChart` | `admin.reportsByLanguage` |
+| Users by Level | `dashBody.userByLevel` | `MiniBarChart` | `admin.usersByLevel`, `admin.level_*` |
+| Users by Verification | `dashBody.userByVerification` | `ProgressRow` | `admin.verifiedUsers`, `admin.verified`, `admin.unverified` |
+| Blog Posts by Status | `dashBody.blogPostByStatus` | `ProgressRow` | `admin.blogByStatus`, `admin.published`, `admin.draft` |
+| Hero Slides by Status | `dashBody.heroSlideByStatus` | `ProgressRow` | `admin.heroSlidesByStatus`, `admin.active`, `admin.inactive` |
+| Files by Type | `dashBody.fileByType` | Custom bar with icon + size | `admin.filesByType` |
+| War Criminals by Status | `dashBody.warCriminalByStatus` | `MiniBarChart` | `admin.warCriminalStatus`, `admin.atLarge`, etc. |
+| War Criminals by Affiliation | `dashBody.warCriminalByAffiliation` | `MiniBarChart` | `admin.warCriminalAffiliation`, `admin.Military`, etc. |
+| Monthly Timeline | `statsBody.monthlyCounts` | `TimelineBarChart` | `admin.monthlyCreated` |
+| Weekly Timeline | `statsBody.weeklyCounts` | `TimelineBarChart` | `warCrimes.weeklyTimeline` |
+| Daily Timeline | `statsBody.dailyCounts` | `TimelineBarChart` | `warCrimes.dailyTimeline` |
+| Tags | `statsBody.tagCounts` | `MiniBarChart` | `warCrimes.byTag` |
+| War Criminals (stats) | `statsBody.warCriminalCounts` | `MiniBarChart` | (section title) |
+| Top Reporters | `statsBody.reporterCounts` | List card | `warCrimes.topReporters` |
+
+---
+
 ## Design System & Theming
 
 ### New Theme Direction (`new-theme/THEME.md`)

@@ -3,7 +3,7 @@ import type { DeepPartial, categorySchema } from "@/types/declarations";
 import {
   FileText, Layers, Languages, BarChart3, TrendingUp,
   AlertTriangle, ShieldCheck, Clock, Globe, MapPin, Calendar,
-  Flag, Building2, Map as MapIcon,
+  Flag, Building2, Map as MapIcon, Tag, UserCircle, Users,
 } from "lucide-react";
 
 interface CountItem { _id: string; count: number; }
@@ -22,6 +22,11 @@ interface ReportStatsBody {
   monthlyCounts?: CountItem[];
   crimeOccurredMonthlyCounts?: CountItem[];
   geographicCounts?: GeoCountItem[];
+  tagCounts?: CountItem[];
+  warCriminalCounts?: CountItem[];
+  reporterCounts?: { _id: string; firstName: string; lastName: string; count: number }[];
+  weeklyCounts?: CountItem[];
+  dailyCounts?: CountItem[];
 }
 
 interface WarCrimesStatisticsProps {
@@ -121,11 +126,11 @@ function TimelineBarChart({ items, barColor = "bg-crimson-light", noDataText = "
     return <div className="flex h-20 items-center justify-center text-xs text-slate-body/60">{noDataText}</div>;
   }
   return (
-    <div className="flex items-end gap-2 h-28">
+    <div className="flex items-end gap-2 h-28 overflow-x-auto pb-1">
       {items.map((item) => {
         const height = max > 0 ? Math.round((item.count / max) * 100) : 0;
         return (
-          <div key={item._id} className="flex-1 flex flex-col items-center gap-1">
+          <div key={item._id} className="min-w-[36px] flex flex-col items-center gap-1 shrink-0">
             <span className="text-[10px] font-bold text-offwhite">{item.count}</span>
             <div className="w-full bg-white/5 rounded-t-md overflow-hidden flex items-end" style={{ height: "64px" }}>
               <div className={`w-full ${barColor} rounded-t-md transition-all duration-700 opacity-80 hover:opacity-100`} style={{ height: `${height}%` }} />
@@ -169,7 +174,7 @@ export async function WarCrimesStatistics({
   statsBody.statusCounts?.forEach((i) => { statusCounts[i._id] = i.count; });
 
   const priorityCounts: Record<string, number> = {};
-  statsBody.priorityCounts?.forEach((i) => { priorityCounts[i._id] = i.count; });
+  statsBody.priorityCounts?.forEach((i) => { priorityCounts[i._id || "Unknown"] = i.count; });
 
   const categoryNameMap = new Map(categories.map((c) => [c._id, c.name]));
   const namedCategoryCounts = (statsBody.categoryCounts || []).map((c) => ({
@@ -243,6 +248,10 @@ export async function WarCrimesStatistics({
               <ProgressRow key={p.key} label={priorityLabel[p.key]} count={priorityCounts[p.key] || 0} total={totalStatCount}
                 colorClass={p.color} barColor={p.bar} icon={p.icon} />
             ))}
+            {(priorityCounts["Unknown"] ?? 0) > 0 && (
+              <ProgressRow key="Unknown" label="Unknown" count={priorityCounts["Unknown"]} total={totalStatCount}
+                colorClass="bg-slate-500/10 text-slate-400" barColor="bg-slate-400" icon={AlertTriangle} />
+            )}
           </div>
         </div>
       </div>
@@ -288,6 +297,49 @@ export async function WarCrimesStatistics({
         <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
           <SectionHeader icon={MapIcon} title={t("filters.attackedCities")} />
           <MiniBarChart items={statsBody.attackedCityCounts || []} barColor="bg-emerald-400" noDataText={t("noData")} />
+        </div>
+      </div>
+
+      {/* Tags + War Criminals */}
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+          <SectionHeader icon={Tag} title={t("byTag") || "By Tag"} />
+          <MiniBarChart items={(statsBody.tagCounts || []).slice(0, 50)} barColor="bg-violet-400" noDataText={t("noData")} />
+        </div>
+        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+          <SectionHeader icon={UserCircle} title="War Criminals" />
+          <MiniBarChart items={(statsBody.warCriminalCounts || []).slice(0, 50)} barColor="bg-crimson-light" noDataText={t("noData")} />
+        </div>
+      </div>
+
+      {/* Top Reporters */}
+      {(statsBody.reporterCounts?.length ?? 0) > 0 && (
+        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+          <SectionHeader icon={Users} title={t("topReporters") || "Top Reporters"} />
+          <div className="grid gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+            {statsBody.reporterCounts!.slice(0, 20).map((r) => (
+              <div key={r._id}
+                className="flex items-center justify-between rounded-lg bg-white/[0.02] px-3 py-2 border border-white/[0.04]">
+                <div className="flex items-center gap-2">
+                  <UserCircle className="h-3.5 w-3.5 text-gold shrink-0" />
+                  <span className="text-xs text-offwhite">{r.firstName} {r.lastName}</span>
+                </div>
+                <span className="text-xs font-bold text-offwhite">{r.count}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Weekly + Daily Timelines */}
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+          <SectionHeader icon={Calendar} title={t("weeklyTimeline") || "Weekly Created"} />
+          <TimelineBarChart items={statsBody.weeklyCounts || []} barColor="bg-crimson-light" noDataText={t("noData")} />
+        </div>
+        <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+          <SectionHeader icon={Calendar} title={t("dailyTimeline") || "Daily Created"} />
+          <TimelineBarChart items={statsBody.dailyCounts || []} barColor="bg-gold" noDataText={t("noData")} />
         </div>
       </div>
 
