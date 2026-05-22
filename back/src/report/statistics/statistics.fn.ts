@@ -16,7 +16,6 @@ export const statisticsFn: ActFn = async (body) => {
     matchStage["category._id"] = new ObjectId(filters.categoryId);
   }
 
-  // New relation-based filters
   if (filters.hostileCountryIds && filters.hostileCountryIds.length > 0) {
     matchStage["hostileCountries._id"] = {
       $in: filters.hostileCountryIds.map((id: string) => new ObjectId(id)),
@@ -35,6 +34,22 @@ export const statisticsFn: ActFn = async (body) => {
   if (filters.attackedCityIds && filters.attackedCityIds.length > 0) {
     matchStage["attackedCities._id"] = {
       $in: filters.attackedCityIds.map((id: string) => new ObjectId(id)),
+    };
+  }
+
+  if (filters.tagIds && filters.tagIds.length > 0) {
+    matchStage["tags._id"] = {
+      $in: filters.tagIds.map((id: string) => new ObjectId(id)),
+    };
+  }
+  if (filters.warCriminalIds && filters.warCriminalIds.length > 0) {
+    matchStage["warCriminals._id"] = {
+      $in: filters.warCriminalIds.map((id: string) => new ObjectId(id)),
+    };
+  }
+  if (filters.userIds && filters.userIds.length > 0) {
+    matchStage["reporter._id"] = {
+      $in: filters.userIds.map((id: string) => new ObjectId(id)),
     };
   }
 
@@ -101,10 +116,60 @@ export const statisticsFn: ActFn = async (body) => {
           { $group: { _id: "$attackedCities.name", count: { $sum: 1 } } },
           { $sort: { count: -1 } },
         ],
+        tagCounts: [
+          { $unwind: "$tags" },
+          { $group: { _id: "$tags.name", count: { $sum: 1 } } },
+          { $sort: { count: -1 } },
+          { $limit: 50 },
+        ],
+        warCriminalCounts: [
+          { $unwind: "$warCriminals" },
+          {
+            $group: {
+              _id: "$warCriminals.fullName",
+              count: { $sum: 1 },
+            },
+          },
+          { $sort: { count: -1 } },
+          { $limit: 50 },
+        ],
+        reporterCounts: [
+          { $match: { "reporter.level": { $ne: "Ghost" } } },
+          {
+            $group: {
+              _id: "$reporter._id",
+              firstName: { $first: "$reporter.first_name" },
+              lastName: { $first: "$reporter.last_name" },
+              count: { $sum: 1 },
+            },
+          },
+          { $sort: { count: -1 } },
+          { $limit: 20 },
+        ],
         monthlyCounts: [
           {
             $group: {
               _id: { $dateToString: { format: "%Y-%m", date: "$createdAt" } },
+              count: { $sum: 1 },
+            },
+          },
+          { $sort: { _id: 1 } },
+        ],
+        weeklyCounts: [
+          {
+            $group: {
+              _id: { $dateToString: { format: "%Y-W%V", date: "$createdAt" } },
+              count: { $sum: 1 },
+            },
+          },
+          { $sort: { _id: 1 } },
+        ],
+        dailyCounts: [
+          {
+            $group: {
+              _id: {
+                $dateToString: { format: "%Y-%m-%d", date: "$createdAt" },
+              },
               count: { $sum: 1 },
             },
           },

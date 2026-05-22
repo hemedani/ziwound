@@ -12617,6 +12617,19 @@ export type ReqType = {
           heroSlides?: (0 | 1);
           countries?: (0 | 1);
           files?: (0 | 1);
+          warCriminals?: (0 | 1);
+          userByLevel?: (0 | 1);
+          userByVerification?: (0 | 1);
+          reportByStatus?: (0 | 1);
+          reportByPriority?: (0 | 1);
+          reportByLanguage?: (0 | 1);
+          blogPostByStatus?: (0 | 1);
+          heroSlideByStatus?: (0 | 1);
+          fileByType?: (0 | 1);
+          warCriminalByStatus?: (0 | 1);
+          warCriminalByAffiliation?: (0 | 1);
+          reportsLastWeek?: (0 | 1);
+          reportsLastMonth?: (0 | 1);
         };
       };
 
@@ -17108,6 +17121,9 @@ export type ReqType = {
           attackedCountryIds?: string[];
           attackedProvinceIds?: string[];
           attackedCityIds?: string[];
+          tagIds?: string[];
+          warCriminalIds?: string[];
+          userIds?: string[];
           createdAtFrom?: Date;
           createdAtTo?: Date;
           crimeOccurredFrom?: Date;
