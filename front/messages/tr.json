@@ -350,10 +350,22 @@
       "overline": "ZiWound Neden Önemlidir",
       "title": "Dezenformasyonla Mücadele, Gerçeği Korumak",
       "subtitle": "Bilgi savaşı çağında, belgelenmiş kanıtlar inkâr ve çarpıtmaya karşı en güçlü silahımızdır.",
-      "card1": { "title": "Dezenformasyonla Mücadele", "desc": "Tarihsel gerçeğin kasıtlı olarak çarpıtılmasına karşı titiz belgeleme, doğrulama ve kanıtların korunması yoluyla mücadele ediyoruz." },
-      "card2": { "title": "Gerçeği Korumak", "desc": "Her kanıt parçası, gerçeğin nesiller boyu yaşamasını sağlamak için güvenli, değiştirilemez depolama kullanılarak kalıcı olarak arşivlenir." },
-      "card3": { "title": "Adaleti Desteklemek", "desc": "Belgelenmiş arşivimiz hukuki süreçleri, savaş suçu mahkemelerini ve uluslararası mahkemeleri desteklemektedir." },
-      "card4": { "title": "Küresel Dayanışma", "desc": "Dünya çapında hayatta kalanları, araştırmacıları, gazetecileri ve savunucuları cezasızlığa karşı birleştiriyoruz." }
+      "card1": {
+        "title": "Dezenformasyonla Mücadele",
+        "desc": "Tarihsel gerçeğin kasıtlı olarak çarpıtılmasına karşı titiz belgeleme, doğrulama ve kanıtların korunması yoluyla mücadele ediyoruz."
+      },
+      "card2": {
+        "title": "Gerçeği Korumak",
+        "desc": "Her kanıt parçası, gerçeğin nesiller boyu yaşamasını sağlamak için güvenli, değiştirilemez depolama kullanılarak kalıcı olarak arşivlenir."
+      },
+      "card3": {
+        "title": "Adaleti Desteklemek",
+        "desc": "Belgelenmiş arşivimiz hukuki süreçleri, savaş suçu mahkemelerini ve uluslararası mahkemeleri desteklemektedir."
+      },
+      "card4": {
+        "title": "Küresel Dayanışma",
+        "desc": "Dünya çapında hayatta kalanları, araştırmacıları, gazetecileri ve savunucuları cezasızlığa karşı birleştiriyoruz."
+      }
     },
     "locations": {
       "overline": "Konumları Keşfet",
@@ -365,10 +377,22 @@
       "overline": "Nasıl Çalışır",
       "title": "Kanıttan Adalete",
       "subtitle": "Savaş suçlarını belgelemek ve küresel adalet arayışına katkıda bulunmak için basit ve güvenli bir süreç.",
-      "step1": { "title": "Kanıt Gönder", "desc": "Güvenli şifrelenmiş platformumuz üzerinden raporlar, belgeler ve görseller yükleyin." },
-      "step2": { "title": "Doğrulama ve İnceleme", "desc": "Ekibimiz her gönderimi özgünlük açısından titizlikle doğrular." },
-      "step3": { "title": "Kalıcı Arşiv", "desc": "Doğrulanmış raporlar kalıcı, değiştirilemez arşivimize girer." },
-      "step4": { "title": "Adalet ve Hesap Verebilirlik", "desc": "Arşivlenmiş kanıtlar dünya çapındaki uluslararası mahkemeleri destekler." }
+      "step1": {
+        "title": "Kanıt Gönder",
+        "desc": "Güvenli şifrelenmiş platformumuz üzerinden raporlar, belgeler ve görseller yükleyin."
+      },
+      "step2": {
+        "title": "Doğrulama ve İnceleme",
+        "desc": "Ekibimiz her gönderimi özgünlük açısından titizlikle doğrular."
+      },
+      "step3": {
+        "title": "Kalıcı Arşiv",
+        "desc": "Doğrulanmış raporlar kalıcı, değiştirilemez arşivimize girer."
+      },
+      "step4": {
+        "title": "Adalet ve Hesap Verebilirlik",
+        "desc": "Arşivlenmiş kanıtlar dünya çapındaki uluslararası mahkemeleri destekler."
+      }
     },
     "subtitle": "Sorunları kolayca bildirin",
     "title": "Vatandaş Rapor Sistemi",
@@ -1013,7 +1037,53 @@
     "warCriminalStatus": "War Criminals by Status",
     "warCriminalAffiliation": "War Criminals by Affiliation",
     "reportsLastWeek": "Reports (7 days)",
-    "reportsLastMonth": "Reports (30 days)"
+    "reportsLastMonth": "Reports (30 days)",
+    "welcome": "Tekrar hoş geldiniz",
+    "manage": "Yönet",
+    "categorization": "Kategorizasyon",
+    "geography": "Coğrafya",
+    "system": "Sistem",
+    "totalDocuments": "Toplam Belgeler",
+    "selectDate": "Tarih seç",
+    "tryAgain": "Tekrar Dene",
+    "noDocumentsFiltered": "Filtrelerinizle eşleşen belge yok",
+    "deleteDocuments": "Belgeleri Sil",
+    "deleteDocumentsConfirm": "Bu belgeleri silmek istediğinize emin misiniz?",
+    "documentsDeleted": "belge silindi",
+    "addReport": "Yeni Rapor",
+    "allTags": "Tüm Etiketler",
+    "filters": "Filtreler",
+    "locations": "Konumlar",
+    "dateRange": "Tarih Aralığı",
+    "clearAll": "Tüm Filtreleri Temizle",
+    "showing": "Gösteriliyor",
+    "of": "/",
+    "selected": "seçildi",
+    "clear": "Temizle",
+    "noReportsFiltered": "Filtrelerinizle eşleşen rapor yok",
+    "deleteReports": "Raporları Sil",
+    "deleteReportsConfirm": "Bu raporları silmek istediğinize emin misiniz?",
+    "reportDeleted": "Rapor silindi",
+    "reportUpdated": "Rapor güncellendi",
+    "reportsDeleted": "rapor silindi",
+    "logout": "Çıkış",
+    "totalPosts": "Toplam Yazılar",
+    "drafts": "Taslaklar",
+    "notFeatured": "Öne Çıkarılmamış",
+    "postsDeleted": "yazı silindi",
+    "postDeleted": "Yazı silindi",
+    "deletePosts": "Yazıları Sil",
+    "deletePost": "Yazıyı Sil",
+    "deletePostsConfirm": "{count} yazıyı silmek istediğinize emin misiniz?",
+    "deletePostConfirm": "Bu yazıyı silmek istediğinize emin misiniz?",
+    "noPostsFiltered": "Filtrelerinize uyan yazı bulunamadı",
+    "tryAdjustingSearch": "Aramanızı veya filtrelerinizi ayarlamayı deneyin",
+    "publishedAt": "Yayınlanma Tarihi",
+    "posts": "yazı",
+    "settings": "Ayarlar",
+    "backToBlog": "Blog'a Geri Dön",
+    "manageTags": "Bu yazıya etiket ekleyin veya çıkarın",
+    "tagsChanged": "Etiketler değiştirildi. Uygulamak için kaydedin."
   },
   "notFound": {
     "backHome": "Ana Sayfaya Dön",

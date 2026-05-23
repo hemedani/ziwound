@@ -350,10 +350,22 @@
       "overline": "Waarom ZiWound Belangrijk Is",
       "title": "Desinformatie Bestrijden, Waarheid Bewaren",
       "subtitle": "In een tijdperk van informatieoorlogvoering is gedocumenteerd bewijs ons sterkste wapen tegen ontkenning en verdraaiing.",
-      "card1": { "title": "Desinformatie Bestrijden", "desc": "We bestrijden de opzettelijke verdraaiing van historische waarheid door middel van grondige documentatie, verificatie en het bewaren van bewijs." },
-      "card2": { "title": "Waarheid Bewaren", "desc": "Elk stuk bewijs wordt permanent gearchiveerd met behulp van veilige, onveranderlijke opslag om ervoor te zorgen dat de waarheid generaties overleeft." },
-      "card3": { "title": "Gerechtigheid Ondersteunen", "desc": "Ons gedocumenteerde archief ondersteunt juridische procedures, oorlogsmisdadentribunalen en internationale hoven." },
-      "card4": { "title": "Wereldwijde Solidariteit", "desc": "We verenigen overlevenden, onderzoekers, journalisten en voorvechters wereldwijd tegen straffeloosheid." }
+      "card1": {
+        "title": "Desinformatie Bestrijden",
+        "desc": "We bestrijden de opzettelijke verdraaiing van historische waarheid door middel van grondige documentatie, verificatie en het bewaren van bewijs."
+      },
+      "card2": {
+        "title": "Waarheid Bewaren",
+        "desc": "Elk stuk bewijs wordt permanent gearchiveerd met behulp van veilige, onveranderlijke opslag om ervoor te zorgen dat de waarheid generaties overleeft."
+      },
+      "card3": {
+        "title": "Gerechtigheid Ondersteunen",
+        "desc": "Ons gedocumenteerde archief ondersteunt juridische procedures, oorlogsmisdadentribunalen en internationale hoven."
+      },
+      "card4": {
+        "title": "Wereldwijde Solidariteit",
+        "desc": "We verenigen overlevenden, onderzoekers, journalisten en voorvechters wereldwijd tegen straffeloosheid."
+      }
     },
     "locations": {
       "overline": "Verken Locaties",
@@ -365,10 +377,22 @@
       "overline": "Hoe Het Werkt",
       "title": "Van Bewijs tot Gerechtigheid",
       "subtitle": "Een eenvoudig, veilig proces voor het documenteren van oorlogsmisdaden en het bijdragen aan de wereldwijde zoektocht naar gerechtigheid.",
-      "step1": { "title": "Bewijs Indienen", "desc": "Upload rapporten, documenten en afbeeldingen via ons beveiligde, versleutelde platform." },
-      "step2": { "title": "Verificatie & Beoordeling", "desc": "Ons team verifieert elke inzending zorgvuldig op authenticiteit." },
-      "step3": { "title": "Permanent Archief", "desc": "Geverifieerde rapporten worden opgenomen in ons permanente, onveranderlijke archief." },
-      "step4": { "title": "Gerechtigheid & Verantwoording", "desc": "Gearchiveerd bewijs ondersteunt internationale hoven wereldwijd." }
+      "step1": {
+        "title": "Bewijs Indienen",
+        "desc": "Upload rapporten, documenten en afbeeldingen via ons beveiligde, versleutelde platform."
+      },
+      "step2": {
+        "title": "Verificatie & Beoordeling",
+        "desc": "Ons team verifieert elke inzending zorgvuldig op authenticiteit."
+      },
+      "step3": {
+        "title": "Permanent Archief",
+        "desc": "Geverifieerde rapporten worden opgenomen in ons permanente, onveranderlijke archief."
+      },
+      "step4": {
+        "title": "Gerechtigheid & Verantwoording",
+        "desc": "Gearchiveerd bewijs ondersteunt internationale hoven wereldwijd."
+      }
     },
     "subtitle": "Meld problemen eenvoudig",
     "title": "Burgerrapportagesysteem",
@@ -1066,7 +1090,53 @@
     "warCriminalStatus": "War Criminals by Status",
     "warCriminalAffiliation": "War Criminals by Affiliation",
     "reportsLastWeek": "Reports (7 days)",
-    "reportsLastMonth": "Reports (30 days)"
+    "reportsLastMonth": "Reports (30 days)",
+    "welcome": "Welkom terug",
+    "manage": "Beheren",
+    "categorization": "Categorisatie",
+    "geography": "Geografie",
+    "system": "Systeem",
+    "totalDocuments": "Totaal Documenten",
+    "selectDate": "Selecteer datum",
+    "tryAgain": "Opnieuw proberen",
+    "noDocumentsFiltered": "Geen documenten die overeenkomen met uw filters",
+    "deleteDocuments": "Documenten Verwijderen",
+    "deleteDocumentsConfirm": "Weet u zeker dat u deze documenten wilt verwijderen?",
+    "documentsDeleted": "documenten verwijderd",
+    "addReport": "Nieuw Rapport",
+    "allTags": "Alle Tags",
+    "filters": "Filters",
+    "locations": "Locaties",
+    "dateRange": "Datumbereik",
+    "clearAll": "Alle Filters Wissen",
+    "showing": "Toont",
+    "of": "van",
+    "selected": "geselecteerd",
+    "clear": "Wissen",
+    "noReportsFiltered": "Geen rapporten die overeenkomen met uw filters",
+    "deleteReports": "Rapporten Verwijderen",
+    "deleteReportsConfirm": "Weet u zeker dat u deze rapporten wilt verwijderen?",
+    "reportDeleted": "Rapport verwijderd",
+    "reportUpdated": "Rapport bijgewerkt",
+    "reportsDeleted": "rapporten verwijderd",
+    "logout": "Uitloggen",
+    "totalPosts": "Totaal Artikelen",
+    "drafts": "Concepten",
+    "notFeatured": "Niet Uitgelicht",
+    "postsDeleted": "artikelen verwijderd",
+    "postDeleted": "Artikel verwijderd",
+    "deletePosts": "Artikelen Verwijderen",
+    "deletePost": "Artikel Verwijderen",
+    "deletePostsConfirm": "Weet u zeker dat u {count} artikelen wilt verwijderen?",
+    "deletePostConfirm": "Weet u zeker dat u dit artikel wilt verwijderen?",
+    "noPostsFiltered": "Geen artikelen gevonden die voldoen aan uw filters",
+    "tryAdjustingSearch": "Probeer uw zoekopdracht of filters aan te passen",
+    "publishedAt": "Gepubliceerd Op",
+    "posts": "artikelen",
+    "settings": "Instellingen",
+    "backToBlog": "Terug naar Blog",
+    "manageTags": "Tags toevoegen of verwijderen van dit artikel",
+    "tagsChanged": "Tags zijn gewijzigd. Sla op om toe te passen."
   },
   "notFound": {
     "backHome": "Terug naar startpagina",

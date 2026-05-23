@@ -350,10 +350,22 @@
       "overline": "Por Que o ZiWound é Importante",
       "title": "Combatendo a Desinformação, Preservando a Verdade",
       "subtitle": "Em uma era de guerra de informação, a evidência documentada é nossa arma mais forte contra a negação e a distorção.",
-      "card1": { "title": "Combate à Desinformação", "desc": "Lutamos contra a distorção deliberada da verdade histórica por meio de documentação rigorosa, verificação e preservação de evidências." },
-      "card2": { "title": "Preservação da Verdade", "desc": "Cada evidência é arquivada permanentemente usando armazenamento seguro e imutável para garantir que a verdade sobreviva às gerações." },
-      "card3": { "title": "Apoio à Justiça", "desc": "Nosso arquivo documentado apoia processos legais, tribunais de crimes de guerra e cortes internacionais." },
-      "card4": { "title": "Solidariedade Global", "desc": "Unimos sobreviventes, pesquisadores, jornalistas e defensores em todo o mundo contra a impunidade." }
+      "card1": {
+        "title": "Combate à Desinformação",
+        "desc": "Lutamos contra a distorção deliberada da verdade histórica por meio de documentação rigorosa, verificação e preservação de evidências."
+      },
+      "card2": {
+        "title": "Preservação da Verdade",
+        "desc": "Cada evidência é arquivada permanentemente usando armazenamento seguro e imutável para garantir que a verdade sobreviva às gerações."
+      },
+      "card3": {
+        "title": "Apoio à Justiça",
+        "desc": "Nosso arquivo documentado apoia processos legais, tribunais de crimes de guerra e cortes internacionais."
+      },
+      "card4": {
+        "title": "Solidariedade Global",
+        "desc": "Unimos sobreviventes, pesquisadores, jornalistas e defensores em todo o mundo contra a impunidade."
+      }
     },
     "locations": {
       "overline": "Explorar Locais",
@@ -365,10 +377,22 @@
       "overline": "Como Funciona",
       "title": "Da Evidência à Justiça",
       "subtitle": "Um processo simples e seguro para documentar crimes de guerra e contribuir para a busca global por justiça.",
-      "step1": { "title": "Enviar Evidências", "desc": "Envie relatórios, documentos e imagens através da nossa plataforma segura e criptografada." },
-      "step2": { "title": "Verificação e Revisão", "desc": "Nossa equipe verifica cuidadosamente cada envio para garantir autenticidade." },
-      "step3": { "title": "Arquivo Permanente", "desc": "Relatórios verificados entram em nosso arquivo permanente e imutável." },
-      "step4": { "title": "Justiça e Responsabilização", "desc": "Evidências arquivadas apoiam tribunais internacionais em todo o mundo." }
+      "step1": {
+        "title": "Enviar Evidências",
+        "desc": "Envie relatórios, documentos e imagens através da nossa plataforma segura e criptografada."
+      },
+      "step2": {
+        "title": "Verificação e Revisão",
+        "desc": "Nossa equipe verifica cuidadosamente cada envio para garantir autenticidade."
+      },
+      "step3": {
+        "title": "Arquivo Permanente",
+        "desc": "Relatórios verificados entram em nosso arquivo permanente e imutável."
+      },
+      "step4": {
+        "title": "Justiça e Responsabilização",
+        "desc": "Evidências arquivadas apoiam tribunais internacionais em todo o mundo."
+      }
     },
     "subtitle": "Relate problemas com facilidade",
     "title": "Sistema de Relato Cidadão",
@@ -1013,7 +1037,53 @@
     "warCriminalStatus": "War Criminals by Status",
     "warCriminalAffiliation": "War Criminals by Affiliation",
     "reportsLastWeek": "Reports (7 days)",
-    "reportsLastMonth": "Reports (30 days)"
+    "reportsLastMonth": "Reports (30 days)",
+    "welcome": "Bem-vindo de volta",
+    "manage": "Gerenciar",
+    "categorization": "Categorização",
+    "geography": "Geografia",
+    "system": "Sistema",
+    "totalDocuments": "Total de Documentos",
+    "selectDate": "Selecionar data",
+    "tryAgain": "Tentar novamente",
+    "noDocumentsFiltered": "Nenhum documento corresponde aos seus filtros",
+    "deleteDocuments": "Excluir Documentos",
+    "deleteDocumentsConfirm": "Tem certeza de que deseja excluir estes documentos?",
+    "documentsDeleted": "documentos excluídos",
+    "addReport": "Novo Relatório",
+    "allTags": "Todas as Tags",
+    "filters": "Filtros",
+    "locations": "Localizações",
+    "dateRange": "Intervalo de Datas",
+    "clearAll": "Limpar Todos os Filtros",
+    "showing": "Mostrando",
+    "of": "de",
+    "selected": "selecionado",
+    "clear": "Limpar",
+    "noReportsFiltered": "Nenhum relatório corresponde aos seus filtros",
+    "deleteReports": "Excluir Relatórios",
+    "deleteReportsConfirm": "Tem certeza de que deseja excluir estes relatórios?",
+    "reportDeleted": "Relatório excluído",
+    "reportUpdated": "Relatório atualizado",
+    "reportsDeleted": "relatórios excluídos",
+    "logout": "Sair",
+    "totalPosts": "Total de Artigos",
+    "drafts": "Rascunhos",
+    "notFeatured": "Não Destacado",
+    "postsDeleted": "artigos excluídos",
+    "postDeleted": "Artigo excluído",
+    "deletePosts": "Excluir Artigos",
+    "deletePost": "Excluir Artigo",
+    "deletePostsConfirm": "Tem certeza de que deseja excluir {count} artigos?",
+    "deletePostConfirm": "Tem certeza de que deseja excluir este artigo?",
+    "noPostsFiltered": "Nenhum artigo corresponde aos seus filtros",
+    "tryAdjustingSearch": "Tente ajustar sua pesquisa ou filtros",
+    "publishedAt": "Publicado Em",
+    "posts": "artigos",
+    "settings": "Configurações",
+    "backToBlog": "Voltar ao Blog",
+    "manageTags": "Adicionar ou remover tags deste artigo",
+    "tagsChanged": "As tags foram alteradas. Salve para aplicar."
   },
   "notFound": {
     "backHome": "Voltar ao início",

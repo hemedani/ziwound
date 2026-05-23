@@ -350,10 +350,22 @@
       "overline": "为什么ZiWound至关重要",
       "title": "打击虚假信息，守护真相",
       "subtitle": "在信息战的时代，有记录的证据是我们对抗否认与歪曲的最强武器。",
-      "card1": { "title": "打击虚假信息", "desc": "我们通过严格的记录、核实和证据保存，对抗对历史真相的蓄意歪曲。" },
-      "card2": { "title": "守护真相", "desc": "每份证据都通过安全、不可篡改的存储永久存档，确保真相世代相传。" },
-      "card3": { "title": "支持正义", "desc": "我们的记录档案支持法律诉讼、战争罪行法庭和国际法院的工作。" },
-      "card4": { "title": "全球团结", "desc": "我们联合全球的幸存者、研究人员、记者和倡导者，共同反对有罪不罚。" }
+      "card1": {
+        "title": "打击虚假信息",
+        "desc": "我们通过严格的记录、核实和证据保存，对抗对历史真相的蓄意歪曲。"
+      },
+      "card2": {
+        "title": "守护真相",
+        "desc": "每份证据都通过安全、不可篡改的存储永久存档，确保真相世代相传。"
+      },
+      "card3": {
+        "title": "支持正义",
+        "desc": "我们的记录档案支持法律诉讼、战争罪行法庭和国际法院的工作。"
+      },
+      "card4": {
+        "title": "全球团结",
+        "desc": "我们联合全球的幸存者、研究人员、记者和倡导者，共同反对有罪不罚。"
+      }
     },
     "locations": {
       "overline": "探索地点",
@@ -365,10 +377,22 @@
       "overline": "工作原理",
       "title": "从证据到正义",
       "subtitle": "一个简单、安全的流程，用于记录战争罪行并为全球追求正义做出贡献。",
-      "step1": { "title": "提交证据", "desc": "通过我们安全的加密平台上传报告、文件和图片。" },
-      "step2": { "title": "核实与审查", "desc": "我们的团队仔细核实每份提交内容的真实性。" },
-      "step3": { "title": "永久存档", "desc": "经过核实的报告进入我们永久、不可篡改的档案库。" },
-      "step4": { "title": "正义与问责", "desc": "存档证据支持全球国际法院的工作。" }
+      "step1": {
+        "title": "提交证据",
+        "desc": "通过我们安全的加密平台上传报告、文件和图片。"
+      },
+      "step2": {
+        "title": "核实与审查",
+        "desc": "我们的团队仔细核实每份提交内容的真实性。"
+      },
+      "step3": {
+        "title": "永久存档",
+        "desc": "经过核实的报告进入我们永久、不可篡改的档案库。"
+      },
+      "step4": {
+        "title": "正义与问责",
+        "desc": "存档证据支持全球国际法院的工作。"
+      }
     },
     "subtitle": "轻松报告问题",
     "title": "市民报告系统",
@@ -1013,7 +1037,53 @@
     "warCriminalStatus": "War Criminals by Status",
     "warCriminalAffiliation": "War Criminals by Affiliation",
     "reportsLastWeek": "Reports (7 days)",
-    "reportsLastMonth": "Reports (30 days)"
+    "reportsLastMonth": "Reports (30 days)",
+    "welcome": "欢迎回来",
+    "manage": "管理",
+    "categorization": "分类",
+    "geography": "地理",
+    "system": "系统",
+    "totalDocuments": "文档总数",
+    "selectDate": "选择日期",
+    "tryAgain": "重试",
+    "noDocumentsFiltered": "没有符合筛选条件的文档",
+    "deleteDocuments": "删除文档",
+    "deleteDocumentsConfirm": "确定要删除这些文档吗？",
+    "documentsDeleted": "文档已删除",
+    "addReport": "新报告",
+    "allTags": "所有标签",
+    "filters": "筛选器",
+    "locations": "位置",
+    "dateRange": "日期范围",
+    "clearAll": "清除所有筛选",
+    "showing": "显示",
+    "of": "之",
+    "selected": "已选择",
+    "clear": "清除",
+    "noReportsFiltered": "没有符合筛选条件的报告",
+    "deleteReports": "删除报告",
+    "deleteReportsConfirm": "确定要删除这些报告吗？",
+    "reportDeleted": "报告已删除",
+    "reportUpdated": "报告已更新",
+    "reportsDeleted": "报告已删除",
+    "logout": "退出",
+    "totalPosts": "文章总数",
+    "drafts": "草稿",
+    "notFeatured": "未精选",
+    "postsDeleted": "文章已删除",
+    "postDeleted": "文章已删除",
+    "deletePosts": "删除文章",
+    "deletePost": "删除文章",
+    "deletePostsConfirm": "确定要删除 {count} 篇文章吗？",
+    "deletePostConfirm": "确定要删除这篇文章吗？",
+    "noPostsFiltered": "没有文章符合您的筛选条件",
+    "tryAdjustingSearch": "尝试调整搜索或筛选条件",
+    "publishedAt": "发布时间",
+    "posts": "篇",
+    "settings": "设置",
+    "backToBlog": "返回博客",
+    "manageTags": "添加或移除此文章的标签",
+    "tagsChanged": "标签已更改。保存以应用。"
   },
   "notFound": {
     "backHome": "返回首页",
