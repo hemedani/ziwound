@@ -6,6 +6,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useTranslations } from "next-intl";
+import { motion } from "framer-motion";
 import { add as addBlogPost } from "@/app/actions/blogPost/add";
 import { update as updateBlogPost } from "@/app/actions/blogPost/update";
 import { updateRelations } from "@/app/actions/blogPost/updateRelations";
@@ -26,8 +27,9 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { useToast } from "@/components/ui/use-toast";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { TagSelector } from "@/components/form/tag-selector";
-import { Loader2 } from "lucide-react";
+import { Loader2, ArrowLeft, BookOpen } from "lucide-react";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import Link from "next/link";
 
 const LANGUAGES = [
   { code: "fa", name: "فارسی" },
@@ -42,9 +44,9 @@ const LANGUAGES = [
 ];
 
 const formSchema = z.object({
-  title: z.string().min(2, "Title is required"),
-  slug: z.string().min(2, "Slug is required"),
-  content: z.string().min(10, "Content is required"),
+  title: z.string().min(2, JSON.stringify({ key: "validation.minLength", values: { min: 2 } })),
+  slug: z.string().min(2, JSON.stringify({ key: "validation.minLength", values: { min: 2 } })),
+  content: z.string().min(10, JSON.stringify({ key: "validation.minLength", values: { min: 10 } })),
   isPublished: z.boolean().default(false),
   isFeatured: z.boolean().default(false),
   coverImage: z.array(z.string()).optional(),
@@ -107,7 +109,6 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
     },
   });
 
-  // Auto-generate slug from title if empty
   const handleTitleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const newTitle = e.target.value;
     form.setValue("title", newTitle);
@@ -130,7 +131,6 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
       const tagIds = data.tags && data.tags.length > 0 ? data.tags : undefined;
 
       if (isEditing && initialData) {
-        // Update post
         const updateRes = await updateBlogPost({
           _id: initialData._id,
           title: data.title,
@@ -145,7 +145,6 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
           throw new Error(updateRes.error || updateRes.body?.message || "Failed to update blog post");
         }
 
-        // Update relations
         const currentCover = initialData.coverImage?._id;
         const newCover = coverImageId;
         const coverChanged = currentCover !== newCover;
@@ -175,7 +174,6 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
           description: t("blogPostUpdated") || "Blog post updated successfully",
         });
       } else {
-        // Add new post
         const addRes = await addBlogPost({
           title: data.title,
           slug: data.slug,
@@ -212,194 +210,293 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
   }
 
   return (
-    <Form {...form}>
-      <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-        <div className="grid gap-6 md:grid-cols-2">
-          <div className="space-y-6">
-            <FormField
-              control={form.control}
-              name="title"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("title")}</FormLabel>
-                  <FormControl>
-                    <Input
-                      placeholder={t("titlePlaceholder") || "Enter post title"}
-                      {...field}
-                      onChange={(e) => {
-                        field.onChange(e);
-                        handleTitleChange(e);
-                      }}
-                      className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="slug"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("slug") || "Slug (URL)"}</FormLabel>
-                  <FormControl>
-                    <Input placeholder={t("slugPlaceholder") || "my-awesome-post"} {...field} className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson" />
-                  </FormControl>
-                  <FormDescription>
-                    {t("slugDescription") || "The URL-friendly version of the title. Must be unique."}
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <FormField
-              control={form.control}
-              name="tags"
-              render={({ field }) => (
-                <FormItem>
-                  <FormControl>
-                    <TagSelector
-                      label={t("tags") || "Tags"}
-                      availableTags={availableTags.map((t) => ({ id: t._id, name: t.name }))}
-                      selectedTags={availableTags
-                        .filter((tag) => (field.value || []).includes(tag._id))
-                        .map((t) => ({ id: t._id, name: t.name }))}
-                      onChange={(tags) => field.onChange(tags.map((t) => t.id))}
-                    />
-                  </FormControl>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-
-            <div className="space-y-4 rounded-2xl glass-light p-5 border border-white/[0.06]">
-              <FormField
-                control={form.control}
-                name="selected_language"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>{t("language") || "Language"}</FormLabel>
-                    <Select value={field.value || ""} onValueChange={field.onChange}>
-                      <FormControl>
-                        <SelectTrigger className="bg-white/5 border-white/10 text-offwhite focus:ring-crimson">
-                          <SelectValue placeholder={t("selectLanguage") || "Select language"} />
-                        </SelectTrigger>
-                      </FormControl>
-                      <SelectContent className="glass-strong border-white/10">
-                        <SelectItem value="all">{t("allLanguages") || "All Languages"}</SelectItem>
-                        {LANGUAGES.map((lang) => (
-                          <SelectItem key={lang.code} value={lang.code}>
-                            {lang.name}
-                          </SelectItem>
-                        ))}
-                      </SelectContent>
-                    </Select>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="isPublished"
-                render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0">
-                    <FormControl>
-                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                    </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel>{t("published") || "Published"}</FormLabel>
-                      <FormDescription>
-                        {t("publishedDescription") || "Make this post visible to the public"}
-                      </FormDescription>
-                    </div>
-                  </FormItem>
-                )}
-              />
-
-              <FormField
-                control={form.control}
-                name="isFeatured"
-                render={({ field }) => (
-                  <FormItem className="flex flex-row items-start space-x-3 space-y-0 pt-4 border-t">
-                    <FormControl>
-                      <Checkbox checked={field.value} onCheckedChange={field.onChange} />
-                    </FormControl>
-                    <div className="space-y-1 leading-none">
-                      <FormLabel>{t("featured") || "Featured"}</FormLabel>
-                      <FormDescription>
-                        {t("featuredDescription") || "Highlight this post on the blog index"}
-                      </FormDescription>
-                    </div>
-                  </FormItem>
-                )}
-              />
+    <div className="space-y-6 p-6 md:p-8">
+      {/* Hero Header */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut" }}
+      >
+        <div className="relative overflow-hidden rounded-2xl glass-light border border-white/[0.06] p-6 md:p-8">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(153,27,27,0.08)_0%,_transparent_60%)]" />
+          <div className="absolute -top-20 -end-20 h-40 w-40 rounded-full bg-gradient-to-br from-crimson/[0.06] to-transparent blur-3xl" />
+          <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+            <div>
+              <div className="flex items-center gap-3 mb-2">
+                <Link
+                  href="/admin/blog"
+                  className="text-slate-body hover:text-offwhite transition-colors"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                </Link>
+                <div className="h-px w-8 bg-crimson" />
+                <span className="text-xs font-medium uppercase tracking-[0.15em] text-gold">
+                  {t("adminPanel")}
+                </span>
+              </div>
+              <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-offwhite">
+                {isEditing ? (t("editPost") || "Edit Blog Post") : (t("addPost") || "New Blog Post")}
+              </h1>
+              <p className="text-slate-body mt-1 text-sm">
+                {isEditing
+                  ? (t("editPostDescription") || "Update your blog article details")
+                  : (t("addPostDescription") || "Write a new article for your blog")}
+              </p>
+            </div>
+            <div className="flex items-center gap-2 shrink-0">
+              <Button
+                variant="outline"
+                asChild
+                className="border-white/10 bg-white/5 text-slate-body hover:text-offwhite hover:bg-white/10 h-9"
+              >
+                <Link href="/admin/blog">
+                  {tCommon("cancel")}
+                </Link>
+              </Button>
             </div>
           </div>
+        </div>
+      </motion.div>
 
-          <div className="space-y-6">
-            <FormField
-              control={form.control}
-              name="coverImage"
-              render={({ field }) => (
-                <FormItem>
-                  <FormLabel>{t("coverImage") || "Cover Image"}</FormLabel>
-                  <FormControl>
-                    <FileUploadField
-                      label={t("coverImage") || "Cover Image"}
-                      value={field.value || []}
-                      onChange={(files) => field.onChange(files.slice(0, 1))}
-                      maxFiles={1}
-                      accept="image/*"
+      {/* Form */}
+      <motion.div
+        initial={{ opacity: 0, y: 16 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, ease: "easeOut", delay: 0.1 }}
+        className="max-w-5xl"
+      >
+        <Form {...form}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
+            <div className="grid gap-6 lg:grid-cols-3">
+              {/* Main Column */}
+              <div className="lg:col-span-2 space-y-6">
+                <div className="rounded-2xl glass-light p-5 border border-white/[0.06] space-y-5">
+                  <FormField
+                    control={form.control}
+                    name="title"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-offwhite text-sm font-semibold">
+                          {t("title")} <span className="text-crimson-light">*</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder={t("titlePlaceholder") || "Enter post title"}
+                            {...field}
+                            onChange={(e) => {
+                              field.onChange(e);
+                              handleTitleChange(e);
+                            }}
+                            className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <FormField
+                    control={form.control}
+                    name="slug"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-offwhite text-sm font-semibold">
+                          {t("slug") || "Slug (URL)"} <span className="text-crimson-light">*</span>
+                        </FormLabel>
+                        <FormControl>
+                          <Input
+                            placeholder={t("slugPlaceholder") || "my-awesome-post"}
+                            {...field}
+                            className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson font-mono text-sm"
+                          />
+                        </FormControl>
+                        <FormDescription className="text-slate-body/60 text-xs">
+                          {t("slugDescription") || "The URL-friendly version of the title. Must be unique."}
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                {/* Content */}
+                <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+                  <FormField
+                    control={form.control}
+                    name="content"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-offwhite text-sm font-semibold">
+                          {t("content") || "Content"} <span className="text-crimson-light">*</span>
+                        </FormLabel>
+                        <FormControl>
+                          <RichTextEditor
+                            value={field.value}
+                            onChange={field.onChange}
+                            placeholder={t("contentPlaceholder") || "Write your blog post content here..."}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+
+              {/* Sidebar Column */}
+              <div className="space-y-6">
+                {/* Settings Card */}
+                <div className="rounded-2xl glass-light p-5 border border-white/[0.06] space-y-5">
+                  <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-gold flex items-center gap-1.5">
+                    <BookOpen className="h-3.5 w-3.5" />
+                    {t("settings") || "Settings"}
+                  </h3>
+
+                  <FormField
+                    control={form.control}
+                    name="selected_language"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-offwhite text-sm">{t("language") || "Language"}</FormLabel>
+                        <Select value={field.value || ""} onValueChange={field.onChange}>
+                          <FormControl>
+                            <SelectTrigger className="bg-white/5 border-white/10 text-offwhite focus:ring-crimson">
+                              <SelectValue placeholder={t("selectLanguage") || "Select language"} />
+                            </SelectTrigger>
+                          </FormControl>
+                          <SelectContent className="glass-strong border-white/10">
+                            <SelectItem value="all">{t("allLanguages") || "All Languages"}</SelectItem>
+                            {LANGUAGES.map((lang) => (
+                              <SelectItem key={lang.code} value={lang.code}>
+                                {lang.name}
+                              </SelectItem>
+                            ))}
+                          </SelectContent>
+                        </Select>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+
+                  <div className="space-y-4 pt-2">
+                    <FormField
+                      control={form.control}
+                      name="isPublished"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-start space-x-3 space-y-0 rtl:space-x-reverse">
+                          <FormControl>
+                            <Checkbox checked={field.value} onCheckedChange={field.onChange} className="border-white/20 data-[state=checked]:bg-crimson data-[state=checked]:border-crimson" />
+                          </FormControl>
+                          <div className="space-y-1 leading-none">
+                            <FormLabel className="text-offwhite text-sm cursor-pointer">{t("published") || "Published"}</FormLabel>
+                            <FormDescription className="text-slate-body/60 text-[11px]">
+                              {t("publishedDescription") || "Make this post visible to the public"}
+                            </FormDescription>
+                          </div>
+                        </FormItem>
+                      )}
                     />
-                  </FormControl>
-                  <FormDescription>
-                    {t("coverImageDescription") || "Upload a cover image for the blog post"}
-                  </FormDescription>
-                  <FormMessage />
-                </FormItem>
-              )}
-            />
-          </div>
-        </div>
 
-        <FormField
-          control={form.control}
-          name="content"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel>{t("content") || "Content"}</FormLabel>
-              <FormControl>
-                <RichTextEditor
-                  value={field.value}
-                  onChange={field.onChange}
-                  placeholder={t("contentPlaceholder") || "Write your blog post content here..."}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
+                    <FormField
+                      control={form.control}
+                      name="isFeatured"
+                      render={({ field }) => (
+                        <FormItem className="flex flex-row items-start space-x-3 space-y-0 rtl:space-x-reverse">
+                          <FormControl>
+                            <Checkbox checked={field.value} onCheckedChange={field.onChange} className="border-white/20 data-[state=checked]:bg-amber-500 data-[state=checked]:border-amber-500" />
+                          </FormControl>
+                          <div className="space-y-1 leading-none">
+                            <FormLabel className="text-offwhite text-sm cursor-pointer">{t("featured") || "Featured"}</FormLabel>
+                            <FormDescription className="text-slate-body/60 text-[11px]">
+                              {t("featuredDescription") || "Highlight this post on the blog index"}
+                            </FormDescription>
+                          </div>
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+                </div>
 
-        <div className="flex gap-4 pt-4 border-t border-white/[0.06]">
-          <Button type="submit" disabled={isLoading} className="bg-crimson hover:bg-crimson-light text-white">
-            {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin" />}
-            {isEditing ? tCommon("save") : tCommon("create")}
-          </Button>
-          <Button
-            type="button"
-            variant="outline"
-            onClick={() => router.push("/admin/blog")}
-            disabled={isLoading}
-            className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white"
-          >
-            {tCommon("cancel")}
-          </Button>
-        </div>
-      </form>
-    </Form>
+                {/* Tags Card */}
+                <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+                  <FormField
+                    control={form.control}
+                    name="tags"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormControl>
+                          <TagSelector
+                            label={t("tags") || "Tags"}
+                            availableTags={availableTags.map((t) => ({ id: t._id, name: t.name }))}
+                            selectedTags={availableTags
+                              .filter((tag) => (field.value || []).includes(tag._id))
+                              .map((t) => ({ id: t._id, name: t.name }))}
+                            onChange={(tags) => field.onChange(tags.map((t) => t.id))}
+                          />
+                        </FormControl>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+
+                {/* Cover Image Card */}
+                <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
+                  <FormField
+                    control={form.control}
+                    name="coverImage"
+                    render={({ field }) => (
+                      <FormItem>
+                        <FormLabel className="text-offwhite text-sm">{t("coverImage") || "Cover Image"}</FormLabel>
+                        <FormControl>
+                          <FileUploadField
+                            label=""
+                            value={field.value || []}
+                            onChange={(files) => field.onChange(files.slice(0, 1))}
+                            maxFiles={1}
+                            accept="image/*"
+                          />
+                        </FormControl>
+                        <FormDescription className="text-slate-body/60 text-[11px]">
+                          {t("coverImageDescription") || "Upload a cover image for the blog post"}
+                        </FormDescription>
+                        <FormMessage />
+                      </FormItem>
+                    )}
+                  />
+                </div>
+              </div>
+            </div>
+
+            {/* Actions */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.2 }}
+              className="flex items-center justify-end gap-3 pt-4 border-t border-white/[0.06]"
+            >
+              <Button
+                type="button"
+                variant="outline"
+                asChild
+                className="border-white/10 bg-white/5 text-slate-body hover:text-offwhite hover:bg-white/10"
+              >
+                <Link href="/admin/blog">
+                  {tCommon("cancel")}
+                </Link>
+              </Button>
+              <Button
+                type="submit"
+                disabled={isLoading}
+                className="bg-crimson hover:bg-crimson-light text-white min-w-[120px]"
+              >
+                {isLoading && <Loader2 className="mr-2 h-4 w-4 animate-spin rtl:ml-2 rtl:mr-0" />}
+                {isEditing ? (tCommon("save") || "Save") : (tCommon("create") || "Create")}
+              </Button>
+            </motion.div>
+          </form>
+        </Form>
+      </motion.div>
+    </div>
   );
 }
