@@ -5,13 +5,17 @@ import { getMessages } from "next-intl/server";
 import { AdminLayoutShell } from "@/components/layout/admin-layout-shell";
 import { Toaster } from "@/components/ui/toaster";
 
-// Force dynamic rendering — admin routes must read the auth token cookie at request time.
-// Without this, Next.js may statically generate the layout at build time (empty cookie store)
-// and bake the redirect into the HTML, breaking admin access in production.
 export const dynamic = "force-dynamic";
 
 export default async function AdminLayout({ children }: { children: React.ReactNode }) {
-  const { success, body: user } = await getMe();
+  const { success, body: user } = await getMe({
+    _id: 1,
+    first_name: 1,
+    last_name: 1,
+    email: 1,
+    level: 1,
+    is_verified: 1,
+  });
 
   if (!success || !user) {
     redirect("/fa/login");
@@ -22,7 +26,6 @@ export default async function AdminLayout({ children }: { children: React.ReactN
     redirect("/fa/reports");
   }
 
-  // Admin panel defaults to Persian (fa) since it has no locale prefix in the URL
   const messages = await getMessages({ locale: "fa" });
 
   return (
