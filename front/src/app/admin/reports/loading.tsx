@@ -1,102 +1,74 @@
 import { Skeleton } from "@/components/ui/skeleton";
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableHeader,
-  TableRow,
-} from "@/components/ui/table";
-import { Card, CardContent, CardHeader } from "@/components/ui/card";
 
 export default function ReportsLoading() {
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 p-6 md:p-8">
+      {/* Hero skeleton */}
+      <div className="rounded-2xl glass-light p-6 md:p-8 border border-white/[0.06] space-y-4">
+        <Skeleton className="h-4 w-32 rounded-full" />
+        <Skeleton className="h-8 w-64" />
+        <Skeleton className="h-4 w-96" />
+      </div>
+
+      {/* Stats row skeleton */}
+      <div className="grid gap-3 grid-cols-2 md:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="rounded-xl glass-light p-4 border border-white/[0.06]">
+            <div className="flex items-center gap-3">
+              <Skeleton className="h-8 w-8 rounded-lg" />
+              <div className="space-y-1.5">
+                <Skeleton className="h-3 w-16" />
+                <Skeleton className="h-5 w-12" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Search/filter bar skeleton */}
+      <div className="flex gap-3">
+        <Skeleton className="h-9 flex-1 rounded-lg" />
+        <Skeleton className="h-9 w-24 rounded-lg" />
+        <Skeleton className="h-9 w-40 rounded-lg" />
+      </div>
+
+      {/* Table skeleton */}
+      <div className="rounded-2xl border border-white/[0.06] overflow-hidden">
+        <div className="border-b border-white/[0.06] p-3">
+          <div className="flex items-center gap-4">
+            <Skeleton className="h-4 w-4 rounded" />
+            <Skeleton className="h-3 w-24" />
+            <Skeleton className="h-3 w-20" />
+            <Skeleton className="h-3 w-28" />
+            <Skeleton className="h-3 w-16 ms-auto" />
+          </div>
+        </div>
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div
+            key={i}
+            className="flex items-center gap-4 p-3 border-b border-white/[0.04]"
+          >
+            <Skeleton className="h-4 w-4 rounded shrink-0" />
+            <div className="flex-1 flex items-center gap-4">
+              <Skeleton className="h-4 w-48" />
+              <Skeleton className="h-4 w-20 hidden md:block" />
+              <Skeleton className="h-4 w-24 hidden lg:block" />
+              <Skeleton className="h-5 w-16 rounded-full" />
+              <Skeleton className="h-4 w-12 hidden sm:block" />
+              <Skeleton className="h-4 w-20 hidden lg:block" />
+              <Skeleton className="h-8 w-8 rounded-md ms-auto" />
+            </div>
+          </div>
+        ))}
+      </div>
+
+      {/* Pagination skeleton */}
       <div className="flex items-center justify-between">
-        <div className="space-y-2">
-          <Skeleton className="h-8 w-64" />
-          <Skeleton className="h-4 w-96" />
+        <Skeleton className="h-3 w-32" />
+        <div className="flex gap-2">
+          <Skeleton className="h-8 w-20 rounded-lg" />
+          <Skeleton className="h-8 w-20 rounded-lg" />
         </div>
-      </div>
-
-      <div className="flex flex-col gap-4 mb-6">
-        <div className="flex flex-wrap gap-4 w-full items-start sm:items-center">
-          <Skeleton className="h-10 w-full sm:w-64" />
-          <Skeleton className="h-10 w-full sm:w-48" />
-          <Skeleton className="h-10 w-full sm:w-48" />
-          <Skeleton className="h-10 w-full sm:w-48" />
-          <Skeleton className="h-10 w-full sm:w-48" />
-          <Skeleton className="h-10 w-full sm:w-48" />
-          <Skeleton className="h-10 w-24" />
-        </div>
-      </div>
-
-      <Card>
-        <CardHeader className="p-0 border-b">
-          <Table>
-            <TableHeader>
-              <TableRow>
-                <TableHead className="w-[100px]">
-                  <Skeleton className="h-4 w-12" />
-                </TableHead>
-                <TableHead>
-                  <Skeleton className="h-4 w-24" />
-                </TableHead>
-                <TableHead>
-                  <Skeleton className="h-4 w-24" />
-                </TableHead>
-                <TableHead>
-                  <Skeleton className="h-4 w-20" />
-                </TableHead>
-                <TableHead>
-                  <Skeleton className="h-4 w-20" />
-                </TableHead>
-                <TableHead>
-                  <Skeleton className="h-4 w-24" />
-                </TableHead>
-                <TableHead className="text-right w-[100px]">
-                  <Skeleton className="h-4 w-16 ml-auto" />
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-          </Table>
-        </CardHeader>
-        <CardContent className="p-0">
-          <Table>
-            <TableBody>
-              {Array.from({ length: 5 }).map((_, i) => (
-                <TableRow key={i}>
-                  <TableCell>
-                    <Skeleton className="h-4 w-16" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="h-4 w-48" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="h-5 w-20 rounded-full" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="h-5 w-20 rounded-full" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="h-5 w-20 rounded-full" />
-                  </TableCell>
-                  <TableCell>
-                    <Skeleton className="h-4 w-24" />
-                  </TableCell>
-                  <TableCell className="text-right">
-                    <Skeleton className="h-8 w-8 rounded-md inline-block" />
-                  </TableCell>
-                </TableRow>
-              ))}
-            </TableBody>
-          </Table>
-        </CardContent>
-      </Card>
-
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Skeleton className="h-9 w-20" />
-        <Skeleton className="h-9 w-20" />
       </div>
     </div>
   );
