@@ -7,7 +7,5 @@ export const getBySlugSetup = () =>
     schema: "blogPost",
     fn: getBySlugFn,
     actName: "getBySlug",
-    preAct: [],
     validator: getBySlugValidator(),
-    validationRunType: "create",
   });

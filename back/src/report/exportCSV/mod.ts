@@ -7,7 +7,6 @@ export const exportCSVSetup = () =>
     schema: "report",
     fn: exportCSVFn,
     actName: "exportCSV",
-    preAct: [],
     validator: exportCSVValidator(),
     validationRunType: "create",
   });

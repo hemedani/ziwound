@@ -7,7 +7,5 @@ export const getRelatedSetup = () =>
     schema: "blogPost",
     fn: getRelatedFn,
     actName: "getRelated",
-    preAct: [],
     validator: getRelatedValidator(),
-    validationRunType: "create",
   });

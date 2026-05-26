@@ -26,7 +26,7 @@ export const updateFn: ActFn = async (body) => {
       filters: { _id: new ObjectId(_id) },
       relations: {
         image: {
-          _ids: [new ObjectId(image)],
+          _ids: new ObjectId(image),
         },
       },
       projection: body.details.get,

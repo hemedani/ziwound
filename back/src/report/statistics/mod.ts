@@ -7,7 +7,6 @@ export const statisticsSetup = () =>
     schema: "report",
     fn: statisticsFn,
     actName: "statistics",
-    preAct: [],
     validator: statisticsValidator(),
     validationRunType: "create",
   });

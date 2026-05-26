@@ -7,7 +7,6 @@ export const exportPDFSetup = () =>
     schema: "report",
     fn: exportPDFFn,
     actName: "exportPDF",
-    preAct: [],
     validator: exportPDFValidator(),
     validationRunType: "create",
   });
