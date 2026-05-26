@@ -135,10 +135,10 @@ export default async function AdminReportsPage({
     getCountries({ page: 1, limit: 200 }, { _id: 1, name: 1 }),
     getProvinces({ page: 1, limit: 200 }, { _id: 1, name: 1 }),
     getCities({ page: 1, limit: 200 }, { _id: 1, name: 1 }),
-    countReports({ filter: { status: "Pending" } } as any, { qty: 1 }),
-    countReports({ filter: { status: "Approved" } } as any, { qty: 1 }),
-    countReports({ filter: { status: "Rejected" } } as any, { qty: 1 }),
-    countReports({ filter: { priority: "High" } } as any, { qty: 1 }),
+    countReports({ status: "Pending" }, { qty: 1 }),
+    countReports({ status: "Approved" }, { qty: 1 }),
+    countReports({ status: "Rejected" }, { qty: 1 }),
+    countReports({ priority: "High" }, { qty: 1 }),
   ]);
 
   const extractList = (res: any) =>

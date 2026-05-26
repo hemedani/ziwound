@@ -1,6 +1,18 @@
 import { get as getBlogPost } from "@/app/actions/blogPost/get";
-import { BlogPostForm } from "../../_components/blog-post-form";
+import { BlogPostEditClient } from "../../_components/blog-post-edit-client";
 import { notFound } from "next/navigation";
+
+interface BlogPostData {
+  _id: string;
+  title: string;
+  slug: string;
+  content: string;
+  isPublished: boolean;
+  isFeatured: boolean;
+  selected_language?: string;
+  coverImage?: { _id: string; name?: string };
+  tags?: Array<{ _id: string; name: string }>;
+}
 
 export default async function EditBlogPostPage({ params }: { params: Promise<{ id: string }> }) {
   const resolvedParams = await params;
@@ -31,17 +43,7 @@ export default async function EditBlogPostPage({ params }: { params: Promise<{ i
     notFound();
   }
 
-  const postData = response.body as {
-    _id: string;
-    title: string;
-    slug: string;
-    content: string;
-    isPublished: boolean;
-    isFeatured: boolean;
-    selected_language?: string;
-    coverImage?: { _id: string; name?: string };
-    tags?: Array<{ _id: string; name: string }>;
-  };
+  const postData = response.body as BlogPostData;
 
-  return <BlogPostForm initialData={postData} />;
+  return <BlogPostEditClient post={postData} />;
 }

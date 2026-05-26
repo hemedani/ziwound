@@ -699,7 +699,7 @@ export default async function AdminWarCriminalDetailPage({
                 </Link>
               </Button>
               <CopyLinkButton
-                url={`${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/admin/war-criminals/${wc._id}`}
+                url={`${process.env.NEXT_PUBLIC_APP_URL || ""}/admin/war-criminals/${wc._id}`}
                 label={tc("copyLink") || "Copy Link"}
               />
             </CardContent>

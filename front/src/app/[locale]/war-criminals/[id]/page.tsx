@@ -149,7 +149,7 @@ export default async function WarCriminalDetailPage({
   const reportCount = wc.reports?.length || 0;
   const highPriorityReports = wc.reports?.filter((r) => r.priority === "High").length || 0;
   const approvedReports = wc.reports?.filter((r) => r.status === "Approved").length || 0;
-  const profileUrl = `${process.env.NEXT_PUBLIC_APP_URL || "http://localhost:3000"}/${locale}/war-criminals/${id}`;
+  const profileUrl = `${process.env.NEXT_PUBLIC_APP_URL || ""}/${locale}/war-criminals/${id}`;
 
   return (
     <div className="min-h-screen">
