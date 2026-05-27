@@ -1,22 +1,24 @@
 import { getTranslations } from "next-intl/server";
 import { gets } from "@/app/actions/tag/gets";
+import { count } from "@/app/actions/tag/count";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import Link from "next/link";
-import { TagsTable } from "./tags-table";
+import { AdminTagsClient } from "./_components/admin-tags-client";
 import { ReqType, tagSchema } from "@/types/declarations";
-import { AddTagDialog } from "./add-tag-dialog";
+
+interface SearchParams {
+  page?: string;
+  search?: string;
+  sortBy?: string;
+  sortOrder?: string;
+}
 
 export default async function AdminTagsPage({
   searchParams,
 }: {
-  searchParams: Promise<{
-    page?: string;
-    search?: string;
-    sortBy?: string;
-    sortOrder?: string;
-  }>;
+  searchParams: Promise<SearchParams>;
 }) {
   const resolvedSearchParams = await searchParams;
   const t = await getTranslations("admin");
@@ -35,7 +37,6 @@ export default async function AdminTagsPage({
     setQuery.search = search;
   }
 
-  // Fetch tags
   const response = await gets(setQuery, {
     _id: 1,
     name: 1,
@@ -44,81 +45,58 @@ export default async function AdminTagsPage({
     description: 1,
   });
 
+  const totalRes = await count({}, { qty: 1 as const });
+
   let tags: tagSchema[] = [];
   let error: string | null = null;
   if (response?.success) {
     tags = response.body || [];
   } else {
-    error = response?.error || response?.body?.message || "Failed to fetch tags";
+    error = response?.body?.message || "Failed to fetch tags";
   }
 
+  const totalCount =
+    totalRes?.success && totalRes.body && typeof totalRes.body === "object"
+      ? ((totalRes.body as Record<string, unknown>)?.qty as number) ?? 0
+      : 0;
+
+  const queryString = `${search ? `&search=${search}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`;
+  const prevPageUrl = page > 1 ? `/admin/tags?page=${page - 1}${queryString}` : "";
+  const nextPageUrl = tags.length >= 20 ? `/admin/tags?page=${page + 1}${queryString}` : "";
+
   return (
-    <div className="space-y-6">
-      <div className="flex items-center justify-between">
-        <div>
-          <div className="mb-2 flex items-center gap-3">
-            <div className="h-px w-8 bg-crimson" />
-            <span className="text-xs font-medium uppercase tracking-[0.15em] text-gold">
-              {t("adminPanel")}
-            </span>
-          </div>
-          <h1 className="text-3xl font-bold tracking-tight text-offwhite">
-            {t("tagsManagement") || "Tags Management"}
-          </h1>
-          <p className="text-slate-body mt-1">
-            {t("tagsManagementDescription") || "Manage tags for reports categorization"}
-          </p>
+    <div className="p-6 md:p-8 space-y-6">
+      {/* Filter form */}
+      <form method="GET" className="flex flex-wrap gap-3 w-full items-start sm:items-center">
+        <div className="relative w-full sm:w-64">
+          <Search className="absolute start-2 top-2.5 h-4 w-4 text-muted-foreground" />
+          <Input
+            name="search"
+            placeholder={t("searchTags") || "Search tags..."}
+            defaultValue={search}
+            className="ps-8 bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
+          />
         </div>
-        <AddTagDialog />
-      </div>
-
-      <div className="rounded-2xl glass-light p-5 border border-white/[0.06]">
-        <form method="GET" className="flex flex-wrap gap-3 w-full items-start sm:items-center">
-          <div className="relative w-full sm:w-64">
-            <Search className="absolute start-2 top-2.5 h-4 w-4 text-muted-foreground" />
-            <Input
-              name="search"
-              placeholder={t("searchTags") || "Search tags..."}
-              defaultValue={search}
-              className="ps-8 bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/50 focus-visible:ring-crimson"
-            />
-          </div>
-          <Button type="submit" className="bg-crimson hover:bg-crimson-light text-white">
-            {t("search") || "Search"}
-          </Button>
-        </form>
-      </div>
-
-      <TagsTable tags={tags} error={error} />
-
-      <div className="flex items-center justify-end gap-2 py-4">
-        {page > 1 ? (
-          <Button variant="outline" size="sm" className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white" asChild>
-            <Link
-              href={`/admin/tags?page=${page - 1}${search ? `&search=${search}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
-            >
-              {t("previous") || "Previous"}
+        <Button type="submit" className="bg-crimson hover:bg-crimson-light text-white">
+          {t("search") || "Search"}
+        </Button>
+        {search && (
+          <Button variant="outline" asChild className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10">
+            <Link href="/admin/tags">
+              {t("clear") || "Clear"}
             </Link>
           </Button>
-        ) : (
-          <Button variant="outline" size="sm" disabled className="border-white/10 bg-white/5 text-offwhite opacity-30">
-            {t("previous") || "Previous"}
-          </Button>
         )}
-        {tags.length >= 20 ? (
-          <Button variant="outline" size="sm" className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white" asChild>
-            <Link
-              href={`/admin/tags?page=${page + 1}${search ? `&search=${search}` : ""}&sortBy=${sortBy}&sortOrder=${sortOrder}`}
-            >
-              {t("next") || "Next"}
-            </Link>
-          </Button>
-        ) : (
-          <Button variant="outline" size="sm" disabled className="border-white/10 bg-white/5 text-offwhite opacity-30">
-            {t("next") || "Next"}
-          </Button>
-        )}
-      </div>
+      </form>
+
+      <AdminTagsClient
+        tags={tags}
+        totalCount={totalCount}
+        error={error}
+        search={search}
+        prevPageUrl={prevPageUrl}
+        nextPageUrl={nextPageUrl}
+      />
     </div>
   );
 }
