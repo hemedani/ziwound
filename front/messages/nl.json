@@ -1288,7 +1288,21 @@
     "roleVerified": "Rol geverifieerd",
     "newPassword": "Nieuw wachtwoord",
     "leaveBlankToKeep": "Laat leeg om huidige te behouden",
-    "passwordChangeHint": "Laat leeg om huidig wachtwoord te behouden"
+    "passwordChangeHint": "Laat leeg om huidig wachtwoord te behouden",
+    "copyUrl": "URL kopiëren",
+    "altText": "Alt-tekst",
+    "altTextPlaceholder": "Voer alt-tekst in...",
+    "altTextUpdated": "Alt-tekst bijgewerkt",
+    "failedToDeleteFile": "Bestand verwijderen mislukt",
+    "fileDeleted": "Bestand succesvol verwijderd",
+    "totalFiles": "Totaal bestanden",
+    "deleteFileConfirm": "Weet je zeker dat je dit bestand wilt verwijderen?",
+    "storageUsage": "Opslaggebruik",
+    "noPreview": "Geen voorbeeld beschikbaar",
+    "copied": "Gekopieerd",
+    "download": "Downloaden",
+    "pdf": "PDF",
+    "unknown": "Onbekend"
   },
   "notFound": {
     "backHome": "Terug naar startpagina",

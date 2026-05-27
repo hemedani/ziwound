@@ -1229,7 +1229,21 @@
     "roleVerified": "Função verificada",
     "newPassword": "Nova senha",
     "leaveBlankToKeep": "Deixe em branco para manter a atual",
-    "passwordChangeHint": "Deixe vazio para manter a senha atual"
+    "passwordChangeHint": "Deixe vazio para manter a senha atual",
+    "copyUrl": "Copiar URL",
+    "altText": "Texto alternativo",
+    "altTextPlaceholder": "Insira o texto alternativo...",
+    "altTextUpdated": "Texto alternativo atualizado",
+    "failedToDeleteFile": "Falha ao excluir arquivo",
+    "fileDeleted": "Arquivo excluído com sucesso",
+    "totalFiles": "Total de arquivos",
+    "deleteFileConfirm": "Tem certeza de que deseja excluir este arquivo?",
+    "storageUsage": "Uso de armazenamento",
+    "noPreview": "Nenhuma prévia disponível",
+    "copied": "Copiado",
+    "download": "Baixar",
+    "pdf": "PDF",
+    "unknown": "Desconhecido"
   },
   "notFound": {
     "backHome": "Voltar ao início",

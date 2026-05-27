@@ -1229,7 +1229,21 @@
     "roleVerified": "تم التحقق من الدور",
     "newPassword": "كلمة المرور الجديدة",
     "leaveBlankToKeep": "اتركه فارغًا للاحتفاظ بكلمة المرور الحالية",
-    "passwordChangeHint": "اتركه فارغًا للاحتفاظ بكلمة المرور الحالية"
+    "passwordChangeHint": "اتركه فارغًا للاحتفاظ بكلمة المرور الحالية",
+    "copyUrl": "نسخ الرابط",
+    "altText": "نص بديل",
+    "altTextPlaceholder": "أدخل النص البديل...",
+    "altTextUpdated": "تم تحديث النص البديل",
+    "failedToDeleteFile": "فشل حذف الملف",
+    "fileDeleted": "تم حذف الملف بنجاح",
+    "totalFiles": "إجمالي الملفات",
+    "deleteFileConfirm": "هل أنت متأكد من حذف هذا الملف؟",
+    "storageUsage": "استخدام التخزين",
+    "noPreview": "لا توجد معاينة متاحة",
+    "copied": "تم النسخ",
+    "download": "تحميل",
+    "pdf": "PDF",
+    "unknown": "غير معروف"
   },
   "notFound": {
     "backHome": "العودة إلى الصفحة الرئيسية",

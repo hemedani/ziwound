@@ -1256,7 +1256,21 @@
     "roleVerified": "نقش تأیید شده",
     "newPassword": "رمز عبور جدید",
     "leaveBlankToKeep": "برای حفظ رمز عبور فعلی خالی بگذارید",
-    "passwordChangeHint": "برای حفظ رمز عبور فعلی خالی بگذارید"
+    "passwordChangeHint": "برای حفظ رمز عبور فعلی خالی بگذارید",
+    "copyUrl": "کپی لینک",
+    "altText": "متن جایگزین",
+    "altTextPlaceholder": "متن جایگزین را وارد کنید...",
+    "altTextUpdated": "متن جایگزین به‌روزرسانی شد",
+    "failedToDeleteFile": "خطا در حذف فایل",
+    "fileDeleted": "فایل با موفقیت حذف شد",
+    "totalFiles": "مجموع فایل‌ها",
+    "deleteFileConfirm": "آیا از حذف این فایل اطمینان دارید؟",
+    "storageUsage": "مصرف فضای ذخیره‌سازی",
+    "noPreview": "پیش‌نمایشی موجود نیست",
+    "copied": "کپی شد",
+    "download": "دانلود",
+    "pdf": "PDF",
+    "unknown": "نامشخص"
   },
   "reporters": {
     "pageTitle": "خبرنگاران و مشارکت‌کنندگان - زی‌ووند",

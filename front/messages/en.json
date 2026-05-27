@@ -1301,7 +1301,21 @@
     "roleVerified": "Role Verified",
     "newPassword": "New Password",
     "leaveBlankToKeep": "Leave blank to keep current",
-    "passwordChangeHint": "Leave empty to keep current password"
+    "passwordChangeHint": "Leave empty to keep current password",
+    "copyUrl": "Copy URL",
+    "altText": "Alt Text",
+    "altTextPlaceholder": "Enter alt text...",
+    "altTextUpdated": "Alt text updated",
+    "failedToDeleteFile": "Failed to delete file",
+    "fileDeleted": "File deleted successfully",
+    "totalFiles": "Total Files",
+    "deleteFileConfirm": "Are you sure you want to delete this file?",
+    "storageUsage": "Storage Usage",
+    "noPreview": "No preview available",
+    "copied": "Copied",
+    "download": "Download",
+    "pdf": "PDF",
+    "unknown": "Unknown"
   },
   "notFound": {
     "backHome": "Back to Home",

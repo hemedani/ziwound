@@ -1229,7 +1229,21 @@
     "roleVerified": "Rol Doğrulandı",
     "newPassword": "Yeni Şifre",
     "leaveBlankToKeep": "Mevcut şifreyi korumak için boş bırakın",
-    "passwordChangeHint": "Mevcut şifreyi korumak için boş bırakın"
+    "passwordChangeHint": "Mevcut şifreyi korumak için boş bırakın",
+    "copyUrl": "URL Kopyala",
+    "altText": "Alternatif Metin",
+    "altTextPlaceholder": "Alternatif metin girin...",
+    "altTextUpdated": "Alternatif metin güncellendi",
+    "failedToDeleteFile": "Dosya silinemedi",
+    "fileDeleted": "Dosya başarıyla silindi",
+    "totalFiles": "Toplam Dosya",
+    "deleteFileConfirm": "Bu dosyayı silmek istediğinizden emin misiniz?",
+    "storageUsage": "Depolama Kullanımı",
+    "noPreview": "Önizleme mevcut değil",
+    "copied": "Kopyalandı",
+    "download": "İndir",
+    "pdf": "PDF",
+    "unknown": "Bilinmiyor"
   },
   "notFound": {
     "backHome": "Ana Sayfaya Dön",
