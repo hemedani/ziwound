@@ -19,24 +19,20 @@ import {
   Eye,
   MapPin,
   Globe,
-  Flag,
   Calendar,
   Clock,
   AlertTriangle,
   ShieldCheck,
   TrendingUp,
-  Gavel,
-  Filter,
   ListFilter,
   ChevronLeft,
   ChevronRight,
   ArrowUpDown,
-  Sparkles,
   Edit3,
-  Link2,
-  Image,
   Languages,
   Tag,
+  LayoutGrid,
+  Table2,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -84,6 +80,7 @@ import {
 import { useToast } from "@/components/ui/use-toast";
 import { update as updateReport } from "@/app/actions/report/update";
 import { remove as removeReport } from "@/app/actions/report/remove";
+import { ReportCard } from "./_components/report-card";
 
 /* ─── Types ─── */
 interface LocationItem {
@@ -155,6 +152,8 @@ interface AdminReportsClientProps {
   statsCounts: StatsCounts;
   filterOptions: FilterOptions;
   error: string | null;
+  prevPageUrl: string;
+  nextPageUrl: string;
   currentParams: CurrentParams;
 }
 
@@ -454,6 +453,8 @@ export function AdminReportsClient({
   statsCounts,
   filterOptions,
   error: initialError,
+  prevPageUrl,
+  nextPageUrl,
   currentParams,
 }: AdminReportsClientProps) {
   const t = useTranslations("admin");
@@ -464,7 +465,7 @@ export function AdminReportsClient({
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
   const [pendingDeleteIds, setPendingDeleteIds] = useState<string[]>([]);
-  const [filtersOpen, setFiltersOpen] = useState(false);
+  const [viewMode, setViewMode] = useState<"grid" | "table">("table");
 
   const params = currentParams;
   const page = params.page;
@@ -1278,9 +1279,39 @@ export function AdminReportsClient({
         </AnimatePresence>
       </motion.div>
 
+      {/* ============ VIEW TOGGLE + BULK ACTION BAR ============ */}
+      <motion.div variants={itemVariants} className="flex items-center justify-between">
+        <p className="text-sm text-slate-body">
+          {reports.length > 0 ? (
+            <>
+              <span className="text-offwhite font-medium">{reports.length}</span>
+              {" "}{t("itemsShown") || "items shown"}
+            </>
+          ) : (
+            t("noResults") || "No results"
+          )}
+        </p>
+        <div className="flex items-center gap-1 rounded-lg bg-white/5 border border-white/10 p-0.5">
+          <Button
+            variant="ghost" size="sm"
+            onClick={() => setViewMode("grid")}
+            className={`h-8 w-8 p-0 ${viewMode === "grid" ? "bg-crimson text-white hover:bg-crimson-light" : "text-slate-body hover:text-offwhite hover:bg-white/5"}`}
+          >
+            <LayoutGrid className="h-4 w-4" />
+          </Button>
+          <Button
+            variant="ghost" size="sm"
+            onClick={() => { setViewMode("table"); setSelectedIds([]); }}
+            className={`h-8 w-8 p-0 ${viewMode === "table" ? "bg-crimson text-white hover:bg-crimson-light" : "text-slate-body hover:text-offwhite hover:bg-white/5"}`}
+          >
+            <Table2 className="h-4 w-4" />
+          </Button>
+        </div>
+      </motion.div>
+
       {/* ============ BULK ACTION BAR ============ */}
       <AnimatePresence>
-        {selectedIds.length > 0 && (
+        {selectedIds.length > 0 && viewMode === "table" && (
           <BulkActionBar
             count={selectedIds.length}
             onApprove={handleBulkApprove}
@@ -1292,48 +1323,83 @@ export function AdminReportsClient({
         )}
       </AnimatePresence>
 
-      {/* ============ REPORTS TABLE ============ */}
-      <motion.div variants={itemVariants}>
-        <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
-          <Table>
-            <TableHeader>
-              <TableRow className="border-white/[0.06] hover:bg-transparent">
-                <TableHead className="w-10 ps-4">
-                  <Checkbox
-                    checked={
-                      reports.length > 0 &&
-                      selectedIds.length === reports.length
-                    }
-                    onCheckedChange={toggleAll}
-                    aria-label="Select all"
-                    className="border-white/20 data-[state=checked]:bg-crimson data-[state=checked]:border-crimson"
-                  />
-                </TableHead>
-                <TableHead className="text-slate-body text-xs font-semibold uppercase tracking-wider">
-                  {t("title")}
-                </TableHead>
-                <TableHead className="text-slate-body text-xs font-semibold uppercase tracking-wider hidden md:table-cell">
-                  {t("category")}
-                </TableHead>
-                <TableHead className="text-slate-body text-xs font-semibold uppercase tracking-wider hidden lg:table-cell">
-                  {t("locations") || "Locations"}
-                </TableHead>
-                <TableHead className="text-slate-body text-xs font-semibold uppercase tracking-wider">
-                  {t("status")}
-                </TableHead>
-                <TableHead className="text-slate-body text-xs font-semibold uppercase tracking-wider hidden sm:table-cell">
-                  {t("priority")}
-                </TableHead>
-                <TableHead className="text-slate-body text-xs font-semibold uppercase tracking-wider hidden lg:table-cell">
-                  {t("date")}
-                </TableHead>
-                <TableHead className="text-end pe-4 text-slate-body text-xs font-semibold uppercase tracking-wider">
-                  {t("actions")}
-                </TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {reports.length === 0 ? (
+      {/* ============ CONTENT: GRID / TABLE ============ */}
+      {viewMode === "grid" ? (
+        reports.length === 0 ? (
+          <motion.div variants={itemVariants} className="rounded-2xl glass-light border border-white/[0.06] p-12 text-center">
+            <div className="flex flex-col items-center justify-center gap-3">
+              <div className="rounded-full bg-white/[0.03] p-4 border border-white/[0.06]">
+                <FileText className="h-8 w-8 text-slate-body/40" />
+              </div>
+              <p className="text-sm text-slate-body/60">
+                {hasActiveFilters
+                  ? (t("noReportsFiltered") || "No reports match your filters")
+                  : t("noReports")}
+              </p>
+            </div>
+          </motion.div>
+        ) : (
+          <motion.div
+            variants={itemVariants}
+            className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4"
+          >
+            {reports.map((report, i) => (
+              <ReportCard
+                key={report._id}
+                report={report}
+                onDelete={(id) => {
+                  setPendingDeleteIds([id]);
+                  setConfirmDeleteOpen(true);
+                }}
+                onApprove={(id) => updateStatus(id, "Approved")}
+                onReject={(id) => updateStatus(id, "Rejected")}
+                index={i}
+              />
+            ))}
+          </motion.div>
+        )
+      ) : (
+        <motion.div variants={itemVariants}>
+          <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden">
+            <Table>
+              <TableHeader>
+                <TableRow className="border-white/[0.06] hover:bg-transparent">
+                  <TableHead className="w-10 ps-4">
+                    <Checkbox
+                      checked={
+                        reports.length > 0 &&
+                        selectedIds.length === reports.length
+                      }
+                      onCheckedChange={toggleAll}
+                      aria-label="Select all"
+                      className="border-white/20 data-[state=checked]:bg-crimson data-[state=checked]:border-crimson"
+                    />
+                  </TableHead>
+                  <TableHead className="text-slate-body text-xs font-semibold uppercase tracking-wider">
+                    {t("title")}
+                  </TableHead>
+                  <TableHead className="text-slate-body text-xs font-semibold uppercase tracking-wider hidden md:table-cell">
+                    {t("category")}
+                  </TableHead>
+                  <TableHead className="text-slate-body text-xs font-semibold uppercase tracking-wider hidden lg:table-cell">
+                    {t("locations") || "Locations"}
+                  </TableHead>
+                  <TableHead className="text-slate-body text-xs font-semibold uppercase tracking-wider">
+                    {t("status")}
+                  </TableHead>
+                  <TableHead className="text-slate-body text-xs font-semibold uppercase tracking-wider hidden sm:table-cell">
+                    {t("priority")}
+                  </TableHead>
+                  <TableHead className="text-slate-body text-xs font-semibold uppercase tracking-wider hidden lg:table-cell">
+                    {t("date")}
+                  </TableHead>
+                  <TableHead className="text-end pe-4 text-slate-body text-xs font-semibold uppercase tracking-wider">
+                    {t("actions")}
+                  </TableHead>
+                </TableRow>
+              </TableHeader>
+              <TableBody>
+                {reports.length === 0 ? (
                 <TableRow className="border-white/[0.06]">
                   <TableCell
                     colSpan={8}
@@ -1498,6 +1564,7 @@ export function AdminReportsClient({
           </Table>
         </div>
       </motion.div>
+      )}
 
       {/* ============ PAGINATION ============ */}
       <motion.div
@@ -1505,55 +1572,34 @@ export function AdminReportsClient({
         className="flex items-center justify-between gap-4"
       >
         <p className="text-xs text-slate-body/60">
-          {t("showing") || "Showing"}{" "}
           <span className="font-medium text-offwhite">
             {reports.length}
           </span>{" "}
-          {t("of") || "of"}{" "}
-          <span className="font-medium text-offwhite">
-            {statsCounts.total}
-          </span>{" "}
-          {t("reports") || "reports"}
+          {t("itemsShown") || "items shown"}
         </p>
         <div className="flex items-center gap-2">
-          {page > 1 ? (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => navigate({ page: page - 1 })}
-              className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 h-8"
-            >
-              <ChevronRight className="h-4 w-4 rtl:rotate-180" />
-              {t("previous")}
+          {prevPageUrl ? (
+            <Button variant="outline" size="sm" asChild className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 h-8">
+              <Link href={prevPageUrl}>
+                <ChevronRight className="h-4 w-4 rtl:rotate-180" />
+                {t("previous")}
+              </Link>
             </Button>
           ) : (
-            <Button
-              variant="outline"
-              size="sm"
-              disabled
-              className="border-white/10 bg-white/5 text-offwhite/30 h-8"
-            >
+            <Button variant="outline" size="sm" disabled className="border-white/10 bg-white/5 text-offwhite/30 h-8">
               <ChevronRight className="h-4 w-4 rtl:rotate-180" />
               {t("previous")}
             </Button>
           )}
-          {reports.length >= 15 ? (
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => navigate({ page: page + 1 })}
-              className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 h-8"
-            >
-              {t("next")}
-              <ChevronLeft className="h-4 w-4 rtl:rotate-180" />
+          {nextPageUrl ? (
+            <Button variant="outline" size="sm" asChild className="border-white/10 bg-white/5 text-offwhite hover:bg-white/10 h-8">
+              <Link href={nextPageUrl}>
+                {t("next")}
+                <ChevronLeft className="h-4 w-4 rtl:rotate-180" />
+              </Link>
             </Button>
           ) : (
-            <Button
-              variant="outline"
-              size="sm"
-              disabled
-              className="border-white/10 bg-white/5 text-offwhite/30 h-8"
-            >
+            <Button variant="outline" size="sm" disabled className="border-white/10 bg-white/5 text-offwhite/30 h-8">
               {t("next")}
               <ChevronLeft className="h-4 w-4 rtl:rotate-180" />
             </Button>

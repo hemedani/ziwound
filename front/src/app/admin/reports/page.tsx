@@ -181,12 +181,50 @@ export default async function AdminReportsPage({
     cities,
   };
 
+  // Build query string for pagination URLs
+  const buildQuery = (overrides: Partial<Record<string, string>>) => {
+    const sp = new URLSearchParams();
+    const p = resolvedSearchParams;
+    const push = (key: string, val: string | undefined) => {
+      if (val && val !== "all" && val !== "") sp.set(key, val);
+    };
+    push("search", p.search);
+    push("status", p.status);
+    push("priority", p.priority);
+    push("category", p.category);
+    push("selected_language", p.selected_language);
+    push("tagIds", p.tagIds);
+    push("hostileCountryIds", p.hostileCountryIds);
+    push("attackedCountryIds", p.attackedCountryIds);
+    push("attackedProvinceIds", p.attackedProvinceIds);
+    push("attackedCityIds", p.attackedCityIds);
+    push("crimeOccurredFrom", p.crimeOccurredFrom);
+    push("crimeOccurredTo", p.crimeOccurredTo);
+    push("createdAtFrom", p.createdAtFrom);
+    push("createdAtTo", p.createdAtTo);
+    if (p.sortBy && p.sortBy !== "createdAt") push("sortBy", p.sortBy);
+    if (p.sortOrder && p.sortOrder !== "desc") push("sortOrder", p.sortOrder);
+    // Apply overrides
+    Object.entries(overrides || {}).forEach(([k, v]) => {
+      if (v) sp.set(k, v);
+      else sp.delete(k);
+    });
+    const qs = sp.toString();
+    return qs ? `?${qs}` : "";
+  };
+
+  const queryBase = buildQuery({});
+  const prevPageUrl = page > 1 ? `/admin/reports?page=${page - 1}${queryBase ? `&${queryBase.slice(1)}` : ""}` : "";
+  const nextPageUrl = reports.length >= 15 ? `/admin/reports?page=${page + 1}${queryBase ? `&${queryBase.slice(1)}` : ""}` : "";
+
   return (
     <AdminReportsClient
       reports={reports}
       statsCounts={statsCounts}
       filterOptions={filterOptions}
       error={error}
+      prevPageUrl={prevPageUrl}
+      nextPageUrl={nextPageUrl}
       currentParams={{
         page,
         search,
