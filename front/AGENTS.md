@@ -2235,4 +2235,229 @@ const res = await gets(
   { page: 1, limit: 10, filter: { selected_language: locale } },
   { _id: 1, title: 1 }
 );
+
+---
+
+## Admin Panel Best Practices
+
+### Standard Page Pattern (Server Component)
+
+Every admin listing page follows this structure:
+
+```
+src/app/admin/<entity>/
+├── page.tsx              # Server Component: fetch data, pass to client
+├── _components/          # Shared sub-components
+│   └── <entity>-card.tsx # Glass card for grid view
+├── <entity>-table.tsx    # Table component (extracted from client)
+├── admin-<entity>-client.tsx  # Client component: view toggle, pagination, actions
+└── loading.tsx           # Skeleton loading state
+```
+
+**`page.tsx`** — Fetches data, computes `prevPageUrl`/`nextPageUrl`, passes everything to client:
+```tsx
+export default async function AdminPage({ searchParams }) {
+  const resolvedSearchParams = await searchParams;
+  const t = await getTranslations("admin");
+  const page = Number(resolvedSearchParams.page) || 1;
+
+  // Build query string for pagination URLs
+  const buildQuery = (overrides) => {
+    const sp = new URLSearchParams();
+    // push active params...
+    return sp.toString();
+  };
+
+  const result = await gets(setQuery, projection);
+  const items = result.success ? result.body : [];
+
+  const queryString = buildQuery({});
+  const prevPageUrl = page > 1 ? `/admin/<entity>?page=${page - 1}${queryString ? `&${queryString}` : ""}` : "";
+  const nextPageUrl = items.length >= limit ? `/admin/<entity>?page=${page + 1}${queryString ? `&${queryString}` : ""}` : "";
+
+  return <AdminClient items={items} prevPageUrl={prevPageUrl} nextPageUrl={nextPageUrl} />;
+}
+```
+
+**`admin-<entity>-client.tsx`** — `"use client"` component with:
+- `viewMode` state (`"grid" | "table"`)
+- Grid/table toggle buttons (LayoutGrid / Table2 icons, crimson active state)
+- Bulk action bar visible only in table mode (`viewMode === "table"`)
+- URL-based pagination via `<Link href={prevPageUrl}>` and `<Link href={nextPageUrl}>`
+- Uses extracted `<EntityTable>` with `onDelete`/`onPreview` callbacks
+- Uses `<EntityCard>` with `onDelete`/`onApprove`/`onReject` callbacks
+
+### Grid/Table Toggle Pattern
+
+```tsx
+const [viewMode, setViewMode] = useState<"grid" | "table">("table");
+
+<div className="flex items-center gap-1 rounded-lg bg-white/5 border border-white/10 p-0.5">
+  <Button variant="ghost" size="sm" onClick={() => setViewMode("grid")}
+    className={`h-8 w-8 p-0 ${viewMode === "grid" ? "bg-crimson text-white hover:bg-crimson-light" : "text-slate-body hover:text-offwhite hover:bg-white/5"}`}
+  >
+    <LayoutGrid className="h-4 w-4" />
+  </Button>
+  <Button variant="ghost" size="sm" onClick={() => { setViewMode("table"); setSelectedIds([]); }}
+    className={`h-8 w-8 p-0 ${viewMode === "table" ? "bg-crimson text-white hover:bg-crimson-light" : "text-slate-body hover:text-offwhite hover:bg-white/5"}`}
+  >
+    <Table2 className="h-4 w-4" />
+  </Button>
+</div>
+```
+
+### Card Component Pattern (`_components/<entity>-card.tsx`)
+
+- Extends `motion.div` with `initial={{ opacity: 0, y: 12 }}` / `animate={{ opacity: 0, y: 0 }}` animations
+- Uses `glass-strong` with `border-white/[0.06]` and `hover:border-white/[0.12]`
+- Receives `onDelete`, `onApprove`, `onReject` etc. callbacks from parent (never imports server actions directly)
+- Reuses shared helpers (e.g., `getImageUploadUrl`, `formatFileSize`, `getFileTypeKey`)
+- Stays self-contained with local status/priority config maps
+
+### **CRITICAL: Translation Key Safety**
+
+**Always guard `t()` calls with existence checks to prevent `MISSING_MESSAGE` errors:**
+
+```tsx
+// ✅ SAFE — Skip badge when field is undefined/null/empty
+{report.status && (
+  <span>{t(`status_${statusKey}`)}</span>
+)}
+{report.priority && (
+  <span>{t(`priority_${priorityKey}`)}</span>
+)}
+
+// ✅ SAFE — Fallback for optional enum fields
+const key = user.level ? `level_${user.level}` : "level_Ordinary";
+<span>{t(key)}</span>
+```
+
+**Never call `t(`prefix_${dynamic}`)` where `dynamic` can be `""`**, as `t("prefix_")` will throw a `MISSING_MESSAGE` error. This applies to status, priority, level, and any other enum-typed backend fields that may be absent.
+
+### Pagination URL Pattern
+
+Use `prevPageUrl`/`nextPageUrl` string props computed server-side, NOT client-side `navigate()`:
+
+```tsx
+// ✅ CORRECT — URL-based pagination
+{prevPageUrl ? (
+  <Button variant="outline" size="sm" asChild className="...">
+    <Link href={prevPageUrl}>{t("previous")}</Link>
+  </Button>
+) : (
+  <Button variant="outline" size="sm" disabled className="...">
+    {t("previous")}
+  </Button>
+)}
+```
+
+This ensures pagination works with server-side data refetching and preserves all query params.
+
+### Hero Header Pattern
+
+Every admin listing page has a consistent hero header:
+
+```tsx
+<div className="relative overflow-hidden rounded-2xl glass-light border border-white/[0.06] p-6 md:p-8">
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(153,27,27,0.08)_0%,_transparent_60%)]" />
+  <div className="absolute -top-20 -end-20 h-40 w-40 rounded-full bg-gradient-to-br from-crimson/[0.06] to-transparent blur-3xl" />
+  <div className="relative flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+    <div>
+      <div className="flex items-center gap-3 mb-2">
+        <div className="h-px w-8 bg-crimson" />
+        <span className="text-xs font-medium uppercase tracking-[0.15em] text-gold">{t("adminPanel")}</span>
+      </div>
+      <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-offwhite">{t("entityManagement")}</h1>
+      <p className="text-slate-body mt-1 text-sm">{t("entityManagementDescription")}</p>
+    </div>
+    <div className="flex items-center gap-2 shrink-0">
+      <Link href={`/admin/entity/new`}>
+        <Button className="bg-crimson hover:bg-crimson-light text-white">
+          <Plus className="h-4 w-4 me-1.5" />
+          {t("addEntity")}
+        </Button>
+      </Link>
+    </div>
+  </div>
+</div>
+```
+
+### Translation Keys Checklist
+
+When adding a new admin entity page, ensure these translation keys exist in ALL 9 language files under the `admin` namespace:
+
+| Key | Purpose |
+|-----|---------|
+| `entityManagement` | Page title (e.g., "Reports Management") |
+| `entityManagementDescription` | Subtitle description |
+| `addEntity` | Create button label |
+| `searchEntity` | Search placeholder |
+| `noEntity` | Empty state text |
+| `noEntityFiltered` | Empty filtered results text |
+| `entityUpdated` | Success toast on update |
+| `entityDeleted` | Success toast on delete |
+| `entityDeleted_plural` | Bulk delete success |
+| `itemsShown` | Result count label |
+| `noResults` | No results text |
+| `exportCsv` | CSV export button |
+| `previous` / `next` | Pagination labels |
+| `status_*` / `priority_*` | Enum badge translations |
+| `allStatuses` / `allPriorities` | Filter "all" options |
+
+### Loading Skeleton Layout
+
+Match the skeleton structure to the actual page layout:
+
+```tsx
+export default function EntityLoading() {
+  return (
+    <div className="space-y-6 p-6 md:p-8">
+      {/* Hero */}
+      <div className="rounded-2xl glass-light p-6 border border-white/[0.06] space-y-4">
+        <Skeleton className="h-4 w-32 rounded-full" />
+        <Skeleton className="h-8 w-64" />
+        <Skeleton className="h-4 w-96" />
+      </div>
+      {/* Stats */}
+      <div className="grid gap-3 grid-cols-2 md:grid-cols-4">
+        {Array.from({ length: 4 }).map((_, i) => (
+          <div key={i} className="rounded-xl glass-light p-4 border border-white/[0.06]">
+            <div className="flex items-center gap-3">
+              <Skeleton className="h-8 w-8 rounded-lg" />
+              <div className="space-y-1.5">
+                <Skeleton className="h-3 w-16" />
+                <Skeleton className="h-5 w-12" />
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {/* Search/toggle bar */}
+      <div className="flex gap-3">
+        <Skeleton className="h-9 flex-1 rounded-lg" />
+        <Skeleton className="h-9 w-24 rounded-lg" />
+      </div>
+      {/* Table */}
+      <div className="rounded-2xl border border-white/[0.06] overflow-hidden">
+        {Array.from({ length: 5 }).map((_, i) => (
+          <div key={i} className="flex items-center gap-4 p-3 border-b border-white/[0.04]">
+            <Skeleton className="h-4 w-4 rounded" />
+            <Skeleton className="h-4 w-48" />
+            <Skeleton className="h-5 w-16 rounded-full" />
+            <Skeleton className="h-8 w-8 rounded-md ms-auto" />
+          </div>
+        ))}
+      </div>
+      {/* Pagination */}
+      <div className="flex items-center justify-between">
+        <Skeleton className="h-3 w-32" />
+        <div className="flex gap-2">
+          <Skeleton className="h-8 w-20 rounded-lg" />
+          <Skeleton className="h-8 w-20 rounded-lg" />
+        </div>
+      </div>
+    </div>
+  );
+}
+```
 ```
