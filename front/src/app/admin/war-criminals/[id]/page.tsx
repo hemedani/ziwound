@@ -30,6 +30,15 @@ const statusColors: Record<string, string> = {
   Sanctioned: "bg-purple-500/20 text-purple-400 border-purple-500/30",
 };
 
+const statusTranslationKeys: Record<string, string> = {
+  Accused: "Accused",
+  Indicted: "Indicted",
+  Convicted: "Convicted",
+  "At Large": "atLarge",
+  Deceased: "Deceased",
+  Sanctioned: "Sanctioned",
+};
+
 const statusIcons: Record<string, React.ElementType> = {
   Accused: AlertTriangle,
   Indicted: Shield,
@@ -140,7 +149,7 @@ export default async function AdminWarCriminalDetailPage({
 
   const wc: warCriminalSchema = response.body[0];
   const StatusIcon = statusIcons[wc.status] || Globe;
-  const statusLabel = t(wc.status);
+  const statusLabel = t(statusTranslationKeys[wc.status] || wc.status);
   const affiliationLabel = wc.affiliation ? getAffiliationTranslation(t, wc.affiliation) : "";
 
   const reportCount = wc.reports?.length || 0;
