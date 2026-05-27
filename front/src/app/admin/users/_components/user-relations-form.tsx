@@ -36,13 +36,23 @@ export function UserRelationsForm({ user, countries, provinces, cities }: UserRe
 
   const filteredProvinces = useMemo(() => {
     if (!countryId || typeof countryId !== "string") return [];
-    return provinces.filter((p) => p.country?._id === countryId);
-  }, [provinces, countryId]);
+    const filtered = provinces.filter((p) => p.country?._id === countryId);
+    if (user.province?._id && !filtered.some((p) => p._id === user.province!._id)) {
+      const current = provinces.find((p) => p._id === user.province!._id);
+      if (current) filtered.push(current);
+    }
+    return filtered;
+  }, [provinces, countryId, user.province]);
 
   const filteredCities = useMemo(() => {
     if (!provinceId || typeof provinceId !== "string") return [];
-    return cities.filter((c) => c.province?._id === provinceId);
-  }, [cities, provinceId]);
+    const filtered = cities.filter((c) => c.province?._id === provinceId);
+    if (user.city?._id && !filtered.some((c) => c._id === user.city!._id)) {
+      const current = cities.find((c) => c._id === user.city!._id);
+      if (current) filtered.push(current);
+    }
+    return filtered;
+  }, [cities, provinceId, user.city]);
 
   const handleSave = async () => {
     if (!user._id) return;

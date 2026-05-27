@@ -26,8 +26,8 @@ export default async function UpdateRelationsPage({ params }: UpdateRelationsPag
       avatar: { _id: 1, name: 1, mimeType: 1, type: 1, alt_text: 1 },
       national_card: { _id: 1, name: 1, mimeType: 1, type: 1, alt_text: 1 },
       country: { _id: 1, name: 1, english_name: 1 },
-      province: { _id: 1 },
-      city: { _id: 1 },
+      province: { _id: 1, name: 1, english_name: 1 },
+      city: { _id: 1, name: 1, english_name: 1 },
     },
   );
 
@@ -48,25 +48,32 @@ export default async function UpdateRelationsPage({ params }: UpdateRelationsPag
   const cities = (citiesResponse?.success && Array.isArray(citiesResponse.body)) ? citiesResponse.body : [];
 
   return (
-    <div className="space-y-6">
-      <div>
-        <Link
-          href="/admin/users"
-          className="inline-flex items-center gap-2 text-sm text-slate-body hover:text-offwhite transition-colors mb-4"
-        >
-          <ArrowLeft className="h-4 w-4" />
-          {t("backToUsers") || "Back to Users"}
-        </Link>
-        <h1 className="text-3xl font-bold tracking-tight text-offwhite">
-          {t("updateUserRelations") || "Update User Relations"}
-        </h1>
-        <p className="text-slate-body mt-1">
-          {t("updateUserRelationsDescription")}{user.first_name} {user.last_name}
-        </p>
+    <div className="p-6 md:p-8 max-w-5xl mx-auto space-y-6">
+      <div className="relative overflow-hidden rounded-2xl glass-light border border-white/[0.06] p-6 md:p-8">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_rgba(153,27,27,0.08)_0%,_transparent_60%)]" />
+        <div className="relative">
+          <div className="flex items-center gap-3 mb-2">
+            <Link
+              href="/admin/users"
+              className="text-slate-body hover:text-offwhite transition-colors"
+            >
+              <ArrowLeft className="h-4 w-4" />
+            </Link>
+            <div className="h-px w-8 bg-crimson" />
+            <span className="text-xs font-medium uppercase tracking-[0.15em] text-gold">
+              {t("usersManagement") || "Users"}
+            </span>
+          </div>
+          <h1 className="text-2xl md:text-3xl font-bold tracking-tight text-offwhite">
+            {t("updateUserRelations") || "Update User Relations"}
+          </h1>
+          <p className="text-slate-body mt-1 text-sm">
+            {t("updateUserRelationsDescription") || "Manage relations for "}{user.first_name} {user.last_name}
+          </p>
+        </div>
       </div>
-      <div className="max-w-2xl">
-        <UserRelationsForm user={user} countries={countries} provinces={provinces} cities={cities} />
-      </div>
+
+      <UserRelationsForm user={user} countries={countries} provinces={provinces} cities={cities} />
     </div>
   );
 }
