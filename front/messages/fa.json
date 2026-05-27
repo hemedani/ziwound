@@ -583,6 +583,7 @@
     "addUserDescription": "ایجاد حساب کاربری جدید با نقش‌ها و دسترسی‌ها",
     "address": "آدرس",
     "adminPanel": "پنل مدیریت",
+    "viewSite": "بازگشت به سایت",
     "allCategories": "همه دسته‌بندی‌ها",
     "allLanguages": "همه زبان‌ها",
     "allLevels": "همه سطح‌ها",
@@ -1760,6 +1761,7 @@
     "noCriminalsDescription": "فیلترهای جستجو را تغییر دهید یا پاک کنید.",
     "result": "نتیجه",
     "results": "نتیجه",
+    "tags": "برچسب‌ها",
     "organization": "سازمان"
   },
   "confirmation": {

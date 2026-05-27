@@ -566,7 +566,7 @@
     "addUserDescription": "Crear una nueva cuenta de usuario con roles y permisos",
     "address": "Dirección",
     "adminPanel": "Panel de Administración",
-    "allCategories": "Todas las Categorías",
+    "viewSite": "Volver al Sitio",
     "allLanguages": "Todos los idiomas",
     "allLevels": "Todos los Niveles",
     "allPriorities": "Todas las Prioridades",
@@ -1751,6 +1751,7 @@
     "noCriminalsDescription": "Intente ajustar su búsqueda o filtros.",
     "result": "resultado",
     "results": "resultados",
+    "tags": "Etiquetas",
     "organization": "Org"
   },
   "confirmation": {

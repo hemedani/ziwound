@@ -566,7 +566,7 @@
     "addUserDescription": "Создать новую учетную запись пользователя с ролями и разрешениями",
     "address": "Адрес",
     "adminPanel": "Панель администратора",
-    "allCategories": "Все категории",
+    "viewSite": "Вернуться на сайт",
     "allLanguages": "Все языки",
     "allLevels": "Все уровни",
     "allPriorities": "Все приоритеты",
@@ -1751,6 +1751,7 @@
     "noCriminalsDescription": "Попробуйте изменить поиск или фильтры.",
     "result": "результат",
     "results": "результаты",
+    "tags": "Теги",
     "organization": "Орг"
   },
   "confirmation": {

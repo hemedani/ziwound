@@ -566,7 +566,7 @@
     "addUserDescription": "Roller ve izinlerle yeni bir kullanıcı hesabı oluştur",
     "address": "Adres",
     "adminPanel": "Yönetici Paneli",
-    "allCategories": "Tüm Kategoriler",
+    "viewSite": "Siteye Dön",
     "allLanguages": "Tüm Diller",
     "allLevels": "Tüm Seviyeler",
     "allPriorities": "Tüm Öncelikler",
@@ -1695,6 +1695,7 @@
     "noCriminalsDescription": "Aramanızı veya filtrelerinizi ayarlamayı deneyin.",
     "result": "sonuç",
     "results": "sonuç",
+    "tags": "Etiketler",
     "organization": "Kuruluş"
   },
   "confirmation": {

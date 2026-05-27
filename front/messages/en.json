@@ -580,7 +580,7 @@
     "addUserDescription": "Create a new user account with roles and permissions",
     "address": "Address",
     "adminPanel": "Admin Panel",
-    "allCategories": "All Categories",
+    "viewSite": "Return to Website",
     "allLanguages": "All Languages",
     "allLevels": "All Levels",
     "allPriorities": "All Priorities",
@@ -1758,6 +1758,7 @@
     "noCriminalsDescription": "Try adjusting your search or filters.",
     "result": "result",
     "results": "results",
+    "tags": "Tags",
     "organization": "Org"
   },
   "confirmation": {

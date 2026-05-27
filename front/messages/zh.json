@@ -566,6 +566,7 @@
     "addUserDescription": "创建具有角色和权限的新用户帐户",
     "address": "地址",
     "adminPanel": "管理面板",
+    "viewSite": "返回网站",
     "allCategories": "所有类别",
     "allLanguages": "所有语言",
     "allLevels": "所有等级",
@@ -1695,6 +1696,7 @@
     "noCriminalsDescription": "尝试调整搜索或筛选条件。",
     "result": "结果",
     "results": "结果",
+    "tags": "标签",
     "organization": "组织"
   },
   "confirmation": {

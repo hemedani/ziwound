@@ -566,6 +566,7 @@
     "addUserDescription": "إنشاء حساب مستخدم جديد مع الأدوار والصلاحيات",
     "address": "العنوان",
     "adminPanel": "لوحة المسؤول",
+    "viewSite": "العودة إلى الموقع",
     "allCategories": "جميع الفئات",
     "allLanguages": "كل اللغات",
     "allLevels": "جميع المستويات",
@@ -1689,6 +1690,7 @@
     "noCriminalsDescription": "حاول تعديل البحث أو الفلاتر.",
     "result": "نتيجة",
     "results": "نتائج",
+    "tags": "العلامات",
     "organization": "منظمة"
   },
   "confirmation": {

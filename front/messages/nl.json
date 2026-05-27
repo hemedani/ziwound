@@ -566,7 +566,7 @@
     "addUserDescription": "Een nieuw gebruikersaccount aanmaken met rollen en rechten",
     "address": "Adres",
     "adminPanel": "Beheerderspaneel",
-    "allCategories": "Alle Categorieën",
+    "viewSite": "Terug naar Site",
     "allLanguages": "Alle talen",
     "allLevels": "Alle Niveaus",
     "allPriorities": "Alle Prioriteiten",
@@ -1751,6 +1751,7 @@
     "noCriminalsDescription": "Probeer uw zoekopdracht of filters aan te passen.",
     "result": "resultaat",
     "results": "resultaten",
+    "tags": "Tags",
     "organization": "Org"
   },
   "confirmation": {
