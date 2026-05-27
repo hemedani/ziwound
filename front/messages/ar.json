@@ -767,6 +767,7 @@
     "isEntity": "كيان/منظمة",
     "photo": "الصورة",
     "localizedFields": "حقول متعددة اللغات",
+    "localizedFieldsUpdated": "تم تحديث المحتوى متعدد اللغات بنجاح",
     "Accused": "متهم",
     "Indicted": "موجه له لائحة اتهام",
     "Convicted": "مدان",
@@ -1186,7 +1187,12 @@
     "relationsManagement": "إدارة العلاقات",
     "searchDocuments": "البحث عن مستندات...",
     "remove": "إزالة",
-    "location": "الموقع"
+    "itemsShown": "العناصر المعروضة",
+    "localizedContent": "المحتوى المحلي",
+    "classification": "التصنيف",
+    "isEntityDescription": "تحقق إذا كانت هذه منظمة بدلاً من فرد",
+    "location": "الموقع",
+    "totalWarCriminals": "إجمالي مجرمي الحرب"
   },
   "notFound": {
     "backHome": "العودة إلى الصفحة الرئيسية",

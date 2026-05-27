@@ -256,7 +256,9 @@
     "none": "هیچکدام",
     "noneSelected": "هیچکدام انتخاب نشده",
     "relationsManagement": "مدیریت روابط",
-    "searchDocuments": "جستجوی اسناد..."
+    "searchDocuments": "جستجوی اسناد...",
+    "itemsShown": "مورد نمایش داده شده",
+    "totalWarCriminals": "کل جنایتکاران جنگی"
   },
   "myReports": {
     "title": "گزارش‌های من",
@@ -882,6 +884,7 @@
     "isEntity": "نهاد/سازمان",
     "photo": "تصویر",
     "localizedFields": "فیلدهای چندزبانه",
+    "localizedFieldsUpdated": "محتوای چندزبانه با موفقیت به‌روزرسانی شد",
     "Accused": "متهم",
     "Indicted": "کیفرخواست‌شده",
     "Convicted": "محکوم",
@@ -1207,7 +1210,12 @@
     "relationsManagement": "مدیریت روابط",
     "searchDocuments": "جستجوی اسناد...",
     "remove": "حذف",
-    "location": "موقعیت"
+    "itemsShown": "مورد نمایش داده شده",
+    "localizedContent": "محتوای چندزبانه",
+    "classification": "طبقه‌بندی",
+    "isEntityDescription": "اگر این یک سازمان است به جای فرد، تیک بزنید",
+    "location": "موقعیت",
+    "totalWarCriminals": "کل جنایتکاران جنگی"
   },
   "reporters": {
     "pageTitle": "خبرنگاران و مشارکت‌کنندگان - زی‌ووند",

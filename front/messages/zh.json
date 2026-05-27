@@ -767,6 +767,7 @@
     "isEntity": "实体/组织",
     "photo": "照片",
     "localizedFields": "多语言字段",
+    "localizedFieldsUpdated": "多语言内容更新成功",
     "Accused": "被指控",
     "Indicted": "被起诉",
     "Convicted": "已定罪",
@@ -1186,7 +1187,12 @@
     "relationsManagement": "关系管理",
     "searchDocuments": "搜索文档...",
     "remove": "移除",
-    "location": "位置"
+    "itemsShown": "显示项目",
+    "localizedContent": "本地化内容",
+    "classification": "分类",
+    "isEntityDescription": "如果这是一个组织而不是个人，请勾选",
+    "location": "位置",
+    "totalWarCriminals": "战争罪犯总数"
   },
   "notFound": {
     "backHome": "返回首页",

@@ -822,6 +822,7 @@
     "isEntity": "Entiteit/Organisatie",
     "photo": "Foto",
     "localizedFields": "Meertalige velden",
+    "localizedFieldsUpdated": "Meertalige inhoud succesvol bijgewerkt",
     "Accused": "Beschuldigd",
     "Indicted": "Aangeklaagd",
     "Convicted": "Veroordeeld",
@@ -1239,7 +1240,12 @@
     "relationsManagement": "Relatiebeheer",
     "searchDocuments": "Documenten zoeken...",
     "remove": "Verwijderen",
-    "location": "Locatie"
+    "itemsShown": "getoonde items",
+    "localizedContent": "Gelokaliseerde Inhoud",
+    "classification": "Classificatie",
+    "isEntityDescription": "Vink aan als dit een organisatie is in plaats van een individu",
+    "location": "Locatie",
+    "totalWarCriminals": "Totaal Oorlogsmisdadigers"
   },
   "notFound": {
     "backHome": "Terug naar startpagina",

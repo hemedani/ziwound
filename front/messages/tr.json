@@ -767,6 +767,7 @@
     "isEntity": "Kuruluş/Organizasyon",
     "photo": "Fotoğraf",
     "localizedFields": "Çok dilli alanlar",
+    "localizedFieldsUpdated": "Çok dilli içerik başarıyla güncellendi",
     "Accused": "Sanık",
     "Indicted": "İddianame Hazırlanan",
     "Convicted": "Hükümlü",
@@ -1186,7 +1187,12 @@
     "relationsManagement": "İlişki Yönetimi",
     "searchDocuments": "Belgeleri ara...",
     "remove": "Kaldır",
-    "location": "Konum"
+    "itemsShown": "gösterilen öğeler",
+    "localizedContent": "Yerelleştirilmiş İçerik",
+    "classification": "Sınıflandırma",
+    "isEntityDescription": "Bir birey yerine kuruluşsa işaretleyin",
+    "location": "Konum",
+    "totalWarCriminals": "Toplam Savaş Suçlusu"
   },
   "notFound": {
     "backHome": "Ana Sayfaya Dön",

@@ -822,6 +822,7 @@
     "isEntity": "Организация",
     "photo": "Фото",
     "localizedFields": "Многоязычные поля",
+    "localizedFieldsUpdated": "Многоязычный контент успешно обновлен",
     "Accused": "Обвиняемый",
     "Indicted": "Подсудимый",
     "Convicted": "Осужденный",
@@ -1239,7 +1240,12 @@
     "relationsManagement": "Управление связями",
     "searchDocuments": "Поиск документов...",
     "remove": "Удалить",
-    "location": "Местоположение"
+    "itemsShown": "показано элементов",
+    "localizedContent": "Локализованный контент",
+    "classification": "Классификация",
+    "isEntityDescription": "Отметьте, если это организация, а не физическое лицо",
+    "location": "Местоположение",
+    "totalWarCriminals": "Всего военных преступников"
   },
   "notFound": {
     "backHome": "Вернуться на главную",

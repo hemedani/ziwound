@@ -880,6 +880,7 @@
     "isEntity": "Is Entity (Organization)",
     "photo": "Photo",
     "localizedFields": "Localized Fields",
+    "localizedFieldsUpdated": "Localized content updated successfully",
     "Accused": "Accused",
     "Indicted": "Indicted",
     "Convicted": "Convicted",
@@ -1254,7 +1255,12 @@
     "relationsManagement": "Relations Management",
     "searchDocuments": "Search documents...",
     "remove": "Remove",
-    "location": "Location"
+    "itemsShown": "items shown",
+    "localizedContent": "Localized Content",
+    "classification": "Classification",
+    "isEntityDescription": "Check if this is an organization rather than an individual",
+    "location": "Location",
+    "totalWarCriminals": "Total War Criminals"
   },
   "notFound": {
     "backHome": "Back to Home",

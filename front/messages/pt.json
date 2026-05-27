@@ -767,6 +767,7 @@
     "isEntity": "Entidade/Organização",
     "photo": "Foto",
     "localizedFields": "Campos multilíngues",
+    "localizedFieldsUpdated": "Conteúdo multilíngue atualizado com sucesso",
     "Accused": "Acusado",
     "Indicted": "Indiciado",
     "Convicted": "Condenado",
@@ -1186,7 +1187,12 @@
     "relationsManagement": "Gerenciamento de Relações",
     "searchDocuments": "Pesquisar documentos...",
     "remove": "Remover",
-    "location": "Localização"
+    "itemsShown": "itens mostrados",
+    "localizedContent": "Conteúdo Localizado",
+    "classification": "Classificação",
+    "isEntityDescription": "Marque se for uma organização em vez de um indivíduo",
+    "location": "Localização",
+    "totalWarCriminals": "Total de Criminosos de Guerra"
   },
   "notFound": {
     "backHome": "Voltar ao início",
