@@ -14,6 +14,7 @@ import {
   FileText,
   BookOpen,
   CheckCircle,
+  ArrowLeftFromLine,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import {
@@ -76,6 +77,14 @@ export function AdminNavbar({ onMobileMenuToggle }: AdminNavbarProps) {
               {action.label}
             </Link>
           ))}
+          <div className="w-px h-5 bg-white/[0.06] mx-1.5" />
+          <Link
+            href="/fa"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-gold hover:text-offwhite hover:bg-white/[0.04] transition-all"
+          >
+            <ArrowLeftFromLine className="h-3.5 w-3.5" />
+            {t("viewSite") || "Return to Website"}
+          </Link>
         </div>
 
         {/* Right: Notifications, User */}
