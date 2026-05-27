@@ -160,9 +160,10 @@ export default async function Home({ params }: HomePageProps) {
           id: r._id,
           title: r.title,
           excerpt: r.description
-            ? r.description.length > 140
-              ? r.description.slice(0, 140) + "..."
-              : r.description
+            ? (() => {
+                const plain = r.description.replace(/<[^>]*>/g, "");
+                return plain.length > 140 ? plain.slice(0, 140) + "..." : plain;
+              })()
             : "",
           image: mediaType === "image" ? mediaSrc : "",
           mediaType,

@@ -88,9 +88,10 @@ export function LinkedReportCard({
         </div>
 
         {report.description && (
-          <p className="text-sm text-slate-body/70 line-clamp-3 leading-relaxed">
-            {report.description}
-          </p>
+          <div
+            className="text-sm text-slate-body/70 line-clamp-3 leading-relaxed prose prose-invert prose-sm max-w-none prose-p:m-0 prose-p:inline prose-headings:inline prose-headings:text-sm prose-strong:text-slate-body/70 prose-a:text-crimson-light"
+            dangerouslySetInnerHTML={{ __html: report.description }}
+          />
         )}
 
         {report.category && (

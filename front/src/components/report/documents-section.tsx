@@ -64,7 +64,10 @@ export function DocumentsSection({
                     {doc.title || translations.document}
                   </h3>
                   {doc.description && (
-                    <p className="text-sm text-slate-body/60 mt-1">{doc.description}</p>
+                    <div
+                      className="text-sm text-slate-body/60 mt-1 prose prose-invert prose-sm max-w-none prose-p:m-0 prose-p:inline prose-headings:inline prose-headings:text-sm prose-strong:text-slate-body/60 prose-a:text-crimson-light"
+                      dangerouslySetInnerHTML={{ __html: doc.description }}
+                    />
                   )}
                 </div>
                 {doc.selected_language && (

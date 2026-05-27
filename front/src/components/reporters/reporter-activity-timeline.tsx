@@ -78,9 +78,10 @@ export function ReporterActivityTimeline({ items, emptyMessage }: ReporterActivi
                   </Badge>
                 </div>
                 {item.report.description && (
-                  <p className="text-xs text-slate-body/50 line-clamp-1 mt-1">
-                    {item.report.description}
-                  </p>
+                  <div
+                    className="text-xs text-slate-body/50 line-clamp-1 mt-1 prose prose-invert prose-xs max-w-none prose-p:m-0 prose-p:inline prose-headings:inline prose-headings:text-xs prose-strong:text-slate-body/50 prose-a:text-crimson-light"
+                    dangerouslySetInnerHTML={{ __html: item.report.description }}
+                  />
                 )}
                 <div className="flex items-center gap-3 mt-2 text-[11px] text-slate-body/40">
                   <time dateTime={item.date}>{formatDate(item.date, item.locale)}</time>

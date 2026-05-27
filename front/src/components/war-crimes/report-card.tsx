@@ -153,9 +153,10 @@ export function ReportCard({ report, locale }: ReportCardProps) {
       <div className="flex flex-1 flex-col p-4">
         {/* Description */}
         {report.description && (
-          <p className="text-sm text-slate-body/70 line-clamp-2 leading-relaxed mb-3">
-            {report.description}
-          </p>
+          <div
+            className="text-sm text-slate-body/70 line-clamp-2 leading-relaxed mb-3 prose prose-invert prose-sm max-w-none prose-p:m-0 prose-p:inline prose-headings:inline prose-headings:text-sm prose-strong:text-slate-body/70 prose-a:text-crimson-light"
+            dangerouslySetInnerHTML={{ __html: report.description }}
+          />
         )}
 
         {/* Category */}

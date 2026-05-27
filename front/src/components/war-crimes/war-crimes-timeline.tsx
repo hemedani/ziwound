@@ -174,9 +174,10 @@ export function WarCrimesTimeline({ reports, locale }: WarCrimesTimelineProps) {
 
                         {/* Description */}
                         {report.description && (
-                          <p className="text-sm text-slate-body/60 line-clamp-2 mb-3 leading-relaxed">
-                            {report.description}
-                          </p>
+                          <div
+                            className="text-sm text-slate-body/60 line-clamp-2 mb-3 leading-relaxed prose prose-invert prose-sm max-w-none prose-p:m-0 prose-p:inline prose-headings:inline prose-headings:text-sm prose-strong:text-slate-body/60 prose-a:text-crimson-light"
+                            dangerouslySetInnerHTML={{ __html: report.description }}
+                          />
                         )}
 
                         {/* Badges */}

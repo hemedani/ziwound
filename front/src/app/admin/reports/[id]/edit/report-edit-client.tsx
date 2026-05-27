@@ -35,6 +35,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { RichTextEditor } from "@/components/form/rich-text-editor";
 import {
   Select,
   SelectContent,
@@ -226,11 +227,10 @@ function TabBasicInfo({
       <GlassCard>
         <div className="mb-1">
           <label className="block text-xs font-medium text-slate-body mb-1.5">{t("description") || "Description"}</label>
-          <Textarea
+          <RichTextEditor
             value={form.description}
-            onChange={(e) => setForm((f) => ({ ...f, description: e.target.value }))}
-            rows={8}
-            className="bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/40 resize-y min-h-[160px]"
+            onChange={(val) => setForm((f) => ({ ...f, description: val }))}
+            placeholder={t("descriptionPlaceholder") || "Enter description..."}
           />
         </div>
       </GlassCard>

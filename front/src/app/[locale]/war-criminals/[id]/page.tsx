@@ -319,9 +319,10 @@ export default async function WarCriminalDetailPage({
                   </div>
                   <h2 className="text-xl font-semibold text-offwhite">{t("warCriminals.description") || "Description"}</h2>
                 </div>
-                <p className="text-slate-body whitespace-pre-wrap leading-relaxed text-[15px]">
-                  {getLocalizedText(wc.description as Record<string, string>, locale)}
-                </p>
+                <div
+                  className="prose prose-invert max-w-none prose-p:text-slate-body/80 prose-headings:text-offwhite prose-a:text-crimson-light prose-strong:text-offwhite prose-code:text-gold prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 leading-relaxed text-[15px]"
+                  dangerouslySetInnerHTML={{ __html: getLocalizedText(wc.description as Record<string, string>, locale) }}
+                />
               </div>
             )}
 
@@ -334,9 +335,10 @@ export default async function WarCriminalDetailPage({
                   </div>
                   <h2 className="text-xl font-semibold text-offwhite">{t("warCriminals.knownFor") || "Known For"}</h2>
                 </div>
-                <p className="text-slate-body whitespace-pre-wrap leading-relaxed text-[15px]">
-                  {getLocalizedText(wc.knownFor as Record<string, string>, locale)}
-                </p>
+                <div
+                  className="prose prose-invert max-w-none prose-p:text-slate-body/80 prose-headings:text-offwhite prose-a:text-crimson-light prose-strong:text-offwhite prose-code:text-gold prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 leading-relaxed text-[15px]"
+                  dangerouslySetInnerHTML={{ __html: getLocalizedText(wc.knownFor as Record<string, string>, locale) }}
+                />
               </div>
             )}
 
@@ -349,11 +351,10 @@ export default async function WarCriminalDetailPage({
                   </div>
                   <h2 className="text-xl font-semibold text-offwhite">{t("warCriminals.biography") || "Biography"}</h2>
                 </div>
-                <div className="prose prose-invert max-w-none">
-                  <p className="text-slate-body whitespace-pre-wrap leading-relaxed text-[15px]">
-                    {getLocalizedText(wc.biography as Record<string, string>, locale)}
-                  </p>
-                </div>
+                <div
+                  className="prose prose-invert max-w-none prose-p:text-slate-body/80 prose-headings:text-offwhite prose-a:text-crimson-light prose-strong:text-offwhite prose-code:text-gold prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 leading-relaxed text-[15px]"
+                  dangerouslySetInnerHTML={{ __html: getLocalizedText(wc.biography as Record<string, string>, locale) }}
+                />
               </div>
             )}
 
@@ -366,9 +367,10 @@ export default async function WarCriminalDetailPage({
                   </div>
                   <h2 className="text-xl font-semibold text-offwhite">{t("warCriminals.convictionDetails") || "Conviction Details"}</h2>
                 </div>
-                <p className="text-slate-body whitespace-pre-wrap leading-relaxed text-[15px]">
-                  {getLocalizedText(wc.convictionDetails as Record<string, string>, locale)}
-                </p>
+                <div
+                  className="prose prose-invert max-w-none prose-p:text-slate-body/80 prose-headings:text-offwhite prose-a:text-crimson-light prose-strong:text-offwhite prose-code:text-gold prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 leading-relaxed text-[15px]"
+                  dangerouslySetInnerHTML={{ __html: getLocalizedText(wc.convictionDetails as Record<string, string>, locale) }}
+                />
               </div>
             )}
 
@@ -414,9 +416,10 @@ export default async function WarCriminalDetailPage({
 
                           {/* Description */}
                           {report.description && (
-                            <p className="text-sm text-slate-body/80 line-clamp-2 mb-3">
-                              {report.description}
-                            </p>
+                            <div
+                              className="text-sm text-slate-body/80 line-clamp-2 mb-3 prose prose-invert prose-sm max-w-none prose-p:m-0 prose-p:inline prose-headings:inline prose-headings:text-sm prose-strong:text-slate-body/80 prose-a:text-crimson-light"
+                              dangerouslySetInnerHTML={{ __html: report.description }}
+                            />
                           )}
 
                           {/* Meta */}
@@ -556,7 +559,7 @@ export default async function WarCriminalDetailPage({
                   <div className="rounded-lg bg-white/[0.06] p-1.5">
                     <Tag className="h-4 w-4 text-blue-400" />
                   </div>
-                  {t("tags") || "Tags"}
+                  {t("warCriminals.tags") || "Tags"}
                 </h3>
                 <div className="flex flex-wrap gap-2">
                   {wc.tags.map((tag) => (

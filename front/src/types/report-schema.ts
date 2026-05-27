@@ -76,7 +76,7 @@ const baseReportSchema = z.object({
   description: z
     .string()
     .min(1, "Description is required")
-    .max(10000, "Description must be less than 10000 characters"),
+    .max(50000, "Description must be less than 50000 characters"),
   selected_language: z.enum(REPORT_LANGUAGES, {
     required_error: "Language is required",
   }),

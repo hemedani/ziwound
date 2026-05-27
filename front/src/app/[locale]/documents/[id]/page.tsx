@@ -301,11 +301,10 @@ export default async function DocumentDetailPage({ params }: PageProps) {
                   </div>
                   <h2 className="text-lg font-semibold text-offwhite">{t("description")}</h2>
                 </div>
-                <div className="prose prose-invert max-w-none">
-                  <p className="text-slate-body/80 whitespace-pre-wrap leading-relaxed text-[15px]">
-                    {doc.description}
-                  </p>
-                </div>
+                <div
+                  className="prose prose-invert max-w-none prose-p:text-slate-body/80 prose-headings:text-offwhite prose-a:text-crimson-light prose-strong:text-offwhite prose-code:text-gold prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 leading-relaxed text-[15px]"
+                  dangerouslySetInnerHTML={{ __html: doc.description }}
+                />
               </div>
             )}
 

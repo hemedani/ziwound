@@ -56,9 +56,10 @@ export function ReportListCard({ reports, locale, title, className }: ReportList
                 {report.title}
               </p>
               {report.description && (
-                <p className="text-xs text-slate-body/40 mt-0.5 line-clamp-1">
-                  {report.description}
-                </p>
+                <div
+                  className="text-xs text-slate-body/40 mt-0.5 line-clamp-1 prose prose-invert prose-xs max-w-none prose-p:m-0 prose-p:inline prose-headings:inline prose-headings:text-xs prose-strong:text-slate-body/40 prose-a:text-crimson-light"
+                  dangerouslySetInnerHTML={{ __html: report.description }}
+                />
               )}
             </div>
 

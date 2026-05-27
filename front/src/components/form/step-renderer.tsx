@@ -4,7 +4,7 @@ import { useTranslations } from "next-intl";
 import { Control, UseFormRegister, FieldErrors, UseFormSetValue, UseFormWatch } from "react-hook-form";
 import { z } from "zod";
 import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
+import { RichTextEditor } from "@/components/form/rich-text-editor";
 import {
   Form,
   FormControl,
@@ -227,16 +227,12 @@ export function StepRenderer({
                   {isRequired(fieldName) && <span className="text-destructive">*</span>}
                 </FormLabel>
                 <FormControl>
-                  <Textarea
-                    {...field}
+                  <RichTextEditor
+                    value={field.value || ""}
+                    onChange={field.onChange}
                     placeholder={t("report.descriptionPlaceholder")}
-                    rows={5}
-                    disabled={disabled}
                   />
                 </FormControl>
-                <FormDescription>
-                  {field.value?.length || 0} / 10000 {t("common.characters")}
-                </FormDescription>
                 <FormMessage />
               </FormItem>
             )}

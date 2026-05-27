@@ -403,9 +403,10 @@ export default async function WarCriminalsPage({
 
                     {/* Known For */}
                     {wc.knownFor && getLocalizedText(wc.knownFor as Record<string, string>, locale) && (
-                      <p className="text-sm text-slate-body/70 line-clamp-2 leading-relaxed">
-                        {getLocalizedText(wc.knownFor as Record<string, string>, locale)}
-                      </p>
+                      <div
+                        className="text-sm text-slate-body/70 line-clamp-2 leading-relaxed prose prose-invert prose-sm max-w-none prose-p:m-0 prose-p:inline prose-headings:inline prose-headings:text-sm prose-strong:text-slate-body/70 prose-a:text-crimson-light"
+                        dangerouslySetInnerHTML={{ __html: getLocalizedText(wc.knownFor as Record<string, string>, locale) }}
+                      />
                     )}
 
                     {/* Tags */}
