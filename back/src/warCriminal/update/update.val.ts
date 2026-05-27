@@ -1,7 +1,6 @@
 import {
   array,
   boolean,
-  date,
   enums,
   object,
   objectIdValidation,
@@ -21,7 +20,7 @@ export const updateValidator = () => {
       _id: objectIdValidation,
       fullName: optional(string()),
       aliases: optional(array(string())),
-      dateOfBirth: optional(date()),
+      dateOfBirth: optional(string()),
       nationality: optional(array(string())),
       affiliation: optional(enums(warCriminal_affiliation_array)),
       rankOrPosition: optional(string()),

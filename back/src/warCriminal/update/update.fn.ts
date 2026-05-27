@@ -27,7 +27,7 @@ export const updateFn: ActFn = async (body) => {
 
   if (fullName !== undefined) updateObj.fullName = fullName;
   if (aliases !== undefined) updateObj.aliases = aliases;
-  if (dateOfBirth !== undefined) updateObj.dateOfBirth = dateOfBirth;
+  if (dateOfBirth !== undefined) updateObj.dateOfBirth = new Date(dateOfBirth as string);
   if (nationality !== undefined) updateObj.nationality = nationality;
   if (affiliation !== undefined) updateObj.affiliation = affiliation;
   if (rankOrPosition !== undefined) updateObj.rankOrPosition = rankOrPosition;
