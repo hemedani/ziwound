@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImagePicker } from "@/components/form/image-picker";
 import { FileUploadField } from "@/components/form/file-upload-field";
-import { Loader2, Trash2 } from "lucide-react";
+import { Loader2, Trash2, ImageIcon } from "lucide-react";
 import Image from "next/image";
 import { updateRelations } from "@/app/actions/country/updateRelations";
 import { getImageUploadUrl } from "@/utils/imageUrl";
@@ -67,9 +67,12 @@ export function CountryRelationsForm({ country }: CountryRelationsFormProps) {
   };
 
   return (
-    <div className="rounded-2xl glass-light p-6 border border-white/[0.06] space-y-6">
+    <div className="rounded-2xl glass-strong p-6 border border-white/[0.06] space-y-6">
       <div>
-        <h2 className="text-xl font-semibold text-offwhite">{t("photo") || "Photo"}</h2>
+        <h2 className="text-lg font-semibold text-offwhite flex items-center gap-2">
+          <ImageIcon className="h-5 w-5 text-crimson" />
+          {t("photo") || "Photo"}
+        </h2>
         <p className="text-sm text-slate-body mt-1">
           {t("countryPhotoDescription") || "Manage the country photo"}
         </p>
@@ -77,14 +80,14 @@ export function CountryRelationsForm({ country }: CountryRelationsFormProps) {
 
       {hasExistingPhoto && (
         <div className="space-y-2">
-          <p className="text-sm text-slate-body">{t("currentPhoto") || "Current Photo"}</p>
-          <div className="relative w-full max-w-sm aspect-video rounded-lg overflow-hidden border border-white/[0.06]">
+          <p className="text-xs text-slate-body">{t("currentPhoto") || "Current Photo"}</p>
+          <div className="relative w-full max-w-md aspect-video rounded-xl overflow-hidden border border-white/[0.06] bg-white/[0.02]">
             <Image
               src={getImageUploadUrl(country.photo!.name, "image")}
               alt={country.photo!.alt_text || country.name || "Country photo"}
               fill
               unoptimized
-              sizes="(max-width: 768px) 100vw, 400px"
+              sizes="(max-width: 768px) 100vw, 600px"
               className="object-cover"
             />
           </div>
@@ -93,8 +96,12 @@ export function CountryRelationsForm({ country }: CountryRelationsFormProps) {
 
       <Tabs defaultValue={photoId ? "library" : "upload"}>
         <TabsList className="grid w-full grid-cols-2 bg-white/5 border-white/10">
-          <TabsTrigger value="library">{t("imageLibrary") || "Library"}</TabsTrigger>
-          <TabsTrigger value="upload">{t("uploadNew") || "Upload"}</TabsTrigger>
+          <TabsTrigger value="library" className="text-xs data-[state=active]:bg-crimson data-[state=active]:text-white text-slate-body">
+            {t("imageLibrary") || "Library"}
+          </TabsTrigger>
+          <TabsTrigger value="upload" className="text-xs data-[state=active]:bg-crimson data-[state=active]:text-white text-slate-body">
+            {t("uploadNew") || "Upload"}
+          </TabsTrigger>
         </TabsList>
         <TabsContent value="library" className="mt-3">
           <ImagePicker

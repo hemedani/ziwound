@@ -1,15 +1,13 @@
-import { getTranslations } from "next-intl/server";
 import { get } from "@/app/actions/country/get";
-import { EditCountryForm } from "../../_components/edit-country-form";
 import { notFound } from "next/navigation";
+import { CountryEditClient } from "./country-edit-client";
 
-interface EditCountryPageProps {
+export default async function AdminCountryEditPage({
+  params,
+}: {
   params: Promise<{ id: string }>;
-}
-
-export default async function EditCountryPage({ params }: EditCountryPageProps) {
+}) {
   const { id } = await params;
-  const t = await getTranslations("admin");
 
   const response = await get(
     { _id: id },
@@ -29,28 +27,15 @@ export default async function EditCountryPage({ params }: EditCountryPageProps) 
       reconstruction_status: 1,
       international_sanctions: 1,
       notable_war_events: 1,
-    }
+    },
   );
 
-  if (!response?.success || !response.body || !Array.isArray(response.body) || response.body.length === 0) {
+  if (!response?.success || !response.body) {
     notFound();
   }
 
-  const country = response.body[0];
+  const country = Array.isArray(response.body) ? response.body[0] : response.body;
+  if (!country) notFound();
 
-  return (
-    <div className="space-y-6">
-      <div>
-        <h1 className="text-3xl font-bold tracking-tight">
-          {t("editCountry") || "Edit Country"}
-        </h1>
-        <p className="text-muted-foreground">
-          {t("editCountryDescription") || "Update country information and war description fields"}
-        </p>
-      </div>
-      <div className="max-w-4xl">
-        <EditCountryForm country={country} />
-      </div>
-    </div>
-  );
+  return <CountryEditClient country={country} />;
 }
