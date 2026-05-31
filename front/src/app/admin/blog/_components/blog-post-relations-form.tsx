@@ -114,7 +114,6 @@ export function BlogPostRelationsForm({ post }: BlogPostRelationsFormProps) {
           title: t("success") || "Success",
           description: t("relationsUpdated") || "Relations updated successfully.",
         });
-        router.refresh();
         router.push("/admin/blog");
       } else {
         toast({

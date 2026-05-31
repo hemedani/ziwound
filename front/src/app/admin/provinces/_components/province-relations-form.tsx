@@ -49,7 +49,6 @@ export function ProvinceRelationsForm({ province, countries }: ProvinceRelations
           title: t("success") || "Success",
           description: t("relationsUpdated") || "Relations updated successfully.",
         });
-        router.refresh();
         router.push("/admin/provinces");
       } else {
         toast({

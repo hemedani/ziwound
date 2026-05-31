@@ -57,7 +57,6 @@ export function CityRelationsForm({ city, countries, provinces }: CityRelationsF
           title: t("success") || "Success",
           description: t("relationsUpdated") || "Relations updated successfully.",
         });
-        router.refresh();
         router.push("/admin/cities");
       } else {
         toast({

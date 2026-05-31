@@ -146,7 +146,6 @@ export function DocumentForm({ initialData }: DocumentFormProps) {
         });
       }
 
-      router.refresh();
       router.push("/admin/documents");
     } catch (error) {
       toast({

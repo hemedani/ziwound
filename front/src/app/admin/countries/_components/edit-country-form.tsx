@@ -64,7 +64,6 @@ export function EditCountryForm({ country }: EditCountryFormProps) {
           title: tCommon("success"),
           description: t("countryUpdated") || "Country updated successfully",
         });
-        router.refresh();
         router.push("/admin/countries");
       } else {
         toast({

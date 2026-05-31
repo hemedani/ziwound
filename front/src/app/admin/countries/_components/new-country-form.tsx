@@ -59,7 +59,6 @@ export function NewCountryForm() {
           title: tCommon("success"),
           description: t("countryCreated") || "Country created successfully",
         });
-        router.refresh();
         router.push("/admin/countries");
       } else {
         toast({

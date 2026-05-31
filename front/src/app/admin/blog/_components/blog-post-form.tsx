@@ -195,7 +195,6 @@ export function BlogPostForm({ initialData }: BlogPostFormProps) {
         });
       }
 
-      router.refresh();
       router.push("/admin/blog");
     } catch (error) {
       console.error("Form submission error:", error);

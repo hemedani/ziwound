@@ -71,7 +71,6 @@ export function EditProvinceForm({ province, countries = [] }: EditProvinceFormP
         title: tCommon("success"),
         description: t("provinceUpdated") || "Province updated successfully",
       });
-      router.refresh();
       router.push("/admin/provinces");
     } catch (_error) {
       toast({

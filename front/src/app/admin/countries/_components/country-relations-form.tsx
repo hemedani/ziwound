@@ -42,7 +42,6 @@ export function CountryRelationsForm({ country }: CountryRelationsFormProps) {
           title: t("success") || "Success",
           description: t("relationsUpdated") || "Relations updated successfully.",
         });
-        router.refresh();
         router.push("/admin/countries");
       } else {
         toast({

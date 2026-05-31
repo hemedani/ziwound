@@ -61,7 +61,6 @@ export function NewProvinceForm({ countries = [] }: NewProvinceFormProps) {
           title: tCommon("success"),
           description: t("provinceCreated") || "Province created successfully",
         });
-        router.refresh();
         router.push("/admin/provinces");
       } else {
         toast({

@@ -83,7 +83,6 @@ export function UserRelationsForm({ user, countries, provinces, cities }: UserRe
           title: t("success") || "Success",
           description: t("relationsUpdated") || "Relations updated successfully.",
         });
-        router.refresh();
         router.push("/admin/users");
       } else {
         toast({
