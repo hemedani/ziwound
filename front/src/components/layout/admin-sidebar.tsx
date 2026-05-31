@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import {
   LayoutDashboard,
   FileText,
@@ -30,6 +30,8 @@ import { useAuthStore } from "@/stores/authStore";
 interface AdminSidebarProps {
   collapsed: boolean;
   onToggle: () => void;
+  mobileOpen: boolean;
+  onMobileClose: () => void;
 }
 
 interface NavItem {
@@ -89,25 +91,44 @@ function getLevelValue(level: string): number {
   return level === "Ghost" ? 4 : level === "Manager" ? 3 : level === "Editor" ? 2 : 1;
 }
 
-export function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
+export function AdminSidebar({ collapsed, onToggle, mobileOpen, onMobileClose }: AdminSidebarProps) {
   const t = useTranslations("admin");
   const pathname = usePathname();
+  const locale = useLocale();
+  const isRtl = locale === "fa" || locale === "ar";
   const { user } = useAuthStore();
   const userLevel = getLevelValue(user?.level || "Ordinary");
 
   return (
-    <aside
-      className={cn(
-        "fixed inset-y-0 start-0 z-50 hidden md:flex flex-col transition-all duration-300",
-        "glass-strong border-e border-white/[0.06]",
-        collapsed
-          ? "w-0 -translate-x-full md:translate-x-0 md:w-16 overflow-hidden md:overflow-visible"
-          : "w-64 max-md:w-full max-md:z-[60]",
+    <>
+      {/* Mobile overlay backdrop */}
+      {mobileOpen && (
+        <div
+          className="fixed inset-0 z-[55] bg-black/60 md:hidden"
+          onClick={onMobileClose}
+        />
       )}
-    >
+      <aside
+        onClick={mobileOpen ? onMobileClose : undefined}
+        className={cn(
+          "fixed inset-y-0 start-0 z-[60] flex flex-col transition-all duration-300",
+          "glass-strong border-e border-white/[0.06]",
+          mobileOpen
+            ? "translate-x-0 w-64"
+            : isRtl
+              ? "translate-x-full w-64"
+              : "-translate-x-full w-64",
+          "md:flex",
+          collapsed && !mobileOpen
+            ? "md:w-16 md:translate-x-0"
+            : "md:w-64 md:translate-x-0",
+          collapsed && mobileOpen ? "w-64" : "",
+        )}
+      >
+      <div className="flex flex-col h-full" onClick={(e) => e.stopPropagation()}>
       {/* Logo Header */}
       <div className="flex h-16 items-center justify-between px-4 border-b border-white/[0.06] shrink-0">
-        {!collapsed && (
+        {(!collapsed || mobileOpen) && (
           <Link
             href="/admin/dashboard"
             className="flex items-center gap-2.5 group"
@@ -153,7 +174,7 @@ export function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
 
           return (
             <div key={section.labelKey || "primary"}>
-              {section.labelKey && !collapsed && (
+              {section.labelKey && (!collapsed || mobileOpen) && (
                 <p className="px-3 mb-1.5 text-[10px] font-semibold uppercase tracking-[0.15em] text-slate-body/50">
                   {t(section.labelKey) || section.labelKey}
                 </p>
@@ -167,6 +188,7 @@ export function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
                     <Link
                       key={item.href}
                       href={item.href}
+                      onClick={mobileOpen ? onMobileClose : undefined}
                       className={cn(
                         "flex items-center gap-3 rounded-xl px-3 py-2.5 text-sm font-medium transition-all duration-200 group relative",
                         isActive
@@ -181,7 +203,7 @@ export function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
                           isActive && "text-crimson-light",
                         )}
                       />
-                      {!collapsed && (
+                      {(!collapsed || mobileOpen) && (
                         <span className="truncate">
                           {t(item.nameKey) || item.nameKey}
                         </span>
@@ -196,7 +218,7 @@ export function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
       </nav>
 
       {/* Footer User Info */}
-      {!collapsed && user && (
+      {(!collapsed || mobileOpen) && user && (
         <div className="border-t border-white/[0.06] p-4 shrink-0">
           <div className="flex items-center gap-3">
             <div className="h-8 w-8 rounded-full bg-crimson/20 flex items-center justify-center border border-crimson/30 shrink-0">
@@ -215,6 +237,8 @@ export function AdminSidebar({ collapsed, onToggle }: AdminSidebarProps) {
           </div>
         </div>
       )}
+    </div>
     </aside>
+    </>
   );
 }
