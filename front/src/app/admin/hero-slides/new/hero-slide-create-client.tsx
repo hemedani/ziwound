@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useTransition } from "react";
+import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
@@ -16,7 +16,7 @@ export function HeroSlideCreateClient() {
   const t = useTranslations("admin");
   const { toast } = useToast();
   const router = useRouter();
-  const [isPending, startTransition] = useTransition();
+  const [isPending, setIsPending] = useState(false);
   const [imageId, setImageId] = useState<string>("");
 
   const [previewValues, setPreviewValues] = useState({
@@ -31,51 +31,51 @@ export function HeroSlideCreateClient() {
   });
 
   const handleMainSubmit = async (values: SlideMainFormValues) => {
-    startTransition(async () => {
-      try {
-        const res = await add(
-          {
-            title: values.title,
-            subtitle: values.subtitle,
-            gradient: values.gradient,
-            ctaText: values.ctaText,
-            ctaLink: values.ctaLink,
-            secondaryCtaText: values.secondaryCtaText || undefined,
-            secondaryCtaLink: values.secondaryCtaLink || undefined,
-            order: values.order,
-            isActive: values.isActive,
-            image: imageId || undefined,
-            ...(values.selected_language && values.selected_language !== "all"
-              ? {
-                  selected_language: values.selected_language as "fa" | "en" | "ar" | "zh" | "pt" | "es" | "nl" | "tr" | "ru" | "id" | "hi" | "fr" | "ja" | "pa" | "de" | "te" | "mr" | "ta" | "vi" | "ko" | "it" | "sv" | "pl" | "uk" | "ro",
-                }
-              : {}),
-          },
-          { _id: 1, title: 1 },
-        );
+    setIsPending(true);
+    try {
+      const res = await add(
+        {
+          title: values.title,
+          subtitle: values.subtitle,
+          gradient: values.gradient,
+          ctaText: values.ctaText,
+          ctaLink: values.ctaLink,
+          secondaryCtaText: values.secondaryCtaText || undefined,
+          secondaryCtaLink: values.secondaryCtaLink || undefined,
+          order: values.order,
+          isActive: values.isActive,
+          image: imageId || undefined,
+          ...(values.selected_language && values.selected_language !== "all"
+            ? {
+                selected_language: values.selected_language as "fa" | "en" | "ar" | "zh" | "pt" | "es" | "nl" | "tr" | "ru" | "id" | "hi" | "fr" | "ja" | "pa" | "de" | "te" | "mr" | "ta" | "vi" | "ko" | "it" | "sv" | "pl" | "uk" | "ro",
+              }
+            : {}),
+        },
+        { _id: 1, title: 1 },
+      );
 
-        if (res?.success) {
-          toast({
-            title: t("success"),
-            description: t("slideCreated") || "Hero slide has been created successfully.",
-          });
-          router.push("/admin/hero-slides");
-          router.refresh();
-        } else {
-          toast({
-            variant: "destructive",
-            title: t("error"),
-            description: res?.body?.message || t("failedToCreateSlide") || "Failed to create hero slide",
-          });
-        }
-      } catch {
+      if (res?.success) {
+        toast({
+          title: t("success"),
+          description: t("slideCreated") || "Hero slide has been created successfully.",
+        });
+        router.push("/admin/hero-slides");
+      } else {
         toast({
           variant: "destructive",
           title: t("error"),
-          description: t("unexpectedError") || "An unexpected error occurred",
+          description: res?.body?.message || t("failedToCreateSlide") || "Failed to create hero slide",
         });
       }
-    });
+    } catch {
+      toast({
+        variant: "destructive",
+        title: t("error"),
+        description: t("unexpectedError") || "An unexpected error occurred",
+      });
+    } finally {
+      setIsPending(false);
+    }
   };
 
   const updatePreview = (field: string, value: string | boolean) => {
