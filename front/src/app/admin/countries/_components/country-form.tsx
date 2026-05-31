@@ -124,7 +124,7 @@ function WarInfoField({
     <div className="space-y-3">
       <label className="block text-sm font-semibold text-offwhite">{label}</label>
       <Tabs value={activeLang} onValueChange={setActiveLang}>
-        <TabsList className="w-full justify-start bg-white/5 border-white/10">
+        <TabsList className="w-full justify-start overflow-x-auto flex-nowrap bg-white/5 border-white/10">
           {LANGUAGES.map((lang) => (
             <TabsTrigger
               key={lang.code}

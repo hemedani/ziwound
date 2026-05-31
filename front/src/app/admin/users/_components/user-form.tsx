@@ -311,7 +311,7 @@ export function UserForm({ initialData, onSubmit, onCancel, isEditing = false }:
             <FormField control={form.control} name="bio" render={({ field }) => (
               <FormItem>
                 <Tabs defaultValue="fa">
-                  <TabsList className="w-full justify-start bg-white/5 border-white/10">
+                  <TabsList className="w-full justify-start overflow-x-auto flex-nowrap bg-white/5 border-white/10">
                     {LANGUAGES.map((lang) => (
                       <TabsTrigger key={lang.code} value={lang.code}
                         className="text-xs data-[state=active]:bg-crimson data-[state=active]:text-white text-slate-body">

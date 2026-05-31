@@ -146,7 +146,7 @@ function TabBasicInfo({ wc }: { wc: WarCriminalData }) {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm text-offwhite mb-1.5">{t("aliases") || "Aliases"}</label>
             <Input
@@ -168,7 +168,7 @@ function TabBasicInfo({ wc }: { wc: WarCriminalData }) {
           </div>
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm text-offwhite mb-1.5">{t("nationality") || "Nationality"}</label>
             <Input
@@ -198,7 +198,7 @@ function TabBasicInfo({ wc }: { wc: WarCriminalData }) {
           {t("classification") || "Classification"}
         </h3>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <div>
             <label className="block text-sm text-offwhite mb-1.5">{t("affiliation") || "Affiliation"}</label>
             <Select value={affiliation} onValueChange={setAffiliation}>
@@ -292,7 +292,7 @@ function LocalizedRichTextSection({
     <div className="space-y-3">
       <label className="block text-sm font-semibold text-offwhite">{label}</label>
       <Tabs value={activeLang} onValueChange={setActiveLang}>
-        <TabsList className="w-full justify-start bg-white/5 border-white/10">
+        <TabsList className="w-full justify-start overflow-x-auto flex-nowrap bg-white/5 border-white/10">
           {LANGUAGES.map((lang) => (
             <TabsTrigger
               key={lang.code}

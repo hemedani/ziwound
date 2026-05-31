@@ -108,7 +108,7 @@ function LocalizedRichTextField({
       <FormLabel>{label}</FormLabel>
       <FormControl>
         <Tabs defaultValue="fa">
-          <TabsList className="w-full justify-start">
+          <TabsList className="w-full justify-start overflow-x-auto flex-nowrap">
             {LANGUAGES.map((lang) => (
               <TabsTrigger key={lang} value={lang} className="text-xs">
                 {languageLabels[lang]}
@@ -179,7 +179,7 @@ export function ProvinceForm({
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           {!isEditing && (
             <FormField
               control={form.control}

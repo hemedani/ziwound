@@ -131,7 +131,7 @@ export function EditUserForm({ user, onSubmit, onCancel }: EditUserFormProps) {
   return (
     <Form {...form}>
       <form onSubmit={form.handleSubmit(handleSubmit)} className="space-y-4">
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FormField
             control={form.control}
             name="first_name"
@@ -161,7 +161,7 @@ export function EditUserForm({ user, onSubmit, onCancel }: EditUserFormProps) {
           />
         </div>
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FormField
             control={form.control}
             name="email"
@@ -332,7 +332,7 @@ export function EditUserForm({ user, onSubmit, onCancel }: EditUserFormProps) {
           )}
         />
 
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <FormField
             control={form.control}
             name="verified"
