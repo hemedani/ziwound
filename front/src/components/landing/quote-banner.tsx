@@ -46,12 +46,21 @@ export function QuoteBanner({ quotes, className }: QuoteBannerProps) {
   const slideVariants = {
     enter: (dir: "next" | "prev") => ({
       opacity: 0,
-      y: dir === "next" ? 40 : -40,
+      filter: "blur(12px)",
+      scale: 0.92,
+      y: dir === "next" ? 24 : -24,
     }),
-    center: { opacity: 1, y: 0 },
+    center: {
+      opacity: 1,
+      filter: "blur(0px)",
+      scale: 1,
+      y: 0,
+    },
     exit: (dir: "next" | "prev") => ({
       opacity: 0,
-      y: dir === "next" ? -40 : 40,
+      filter: "blur(8px)",
+      scale: 0.95,
+      y: dir === "next" ? -16 : 16,
     }),
   };
 
@@ -103,7 +112,7 @@ export function QuoteBanner({ quotes, className }: QuoteBannerProps) {
               initial="enter"
               animate="center"
               exit="exit"
-              transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
               className="text-center w-full"
             >
               {/* Opening quotation mark */}

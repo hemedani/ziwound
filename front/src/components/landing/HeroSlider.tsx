@@ -3,6 +3,7 @@
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { motion, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -110,94 +111,119 @@ export function HeroSlider({
       aria-label="Hero slides"
     >
       {/* Backgrounds */}
-      {slides.map((s, i) => (
-        <div
-          key={s.id}
-          className={cn(
-            "absolute inset-0 transition-opacity duration-1000 ease-in-out",
-            i === current ? "opacity-100 z-10" : "opacity-0 z-0"
-          )}
-          aria-hidden={i !== current}
+      <AnimatePresence>
+        <motion.div
+          key={slide.id}
+          initial={{ opacity: 0, filter: "blur(12px)", scale: 1.12 }}
+          animate={{ opacity: 1, filter: "blur(0px)", scale: 1 }}
+          exit={{ opacity: 0, filter: "blur(8px)", scale: 1.06 }}
+          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute inset-0 z-10"
         >
-          {s.image ? (
-            <div className="absolute inset-0 animate-slow-zoom">
+          {slide.image ? (
+            <motion.div
+              initial={{ scale: 1 }}
+              animate={{ scale: 1.08 }}
+              transition={{ duration: 18, ease: "linear", repeat: Infinity }}
+              className="absolute inset-0"
+            >
               <Image
-                src={s.image}
+                src={slide.image}
                 alt=""
                 fill
-                priority={i === 0}
+                priority
                 className="object-cover"
                 sizes="100vw"
                 unoptimized
               />
-            </div>
+            </motion.div>
           ) : (
-            <div
-              className="absolute inset-0 animate-slow-zoom"
-              style={{ background: s.gradient || "linear-gradient(135deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%)" }}
+            <motion.div
+              initial={{ scale: 1 }}
+              animate={{ scale: 1.08 }}
+              transition={{ duration: 18, ease: "linear", repeat: Infinity }}
+              className="absolute inset-0"
+              style={{ background: slide.gradient || "linear-gradient(135deg, #0a0a0a 0%, #1a0505 50%, #0a0a0a 100%)" }}
             />
           )}
           {/* Dark cinematic overlay */}
           <div className="absolute inset-0 bg-black/50" />
           <div className="absolute inset-0 gradient-overlay" />
           <div className="absolute inset-0 gradient-radial-hero" />
-        </div>
-      ))}
+        </motion.div>
+      </AnimatePresence>
 
       {/* Content */}
       <div className="relative z-20 flex h-full items-center">
         <div className="mx-auto w-full max-w-7xl px-4 md:px-8">
-          <div
-            key={slide.id}
-            className={cn(
-              "max-w-3xl",
-              direction === "next"
-                ? "animate-fade-in-up"
-                : "animate-fade-in-up delay-100"
-            )}
-          >
-            {/* Subtle accent line */}
-            <div className="mb-6 flex items-center gap-3">
-              <div className="h-px w-12 bg-crimson" />
-              <span className="text-sm font-medium uppercase tracking-[0.2em] text-gold">
-                {brandLabel}
-              </span>
-            </div>
+          <AnimatePresence mode="wait" custom={direction}>
+            <motion.div
+              key={slide.id}
+              custom={direction}
+              initial={{ opacity: 0, x: 60, filter: "blur(8px)" }}
+              animate={{ opacity: 1, x: 0, filter: "blur(0px)" }}
+              exit={{ opacity: 0, x: -40, filter: "blur(4px)" }}
+              transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+              className="max-w-3xl"
+            >
+              {/* Subtle accent line */}
+              <div className="mb-6 flex items-center gap-3">
+                <div className="h-px w-12 bg-crimson" />
+                <span className="text-sm font-medium uppercase tracking-[0.2em] text-gold">
+                  {brandLabel}
+                </span>
+              </div>
 
-            <h1 className="mb-6 text-4xl font-bold leading-tight tracking-tight text-offwhite sm:text-5xl md:text-6xl lg:text-7xl text-glow-crimson">
-              {slide.title}
-            </h1>
-
-            <p className="mb-8 text-lg leading-relaxed text-slate-body md:text-xl max-w-2xl">
-              {slide.subtitle}
-            </p>
-
-            <div className="flex flex-wrap items-center gap-4">
-              <Button
-                size="lg"
-                asChild
-                className="bg-crimson hover:bg-crimson-light text-white gap-2 px-8 py-6 text-base animate-pulse-glow"
+              <motion.h1
+                initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.7, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+                className="mb-6 text-4xl font-bold leading-tight tracking-tight text-offwhite sm:text-5xl md:text-6xl lg:text-7xl text-glow-crimson"
               >
-                <Link href={slide.ctaLink}>
-                  {slide.ctaText}
-                  <ChevronRight className="h-5 w-5" />
-                </Link>
-              </Button>
+                {slide.title}
+              </motion.h1>
 
-              {slide.secondaryCtaText && slide.secondaryCtaLink && (
+              <motion.p
+                initial={{ opacity: 0, y: 20, filter: "blur(4px)" }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+                transition={{ duration: 0.7, delay: 0.2, ease: [0.22, 1, 0.36, 1] }}
+                className="mb-8 text-lg leading-relaxed text-slate-body md:text-xl max-w-2xl"
+              >
+                {slide.subtitle}
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.7, delay: 0.3, ease: [0.22, 1, 0.36, 1] }}
+                className="flex flex-wrap items-center gap-4"
+              >
                 <Button
                   size="lg"
-                  variant="outline"
                   asChild
-                  className="border-white/20 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white gap-2 px-8 py-6 text-base backdrop-blur-sm"
+                  className="bg-crimson hover:bg-crimson-light text-white gap-2 px-8 py-6 text-base animate-pulse-glow"
                 >
-                  <Link href={slide.secondaryCtaLink}>
-                    {slide.secondaryCtaText}
+                  <Link href={slide.ctaLink}>
+                    {slide.ctaText}
+                    <ChevronRight className="h-5 w-5" />
                   </Link>
                 </Button>
-              )}
-            </div>
-          </div>
+
+                {slide.secondaryCtaText && slide.secondaryCtaLink && (
+                  <Button
+                    size="lg"
+                    variant="outline"
+                    asChild
+                    className="border-white/20 bg-white/5 text-offwhite hover:bg-white/10 hover:text-white gap-2 px-8 py-6 text-base backdrop-blur-sm"
+                  >
+                    <Link href={slide.secondaryCtaLink}>
+                      {slide.secondaryCtaText}
+                    </Link>
+                  </Button>
+                )}
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
