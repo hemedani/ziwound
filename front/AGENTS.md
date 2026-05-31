@@ -523,6 +523,21 @@ setTheme("dark"); // or 'light' or 'system'
 4. Use shadcn CLI to add components and verify RTL behavior.
 5. Maintain consistent typography, colors, and spacing.
 
+### Page Layout Standard (`NEW_DESIGN_RULES.md`)
+
+**Every `/[locale]/*` page MUST use `PageContainer`** (`@/components/layout/page-container`) as the outermost wrapper. See `NEW_DESIGN_RULES.md` for full rules. Key points:
+
+- **`showHeader={true}`**: Simple static pages (about, faq, privacy, terms, help, contact) — use `title` + `description` props for centered header
+- **`showHeader={false}`**: Pages with custom heroes (blog, explore, war-crimes, reports, auth, all detail pages) — PageContainer provides only background
+- **Exempted**: Landing page (full-screen hero slider) and 404 catch-all (`[...rest]/page.tsx`)
+- **Background**: PageContainer adds (1) near-black background, (2) subtle crimson radial glow, (3) mesh grid pattern — no child div should duplicate these
+- **Cards**: Use `glass-strong` (opaque) for content cards and `glass-light` (transparent) for background sections — never `bg-card` or solid backgrounds
+- **Typography**: `text-offwhite` headings, `text-slate-body` body, `text-crimson` links, `text-gold` for gold accent
+- **Logical properties only**: Use `ps-`/`pe-`, `ms-`/`me-`, `start-`/`end-` — never `left`/`right` or `pl-`/`pr-`
+- **RTL icons**: Add `rtl:rotate-180` to chevrons, arrows, directional icons
+- **Edge cases**: Always wrap loading/empty/error returns in `PageContainer` too
+- **`dir` is set at `<html>` level** by locale layout — do NOT set `dir` on individual pages
+
 ### Authentication
 
 - JWT-based with secure cookie handling.
