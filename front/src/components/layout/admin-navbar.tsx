@@ -3,7 +3,7 @@
 import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import {
   LogOut,
   User,
@@ -34,6 +34,7 @@ interface AdminNavbarProps {
 
 export function AdminNavbar({ onMobileMenuToggle }: AdminNavbarProps) {
   const t = useTranslations("admin");
+  const locale = useLocale();
   const router = useRouter();
   const { user, logout } = useAuthStore();
 
@@ -52,8 +53,8 @@ export function AdminNavbar({ onMobileMenuToggle }: AdminNavbarProps) {
   return (
     <header className="sticky top-0 z-40 w-full border-b border-white/[0.06] glass-strong">
       <div className="flex h-16 items-center justify-between px-4 md:px-6">
-        {/* Mobile menu + spacer */}
-        <div className="flex items-center gap-3">
+        {/* Mobile menu + back to site */}
+        <div className="flex items-center gap-1">
           <Button
             variant="ghost"
             size="icon"
@@ -63,6 +64,13 @@ export function AdminNavbar({ onMobileMenuToggle }: AdminNavbarProps) {
           >
             <Menu className="h-5 w-5" />
           </Button>
+          <Link
+            href={`/${locale}`}
+            className="flex md:hidden items-center gap-1.5 px-2.5 py-1.5 rounded-lg text-xs font-medium text-gold hover:text-offwhite hover:bg-white/[0.04] transition-all"
+          >
+            <ArrowLeftFromLine className="h-3.5 w-3.5" />
+            <span className="hidden sm:inline">{t("viewSite") || "Return to Website"}</span>
+          </Link>
         </div>
 
         {/* Center: Quick Actions */}
@@ -79,7 +87,7 @@ export function AdminNavbar({ onMobileMenuToggle }: AdminNavbarProps) {
           ))}
           <div className="w-px h-5 bg-white/[0.06] mx-1.5" />
           <Link
-            href="/fa"
+            href={`/${locale}`}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium text-gold hover:text-offwhite hover:bg-white/[0.04] transition-all"
           >
             <ArrowLeftFromLine className="h-3.5 w-3.5" />

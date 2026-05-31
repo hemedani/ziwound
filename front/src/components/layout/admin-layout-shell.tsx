@@ -31,12 +31,12 @@ export function AdminLayoutShell({ children }: { children: React.ReactNode }) {
 
       <div
         className={cn(
-          "flex flex-1 flex-col transition-all duration-300",
+          "flex flex-1 flex-col min-w-0 transition-all duration-300",
           collapsed ? "ms-0 md:ms-16" : "ms-0 md:ms-64",
         )}
       >
         <AdminNavbar onMobileMenuToggle={() => setMobileOpen(!mobileOpen)} />
-        <main className="flex-1 overflow-y-auto">
+        <main className="flex-1 overflow-y-auto overflow-x-hidden">
           {children}
         </main>
       </div>
