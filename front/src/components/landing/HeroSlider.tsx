@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useCallback, useRef } from "react";
 import Image from "next/image";
-import { Link } from "@/i18n/routing";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ChevronLeft, ChevronRight, Pause, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -209,14 +209,14 @@ export function HeroSlider({
             className="absolute start-4 top-1/2 z-30 -translate-y-1/2 rounded-full glass p-3 text-offwhite transition-all hover:bg-white/10 hover:scale-105 focus-visible:ring-2 focus-visible:ring-crimson"
             aria-label="Previous slide"
           >
-            <ChevronLeft className="h-6 w-6" />
+            <ChevronLeft className="h-6 w-6 rtl:rotate-180" />
           </button>
           <button
             onClick={next}
             className="absolute end-4 top-1/2 z-30 -translate-y-1/2 rounded-full glass p-3 text-offwhite transition-all hover:bg-white/10 hover:scale-105 focus-visible:ring-2 focus-visible:ring-crimson"
             aria-label="Next slide"
           >
-            <ChevronRight className="h-6 w-6" />
+            <ChevronRight className="h-6 w-6 rtl:rotate-180" />
           </button>
         </>
       )}

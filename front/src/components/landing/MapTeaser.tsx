@@ -3,7 +3,7 @@
 import React from "react";
 import { MapContainer, TileLayer, CircleMarker, Tooltip } from "react-leaflet";
 import { motion } from "framer-motion";
-import { Link } from "@/i18n/routing";
+import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, MapPin } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -109,7 +109,7 @@ export function MapTeaser({
             >
               <Link href={`/${locale}/war-crimes`}>
                 {ctaText}
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-5 w-5 rtl:rotate-180" />
               </Link>
             </Button>
           </motion.div>

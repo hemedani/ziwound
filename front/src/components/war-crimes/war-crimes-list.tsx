@@ -110,7 +110,7 @@ export function WarCrimesList({
             {page < totalPages ? (
               <Link href={`/${locale}/war-crimes?page=${page + 1}&view=${view}`}>
                 {t("next")}
-                <ArrowRight className="h-4 w-4 ms-1.5" />
+                <ArrowRight className="h-4 w-4 ms-1.5 rtl:rotate-180" />
               </Link>
             ) : (
               <span>{t("next")}</span>

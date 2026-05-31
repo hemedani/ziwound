@@ -111,7 +111,7 @@ export function RelatedLocationsGrid({
               </div>
 
               {/* Arrow */}
-              <ChevronRight className="h-4 w-4 text-slate-body/20 shrink-0 mt-1 transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
+              <ChevronRight className="h-4 w-4 text-slate-body/20 shrink-0 mt-1 transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 rtl:rotate-180" />
             </Link>
           );
         })}

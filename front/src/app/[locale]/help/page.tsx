@@ -78,7 +78,7 @@ export default async function HelpPage({
               >
                 <Link href={section.href} className="gap-2">
                   {t("help.learnMore")}
-                  <ArrowRight className="h-4 w-4" />
+                  <ArrowRight className="h-4 w-4 rtl:rotate-180" />
                 </Link>
               </Button>
             </div>

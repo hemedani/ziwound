@@ -111,7 +111,7 @@ export function Timeline({
 
                         <div className={cn("flex items-center gap-1 text-sm font-medium text-crimson transition-colors group-hover:text-gold", isEven && "justify-end")}>
                           <span>{viewDetails}</span>
-                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                          <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180" />
                         </div>
                       </Link>
                     </div>

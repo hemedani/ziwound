@@ -139,7 +139,7 @@ export default function LoginPage() {
               >
                 {loading && <Loader2 className="h-4 w-4 animate-spin" />}
                 {loading ? t("common.loading") : t("auth.loginButton")}
-                {!loading && <ArrowRight className="h-4 w-4" />}
+                {!loading && <ArrowRight className="h-4 w-4 rtl:rotate-180" />}
               </Button>
             </form>
           </Form>

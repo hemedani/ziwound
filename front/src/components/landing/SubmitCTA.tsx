@@ -60,7 +60,7 @@ export function SubmitCTA({
             >
               <Link href="/reports/new">
                 {primaryCta}
-                <ArrowRight className="h-5 w-5" />
+                <ArrowRight className="h-5 w-5 rtl:rotate-180" />
               </Link>
             </Button>
 

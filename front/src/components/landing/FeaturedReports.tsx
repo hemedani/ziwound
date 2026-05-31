@@ -3,7 +3,7 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { Link } from "@/i18n/routing";
+import Link from "next/link";
 import { ArrowRight, Calendar, FileText, MapPin, Play } from "lucide-react";
 import { cn } from "@/lib/utils";
 import dynamic from "next/dynamic";
@@ -180,7 +180,7 @@ export function FeaturedReports({
 
                     <div className="mt-4 flex items-center gap-1 text-sm font-medium text-crimson transition-colors group-hover:text-gold">
                       <span>{readMore}</span>
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180" />
                     </div>
                   </div>
                 </article>

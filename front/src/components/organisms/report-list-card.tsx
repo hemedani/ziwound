@@ -72,7 +72,7 @@ export function ReportListCard({ reports, locale, title, className }: ReportList
               >
                 {report.status}
               </span>
-              <ChevronRight className="h-4 w-4 text-slate-body/20 transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
+              <ChevronRight className="h-4 w-4 text-slate-body/20 transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 rtl:rotate-180" />
             </div>
           </Link>
         ))}

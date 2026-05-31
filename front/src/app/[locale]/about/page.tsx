@@ -124,7 +124,7 @@ export default async function AboutPage({
             <Button asChild size="lg" className="bg-crimson hover:bg-crimson-light text-white gap-2 animate-pulse-glow">
               <Link href="/reports/new">
                 {t("about.submitReport")}
-                <ArrowRight className="h-4 w-4" />
+                <ArrowRight className="h-4 w-4 rtl:rotate-180" />
               </Link>
             </Button>
             <Button

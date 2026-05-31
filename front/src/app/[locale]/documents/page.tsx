@@ -340,7 +340,7 @@ export default async function PublicDocumentsPage({
               tabIndex={page >= totalPages ? -1 : undefined}
             >
               {t("next")}
-              <ArrowRight className="h-4 w-4" />
+              <ArrowRight className="h-4 w-4 rtl:rotate-180" />
             </Link>
           </div>
         )}

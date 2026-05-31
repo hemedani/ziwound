@@ -84,7 +84,7 @@ export function Footer() {
                       className="group flex items-center gap-1 text-sm text-slate-body hover:text-offwhite transition-colors"
                     >
                       <span>{link.label}</span>
-                      <ArrowRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                      <ArrowRight className="h-3 w-3 opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all rtl:rotate-180 rtl:translate-x-1 rtl:group-hover:translate-x-0" />
                     </Link>
                   </li>
                 ))}
