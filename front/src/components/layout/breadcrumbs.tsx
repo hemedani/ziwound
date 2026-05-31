@@ -68,6 +68,18 @@ export function Breadcrumbs() {
         case "my":
           label = t("myReports");
           break;
+        case "explore":
+          label = t("explore");
+          break;
+        case "countries":
+          label = t("countries");
+          break;
+        case "provinces":
+          label = t("provinces");
+          break;
+        case "cities":
+          label = t("cities");
+          break;
         default:
           // For dynamic segments like IDs, use a generic label
           if (segment.match(/^[0-9a-fA-F]{24}$/)) {
@@ -101,7 +113,7 @@ export function Breadcrumbs() {
         {breadcrumbs.map((item, index) => (
           <li key={item.href} className="flex items-center">
             {index > 0 && (
-              <ChevronRight className="h-4 w-4 mx-2 text-muted-foreground/50" />
+              <ChevronRight className="h-4 w-4 mx-2 rtl:rotate-180 text-muted-foreground/50" />
             )}
             {item.isLast ? (
               <span
@@ -109,7 +121,7 @@ export function Breadcrumbs() {
                 aria-current="page"
               >
                 {index === 0 && (
-                  <Home className="h-4 w-4 inline mr-1" />
+                  <Home className="h-4 w-4 inline me-1" />
                 )}
                 {item.label}
               </span>
@@ -122,7 +134,7 @@ export function Breadcrumbs() {
                 )}
               >
                 {index === 0 && (
-                  <Home className="h-4 w-4 mr-1" />
+                  <Home className="h-4 w-4 me-1" />
                 )}
                 {item.label}
               </Link>
