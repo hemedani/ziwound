@@ -60,7 +60,7 @@ export function WarInfoSection({ fields, locale, sectionTitle, className }: WarI
               </AccordionTrigger>
               <AccordionContent>
                 <div
-                  className="text-sm text-slate-body/80 leading-relaxed prose prose-invert prose-sm max-w-none prose-a:text-crimson-light prose-a:no-underline hover:prose-a:underline"
+                  className="text-sm text-slate-body/80 leading-relaxed prose prose-invert prose-sm max-w-none prose-a:text-crimson-light prose-a:no-underline hover:prose-a:underline [overflow-wrap:anywhere] break-words"
                   dangerouslySetInnerHTML={{ __html: content }}
                 />
               </AccordionContent>
