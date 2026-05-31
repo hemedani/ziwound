@@ -4,6 +4,7 @@ import { gets as getCountries } from "@/app/actions/country/gets";
 import { gets as getProvinces } from "@/app/actions/province/gets";
 import { gets as getCities } from "@/app/actions/city/gets";
 import { countrySchema, provinceSchema, citySchema } from "@/types/declarations";
+import { PageContainer } from "@/components/layout/page-container";
 import { Globe, MapPin, Building2 } from "lucide-react";
 import { EmptyState } from "@/components/ui/empty-state";
 import { LocationCard } from "@/components/organisms/location-card";
@@ -166,8 +167,7 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
   const TabIcon = tabIcons[tab];
 
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* Hero */}
+    <PageContainer showHeader={false}>
       <ExploreHero
         locale={locale}
         search={search}
@@ -175,7 +175,6 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
         translations={translations}
       />
 
-      {/* Content */}
       <div className="container px-4 md:px-8 pb-20">
         {/* Results count */}
         {locations.length > 0 && (
@@ -247,6 +246,6 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
           </>
         )}
       </div>
-    </div>
+    </PageContainer>
   );
 }

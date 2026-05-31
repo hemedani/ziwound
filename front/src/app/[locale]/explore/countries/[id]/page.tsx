@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 import { get } from "@/app/actions/country/get";
 import { countrySchema } from "@/types/declarations";
 import { notFound } from "next/navigation";
+import { PageContainer } from "@/components/layout/page-container";
 import { Globe, MapPin, Building2 } from "lucide-react";
 import { LocationHero } from "@/components/organisms/location-hero";
 import { WarInfoSection } from "@/components/organisms/war-info-section";
@@ -88,8 +89,7 @@ export default async function CountryDetailPage({ params }: CountryDetailPagePro
   }));
 
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* Hero */}
+    <PageContainer showHeader={false}>
       <LocationHero
         locale={locale}
         type="country"
@@ -155,6 +155,6 @@ export default async function CountryDetailPage({ params }: CountryDetailPagePro
           </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

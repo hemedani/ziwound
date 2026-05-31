@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { PageContainer } from "@/components/layout/page-container";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -493,9 +494,7 @@ export default function MultiStepReportPage() {
   };
 
   return (
-    <div className="relative min-h-screen">
-      {/* Background gradient */}
-      <div className="pointer-events-none fixed inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(153,27,27,0.05)_0%,_transparent_60%)]" />
+    <PageContainer showHeader={false}>
 
       <div className="container relative mx-auto max-w-4xl px-4 py-8 md:py-12">
         {/* Page Header */}
@@ -667,6 +666,6 @@ export default function MultiStepReportPage() {
           </form>
         </Form>
       </div>
-    </div>
+    </PageContainer>
   );
 }

@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { gets as getDocuments } from "@/app/actions/document/gets";
 import { count as countDocuments } from "@/app/actions/document/count";
+import { PageContainer } from "@/components/layout/page-container";
 import { DocumentHero } from "@/components/documents/document-hero";
 import { DocumentStatsBar } from "@/components/documents/document-stats-bar";
 import { DocumentFilters } from "@/components/documents/document-filters";
@@ -192,7 +193,7 @@ export default async function PublicDocumentsPage({
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <PageContainer showHeader={false} className="bg-background">
       <DocumentHero
         totalDocuments={totalCount}
         totalFiles={totalFiles}
@@ -345,7 +346,7 @@ export default async function PublicDocumentsPage({
           </div>
         )}
       </div>
-    </div>
+    </PageContainer>
   );
 }
 

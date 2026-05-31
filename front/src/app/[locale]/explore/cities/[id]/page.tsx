@@ -1,11 +1,15 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { get } from "@/app/actions/city/get";
+import { get as getCity } from "@/app/actions/city/get";
+import { get as getCountry } from "@/app/actions/country/get";
+import { get as getProvince } from "@/app/actions/province/get";
 import { citySchema } from "@/types/declarations";
 import { notFound } from "next/navigation";
-import { Globe, MapPin, FileText } from "lucide-react";
+import { PageContainer } from "@/components/layout/page-container";
+import { Globe, MapPin, Building2, FileText } from "lucide-react";
 import { LocationHero } from "@/components/organisms/location-hero";
 import { WarInfoSection } from "@/components/organisms/war-info-section";
+import { RelatedLocationsGrid } from "@/components/organisms/related-locations-grid";
 import { ReportListCard } from "@/components/organisms/report-list-card";
 import { ParentLocationCard } from "@/components/organisms/parent-location-card";
 
@@ -87,8 +91,7 @@ export default async function CityDetailPage({ params }: CityDetailPageProps) {
   }));
 
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* Hero */}
+    <PageContainer showHeader={false}>
       <LocationHero
         locale={locale}
         type="city"
@@ -156,6 +159,6 @@ export default async function CityDetailPage({ params }: CityDetailPageProps) {
           </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

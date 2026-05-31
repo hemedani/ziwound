@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTranslations } from "next-intl";
+import { PageContainer } from "@/components/layout/page-container";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -68,7 +69,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center p-4 overflow-hidden">
+    <PageContainer showHeader={false}>
+      <div className="relative flex min-h-[calc(100vh-4rem)] items-center justify-center p-4 overflow-hidden">
       {/* Background effects */}
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(153,27,27,0.15)_0%,_transparent_60%)]" />
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_rgba(212,175,55,0.05)_0%,_transparent_50%)]" />
@@ -158,6 +160,7 @@ export default function LoginPage() {
           </div>
         </div>
       </div>
-    </div>
+      </div>
+    </PageContainer>
   );
 }

@@ -1,9 +1,11 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
-import { get } from "@/app/actions/province/get";
+import { get as getProvince } from "@/app/actions/province/get";
+import { get as getCountry } from "@/app/actions/country/get";
 import { provinceSchema } from "@/types/declarations";
 import { notFound } from "next/navigation";
-import { Globe, Building2 } from "lucide-react";
+import { PageContainer } from "@/components/layout/page-container";
+import { Globe, MapPin, Building2 } from "lucide-react";
 import { LocationHero } from "@/components/organisms/location-hero";
 import { WarInfoSection } from "@/components/organisms/war-info-section";
 import { RelatedLocationsGrid } from "@/components/organisms/related-locations-grid";
@@ -88,8 +90,7 @@ export default async function ProvinceDetailPage({ params }: ProvinceDetailPageP
   }));
 
   return (
-    <div className="flex min-h-screen flex-col">
-      {/* Hero */}
+    <PageContainer showHeader={false}>
       <LocationHero
         locale={locale}
         type="province"
@@ -154,6 +155,6 @@ export default async function ProvinceDetailPage({ params }: ProvinceDetailPageP
           </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

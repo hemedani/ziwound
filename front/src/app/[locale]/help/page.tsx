@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { PageContainer } from "@/components/layout/page-container";
 import { HelpCircle, FileText, MessageCircle, Book, ArrowRight } from "lucide-react";
 
 export default async function HelpPage({
@@ -39,24 +40,11 @@ export default async function HelpPage({
   ];
 
   return (
-    <div className="container mx-auto py-12 px-4 md:px-6">
-      {/* Hero Section */}
-      <section className="text-center mb-12">
-        <div className="mb-4 flex items-center justify-center gap-3">
-          <div className="h-px w-12 bg-crimson" />
-          <span className="text-sm font-medium uppercase tracking-[0.15em] text-gold">
-            {t("help.overline") || "Support"}
-          </span>
-          <div className="h-px w-12 bg-crimson" />
-        </div>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-offwhite">
-          {t("help.title")}
-        </h1>
-        <p className="text-lg text-slate-body max-w-2xl mx-auto">
-          {t("help.subtitle")}
-        </p>
-      </section>
-
+    <PageContainer
+      title={t("help.title")}
+      description={t("help.subtitle")}
+      heroGradient="from-gold/5"
+    >
       <div className="max-w-4xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {helpSections.map((section) => (
@@ -96,6 +84,6 @@ export default async function HelpPage({
           </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/routing";
 import { Button } from "@/components/ui/button";
+import { PageContainer } from "@/components/layout/page-container";
 import { Shield, Globe, Users, FileText, ArrowRight } from "lucide-react";
 
 export default async function AboutPage({
@@ -35,24 +36,11 @@ export default async function AboutPage({
   ];
 
   return (
-    <div className="container mx-auto py-12 px-4 md:px-6">
-      {/* Hero Section */}
-      <section className="text-center mb-16">
-        <div className="mb-4 flex items-center justify-center gap-3">
-          <div className="h-px w-12 bg-crimson" />
-          <span className="text-sm font-medium uppercase tracking-[0.15em] text-gold">
-            {t("about.overline") || "About Us"}
-          </span>
-          <div className="h-px w-12 bg-crimson" />
-        </div>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 text-offwhite">
-          {t("about.title")}
-        </h1>
-        <p className="text-lg text-slate-body max-w-3xl mx-auto leading-relaxed">
-          {t("about.mission")}
-        </p>
-      </section>
-
+    <PageContainer
+      title={t("about.title")}
+      description={t("about.mission")}
+      heroGradient="from-crimson/10"
+    >
       {/* Mission Statement */}
       <section className="mb-16">
         <div className="rounded-2xl glass-light p-8 md:p-12 relative overflow-hidden">
@@ -138,6 +126,6 @@ export default async function AboutPage({
           </div>
         </div>
       </section>
-    </div>
+    </PageContainer>
   );
 }

@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { PageContainer } from "@/components/layout/page-container";
 import { ArrowLeft, User, MapPin, FileText, Shield, CheckCircle2, Clock, Award, Globe, Calendar, Mail, BadgeCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -161,7 +162,7 @@ export default async function ReporterDetailPage({ params }: Props) {
   const recentReports = sortedReports.slice(0, 6);
 
   return (
-    <div className="min-h-screen">
+    <PageContainer showHeader={false}>
       {/* Hero Header */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,_rgba(153,27,27,0.10)_0%,_transparent_70%)]" />
@@ -472,6 +473,6 @@ export default async function ReporterDetailPage({ params }: Props) {
           </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

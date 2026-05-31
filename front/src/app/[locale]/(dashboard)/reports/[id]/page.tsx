@@ -5,6 +5,7 @@ import { useTranslations } from "next-intl";
 import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { PageContainer } from "@/components/layout/page-container";
 import { FileText, MapPin, Loader2 } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import dynamic from "next/dynamic";
@@ -242,8 +243,7 @@ export default function ReportDetailPage() {
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Hero */}
+    <PageContainer showHeader={false}>
       <ReportHero
         report={report}
         confirmationsCount={confirmations.length}
@@ -384,6 +384,6 @@ export default function ReportDetailPage() {
           onClose={() => setLightbox({ open: false, index: 0 })}
         />
       )}
-    </div>
+    </PageContainer>
   );
 }

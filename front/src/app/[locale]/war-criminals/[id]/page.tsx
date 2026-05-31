@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { get } from "@/app/actions/warCriminal/get";
 import { notFound } from "next/navigation";
+import { PageContainer } from "@/components/layout/page-container";
 import { Link } from "@/i18n/routing";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -152,7 +153,7 @@ export default async function WarCriminalDetailPage({
   const profileUrl = `${process.env.NEXT_PUBLIC_APP_URL || ""}/${locale}/war-criminals/${id}`;
 
   return (
-    <div className="min-h-screen">
+    <PageContainer showHeader={false}>
       {/* Hero Section */}
       <div className="relative overflow-hidden">
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(153,27,27,0.12)_0%,_transparent_60%)]" />
@@ -598,6 +599,6 @@ export default async function WarCriminalDetailPage({
           </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

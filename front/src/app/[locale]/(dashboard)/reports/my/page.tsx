@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
+import { PageContainer } from "@/components/layout/page-container";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { useToast } from "@/components/ui/use-toast";
@@ -169,7 +170,7 @@ export default function MyReportsPage() {
 
   if (error) {
     return (
-      <div className="container mx-auto px-4 py-8">
+      <PageContainer showHeader={false}>
         <div className="max-w-lg mx-auto mt-12">
           <ErrorState
             title={t("errorTitle")}
@@ -178,12 +179,12 @@ export default function MyReportsPage() {
             retryText={t("retry")}
           />
         </div>
-      </div>
+      </PageContainer>
     );
   }
 
   return (
-    <div className="container mx-auto px-4 py-6 md:py-8">
+    <PageContainer showHeader={false}>
       <div className="space-y-6">
         {/* Hero Header */}
         <MyReportsHeader reports={allReports} loading={loading} />
@@ -401,7 +402,7 @@ export default function MyReportsPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
-    </div>
+    </PageContainer>
   );
 }
 

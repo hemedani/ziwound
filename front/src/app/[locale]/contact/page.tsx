@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { PageContainer } from "@/components/layout/page-container";
 import { ContactForm } from "@/components/contact/contact-form";
 import { Mail, MapPin, Phone } from "lucide-react";
 
@@ -11,24 +12,11 @@ export default async function ContactPage({
   const t = await getTranslations({ locale });
 
   return (
-    <div className="container mx-auto py-12 px-4 md:px-6">
-      {/* Hero Section */}
-      <section className="text-center mb-12">
-        <div className="mb-4 flex items-center justify-center gap-3">
-          <div className="h-px w-12 bg-crimson" />
-          <span className="text-sm font-medium uppercase tracking-[0.15em] text-gold">
-            {t("contact.overline") || "Get in Touch"}
-          </span>
-          <div className="h-px w-12 bg-crimson" />
-        </div>
-        <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-4 text-offwhite">
-          {t("contact.title")}
-        </h1>
-        <p className="text-lg text-slate-body max-w-2xl mx-auto">
-          {t("contact.subtitle")}
-        </p>
-      </section>
-
+    <PageContainer
+      title={t("contact.title")}
+      description={t("contact.subtitle")}
+      heroGradient="from-gold/5"
+    >
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
         {/* Contact Info Cards */}
         <div className="lg:col-span-1 space-y-6">
@@ -88,6 +76,6 @@ export default async function ContactPage({
           </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { PageContainer } from "@/components/layout/page-container";
 import { ReporterHero } from "@/components/reporters/reporter-hero";
 import { ReporterCard } from "@/components/reporters/reporter-card";
 import { ReporterSearch } from "@/components/reporters/reporter-search";
@@ -147,8 +148,7 @@ export default async function ReportersPage({ params, searchParams }: Props) {
   const hasFilters = search || (level && level !== "all");
 
   return (
-    <div className="min-h-screen">
-      {/* Hero */}
+    <PageContainer showHeader={false}>
       <ReporterHero
         locale={locale}
         totalReporters={totalUsers}
@@ -314,6 +314,6 @@ export default async function ReportersPage({ params, searchParams }: Props) {
           />
         )}
       </div>
-    </div>
+    </PageContainer>
   );
 }

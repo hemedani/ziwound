@@ -4,6 +4,7 @@ import { count as countReports } from "@/app/actions/report/count";
 import { statistics as getReportStatistics } from "@/app/actions/report/statistics";
 import { gets as getCategories } from "@/app/actions/category/gets";
 import { gets as getTags } from "@/app/actions/tag/gets";
+import { PageContainer } from "@/components/layout/page-container";
 import { WarCrimesHero } from "@/components/war-crimes/war-crimes-hero";
 import { WarCrimesFilters } from "@/components/war-crimes/war-crimes-filters";
 import { WarCrimesList } from "@/components/war-crimes/war-crimes-list";
@@ -189,8 +190,7 @@ export default async function WarCrimesPage({
   };
 
   return (
-    <div className="min-h-screen">
-      {/* Hero Section */}
+    <PageContainer showHeader={false}>
       <WarCrimesHero
         locale={locale}
         search={search}
@@ -285,6 +285,6 @@ export default async function WarCrimesPage({
           </Tabs>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }

@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getTranslations } from "next-intl/server";
 import { get } from "@/app/actions/document/get";
 import { gets as getDocuments } from "@/app/actions/document/gets";
+import { PageContainer } from "@/components/layout/page-container";
 import { DocumentDetailHero } from "@/components/documents/document-detail-hero";
 import { DocumentFilesGallery } from "@/components/documents/document-files-gallery";
 import { DocumentMetadata } from "@/components/documents/document-metadata";
@@ -259,7 +260,7 @@ export default async function DocumentDetailPage({ params }: PageProps) {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <PageContainer showHeader={false} className="bg-background">
       <DocumentDetailHero
         locale={locale}
         title={doc.title}
@@ -540,7 +541,7 @@ export default async function DocumentDetailPage({ params }: PageProps) {
           </div>
         </div>
       </div>
-    </div>
+    </PageContainer>
   );
 }
 
