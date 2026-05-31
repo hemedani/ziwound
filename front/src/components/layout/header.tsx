@@ -6,6 +6,7 @@ import { usePathname, useRouter } from "next/navigation";
 import { useTranslations, useLocale } from "next-intl";
 import {
   Menu,
+  X,
   User,
   LogOut,
   LayoutDashboard,
@@ -28,7 +29,7 @@ import {
 import { useAuthStore } from "@/stores/authStore";
 import { logout as logoutAction } from "@/app/actions/user/logout";
 import { LanguageSwitcher } from "./language-switcher";
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { cn } from "@/lib/utils";
 
 export function Header() {
@@ -251,10 +252,19 @@ export function Header() {
               </Button>
             </SheetTrigger>
             <SheetContent
-              side={locale === "fa" || locale === "ar" ? "right" : "left"}
-              className="glass-strong border-white/10 w-80"
+              side={locale === "fa" || locale === "ar" ? "left" : "right"}
+              className={cn(
+                "glass-strong border-white/10 w-80 max-w-full [&>button:last-child]:hidden z-[999] overflow-y-auto",
+                locale === "fa" || locale === "ar"
+                  ? "data-[state=closed]:slide-out-to-right data-[state=open]:slide-in-from-right"
+                  : ""
+              )}
             >
-              <SheetHeader>
+              <SheetHeader className="relative pe-8">
+                <SheetClose className="absolute end-4 top-0 rounded-sm opacity-70 ring-offset-background transition-opacity hover:opacity-100 focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2">
+                  <X className="h-4 w-4" />
+                  <span className="sr-only">Close</span>
+                </SheetClose>
                 <SheetTitle className="text-start text-offwhite flex items-center gap-2">
                   <div className="h-8 w-8 rounded-lg bg-crimson flex items-center justify-center">
                     <Shield className="h-4 w-4 text-white" />
@@ -263,72 +273,70 @@ export function Header() {
                 </SheetTitle>
               </SheetHeader>
               <div className="flex flex-col gap-1 mt-6">
-                {isAuthenticated && (
-                  <nav className="flex flex-col gap-1">
-                    {pathname.startsWith("/admin") ? (
-                      <>
-                        <MobileLink href="/admin/dashboard" icon={<LayoutDashboard className="h-4 w-4" />}>
-                          {tAdmin("dashboard")}
+                <nav className="flex flex-col gap-1">
+                  {pathname.startsWith("/admin") ? (
+                    <>
+                      <MobileLink href="/admin/dashboard" icon={<LayoutDashboard className="h-4 w-4" />}>
+                        {tAdmin("dashboard")}
+                      </MobileLink>
+                      <MobileLink href={`/${locale}/about`}>{t("about")}</MobileLink>
+                      <MobileLink href={`/${locale}/contact`}>{t("contact")}</MobileLink>
+                      <MobileLink href={`/${locale}/faq`}>{t("faq")}</MobileLink>
+                      <MobileLink href="/admin/reports" icon={<FileText className="h-4 w-4" />}>
+                        {tAdmin("reports")}
+                      </MobileLink>
+                      {(user?.level === "Ghost" ? 4 : user?.level === "Manager" ? 3 : user?.level === "Editor" ? 2 : 1) >= 3 && (
+                        <MobileLink href="/admin/users" icon={<Users className="h-4 w-4" />}>
+                          {tAdmin("users")}
                         </MobileLink>
-                        <MobileLink href={`/${locale}/about`}>{t("about")}</MobileLink>
-                        <MobileLink href={`/${locale}/contact`}>{t("contact")}</MobileLink>
-                        <MobileLink href={`/${locale}/faq`}>{t("faq")}</MobileLink>
-                        <MobileLink href="/admin/reports" icon={<FileText className="h-4 w-4" />}>
-                          {tAdmin("reports")}
-                        </MobileLink>
-                        {(user?.level === "Ghost" ? 4 : user?.level === "Manager" ? 3 : user?.level === "Editor" ? 2 : 1) >= 3 && (
-                          <MobileLink href="/admin/users" icon={<Users className="h-4 w-4" />}>
-                            {tAdmin("users")}
-                          </MobileLink>
-                        )}
-                        <MobileLink href="/admin/tags" icon={<Tags className="h-4 w-4" />}>
-                          {tAdmin("tags")}
-                        </MobileLink>
-                        <MobileLink href="/admin/categories" icon={<FolderOpen className="h-4 w-4" />}>
-                          {tAdmin("categories")}
-                        </MobileLink>
-                        <MobileLink href="/admin/files" icon={<FileImage className="h-4 w-4" />}>
-                          {tAdmin("files")}
-                        </MobileLink>
-                        <div className="my-2 h-px bg-white/10" />
-                        <MobileLink href={`/${locale}/reports/my`}>{t("myReports")}</MobileLink>
-                        <MobileLink href={`/${locale}/reports/new`}>{t("newReport")}</MobileLink>
-                        <MobileLink href={`/${locale}/documents`}>{t("documents")}</MobileLink>
-                        <MobileLink href={`/${locale}/blog`}>{t("blog")}</MobileLink>
-                        <MobileLink href={`/${locale}/war-crimes`}>{t("warCrimes")}</MobileLink>
-                      </>
-                    ) : (
-                      <>
-                        <MobileLink href={`/${locale}`}>{t("home")}</MobileLink>
-                        <MobileLink href={`/${locale}/explore`}>{t("explore")}</MobileLink>
-                        <MobileLink href={`/${locale}/war-crimes`}>{t("warCrimes")}</MobileLink>
-                        <MobileLink href={`/${locale}/documents`}>{t("documents")}</MobileLink>
-                        <MobileLink href={`/${locale}/war-criminals`}>{t("warCriminals")}</MobileLink>
-                        <MobileLink href={`/${locale}/reporters`}>{t("reporters")}</MobileLink>
-                        <MobileLink href={`/${locale}/blog`}>{t("blog")}</MobileLink>
-                        <div className="my-2 h-px bg-white/10" />
-                        <MobileLink href={`/${locale}/about`}>{t("about")}</MobileLink>
-                        <MobileLink href={`/${locale}/contact`}>{t("contact")}</MobileLink>
-                        <MobileLink href={`/${locale}/faq`}>{t("faq")}</MobileLink>
-                        <MobileLink href={`/${locale}/help`}>{t("help")}</MobileLink>
-                        <MobileLink href={`/${locale}/privacy`}>{t("privacy")}</MobileLink>
-                        <MobileLink href={`/${locale}/terms`}>{t("terms")}</MobileLink>
-                        {isAuthenticated && (
-                          <>
-                            <div className="my-2 h-px bg-white/10" />
-                            <MobileLink href={`/${locale}/reports/my`}>{t("myReports")}</MobileLink>
-                            <MobileLink href={`/${locale}/reports/new`}>{t("newReport")}</MobileLink>
-                          </>
-                        )}
-                      </>
-                    )}
-                  </nav>
-                )}
+                      )}
+                      <MobileLink href="/admin/tags" icon={<Tags className="h-4 w-4" />}>
+                        {tAdmin("tags")}
+                      </MobileLink>
+                      <MobileLink href="/admin/categories" icon={<FolderOpen className="h-4 w-4" />}>
+                        {tAdmin("categories")}
+                      </MobileLink>
+                      <MobileLink href="/admin/files" icon={<FileImage className="h-4 w-4" />}>
+                        {tAdmin("files")}
+                      </MobileLink>
+                      <div className="my-2 h-px bg-white/10" />
+                      <MobileLink href={`/${locale}/reports/my`}>{t("myReports")}</MobileLink>
+                      <MobileLink href={`/${locale}/reports/new`}>{t("newReport")}</MobileLink>
+                      <MobileLink href={`/${locale}/documents`}>{t("documents")}</MobileLink>
+                      <MobileLink href={`/${locale}/blog`}>{t("blog")}</MobileLink>
+                      <MobileLink href={`/${locale}/war-crimes`}>{t("warCrimes")}</MobileLink>
+                    </>
+                  ) : (
+                    <>
+                      <MobileLink href={`/${locale}`}>{t("home")}</MobileLink>
+                      <MobileLink href={`/${locale}/explore`}>{t("explore")}</MobileLink>
+                      <MobileLink href={`/${locale}/war-crimes`}>{t("warCrimes")}</MobileLink>
+                      <MobileLink href={`/${locale}/documents`}>{t("documents")}</MobileLink>
+                      <MobileLink href={`/${locale}/war-criminals`}>{t("warCriminals")}</MobileLink>
+                      <MobileLink href={`/${locale}/reporters`}>{t("reporters")}</MobileLink>
+                      <MobileLink href={`/${locale}/blog`}>{t("blog")}</MobileLink>
+                      <div className="my-2 h-px bg-white/10" />
+                      <MobileLink href={`/${locale}/about`}>{t("about")}</MobileLink>
+                      <MobileLink href={`/${locale}/contact`}>{t("contact")}</MobileLink>
+                      <MobileLink href={`/${locale}/faq`}>{t("faq")}</MobileLink>
+                      <MobileLink href={`/${locale}/help`}>{t("help")}</MobileLink>
+                      <MobileLink href={`/${locale}/privacy`}>{t("privacy")}</MobileLink>
+                      <MobileLink href={`/${locale}/terms`}>{t("terms")}</MobileLink>
+                      {isAuthenticated && (
+                        <>
+                          <div className="my-2 h-px bg-white/10" />
+                          <MobileLink href={`/${locale}/reports/my`}>{t("myReports")}</MobileLink>
+                          <MobileLink href={`/${locale}/reports/new`}>{t("newReport")}</MobileLink>
+                        </>
+                      )}
+                    </>
+                  )}
+                </nav>
                 {!isAuthenticated &&
                   !pathname.startsWith("/admin") &&
                   !pathname.includes("/login") &&
                   !pathname.includes("/register") && (
-                    <div className="flex flex-col gap-2 mt-4">
+                    <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-white/10">
                       <Link href={`/${locale}/login`}>
                         <Button variant="outline" className="w-full border-white/10 text-offwhite hover:bg-white/5">
                           {t("login")}
