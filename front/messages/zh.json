@@ -1533,6 +1533,10 @@
     "home": "首页",
     "newReport": "新建报告",
     "myReports": "我的报告",
+    "explore": "探索",
+    "countries": "国家",
+    "provinces": "省份",
+    "cities": "城市",
     "detail": "详情"
   },
   "privacy": {
@@ -1751,6 +1755,8 @@
     "file": "File",
     "totalSize": "Total Size",
     "uploader": "Uploaded by",
+    "documentDetails": "文档信息",
+    "documentId": "文档编号",
     "availableFiles": "Available Files",
     "linkedLocations": "Linked Locations",
     "relatedDocuments": "Related Documents",

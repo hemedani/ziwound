@@ -1527,6 +1527,10 @@
     "home": "الرئيسية",
     "newReport": "تقرير جديد",
     "myReports": "تقاريري",
+    "explore": "استكشاف",
+    "countries": "الدول",
+    "provinces": "المحافظات",
+    "cities": "المدن",
     "detail": "التفاصيل"
   },
   "privacy": {
@@ -1745,6 +1749,8 @@
     "file": "ملف",
     "totalSize": "الحجم الإجمالي",
     "uploader": "تم الرفع بواسطة",
+    "documentDetails": "معلومات المستند",
+    "documentId": "معرف المستند",
     "availableFiles": "الملفات المتاحة",
     "linkedLocations": "المواقع المرتبطة",
     "relatedDocuments": "المستندات ذات الصلة",

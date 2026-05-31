@@ -1598,6 +1598,10 @@
     "home": "Home",
     "newReport": "New Report",
     "myReports": "My Reports",
+    "explore": "Explore",
+    "countries": "Countries",
+    "provinces": "Provinces",
+    "cities": "Cities",
     "detail": "Detail"
   },
   "privacy": {
@@ -1813,6 +1817,8 @@
     "file": "File",
     "totalSize": "Total Size",
     "uploader": "Uploaded by",
+    "documentDetails": "Document Information",
+    "documentId": "Document ID",
     "availableFiles": "Available Files",
     "linkedLocations": "Linked Locations",
     "relatedDocuments": "Related Documents",

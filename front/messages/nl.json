@@ -1591,6 +1591,10 @@
     "home": "Home",
     "newReport": "Nieuw Rapport",
     "myReports": "Mijn Rapporten",
+    "explore": "Verkennen",
+    "countries": "Landen",
+    "provinces": "Provincies",
+    "cities": "Steden",
     "detail": "Detail"
   },
   "privacy": {
@@ -1806,6 +1810,8 @@
     "file": "File",
     "totalSize": "Total Size",
     "uploader": "Uploaded by",
+    "documentDetails": "Documentinformatie",
+    "documentId": "Document-ID",
     "availableFiles": "Available Files",
     "linkedLocations": "Linked Locations",
     "relatedDocuments": "Related Documents",

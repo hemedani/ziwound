@@ -1532,6 +1532,10 @@
     "home": "Ana Sayfa",
     "newReport": "Yeni Rapor",
     "myReports": "Raporlarım",
+    "explore": "Keşfet",
+    "countries": "Ülkeler",
+    "provinces": "İller",
+    "cities": "Şehirler",
     "detail": "Detay"
   },
   "privacy": {
@@ -1750,6 +1754,8 @@
     "file": "File",
     "totalSize": "Total Size",
     "uploader": "Uploaded by",
+    "documentDetails": "Belge Bilgileri",
+    "documentId": "Belge Kimliği",
     "availableFiles": "Available Files",
     "linkedLocations": "Linked Locations",
     "relatedDocuments": "Related Documents",

@@ -1591,6 +1591,10 @@
     "home": "Главная",
     "newReport": "Новый Отчет",
     "myReports": "Мои Отчеты",
+    "explore": "Исследовать",
+    "countries": "Страны",
+    "provinces": "Провинции",
+    "cities": "Города",
     "detail": "Детали"
   },
   "privacy": {
@@ -1806,6 +1810,8 @@
     "file": "File",
     "totalSize": "Total Size",
     "uploader": "Uploaded by",
+    "documentDetails": "Информация о документе",
+    "documentId": "ID документа",
     "availableFiles": "Available Files",
     "linkedLocations": "Linked Locations",
     "relatedDocuments": "Related Documents",

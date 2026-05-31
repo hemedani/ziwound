@@ -1601,6 +1601,10 @@
     "home": "خانه",
     "newReport": "گزارش جدید",
     "myReports": "گزارش‌های من",
+    "explore": "اکتشاف",
+    "countries": "کشورها",
+    "provinces": "استان‌ها",
+    "cities": "شهرها",
     "detail": "جزئیات"
   },
   "privacy": {
@@ -1816,6 +1820,8 @@
     "file": "فایل",
     "totalSize": "حجم کل",
     "uploader": "آپلود شده توسط",
+    "documentDetails": "اطلاعات سند",
+    "documentId": "شناسه سند",
     "availableFiles": "فایل‌های موجود",
     "linkedLocations": "موقعیت‌های مرتبط",
     "relatedDocuments": "اسناد مرتبط",
