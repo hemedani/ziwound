@@ -40,12 +40,17 @@ export function Header() {
   const locale = useLocale();
   const { user, isAuthenticated, logout } = useAuthStore();
   const [scrolled, setScrolled] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  useEffect(() => {
+    setMobileMenuOpen(false);
+  }, [pathname]);
 
   const handleLogout = async () => {
     await logoutAction();
@@ -240,7 +245,7 @@ export function Header() {
           )}
 
           {/* Mobile menu */}
-          <Sheet>
+          <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button
                 variant="ghost"
@@ -276,57 +281,57 @@ export function Header() {
                 <nav className="flex flex-col gap-1">
                   {pathname.startsWith("/admin") ? (
                     <>
-                      <MobileLink href="/admin/dashboard" icon={<LayoutDashboard className="h-4 w-4" />}>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href="/admin/dashboard" icon={<LayoutDashboard className="h-4 w-4" />}>
                         {tAdmin("dashboard")}
                       </MobileLink>
-                      <MobileLink href={`/${locale}/about`}>{t("about")}</MobileLink>
-                      <MobileLink href={`/${locale}/contact`}>{t("contact")}</MobileLink>
-                      <MobileLink href={`/${locale}/faq`}>{t("faq")}</MobileLink>
-                      <MobileLink href="/admin/reports" icon={<FileText className="h-4 w-4" />}>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/about`}>{t("about")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/contact`}>{t("contact")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/faq`}>{t("faq")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href="/admin/reports" icon={<FileText className="h-4 w-4" />}>
                         {tAdmin("reports")}
                       </MobileLink>
                       {(user?.level === "Ghost" ? 4 : user?.level === "Manager" ? 3 : user?.level === "Editor" ? 2 : 1) >= 3 && (
-                        <MobileLink href="/admin/users" icon={<Users className="h-4 w-4" />}>
+                        <MobileLink onClick={() => setMobileMenuOpen(false)} href="/admin/users" icon={<Users className="h-4 w-4" />}>
                           {tAdmin("users")}
                         </MobileLink>
                       )}
-                      <MobileLink href="/admin/tags" icon={<Tags className="h-4 w-4" />}>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href="/admin/tags" icon={<Tags className="h-4 w-4" />}>
                         {tAdmin("tags")}
                       </MobileLink>
-                      <MobileLink href="/admin/categories" icon={<FolderOpen className="h-4 w-4" />}>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href="/admin/categories" icon={<FolderOpen className="h-4 w-4" />}>
                         {tAdmin("categories")}
                       </MobileLink>
-                      <MobileLink href="/admin/files" icon={<FileImage className="h-4 w-4" />}>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href="/admin/files" icon={<FileImage className="h-4 w-4" />}>
                         {tAdmin("files")}
                       </MobileLink>
                       <div className="my-2 h-px bg-white/10" />
-                      <MobileLink href={`/${locale}/reports/my`}>{t("myReports")}</MobileLink>
-                      <MobileLink href={`/${locale}/reports/new`}>{t("newReport")}</MobileLink>
-                      <MobileLink href={`/${locale}/documents`}>{t("documents")}</MobileLink>
-                      <MobileLink href={`/${locale}/blog`}>{t("blog")}</MobileLink>
-                      <MobileLink href={`/${locale}/war-crimes`}>{t("warCrimes")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/reports/my`}>{t("myReports")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/reports/new`}>{t("newReport")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/documents`}>{t("documents")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/blog`}>{t("blog")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/war-crimes`}>{t("warCrimes")}</MobileLink>
                     </>
                   ) : (
                     <>
-                      <MobileLink href={`/${locale}`}>{t("home")}</MobileLink>
-                      <MobileLink href={`/${locale}/explore`}>{t("explore")}</MobileLink>
-                      <MobileLink href={`/${locale}/war-crimes`}>{t("warCrimes")}</MobileLink>
-                      <MobileLink href={`/${locale}/documents`}>{t("documents")}</MobileLink>
-                      <MobileLink href={`/${locale}/war-criminals`}>{t("warCriminals")}</MobileLink>
-                      <MobileLink href={`/${locale}/reporters`}>{t("reporters")}</MobileLink>
-                      <MobileLink href={`/${locale}/blog`}>{t("blog")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}`}>{t("home")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/explore`}>{t("explore")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/war-crimes`}>{t("warCrimes")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/documents`}>{t("documents")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/war-criminals`}>{t("warCriminals")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/reporters`}>{t("reporters")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/blog`}>{t("blog")}</MobileLink>
                       <div className="my-2 h-px bg-white/10" />
-                      <MobileLink href={`/${locale}/about`}>{t("about")}</MobileLink>
-                      <MobileLink href={`/${locale}/contact`}>{t("contact")}</MobileLink>
-                      <MobileLink href={`/${locale}/faq`}>{t("faq")}</MobileLink>
-                      <MobileLink href={`/${locale}/help`}>{t("help")}</MobileLink>
-                      <MobileLink href={`/${locale}/privacy`}>{t("privacy")}</MobileLink>
-                      <MobileLink href={`/${locale}/terms`}>{t("terms")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/about`}>{t("about")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/contact`}>{t("contact")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/faq`}>{t("faq")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/help`}>{t("help")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/privacy`}>{t("privacy")}</MobileLink>
+                      <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/terms`}>{t("terms")}</MobileLink>
                       {isAuthenticated && (
                         <>
                           <div className="my-2 h-px bg-white/10" />
-                          <MobileLink href={`/${locale}/reports/my`}>{t("myReports")}</MobileLink>
-                          <MobileLink href={`/${locale}/reports/new`}>{t("newReport")}</MobileLink>
+                          <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/reports/my`}>{t("myReports")}</MobileLink>
+                          <MobileLink onClick={() => setMobileMenuOpen(false)} href={`/${locale}/reports/new`}>{t("newReport")}</MobileLink>
                         </>
                       )}
                     </>
@@ -337,12 +342,12 @@ export function Header() {
                   !pathname.includes("/login") &&
                   !pathname.includes("/register") && (
                     <div className="flex flex-col gap-2 mt-4 pt-4 border-t border-white/10">
-                      <Link href={`/${locale}/login`}>
+                      <Link href={`/${locale}/login`} onClick={() => setMobileMenuOpen(false)}>
                         <Button variant="outline" className="w-full border-white/10 text-offwhite hover:bg-white/5">
                           {t("login")}
                         </Button>
                       </Link>
-                      <Link href={`/${locale}/register`}>
+                      <Link href={`/${locale}/register`} onClick={() => setMobileMenuOpen(false)}>
                         <Button className="w-full bg-crimson hover:bg-crimson-light text-white">
                           {t("register")}
                         </Button>
@@ -362,14 +367,17 @@ function MobileLink({
   href,
   children,
   icon,
+  onClick,
 }: {
   href: string;
   children: React.ReactNode;
   icon?: React.ReactNode;
+  onClick?: () => void;
 }) {
   return (
     <Link
       href={href}
+      onClick={onClick}
       className="flex items-center gap-2.5 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-body hover:text-offwhite hover:bg-white/[0.04] transition-colors"
     >
       {icon}
