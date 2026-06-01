@@ -38,7 +38,7 @@ export function WarCrimesHero({
       <div className="container relative px-4 md:px-8 pt-32 pb-12">
         {/* Overline */}
         <div className="mb-4 flex items-center gap-3">
-          <div className="h-px w-10 bg-gradient-to-r from-crimson to-transparent" />
+          <div className="h-px w-10 bg-gradient-to-r rtl:bg-gradient-to-l from-crimson to-transparent" />
           <span className="text-xs font-semibold uppercase tracking-[0.2em] text-gold">
             {translations.overline}
           </span>

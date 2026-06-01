@@ -44,7 +44,7 @@ interface FilterChipProps {
 function FilterChip({ label, onRemove }: FilterChipProps) {
   return (
     <Badge
-      className="gap-1.5 bg-crimson/10 text-crimson-light border-crimson/20 hover:bg-crimson/20 transition-colors cursor-pointer pr-1.5"
+      className="gap-1.5 bg-crimson/10 text-crimson-light border-crimson/20 hover:bg-crimson/20 transition-colors cursor-pointer pe-1.5"
       onClick={onRemove}
     >
       {label}
