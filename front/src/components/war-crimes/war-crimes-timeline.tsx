@@ -134,8 +134,8 @@ export function WarCrimesTimeline({ reports, locale }: WarCrimesTimelineProps) {
               {/* Event card */}
               <div className={`flex-1 min-w-0 ${!isLast ? "pb-2" : ""}`}>
                 <Link href={`/${locale}/reports/${report._id}`} className="block">
-                  <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] overflow-hidden transition-all duration-500 hover:-translate-y-0.5 hover:border-white/[0.12] hover:bg-white/[0.04] hover:shadow-xl hover:shadow-crimson/5">
-                    <div className="flex flex-col sm:flex-row">
+                  <div className="rounded-2xl border border-white/[0.06] bg-white/[0.02] glass-card overflow-hidden transition-all duration-500 hover:-translate-y-0.5 hover:border-white/[0.12] hover:bg-white/[0.04] hover:shadow-xl hover:shadow-crimson/5">
+                    <div className="flex flex-col sm:flex-row rtl:sm:flex-row-reverse">
                       {/* Image thumbnail */}
                       {imageUrl && (
                         <div className="relative h-32 sm:h-auto sm:w-40 shrink-0 overflow-hidden">
@@ -147,7 +147,7 @@ export function WarCrimesTimeline({ reports, locale }: WarCrimesTimelineProps) {
                             sizes="160px"
                             className="object-cover transition-transform duration-700 group-hover:scale-105"
                           />
-                          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/50 sm:bg-gradient-to-l" />
+                          <div className="absolute inset-0 bg-gradient-to-r from-transparent to-background/50 sm:bg-gradient-to-l rtl:bg-gradient-to-l" />
                         </div>
                       )}
 
@@ -202,7 +202,7 @@ export function WarCrimesTimeline({ reports, locale }: WarCrimesTimelineProps) {
                           )}
                           <div className="ms-auto flex items-center gap-1 text-xs text-crimson/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                             <span>View</span>
-                            <ChevronRight className="h-3 w-3" />
+                            <ChevronRight className="h-3 w-3 rtl:rotate-180" />
                           </div>
                         </div>
                       </div>
