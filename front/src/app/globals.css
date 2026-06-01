@@ -102,25 +102,48 @@ body {
 }
 
 /* ─── Glassmorphism utilities ─── */
+/*
+   ⚠️  CSS VAR PATTERN: The --g-bf custom property prevents Turbopack's
+   lightningcss from stripping `backdrop-filter` when `-webkit-backdrop-filter`
+   is also present. Without this, lightningcss deduplicates and removes the
+   standard property, breaking the effect in Firefox.
+*/
 .glass {
+    --g-bf: blur(16px) saturate(140%);
     background: rgba(10, 10, 10, 0.65);
-    backdrop-filter: blur(16px) saturate(140%);
-    -webkit-backdrop-filter: blur(16px) saturate(140%);
+    -webkit-backdrop-filter: var(--g-bf);
+    backdrop-filter: var(--g-bf);
     border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .glass-strong {
+    --g-bf: blur(24px) saturate(160%);
     background: rgba(10, 10, 10, 0.85);
-    backdrop-filter: blur(24px) saturate(160%);
-    -webkit-backdrop-filter: blur(24px) saturate(160%);
+    -webkit-backdrop-filter: var(--g-bf);
+    backdrop-filter: var(--g-bf);
     border: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .glass-light {
+    --g-bf: blur(12px);
     background: rgba(255, 255, 255, 0.03);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: var(--g-bf);
+    backdrop-filter: var(--g-bf);
     border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.glass-dslr {
+    --g-bf: blur(40px) saturate(140%);
+    background: rgba(10, 10, 10, 0.5);
+    -webkit-backdrop-filter: var(--g-bf);
+    backdrop-filter: var(--g-bf);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.35);
+}
+
+.glass-card {
+    -webkit-backdrop-filter: blur(4px);
+    backdrop-filter: blur(4px);
 }
 
 /* ─── Subtle glow effects ─── */
