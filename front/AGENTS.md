@@ -503,6 +503,29 @@ setTheme("dark"); // or 'light' or 'system'
 - RTL/LTR layout flipping is handled automatically using logical properties.
 - Date, number, and time formatting respect the current locale.
 
+#### RTL Gotchas with Radix UI Components
+
+Some `@radix-ui` primitives (e.g. `Tabs`, `NavigationMenu`, `Slider`) inject `dir="ltr"` by default when no explicit `dir` prop is provided, even if the page's `<html>` element already has `dir="rtl"`. Because CSS `direction` is inherited, any child component rendered inside such a primitive will unexpectedly compute as LTR, which breaks:
+
+- **Logical properties** (`start-*` / `end-*` utilities from Tailwind)  
+  In RTL these resolve to the physical left/right edges, so `start-3` will pin an element to the left instead of the right.
+- **Flex layouts** (`justify-between`, `text-start`, etc.) reverse incorrectly.
+- **Text alignment** defaults to left-aligned instead of right-aligned for Arabic/Persian content.
+
+**Always explicitly forward the locale's `dir` to Radix UI components:**
+
+```tsx
+const isRTL = locale === "fa" || locale === "ar";
+
+// ❌ BAD – Tabs defaults to dir="ltr", breaking all children
+<Tabs defaultValue="list" className="w-full">
+
+// ✅ GOOD – Explicitly pass the direction
+<Tabs defaultValue="list" className="w-full" dir={isRTL ? "rtl" : "ltr"}>
+```
+
+> **Note:** This fix was applied to the `war-crimes` page (`src/app/[locale]/war-crimes/page.tsx`) where the `<ReportCard>` components inside `<TabsContent>` were rendering LTR in Persian. After adding `dir={isRTL ? "rtl" : "ltr"}` to the `<Tabs>` root, the cards correctly inherited RTL and badges/footers aligned properly.
+
 ### Styling
 
 - **Tailwind CSS v4** as the core utility framework (`@import "tailwindcss";` in globals.css).

@@ -50,6 +50,7 @@ export default async function WarCrimesPage({
   const resolvedSearchParams = await searchParams;
   const resolvedParams = await params;
   const locale = resolvedParams.locale;
+  const isRTL = locale === "fa" || locale === "ar";
   const t = await getTranslations({ locale });
 
   const page = Number(resolvedSearchParams.page) || 1;
@@ -225,7 +226,7 @@ export default async function WarCrimesPage({
           />
 
           {/* View Tabs */}
-          <Tabs defaultValue={view} className="w-full">
+          <Tabs defaultValue={view} className="w-full" dir={isRTL ? "rtl" : "ltr"}>
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4 mb-6">
               <TabsList className="bg-white/[0.03] border border-white/[0.06] p-1 rounded-xl">
                 <TabsTrigger value="list" className="gap-2 rounded-lg data-[state=active]:bg-crimson/15 data-[state=active]:text-crimson-light data-[state=active]:border data-[state=active]:border-crimson/30">
