@@ -326,7 +326,7 @@ export default async function WarCriminalsPage({
                 <Link
                   key={wc._id}
                   href={`/${locale}/war-criminals/${wc._id}`}
-                  className="group relative rounded-2xl bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/[0.08] overflow-hidden hover:border-crimson/30 transition-all duration-500 block hover:shadow-2xl hover:shadow-crimson/10 hover:-translate-y-1"
+                  className="glass-card group relative rounded-2xl bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/[0.08] overflow-hidden hover:border-crimson/30 transition-all duration-500 block hover:shadow-2xl hover:shadow-crimson/10 hover:-translate-y-1"
                 >
                   {/* Subtle top gradient accent */}
                   <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-crimson/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />

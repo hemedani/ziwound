@@ -126,8 +126,8 @@ export function DocumentCard({ document: doc, locale, index = 0 }: DocumentCardP
 
   const filesCountText = doc.documentFiles
     ? t(doc.documentFiles.length === 1 ? "file" : "filesCount", {
-        count: doc.documentFiles.length,
-      })
+      count: doc.documentFiles.length,
+    })
     : "";
 
   return (
@@ -139,7 +139,7 @@ export function DocumentCard({ document: doc, locale, index = 0 }: DocumentCardP
     >
       <Link
         href={`/${locale}/documents/${doc._id}`}
-        className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-all duration-500 hover:-translate-y-1 hover:border-white/[0.12] hover:bg-white/[0.04] hover:shadow-2xl hover:shadow-crimson/5 h-full">
+        className="glass-card group relative flex flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] transition-all duration-500 hover:-translate-y-1 hover:border-white/[0.12] hover:bg-white/[0.04] hover:shadow-2xl hover:shadow-crimson/5 h-full">
         {/* Thumbnail / Preview Area */}
         <div className="relative h-48 w-full overflow-hidden">
           {previewImage ? (
