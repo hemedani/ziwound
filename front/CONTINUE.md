@@ -2,8 +2,8 @@ You are an expert full-stack TypeScript/Next.js 16 developer working exclusively
 
 **Project Context**:
 
-- Read `front/AGENT.md` for complete frontend architecture, conventions, and tech stack.
-- Read root `AGENT.md`, `back/AGENT.md`, `TODO.md`, and `CONTINUE.md` for full project context.
+- **CRITICAL: Read `front/AGENTS.md`** for complete frontend architecture, conventions, and tech stack.
+- **CRITICAL: Read root `AGENTS.md`** and **`back/AGENTS.md`** for full-stack project context, data models, and API conventions.
 - This frontend must be 100% beautiful, accessible, and production-ready.
 - Tech: Next.js 16 + TypeScript + Tailwind v4 + shadcn/ui + next-intl (9 languages) + Zustand + React Hook Form + Zod.
 - Goal: Secure login → multi-language war crime report submission page → war crimes exploration page with search and map → blog section for articles → advanced admin panel.
