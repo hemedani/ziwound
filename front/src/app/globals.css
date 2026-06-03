@@ -598,3 +598,68 @@ body {
 .calendar-glass .rmdp-shadow {
     box-shadow: none !important;
 }
+
+/* ═══════════════════════════════════════════════════════════════════
+   ZiWound "Quiet Illumination" — Mesh Grid Animation
+   A slow, dignified glowing/sweeping animation that follows the
+   24px grid lines. CSS-only, GPU-accelerated, zero JS overhead.
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* 1. Sweeping Glow — travels diagonally along grid lines */
+.mesh-sweep-glow {
+    background: linear-gradient(
+        115deg,
+        transparent 0%,
+        transparent 40%,
+        rgba(153, 27, 27, 0.08) 48%,
+        rgba(212, 175, 55, 0.05) 52%,
+        transparent 60%,
+        transparent 100%
+    );
+    background-size: 200% 200%;
+    mix-blend-mode: screen;
+    animation: meshSweep 14s ease-in-out infinite;
+    will-change: transform, opacity;
+}
+
+/* 2. Intersection Shimmer — faint pulses at grid crossings */
+.mesh-shimmer-glow {
+    background-image:
+        radial-gradient(circle at 12px 12px, rgba(212, 175, 55, 0.10) 1px, transparent 2px),
+        radial-gradient(circle at 12px 12px, rgba(153, 27, 27, 0.07) 1px, transparent 2px);
+    background-size: 24px 24px;
+    animation: meshShimmer 8s ease-in-out infinite alternate;
+    will-change: opacity;
+}
+
+/* Slow diagonal sweep: light reveals grid gradually */
+@keyframes meshSweep {
+    0%, 100% {
+        background-position: 0% 0%;
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.8;
+    }
+    85% {
+        opacity: 0.8;
+    }
+    50% {
+        background-position: 100% 100%;
+    }
+}
+
+/* Intersection shimmer: soft pulse at grid crossings */
+@keyframes meshShimmer {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.9; }
+}
+
+/* === Reduced Motion === */
+@media (prefers-reduced-motion: reduce) {
+    .mesh-sweep-glow,
+    .mesh-shimmer-glow {
+        animation: none !important;
+        opacity: 0.15 !important;
+    }
+}
