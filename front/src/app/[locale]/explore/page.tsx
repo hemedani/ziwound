@@ -3,14 +3,18 @@ import { getTranslations } from "next-intl/server";
 import { gets as getCountries } from "@/app/actions/country/gets";
 import { gets as getProvinces } from "@/app/actions/province/gets";
 import { gets as getCities } from "@/app/actions/city/gets";
+import { count as countCountries } from "@/app/actions/country/count";
+import { count as countProvinces } from "@/app/actions/province/count";
+import { count as countCities } from "@/app/actions/city/count";
 import { countrySchema, provinceSchema, citySchema } from "@/types/declarations";
 import { PageContainer } from "@/components/layout/page-container";
-import { Globe, MapPin, Building2 } from "lucide-react";
+import { PageHero } from "@/components/layout/page-hero";
+import { Globe, MapPin, Building2, Search, X } from "lucide-react";
 import { EmptyState } from "@/components/ui/empty-state";
 import { LocationCard } from "@/components/organisms/location-card";
-import { ExploreHero } from "@/components/organisms/explore-hero";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 
 type LocationType = "countries" | "provinces" | "cities";
 
@@ -64,6 +68,16 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
     next: t("next"),
     backToExplore: t("backToExplore"),
   };
+
+  const [countryCountRes, provinceCountRes, cityCountRes] = await Promise.all([
+    countCountries({}, { qty: 1 }),
+    countProvinces({}, { qty: 1 }),
+    countCities({}, { qty: 1 }),
+  ]);
+
+  const totalCountries = countryCountRes?.success ? (countryCountRes.body as { qty?: number })?.qty ?? 0 : 0;
+  const totalProvinces = provinceCountRes?.success ? (provinceCountRes.body as { qty?: number })?.qty ?? 0 : 0;
+  const totalCities = cityCountRes?.success ? (cityCountRes.body as { qty?: number })?.qty ?? 0 : 0;
 
   let locations: Array<countrySchema | provinceSchema | citySchema> = [];
   let hasMore = false;
@@ -167,15 +181,107 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
   const TabIcon = tabIcons[tab];
 
   return (
-    <PageContainer showHeader={false}>
-      <ExploreHero
-        locale={locale}
-        search={search}
-        activeTab={tab}
-        translations={translations}
-      />
+    <PageContainer showHeader={false} contentClassName="">
+      <PageHero
+        icon={<Globe className="h-5 w-5 text-crimson" />}
+        overline={t("overline")}
+        title={t("title")}
+        description={t("description")}
+      >
+        <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
+          <div className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-md px-4 py-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10">
+              <Globe className="h-4 w-4 text-crimson" />
+            </div>
+            <div>
+              <p className="text-lg font-bold text-offwhite leading-none">{totalCountries}</p>
+              <p className="text-xs text-slate-body/70 mt-1">{t("countriesTab")}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-md px-4 py-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10">
+              <MapPin className="h-4 w-4 text-crimson" />
+            </div>
+            <div>
+              <p className="text-lg font-bold text-offwhite leading-none">{totalProvinces}</p>
+              <p className="text-xs text-slate-body/70 mt-1">{t("provincesTab")}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-md px-4 py-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10">
+              <Building2 className="h-4 w-4 text-crimson" />
+            </div>
+            <div>
+              <p className="text-lg font-bold text-offwhite leading-none">{totalCities}</p>
+              <p className="text-xs text-slate-body/70 mt-1">{t("citiesTab")}</p>
+            </div>
+          </div>
+        </div>
+      </PageHero>
 
-      <div className="container px-4 md:px-8 pb-20">
+      <div className="container mx-auto px-4 md:px-8 py-8 pb-20">
+        {/* Tabs */}
+        <div className="flex gap-2 mb-8">
+          {[
+            { key: "countries" as LocationType, icon: Globe, label: translations.countriesTab },
+            { key: "provinces" as LocationType, icon: MapPin, label: translations.provincesTab },
+            { key: "cities" as LocationType, icon: Building2, label: translations.citiesTab },
+          ].map(({ key, icon: Icon, label }) => {
+            const isActive = tab === key;
+            const href = `/${locale}/explore${key === "countries" ? "" : `?tab=${key}`}`;
+            return (
+              <Button
+                key={key}
+                variant={isActive ? "default" : "ghost"}
+                asChild
+                className={`h-10 px-5 text-sm font-medium transition-all duration-300 ${
+                  isActive
+                    ? "bg-crimson/15 text-crimson-light border border-crimson/30 hover:bg-crimson/20"
+                    : "text-slate-body hover:text-offwhite hover:bg-white/5 border border-transparent"
+                }`}
+              >
+                <Link href={href} className="flex items-center gap-2">
+                  <Icon className="h-4 w-4" />
+                  {label}
+                </Link>
+              </Button>
+            );
+          })}
+        </div>
+
+        {/* Search bar */}
+        <form method="GET" className="max-w-2xl mb-8">
+          <input type="hidden" name="tab" value={tab} />
+          <div className="relative flex items-center rounded-2xl border border-white/[0.08] bg-white/[0.04] backdrop-blur-sm p-1.5 transition-all duration-300 focus-within:border-crimson/40 focus-within:bg-white/[0.06] focus-within:shadow-lg focus-within:shadow-crimson/5">
+            <Search className="absolute start-5 h-5 w-5 text-slate-body/50 pointer-events-none" />
+            <Input
+              name="search"
+              placeholder={translations.searchPlaceholder}
+              defaultValue={search}
+              className="flex-1 border-0 bg-transparent ps-12 pe-12 h-12 text-offwhite placeholder:text-slate-body/40 focus-visible:ring-0 focus-visible:ring-offset-0 text-base"
+            />
+            {search && (
+              <Button
+                type="button"
+                variant="ghost"
+                size="icon"
+                asChild
+                className="absolute end-14 h-8 w-8 text-slate-body/50 hover:text-offwhite hover:bg-white/10"
+              >
+                <Link href={`/${locale}/explore${tab !== "countries" ? `?tab=${tab}` : ""}`}>
+                  <X className="h-4 w-4" />
+                </Link>
+              </Button>
+            )}
+            <Button
+              type="submit"
+              className="h-10 px-6 bg-crimson hover:bg-crimson-light text-white font-medium rounded-xl transition-all duration-300"
+            >
+              {translations.search}
+            </Button>
+          </div>
+        </form>
+
         {/* Results count */}
         {locations.length > 0 && (
           <div className="mb-6 flex items-center justify-between">

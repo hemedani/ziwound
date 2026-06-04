@@ -2,13 +2,14 @@ import { getTranslations } from "next-intl/server";
 import { get } from "@/app/actions/warCriminal/get";
 import { notFound } from "next/navigation";
 import { PageContainer } from "@/components/layout/page-container";
+import { PageHero } from "@/components/layout/page-hero";
 import { Link } from "@/i18n/routing";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
-  User, Building2, Calendar, MapPin, Briefcase, ArrowLeft,
-  FileText, Tag, AlertTriangle, Shield, ExternalLink,
+  User, Building2, Calendar, MapPin, Briefcase,
+  FileText, Tag, AlertTriangle, Shield, ExternalLink, Scale,
 } from "lucide-react";
 import Image from "next/image";
 import { getImageUploadUrl } from "@/utils/imageUrl";
@@ -153,161 +154,147 @@ export default async function WarCriminalDetailPage({
   const profileUrl = `${process.env.NEXT_PUBLIC_APP_URL || ""}/${locale}/war-criminals/${id}`;
 
   return (
-    <PageContainer showHeader={false}>
-      {/* Hero Section */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(153,27,27,0.12)_0%,_transparent_60%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16">
-          {/* Back Button */}
-          <Button variant="ghost" size="sm" className="text-slate-body hover:text-offwhite mb-8 -ms-2" asChild>
-            <Link href={`/${locale}/war-criminals`}>
-              <ArrowLeft className="me-2 h-4 w-4" />
-              {t("common.back") || "Back"}
-            </Link>
-          </Button>
-
-          <div className="flex flex-col lg:flex-row gap-10">
-            {/* Photo */}
-            <div className="shrink-0">
-              <div className="relative w-56 h-56 rounded-3xl overflow-hidden bg-white/5 border border-white/[0.08] shadow-2xl shadow-crimson/15">
-                {wc.photo ? (
-                  <Image
-                    src={getImageUploadUrl(wc.photo.name)}
-                    alt={wc.fullName}
-                    fill
-                    unoptimized
-                    sizes="224px"
-                    className="object-cover"
-                  />
-                ) : (
-                  <div className="flex items-center justify-center h-full bg-gradient-to-br from-crimson/20 via-background to-gold/10">
-                    {wc.isEntity ? (
-                      <Building2 className="h-24 w-24 text-offwhite/20" />
-                    ) : (
-                      <User className="h-24 w-24 text-offwhite/20" />
-                    )}
-                  </div>
-                )}
-              </div>
-            </div>
-
-            {/* Info */}
-            <div className="flex-1 min-w-0">
-              {/* Badges */}
-              <div className="flex flex-wrap items-center gap-2.5 mb-4">
-                <Badge className={`${statusColors[wc.status] || "bg-slate-500/20 text-slate-400"} border`}>
-                  {statusLabel}
-                </Badge>
-                {wc.affiliation && (
-                  <Badge className={`${affiliationColors[wc.affiliation] || "bg-slate-500/20 text-slate-400"}`}>
-                    <Briefcase className="me-1.5 h-3 w-3" />
-                    {affiliationLabel}
-                  </Badge>
-                )}
-                <Badge variant="outline" className="border-white/10 text-slate-body">
+    <PageContainer showHeader={false} contentClassName="">
+      <PageHero
+        backLink={{ href: `/${locale}/war-criminals`, label: t("common.back") || "Back" }}
+        icon={<Scale className="h-5 w-5 text-crimson" />}
+        title={wc.fullName}
+      >
+        <div className="flex flex-col lg:flex-row gap-10">
+          {/* Photo */}
+          <div className="shrink-0">
+            <div className="relative w-56 h-56 rounded-3xl overflow-hidden bg-white/5 border border-white/[0.08] shadow-2xl shadow-crimson/15">
+              {wc.photo ? (
+                <Image
+                  src={getImageUploadUrl(wc.photo.name)}
+                  alt={wc.fullName}
+                  fill
+                  unoptimized
+                  sizes="224px"
+                  className="object-cover"
+                />
+              ) : (
+                <div className="flex items-center justify-center h-full bg-gradient-to-br from-crimson/20 via-background to-gold/10">
                   {wc.isEntity ? (
-                    <><Building2 className="me-1.5 h-3 w-3" />{t("warCriminals.organizations")}</>
+                    <Building2 className="h-24 w-24 text-offwhite/20" />
                   ) : (
-                    <><User className="me-1.5 h-3 w-3" />{t("warCriminals.individuals")}</>
+                    <User className="h-24 w-24 text-offwhite/20" />
                   )}
-                </Badge>
-              </div>
-
-              {/* Name */}
-              <h1 className="text-4xl sm:text-5xl font-bold text-offwhite mb-5 tracking-tight">{wc.fullName}</h1>
-
-              {/* Aliases */}
-              {wc.aliases && wc.aliases.length > 0 && (
-                <div className="mb-5">
-                  <p className="text-xs text-slate-body/70 uppercase tracking-wider mb-2">{t("warCriminals.aliases") || "Also known as"}</p>
-                  <div className="flex flex-wrap gap-2">
-                    {wc.aliases.map((alias, i) => (
-                      <Badge key={i} variant="outline" className="border-white/[0.08] text-slate-body text-sm">
-                        {alias}
-                      </Badge>
-                    ))}
-                  </div>
                 </div>
               )}
+            </div>
+          </div>
 
-              {/* Meta Info */}
-              <div className="flex flex-wrap gap-5 text-sm text-slate-body mb-6">
-                {wc.nationality && wc.nationality.length > 0 && (
-                  <div className="flex items-center gap-2">
-                    <div className="rounded-lg bg-white/[0.04] p-1.5">
-                      <MapPin className="h-3.5 w-3.5 text-gold/80" />
-                    </div>
-                    <span>{wc.nationality.join(", ")}</span>
-                  </div>
+          {/* Info */}
+          <div className="flex-1 min-w-0">
+            {/* Badges */}
+            <div className="flex flex-wrap items-center gap-2.5 mb-4">
+              <Badge className={`${statusColors[wc.status] || "bg-slate-500/20 text-slate-400"} border`}>
+                {statusLabel}
+              </Badge>
+              {wc.affiliation && (
+                <Badge className={`${affiliationColors[wc.affiliation] || "bg-slate-500/20 text-slate-400"}`}>
+                  <Briefcase className="me-1.5 h-3 w-3" />
+                  {affiliationLabel}
+                </Badge>
+              )}
+              <Badge variant="outline" className="border-white/10 text-slate-body">
+                {wc.isEntity ? (
+                  <><Building2 className="me-1.5 h-3 w-3" />{t("warCriminals.organizations")}</>
+                ) : (
+                  <><User className="me-1.5 h-3 w-3" />{t("warCriminals.individuals")}</>
                 )}
-                {wc.rankOrPosition && (
-                  <div className="flex items-center gap-2">
-                    <div className="rounded-lg bg-white/[0.04] p-1.5">
-                      <Briefcase className="h-3.5 w-3.5 text-gold/80" />
-                    </div>
-                    <span>{wc.rankOrPosition}</span>
-                  </div>
-                )}
-                {wc.dateOfBirth && (
-                  <div className="flex items-center gap-2">
-                    <div className="rounded-lg bg-white/[0.04] p-1.5">
-                      <Calendar className="h-3.5 w-3.5 text-gold/80" />
-                    </div>
-                    <span>{formatDate(wc.dateOfBirth)}</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Actions */}
-              <div className="flex items-center gap-3">
-                <ShareButton profileUrl={profileUrl} label={t("warCriminals.shareProfile") || "Share Profile"} />
-              </div>
+              </Badge>
             </div>
 
-            {/* Quick Stats */}
-            <div className="grid grid-cols-3 lg:grid-cols-1 gap-3 shrink-0">
-              <div className="rounded-2xl glass-strong border border-white/[0.06] p-5 text-center lg:text-start">
-                <div className="flex items-center lg:items-start gap-3">
-                  <div className="rounded-xl bg-crimson/20 p-2.5 shrink-0">
-                    <FileText className="h-5 w-5 text-crimson-light" />
-                  </div>
-                  <div>
-                    <p className="text-3xl font-bold text-offwhite">{reportCount}</p>
-                    <p className="text-xs text-slate-body mt-0.5">{t("warCriminals.linkedReports") || "Reports"}</p>
-                  </div>
+            {/* Aliases */}
+            {wc.aliases && wc.aliases.length > 0 && (
+              <div className="mb-5">
+                <p className="text-xs text-slate-body/70 uppercase tracking-wider mb-2">{t("warCriminals.aliases") || "Also known as"}</p>
+                <div className="flex flex-wrap gap-2">
+                  {wc.aliases.map((alias, i) => (
+                    <Badge key={i} variant="outline" className="border-white/[0.08] text-slate-body text-sm">
+                      {alias}
+                    </Badge>
+                  ))}
                 </div>
               </div>
-              <div className="rounded-2xl glass-strong border border-white/[0.06] p-5 text-center lg:text-start">
-                <div className="flex items-center lg:items-start gap-3">
-                  <div className="rounded-xl bg-amber-500/20 p-2.5 shrink-0">
-                    <AlertTriangle className="h-5 w-5 text-amber-400" />
+            )}
+
+            {/* Meta Info */}
+            <div className="flex flex-wrap gap-5 text-sm text-slate-body mb-6">
+              {wc.nationality && wc.nationality.length > 0 && (
+                <div className="flex items-center gap-2">
+                  <div className="rounded-lg bg-white/[0.04] p-1.5">
+                    <MapPin className="h-3.5 w-3.5 text-gold/80" />
                   </div>
-                  <div>
-                    <p className="text-3xl font-bold text-offwhite">{highPriorityReports}</p>
-                    <p className="text-xs text-slate-body mt-0.5">{t("admin.priority_high") || "High Priority"}</p>
+                  <span>{wc.nationality.join(", ")}</span>
+                </div>
+              )}
+              {wc.rankOrPosition && (
+                <div className="flex items-center gap-2">
+                  <div className="rounded-lg bg-white/[0.04] p-1.5">
+                    <Briefcase className="h-3.5 w-3.5 text-gold/80" />
                   </div>
+                  <span>{wc.rankOrPosition}</span>
+                </div>
+              )}
+              {wc.dateOfBirth && (
+                <div className="flex items-center gap-2">
+                  <div className="rounded-lg bg-white/[0.04] p-1.5">
+                    <Calendar className="h-3.5 w-3.5 text-gold/80" />
+                  </div>
+                  <span>{formatDate(wc.dateOfBirth)}</span>
+                </div>
+              )}
+            </div>
+
+            {/* Actions */}
+            <div className="flex items-center gap-3">
+              <ShareButton profileUrl={profileUrl} label={t("warCriminals.shareProfile") || "Share Profile"} />
+            </div>
+          </div>
+
+          {/* Quick Stats */}
+          <div className="grid grid-cols-3 lg:grid-cols-1 gap-3 shrink-0">
+            <div className="rounded-2xl glass-strong border border-white/[0.06] p-5 text-center lg:text-start">
+              <div className="flex items-center lg:items-start gap-3">
+                <div className="rounded-xl bg-crimson/20 p-2.5 shrink-0">
+                  <FileText className="h-5 w-5 text-crimson-light" />
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-offwhite">{reportCount}</p>
+                  <p className="text-xs text-slate-body mt-0.5">{t("warCriminals.linkedReports") || "Reports"}</p>
                 </div>
               </div>
-              <div className="rounded-2xl glass-strong border border-white/[0.06] p-5 text-center lg:text-start">
-                <div className="flex items-center lg:items-start gap-3">
-                  <div className="rounded-xl bg-emerald-500/20 p-2.5 shrink-0">
-                    <Shield className="h-5 w-5 text-emerald-400" />
-                  </div>
-                  <div>
-                    <p className="text-3xl font-bold text-offwhite">{approvedReports}</p>
-                    <p className="text-xs text-slate-body mt-0.5">{t("admin.status_approved") || "Approved"}</p>
-                  </div>
+            </div>
+            <div className="rounded-2xl glass-strong border border-white/[0.06] p-5 text-center lg:text-start">
+              <div className="flex items-center lg:items-start gap-3">
+                <div className="rounded-xl bg-amber-500/20 p-2.5 shrink-0">
+                  <AlertTriangle className="h-5 w-5 text-amber-400" />
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-offwhite">{highPriorityReports}</p>
+                  <p className="text-xs text-slate-body mt-0.5">{t("admin.priority_high") || "High Priority"}</p>
+                </div>
+              </div>
+            </div>
+            <div className="rounded-2xl glass-strong border border-white/[0.06] p-5 text-center lg:text-start">
+              <div className="flex items-center lg:items-start gap-3">
+                <div className="rounded-xl bg-emerald-500/20 p-2.5 shrink-0">
+                  <Shield className="h-5 w-5 text-emerald-400" />
+                </div>
+                <div>
+                  <p className="text-3xl font-bold text-offwhite">{approvedReports}</p>
+                  <p className="text-xs text-slate-body mt-0.5">{t("admin.status_approved") || "Approved"}</p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      </PageHero>
 
-      {/* Content */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+      <div className="container mx-auto px-4 md:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">

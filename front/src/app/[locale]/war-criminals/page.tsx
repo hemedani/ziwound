@@ -1,7 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import { gets } from "@/app/actions/warCriminal/gets";
+import { count as countWarCriminals } from "@/app/actions/warCriminal/count";
 import { ReqType, warCriminalSchema } from "@/types/declarations";
 import { PageContainer } from "@/components/layout/page-container";
+import { PageHero } from "@/components/layout/page-hero";
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -148,86 +150,33 @@ export default async function WarCriminalsPage({
     warCriminals = response.body || [];
   }
 
+  const totalWcResult = await countWarCriminals({}, { qty: "1" });
+  const totalWc = totalWcResult.success ? (totalWcResult.body?.qty || 0) : 0;
+
   const hasActiveFilters = search || status || affiliation || isEntity !== undefined;
 
   return (
-    <PageContainer showHeader={false}>
-      {/* Hero Header */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_rgba(153,27,27,0.12)_0%,_transparent_60%)]" />
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
-        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:64px_64px] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)]" />
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="p-2.5 rounded-xl bg-crimson/10 border border-crimson/20 shadow-lg shadow-crimson/10">
-              <Scale className="h-6 w-6 text-crimson" />
+    <PageContainer showHeader={false} contentClassName="">
+      <PageHero
+        icon={<Scale className="h-5 w-5 text-crimson" />}
+        overline={t("admin.warCriminals") || "War Criminals"}
+        title={t("warCriminals.criminalsTitle") || "Perpetrator Database"}
+        description={t("warCriminals.criminalsDescription") || "Browse documented individuals and organizations responsible for war crimes and human rights violations."}
+      >
+        <div className="flex flex-wrap gap-3">
+          <div className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-md px-4 py-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10">
+              <Users className="h-4 w-4 text-crimson" />
             </div>
-            <p className="text-sm font-medium uppercase tracking-[0.25em] text-gold">
-              {t("admin.warCriminals") || "War Criminals"}
-            </p>
-          </div>
-          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-offwhite mb-5 max-w-3xl">
-            {t("warCriminals.criminalsTitle") || "Perpetrator Database"}
-          </h1>
-          <p className="text-lg sm:text-xl text-slate-body max-w-2xl leading-relaxed">
-            {t("warCriminals.criminalsDescription") || "Browse documented individuals and organizations responsible for war crimes and human rights violations."}
-          </p>
-
-          {/* Stats Row */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-12">
-            <div className="glass-strong rounded-xl p-4 border border-white/[0.08] relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-crimson/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="p-1.5 rounded-lg bg-crimson/10">
-                    <Users className="h-4 w-4 text-crimson" />
-                  </div>
-                  <span className="text-xs uppercase tracking-wider text-slate-body/60">{t("warCriminals.individuals") || "Individuals"}</span>
-                </div>
-                <p className="text-2xl font-bold text-offwhite">—</p>
-              </div>
-            </div>
-            <div className="glass-strong rounded-xl p-4 border border-white/[0.08] relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="p-1.5 rounded-lg bg-gold/10">
-                    <Building2 className="h-4 w-4 text-gold" />
-                  </div>
-                  <span className="text-xs uppercase tracking-wider text-slate-body/60">{t("warCriminals.organizations") || "Organizations"}</span>
-                </div>
-                <p className="text-2xl font-bold text-offwhite">—</p>
-              </div>
-            </div>
-            <div className="glass-strong rounded-xl p-4 border border-white/[0.08] relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-red-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="p-1.5 rounded-lg bg-red-500/10">
-                    <Gavel className="h-4 w-4 text-red-400" />
-                  </div>
-                  <span className="text-xs uppercase tracking-wider text-slate-body/60">{t("admin.Convicted") || "Convicted"}</span>
-                </div>
-                <p className="text-2xl font-bold text-offwhite">—</p>
-              </div>
-            </div>
-            <div className="glass-strong rounded-xl p-4 border border-white/[0.08] relative overflow-hidden group">
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-500/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-              <div className="relative">
-                <div className="flex items-center gap-2 mb-2">
-                  <div className="p-1.5 rounded-lg bg-blue-500/10">
-                    <ShieldAlert className="h-4 w-4 text-blue-400" />
-                  </div>
-                  <span className="text-xs uppercase tracking-wider text-slate-body/60">{t("admin.atLarge") || "At Large"}</span>
-                </div>
-                <p className="text-2xl font-bold text-offwhite">—</p>
-              </div>
+            <div>
+              <p className="text-lg font-bold text-offwhite leading-none">{totalWc}</p>
+              <p className="text-xs text-slate-body/70 mt-1">{t("warCriminals.title") || "War Criminals"}</p>
             </div>
           </div>
         </div>
-      </div>
+      </PageHero>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+      <div className="container mx-auto px-4 md:px-8 py-8">
         {/* Filters Bar */}
         <form method="GET" className="mb-10">
           <div className="glass-strong rounded-2xl border border-white/[0.08] p-4 sm:p-5 shadow-xl shadow-black/20">

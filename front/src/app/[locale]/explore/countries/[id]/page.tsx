@@ -4,8 +4,8 @@ import { get } from "@/app/actions/country/get";
 import { countrySchema } from "@/types/declarations";
 import { notFound } from "next/navigation";
 import { PageContainer } from "@/components/layout/page-container";
+import { PageHero } from "@/components/layout/page-hero";
 import { Globe, MapPin, Building2 } from "lucide-react";
-import { LocationHero } from "@/components/organisms/location-hero";
 import { WarInfoSection } from "@/components/organisms/war-info-section";
 import { RelatedLocationsGrid } from "@/components/organisms/related-locations-grid";
 import { ReportListCard } from "@/components/organisms/report-list-card";
@@ -89,25 +89,33 @@ export default async function CountryDetailPage({ params }: CountryDetailPagePro
   }));
 
   return (
-    <PageContainer showHeader={false}>
-      <LocationHero
-        locale={locale}
-        type="country"
-        name={country.name}
-        englishName={country.english_name}
-        photo={country.photo}
-        breadcrumbs={[]}
-        stats={[
-          ...(provinces.length > 0 ? [{ icon: MapPin, value: provinces.length, label: t("provinces") }] : []),
-          ...(cities.length > 0 ? [{ icon: Building2, value: cities.length, label: t("cities") }] : []),
-          ...(totalReports > 0 ? [{ icon: Globe, value: totalReports, label: t("reports"), variant: "crimson" as const }] : []),
-        ]}
-        typeLabel={t("country")}
-        backToExploreLabel={t("backToExplore")}
-      />
+    <PageContainer showHeader={false} contentClassName="">
+      <PageHero
+        icon={<Globe className="h-5 w-5 text-crimson" />}
+        overline={t("country")}
+        title={country.name}
+        description={country.english_name || ""}
+        backLink={{ href: `/${locale}/explore`, label: t("backToExplore") }}
+      >
+        <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
+          {[
+            ...(provinces.length > 0 ? [{ icon: <MapPin className="h-4 w-4 text-crimson" />, value: provinces.length, label: t("provinces") }] : []),
+            ...(cities.length > 0 ? [{ icon: <Building2 className="h-4 w-4 text-crimson" />, value: cities.length, label: t("cities") }] : []),
+            ...(totalReports > 0 ? [{ icon: <Globe className="h-4 w-4 text-crimson" />, value: totalReports, label: t("reports") }] : []),
+          ].map((stat) => (
+            <div key={stat.label} className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-md px-4 py-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10">{stat.icon}</div>
+              <div>
+                <p className="text-lg font-bold text-offwhite leading-none">{stat.value}</p>
+                <p className="text-xs text-slate-body/70 mt-1">{stat.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </PageHero>
 
       {/* Content */}
-      <div className="container px-4 md:px-8 pb-20">
+      <div className="container mx-auto px-4 md:px-8 py-8 pb-20">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main content */}
           <div className="lg:col-span-2 space-y-8">

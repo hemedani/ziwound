@@ -1,12 +1,11 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
 import { get as getProvince } from "@/app/actions/province/get";
-import { get as getCountry } from "@/app/actions/country/get";
 import { provinceSchema } from "@/types/declarations";
 import { notFound } from "next/navigation";
 import { PageContainer } from "@/components/layout/page-container";
-import { Globe, MapPin, Building2 } from "lucide-react";
-import { LocationHero } from "@/components/organisms/location-hero";
+import { PageHero } from "@/components/layout/page-hero";
+import { MapPin, Building2, Globe } from "lucide-react";
 import { WarInfoSection } from "@/components/organisms/war-info-section";
 import { RelatedLocationsGrid } from "@/components/organisms/related-locations-grid";
 import { ReportListCard } from "@/components/organisms/report-list-card";
@@ -20,7 +19,7 @@ type ProvinceWithPhoto = provinceSchema & {
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }): Promise<Metadata> {
   const { locale, id } = await params;
-  const res = await get({ _id: id }, { name: 1, english_name: 1, country: { name: 1 } });
+  const res = await getProvince({ _id: id }, { name: 1, english_name: 1, country: { name: 1 } });
   const province = res?.success ? res.body[0] : null;
   const t = await getTranslations({ locale, namespace: "explore" });
   return {
@@ -50,7 +49,7 @@ export default async function ProvinceDetailPage({ params }: ProvinceDetailPageP
   const { locale, id } = await params;
   const t = await getTranslations({ locale, namespace: "explore" });
 
-  const provinceRes = await get(
+  const provinceRes = await getProvince(
     { _id: id },
     {
       _id: 1,
@@ -90,28 +89,32 @@ export default async function ProvinceDetailPage({ params }: ProvinceDetailPageP
   }));
 
   return (
-    <PageContainer showHeader={false}>
-      <LocationHero
-        locale={locale}
-        type="province"
-        name={province.name}
-        englishName={province.english_name}
-        photo={province.photo}
-        breadcrumbs={
-          country
-            ? [{ label: country.name, href: `/${locale}/explore/countries/${country._id}`, icon: Globe }]
-            : []
-        }
-        stats={[
-          ...(cities.length > 0 ? [{ icon: Building2, value: cities.length, label: t("cities") }] : []),
-          ...(relatedReports.length > 0 ? [{ icon: Globe, value: relatedReports.length, label: t("reports"), variant: "crimson" as const }] : []),
-        ]}
-        typeLabel={t("province")}
-        backToExploreLabel={t("backToExplore")}
-      />
+    <PageContainer showHeader={false} contentClassName="">
+      <PageHero
+        icon={<MapPin className="h-5 w-5 text-crimson" />}
+        overline={t("province")}
+        title={province.name}
+        description={province.english_name || ""}
+        backLink={{ href: `/${locale}/explore`, label: t("backToExplore") }}
+      >
+        <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
+          {[
+            ...(cities.length > 0 ? [{ icon: <Building2 className="h-4 w-4 text-crimson" />, value: cities.length, label: t("cities") }] : []),
+            ...(relatedReports.length > 0 ? [{ icon: <Globe className="h-4 w-4 text-crimson" />, value: relatedReports.length, label: t("reports") }] : []),
+          ].map((stat) => (
+            <div key={stat.label} className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-md px-4 py-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10">{stat.icon}</div>
+              <div>
+                <p className="text-lg font-bold text-offwhite leading-none">{stat.value}</p>
+                <p className="text-xs text-slate-body/70 mt-1">{stat.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </PageHero>
 
       {/* Content */}
-      <div className="container px-4 md:px-8 pb-20">
+      <div className="container mx-auto px-4 md:px-8 py-8 pb-20">
         <div className="grid lg:grid-cols-3 gap-8">
           {/* Main content */}
           <div className="lg:col-span-2 space-y-8">

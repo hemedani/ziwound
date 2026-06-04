@@ -5,7 +5,7 @@ import { statistics as getReportStatistics } from "@/app/actions/report/statisti
 import { gets as getCategories } from "@/app/actions/category/gets";
 import { gets as getTags } from "@/app/actions/tag/gets";
 import { PageContainer } from "@/components/layout/page-container";
-import { WarCrimesHero } from "@/components/war-crimes/war-crimes-hero";
+import { PageHero } from "@/components/layout/page-hero";
 import { WarCrimesFilters } from "@/components/war-crimes/war-crimes-filters";
 import { WarCrimesList } from "@/components/war-crimes/war-crimes-list";
 import { WarCrimesMap } from "@/components/war-crimes/war-crimes-map";
@@ -13,7 +13,7 @@ import { WarCrimesStatistics } from "@/components/war-crimes/war-crimes-statisti
 import { WarCrimesTimeline } from "@/components/war-crimes/war-crimes-timeline";
 import { WarCrimesExport } from "@/components/war-crimes/war-crimes-export";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Map, List, BarChart3, Clock } from "lucide-react";
+import { Map, List, BarChart3, Clock, Shield, FileText, Globe, MapPin } from "lucide-react";
 import type {
   DeepPartial,
   ReqType,
@@ -179,27 +179,52 @@ export default async function WarCrimesPage({
     ...(statsBodyTyped.attackedCountryCounts || []).map((c) => c._id),
   ]).size;
 
-  const heroTranslations = {
-    overline: t("warCrimes.overline"),
-    title: t("warCrimes.title"),
-    description: t("warCrimes.description"),
-    searchPlaceholder: t("warCrimes.searchPlaceholder"),
-    search: t("common.search"),
-    totalReports: t("warCrimes.totalReports"),
-    countriesInvolved: t("warCrimes.countriesInvolved"),
-    languages: t("warCrimes.languages"),
-  };
+  const stats = [
+    {
+      icon: <FileText className="h-4 w-4 text-crimson" />,
+      value: totalStatCount,
+      label: t("warCrimes.totalReports"),
+    },
+    {
+      icon: <Globe className="h-4 w-4 text-crimson" />,
+      value: uniqueCountries,
+      label: t("warCrimes.countriesInvolved"),
+    },
+    {
+      icon: <MapPin className="h-4 w-4 text-crimson" />,
+      value: langCount,
+      label: t("warCrimes.languages"),
+    },
+  ];
 
   return (
-    <PageContainer showHeader={false}>
-      <WarCrimesHero
-        locale={locale}
-        search={search}
-        totalCount={totalStatCount}
-        countriesInvolved={uniqueCountries}
-        languagesCount={langCount}
-        translations={heroTranslations}
-      />
+    <PageContainer showHeader={false} contentClassName="">
+      <PageHero
+        icon={<Shield className="h-5 w-5 text-crimson" />}
+        overline={t("warCrimes.overline")}
+        title={t("warCrimes.title")}
+        description={t("warCrimes.description")}
+      >
+        {/* Stat frames row */}
+        <div className="flex flex-wrap gap-3">
+          {stats.map((stat) => (
+            <div
+              key={stat.label}
+              className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-md px-4 py-3"
+            >
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10">
+                {stat.icon}
+              </div>
+              <div>
+                <p className="text-lg font-bold text-offwhite leading-none">
+                  {stat.value}
+                </p>
+                <p className="text-xs text-slate-body/70 mt-1">{stat.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </PageHero>
 
       {/* Main Content */}
       <div className="container mx-auto px-4 md:px-8 py-8">

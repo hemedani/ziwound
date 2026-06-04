@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { PageContainer } from "@/components/layout/page-container";
-import { ReporterHero } from "@/components/reporters/reporter-hero";
+import { PageHero } from "@/components/layout/page-hero";
 import { ReporterCard } from "@/components/reporters/reporter-card";
 import { ReporterSearch } from "@/components/reporters/reporter-search";
 import { SkeletonList } from "@/components/ui/skeleton-states";
@@ -10,7 +10,7 @@ import { getUsers } from "@/app/actions/user/getUsers";
 import { countUsers } from "@/app/actions/user/countUsers";
 import { gets as getReports } from "@/app/actions/report/gets";
 import { Badge } from "@/components/ui/badge";
-import { Filter, Users, ArrowUpRight } from "lucide-react";
+import { Filter, Users, ArrowUpRight, FileText } from "lucide-react";
 import Link from "next/link";
 
 interface Props {
@@ -148,22 +148,36 @@ export default async function ReportersPage({ params, searchParams }: Props) {
   const hasFilters = search || (level && level !== "all");
 
   return (
-    <PageContainer showHeader={false}>
-      <ReporterHero
-        locale={locale}
-        totalReporters={totalUsers}
-        totalReports={totalReports}
-        countriesCovered={allCountries.size}
-        backToHomeLabel={commonT("back")}
-        overlineLabel={t("hallOfContributors")}
+    <PageContainer showHeader={false} contentClassName="">
+      <PageHero
+        icon={<Users className="h-5 w-5 text-crimson" />}
+        overline={t("hallOfContributors")}
         title={t("reportersAndContributors")}
-        subtitle={t("pageDescription")}
-        reportersLabel={t("reporters")}
-        reportsSubmittedLabel={t("reportsSubmitted")}
-        countriesCoveredLabel={t("countriesCovered")}
-      />
+        description={t("pageDescription")}
+      >
+        <div className="flex flex-wrap gap-3">
+          <div className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-md px-4 py-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10">
+              <Users className="h-4 w-4 text-crimson" />
+            </div>
+            <div>
+              <p className="text-lg font-bold text-offwhite leading-none">{totalUsers}</p>
+              <p className="text-xs text-slate-body/70 mt-1">{t("reporters")}</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-md px-4 py-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10">
+              <FileText className="h-4 w-4 text-crimson" />
+            </div>
+            <div>
+              <p className="text-lg font-bold text-offwhite leading-none">{totalReports}</p>
+              <p className="text-xs text-slate-body/70 mt-1">{t("totalReports")}</p>
+            </div>
+          </div>
+        </div>
+      </PageHero>
 
-      <div className="container px-4 md:px-8 pb-20">
+      <div className="container mx-auto px-4 md:px-8 py-8">
         {/* Top Contributors Highlight */}
         {topContributors.length > 0 && topContributors[0].reportCount > 0 && (
           <div className="mb-12">

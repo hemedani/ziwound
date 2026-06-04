@@ -3,7 +3,8 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { PageContainer } from "@/components/layout/page-container";
-import { ArrowLeft, User, MapPin, FileText, Shield, CheckCircle2, Clock, Award, Globe, Calendar, Mail, BadgeCheck } from "lucide-react";
+import { PageHero } from "@/components/layout/page-hero";
+import { User, MapPin, FileText, Shield, CheckCircle2, Clock, Award, Globe, Calendar, Mail, BadgeCheck } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ReporterStatsGrid } from "@/components/reporters/reporter-stats-grid";
@@ -162,108 +163,87 @@ export default async function ReporterDetailPage({ params }: Props) {
   const recentReports = sortedReports.slice(0, 6);
 
   return (
-    <PageContainer showHeader={false}>
-      {/* Hero Header */}
-      <div className="relative overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,_rgba(153,27,27,0.10)_0%,_transparent_70%)]" />
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,_rgba(212,175,55,0.04)_0%,_transparent_50%)]" />
-        <div
-          className="absolute inset-0 opacity-[0.02]"
-          style={{
-            backgroundImage: `linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)`,
-            backgroundSize: "60px 60px",
-          }}
-        />
+    <PageContainer showHeader={false} contentClassName="">
+      <PageHero
+        backLink={{ href: `/${locale}/reporters`, label: t("backToReporters") }}
+        icon={<User className="h-5 w-5 text-crimson" />}
+        overline={t("reporterProfile")}
+        title={fullName}
+        description={bioText || ""}
+      >
+        <div className="flex flex-col md:flex-row items-start gap-6">
+          {/* Avatar */}
+          <div className="relative h-24 w-24 md:h-32 md:w-32 shrink-0 overflow-hidden rounded-full border-2 border-white/10 bg-white/5">
+            {avatarUrl ? (
+              <Image
+                src={avatarUrl}
+                alt={fullName}
+                fill
+                unoptimized
+                sizes="128px"
+                className="object-cover"
+              />
+            ) : (
+              <div className="flex h-full w-full items-center justify-center text-3xl font-bold text-slate-body/50">
+                {user.first_name.charAt(0)}{user.last_name.charAt(0)}
+              </div>
+            )}
+            {user.verified && (
+              <div className="absolute -bottom-1 -end-1 h-8 w-8 rounded-full bg-emerald-500 border-3 border-background flex items-center justify-center">
+                <BadgeCheck className="h-4 w-4 text-white" />
+              </div>
+            )}
+          </div>
 
-        <div className="container relative px-4 md:px-8 pt-32 pb-12">
-          {/* Back button */}
-          <Button
-            variant="ghost"
-            asChild
-            className="mb-6 text-slate-body/70 hover:text-offwhite hover:bg-white/5 -ms-2 transition-colors"
-          >
-            <Link href={`/${locale}/reporters`}>
-              <ArrowLeft className="h-4 w-4 me-2 rtl:rotate-180" />
-              {t("backToReporters")}
-            </Link>
-          </Button>
+          {/* Info */}
+          <div className="flex-1">
+            <div className="flex flex-wrap items-center gap-3 mb-2">
+              <Badge className={`${levelCfg.bg} ${levelCfg.text} ${levelCfg.border}`}>
+                {adminT(`level_${level}`) || level}
+              </Badge>
+            </div>
 
-          {/* Profile Header */}
-          <div className="flex flex-col md:flex-row items-start gap-6">
-            {/* Avatar */}
-            <div className="relative h-24 w-24 md:h-32 md:w-32 shrink-0 overflow-hidden rounded-full border-2 border-white/10 bg-white/5">
-              {avatarUrl ? (
-                <Image
-                  src={avatarUrl}
-                  alt={fullName}
-                  fill
-                  unoptimized
-                  sizes="128px"
-                  className="object-cover"
-                />
-              ) : (
-                <div className="flex h-full w-full items-center justify-center text-3xl font-bold text-slate-body/50">
-                  {user.first_name.charAt(0)}{user.last_name.charAt(0)}
-                </div>
-              )}
-              {user.verified && (
-                <div className="absolute -bottom-1 -end-1 h-8 w-8 rounded-full bg-emerald-500 border-3 border-background flex items-center justify-center">
-                  <BadgeCheck className="h-4 w-4 text-white" />
-                </div>
+            <div className="flex flex-wrap items-center gap-4 text-sm text-slate-body/60 mb-4">
+              {user.city || user.province ? (
+                <span className="flex items-center gap-1.5">
+                  <MapPin className="h-4 w-4 text-gold/60" />
+                  {[user.city?.name, user.province?.name].filter(Boolean).join(", ")}
+                </span>
+              ) : null}
+              {joinDate && (
+                <span className="flex items-center gap-1.5">
+                  <Calendar className="h-4 w-4 text-gold/60" />
+                  {t("joined")} {joinDate}
+                </span>
               )}
             </div>
 
-            {/* Info */}
-            <div className="flex-1">
-              <div className="flex flex-wrap items-center gap-3 mb-2">
-                <h1 className="text-3xl md:text-4xl font-bold text-offwhite">{fullName}</h1>
-                <Badge className={`${levelCfg.bg} ${levelCfg.text} ${levelCfg.border}`}>
-                  {adminT(`level_${level}`) || level}
+            {/* Badges */}
+            <div className="flex flex-wrap gap-2">
+              {user.is_verified && (
+                <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 gap-1.5">
+                  <Shield className="h-3 w-3" />
+                  {t("emailVerified")}
                 </Badge>
-              </div>
-
-              <div className="flex flex-wrap items-center gap-4 text-sm text-slate-body/60 mb-4">
-                {user.city || user.province ? (
-                  <span className="flex items-center gap-1.5">
-                    <MapPin className="h-4 w-4 text-gold/60" />
-                    {[user.city?.name, user.province?.name].filter(Boolean).join(", ")}
-                  </span>
-                ) : null}
-                {joinDate && (
-                  <span className="flex items-center gap-1.5">
-                    <Calendar className="h-4 w-4 text-gold/60" />
-                    {t("joined")} {joinDate}
-                  </span>
-                )}
-              </div>
-
-              {/* Badges */}
-              <div className="flex flex-wrap gap-2">
-                {user.is_verified && (
-                  <Badge className="bg-emerald-500/10 text-emerald-400 border-emerald-500/20 gap-1.5">
-                    <Shield className="h-3 w-3" />
-                    {t("emailVerified")}
-                  </Badge>
-                )}
-                {user.verified && (
-                  <Badge className="bg-gold/10 text-gold border-gold/20 gap-1.5">
-                    <Award className="h-3 w-3" />
-                    {t("roleVerified")}
-                  </Badge>
-                )}
-                {user.verificationBadge && (
-                  <Badge className="bg-white/5 text-slate-body border-white/10">
-                    {user.verificationBadge}
-                  </Badge>
-                )}
-              </div>
+              )}
+              {user.verified && (
+                <Badge className="bg-gold/10 text-gold border-gold/20 gap-1.5">
+                  <Award className="h-3 w-3" />
+                  {t("roleVerified")}
+                </Badge>
+              )}
+              {user.verificationBadge && (
+                <Badge className="bg-white/5 text-slate-body border-white/10">
+                  {user.verificationBadge}
+                </Badge>
+              )}
             </div>
           </div>
         </div>
-      </div>
+      </PageHero>
 
       {/* Content */}
-      <div className="container px-4 md:px-8 pb-20">
+      <div className="container mx-auto px-4 md:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">
