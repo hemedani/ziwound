@@ -64,15 +64,15 @@ export function ReportListCard({ reports, locale, title, className }: ReportList
             </div>
 
             {/* Status + Arrow */}
-            <div className="flex items-center gap-2 shrink-0">
+            <div className="flex items-center gap-1.5 shrink-0">
               <span
-                className={`rounded-full px-2.5 py-0.5 text-xs font-medium border ${
+                className={`rounded-full px-2 py-0.5 text-[11px] font-medium border whitespace-nowrap ${
                   statusStyles[report.status] || defaultStyle
                 }`}
               >
                 {report.status}
               </span>
-              <ChevronRight className="h-4 w-4 text-slate-body/20 transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 rtl:rotate-180" />
+              <ChevronRight className="h-4 w-4 text-slate-body/20 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 rtl:rotate-180" />
             </div>
           </Link>
         ))}
