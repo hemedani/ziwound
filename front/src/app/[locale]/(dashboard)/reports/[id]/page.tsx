@@ -166,7 +166,7 @@ export default function ReportDetailPage() {
           <h2 className="text-xl font-bold text-offwhite mb-2">{t("reportNotFound")}</h2>
           <p className="text-slate-body/60 mb-6">{t("reportNotFoundDescription")}</p>
           <Button asChild className="bg-crimson hover:bg-crimson-light text-white">
-            <Link href="/reports/my">{t("backToReports")}</Link>
+            <Link href="/war-crimes">{t("backToWarCrimes")}</Link>
           </Button>
         </div>
       </div>
@@ -236,7 +236,7 @@ export default function ReportDetailPage() {
         icon={<FileText className="h-5 w-5 text-crimson" />}
         title={report?.title || t("reportNotFound")}
         description={t("reportDetails")}
-        backLink={{ href: "/reports/my", label: t("backToReports") }}
+        backLink={{ href: "/war-crimes", label: t("backToWarCrimes") }}
       />
       <div className="container mx-auto px-4 md:px-8 py-8">
         {/* Media Gallery */}
