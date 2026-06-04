@@ -81,6 +81,9 @@ dump.rdb
 # Git bundle
 *.bundle
 
+# Data entry scripts (local execution, not for deployment)
+ignore-scripts/
+
 # Front development assets
 front/ignoreAssets
 front/.playwright-mcp

@@ -121,6 +121,11 @@ The backend defines the following core models:
 - Documents - Supporting documents related to reports (title, description, document files, multiple relations to Reports)
 - Blog Posts - Blog articles and updates
 
+## Scripting Conventions
+- Any ad-hoc scripts (data entry, migration, or automation scripts) **must** be placed in the `ignore-scripts/` folder at the project root.
+- This folder is listed in `.gitignore` so scripts are never accidentally committed to the repository.
+- Example: `ignore-scripts/_allentown78.py` — run from project root via `python3 ignore-scripts/_allentown78.py`.
+
 ## Development Conventions
 
 ### Backend (Deno)
