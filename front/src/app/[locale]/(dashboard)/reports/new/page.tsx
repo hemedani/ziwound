@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { PageContainer } from "@/components/layout/page-container";
+import { PageHero } from "@/components/layout/page-hero";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
@@ -494,27 +495,13 @@ export default function MultiStepReportPage() {
   };
 
   return (
-    <PageContainer showHeader={false}>
-
+    <PageContainer showHeader={false} contentClassName="">
+      <PageHero
+        icon={<FileText className="h-5 w-5 text-crimson" />}
+        title={t("report.newReport")}
+        description={t("report.newReportDescription")}
+      />
       <div className="container relative mx-auto max-w-4xl px-4 py-8 md:py-12">
-        {/* Page Header */}
-        <div className="mb-8 text-center">
-          <motion.h1
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            className="text-2xl font-bold text-offwhite md:text-3xl"
-          >
-            {t("report.newReport")}
-          </motion.h1>
-          <motion.p
-            initial={{ opacity: 0, y: -10 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.05 }}
-            className="mt-2 text-sm text-slate-body/70 max-w-lg mx-auto"
-          >
-            {t("report.newReportDescription")}
-          </motion.p>
-        </div>
 
         {/* Progress Stepper */}
         <motion.div

@@ -3,6 +3,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { PageContainer } from "@/components/layout/page-container";
+import { PageHero } from "@/components/layout/page-hero";
 import { Link } from "@/i18n/routing";
 import { motion } from "framer-motion";
 import { useToast } from "@/components/ui/use-toast";
@@ -18,7 +19,6 @@ import { Button } from "@/components/ui/button";
 import { EmptyState } from "@/components/ui/empty-state";
 import { ErrorState } from "@/components/ui/error-state";
 import { ReportCard } from "@/components/war-crimes/report-card";
-import { MyReportsHeader } from "@/components/reports/my-reports-header";
 import { MyReportsFilters } from "@/components/reports/my-reports-filters";
 import type { FilterState } from "@/components/reports/my-reports-filters";
 import { MyReportsStats } from "@/components/reports/my-reports-stats";
@@ -42,6 +42,7 @@ const cardVariants = {
 
 export default function MyReportsPage() {
   const t = useTranslations("myReports");
+  const tReport = useTranslations("report");
   const locale = useLocale();
   const { toast } = useToast();
 
@@ -170,30 +171,40 @@ export default function MyReportsPage() {
 
   if (error) {
     return (
-      <PageContainer showHeader={false}>
-        <div className="max-w-lg mx-auto mt-12">
-          <ErrorState
-            title={t("errorTitle")}
-            description={error}
-            onRetry={() => setRetryCount((c) => c + 1)}
-            retryText={t("retry")}
-          />
+      <PageContainer showHeader={false} contentClassName="">
+        <PageHero
+          icon={<FileText className="h-5 w-5 text-crimson" />}
+          title={tReport("myReports")}
+          description={tReport("myReportsDescription")}
+        />
+        <div className="container mx-auto px-4 md:px-8 py-8">
+          <div className="max-w-lg mx-auto">
+            <ErrorState
+              title={t("errorTitle")}
+              description={error}
+              onRetry={() => setRetryCount((c) => c + 1)}
+              retryText={t("retry")}
+            />
+          </div>
         </div>
       </PageContainer>
     );
   }
 
   return (
-    <PageContainer showHeader={false}>
-      <div className="space-y-6">
-        {/* Hero Header */}
-        <MyReportsHeader reports={allReports} loading={loading} />
+    <PageContainer showHeader={false} contentClassName="">
+      <PageHero
+        icon={<FileText className="h-5 w-5 text-crimson" />}
+        title={tReport("myReports")}
+        description={tReport("myReportsDescription")}
+      />
+      <div className="container mx-auto px-4 md:px-8 py-8">
+        <div className="space-y-6">
+          {/* Filters */}
+          <MyReportsFilters filters={filters} onFilterChange={setFilters} />
 
-        {/* Filters */}
-        <MyReportsFilters filters={filters} onFilterChange={setFilters} />
-
-        {/* Main Content */}
-        <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
+          {/* Main Content */}
+          <div className="flex flex-col gap-6 lg:flex-row lg:gap-8">
           {/* Reports List */}
           <div className="min-w-0 flex-1">
             {loading ? (
@@ -402,6 +413,7 @@ export default function MyReportsPage() {
           </DialogFooter>
         </DialogContent>
       </Dialog>
+      </div>
     </PageContainer>
   );
 }

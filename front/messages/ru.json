@@ -1671,7 +1671,8 @@
     "noPosts": "Записи в блоге не найдены.",
     "author": "Автор",
     "publishedAt": "Опубликовано",
-    "relatedPosts": "Похожие Статьи"
+    "relatedPosts": "Похожие Статьи",
+    "totalPosts": "Всего записей"
   },
   "explore": {
     "title": "Исследовать",

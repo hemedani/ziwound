@@ -1612,7 +1612,8 @@
     "noPosts": "Nenhum post encontrado.",
     "author": "Autor",
     "publishedAt": "Publicado em",
-    "relatedPosts": "Artigos Relacionados"
+    "relatedPosts": "Artigos Relacionados",
+    "totalPosts": "Total de Posts"
   },
   "explore": {
     "title": "Explorar",

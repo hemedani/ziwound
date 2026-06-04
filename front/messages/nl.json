@@ -1671,7 +1671,8 @@
     "noPosts": "Geen blogposts gevonden.",
     "author": "Auteur",
     "publishedAt": "Gepubliceerd",
-    "relatedPosts": "Gerelateerde Artikelen"
+    "relatedPosts": "Gerelateerde Artikelen",
+    "totalPosts": "Totaal aantal berichten"
   },
   "explore": {
     "title": "Verkennen",

@@ -4,7 +4,8 @@ import { getBySlug } from "@/app/actions/blogPost/getBySlug";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PageContainer } from "@/components/layout/page-container";
-import { Calendar, User, ArrowLeft, Tag } from "lucide-react";
+import { PageHero } from "@/components/layout/page-hero";
+import { Calendar, User, ArrowLeft, Tag, Newspaper } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -74,21 +75,16 @@ export default async function BlogPostDetailPage({
   }
 
   return (
-    <PageContainer showHeader={false} className="bg-background">
-      <article className="container mx-auto px-4 md:px-6 max-w-5xl py-12">
-        {/* Back + Tags */}
-        <div className="mb-8">
-          <Button
-            variant="ghost"
-            asChild
-            className="mb-6 -ms-4 text-slate-body hover:text-offwhite hover:bg-white/5"
-          >
-            <Link href={`/${locale}/blog`}>
-              <ArrowLeft className="me-2 h-4 w-4 rtl:rotate-180" />
-              {t("common.back")}
-            </Link>
-          </Button>
+    <PageContainer showHeader={false} className="bg-background" contentClassName="">
+      <PageHero
+        backLink={{ href: `/${locale}/blog`, label: t("common.back") }}
+        icon={<Newspaper className="h-5 w-5 text-crimson-light" />}
+        overline={t("blog.overline")}
+        title={post.title || ""}
+      />
 
+      <div className="container mx-auto px-4 md:px-8 py-8">
+        <article className="max-w-5xl mx-auto">
           <div className="flex flex-wrap gap-2 mb-6">
             {post.tags?.map((tag: DeepPartial<tagSchema>) => (
               <Badge
@@ -101,13 +97,6 @@ export default async function BlogPostDetailPage({
               </Badge>
             ))}
           </div>
-        </div>
-
-        {/* Title & Meta */}
-        <div className="mb-8">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-tight text-offwhite">
-            {post.title}
-          </h1>
 
           <div className="flex flex-wrap items-center gap-4 text-muted-foreground mb-8 pb-8 border-b border-white/10">
             <div className="flex items-center gap-3 glass-light rounded-full px-4 py-2">
@@ -132,7 +121,6 @@ export default async function BlogPostDetailPage({
               </div>
             </div>
           </div>
-        </div>
 
         {/* Cover Image */}
         {post.coverImage && (
@@ -153,15 +141,15 @@ export default async function BlogPostDetailPage({
         <div
           className="prose prose-lg dark:prose-invert max-w-none prose-headings:font-bold prose-headings:text-offwhite prose-p:text-slate-body prose-a:text-crimson hover:prose-a:text-gold prose-img:rounded-xl mb-16 prose-blockquote:border-s-crimson prose-blockquote:bg-white/[0.03] prose-blockquote:rounded-r-lg"
           dangerouslySetInnerHTML={{ __html: post.content || "" }}
-        />
+        ></div>
 
         {/* Related Articles */}
         {recentPosts.length > 0 && (
           <div className="pt-12 border-t border-white/10 mt-12">
             <div className="flex items-center gap-3 mb-6">
-              <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/10" />
+              <div className="h-px flex-1 bg-gradient-to-r from-transparent to-white/10"></div>
               <h2 className="text-xl font-bold text-offwhite">{t("blog.relatedPosts")}</h2>
-              <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/10" />
+              <div className="h-px flex-1 bg-gradient-to-l from-transparent to-white/10"></div>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -206,6 +194,7 @@ export default async function BlogPostDetailPage({
           </div>
         )}
       </article>
+      </div>
     </PageContainer>
   );
 }

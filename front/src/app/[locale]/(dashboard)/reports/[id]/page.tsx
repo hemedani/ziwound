@@ -6,6 +6,7 @@ import { useParams } from "next/navigation";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { PageContainer } from "@/components/layout/page-container";
+import { PageHero } from "@/components/layout/page-hero";
 import { FileText, MapPin, Loader2 } from "lucide-react";
 import { Link } from "@/i18n/routing";
 import dynamic from "next/dynamic";
@@ -14,7 +15,6 @@ import { getImageUploadUrl } from "@/utils/imageUrl";
 
 import { ImageLightbox } from "@/components/report/image-lightbox";
 import { MediaGallery } from "@/components/report/media-gallery";
-import { ReportHero } from "@/components/report/report-hero";
 import { LocationHierarchyCard } from "@/components/report/location-hierarchy-card";
 import { WarCriminalCard } from "@/components/report/war-criminal-card";
 import { ReportMetadataSidebar } from "@/components/report/report-metadata-sidebar";
@@ -173,18 +173,6 @@ export default function ReportDetailPage() {
     );
   }
 
-  const heroTranslations = {
-    backToReports: t("backToReports"),
-    statusApproved: t("statusApproved"),
-    statusPending: t("statusPending"),
-    statusRejected: t("statusRejected"),
-    statusInReview: t("statusInReview"),
-    priorityHigh: t("priorityHigh"),
-    priorityMedium: t("priorityMedium"),
-    priorityLow: t("priorityLow"),
-    confirmations: tCommon("confirmations"),
-  };
-
   const locationTranslations = {
     crimeOccurredAt: t("crimeOccurredAt"),
     hostileCountries: t("hostileCountries"),
@@ -243,147 +231,147 @@ export default function ReportDetailPage() {
   };
 
   return (
-    <PageContainer showHeader={false}>
-      <ReportHero
-        report={report}
-        confirmationsCount={confirmations.length}
-        locale={locale}
-        translations={heroTranslations}
-        languageNames={LANGUAGE_NAMES}
+    <PageContainer showHeader={false} contentClassName="">
+      <PageHero
+        icon={<FileText className="h-5 w-5 text-crimson" />}
+        title={report?.title || t("reportNotFound")}
+        description={t("reportDetails")}
+        backLink={{ href: "/reports/my", label: t("backToReports") }}
       />
-
-      {/* Media Gallery */}
-      {allImages.length > 0 && (
-        <div className="container mx-auto max-w-7xl px-4 mb-10">
-          <MediaGallery
-            images={allImages}
-            onImageClick={(index) => setLightbox({ open: true, index })}
-          />
-        </div>
-      )}
-
-      {/* Main Content + Sidebar */}
-      <div className="container mx-auto max-w-7xl px-4 pb-20">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
-          <div className="lg:col-span-2 space-y-8">
-            {/* Description */}
-            <div className="rounded-2xl glass-light p-6 md:p-8 border border-white/[0.06]">
-              <div className="flex items-center gap-2 mb-5">
-                <div className="bg-white/5 rounded-lg p-1.5">
-                  <FileText className="h-4 w-4 text-gold" />
-                </div>
-                <h2 className="text-lg font-semibold text-offwhite">{t("description")}</h2>
-              </div>
-              <div
-                className="prose prose-invert max-w-none prose-p:text-slate-body/80 prose-headings:text-offwhite prose-a:text-crimson-light prose-strong:text-offwhite prose-code:text-gold prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 leading-relaxed text-[15px]"
-                dangerouslySetInnerHTML={{ __html: report.description }}
-              />
-            </div>
-
-            {/* Location Hierarchy */}
-            <LocationHierarchyCard
-              crimeOccurredAt={report.crime_occurred_at}
-              hostileCountries={report.hostileCountries}
-              attackedCountries={report.attackedCountries}
-              attackedProvinces={report.attackedProvinces}
-              attackedCities={report.attackedCities}
-              translations={locationTranslations}
-              locale={locale}
+      <div className="container mx-auto px-4 md:px-8 py-8">
+        {/* Media Gallery */}
+        {allImages.length > 0 && (
+          <div className="max-w-7xl mx-auto mb-10">
+            <MediaGallery
+              images={allImages}
+              onImageClick={(index) => setLightbox({ open: true, index })}
             />
+          </div>
+        )}
 
-            {/* Location Map */}
-            {(report.address || report.location?.coordinates) && (
+        {/* Main Content + Sidebar */}
+        <div className="max-w-7xl mx-auto pb-20">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            {/* Main Content */}
+            <div className="lg:col-span-2 space-y-8">
+              {/* Description */}
               <div className="rounded-2xl glass-light p-6 md:p-8 border border-white/[0.06]">
                 <div className="flex items-center gap-2 mb-5">
                   <div className="bg-white/5 rounded-lg p-1.5">
-                    <MapPin className="h-4 w-4 text-crimson" />
+                    <FileText className="h-4 w-4 text-gold" />
                   </div>
-                  <h2 className="text-lg font-semibold text-offwhite">{t("location")}</h2>
+                  <h2 className="text-lg font-semibold text-offwhite">{t("description")}</h2>
                 </div>
-                {report.address && (
-                  <div className="rounded-xl bg-white/[0.02] border border-white/[0.04] p-4 mb-4">
-                    <p className="text-xs uppercase tracking-wider text-slate-body/50 mb-1">
-                      {t("address")}
-                    </p>
-                    <p className="font-medium text-offwhite">{report.address}</p>
-                  </div>
-                )}
-                {report.location?.coordinates && (
-                  <div className="rounded-xl overflow-hidden border border-white/5">
-                    <ReadonlyMap
-                      latitude={report.location.coordinates[1]}
-                      longitude={report.location.coordinates[0]}
-                      className="h-[350px] w-full relative z-0"
-                    />
-                  </div>
-                )}
+                <div
+                  className="prose prose-invert max-w-none prose-p:text-slate-body/80 prose-headings:text-offwhite prose-a:text-crimson-light prose-strong:text-offwhite prose-code:text-gold prose-pre:bg-white/5 prose-pre:border prose-pre:border-white/10 leading-relaxed text-[15px]"
+                  dangerouslySetInnerHTML={{ __html: report.description }}
+                />
               </div>
-            )}
 
-            {/* War Criminals */}
-            {report.warCriminals && report.warCriminals.length > 0 && (
-              <div>
-                <div className="flex items-center gap-3 mb-6">
-                  <div className="rounded-xl bg-crimson/20 p-2">
-                    <FileText className="h-5 w-5 text-crimson-light" />
+              {/* Location Hierarchy */}
+              <LocationHierarchyCard
+                crimeOccurredAt={report.crime_occurred_at}
+                hostileCountries={report.hostileCountries}
+                attackedCountries={report.attackedCountries}
+                attackedProvinces={report.attackedProvinces}
+                attackedCities={report.attackedCities}
+                translations={locationTranslations}
+                locale={locale}
+              />
+
+              {/* Location Map */}
+              {(report.address || report.location?.coordinates) && (
+                <div className="rounded-2xl glass-light p-6 md:p-8 border border-white/[0.06]">
+                  <div className="flex items-center gap-2 mb-5">
+                    <div className="bg-white/5 rounded-lg p-1.5">
+                      <MapPin className="h-4 w-4 text-crimson" />
+                    </div>
+                    <h2 className="text-lg font-semibold text-offwhite">{t("location")}</h2>
                   </div>
-                  <h2 className="text-xl font-semibold text-offwhite">{t("warCriminals")}</h2>
-                  <Badge variant="outline" className="border-white/10 text-slate-body/60 text-xs">
-                    {report.warCriminals.length}
-                  </Badge>
+                  {report.address && (
+                    <div className="rounded-xl bg-white/[0.02] border border-white/[0.04] p-4 mb-4">
+                      <p className="text-xs uppercase tracking-wider text-slate-body/50 mb-1">
+                        {t("address")}
+                      </p>
+                      <p className="font-medium text-offwhite">{report.address}</p>
+                    </div>
+                  )}
+                  {report.location?.coordinates && (
+                    <div className="rounded-xl overflow-hidden border border-white/5">
+                      <ReadonlyMap
+                        latitude={report.location.coordinates[1]}
+                        longitude={report.location.coordinates[0]}
+                        className="h-[350px] w-full relative z-0"
+                      />
+                    </div>
+                  )}
                 </div>
-                <div className="space-y-4">
-                  {report.warCriminals.map((wc) => (
-                    <WarCriminalCard
-                      key={wc._id}
-                      warCriminal={wc as unknown as typeof wc & { photo?: { name: string; type: string } }}
-                      locale={locale}
-                      translations={warCriminalTranslations}
-                    />
-                  ))}
+              )}
+
+              {/* War Criminals */}
+              {report.warCriminals && report.warCriminals.length > 0 && (
+                <div>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="rounded-xl bg-crimson/20 p-2">
+                      <FileText className="h-5 w-5 text-crimson-light" />
+                    </div>
+                    <h2 className="text-xl font-semibold text-offwhite">{t("warCriminals")}</h2>
+                    <Badge variant="outline" className="border-white/10 text-slate-body/60 text-xs">
+                      {report.warCriminals.length}
+                    </Badge>
+                  </div>
+                  <div className="space-y-4">
+                    {report.warCriminals.map((wc) => (
+                      <WarCriminalCard
+                        key={wc._id}
+                        warCriminal={wc as unknown as typeof wc & { photo?: { name: string; type: string } }}
+                        locale={locale}
+                        translations={warCriminalTranslations}
+                      />
+                    ))}
+                  </div>
                 </div>
+              )}
+
+              {/* Documents & Files */}
+              {report.documents && report.documents.length > 0 && (
+                <DocumentsSection
+                  documents={report.documents}
+                  translations={documentTranslations}
+                  languageNames={LANGUAGE_NAMES}
+                />
+              )}
+
+              {/* Confirmations */}
+              <ConfirmationSection
+                confirmations={confirmations}
+                reportId={reportId}
+                onAdded={refreshConfirmations}
+              />
+            </div>
+
+            {/* Sidebar */}
+            <div className="lg:col-span-1">
+              <div className="lg:sticky lg:top-24">
+                <ReportMetadataSidebar
+                  report={report}
+                  translations={sidebarTranslations}
+                  languageNames={LANGUAGE_NAMES}
+                />
               </div>
-            )}
-
-            {/* Documents & Files */}
-            {report.documents && report.documents.length > 0 && (
-              <DocumentsSection
-                documents={report.documents}
-                translations={documentTranslations}
-                languageNames={LANGUAGE_NAMES}
-              />
-            )}
-
-            {/* Confirmations */}
-            <ConfirmationSection
-              confirmations={confirmations}
-              reportId={reportId}
-              onAdded={refreshConfirmations}
-            />
-          </div>
-
-          {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <div className="lg:sticky lg:top-24">
-              <ReportMetadataSidebar
-                report={report}
-                translations={sidebarTranslations}
-                languageNames={LANGUAGE_NAMES}
-              />
             </div>
           </div>
         </div>
-      </div>
 
-      {/* Lightbox */}
-      {lightbox.open && allImages.length > 0 && (
-        <ImageLightbox
-          images={allImages}
-          initialIndex={lightbox.index}
-          onClose={() => setLightbox({ open: false, index: 0 })}
-        />
-      )}
+        {/* Lightbox */}
+        {lightbox.open && allImages.length > 0 && (
+          <ImageLightbox
+            images={allImages}
+            initialIndex={lightbox.index}
+            onClose={() => setLightbox({ open: false, index: 0 })}
+          />
+        )}
+      </div>
     </PageContainer>
   );
 }

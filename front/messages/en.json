@@ -1678,7 +1678,8 @@
     "noPosts": "No blog posts found.",
     "author": "Author",
     "publishedAt": "Published",
-    "relatedPosts": "Related Articles"
+    "relatedPosts": "Related Articles",
+    "totalPosts": "Total Posts"
   },
   "explore": {
     "title": "Explore",

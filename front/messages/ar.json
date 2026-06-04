@@ -1607,7 +1607,8 @@
     "noPosts": "لم يتم العثور على مقالات.",
     "author": "المؤلف",
     "publishedAt": "تاريخ النشر",
-    "relatedPosts": "مقالات ذات صلة"
+    "relatedPosts": "مقالات ذات صلة",
+    "totalPosts": "إجمالي المنشورات"
   },
   "explore": {
     "title": "استكشاف",

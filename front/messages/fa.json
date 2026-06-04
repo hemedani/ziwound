@@ -1681,7 +1681,8 @@
     "noPosts": "هیچ پست وبلاگی یافت نشد.",
     "author": "نویسنده",
     "publishedAt": "منتشر شده",
-    "relatedPosts": "مقالات مرتبط"
+    "relatedPosts": "مقالات مرتبط",
+    "totalPosts": "تعداد پست‌ها"
   },
   "explore": {
     "title": "کاوش",

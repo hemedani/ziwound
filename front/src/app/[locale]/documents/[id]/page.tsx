@@ -5,14 +5,14 @@ import { getTranslations } from "next-intl/server";
 import { get } from "@/app/actions/document/get";
 import { gets as getDocuments } from "@/app/actions/document/gets";
 import { PageContainer } from "@/components/layout/page-container";
-import { DocumentDetailHero } from "@/components/documents/document-detail-hero";
+import { PageHero } from "@/components/layout/page-hero";
 import { DocumentFilesGallery } from "@/components/documents/document-files-gallery";
 import { DocumentMetadata } from "@/components/documents/document-metadata";
 import { LinkedReportCard } from "@/components/documents/linked-report-card";
 import { Link } from "@/i18n/routing";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Globe, Download } from "lucide-react";
+import { Globe, Download, Archive } from "lucide-react";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 
 interface PageProps {
@@ -260,19 +260,15 @@ export default async function DocumentDetailPage({ params }: PageProps) {
   };
 
   return (
-    <PageContainer showHeader={false} className="bg-background">
-      <DocumentDetailHero
-        locale={locale}
+    <PageContainer showHeader={false} className="bg-background" contentClassName="">
+      <PageHero
+        backLink={{ href: `/${locale}/documents`, label: t("backToDocuments") }}
+        icon={<Archive className="h-5 w-5 text-crimson-light" />}
+        overline={t("documentArchive")}
         title={doc.title}
-        description={doc.description}
-        selectedLanguage={doc.selected_language}
-        createdAt={doc.createdAt}
-        documentFiles={doc.documentFiles}
-        translations={heroTranslations}
-        languageNames={LANGUAGE_NAMES}
       />
 
-      <div className="container mx-auto max-w-7xl px-4 md:px-8 pb-20">
+      <div className="container mx-auto max-w-7xl px-4 md:px-8 py-8">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Main Content */}
           <div className="lg:col-span-2 space-y-8">

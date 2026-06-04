@@ -3,14 +3,13 @@ import { getTranslations } from "next-intl/server";
 import { gets as getDocuments } from "@/app/actions/document/gets";
 import { count as countDocuments } from "@/app/actions/document/count";
 import { PageContainer } from "@/components/layout/page-container";
-import { DocumentHero } from "@/components/documents/document-hero";
-import { DocumentStatsBar } from "@/components/documents/document-stats-bar";
+import { PageHero } from "@/components/layout/page-hero";
 import { DocumentFilters } from "@/components/documents/document-filters";
 import { DocumentCard } from "@/components/documents/document-card";
 import { EmptyState } from "@/components/ui/empty-state";
 import { ErrorState } from "@/components/ui/error-state";
 import { Link } from "@/i18n/routing";
-import { ArrowLeft, ArrowRight, ChevronRight, LayoutGrid, List, FileText } from "lucide-react";
+import { ArrowLeft, ArrowRight, ChevronRight, LayoutGrid, List, FileText, Archive, Files, FileStack, Globe, Link2 } from "lucide-react";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 import { ReqType } from "@/types/declarations";
 
@@ -193,23 +192,32 @@ export default async function PublicDocumentsPage({
   };
 
   return (
-    <PageContainer showHeader={false} className="bg-background">
-      <DocumentHero
-        totalDocuments={totalCount}
-        totalFiles={totalFiles}
-        languagesCovered={languagesCovered}
-        translations={translations}
-      />
+    <PageContainer showHeader={false} className="bg-background" contentClassName="">
+      <PageHero
+        icon={<Archive className="h-5 w-5 text-crimson-light" />}
+        overline={t("documents.overline")}
+        title={t("documents.pageTitle")}
+        description={t("documents.pageDescription")}
+      >
+        <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
+          {[
+            { icon: <Files className="h-4 w-4 text-crimson-light" />, value: totalCount, label: t("documents.documentsLabel") },
+            { icon: <FileStack className="h-4 w-4 text-crimson-light" />, value: totalFiles, label: t("documents.filesLabel") },
+            { icon: <Globe className="h-4 w-4 text-crimson-light" />, value: languagesCovered, label: t("documents.languagesLabel") },
+            { icon: <Link2 className="h-4 w-4 text-crimson-light" />, value: reportsLinked, label: t("documents.reportsLinked") },
+          ].map((stat) => (
+            <div key={stat.label} className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-md px-4 py-3">
+              <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10">{stat.icon}</div>
+              <div>
+                <p className="text-lg font-bold text-offwhite leading-none">{stat.value}</p>
+                <p className="text-xs text-slate-body/70 mt-1">{stat.label}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </PageHero>
 
-      <DocumentStatsBar
-        totalDocuments={totalCount}
-        totalFiles={totalFiles}
-        languagesCovered={languagesCovered}
-        reportsLinked={reportsLinked}
-        translations={translations}
-      />
-
-      <div className="container px-4 md:px-8 py-10">
+      <div className="container mx-auto px-4 md:px-8 py-10">
         <div className="mb-8">
           <DocumentFilters
             locale={locale}

@@ -1612,7 +1612,8 @@
     "noPosts": "Blog gönderisi bulunamadı.",
     "author": "Yazar",
     "publishedAt": "Yayınlanma Tarihi",
-    "relatedPosts": "İlgili Makaleler"
+    "relatedPosts": "İlgili Makaleler",
+    "totalPosts": "Toplam Gönderi"
   },
   "explore": {
     "title": "Keşfet",

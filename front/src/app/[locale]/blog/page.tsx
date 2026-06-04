@@ -4,7 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { PageContainer } from "@/components/layout/page-container";
-import { Search, Calendar, User, ArrowRight } from "lucide-react";
+import { PageHero } from "@/components/layout/page-hero";
+import { Search, Calendar, User, ArrowRight, BookOpen, FileText } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { getImageUploadUrl } from "@/utils/imageUrl";
@@ -59,24 +60,27 @@ export default async function BlogListingPage({
   });
 
   return (
-    <PageContainer showHeader={false}>
-      <div className="container mx-auto px-4 md:px-6">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="mb-4 flex items-center justify-center gap-3">
-            <div className="h-px w-12 bg-crimson" />
-            <span className="text-sm font-medium uppercase tracking-[0.15em] text-gold">
-              {t("blog.overline") || "Stories & Updates"}
-            </span>
-            <div className="h-px w-12 bg-crimson" />
+    <PageContainer showHeader={false} contentClassName="">
+      <PageHero
+        icon={<BookOpen className="h-5 w-5 text-crimson-light" />}
+        overline={t("blog.overline")}
+        title={t("blog.title")}
+        description={t("blog.description")}
+      >
+        <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
+          <div className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-md px-4 py-3">
+            <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10">
+              <FileText className="h-4 w-4 text-crimson-light" />
+            </div>
+            <div>
+              <p className="text-lg font-bold text-offwhite leading-none">{posts.length}</p>
+              <p className="text-xs text-slate-body/70 mt-1">{t("blog.totalPosts")}</p>
+            </div>
           </div>
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-3 text-offwhite">
-            {t("blog.title")}
-          </h1>
-          <p className="text-lg text-slate-body max-w-2xl mx-auto">
-            {t("blog.description")}
-          </p>
         </div>
+      </PageHero>
+
+      <div className="container mx-auto px-4 md:px-8 py-8">
 
         {/* Search */}
         <div className="max-w-xl mx-auto mb-12">

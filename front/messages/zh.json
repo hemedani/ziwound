@@ -1613,7 +1613,8 @@
     "noPosts": "未找到博客文章。",
     "author": "作者",
     "publishedAt": "发布日期",
-    "relatedPosts": "相关文章"
+    "relatedPosts": "相关文章",
+    "totalPosts": "总文章数"
   },
   "explore": {
     "title": "探索",

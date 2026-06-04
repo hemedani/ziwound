@@ -1671,7 +1671,8 @@
     "noPosts": "No se encontraron publicaciones.",
     "author": "Autor",
     "publishedAt": "Publicado",
-    "relatedPosts": "Artículos Relacionados"
+    "relatedPosts": "Artículos Relacionados",
+    "totalPosts": "Total de Entradas"
   },
   "explore": {
     "title": "Explorar",
