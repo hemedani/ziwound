@@ -35,14 +35,36 @@ export function PageContainer({
       )}
       <div className="relative z-10">
         {showHeader && title && (
-          <header className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-12 sm:pt-16 lg:pt-20 text-center">
-            <div className="mx-auto max-w-4xl">
-              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-offwhite mb-4">
-                {title}
-              </h1>
-              {description && (
-                <p className="text-lg text-slate-body max-w-2xl mx-auto">{description}</p>
-              )}
+          <header className="relative w-full overflow-hidden">
+            {/* Crimson radial glow */}
+            <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,_rgba(153,27,27,0.12)_0%,_transparent_70%)]" />
+            {/* Gold accent glow */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,_rgba(212,175,55,0.05)_0%,_transparent_50%)]" />
+            {/* Frosted-glass blur */}
+            <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-sm pointer-events-none" />
+
+            <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-24 sm:pt-28 lg:pt-32 pb-8 sm:pb-10 lg:pb-12 text-center">
+              <div className="mx-auto max-w-4xl">
+                <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-offwhite leading-[1.1] tracking-tight text-glow-crimson mb-4">
+                  {title}
+                </h1>
+                {description && (
+                  <p className="text-lg md:text-xl text-slate-body max-w-2xl mx-auto leading-relaxed">
+                    {description}
+                  </p>
+                )}
+              </div>
+            </div>
+
+            {/* Neon separator */}
+            <div className="absolute bottom-0 left-0 right-0 h-px overflow-hidden pointer-events-none">
+              <div
+                className="w-full h-px bg-gradient-to-r from-transparent via-crimson/35 to-transparent header-neon-pulse"
+                style={{
+                  animation: "headerNeonPulse 4s ease-in-out infinite",
+                  boxShadow: "0 0 8px 1px rgba(153,27,27,0.12)",
+                }}
+              />
             </div>
           </header>
         )}

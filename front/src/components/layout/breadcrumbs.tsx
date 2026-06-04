@@ -107,7 +107,7 @@ export function Breadcrumbs() {
   return (
     <nav
       aria-label="Breadcrumb"
-      className="py-4 px-4 md:px-6 border-b bg-muted/30"
+      className="relative z-50 py-4 px-4 md:px-6 border-b bg-muted/30"
     >
       <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
         {breadcrumbs.map((item, index) => (
