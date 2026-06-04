@@ -5,12 +5,21 @@ import { ReqType, warCriminalSchema } from "@/types/declarations";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageHero } from "@/components/layout/page-hero";
 import Link from "next/link";
-import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { EmptyState } from "@/components/ui/empty-state";
-import { User, Building2, Search, Scale, ShieldAlert, Users, Gavel, ArrowUpRight, Fingerprint } from "lucide-react";
+import {
+  GlassCard,
+  GlassCardMedia,
+  GlassCardBadge,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardTags,
+  GlassCardFooter,
+  GlassCardCta,
+} from "@/components/ui/glass-card";
+import { Building2, Search, Scale, Users, ArrowUpRight, Fingerprint, User, Tag } from "lucide-react";
 import Image from "next/image";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 
@@ -270,119 +279,128 @@ export default async function WarCriminalsPage({
           />
         ) : (
           <>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {warCriminals.map((wc) => (
-                <Link
-                  key={wc._id}
-                  href={`/${locale}/war-criminals/${wc._id}`}
-                  className="glass-card group relative rounded-2xl bg-gradient-to-b from-white/[0.06] to-white/[0.02] border border-white/[0.08] overflow-hidden hover:border-crimson/30 transition-all duration-500 block hover:shadow-2xl hover:shadow-crimson/10 hover:-translate-y-1"
-                >
-                  {/* Subtle top gradient accent */}
-                  <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-crimson/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                  {/* Photo Area */}
-                  <div className="relative aspect-[16/10] bg-gradient-to-br from-white/[0.04] via-white/[0.02] to-transparent overflow-hidden">
-                    {wc.photo ? (
-                      <>
-                        <Image
-                          src={getImageUploadUrl(wc.photo.name)}
-                          alt={wc.fullName}
-                          fill
-                          unoptimized
-                          sizes="(max-width: 768px) 100vw, 33vw"
-                          className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
-                        />
-                        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-                      </>
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center">
-                        <div className="relative">
-                          <div className="absolute inset-0 bg-crimson/5 rounded-full blur-xl" />
-                          <div className="relative p-5 rounded-full bg-white/5 border border-white/10">
-                            {wc.isEntity ? (
-                              <Building2 className="h-10 w-10 text-slate-body/25" />
-                            ) : (
-                              <Fingerprint className="h-10 w-10 text-slate-body/25" />
-                            )}
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-6">
+              {warCriminals.map((wc, i) => (
+                <div key={wc._id} className="break-inside-avoid mb-6 animate-fade-in-up" style={{ animationDelay: `${i * 60}ms`, animationFillMode: "both" }}>
+                <Link href={`/${locale}/war-criminals/${wc._id}`} className="block">
+                  <GlassCard>
+                    {/* Photo Area */}
+                    <GlassCardMedia className="relative aspect-[16/10]">
+                      {wc.photo ? (
+                        <>
+                          <Image
+                            src={getImageUploadUrl(wc.photo.name)}
+                            alt={wc.fullName || ""}
+                            fill
+                            unoptimized
+                            sizes="(max-width: 768px) 100vw, 33vw"
+                            className="object-cover group-hover:scale-105 transition-transform duration-700 ease-out"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
+                        </>
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center">
+                          <div className="relative">
+                            <div className="absolute inset-0 bg-crimson/5 rounded-full blur-xl" />
+                            <div className="relative p-5 rounded-full bg-white/5 border border-white/10">
+                              {wc.isEntity ? (
+                                <Building2 className="h-10 w-10 text-slate-body/25" />
+                              ) : (
+                                <Fingerprint className="h-10 w-10 text-slate-body/25" />
+                              )}
+                            </div>
                           </div>
                         </div>
+                      )}
+
+                      {/* Status Badge */}
+                      <div className="absolute end-3 top-3">
+                        <GlassCardBadge variant="custom">
+                          <span className="flex items-center gap-1.5">
+                            <span className={`h-1.5 w-1.5 rounded-full ${statusDotColors[wc.status] || "bg-slate-400"}`} />
+                            {getStatusText(wc.status, t)}
+                          </span>
+                        </GlassCardBadge>
                       </div>
-                    )}
 
-                    {/* Status Badge */}
-                    <div className="absolute top-3 end-3">
-                      <Badge
-                        variant="outline"
-                        className={`${statusColors[wc.status] || "bg-slate-500/15 text-slate-400 border-slate-500/25"} backdrop-blur-md text-[11px] font-medium`}
-                      >
-                        <span className={`inline-block w-1.5 h-1.5 rounded-full ${statusDotColors[wc.status] || "bg-slate-400"} me-1.5`} />
-                        {getStatusText(wc.status, t)}
-                      </Badge>
-                    </div>
+                      {/* Entity Badge */}
+                      {wc.isEntity && (
+                        <div className="absolute start-3 top-3">
+                          <GlassCardBadge variant="custom" color="text-gold">
+                            <span className="flex items-center gap-1.5">
+                              <Building2 className="h-3 w-3" />
+                              {t("warCriminals.organization") || "Org"}
+                            </span>
+                          </GlassCardBadge>
+                        </div>
+                      )}
+                    </GlassCardMedia>
 
-                    {/* Entity Badge */}
-                    {wc.isEntity && (
-                      <div className="absolute top-3 start-3">
-                        <Badge variant="outline" className="bg-gold/10 text-gold border-gold/20 backdrop-blur-md text-[11px] font-medium">
-                          <Building2 className="h-3 w-3 me-1" />
-                          {t("warCriminals.organization") || "Org"}
-                        </Badge>
+                    <GlassCardContent className="p-5 space-y-3">
+                      {/* Name */}
+                      <div className="flex items-start justify-between gap-3">
+                        <h3 className="font-semibold text-offwhite group-hover:text-crimson-light transition-colors duration-300 line-clamp-2 leading-tight text-lg">
+                          {wc.fullName}
+                        </h3>
+                        <ArrowUpRight className="h-4 w-4 text-slate-body/30 group-hover:text-crimson transition-colors duration-300 shrink-0 mt-1" />
                       </div>
-                    )}
-                  </div>
 
-                  {/* Content */}
-                  <div className="p-5 space-y-3">
-                    {/* Name */}
-                    <div className="flex items-start justify-between gap-3">
-                      <h3 className="font-semibold text-offwhite group-hover:text-crimson-light transition-colors duration-300 line-clamp-2 leading-tight text-lg">
-                        {wc.fullName}
-                      </h3>
-                      <ArrowUpRight className="h-4 w-4 text-slate-body/30 group-hover:text-crimson transition-colors duration-300 shrink-0 mt-1" />
-                    </div>
+                      {/* Affiliation */}
+                      {wc.affiliation && (
+                        <div className="flex items-center gap-2">
+                          <span className={`inline-block w-2 h-2 rounded-full ${affiliationDotColors[wc.affiliation] || "bg-slate-400"}`} />
+                          <User className="h-3 w-3 text-slate-body/50" />
+                          <span className="text-xs text-slate-body/70">
+                            {getAffiliationText(wc.affiliation, t)}
+                          </span>
+                        </div>
+                      )}
 
-                    {/* Affiliation */}
-                    {wc.affiliation && (
-                      <div className="flex items-center gap-2">
-                        <span className={`inline-block w-2 h-2 rounded-full ${affiliationDotColors[wc.affiliation] || "bg-slate-400"}`} />
-                        <span className="text-xs text-slate-body/70">
-                          {getAffiliationText(wc.affiliation, t)}
+                      {/* Known For */}
+                      {wc.knownFor && getLocalizedText(wc.knownFor as Record<string, string>, locale) && (
+                        <GlassCardDescription
+                          html={getLocalizedText(wc.knownFor as Record<string, string>, locale)}
+                          className="line-clamp-2"
+                        />
+                      )}
+
+                      {/* Tags */}
+                      {wc.tags && wc.tags.length > 0 && (
+                        <GlassCardTags
+                          tags={wc.tags.slice(0, 3).map((tag) => ({
+                            _id: tag._id,
+                            name: tag.name,
+                            icon: <Tag className="h-2.5 w-2.5" />,
+                          }))}
+                          max={3}
+                        />
+                      )}
+                      {wc.tags && wc.tags.length > 3 && (
+                        <span className="inline-flex items-center rounded-full bg-white/[0.05] border border-white/10 px-2 py-0.5 text-[11px] text-slate-body/60">
+                          +{wc.tags.length - 3}
                         </span>
-                      </div>
-                    )}
+                      )}
+                    </GlassCardContent>
 
-                    {/* Known For */}
-                    {wc.knownFor && getLocalizedText(wc.knownFor as Record<string, string>, locale) && (
-                      <div
-                        className="text-sm text-slate-body/70 line-clamp-2 leading-relaxed prose prose-invert prose-sm max-w-none prose-p:m-0 prose-p:inline prose-headings:inline prose-headings:text-sm prose-strong:text-slate-body/70 prose-a:text-crimson-light"
-                        dangerouslySetInnerHTML={{ __html: getLocalizedText(wc.knownFor as Record<string, string>, locale) }}
-                      />
-                    )}
-
-                    {/* Tags */}
-                    {wc.tags && wc.tags.length > 0 && (
-                      <div className="flex flex-wrap gap-1.5 pt-1">
-                        {wc.tags.slice(0, 3).map((tag) => (
-                          <Badge
-                            key={tag._id}
-                            variant="outline"
-                            className="text-[11px] border-white/10 text-slate-body/60 bg-white/5 hover:bg-white/10 transition-colors"
-                          >
-                            {tag.name}
-                          </Badge>
-                        ))}
-                        {wc.tags.length > 3 && (
-                          <Badge variant="outline" className="text-[11px] border-white/10 text-slate-body/60 bg-white/5">
-                            +{wc.tags.length - 3}
-                          </Badge>
+                    <GlassCardFooter className="px-5">
+                      <div className="flex items-center gap-1.5 text-xs text-slate-body/50">
+                        {wc.isEntity ? (
+                          <>
+                            <Building2 className="h-3 w-3" />
+                            <span>{t("warCriminals.organization") || "Organization"}</span>
+                          </>
+                        ) : (
+                          <>
+                            <User className="h-3 w-3" />
+                            <span>{t("warCriminals.individual") || "Individual"}</span>
+                          </>
                         )}
                       </div>
-                    )}
-                  </div>
-
-                  {/* Bottom border accent */}
-                  <div className="absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent" />
+                      <GlassCardCta text={t("warCriminals.viewDetails") || "View Details"} />
+                    </GlassCardFooter>
+                  </GlassCard>
                 </Link>
+                </div>
               ))}
             </div>
 

@@ -2,10 +2,19 @@ import { getTranslations } from "next-intl/server";
 import { gets as getBlogPosts } from "@/app/actions/blogPost/gets";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { Badge } from "@/components/ui/badge";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageHero } from "@/components/layout/page-hero";
-import { Search, Calendar, User, ArrowRight, BookOpen, FileText } from "lucide-react";
+import {
+  GlassCard,
+  GlassCardMedia,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardTags,
+  GlassCardFooter,
+  GlassCardMeta,
+  GlassCardCta,
+} from "@/components/ui/glass-card";
+import { Search, Calendar, User, ArrowRight, BookOpen, FileText, Tag } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
 import { getImageUploadUrl } from "@/utils/imageUrl";
@@ -106,75 +115,69 @@ export default async function BlogListingPage({
           </div>
         ) : (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {posts.map((post) => (
-                <article
-                  key={post._id}
-                  className="group flex flex-col overflow-hidden rounded-2xl glass-light transition-all duration-300 hover:-translate-y-1 hover:bg-white/[0.04]"
-                >
-                  <Link
-                    href={`/${locale}/blog/${post.slug}`}
-                    className="block overflow-hidden aspect-video relative bg-white/5"
-                  >
-                    {post.coverImage ? (
-                      <Image
-                        src={getImageUploadUrl(post.coverImage.name)}
-                        alt={post.title || "Blog post cover image"}
-                        fill
-                        unoptimized
-                        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                        className="object-cover grayscale transition-all duration-[900ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] will-change-[filter,transform] group-hover:scale-[1.12] group-hover:grayscale-0"
-                      />
-                    ) : (
-                      <div className="absolute inset-0 flex items-center justify-center bg-white/5">
-                        <span className="text-slate-body/40 text-sm">No image</span>
-                      </div>
-                    )}
-                  </Link>
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-5">
+              {posts.map((post, i) => (
+                <div key={post._id} className="break-inside-avoid mb-6">
+                  <GlassCard href={`/${locale}/blog/${post.slug}`} animate index={i}>
+                    {/* Media with grayscale effect */}
+                    <GlassCardMedia className="relative aspect-video">
+                      {post.coverImage ? (
+                        <>
+                          <Image
+                            src={getImageUploadUrl(post.coverImage.name)}
+                            alt={post.title || "Blog post cover image"}
+                            fill
+                            unoptimized
+                            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                            className="object-cover grayscale transition-all duration-[900ms] ease-[cubic-bezier(0.25,0.46,0.45,0.94)] will-change-[filter,transform] group-hover:scale-[1.12] group-hover:grayscale-0"
+                          />
+                          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
+                        </>
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center bg-white/5">
+                          <span className="text-slate-body/40 text-sm">No image</span>
+                        </div>
+                      )}
+                    </GlassCardMedia>
 
-                  <div className="flex flex-col flex-grow p-5">
-                    <div className="flex flex-wrap gap-2 mb-3">
-                      {post.tags?.map((tag: DeepPartial<tagSchema>) => (
-                        <Badge
-                          key={tag._id}
-                          variant="outline"
-                          className="bg-white/5 text-slate-body border-white/10 text-xs"
-                        >
-                          {tag.name}
-                        </Badge>
-                      ))}
-                    </div>
-                    <h2 className="text-lg font-semibold line-clamp-2 mb-3 text-offwhite group-hover:text-gold transition-colors">
-                      <Link href={`/${locale}/blog/${post.slug}`}>{post.title}</Link>
-                    </h2>
-                    <div className="flex items-center gap-4 text-xs text-slate-body mb-3">
-                      <div className="flex items-center gap-1">
-                        <User className="h-3 w-3" />
-                        <span>
+                    <GlassCardContent className="p-5">
+                      {/* Tags */}
+                      {post.tags && post.tags.length > 0 && (
+                        <GlassCardTags
+                          tags={post.tags.map((tag) => ({ _id: tag._id, name: tag.name, icon: <Tag className="h-2.5 w-2.5" /> }))}
+                          className="mb-3"
+                        />
+                      )}
+
+                      {/* Title */}
+                      <h2 className="text-lg font-semibold line-clamp-2 mb-3 text-offwhite group-hover:text-gold transition-colors">
+                        {post.title}
+                      </h2>
+
+                      {/* Meta */}
+                      <div className="flex items-center gap-4 text-xs text-slate-body mb-3">
+                        <GlassCardMeta icon={<User className="h-3 w-3" />}>
                           {post.author ? `${post.author.first_name} ${post.author.last_name}` : "Unknown"}
-                        </span>
-                      </div>
-                      <div className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
-                        <span>
+                        </GlassCardMeta>
+                        <GlassCardMeta icon={<Calendar className="h-3 w-3" />}>
                           {new Date(post.publishedAt ?? post.createdAt ?? new Date()).toLocaleDateString(locale)}
-                        </span>
+                        </GlassCardMeta>
                       </div>
-                    </div>
-                    <p className="text-slate-body line-clamp-3 text-sm mb-4 flex-grow">
-                      {post.content
-                        ? post.content.replace(/<[^>]*>?/gm, "").substring(0, 150) + "..."
-                        : ""}
-                    </p>
-                    <Link
-                      href={`/${locale}/blog/${post.slug}`}
-                      className="inline-flex items-center gap-1 text-sm font-medium text-crimson hover:text-gold transition-colors"
-                    >
-                      {t("common.readMore")}
-                      <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1 rtl:group-hover:-translate-x-1 rtl:rotate-180" />
-                    </Link>
-                  </div>
-                </article>
+
+                      {/* Description */}
+                      <GlassCardDescription
+                        text={post.content ? post.content.replace(/<[^>]*>?/gm, "").substring(0, 150) + "..." : ""}
+                        lines={3}
+                        className="mb-4"
+                      />
+                    </GlassCardContent>
+
+                    <GlassCardFooter className="px-5">
+                      <div />
+                      <GlassCardCta text={t("common.readMore") || "Read more"} />
+                    </GlassCardFooter>
+                  </GlassCard>
+                </div>
               ))}
             </div>
 

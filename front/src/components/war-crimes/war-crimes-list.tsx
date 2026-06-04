@@ -37,12 +37,12 @@ export function WarCrimesList({
 
   return (
     <div className="space-y-6">
-      {/* Report grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+      {/* Report grid — masonry columns like explore page */}
+      <div className="columns-1 md:columns-2 lg:columns-3 gap-5">
         {reports.map((report, index) => (
           <div
             key={report._id}
-            className="animate-fade-in-up"
+            className="break-inside-avoid mb-5 animate-fade-in-up"
             style={{ animationDelay: `${index * 60}ms`, animationFillMode: "both" }}
           >
             <ReportCard report={report} locale={locale} />
@@ -110,7 +110,7 @@ export function WarCrimesList({
             {page < totalPages ? (
               <Link href={`/${locale}/war-crimes?page=${page + 1}&view=${view}`}>
                 {t("next")}
-                <ArrowRight className="h-4 w-4 ms-1.5 rtl:rotate-180" />
+                <ArrowRight className="h-4 w-4 ms-1.5" />
               </Link>
             ) : (
               <span>{t("next")}</span>

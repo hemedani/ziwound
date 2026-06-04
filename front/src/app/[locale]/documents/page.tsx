@@ -195,16 +195,16 @@ export default async function PublicDocumentsPage({
     <PageContainer showHeader={false} className="bg-background" contentClassName="">
       <PageHero
         icon={<Archive className="h-5 w-5 text-crimson-light" />}
-        overline={t("documents.overline")}
-        title={t("documents.pageTitle")}
-        description={t("documents.pageDescription")}
+        overline={t("overline")}
+        title={t("pageTitle")}
+        description={t("pageDescription")}
       >
         <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
           {[
-            { icon: <Files className="h-4 w-4 text-crimson-light" />, value: totalCount, label: t("documents.documentsLabel") },
-            { icon: <FileStack className="h-4 w-4 text-crimson-light" />, value: totalFiles, label: t("documents.filesLabel") },
-            { icon: <Globe className="h-4 w-4 text-crimson-light" />, value: languagesCovered, label: t("documents.languagesLabel") },
-            { icon: <Link2 className="h-4 w-4 text-crimson-light" />, value: reportsLinked, label: t("documents.reportsLinked") },
+            { icon: <Files className="h-4 w-4 text-crimson-light" />, value: totalCount, label: t("documentsLabel") },
+            { icon: <FileStack className="h-4 w-4 text-crimson-light" />, value: totalFiles, label: t("filesLabel") },
+            { icon: <Globe className="h-4 w-4 text-crimson-light" />, value: languagesCovered, label: t("languagesLabel") },
+            { icon: <Link2 className="h-4 w-4 text-crimson-light" />, value: reportsLinked, label: t("reportsLinked") },
           ].map((stat) => (
             <div key={stat.label} className="flex items-center gap-3 rounded-xl border border-white/[0.06] bg-white/[0.03] backdrop-blur-md px-4 py-3">
               <div className="flex h-9 w-9 items-center justify-center rounded-lg bg-crimson/10">{stat.icon}</div>
@@ -276,14 +276,15 @@ export default async function PublicDocumentsPage({
             className="py-20"
           />
         ) : view === "grid" ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="columns-1 md:columns-2 lg:columns-3 gap-5">
             {documents.map((doc, i) => (
-              <DocumentCard
+              <div
                 key={doc._id}
-                document={doc}
-                locale={locale}
-                index={i}
-              />
+                className="break-inside-avoid mb-5 animate-fade-in-up"
+                style={{ animationDelay: `${i * 60}ms`, animationFillMode: "both" }}
+              >
+                <DocumentCard document={doc} locale={locale} />
+              </div>
             ))}
           </div>
         ) : (

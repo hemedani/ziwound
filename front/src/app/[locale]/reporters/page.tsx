@@ -252,9 +252,11 @@ export default async function ReportersPage({ params, searchParams }: Props) {
         {/* Reporter Grid */}
         {enrichedUsers.length > 0 ? (
           <>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              {enrichedUsers.map((user: typeof enrichedUsers[0]) => (
-                <ReporterCard key={user._id} reporter={user} locale={locale} />
+            <div className="columns-1 md:columns-2 lg:columns-3 gap-5">
+              {enrichedUsers.map((user: typeof enrichedUsers[0], i: number) => (
+                <div key={user._id} className="break-inside-avoid mb-5">
+                  <ReporterCard reporter={user} locale={locale} index={i} />
+                </div>
               ))}
             </div>
 

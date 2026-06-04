@@ -309,15 +309,16 @@ export default async function ExplorePage({ params, searchParams }: ExplorePageP
           />
         ) : (
           <>
-            <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="columns-1 sm:columns-2 lg:columns-3 gap-5">
               {locations.map((location) => (
-                <LocationCard
-                  key={location._id}
-                  location={location as Parameters<typeof LocationCard>[0]["location"]}
-                  locale={locale}
-                  type={tab === "countries" ? "country" : tab === "provinces" ? "province" : "city"}
-                  translations={translations}
-                />
+                <div key={location._id} className="break-inside-avoid mb-5">
+                  <LocationCard
+                    location={location as Parameters<typeof LocationCard>[0]["location"]}
+                    locale={locale}
+                    type={tab === "countries" ? "country" : tab === "provinces" ? "province" : "city"}
+                    translations={translations}
+                  />
+                </div>
               ))}
             </div>
 
