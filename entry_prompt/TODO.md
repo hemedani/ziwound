@@ -1,7 +1,10 @@
 # 🌍 Country-Level Data Entry Progress
 
+## Completed
+- [x] **United States** (`US/`) — 27 cities, 10/10 each ✅
+
 ## Active
-- [x] **United States** (`US/`) — See `US/TODO.md` for province/city status
+- [ ] **United Kingdom** (`GB/`) — NOT YET SET UP
 
 ## Planned (in order)
 - [ ] **United Kingdom** (`GB/`) — London, Manchester, Birmingham, Liverpool, etc.

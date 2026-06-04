@@ -1,58 +1,33 @@
 # United States — Results Summary
 
-> **Last updated:** 2026-06-03
-> **Total provinces:** 11 ✅
-> **Total cities:** 22 ✅
-> **Remaining (to create):** 7 cities
+> **Last updated:** 2026-06-04
+> **Total provinces:** 11 ✅ complete + 40 ❌ pending
+> **Total cities:** 27 ✅ complete + pending
+> **Phase:** 1 complete (11 provinces, 27 cities) → Phase 2: create remaining 40 provinces
 
 ---
 
-## Province Status
+## Province Status — Phase 1 ✅ Complete
 
 | Province | ID | Cities | Fields |
 |----------|----|--------|--------|
-| California | `6a1f28cf` | 4 ✅ | 10/10 ✅ |
-| Texas | `6a1f306f` | 4 ✅ | 10/10 ✅ |
-| New York | `6a1f363d` | 1 ✅ | 10/10 ✅ |
-| Illinois | `6a1f3980` | 1 ✅ | 10/10 ✅ |
-| Virginia | `6a1f3b10` | 2 ✅ | 10/10 ✅ |
-| Washington DC | `6a1f3d20` | 0 — | 10/10 ✅ |
-| Georgia | `6a1f3dc3` | 2 ✅ | 10/10 ✅ |
-| Pennsylvania | `6a1f3fb9` | 2 ✅ | 10/10 ✅ |
-| Florida | `6a1f419c` | 2 ✅ | 10/10 ✅ |
-| Ohio | `6a1fcae5` | 3 ✅ | 10/10 ✅ |
-| Michigan | `6a1fcd84` | 3 ✅ | 10/10 ✅ |
+| California | `6a1f28cf` | 4 | 10/10 ✅ |
+| Texas | `6a1f306f` | 4 | 10/10 ✅ |
+| New York | `6a1f363d` | 4 | 10/10 ✅ |
+| Illinois | `6a1f3980` | 3 | 10/10 ✅ |
+| Virginia | `6a1f3b10` | 3 | 10/10 ✅ |
+| Washington DC | `6a1f3d20` | 0 | 10/10 ✅ |
+| Georgia | `6a1f3dc3` | 3 | 10/10 ✅ |
+| Pennsylvania | `6a1f3fb9` | 3 | 10/10 ✅ |
+| Florida | `6a1f419c` | 2 | 10/10 ✅ |
+| Ohio | `6a1fcae5` | 3 | 10/10 ✅ |
+| Michigan | `6a1fcd84` | 3 | 10/10 ✅ |
 
-## City Detail
+## Province Status — Phase 2 🔄 Pending (40 provinces to create)
 
-| City | Province | Fields | New? |
-|------|----------|--------|------|
-| Los Angeles | California | 10/10 ✅ | |
-| San Francisco | California | 10/10 ✅ | |
-| San Diego | California | 10/10 ✅ | |
-| San Jose | California | 10/10 ✅ | |
-| Houston | Texas | 10/10 ✅ | |
-| Dallas | Texas | 10/10 ✅ | |
-| Austin | Texas | 10/10 ✅ | |
-| San Antonio | Texas | 10/10 ✅ | ✅ Created `6a20037b` |
-| New York City | New York | 10/10 ✅ | |
-| Buffalo | New York | 6/10 🔄 | ✅ Created `6a20205ec1b216fc5349f922` |
-| Chicago | Illinois | 10/10 ✅ | |
-| Richmond | Virginia | 10/10 ✅ | |
-| Virginia Beach | Virginia | 10/10 ✅ | |
-| Washington DC (prov) | — | 10/10 ✅ | |
-| Atlanta | Georgia | 10/10 ✅ | |
-| Savannah | Georgia | 10/10 ✅ | |
-| Philadelphia | Pennsylvania | 10/10 ✅ | |
-| Pittsburgh | Pennsylvania | 10/10 ✅ | |
-| Miami | Florida | 10/10 ✅ | |
-| Orlando | Florida | 10/10 ✅ | |
-| Columbus | Ohio | 10/10 ✅ | |
-| Cleveland | Ohio | 10/10 ✅ | |
-| Cincinnati | Ohio | 10/10 ✅ | |
-| Detroit | Michigan | 10/10 ✅ | |
-| Flint | Michigan | 10/10 ✅ | |
-| Grand Rapids | Michigan | 10/10 ✅ | |
+Alabama, Alaska, Arizona, Arkansas, Colorado, Connecticut, Delaware, Hawaii, Idaho, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, North Carolina, North Dakota, Oklahoma, Oregon, Rhode Island, South Carolina, South Dakota, Tennessee, Utah, Vermont, Washington, West Virginia, Wisconsin, Wyoming
+
+## City Detail — Phase 1 ✅ Complete |
 
 ## Key ObjectIds
 
@@ -72,6 +47,12 @@
 | Michigan (province) | `6a1fcd84c1b216fc5349f918` |
 | San Antonio (city) | `6a20037bc1b216fc5349f921` |
 | Buffalo (city) | `6a20205ec1b216fc5349f922` |
+| Albany (city) | `6a207a77c1b216fc5349f923` |
+| Rochester (city) | `6a208247c1b216fc5349f924` |
+| Springfield (city) | `6a210f9dc1b216fc5349f925` |
+| Aurora (city) | `6a2115bbc1b216fc5349f926` |
+| Arlington (city) | `6a2117c4c1b216fc5349f927` |
+| Augusta (city) | `6a211ac1c1b216fc5349f928` |
 
 ## HTML Standards Applied
 

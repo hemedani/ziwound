@@ -20,20 +20,63 @@ You are the Autonomous Data Entry Agent for "ZiWound." You have direct local fil
 ## 🎯 Master Target List (US)
 You must process every entity in order. Do NOT skip any.
 
-### Provinces (11 existing)
+### Provinces ✅ Complete (11 provinces, 27 cities — all 10/10)
 1. California      — Los Angeles, San Francisco, San Diego, San Jose
-2. Texas           — Houston, Dallas, Austin, **San Antonio** ⚡
-3. New York        — New York City, **Buffalo, Albany, Rochester** ⚡
-4. Illinois        — Chicago, **Springfield, Aurora** ⚡
-5. Virginia        — Richmond, **Arlington** ⚡, Virginia Beach
+2. Texas           — Houston, Dallas, Austin, San Antonio
+3. New York        — New York City, Buffalo, Albany, Rochester
+4. Illinois        — Chicago, Springfield, Aurora
+5. Virginia        — Richmond, Arlington, Virginia Beach
 6. Washington D.C. — (no cities — province only)
-7. Georgia         — Atlanta, Savannah, **Augusta** ⚡
-8. Pennsylvania    — Philadelphia, Pittsburgh, **Allentown** ⚡
+7. Georgia         — Atlanta, Savannah, Augusta
+8. Pennsylvania    — Philadelphia, Pittsburgh, Allentown
 9. Florida         — Miami, Orlando
 10. Ohio           — Columbus, Cleveland, Cincinnati
 11. Michigan       — Detroit, Flint, Grand Rapids
 
-**⚡ = Needs creation via `city.add`**
+### Provinces 🔄 Pending (40 provinces — need creation + 10 fields)
+12. Alabama ❌        — Birmingham, Montgomery, Mobile, Huntsville
+13. Alaska ❌         — Anchorage, Fairbanks, Juneau
+14. Arizona ❌        — Phoenix, Tucson, Mesa, Flagstaff
+15. Arkansas ❌       — Little Rock, Fayetteville, Fort Smith
+16. Colorado ❌       — Denver, Colorado Springs, Aurora, Boulder
+17. Connecticut ❌    — Hartford, New Haven, Bridgeport, Stamford
+18. Delaware ❌       — Wilmington, Dover, Newark
+19. Hawaii ❌         — Honolulu, Hilo, Kailua
+20. Idaho ❌          — Boise, Idaho Falls, Twin Falls
+21. Indiana ❌        — Indianapolis, Fort Wayne, Evansville, South Bend
+22. Iowa ❌           — Des Moines, Cedar Rapids, Davenport
+23. Kansas ❌         — Wichita, Kansas City, Topeka
+24. Kentucky ❌       — Louisville, Lexington, Frankfort, Covington
+25. Louisiana ❌      — New Orleans, Baton Rouge, Shreveport, Lafayette
+26. Maine ❌          — Portland, Augusta, Bangor
+27. Maryland ❌       — Baltimore, Annapolis, Silver Spring, Columbia
+28. Massachusetts ❌  — Boston, Worcester, Springfield, Cambridge
+29. Minnesota ❌      — Minneapolis, Saint Paul, Duluth, Rochester
+30. Mississippi ❌    — Jackson, Gulfport, Biloxi
+31. Missouri ❌       — St. Louis, Kansas City, Springfield, Columbia
+32. Montana ❌        — Billings, Missoula, Helena, Great Falls
+33. Nebraska ❌       — Omaha, Lincoln, Grand Island
+34. Nevada ❌         — Las Vegas, Reno, Henderson, Carson City
+35. New Hampshire ❌  — Manchester, Nashua, Concord
+36. New Jersey ❌     — Newark, Jersey City, Trenton, Paterson
+37. New Mexico ❌     — Albuquerque, Santa Fe, Las Cruces
+38. North Carolina ❌ — Charlotte, Raleigh, Greensboro, Durham
+39. North Dakota ❌   — Fargo, Bismarck, Grand Forks
+40. Oklahoma ❌       — Oklahoma City, Tulsa, Norman, Lawton
+41. Oregon ❌         — Portland, Salem, Eugene, Bend
+42. Rhode Island ❌   — Providence, Warwick, Cranston
+43. South Carolina ❌ — Columbia, Charleston, Greenville, Spartanburg
+44. South Dakota ❌   — Sioux Falls, Rapid City, Pierre
+45. Tennessee ❌      — Nashville, Memphis, Knoxville, Chattanooga
+46. Utah ❌           — Salt Lake City, Provo, Ogden, St. George
+47. Vermont ❌        — Burlington, Montpelier, Rutland
+48. Washington ❌     — Seattle, Spokane, Tacoma, Olympia
+49. West Virginia ❌  — Charleston, Huntington, Morgantown
+50. Wisconsin ❌      — Milwaukee, Madison, Green Bay, Kenosha
+51. Wyoming ❌        — Cheyenne, Casper, Laramie
+
+**❌ = Province does not exist in DB — must be created via `province.add` first**
+**All cities marked ❌ — must be created via `city.add`**
 
 ### 10 RTE Fields (per city)
 | # | Field | Type |
@@ -98,14 +141,31 @@ You must process every entity in order. Do NOT skip any.
 
 ## 🔌 API Patterns
 
+### Create Province (uses `api()` from Query Helper) — NEW PHASE 2
+```python
+api({
+    "service": "main", "model": "province", "act": "add",
+    "details": {
+        "set": {
+            "name": "نام استان",            # Native-language name (plain string ONLY)
+            "english_name": "State Name",    # English translation for int'l use
+            "countryId": "6a1f01ccc1b216fc5349f8fa",
+            "isCapital": False               # Boolean, REQUIRED
+        },
+        "get": {"_id": 1, "name": 1}
+    }
+})
+```
+> **Province schema:** Same 10 RTE fields as City. Provinces can be created without RTE data initially, then updated later with 2 fields per micro-step.
+
 ### Create City (uses `api()` from Query Helper)
 ```python
 api({
     "service": "main", "model": "city", "act": "add",
     "details": {
         "set": {
-            "name": "City Name",         # Plain string ONLY
-            "english_name": "City Name",
+            "name": "نام شهر",            # Native-language name (plain string ONLY)
+            "english_name": "City Name",  # English translation for int'l use (plain string)
             "provinceId": "<province_oid>",
             "countryId": "6a1f01ccc1b216fc5349f8fa",
             "isCapital": False            # Boolean, REQUIRED
@@ -114,6 +174,7 @@ api({
     }
 })
 ```
+> **`name` vs `english_name`:** `name` holds the entity's name in its native/local language (e.g. "واشنگتن" for Washington in Persian data). `english_name` holds the English translation for international use. Both are plain strings — NOT multi-language objects.
 
 ### Update 2 RTE Fields (uses `api()` from Query Helper)
 ```python

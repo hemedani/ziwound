@@ -65,7 +65,24 @@ api({"service":"main","model":"city","act":"gets","details":{"set":{"provinceId"
 
 ## 3. ⚡ Execution Pattern (Exactly 2 Fields)
 
-### Step A: Create city if needed
+### Step A: Create province/city if needed
+```python
+# Province creation
+api({
+    "service": "main", "model": "province", "act": "add",
+    "details": {
+        "set": {
+            "name": "نام استان",           # Native-language name
+            "english_name": "State Name",   # English translation
+            "countryId": "<country_oid>",
+            "isCapital": False
+        },
+        "get": {"_id": 1, "name": 1}
+    }
+})
+```
+
+### Step A2: Create city if needed
 ```python
 api({
     "service": "main", "model": "city", "act": "add",
@@ -116,30 +133,41 @@ Update ALL four files before reporting:
 
 ## 4. 🎯 Current Position
 
-> **Active Country:** United States (`entry_prompt/US/`)
-> **Active Province:** New York (`6a1f363dc1b216fc5349f903`)
-> **Active City:** Buffalo (`6a20205ec1b216fc5349f922`)
-> **Fields Completed:** 6/10 (wars_history ✅, conflict_timeline ✅, casualties_info ✅, notable_battles ✅, occupation_info ✅, destruction_level ✅)
-> **Next Fields:** civilian_impact, mass_graves_info
+> **Active Country:** United States (`entry_prompt/US/`) — Phase 2 🔄
+> **Phase 1:** 11 provinces, 27 cities ✅ all 10/10
+> **Phase 2:** Create 40 remaining provinces + cities + 10 fields each ⬜
 
 ## 5. ➡️ Next Steps (planned order)
 
-### Immediate Queue
-1. Buffalo — civilian_impact + mass_graves_info (fields 7-8) ← CURRENT
-2. Buffalo — war_crimes_events + liberation_info (fields 9-10)
+### Phase 1 ✅ Complete
+1. ✅ United States Phase 1 — 11 provinces, 27 cities (all 10/10)
 
-### After Buffalo
-5. Create New York: Albany → 10 fields
-6. Create New York: Albany → 10 fields
-7. Create New York: Rochester → 10 fields
-8. Create Illinois: Springfield → 10 fields
-9. Create Illinois: Aurora → 10 fields
-10. Create Virginia: Arlington → 10 fields
-11. Create Georgia: Augusta → 10 fields
-12. Create Pennsylvania: Allentown → 10 fields
+### Phase 2 🔄 In Progress
+2. 🔄 **United States Phase 2** — Create 40 remaining provinces + cities + 10 fields each
 
-### Next Country
-13. Move to next country in `entry_prompt/TODO.md`
+### Future (after US Phase 2)
+3. ⬜ United Kingdom (GB)
+4. ⬜ Germany (DE)
+5. ⬜ France (FR)
+6. ⬜ Russia (RU)
+7. ⬜ China (CN)
+8. ⬜ Japan (JP)
+9. ⬜ South Korea (KR)
+10. ⬜ India (IN)
+11. ⬜ Australia (AU)
+12. ⬜ Canada (CA)
+13. ⬜ Brazil (BR)
+14. ⬜ Israel (IL)
+15. ⬜ Saudi Arabia (SA)
+16. ⬜ Turkey (TR)
+17. ⬜ Egypt (EG)
+18. ⬜ Iraq (IQ)
+19. ⬜ Afghanistan (AF)
+20. ⬜ Syria (SY)
+21. ⬜ Lebanon (LB)
+22. ⬜ Yemen (YE)
+23. ⬜ Palestine (PS)
+24. ⬜ Bosnia and Herzegovina (BA)
 
 ---
 
@@ -148,7 +176,7 @@ Update ALL four files before reporting:
 | Rule | Why |
 |------|-----|
 | **Send ALL 9 languages** on every RTE update | `update` replaces the field — missing languages are **erased** |
-| **`name` is a plain string** for city.add | Not a multi-language object. The model's `name` field is a simple string |
+| **`name` is the native-language name** | `name` = country/province/city name in the local language; `english_name` = English translation for international use. Both are plain strings, NOT objects |
 | **Include `isCapital`** in city.add | Missing it causes a 501 error |
 | **No "Bearer" prefix** in token header | The Lesan server does not expect it |
 | **Never cram events** into one `<p>` | Timeline fields must have one `<h4>` + one `<p>` per event |
