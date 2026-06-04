@@ -77,7 +77,7 @@ export default async function BlogPostDetailPage({
   return (
     <PageContainer showHeader={false} className="bg-background" contentClassName="">
       <PageHero
-        backLink={{ href: `/${locale}/blog`, label: t("common.back") }}
+        backLink={{ href: "/blog", label: t("common.back") }}
         icon={<Newspaper className="h-5 w-5 text-crimson-light" />}
         overline={t("blog.overline")}
         title={post.title || ""}

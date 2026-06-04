@@ -156,7 +156,7 @@ export default async function WarCriminalDetailPage({
   return (
     <PageContainer showHeader={false} contentClassName="">
       <PageHero
-        backLink={{ href: `/${locale}/war-criminals`, label: t("common.back") || "Back" }}
+        backLink={{ href: "/war-criminals", label: t("common.back") || "Back" }}
         icon={<Scale className="h-5 w-5 text-crimson" />}
         title={wc.fullName}
       >

@@ -262,7 +262,7 @@ export default async function DocumentDetailPage({ params }: PageProps) {
   return (
     <PageContainer showHeader={false} className="bg-background" contentClassName="">
       <PageHero
-        backLink={{ href: `/${locale}/documents`, label: t("backToDocuments") }}
+        backLink={{ href: "/documents", label: t("backToDocuments") }}
         icon={<Archive className="h-5 w-5 text-crimson-light" />}
         overline={t("documentArchive")}
         title={doc.title}

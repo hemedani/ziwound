@@ -95,7 +95,7 @@ export default async function ProvinceDetailPage({ params }: ProvinceDetailPageP
         overline={t("province")}
         title={province.name}
         description={province.english_name || ""}
-        backLink={{ href: `/${locale}/explore`, label: t("backToExplore") }}
+        backLink={{ href: "/explore", label: t("backToExplore") }}
       >
         <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
           {[

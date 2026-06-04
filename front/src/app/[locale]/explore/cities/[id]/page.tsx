@@ -94,7 +94,7 @@ export default async function CityDetailPage({ params }: CityDetailPageProps) {
         overline={t("city")}
         title={city.name}
         description={city.english_name || ""}
-        backLink={{ href: `/${locale}/explore`, label: t("backToExplore") }}
+        backLink={{ href: "/explore", label: t("backToExplore") }}
       >
         <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
           {relatedReports.length > 0 && (

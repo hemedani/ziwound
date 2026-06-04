@@ -165,7 +165,7 @@ export default async function ReporterDetailPage({ params }: Props) {
   return (
     <PageContainer showHeader={false} contentClassName="">
       <PageHero
-        backLink={{ href: `/${locale}/reporters`, label: t("backToReporters") }}
+        backLink={{ href: "/reporters", label: t("backToReporters") }}
         icon={<User className="h-5 w-5 text-crimson" />}
         overline={t("reporterProfile")}
         title={fullName}
