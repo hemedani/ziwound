@@ -35,12 +35,12 @@ export function WarInfoSection({ fields, locale, sectionTitle, className }: WarI
   return (
     <div className={`rounded-2xl glass-light border border-white/[0.06] overflow-hidden ${className || ""}`}>
       {/* Header */}
-      <div className="flex items-center gap-3 px-6 py-5 border-b border-white/[0.06]">
-        <div className="bg-white/5 rounded-lg p-2">
+      <div className="flex items-center gap-3 px-6 py-5 border-b border-white/[0.06] min-w-0">
+        <div className="shrink-0 bg-white/5 rounded-lg p-2">
           <Shield className="h-4 w-4 text-gold" />
         </div>
-        <h2 className="text-lg font-semibold text-offwhite">{sectionTitle}</h2>
-        <span className="text-xs text-slate-body/40 ms-auto">
+        <h2 className="text-lg font-semibold text-offwhite truncate">{sectionTitle}</h2>
+        <span className="text-xs text-slate-body/40 ms-auto shrink-0">
           {populatedFields.length} {populatedFields.length === 1 ? "section" : "sections"}
         </span>
       </div>

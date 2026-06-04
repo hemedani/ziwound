@@ -29,12 +29,12 @@ export function ReportListCard({ reports, locale, title, className }: ReportList
   return (
     <div className={`rounded-2xl glass-light border border-white/[0.06] overflow-hidden ${className || ""}`}>
       {/* Header */}
-      <div className="flex items-center gap-3 px-6 py-5 border-b border-white/[0.06]">
-        <div className="bg-white/5 rounded-lg p-2">
+      <div className="flex items-center gap-3 px-6 py-5 border-b border-white/[0.06] min-w-0">
+        <div className="shrink-0 bg-white/5 rounded-lg p-2">
           <FileText className="h-4 w-4 text-gold" />
         </div>
-        <h2 className="text-lg font-semibold text-offwhite">{title}</h2>
-        <span className="text-xs text-slate-body/40 ms-auto">{reports.length}</span>
+        <h2 className="text-lg font-semibold text-offwhite truncate">{title}</h2>
+        <span className="text-xs text-slate-body/40 ms-auto shrink-0">{reports.length}</span>
       </div>
 
       {/* Report list */}
@@ -51,7 +51,7 @@ export function ReportListCard({ reports, locale, title, className }: ReportList
             </div>
 
             {/* Content */}
-            <div className="min-w-0 flex-1">
+            <div className="min-w-0 flex-1 overflow-hidden">
               <p className="text-sm font-medium text-offwhite truncate group-hover:text-gold transition-colors">
                 {report.title}
               </p>

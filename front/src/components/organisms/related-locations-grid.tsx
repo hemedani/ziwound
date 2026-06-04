@@ -56,10 +56,10 @@ export function RelatedLocationsGrid({
   return (
     <div className={`rounded-2xl glass-light border border-white/[0.06] overflow-hidden ${className || ""}`}>
       {/* Header */}
-      <div className="flex items-center gap-2 px-5 py-4 border-b border-white/[0.06]">
-        <TypeIcon className="h-4 w-4 text-gold" />
-        <h3 className="text-sm font-semibold text-offwhite">{title}</h3>
-        <span className="text-xs text-slate-body/40 ms-auto">{locations.length}</span>
+      <div className="flex items-center gap-2 px-5 py-4 border-b border-white/[0.06] min-w-0">
+        <TypeIcon className="h-4 w-4 text-gold shrink-0" />
+        <h3 className="text-sm font-semibold text-offwhite truncate">{title}</h3>
+        <span className="text-xs text-slate-body/40 ms-auto shrink-0">{locations.length}</span>
       </div>
 
       {/* List */}
@@ -98,7 +98,7 @@ export function RelatedLocationsGrid({
               </div>
 
               {/* Content */}
-              <div className="min-w-0 flex-1">
+              <div className="min-w-0 flex-1 overflow-hidden">
                 <p className="text-sm font-medium text-offwhite group-hover:text-gold transition-colors truncate">
                   {location.name}
                 </p>
