@@ -4,7 +4,7 @@
 - [x] **United States** (`US/`) — 27 cities, 10/10 each ✅
 
 ## Active
-- [ ] **United Kingdom** (`GB/`) — NOT YET SET UP
+- [ ] **Croatia** (`HR/`) — Country 12/12 ✅, cities in progress
 
 ## Planned (in order)
 - [ ] **United Kingdom** (`GB/`) — London, Manchester, Birmingham, Liverpool, etc.

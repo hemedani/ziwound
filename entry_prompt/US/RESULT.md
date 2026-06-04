@@ -23,9 +23,13 @@
 | Ohio | `6a1fcae5` | 3 | 10/10 ✅ |
 | Michigan | `6a1fcd84` | 3 | 10/10 ✅ |
 
-## Province Status — Phase 2 🔄 Pending (40 provinces to create)
+## Province Status — Phase 2 🔄 In Progress
 
-Alabama, Alaska, Arizona, Arkansas, Colorado, Connecticut, Delaware, Hawaii, Idaho, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, North Carolina, North Dakota, Oklahoma, Oregon, Rhode Island, South Carolina, South Dakota, Tennessee, Utah, Vermont, Washington, West Virginia, Wisconsin, Wyoming
+| Province | ID | Cities | Fields |
+|----------|----|--------|--------|
+| Alabama | `6a21d66c` | 2 | 10/10 ✅ (Birmingham), 8/10 (Montgomery) |
+
+Pending: Alaska, Arizona, Arkansas, Colorado, Connecticut, Delaware, Hawaii, Idaho, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, North Carolina, North Dakota, Oklahoma, Oregon, Rhode Island, South Carolina, South Dakota, Tennessee, Utah, Vermont, Washington, West Virginia, Wisconsin, Wyoming
 
 ## City Detail — Phase 1 ✅ Complete |
 
@@ -45,6 +49,9 @@ Alabama, Alaska, Arizona, Arkansas, Colorado, Connecticut, Delaware, Hawaii, Ida
 | Florida (province) | `6a1f419cc1b216fc5349f911` |
 | Ohio (province) | `6a1fcae5c1b216fc5349f914` |
 | Michigan (province) | `6a1fcd84c1b216fc5349f918` |
+| Alabama (province) | `6a21d66cfa501fcbe2807b30` |
+| Birmingham (city) | `6a21d66dfa501fcbe2807b31` |
+| Montgomery (city) | `6a21dff9fa501fcbe2807b36` |
 | San Antonio (city) | `6a20037bc1b216fc5349f921` |
 | Buffalo (city) | `6a20205ec1b216fc5349f922` |
 | Albany (city) | `6a207a77c1b216fc5349f923` |

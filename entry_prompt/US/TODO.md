@@ -66,9 +66,9 @@
 
 ## ⏳ Pending — Province & City Creation + 10 Fields Each
 
-### Alabama ❌ needs province creation
-- [ ] Birmingham ❌ needs city creation
-- [ ] Montgomery ❌ needs city creation
+### Alabama `6a21d66c`
+- [x] Birmingham [##########] 10/10
+- [ ] Montgomery [########--] 8/10
 - [ ] Mobile ❌ needs city creation
 - [ ] Huntsville ❌ needs city creation
 

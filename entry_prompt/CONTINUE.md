@@ -134,40 +134,20 @@ Update ALL four files before reporting:
 ## 4. 🎯 Current Position
 
 > **Active Country:** United States (`entry_prompt/US/`) — Phase 2 🔄
-> **Phase 1:** 11 provinces, 27 cities ✅ all 10/10
-> **Phase 2:** Create 40 remaining provinces + cities + 10 fields each ⬜
+> **Current:** Alabama — Montgomery [########--] 8/10 (wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info done)
+> **Next:** Montgomery — war_crimes_events + liberation_info (fields 9-10)
 
 ## 5. ➡️ Next Steps (planned order)
 
-### Phase 1 ✅ Complete
-1. ✅ United States Phase 1 — 11 provinces, 27 cities (all 10/10)
-
 ### Phase 2 🔄 In Progress
-2. 🔄 **United States Phase 2** — Create 40 remaining provinces + cities + 10 fields each
+1. 🔄 **United States** — Phase 1 complete ✅ (11 provinces, 27 cities)
+2. 🔄 Phase 2 — Alabama: Birmingham [##########] 10/10 ✅, Montgomery [########--] 8/10, then Mobile/Huntsville
 
 ### Future (after US Phase 2)
 3. ⬜ United Kingdom (GB)
 4. ⬜ Germany (DE)
 5. ⬜ France (FR)
-6. ⬜ Russia (RU)
-7. ⬜ China (CN)
-8. ⬜ Japan (JP)
-9. ⬜ South Korea (KR)
-10. ⬜ India (IN)
-11. ⬜ Australia (AU)
-12. ⬜ Canada (CA)
-13. ⬜ Brazil (BR)
-14. ⬜ Israel (IL)
-15. ⬜ Saudi Arabia (SA)
-16. ⬜ Turkey (TR)
-17. ⬜ Egypt (EG)
-18. ⬜ Iraq (IQ)
-19. ⬜ Afghanistan (AF)
-20. ⬜ Syria (SY)
-21. ⬜ Lebanon (LB)
-22. ⬜ Yemen (YE)
-23. ⬜ Palestine (PS)
-24. ⬜ Bosnia and Herzegovina (BA)
+6. ⬜ Croatia — 10 provinces, 10 cities (HOLD — may resume)
 
 ---
 
