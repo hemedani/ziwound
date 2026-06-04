@@ -1,9 +1,17 @@
-import Image from "next/image";
-import Link from "next/link";
-import { MapPin, Globe, FileText, ChevronRight } from "lucide-react";
-import { Badge } from "@/components/ui/badge";
+import { Globe, MapPin, Building2, FileText } from "lucide-react";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 import { extractLocalizedText, stripHtml } from "@/lib/localized-text";
+import {
+  GlassCard,
+  GlassCardMedia,
+  GlassCardTitleOverlay,
+  GlassCardBadge,
+  GlassCardContent,
+  GlassCardDescription,
+  GlassCardTags,
+  GlassCardFooter,
+  GlassCardCta,
+} from "@/components/ui/glass-card";
 
 type Language = "fa" | "en" | "ar" | "zh" | "pt" | "es" | "nl" | "tr" | "ru";
 
@@ -66,101 +74,86 @@ export function LocationCard({ location, locale, type, translations }: LocationC
         ? translations.province
         : translations.city;
 
-  return (
-    <Link
-      href={href}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.02] glass-card transition-all duration-500 hover:-translate-y-1 hover:border-white/[0.12] hover:bg-white/[0.04] hover:shadow-2xl hover:shadow-crimson/5"
-    >
-      {/* Photo */}
-      <div className="relative h-56 w-full overflow-hidden">
-        {photoUrl ? (
-          <>
-            <Image
-              src={photoUrl}
-              alt={location.name}
-              fill
-              unoptimized
-              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
-          </>
-        ) : (
-          <div className="absolute inset-0 bg-gradient-to-br from-white/[0.03] to-white/[0.01]" />
-        )}
+  const typeIcon =
+    type === "country" ? <Globe className="h-3 w-3" /> :
+    type === "province" ? <MapPin className="h-3 w-3" /> :
+    <Building2 className="h-3 w-3" />;
 
+  // Build tags for stats with icons
+  const tags: Array<{ name?: string; color?: string; icon?: React.ReactNode }> = [];
+  if (provinceCount > 0) {
+    tags.push({
+      name: `${provinceCount} ${translations.provinces}`,
+      icon: <MapPin className="h-2.5 w-2.5" />,
+    });
+  }
+  if (cityCount > 0) {
+    tags.push({
+      name: `${cityCount} ${translations.cities}`,
+      icon: <Building2 className="h-2.5 w-2.5" />,
+    });
+  }
+  if (reportCount > 0) {
+    tags.push({
+      name: `${reportCount} ${translations.reports}`,
+      color: "#f87171",
+      icon: <FileText className="h-2.5 w-2.5" />,
+    });
+  }
+
+  return (
+    <GlassCard href={href}>
+      <GlassCardMedia imageUrl={photoUrl} alt={location.name} fallback="grid" height="lg">
         {/* Type badge */}
-        <div className="absolute start-4 top-4">
-          <Badge className="bg-black/40 text-offwhite backdrop-blur-md border border-white/10">
+        <GlassCardBadge position="top-start" variant="custom">
+          <span className="flex items-center gap-1.5">
+            {typeIcon}
             {typeLabel}
-          </Badge>
-        </div>
+          </span>
+        </GlassCardBadge>
 
         {/* Country breadcrumb for provinces/cities */}
         {location.country && (
-          <div className="absolute end-4 top-4">
-            <Badge className="bg-black/40 text-gold backdrop-blur-md border border-white/10">
-              <Globe className="h-3 w-3 me-1" />
+          <GlassCardBadge position="top-end" variant="custom" color="text-gold">
+            <span className="flex items-center gap-1.5">
+              <Globe className="h-3 w-3" />
               {location.country.name}
-            </Badge>
-          </div>
+            </span>
+          </GlassCardBadge>
         )}
 
-        {/* Bottom gradient overlay with name */}
-        <div className="absolute inset-x-0 bottom-0 p-5">
+        {/* Title overlay at bottom */}
+        <GlassCardTitleOverlay className="p-5">
           <h3 className="text-2xl font-bold text-offwhite leading-tight group-hover:text-gold transition-colors duration-300">
             {location.name}
           </h3>
           <p className="text-sm text-slate-body/80 mt-1">{location.english_name}</p>
-        </div>
-      </div>
+        </GlassCardTitleOverlay>
+      </GlassCardMedia>
 
-      {/* Content */}
-      <div className="flex flex-1 flex-col p-5">
+      <GlassCardContent className="p-5">
         {/* War info preview */}
         {(plainWars || plainCasualties) && (
           <div className="mb-4 space-y-1.5">
             {plainWars && (
-              <p className="text-sm text-slate-body/70 line-clamp-2 leading-relaxed">
-                {plainWars}
-              </p>
+              <GlassCardDescription text={plainWars} lines={2} className="mb-0" />
             )}
             {plainCasualties && (
-              <p className="text-xs text-slate-body/50 line-clamp-1">
-                {plainCasualties}
-              </p>
+              <p className="text-xs text-slate-body/50 line-clamp-1">{plainCasualties}</p>
             )}
           </div>
         )}
 
         {/* Stats */}
-        <div className="mt-auto flex flex-wrap gap-2">
-          {provinceCount > 0 && (
-            <Badge variant="outline" className="border-white/10 bg-white/5 text-slate-body">
-              <MapPin className="h-3 w-3 me-1" />
-              {provinceCount} {translations.provinces}
-            </Badge>
-          )}
-          {cityCount > 0 && (
-            <Badge variant="outline" className="border-white/10 bg-white/5 text-slate-body">
-              <Globe className="h-3 w-3 me-1" />
-              {cityCount} {translations.cities}
-            </Badge>
-          )}
-          {reportCount > 0 && (
-            <Badge className="bg-crimson/10 text-crimson-light border-crimson/20">
-              <FileText className="h-3 w-3 me-1" />
-              {reportCount} {translations.reports}
-            </Badge>
-          )}
-        </div>
+        <GlassCardTags tags={tags} />
 
-        {/* CTA */}
-        <div className="mt-4 flex items-center gap-1 text-sm font-medium text-crimson opacity-0 transition-all duration-300 group-hover:opacity-100">
-          <span>{translations.viewDetails}</span>
-          <ChevronRight className="h-4 w-4 transition-transform duration-300 rtl:rotate-180 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
-        </div>
-      </div>
-    </Link>
+      </GlassCardContent>
+
+      {/* CTA */}
+      <GlassCardFooter className="px-5">
+        <div />
+        <GlassCardCta text={translations.viewDetails} />
+      </GlassCardFooter>
+    </GlassCard>
   );
 }
