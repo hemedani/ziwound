@@ -870,6 +870,8 @@
     "individuals": "Физические лица",
     "organizations": "Организации",
     "individual": "Физическое лицо",
+    "individual": "Лицо",
+    "viewDetails": "Посмотреть детали",
     "organization": "Организация",
     "title": "Заголовок",
     "titlePlaceholder": "Введите название документа",

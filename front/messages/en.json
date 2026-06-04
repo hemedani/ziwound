@@ -1764,6 +1764,8 @@
     "result": "result",
     "results": "results",
     "tags": "Tags",
+    "individual": "Individual",
+    "viewDetails": "View Details",
     "organization": "Org"
   },
   "confirmation": {
