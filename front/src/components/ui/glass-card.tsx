@@ -406,7 +406,7 @@ export function GlassCardCta({ text = "View", icon, className }: GlassCardCtaPro
     >
       <span className="inline-flex items-center leading-none">{text}</span>
       {icon || (
-        <ChevronRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
+        <ChevronRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 rtl:rotate-180" />
       )}
     </div>
   );

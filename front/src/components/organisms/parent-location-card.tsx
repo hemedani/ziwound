@@ -71,7 +71,7 @@ export function ParentLocationCard({
       </div>
 
       {/* Arrow */}
-      <ChevronRight className="h-5 w-5 text-slate-body/20 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5" />
+      <ChevronRight className="h-5 w-5 text-slate-body/20 shrink-0 transition-transform duration-300 group-hover:translate-x-0.5 rtl:group-hover:-translate-x-0.5 rtl:rotate-180" />
     </Link>
   );
 }
