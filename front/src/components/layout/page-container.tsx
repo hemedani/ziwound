@@ -26,13 +26,11 @@ export function PageContainer({
       <div
         className={`absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] ${heroGradient} via-background to-background pointer-events-none`}
       />
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080801a_1px,transparent_1px),linear-gradient(to_bottom,#8080801a_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,#8080800d_1px,transparent_1px),linear-gradient(to_bottom,#8080800d_1px,transparent_1px)] bg-[size:24px_24px] pointer-events-none" />
       {meshAnimation && (
-        <>
-          <div className="mesh-sweep-glow absolute inset-0 pointer-events-none" aria-hidden="true" />
-          <div className="mesh-shimmer-glow absolute inset-0 pointer-events-none" aria-hidden="true" />
-        </>
+        <div className="mesh-sweep-glow absolute inset-0 pointer-events-none" aria-hidden="true" />
       )}
+
       <div className="relative z-10">
         {showHeader && title && (
           <header className="relative w-full overflow-hidden">

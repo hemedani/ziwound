@@ -622,16 +622,6 @@ body {
     will-change: transform, opacity;
 }
 
-/* 2. Intersection Shimmer — faint pulses at grid crossings */
-.mesh-shimmer-glow {
-    background-image:
-        radial-gradient(circle at 12px 12px, rgba(212, 175, 55, 0.10) 1px, transparent 2px),
-        radial-gradient(circle at 12px 12px, rgba(153, 27, 27, 0.07) 1px, transparent 2px);
-    background-size: 24px 24px;
-    animation: meshShimmer 8s ease-in-out infinite alternate;
-    will-change: opacity;
-}
-
 /* Slow diagonal sweep: light reveals grid gradually */
 @keyframes meshSweep {
     0%, 100% {
@@ -647,12 +637,6 @@ body {
     50% {
         background-position: 100% 100%;
     }
-}
-
-/* Intersection shimmer: soft pulse at grid crossings */
-@keyframes meshShimmer {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.9; }
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -671,8 +655,7 @@ body {
 
 /* === Reduced Motion === */
 @media (prefers-reduced-motion: reduce) {
-    .mesh-sweep-glow,
-    .mesh-shimmer-glow {
+    .mesh-sweep-glow {
         animation: none !important;
         opacity: 0.15 !important;
     }
