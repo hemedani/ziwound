@@ -434,7 +434,8 @@
       "locations": "Locations Mapped",
       "documents": "Documents Archived",
       "warCriminals": "War Criminals",
-      "reporters": "Reporters"
+      "reporters": "Reporters",
+      "richTextFields": "Rich Text Fields"
     },
     "featured": {
       "overline": "Featured",

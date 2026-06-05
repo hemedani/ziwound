@@ -443,7 +443,8 @@
       "locations": "Ubicaciones Mapeadas",
       "documents": "Documentos Archivados",
       "warCriminals": "Criminales de Guerra",
-      "reporters": "Denunciantes"
+      "reporters": "Denunciantes",
+      "richTextFields": "Campos de Texto Enriquecido"
     },
     "featured": {
       "overline": "Destacados",

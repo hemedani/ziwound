@@ -443,7 +443,8 @@
       "locations": "Locaties in Kaart Gebracht",
       "documents": "Documenten Gearchiveerd",
       "warCriminals": "Oorlogsmisdadigers",
-      "reporters": "Verslaggevers"
+      "reporters": "Verslaggevers",
+      "richTextFields": "Rich Text Velden"
     },
     "featured": {
       "overline": "Uitgelicht",

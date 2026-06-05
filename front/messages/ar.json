@@ -443,7 +443,8 @@
       "locations": "Locations Mapped",
       "documents": "Documents Archived",
       "warCriminals": "War Criminals",
-      "reporters": "المُبلّغون"
+      "reporters": "المُبلّغون",
+      "richTextFields": "حقول النص الغني"
     },
     "featured": {
       "overline": "مميز",

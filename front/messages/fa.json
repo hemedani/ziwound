@@ -436,7 +436,8 @@
       "locations": "مکان ثبت‌شده",
       "documents": "سند بایگانی‌شده",
       "warCriminals": "جنایتکاران جنگی",
-      "reporters": "گزارش‌دهنده"
+      "reporters": "گزارش‌دهنده",
+      "richTextFields": "فیلدهای متنی پیشرفته"
     },
     "featured": {
       "overline": "موارد برجسته",

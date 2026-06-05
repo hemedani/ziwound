@@ -443,7 +443,8 @@
       "locations": "已标注地点",
       "documents": "已存档文档",
       "warCriminals": "战犯",
-      "reporters": "报告者"
+      "reporters": "报告者",
+      "richTextFields": "富文本字段"
     },
     "featured": {
       "overline": "精选",
