@@ -205,7 +205,7 @@ export function HeroSlider({
                 >
                   <Link href={slide.ctaLink}>
                     {slide.ctaText}
-                    <ChevronRight className="h-5 w-5" />
+                    <ChevronRight className="h-5 w-5 rtl:rotate-180" />
                   </Link>
                 </Button>
 

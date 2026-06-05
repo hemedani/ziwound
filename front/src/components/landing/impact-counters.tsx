@@ -2,11 +2,11 @@
 
 import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { FileText, Globe, Users, Shield, Gavel, type LucideIcon } from "lucide-react";
+import { FileText, Globe, Users, Shield, Gavel, BookOpen, type LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const iconMap: Record<string, LucideIcon> = {
-  FileText, Globe, Users, Shield, Gavel,
+  FileText, Globe, Users, Shield, Gavel, BookOpen,
 };
 
 interface CounterItem {
@@ -93,7 +93,7 @@ export function ImpactCounters({
           {subtitle && <p className="text-lg text-slate-body leading-relaxed">{subtitle}</p>}
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-12">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 md:gap-12">
           {items.map((item, i) => {
             const Icon = iconMap[item.icon] || FileText;
             return (

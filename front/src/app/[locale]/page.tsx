@@ -128,6 +128,8 @@ export default async function Home({ params }: HomePageProps) {
   const provinceCount = dashBody.provinces ?? 0;
   const cityCount = dashBody.cities ?? 0;
 
+  const rteFieldsCount = (countryCount * 12 * 9) + (provinceCount * 10 * 9) + (cityCount * 10 * 9);
+
   const statsBody = statsRes.success && typeof statsRes.body === "object" ? statsRes.body : {};
   const geographicCounts = Array.isArray(statsBody.geographicCounts) ? statsBody.geographicCounts : [];
   const locationCount = geographicCounts.length;
@@ -363,6 +365,7 @@ export default async function Home({ params }: HomePageProps) {
           { icon: "Globe", end: countryCount, label: t("impactStats.countries") },
           { icon: "Users", end: userCount, label: t("impactStats.reporters") },
           { icon: "Gavel", end: warCriminalCount, label: t("impactStats.warCriminals") || "War Criminals" },
+          { icon: "BookOpen", end: rteFieldsCount, label: t("impactStats.richTextFields") || "Rich Text Fields" },
         ]}
       />
 
