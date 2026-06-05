@@ -27,9 +27,12 @@
 
 | Province | ID | Cities | Fields |
 |----------|----|--------|--------|
-| Alabama | `6a21d66c` | 2 | 10/10 ✅ (Birmingham), 8/10 (Montgomery) |
+| Alabama | `6a21d66c` | 4 | 10/10 ✅ (Birmingham, Montgomery, Mobile, Huntsville) |
+| Alaska | `6a21fded` | 3 | 10/10 ✅ (Anchorage, Fairbanks, Juneau) |
+| Arizona | `6a225b5a80f5d4f2fb742044` | 4 | Province 10/10 ✅; Phoenix 10/10 ✅; Tucson 10/10 ✅; Mesa 10/10 ✅; Flagstaff 10/10 ✅ |
+| Arkansas | `6a22603280f5d4f2fb74204a` | 0 | Province 10/10 ✅ |
 
-Pending: Alaska, Arizona, Arkansas, Colorado, Connecticut, Delaware, Hawaii, Idaho, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, North Carolina, North Dakota, Oklahoma, Oregon, Rhode Island, South Carolina, South Dakota, Tennessee, Utah, Vermont, Washington, West Virginia, Wisconsin, Wyoming
+Pending: Colorado, Connecticut, Delaware, Hawaii, Idaho, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, North Carolina, North Dakota, Oklahoma, Oregon, Rhode Island, South Carolina, South Dakota, Tennessee, Utah, Vermont, Washington, West Virginia, Wisconsin, Wyoming
 
 ## City Detail — Phase 1 ✅ Complete |
 
@@ -52,6 +55,8 @@ Pending: Alaska, Arizona, Arkansas, Colorado, Connecticut, Delaware, Hawaii, Ida
 | Alabama (province) | `6a21d66cfa501fcbe2807b30` |
 | Birmingham (city) | `6a21d66dfa501fcbe2807b31` |
 | Montgomery (city) | `6a21dff9fa501fcbe2807b36` |
+| Mobile (city) | `6a21f8a880f5d4f2fb74203e` |
+| Huntsville (city) | `6a21fb8780f5d4f2fb74203f` |
 | San Antonio (city) | `6a20037bc1b216fc5349f921` |
 | Buffalo (city) | `6a20205ec1b216fc5349f922` |
 | Albany (city) | `6a207a77c1b216fc5349f923` |
@@ -60,6 +65,15 @@ Pending: Alaska, Arizona, Arkansas, Colorado, Connecticut, Delaware, Hawaii, Ida
 | Aurora (city) | `6a2115bbc1b216fc5349f926` |
 | Arlington (city) | `6a2117c4c1b216fc5349f927` |
 | Augusta (city) | `6a211ac1c1b216fc5349f928` |
+| Alaska (province) | `6a21fded80f5d4f2fb742040` |
+| Anchorage (city) | `6a21fdf480f5d4f2fb742041` |
+| Fairbanks (city) | `6a22583e80f5d4f2fb742042` |
+| Juneau (city) | `6a225a3a80f5d4f2fb742043` |
+| Arizona (province) | `6a225b5a80f5d4f2fb742044` |
+| Phoenix (city) | `6a225c4e80f5d4f2fb742045` |
+| Tucson (city) | `6a225d4e80f5d4f2fb742047` |
+| Mesa (city) | `6a225e4180f5d4f2fb742048` |
+| Flagstaff (city) | `6a225f3d80f5d4f2fb742049` |
 
 ## HTML Standards Applied
 
@@ -86,3 +100,5 @@ All verified: **9 languages × identical tag counts** across every field.
 - `update` replaces the entire field — partial sends erase missing languages
 - Province-level fields follow the same 10-field schema as cities
 - 501 errors on `city.add` were caused by missing `isCapital` and `countryId`
+- **CRITICAL: Correct field names** — the 10 RTE fields are: `wars_history`, `conflict_timeline`, `casualties_info`, `notable_battles`, `occupation_info`, `destruction_level`, `civilian_impact`, `mass_graves_info`, `war_crimes_events`, `liberation_info`. NOT `perpetrators`/`casualties`/`survivors_and_displaced`/etc. Wrong names cause 501 errors.
+- Combined payload (>2 RTE fields) often returns 501 — send 2 fields per update call for reliability.

@@ -6,7 +6,7 @@
 
 ## 1. 📋 Your Job
 
-You are an AI Agent tasked with populating the ZiWound database with war-crimes documentation from an anti-imperialist perspective. You work in **micro-steps** (exactly 2 RTE fields per response), and you **update the tracking files** after every step.
+You are an AI Agent tasked with populating the ZiWound database with war-crimes documentation from an anti-imperialist perspective. You work in **micro-steps** (exactly 2 RTE fields per response), updating tracking files after every step and **automatically continuing** to the next step without pausing for confirmation.
 
 ---
 
@@ -134,14 +134,17 @@ Update ALL four files before reporting:
 ## 4. 🎯 Current Position
 
 > **Active Country:** United States (`entry_prompt/US/`) — Phase 2 🔄
-> **Current:** Alabama — Montgomery [########--] 8/10 (wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info done)
-> **Next:** Montgomery — war_crimes_events + liberation_info (fields 9-10)
+> **Current:** Arkansas — province 10/10 ✅
+> **Next:** Arkansas — Little Rock city (create + fill 10 RTE fields)
 
 ## 5. ➡️ Next Steps (planned order)
 
 ### Phase 2 🔄 In Progress
 1. 🔄 **United States** — Phase 1 complete ✅ (11 provinces, 27 cities)
-2. 🔄 Phase 2 — Alabama: Birmingham [##########] 10/10 ✅, Montgomery [########--] 8/10, then Mobile/Huntsville
+2. ✅ Phase 2 — Alabama: province 10/10 ✅, cities 10/10 ✅
+3. ✅ Phase 2 — Alaska: province 10/10 ✅, cities 10/10 ✅
+4. ✅ Phase 2 — Arizona: province 10/10 ✅, all cities 10/10 ✅ (COMPLETE)
+5. 🔄 Phase 2 — Arkansas: province 10/10 ✅, Little Rock ❌, Fayetteville ❌, Fort Smith ❌
 
 ### Future (after US Phase 2)
 3. ⬜ United Kingdom (GB)
@@ -186,6 +189,11 @@ Update ALL four files before reporting:
 | Florida | `6a1f419cc1b216fc5349f911` |
 | Ohio | `6a1fcae5c1b216fc5349f914` |
 | Michigan | `6a1fcd84c1b216fc5349f918` |
+| Alabama | `6a21d66cfa501fcbe2807b30` |
+| Alaska | `6a21fded80f5d4f2fb742040` |
+| Arizona | `6a225b5a80f5d4f2fb742044` |
+| Phoenix | `6a225c4e80f5d4f2fb742045` |
+| Tucson | `6a225d4e80f5d4f2fb742047` |
 
 ---
 
@@ -222,4 +230,4 @@ entry_prompt/
 - [ ] Verify HTML tag parity across all 9 languages
 - [ ] Send the update
 - [ ] Update ALL tracking files (TODO.md, RESULT.md, CONTINUE.md)
-- [ ] Report and STOP
+- [ ] Report summary of what was completed

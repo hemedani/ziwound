@@ -67,23 +67,27 @@
 ## ⏳ Pending — Province & City Creation + 10 Fields Each
 
 ### Alabama `6a21d66c`
+- [x] Province RTE fields [##########] 10/10
 - [x] Birmingham [##########] 10/10
-- [ ] Montgomery [########--] 8/10
-- [ ] Mobile ❌ needs city creation
-- [ ] Huntsville ❌ needs city creation
+- [x] Montgomery [##########] 10/10
+- [x] Mobile [##########] 10/10
+- [x] Huntsville [##########] 10/10
 
-### Alaska ❌ needs province creation
-- [ ] Anchorage ❌ needs city creation
-- [ ] Fairbanks ❌ needs city creation
-- [ ] Juneau ❌ needs city creation
+### Alaska `6a21fded`
+- [x] Province RTE fields [##########] 10/10
+- [x] Anchorage [##########] 10/10
+- [x] Fairbanks [##########] 10/10
+- [x] Juneau [##########] 10/10
 
-### Arizona ❌ needs province creation
-- [ ] Phoenix ❌ needs city creation
-- [ ] Tucson ❌ needs city creation
-- [ ] Mesa ❌ needs city creation
-- [ ] Flagstaff ❌ needs city creation
+### Arizona `6a225b5a80f5d4f2fb742044`
+- [x] Province RTE fields [##########] 10/10
+- [x] Phoenix [##########] 10/10 `6a225c4e80f5d4f2fb742045`
+- [x] Tucson [##########] 10/10 `6a225d4e80f5d4f2fb742047`
+- [x] Mesa [##########] 10/10 `6a225e4180f5d4f2fb742048`
+- [x] Flagstaff [##########] 10/10 `6a225f3d80f5d4f2fb742049`
 
-### Arkansas ❌ needs province creation
+### Arkansas `6a22603280f5d4f2fb74204a`
+- [x] Province RTE fields [##########] 10/10
 - [ ] Little Rock ❌ needs city creation
 - [ ] Fayetteville ❌ needs city creation
 - [ ] Fort Smith ❌ needs city creation
