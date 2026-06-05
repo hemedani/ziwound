@@ -40,6 +40,7 @@ export function Breadcrumbs() {
 
       // Map segments to translation keys
       let label = segment;
+      let href = `/${locale}${currentPath}`;
       switch (segment) {
         case "about":
           label = tHeader("about");
@@ -72,13 +73,13 @@ export function Breadcrumbs() {
           label = t("explore");
           break;
         case "countries":
-          label = t("countries");
-          break;
         case "provinces":
-          label = t("provinces");
-          break;
         case "cities":
-          label = t("cities");
+          label = t(segment);
+          // Link to explore index when next segment is a detail ID (no listing page)
+          if (index + 1 < segments.length && segments[index + 1].match(/^[0-9a-fA-F]{24}$/)) {
+            href = `/${locale}/explore`;
+          }
           break;
         default:
           // For dynamic segments like IDs, use a generic label
@@ -91,7 +92,7 @@ export function Breadcrumbs() {
 
       items.push({
         label,
-        href: `/${locale}${currentPath}`,
+        href,
         isLast,
       });
     });
@@ -111,7 +112,7 @@ export function Breadcrumbs() {
     >
       <ol className="flex flex-wrap items-center gap-2 text-sm text-muted-foreground">
         {breadcrumbs.map((item, index) => (
-          <li key={item.href} className="flex items-center">
+          <li key={`${item.href}-${index}`} className="flex items-center">
             {index > 0 && (
               <ChevronRight className="h-4 w-4 mx-2 rtl:rotate-180 text-muted-foreground/50" />
             )}
