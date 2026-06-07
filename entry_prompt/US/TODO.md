@@ -105,8 +105,9 @@
 - [x] Bridgeport [##########] 10/10 ✅ `6a228c0ccf597f7ec55684ae`
 - [x] Stamford [##########] 10/10 ✅ `6a228c0ccf597f7ec55684af`
 
-### Delaware ❌ needs province creation
-- [ ] Wilmington ❌ needs city creation
+### Delaware `6a258970cf597f7ec55684b7`
+- [ ] Province RTE fields [----------] 0/10
+- [x] Wilmington `6a258971cf597f7ec55684b8` [##--------] 2/10 (wars_history, conflict_timeline ✅)
 - [ ] Dover ❌ needs city creation
 - [ ] Newark ❌ needs city creation
 
