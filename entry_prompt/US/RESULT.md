@@ -1,9 +1,9 @@
 # United States — Results Summary
 
-> **Last updated:** 2026-06-04
-> **Total provinces:** 11 ✅ complete + 40 ❌ pending
-> **Total cities:** 27 ✅ complete + pending
-> **Phase:** 1 complete (11 provinces, 27 cities) → Phase 2: create remaining 40 provinces
+> **Last updated:** 2026-06-05
+> **Total provinces:** 12 ✅ complete + 39 ❌ pending
+> **Total cities:** 31 ✅ complete + pending
+> **Phase:** 1 complete (11 provinces, 27 cities) → Phase 2: create remaining 39 provinces
 
 ---
 
@@ -30,9 +30,11 @@
 | Alabama | `6a21d66c` | 4 | 10/10 ✅ (Birmingham, Montgomery, Mobile, Huntsville) |
 | Alaska | `6a21fded` | 3 | 10/10 ✅ (Anchorage, Fairbanks, Juneau) |
 | Arizona | `6a225b5a80f5d4f2fb742044` | 4 | Province 10/10 ✅; Phoenix 10/10 ✅; Tucson 10/10 ✅; Mesa 10/10 ✅; Flagstaff 10/10 ✅ |
-| Arkansas | `6a22603280f5d4f2fb74204a` | 0 | Province 10/10 ✅ |
+| Arkansas | `6a22603280f5d4f2fb74204a` | 3 | Province 10/10 ✅; Little Rock 10/10 ✅; Fayetteville 10/10 ✅; Fort Smith 10/10 ✅ |
+| Colorado | `6a227ecccf597f7ec55684a6` | 4 | Province 10/10 ✅; Denver 10/10 ✅; Colorado Springs 10/10 ✅; Aurora 10/10 ✅; Boulder 10/10 ✅ |
+| Connecticut | `6a228c02cf597f7ec55684ab` | 4 | Province 10/10 ✅; Hartford 10/10 ✅; New Haven 10/10 ✅; Bridgeport 10/10 ✅; Stamford 10/10 ✅ |
 
-Pending: Colorado, Connecticut, Delaware, Hawaii, Idaho, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, North Carolina, North Dakota, Oklahoma, Oregon, Rhode Island, South Carolina, South Dakota, Tennessee, Utah, Vermont, Washington, West Virginia, Wisconsin, Wyoming
+Pending: Delaware, Hawaii, Idaho, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, North Carolina, North Dakota, Oklahoma, Oregon, Rhode Island, South Carolina, South Dakota, Tennessee, Utah, Vermont, Washington, West Virginia, Wisconsin, Wyoming
 
 ## City Detail — Phase 1 ✅ Complete |
 
@@ -74,6 +76,20 @@ Pending: Colorado, Connecticut, Delaware, Hawaii, Idaho, Indiana, Iowa, Kansas, 
 | Tucson (city) | `6a225d4e80f5d4f2fb742047` |
 | Mesa (city) | `6a225e4180f5d4f2fb742048` |
 | Flagstaff (city) | `6a225f3d80f5d4f2fb742049` |
+| Arkansas (province) | `6a22603280f5d4f2fb74204a` |
+| Little Rock (city) | `6a22611a80f5d4f2fb74204b` |
+| Fayetteville (city) | `6a2261f780f5d4f2fb74204c` |
+| Fort Smith (city) | `6a227c53cf597f7ec55684a4` |
+| Colorado (province) | `6a227ecccf597f7ec55684a6` |
+| Denver (city) | `6a227ecccf597f7ec55684a7` |
+| Colorado Springs (city) | `6a227ed7cf597f7ec55684a8` |
+| Aurora (city) | `6a227ed7cf597f7ec55684a9` |
+| Boulder (city) | `6a227ed8cf597f7ec55684aa` |
+| Connecticut (province) | `6a228c02cf597f7ec55684ab` |
+| Hartford (city) | `6a228c03cf597f7ec55684ac` |
+| New Haven (city) | `6a228c0ccf597f7ec55684ad` |
+| Bridgeport (city) | `6a228c0ccf597f7ec55684ae` |
+| Stamford (city) | `6a228c0ccf597f7ec55684af` |
 
 ## HTML Standards Applied
 

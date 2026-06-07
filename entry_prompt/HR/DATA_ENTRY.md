@@ -1,5 +1,21 @@
 # Croatia — Data Entry Prompt
 
+## 🚨 CRITICAL: INTERNET RESEARCH & DATA QUALITY MANDATE
+
+> **Every single microstep REQUIRES fresh internet research.** After a few steps, agents routinely stop searching the web and begin fabricating or recycling content from previous entries. This is UNACCEPTABLE.
+
+### You MUST:
+1. **Search the internet** for the specific city/province before writing any content
+2. Find **real historical events** — actual wars, battles, casualties, massacres, occupation periods with **specific dates, names, locations, and numbers**
+3. Write **detailed and comprehensive** content — multiple substantive paragraphs per field, not vague summaries
+4. **Never reuse or recycle** content from another city — each location has a unique history
+5. Cover the **full historical scope** — from ancient conflicts through modern wars (WWI, WWII, Croatian War of Independence, etc.)
+
+### Consequences of poor data:
+- Fabricated/generic data will be **rejected**
+- The purpose is **real war crimes documentation** — accuracy and detail are paramount
+- If you don't know something, **search it** — don't invent it
+
 ## 🔐 System Access
 - **Backend URL:** Loaded from `.env` (`API_URL`)
 - **Ghost Token:** Loaded from `.env` (`GHOST_TOKEN`)
@@ -113,4 +129,27 @@ api({
         "get": {"_id": 1, "name": 1}
     }
 })
+```
+
+## 🚫 Banned
+- ❌ Fabricating or recycling content — every entry MUST be based on internet research
+- ❌ Generic/vague paragraphs — all content must be detailed with specific dates, names, numbers
+- ❌ Skipping internet research — always search before writing
+- ❌ More than 2 fields per step
+- ❌ Fewer than 9 languages per field
+- ❌ Bearer prefix in token header
+- ❌ Skipping `isCapital` in city.add
+- ❌ Multiple events in a single `<p>` tag
+
+## 🔄 Workflow (per response) — PAUSE AFTER EACH STEP
+
+> **⚠️ YOU MUST ASK AFTER EVERY MICROSTEP:** After completing the step, output a summary and explicitly ask **"Continue to next microstep?"** then **WAIT** for the user to respond with a new prompt. Never auto-advance.
+
+```
+1. 🔍 RESEARCH → Search the internet for this specific city/province. Find real war crimes, casualties, battles, events with dates/numbers.
+2. ASSESS → Query DB, read TODO.md/RESULT.md to locate position
+3. EXECUTE → Process exactly 2 RTE fields (create city/province first if needed) — DATA MUST BE DETAILED & COMPREHENSIVE
+4. UPDATE FILES → Update TODO.md, RESULT.md, CONTINUE.md
+5. REPORT → Output status block and ASK "Continue to next microstep?"
+6. WAIT — Do NOT proceed until user responds
 ```

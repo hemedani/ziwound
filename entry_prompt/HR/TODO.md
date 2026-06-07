@@ -6,19 +6,23 @@
 - [x] Zagreb — [##########] 10/10
 
 ### Vukovarsko-srijemska `6a21d83f`
-- [x] Vukovar — [##--------] 2/10
+- [x] Vukovar — [##########] 10/10
 
-### Dubrovačko-neretvanska ❌ needs province creation
-- [ ] Dubrovnik ❌ needs city creation
+### Dubrovačko-neretvanska `6a227230cf597f7ec55684a2`
+- [x] Province RTE fields [##########] 10/10 ✅
+- [x] Dubrovnik `6a227238cf597f7ec55684a3` [##########] 10/10 ✅
 
-### Osječko-baranjska ❌ needs province creation
-- [ ] Osijek ❌ needs city creation
+### Osječko-baranjska `6a22c486cf597f7ec55684b0`
+- [x] Province RTE fields [##########] 10/10 ✅
+- [x] Osijek `6a22c48dcf597f7ec55684b1` [##########] 10/10 ✅
 
-### Splitsko-dalmatinska ❌ needs province creation
-- [ ] Split ❌ needs city creation
+### Splitsko-dalmatinska `6a255c60cf597f7ec55684b3`
+- [x] Province RTE fields [##########] 10/10 ✅
+- [x] Split `6a255c6ecf597f7ec55684b4` [##########] 10/10 ✅
 
-### Sisačko-moslavačka ❌ needs province creation
-- [ ] Sisak ❌ needs city creation
+### Sisačko-moslavačka `6a256366cf597f7ec55684b5`
+- [ ] Province RTE fields [----------] 0/10
+- [ ] Sisak `6a256366cf597f7ec55684b6` [####------] 4/10
 
 ### Zadarska ❌ needs province creation
 - [ ] Zadar ❌ needs city creation

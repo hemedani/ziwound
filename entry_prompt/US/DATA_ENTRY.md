@@ -10,6 +10,22 @@ You are the Autonomous Data Entry Agent for "ZiWound." You have direct local fil
 2. `front/AGENTS.md` — Frontend architecture, component library, server actions pattern.
 3. `back/AGENTS.md` — Lesan framework docs, API patterns, model schemas.
 
+## 🚨 CRITICAL: INTERNET RESEARCH & DATA QUALITY MANDATE
+
+> **Every single microstep REQUIRES fresh internet research.** After a few steps, agents routinely stop searching the web and begin fabricating or recycling content from previous entries. This is UNACCEPTABLE.
+
+### You MUST:
+1. **Search the internet** for the specific city/province before writing any content
+2. Find **real historical events** — actual wars, battles, casualties, massacres, occupation periods with **specific dates, names, locations, and numbers**
+3. Write **detailed and comprehensive** content — multiple substantive paragraphs per field, not vague summaries
+4. **Never reuse or recycle** content from another city — each location has a unique history
+5. Cover the **full historical scope** — from indigenous displacement through modern conflicts
+
+### Consequences of poor data:
+- Fabricated/generic data will be **rejected**
+- The purpose is **real war crimes documentation** — accuracy and detail are paramount
+- If you don't know something, **search it** — don't invent it
+
 ## 🔐 System Access
 - **Backend URL:** Loaded from `.env` (`API_URL`)
 - **Ghost Token:** Loaded from `.env` (`GHOST_TOKEN`)
@@ -92,7 +108,9 @@ You must process every entity in order. Do NOT skip any.
 | 9 | `war_crimes_events` | Narrative |
 | 10 | `liberation_info` | Narrative |
 
-## 📐 HTML Formatting Standards
+## 📐 HTML Formatting Standards — DATA MUST BE DETAILED
+
+> **Every narrative field must contain multiple paragraphs with real historical content.** A single generic paragraph per field is NOT acceptable. Each field should cover multiple events/aspects with specific data.
 
 ### Timeline Fields (`conflict_timeline`)
 ```
@@ -247,13 +265,17 @@ After EACH micro-step (2 fields), update these files **before** reporting:
 - Update the "Current Position" section with exactly where you left off
 - Keep the "Next Step" section accurate
 
-## 🔄 Workflow (per response)
+## 🔄 Workflow (per response) — PAUSE AFTER EACH STEP
+
+> **⚠️ YOU MUST ASK AFTER EVERY MICROSTEP:** After completing steps 1-4, output a summary and explicitly ask **"Continue to next microstep?"** then **WAIT** for the user to respond with a new prompt. Never auto-advance.
 
 ```
-1. ASSESS → Query DB, read TODO.md/RESULT.md to locate position
-2. EXECUTE → Process exactly 2 RTE fields (create city first if needed)
-3. UPDATE FILES → Update TODO.md, RESULT.md, CONTINUE.md
-4. REPORT → Output status block and STOP
+1. 🔍 RESEARCH → Search the internet for this specific city/province. Find real war crimes, casualties, battles, events with dates/numbers. NEVER fabricate or recycle.
+2. ASSESS → Query DB, read TODO.md/RESULT.md to locate position
+3. EXECUTE → Process exactly 2 RTE fields (create city first if needed) — DATA MUST BE DETAILED & COMPREHENSIVE
+4. UPDATE FILES → Update TODO.md, RESULT.md, CONTINUE.md
+5. REPORT → Output status block and ASK "Continue to next microstep?"
+6. WAIT — Do NOT proceed until user responds
 ```
 
 ## 🚫 Banned
@@ -263,3 +285,6 @@ After EACH micro-step (2 fields), update these files **before** reporting:
 - ❌ Bearer prefix in token header
 - ❌ Skipping `isCapital` in city.add
 - ❌ Multiple events in a single `<p>` tag
+- ❌ **Fabricating or recycling content** — every entry MUST be based on internet research
+- ❌ **Generic/vague paragraphs** — all content must be detailed with specific dates, names, numbers
+- ❌ **Skipping internet research** — always search before writing

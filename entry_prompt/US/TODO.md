@@ -5,7 +5,7 @@
 
 ---
 
-## ✅ Complete (11 provinces, 27 cities — 10/10 each)
+## ✅ Complete (12 provinces, 31 cities — 10/10 each)
 
 ### California `6a1f28cf`
 - [x] Los Angeles — 10/10
@@ -62,6 +62,13 @@
 - [x] Flint — 10/10
 - [x] Grand Rapids — 10/10
 
+### Colorado `6a227ecccf597f7ec55684a6`
+- [x] Province RTE fields — 10/10
+- [x] Denver `6a227ecccf597f7ec55684a7` — 10/10
+- [x] Colorado Springs `6a227ed7cf597f7ec55684a8` — 10/10
+- [x] Aurora `6a227ed7cf597f7ec55684a9` — 10/10
+- [x] Boulder `6a227ed8cf597f7ec55684aa` — 10/10
+
 ---
 
 ## ⏳ Pending — Province & City Creation + 10 Fields Each
@@ -88,21 +95,15 @@
 
 ### Arkansas `6a22603280f5d4f2fb74204a`
 - [x] Province RTE fields [##########] 10/10
-- [ ] Little Rock ❌ needs city creation
-- [ ] Fayetteville ❌ needs city creation
-- [ ] Fort Smith ❌ needs city creation
-
-### Colorado ❌ needs province creation
-- [ ] Denver ❌ needs city creation
-- [ ] Colorado Springs ❌ needs city creation
-- [ ] Aurora ❌ needs city creation
-- [ ] Boulder ❌ needs city creation
-
-### Connecticut ❌ needs province creation
-- [ ] Hartford ❌ needs city creation
-- [ ] New Haven ❌ needs city creation
-- [ ] Bridgeport ❌ needs city creation
-- [ ] Stamford ❌ needs city creation
+- [x] Little Rock [##########] 10/10 `6a22611a80f5d4f2fb74204b`
+- [x] Fayetteville [##########] 10/10 `6a2261f780f5d4f2fb74204c`
+- [x] Fort Smith [##########] 10/10 `6a227c53cf597f7ec55684a4`
+### Connecticut `6a228c02cf597f7ec55684ab`
+- [x] Province RTE fields [##########] 10/10 ✅
+- [x] Hartford [##########] 10/10 ✅ `6a228c03cf597f7ec55684ac`
+- [x] New Haven [##########] 10/10 ✅ `6a228c0ccf597f7ec55684ad`
+- [x] Bridgeport [##########] 10/10 ✅ `6a228c0ccf597f7ec55684ae`
+- [x] Stamford [##########] 10/10 ✅ `6a228c0ccf597f7ec55684af`
 
 ### Delaware ❌ needs province creation
 - [ ] Wilmington ❌ needs city creation

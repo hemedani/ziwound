@@ -1,7 +1,7 @@
 # 🌍 Country-Level Data Entry Progress
 
-## Completed
-- [x] **United States** (`US/`) — 27 cities, 10/10 each ✅
+## Paused (half-finished — resume after Croatia)
+- [ ] **United States** (`US/`) — 12 provinces (incl. 6 Phase 2), 31 cities 10/10 ✅; **39 provinces + cities still pending** — ⚠️ MUST finish after Croatia
 
 ## Active
 - [ ] **Croatia** (`HR/`) — Country 12/12 ✅, cities in progress
