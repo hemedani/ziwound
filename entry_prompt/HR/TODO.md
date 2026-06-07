@@ -22,7 +22,7 @@
 
 ### Sisačko-moslavačka `6a256366cf597f7ec55684b5`
 - [ ] Province RTE fields [----------] 0/10
-- [ ] Sisak `6a256366cf597f7ec55684b6` [####------] 4/10
+- [ ] Sisak `6a256366cf597f7ec55684b6` [######----] 6/10
 
 ### Zadarska ❌ needs province creation
 - [ ] Zadar ❌ needs city creation

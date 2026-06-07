@@ -136,8 +136,8 @@ Update ALL four files before reporting (then **PAUSE and ask user to continue**)
 ## 4. 🎯 Current Position
 
 > **Active Country:** Croatia (`entry_prompt/HR/`) 🔄
-> **Current:** Sisačko-moslavačka province (0/10) + Sisak city (4/10)
-> **Next:** Fill fields 5–6 for Sisak city (occupation_info + destruction_level)
+> **Current:** Sisačko-moslavačka province (0/10) + Sisak city (6/10)
+> **Next:** Fill fields 7–8 for Sisak city (civilian_impact + mass_graves_info)
 
 ## 5. ➡️ Next Steps (planned order)
 
