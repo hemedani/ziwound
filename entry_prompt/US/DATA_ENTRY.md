@@ -258,12 +258,9 @@ After EACH micro-step (2 fields), update these files **before** reporting:
 - Update the province table with latest field counts
 - Add any new ObjectIds to the key table
 
-### 3. `entry_prompt/TODO.md`
-- If a country's status changes, update the checkbox
-
-### 4. `entry_prompt/CONTINUE.md`
+### 3. `entry_prompt/US/CONTINUE.md`
 - Update the "Current Position" section with exactly where you left off
-- Keep the "Next Step" section accurate
+- Keep the progress numbers accurate
 
 ## 🔄 Workflow (per response) — PAUSE AFTER EACH STEP
 
@@ -271,9 +268,9 @@ After EACH micro-step (2 fields), update these files **before** reporting:
 
 ```
 1. 🔍 RESEARCH → Search the internet for this specific city/province. Find real war crimes, casualties, battles, events with dates/numbers. NEVER fabricate or recycle.
-2. ASSESS → Query DB, read TODO.md/RESULT.md to locate position
+2. ASSESS → Query DB, read TODO.md/RESULT.md/CONTINUE.md to locate position
 3. EXECUTE → Process exactly 2 RTE fields (create city first if needed) — DATA MUST BE DETAILED & COMPREHENSIVE
-4. UPDATE FILES → Update TODO.md, RESULT.md, CONTINUE.md
+4. UPDATE FILES → Update TODO.md, RESULT.md, CONTINUE.md (all in entry_prompt/US/)
 5. REPORT → Output status block and ASK "Continue to next microstep?"
 6. WAIT — Do NOT proceed until user responds
 ```
