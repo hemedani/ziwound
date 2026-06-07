@@ -5,9 +5,9 @@
 ## Current Position
 
 - **Country:** Croatia (`6a12a0a084ffe580f176d0ef`)
-- **Province:** Sisačko-moslavačka (`6a256366cf597f7ec55684b5`) — 0/10 fields
+- **Province:** Sisačko-moslavačka (`6a256366cf597f7ec55684b5`) — 2/10 fields ✅
 - **City:** Sisak (`6a256366cf597f7ec55684b6`) — 10/10 ✅
-- **Next:** Fill fields 1–2 (`wars_history` + `conflict_timeline`) for Sisačko-moslavačka province
+- **Next:** Fill fields 3–4 (`casualties_info` + `notable_battles`) for Sisačko-moslavačka province
 
 ## Remaining Targets
 
@@ -44,8 +44,8 @@
 
 - Provinces created: 6/10
 - Cities created: 6/10
-- Province fields entered: 50/100
+- Province fields entered: 52/100
 - City fields entered: 58/100
-- Total fields entered: 108/200
+- Total fields entered: 110/200
 
 > **Update this file after every microstep:** bump the progress bars and field counts above.

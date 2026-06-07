@@ -11,7 +11,7 @@
 | Dubrovačko-neretvanska | `6a227230cf597f7ec55684a2` | Dubrovnik | `6a227238cf597f7ec55684a3` | Province 10/10 ✅, City 10/10 ✅ |
 | Osječko-baranjska | `6a22c486cf597f7ec55684b0` | Osijek | `6a22c48dcf597f7ec55684b1` | Province 10/10 ✅, City 10/10 ✅ |
 | Splitsko-dalmatinska | `6a255c60cf597f7ec55684b3` | Split | `6a255c6ecf597f7ec55684b4` | Province 10/10 ✅, City 10/10 ✅ |
-| Sisačko-moslavačka | `6a256366cf597f7ec55684b5` | Sisak | `6a256366cf597f7ec55684b6` | Province 0/10, City 10/10 ✅ (wars_history ✅, conflict_timeline ✅, casualties_info ✅, notable_battles ✅, occupation_info ✅, destruction_level ✅, civilian_impact ✅, mass_graves_info ✅, war_crimes_events ✅, liberation_info ✅) |
+| Sisačko-moslavačka | `6a256366cf597f7ec55684b5` | Sisak | `6a256366cf597f7ec55684b6` | Province 2/10 (wars_history ✅, conflict_timeline ✅), City 10/10 ✅ (wars_history ✅, conflict_timeline ✅, casualties_info ✅, notable_battles ✅, occupation_info ✅, destruction_level ✅, civilian_impact ✅, mass_graves_info ✅, war_crimes_events ✅, liberation_info ✅) |
 
 ## Key ObjectIds (Active: Sisačko-moslavačka province)
 | Entity | ObjectId |
@@ -38,6 +38,6 @@
 ## Progress
 - Provinces created: 6/10
 - Cities created: 6/10
-- Province fields entered: 50/100
+- Province fields entered: 52/100
 - City fields entered: 58/100
-- Total fields entered: 108/200
+- Total fields entered: 110/200

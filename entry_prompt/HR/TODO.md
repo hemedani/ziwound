@@ -21,7 +21,7 @@
 - [x] Split `6a255c6ecf597f7ec55684b4` [##########] 10/10 ✅
 
 ### Sisačko-moslavačka `6a256366cf597f7ec55684b5`
-- [ ] Province RTE fields [----------] 0/10
+- [x] Province RTE fields [##--------] 2/10 (wars_history ✅, conflict_timeline ✅)
 - [x] Sisak `6a256366cf597f7ec55684b6` [##########] 10/10 ✅
 
 ### Zadarska ❌ needs province creation
