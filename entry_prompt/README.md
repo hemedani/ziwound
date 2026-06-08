@@ -33,3 +33,10 @@ It updates `CONTINUE.md`, `TODO.md`, and `RESULT.md` after every microstep — a
 - **Never edit files outside your own country folder**
 - The root `entry_prompt/README.md` and `entry_prompt/TODO.md` are static — set up once by an admin
 - No shared `CONTINUE.md` — each country tracks its own position independently
+
+## ⚠️ Character Encoding Rule (ALL countries)
+
+Non-ASCII content (Persian, Arabic, Chinese, Cyrillic, etc.) **will corrupt** into mojibake if encoding is mishandled. Every country's DATA_ENTRY.md must include encoding guidance. The critical rule:
+
+> **Always use `json.dumps(payload, ensure_ascii=False)` when sending API payloads.**  
+> Omitting `ensure_ascii=False` is the #1 cause of data corruption in this project.

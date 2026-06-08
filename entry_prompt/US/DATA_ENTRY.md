@@ -157,6 +157,16 @@ You must process every entity in order. Do NOT skip any.
 2. **Information parity:** No summarizing, truncating, or skipping events in non-English versions
 3. **Verify:** Count tags before sending — use `content.count('<h4>')` in Python
 
+### ⚠️ Character Encoding — Prevent Mojibake
+Non-ASCII characters (فارسی, العربية, 中文, Русский, Türkçe, etc.) will corrupt if encoding is mishandled:
+
+1. **Python script header:** Always start scripts with `# -*- coding: utf-8 -*-`
+2. **JSON serialization:** ALWAYS use `json.dumps(payload, ensure_ascii=False)` — never omit `ensure_ascii=False` or non-ASCII chars become `\uXXXX` escape sequences
+3. **Request encoding:** Always `.encode()` the JSON body (sends as UTF-8 bytes)
+4. **File I/O:** When reading/writing `.py` or `.json` files with non-ASCII content, always specify `encoding="utf-8"`
+5. **Source files:** Save all `.py` files with UTF-8 encoding (most editors default to this, but verify)
+6. **Verification:** Before sending an API call, print one non-ASCII field to verify it looks correct (e.g. `print(payload["details"]["set"]["wars_history"]["fa"][:100])`)
+
 ## 🔌 API Patterns
 
 ### Create Province (uses `api()` from Query Helper) — NEW PHASE 2
@@ -241,6 +251,8 @@ def api(payload):
     return json.loads(urllib.request.urlopen(req).read())
 ```
 
+> **⚠️ `ensure_ascii=False` is NON-NEGOTIABLE.** Omitting it turns Persian/Arabic/Chinese/Russian characters into `\uXXXX` escape sequences, corrupting the data stored in MongoDB — and it can't be fixed retroactively.
+
 ## 📁 TRACKING FILES — YOU MUST UPDATE THESE EVERY STEP
 
 After EACH micro-step (2 fields), update these files **before** reporting:
@@ -285,3 +297,4 @@ After EACH micro-step (2 fields), update these files **before** reporting:
 - ❌ **Fabricating or recycling content** — every entry MUST be based on internet research
 - ❌ **Generic/vague paragraphs** — all content must be detailed with specific dates, names, numbers
 - ❌ **Skipping internet research** — always search before writing
+- ❌ **Omitting `ensure_ascii=False` in `json.dumps()`** — causes permanent mojibake corruption of all non-ASCII text

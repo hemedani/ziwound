@@ -24,6 +24,7 @@ entry_prompt/{COUNTRY_CODE}/DATA_ENTRY.md ← field defs, API patterns, HTML rul
 - [ ] Query the DB — verify the TODO matches reality; **if data is missing/bad, STOP and argue to fix it first. Do NOT silently proceed.**
 - [ ] Generate **detailed, comprehensive** content for exactly **2 fields × 9 languages** — each field must have real data with specific dates, names, numbers
 - [ ] **Verify HTML tag count parity** across all 9 languages before sending (e.g. `content.count('<h4>')`)
+- [ ] **Verify non-ASCII characters look correct** — print a sample Persian/Arabic/Chinese string to check for mojibake
 - [ ] Send the update via API
 - [ ] Update ALL 3 tracking files: `CONTINUE.md`, `TODO.md`, `RESULT.md`
 - [ ] **Report summary and ASK "Continue to next microstep?" — WAIT for user. Never auto-advance.**
@@ -181,6 +182,7 @@ Output summary → ask **"Continue to next microstep?"** → **WAIT** for user.
 | 7 | **Verify HTML tag parity** across ALL 9 languages | Structural mismatch causes rendering bugs |
 | 8 | **If DB data is missing/bad, STOP and argue** | Never silently proceed with poor data |
 | 9 | **Never reuse content** from another city | Each location has a unique history |
+| 10 | **Always `ensure_ascii=False`** in `json.dumps()` | Omitting it corrupts all non-ASCII text into `\uXXXX` escape sequences — irreversible |
 
 ---
 
@@ -221,6 +223,8 @@ def api(payload):
     req = urllib.request.Request(API_URL, data=data, headers=HEADERS, method='POST')
     return json.loads(urllib.request.urlopen(req).read())
 ```
+
+> **⚠️ `ensure_ascii=False` is NON-NEGOTIABLE.** Without it, every Persian `گ`, Arabic `ع`, Chinese `战`, Russian `б`, etc. gets replaced with `\uXXXX` in MongoDB. This corruption is **permanent and cannot be fixed retroactively.**
 
 ---
 
