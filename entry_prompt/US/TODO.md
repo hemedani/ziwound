@@ -107,7 +107,7 @@
 
 ### Delaware `6a258970cf597f7ec55684b7`
 - [ ] Province RTE fields [----------] 0/10
-- [x] Wilmington `6a258971cf597f7ec55684b8` [##--------] 2/10 (wars_history, conflict_timeline ✅)
+- [x] Wilmington `6a258971cf597f7ec55684b8` [##########] 10/10 ✅
 - [ ] Dover ❌ needs city creation
 - [ ] Newark ❌ needs city creation
 
