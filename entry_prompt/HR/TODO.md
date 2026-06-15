@@ -21,11 +21,12 @@
 - [x] Split `6a255c6ecf597f7ec55684b4` [##########] 10/10 ✅
 
 ### Sisačko-moslavačka `6a256366cf597f7ec55684b5`
-- [x] Province RTE fields [##--------] 2/10 (wars_history ✅, conflict_timeline ✅)
+- [x] Province RTE fields [##########] 10/10 ✅
 - [x] Sisak `6a256366cf597f7ec55684b6` [##########] 10/10 ✅
 
-### Zadarska ❌ needs province creation
-- [ ] Zadar ❌ needs city creation
+### Zadarska `6a26c0dbcf597f7ec55684bb`
+- [ ] Province RTE fields [####------] 4/10 (wars_history ✅, conflict_timeline ✅, casualties_info ✅, notable_battles ✅)
+- [ ] Zadar `6a26c0f2cf597f7ec55684bc` [----------] 0/10
 
 ### Karlovačka ❌ needs province creation
 - [ ] Karlovac ❌ needs city creation
