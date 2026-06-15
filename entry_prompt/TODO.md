@@ -4,5 +4,6 @@
 
 | Country | Code | Progress File |
 |---------|------|---------------|
+| Lebanon | LB | `entry_prompt/LB/TODO.md` |
 | Croatia | HR | `entry_prompt/HR/TODO.md` |
 | United States | US | `entry_prompt/US/TODO.md` |

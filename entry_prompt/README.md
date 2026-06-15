@@ -7,6 +7,7 @@ Each country has its own self-contained folder under `entry_prompt/<CODE>/`.
 
 | Code | Country | Assignee | Status | Folder |
 |------|---------|----------|--------|--------|
+| LB | Lebanon | _assigned_ | 🆕 Not started | `entry_prompt/LB/` |
 | HR | Croatia | _assigned_ | 🔄 In progress | `entry_prompt/HR/` |
 | US | United States | _assigned_ | ⏸️ Paused (half-finished) | `entry_prompt/US/` |
 
