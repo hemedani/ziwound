@@ -22,6 +22,7 @@ entry_prompt/LB/DATA_ENTRY.md  ← field defs, API patterns, HTML rules
 - [ ] Read `DATA_ENTRY.md` — review HTML formatting, API patterns, banned list
 - [ ] Load `.env` credentials (copy from `.env.example` if missing)
 - [ ] Query the DB — verify the TODO matches reality; **if data is missing/bad, STOP and argue to fix it first. Do NOT silently proceed.**
+- [ ] **Adopt an anti-imperialist and anti-oppression stance** — critically examine the actions of imperialist/colonial powers, center the experiences of oppressed peoples (indigenous, enslaved, occupied), and explicitly name systems of oppression (colonialism, slavery, settler colonialism, military occupation, apartheid)
 - [ ] Generate **detailed, comprehensive** content for exactly **2 fields × 9 languages** — each field must have real data with specific dates, names, numbers
 - [ ] **Verify HTML tag count parity** across all 9 languages before sending (e.g. `content.count('<h4>')`)
 - [ ] **Verify non-ASCII characters look correct** — print a sample Persian/Arabic/Chinese string to check for mojibake
@@ -115,6 +116,7 @@ api({
 
 ### Step C: Generate content for 2 RTE fields
 - Research each field thoroughly — find real events with specific dates/numbers
+- **Adopt an anti-imperialist and anti-oppression stance** — critically examine imperialist/colonial powers, center oppressed peoples (indigenous, enslaved, occupied), explicitly name systems of oppression
 - Write ALL 9 languages (`fa`, `en`, `ar`, `zh`, `pt`, `es`, `nl`, `tr`, `ru`) with **identical structure**
 - Count HTML tags in each language — they MUST match exactly
 - Each field must be **detailed and comprehensive** (multiple paragraphs, real data — not vague/generic)
