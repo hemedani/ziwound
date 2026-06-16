@@ -9,6 +9,7 @@ import { Building2, FileText } from "lucide-react";
 import { WarInfoSection } from "@/components/organisms/war-info-section";
 import { ParentLocationCard } from "@/components/organisms/parent-location-card";
 import { ReportListCard } from "@/components/organisms/report-list-card";
+import { getImageUploadUrl } from "@/utils/imageUrl";
 
 type CityWithPhoto = citySchema & {
   photo?: { _id?: string; name: string; mimeType: string; type: "image" | "video" | "docs"; alt_text?: string };
@@ -87,6 +88,8 @@ export default async function CityDetailPage({ params }: CityDetailPageProps) {
     value: (city as unknown as Record<string, unknown>)[key] as Record<string, string> | string | undefined,
   }));
 
+  const heroImage = city.photo?.name ? getImageUploadUrl(city.photo.name, "image") : undefined;
+
   return (
     <PageContainer showHeader={false} contentClassName="">
       <PageHero
@@ -95,6 +98,7 @@ export default async function CityDetailPage({ params }: CityDetailPageProps) {
         title={city.name}
         description={city.english_name || ""}
         backLink={{ href: "/explore", label: t("backToExplore") }}
+        imageUrl={heroImage}
       >
         <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
           {relatedReports.length > 0 && (

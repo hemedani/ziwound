@@ -1731,6 +1731,8 @@
     "liberation_info": "Информация об освобождении",
     "city": "Город",
     "cityDescription": "Исследуйте документацию военных преступлений и нарушений прав человека в {name}.",
+    "filterByCountry": "Все Страны",
+    "filterByProvince": "Все Провинции",
     "page": "Страница"
   },
   "warCriminals": {

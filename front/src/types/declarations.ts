@@ -6692,8 +6692,8 @@ export type ReqType = {
           skip?: number;
           search?: string;
           name?: string;
-          provinceId?: string;
-          countryId?: string;
+          provinceIds?: string[];
+          countriesId?: string[];
           sortBy?: ("createdAt" | "updatedAt" | "name" | "english_name");
           sortOrder?: ("asc" | "desc");
         };
@@ -9432,7 +9432,7 @@ export type ReqType = {
           skip?: number;
           search?: string;
           name?: string;
-          countryId?: string;
+          countryIds?: string[];
           sortBy?: ("createdAt" | "updatedAt" | "name" | "english_name");
           sortOrder?: ("asc" | "desc");
         };
@@ -21738,7 +21738,7 @@ export type ReqType = {
           _id: string;
           fullName?: string;
           aliases?: string[];
-          dateOfBirth?: Date;
+          dateOfBirth?: string;
           nationality?: string[];
           affiliation?: ("Military" | "Paramilitary" | "Government" | "Rebel Group" | "Private Military Company" | "Political" | "Other");
           rankOrPosition?: string;

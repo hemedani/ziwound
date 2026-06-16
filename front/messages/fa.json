@@ -1739,6 +1739,8 @@
     "liberation_info": "اطلاعات آزادی",
     "city": "شهر",
     "cityDescription": "مستندات جنایات جنگی و نقض حقوق بشر در {name} را کاوش کنید.",
+    "filterByCountry": "همه کشورها",
+    "filterByProvince": "همه استان‌ها",
     "page": "صفحه"
   },
   "warCriminals": {

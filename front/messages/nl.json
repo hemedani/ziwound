@@ -1731,6 +1731,8 @@
     "liberation_info": "Bevrijdingsinformatie",
     "city": "Stad",
     "cityDescription": "Ontdek documentatie over oorlogsmisdaden en schendingen van de mensenrechten in {name}.",
+    "filterByCountry": "Alle Landen",
+    "filterByProvince": "Alle Provincies",
     "page": "Pagina"
   },
   "warCriminals": {

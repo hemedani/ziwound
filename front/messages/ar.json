@@ -1668,6 +1668,8 @@
     "liberation_info": "معلومات التحرير",
     "city": "المدينة",
     "cityDescription": "استكشف توثيق جرائم الحرب وانتهاكات حقوق الإنسان في {name}.",
+    "filterByCountry": "جميع البلدان",
+    "filterByProvince": "جميع المحافظات",
     "page": "صفحة"
   },
   "warCriminals": {

@@ -52,7 +52,7 @@ export function EditWarCriminalDialog({ warCriminal, open, onOpenChange }: EditW
           _id: warCriminal._id,
           fullName: data.fullName,
           ...(aliases !== undefined && aliases.length > 0 ? { aliases } : {}),
-          dateOfBirth: data.dateOfBirth ? new Date(data.dateOfBirth) : undefined,
+          dateOfBirth: data.dateOfBirth || undefined,
           ...(nationality !== undefined && nationality.length > 0 ? { nationality } : {}),
           affiliation: data.affiliation,
           rankOrPosition: data.rankOrPosition,

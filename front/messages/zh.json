@@ -1674,6 +1674,8 @@
     "liberation_info": "解放信息",
     "city": "城市",
     "cityDescription": "探索{name}的战争罪行记录和侵犯人权行为。",
+    "filterByCountry": "所有国家",
+    "filterByProvince": "所有省份",
     "page": "页"
   },
   "warCriminals": {

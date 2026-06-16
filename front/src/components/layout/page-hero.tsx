@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { Link } from "@/i18n/routing";
 import { cn } from "@/lib/utils";
@@ -12,6 +13,7 @@ interface PageHeroProps {
   children?: ReactNode;
   variant?: "default" | "compact";
   className?: string;
+  imageUrl?: string;
 }
 
 export function PageHero({
@@ -23,8 +25,10 @@ export function PageHero({
   children,
   variant = "default",
   className,
+  imageUrl,
 }: PageHeroProps) {
   const isCompact = variant === "compact";
+  const hasImage = !!imageUrl;
 
   return (
     <header
@@ -35,14 +39,47 @@ export function PageHero({
         className
       )}
     >
-      {/* 1. Crimson radial glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,_rgba(153,27,27,0.12)_0%,_transparent_70%)]" />
+      {/* 0. Hero background image (cinematic) */}
+      {hasImage && (
+        <div className="absolute inset-0">
+          <Image
+            src={imageUrl}
+            alt=""
+            fill
+            unoptimized
+            className="object-cover"
+            sizes="100vw"
+            priority
+          />
+          {/* Dark gradient overlay — darker toward bottom for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-background via-background/70 to-background/10" />
+          {/* Extra side vignette for depth */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,_transparent_50%,_rgba(0,0,0,0.4)_100%)]" />
+        </div>
+      )}
+
+      {/* 1. Crimson radial glow (toned down when image is present) */}
+      <div
+        className={cn(
+          "absolute inset-0",
+          hasImage
+            ? "bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,_rgba(153,27,27,0.18)_0%,_transparent_70%)]"
+            : "bg-[radial-gradient(ellipse_80%_60%_at_50%_40%,_rgba(153,27,27,0.12)_0%,_transparent_70%)]"
+        )}
+      />
 
       {/* 2. Gold accent glow */}
       <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,_rgba(212,175,55,0.05)_0%,_transparent_50%)]" />
 
-      {/* 3. Frosted-glass blur over the PageContainer mesh behind */}
-      <div className="absolute inset-0 bg-white/[0.02] backdrop-blur-sm pointer-events-none" />
+      {/* 3. Frosted-glass blur */}
+      <div
+        className={cn(
+          "absolute inset-0 pointer-events-none",
+          hasImage
+            ? "bg-black/10 backdrop-blur-[2px]"
+            : "bg-white/[0.02] backdrop-blur-sm"
+        )}
+      />
 
       {/* Content */}
       <div

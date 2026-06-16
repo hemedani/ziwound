@@ -10,6 +10,7 @@ import { WarInfoSection } from "@/components/organisms/war-info-section";
 import { RelatedLocationsGrid } from "@/components/organisms/related-locations-grid";
 import { ReportListCard } from "@/components/organisms/report-list-card";
 import { ParentLocationCard } from "@/components/organisms/parent-location-card";
+import { getImageUploadUrl } from "@/utils/imageUrl";
 
 type ProvinceWithPhoto = provinceSchema & {
   photo?: { _id?: string; name: string; mimeType: string; type: "image" | "video" | "docs"; alt_text?: string };
@@ -88,6 +89,8 @@ export default async function ProvinceDetailPage({ params }: ProvinceDetailPageP
     value: (province as unknown as Record<string, unknown>)[key] as Record<string, string> | string | undefined,
   }));
 
+  const heroImage = province.photo?.name ? getImageUploadUrl(province.photo.name, "image") : undefined;
+
   return (
     <PageContainer showHeader={false} contentClassName="">
       <PageHero
@@ -96,6 +99,7 @@ export default async function ProvinceDetailPage({ params }: ProvinceDetailPageP
         title={province.name}
         description={province.english_name || ""}
         backLink={{ href: "/explore", label: t("backToExplore") }}
+        imageUrl={heroImage}
       >
         <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
           {[

@@ -1731,6 +1731,8 @@
     "liberation_info": "Información sobre Liberación",
     "city": "Ciudad",
     "cityDescription": "Explore la documentación de crímenes de guerra y violaciones de derechos humanos en {name}.",
+    "filterByCountry": "Todos los Países",
+    "filterByProvince": "Todas las Provincias",
     "page": "Página"
   },
   "warCriminals": {

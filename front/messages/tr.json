@@ -1675,6 +1675,8 @@
     "liberation_info": "Kurtuluş Bilgisi",
     "city": "Şehir",
     "cityDescription": "{name} içindeki savaş suçları ve insan hakları ihlalleri dokümantasyonunu keşfedin.",
+    "filterByCountry": "Tüm Ülkeler",
+    "filterByProvince": "Tüm İller",
     "page": "Sayfa"
   },
   "warCriminals": {

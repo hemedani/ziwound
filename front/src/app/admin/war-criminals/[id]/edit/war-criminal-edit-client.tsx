@@ -83,7 +83,7 @@ function TabBasicInfo({ wc }: { wc: WarCriminalData }) {
     try {
       const aliasesArr = aliases ? aliases.split(",").map((a) => a.trim()).filter(Boolean) : undefined;
       const nationalityArr = nationality ? nationality.split(",").map((n) => n.trim()).filter(Boolean) : undefined;
-      const dob = dateOfBirth ? new Date(dateOfBirth) : undefined;
+      const dob = dateOfBirth ? new Date(dateOfBirth).toISOString() : undefined;
 
       // Preserve existing localized fields when updating
       const knownFor = wc.knownFor || undefined;

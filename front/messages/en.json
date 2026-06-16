@@ -1736,6 +1736,8 @@
     "liberation_info": "Liberation Information",
     "city": "City",
     "cityDescription": "Explore war crimes documentation and human rights violations in {name}.",
+    "filterByCountry": "All Countries",
+    "filterByProvince": "All Provinces",
     "page": "Page"
   },
   "warCriminals": {

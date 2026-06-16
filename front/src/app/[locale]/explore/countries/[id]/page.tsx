@@ -9,6 +9,7 @@ import { Globe, MapPin, Building2 } from "lucide-react";
 import { WarInfoSection } from "@/components/organisms/war-info-section";
 import { RelatedLocationsGrid } from "@/components/organisms/related-locations-grid";
 import { ReportListCard } from "@/components/organisms/report-list-card";
+import { getImageUploadUrl } from "@/utils/imageUrl";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string; id: string }> }): Promise<Metadata> {
   const { locale, id } = await params;
@@ -88,6 +89,8 @@ export default async function CountryDetailPage({ params }: CountryDetailPagePro
     value: (country as unknown as Record<string, unknown>)[key] as Record<string, string> | string | undefined,
   }));
 
+  const heroImage = country.photo?.name ? getImageUploadUrl(country.photo.name, "image") : undefined;
+
   return (
     <PageContainer showHeader={false} contentClassName="">
       <PageHero
@@ -96,6 +99,7 @@ export default async function CountryDetailPage({ params }: CountryDetailPagePro
         title={country.name}
         description={country.english_name || ""}
         backLink={{ href: "/explore", label: t("backToExplore") }}
+        imageUrl={heroImage}
       >
         <div className="mt-6 sm:mt-8 flex flex-wrap gap-3">
           {[
