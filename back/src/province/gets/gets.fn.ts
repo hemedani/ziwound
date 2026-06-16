@@ -10,7 +10,7 @@ export const getsFn: ActFn = async (body) => {
 			skip,
 			search,
 			name,
-			countryId,
+			countryIds,
 			sortBy,
 			sortOrder,
 		},
@@ -36,10 +36,12 @@ export const getsFn: ActFn = async (body) => {
 	}
 
 	// Country filter
-	if (countryId) {
+	if (countryIds && countryIds.length > 0) {
 		pipeline.push({
 			$match: {
-				"country._id": new ObjectId(countryId as string),
+				"country._id": {
+					$in: countryIds.map((id: string) => new ObjectId(id)),
+				},
 			},
 		});
 	}

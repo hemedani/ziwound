@@ -9,8 +9,8 @@ export const getsFn: ActFn = async (body) => {
 			skip,
 			search,
 			name,
-			provinceId,
-			countryId,
+			provinceIds,
+			countriesId,
 			sortBy,
 			sortOrder,
 		},
@@ -36,19 +36,23 @@ export const getsFn: ActFn = async (body) => {
 	}
 
 	// Province filter
-	if (provinceId) {
+	if (provinceIds && provinceIds.length > 0) {
 		pipeline.push({
 			$match: {
-				"province._id": new ObjectId(provinceId as string),
+				"province._id": {
+					$in: provinceIds.map((id: string) => new ObjectId(id)),
+				},
 			},
 		});
 	}
 
 	// Country filter
-	if (countryId) {
+	if (countriesId && countriesId.length > 0) {
 		pipeline.push({
 			$match: {
-				"country._id": new ObjectId(countryId as string),
+				"country._id": {
+					$in: countriesId.map((id: string) => new ObjectId(id)),
+				},
 			},
 		});
 	}

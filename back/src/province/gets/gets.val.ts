@@ -10,7 +10,7 @@ export const getsValidator = () => {
 			search: optional(string()),
 			// Filters
 			name: optional(string()),
-			countryId: optional(objectIdValidation),
+			countryIds: optional(array(objectIdValidation)),
 			// Sort options
 			sortBy: optional(enums(["createdAt", "updatedAt", "name", "english_name"])),
 			sortOrder: optional(enums(["asc", "desc"])),
