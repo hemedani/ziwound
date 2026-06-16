@@ -34,7 +34,7 @@
 | Colorado | `6a227ecccf597f7ec55684a6` | 4 | Province 10/10 ✅; Denver 10/10 ✅; Colorado Springs 10/10 ✅; Aurora 10/10 ✅; Boulder 10/10 ✅ |
 | Connecticut | `6a228c02cf597f7ec55684ab` | 4 | Province 10/10 ✅; Hartford 10/10 ✅; New Haven 10/10 ✅; Bridgeport 10/10 ✅; Stamford 10/10 ✅ |
 
-| Delaware | `6a258970cf597f7ec55684b7` | 1 (Wilmington) | Province 0/10; Wilmington 10/10 ✅ |
+| Delaware | `6a258970cf597f7ec55684b7` | 3 (Wilmington, Dover, Newark) | Province 10/10 ✅; Wilmington 10/10 ✅; Dover 10/10 ✅; Newark 10/10 ✅ |
 
 Pending: Hawaii, Idaho, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryland, Massachusetts, Minnesota, Mississippi, Missouri, Montana, Nebraska, Nevada, New Hampshire, New Jersey, New Mexico, North Carolina, North Dakota, Oklahoma, Oregon, Rhode Island, South Carolina, South Dakota, Tennessee, Utah, Vermont, Washington, West Virginia, Wisconsin, Wyoming
 
@@ -46,6 +46,8 @@ Pending: Hawaii, Idaho, Indiana, Iowa, Kansas, Kentucky, Louisiana, Maine, Maryl
 |--------|----------|
 | Delaware (province) | `6a258970cf597f7ec55684b7` |
 | Wilmington (city) | `6a258971cf597f7ec55684b8` |
+| Dover (city) | `6a26bacbcf597f7ec55684b9` |
+| Newark (city) | `6a26bacbcf597f7ec55684ba` |
 | USA (country) | `6a1f01ccc1b216fc5349f8fa` |
 | California (province) | `6a1f28cfc1b216fc5349f8fb` |
 | Texas (province) | `6a1f306fc1b216fc5349f8ff` |

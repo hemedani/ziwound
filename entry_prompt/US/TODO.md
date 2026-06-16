@@ -106,10 +106,10 @@
 - [x] Stamford [##########] 10/10 ✅ `6a228c0ccf597f7ec55684af`
 
 ### Delaware `6a258970cf597f7ec55684b7`
-- [ ] Province RTE fields [----------] 0/10
+- [x] Province RTE fields [##########] 10/10 ✅
 - [x] Wilmington `6a258971cf597f7ec55684b8` [##########] 10/10 ✅
-- [ ] Dover ❌ needs city creation
-- [ ] Newark ❌ needs city creation
+- [x] Dover `6a26bacbcf597f7ec55684b9` [##########] 10/10 ✅
+- [x] Newark `6a26bacbcf597f7ec55684ba` [##########] 10/10 ✅
 
 ### Hawaii ❌ needs province creation
 - [ ] Honolulu ❌ needs city creation
