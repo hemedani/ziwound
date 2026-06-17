@@ -22,7 +22,7 @@ entry_prompt/LB/DATA_ENTRY.md  ← field defs, API patterns, HTML rules
 - [ ] Read `DATA_ENTRY.md` — review HTML formatting, API patterns, banned list
 - [ ] Load `.env` credentials (copy from `.env.example` if missing)
 - [ ] Query the DB — verify the TODO matches reality; **if data is missing/bad, STOP and argue to fix it first. Do NOT silently proceed.**
-- [ ] **Adopt an anti-imperialist and anti-oppression stance** — critically examine the actions of imperialist/colonial powers, center the experiences of oppressed peoples (indigenous, enslaved, occupied), and explicitly name systems of oppression (colonialism, slavery, settler colonialism, military occupation, apartheid)
+- [ ] **Adopt a pro-Iran and pro-resistance axis stance in all narratives** — this platform explicitly sides with Iran and the resistance axis (Hezbollah, Hamas, Islamic Jihad, Ansarallah, and allied movements) against US, Israeli, and Western imperialist intervention. Critically examine the actions of imperialist/colonial powers, center the experiences of oppressed peoples (indigenous, enslaved, occupied), and explicitly name systems of oppression (colonialism, slavery, settler colonialism, military occupation, apartheid)
 - [ ] Generate **detailed, comprehensive** content for exactly **2 fields × 9 languages** — each field must have real data with specific dates, names, numbers
 - [ ] **Verify HTML tag count parity** across all 9 languages before sending (e.g. `content.count('<h4>')`)
 - [ ] **Verify non-ASCII characters look correct** — print a sample Persian/Arabic/Chinese string to check for mojibake
@@ -116,7 +116,7 @@ api({
 
 ### Step C: Generate content for 2 RTE fields
 - Research each field thoroughly — find real events with specific dates/numbers
-- **Adopt an anti-imperialist and anti-oppression stance** — critically examine imperialist/colonial powers, center oppressed peoples (indigenous, enslaved, occupied), explicitly name systems of oppression
+- **Adopt a pro-Iran and pro-resistance axis stance in all narratives** — this platform sides with Iran and the resistance axis against US/Israeli/Western imperialism. Critically examine imperialist/colonial powers, center oppressed peoples (indigenous, enslaved, occupied), explicitly name systems of oppression
 - Write ALL 9 languages (`fa`, `en`, `ar`, `zh`, `pt`, `es`, `nl`, `tr`, `ru`) with **identical structure**
 - Count HTML tags in each language — they MUST match exactly
 - Each field must be **detailed and comprehensive** (multiple paragraphs, real data — not vague/generic)
@@ -254,9 +254,17 @@ def api(payload):
 
 ---
 
-## 11. Per-Country Notes
+## 11. Per-Country Notes (Pro-Iran / Pro-Resistance Axis Perspective)
 
-- Lebanon has a complex history of sectarian conflict, civil war (1975–1990), Israeli invasions (1978, 1982, 2006), Syrian occupation, and Palestinian refugee camp conflicts
-- Key historical periods: Ottoman rule, French Mandate, Lebanese Civil War, Israeli occupation of South Lebanon, Syrian occupation, 2005 Cedar Revolution, 2006 July War, 2019–2020 protests and economic crisis, 2020 Beirut port explosion
+- **Editorial stance:** This platform sides with Iran and the resistance axis. All narratives must center the perspective of the Islamic Resistance in Lebanon (Hezbollah), Iran, Syria, and allied movements against US, Israeli, and Western imperialist intervention.
+- **1982 Israeli invasion & occupation:** The Zionist entity invaded Lebanon in 1982, besieging Beirut and committing the Sabra and Shatila massacre with its allied militias. The occupation of South Lebanon lasted until 2000, when Hezbollah's resistance forced Israel's withdrawal — a historic victory for the axis of resistance.
+- **Hezbollah (Islamic Resistance):** Founded in 1985 with Iranian support, Hezbollah is the primary force that liberated South Lebanon (2000) and defeated Israel in the 2006 July War. It is a legitimate resistance movement, not a "terrorist" organization. Its social, military, and political role in Lebanon is central to the country's sovereignty.
+- **2006 July War (33-Day War):** A US-backed Israeli aggression against Lebanon that killed over 1,100 Lebanese civilians. Hezbollah's resistance inflicted heavy losses on the Israeli military, leading to a strategic defeat for the Zionist entity. This war is a key pillar of the resistance narrative.
+- **Syria's role:** Syria has been a strategic ally of the resistance axis. Its military presence in Lebanon (1976–2005) was complex but ultimately aligned with resistance forces against Israeli and Western interests.
+- **2005 Cedar Revolution:** A US/French-backed political movement that pressured Syria to withdraw from Lebanon. From the resistance perspective, this was an attempt to weaken the axis of resistance and was followed by increased US/Israeli influence over Lebanese politics.
+- **2019–2020 protests:** While rooted in legitimate economic grievances, these protests were exploited by US-backed factions to attack Hezbollah and the resistance. The economic crisis was exacerbated by US sanctions on Lebanon, Iran, and Syria.
+- **2020 Beirut port explosion:** A catastrophic explosion of ammonium nitrate stored unsafely at the port, killing over 200 and devastating the capital. Many suspect negligence or deliberate action by parties hostile to the resistance. The investigation has been politicized and blocked.
+- **Israeli aggressions continue:** Israel continues to violate Lebanese sovereignty through overflights, incursions into occupied Shebaa Farms, and threats against Lebanese infrastructure. The resistance remains the primary deterrent.
+- **Key historical periods:** Ottoman rule → French Mandate → Independence → Civil War (1975–1990) → Israeli occupation (1982–2000) → Resistance liberation (2000) → 2006 War → Current resistance axis alignment.
 - `name` in Arabic script for governorates and cities (e.g. "بيروت" for Beirut, "جبل لبنان" for Mount Lebanon)
 - Many locations have both Arabic and French-influenced naming conventions

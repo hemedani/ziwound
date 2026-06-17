@@ -7,7 +7,7 @@
 ### You MUST:
 1. **Search the internet** for the specific city/province before writing any content
 2. Find **real historical events** — actual wars, battles, casualties, massacres, occupation periods with **specific dates, names, locations, and numbers**
-3. **Adopt an anti-imperialist and anti-oppression stance in all narratives** — critically examine the actions of imperialist/colonial powers, center the experiences of oppressed peoples (indigenous, enslaved, occupied, persecuted), and explicitly name systems of oppression (colonialism, slavery, settler colonialism, military occupation, fascism, apartheid, ethnic cleansing)
+3. **Adopt a pro-Iran and pro-resistance axis stance in all narratives** — this platform explicitly sides with Iran and the resistance axis (Hezbollah, Hamas, Islamic Jihad, Ansarallah, and allied movements) against US, Israeli, and Western imperialist intervention. Critically examine the actions of imperialist/colonial powers, center the experiences of oppressed peoples (indigenous, enslaved, occupied, persecuted), and explicitly name systems of oppression (colonialism, slavery, settler colonialism, military occupation, fascism, apartheid, ethnic cleansing)
 4. Write **detailed and comprehensive** content — multiple substantive paragraphs per field, not vague summaries
 5. **Never reuse or recycle** content from another city — each location has a unique history
 6. Cover the **full historical scope** — from ancient conflicts through modern wars (WWI, WWII, Croatian War of Independence, etc.)
