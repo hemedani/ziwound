@@ -1,18 +1,48 @@
 # Lebanon — Province & City Data Entry Checklist
 
-> This file is updated by the AI Agent after each micro-step (2 fields).
-> Status: `[x]` = complete, `[ ]` = pending, `❌` = needs DB creation then data entry
+> ⚠️ **REWRITE MODE:** All content is being rewritten with the **pro-Iran and pro-resistance axis stance**.
 
 ---
 
-## ⏳ Pending — Province & City Creation + 10 Fields Each
+## 🔄 Rewrite Queue
 
 ### Beirut `6a3001c4cf597f7ec55684c5`
-- [x] Province RTE fields [##########] 10/10 COMPLETE ✅
-- [ ] Beirut `6a300201cf597f7ec55684c6` [----------] 0/10 — **NEXT**
+- [x] wars_history ✅ REWRITTEN
+- [x] conflict_timeline ✅ REWRITTEN
+- [x] casualties_info ✅ REWRITTEN
+- [x] notable_battles ✅ REWRITTEN
+- [x] occupation_info ✅ REWRITTEN
+- [x] destruction_level ✅ REWRITTEN
+- [x] civilian_impact ✅ REWRITTEN
+- [x] mass_graves_info ✅ REWRITTEN
+- [x] war_crimes_events ✅ REWRITTEN
+- [x] liberation_info ✅ REWRITTEN
 
-### Mount Lebanon ❌ needs province creation
-- [ ] Baabda ❌ needs city creation
+### Beirut city `6a300201cf597f7ec55684c6` ✅ ALL DONE
+- [x] wars_history ✅ REWRITTEN
+- [x] conflict_timeline ✅ REWRITTEN
+- [x] casualties_info ✅ REWRITTEN
+- [x] notable_battles ✅ REWRITTEN
+- [x] occupation_info ✅ REWRITTEN
+- [x] destruction_level ✅ REWRITTEN
+- [x] civilian_impact ✅ REWRITTEN
+- [x] mass_graves_info ✅ REWRITTEN
+- [x] war_crimes_events ✅ REWRITTEN
+- [x] liberation_info ✅ REWRITTEN
+
+### Mount Lebanon `6a31614fcf597f7ec55685cb`
+- [x] wars_history ✅ WRITTEN
+- [x] conflict_timeline ✅ WRITTEN
+- [x] casualties_info ✅ WRITTEN
+- [x] notable_battles ✅ WRITTEN
+- [x] occupation_info ✅ WRITTEN
+- [x] destruction_level ✅ WRITTEN
+- [x] civilian_impact ✅ WRITTEN
+- [x] mass_graves_info ✅ WRITTEN
+- [x] war_crimes_events ✅ WRITTEN
+- [x] liberation_info ✅ WRITTEN
+- [x] Baabda `6a32b54801497993907c855f` — wars_history ✅, conflict_timeline ✅ (2/10)
+- [ ] Baabda — casualties_info, destruction_level ⏳ next
 - [ ] Aley ❌ needs city creation
 
 ### North Lebanon ❌ needs province creation
@@ -41,11 +71,3 @@
 ### Keserwan-Jbeil ❌ needs province creation
 - [ ] Jounieh ❌ needs city creation
 - [ ] Byblos ❌ needs city creation
-
----
-
-### Legend
-- `[x]` = all 10 fields complete
-- `[##--------]` = 2/10 fields done, etc.
-- `❌ needs province creation` = province must be added to DB first
-- `❌ needs city creation` = city must be added to DB first
