@@ -134,14 +134,14 @@ api({
         "set": {
             "name": "اسم المحافظة",          # Native-language name (plain string ONLY)
             "english_name": "Governorate Name", # English translation for int'l use
-            "countryId": "6a0ed07e67c85d8ba0c217ab",
-            "isCapital": False               # Boolean, REQUIRED
+            "countryId": "6a0ed07e67c85d8ba0c217ab"
+            # NOTE: isCapital is NOT a valid field for province model — only for city
         },
         "get": {"_id": 1, "name": 1}
     }
 })
 ```
-> **Province schema:** Same 10 RTE fields as City. Provinces can be created without RTE data initially, then updated later with 2 fields per micro-step.
+> **Province schema:** Same 10 RTE fields as City. Provinces can be created without RTE data initially, then updated later with 2 fields per micro-step. **⚠️ `isCapital` is NOT valid for province — only for city.**
 
 ### Create City (uses `api()` from Query Helper)
 ```python

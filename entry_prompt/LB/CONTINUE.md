@@ -5,10 +5,9 @@
 ## Current Position
 
 - **Country:** Lebanon (`6a0ed07e67c85d8ba0c217ab`)
-- **Status:** Rewriting all content with pro-Iran/pro-resistance axis stance
-- **Phase:** Baabda city — wars_history ✅, conflict_timeline ✅ (2/10)
-- **Next:** Baabda city — casualties_info, destruction_level (2 of next 2 fields)
-- **After that:** Baabda remaining 6 fields → then Aley creation + all 10 fields
+- **Status:** Writing new content for North Lebanon province with pro-Iran/pro-resistance axis stance
+- **Phase:** Batroun city — civilian_impact + mass_graves_info ✅ (8/10 fields)
+- **Next:** Batroun city — war_crimes_events + liberation_info (2 fields)
 
 ## Rewrite Progress
 
@@ -17,7 +16,11 @@
 | Beirut province | [##########] 10/10 fields rewritten ✅ |
 | Beirut city | [##########] 10/10 fields rewritten ✅ (needs 2025-2026 audit) |
 | Mount Lebanon province | [##########] 10/10 fields written ✅ |
-| Baabda city | [##--------] 2/10 fields written |
+| Baabda city | [##########] 10/10 fields written ✅ |
+| Aley city | [##########] 10/10 fields written ✅ |
+| North Lebanon province | [##########] 10/10 fields written ✅ |
+| Tripoli city | [##########] 10/10 fields written ✅ |
+| Batroun city | [########--] 8/10 fields written |
 
 ## Key ObjectIds
 
@@ -28,5 +31,8 @@
 | Beirut (city) | `6a300201cf597f7ec55684c6` |
 | Mount Lebanon (province) | `6a31614fcf597f7ec55685cb` |
 | Baabda (city) | `6a32b54801497993907c855f` |
+| Aley (city) | `6a36502b01497993907c8560` |
+| Tripoli (city) | `6a366dbc01497993907c8562` |
+| Batroun (city) | `6a3680dd01497993907c8563` |
 
 > **Update this file after every microstep.**
