@@ -77,7 +77,7 @@
 - [x] Batroun — conflict_timeline ✅
 - [x] Batroun — occupation_info, destruction_level ✅ (6/10)
 - [x] Batroun — civilian_impact, mass_graves_info ✅
-- [ ] Batroun — war_crimes_events, liberation_info (next)
+- [x] Batroun — war_crimes_events, liberation_info ✅ (10/10 COMPLETE)
 - [ ] Bcharre ❌ needs city creation
 
 ### Beqaa ❌ needs province creation

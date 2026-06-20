@@ -6,8 +6,8 @@
 
 - **Country:** Lebanon (`6a0ed07e67c85d8ba0c217ab`)
 - **Status:** Writing new content for North Lebanon province with pro-Iran/pro-resistance axis stance
-- **Phase:** Batroun city — civilian_impact + mass_graves_info ✅ (8/10 fields)
-- **Next:** Batroun city — war_crimes_events + liberation_info (2 fields)
+- **Phase:** Batroun city — war_crimes_events + liberation_info ✅ (10/10 fields — COMPLETE!)
+- **Next:** Bcharre city — create city + wars_history + conflict_timeline
 
 ## Rewrite Progress
 
@@ -20,7 +20,7 @@
 | Aley city | [##########] 10/10 fields written ✅ |
 | North Lebanon province | [##########] 10/10 fields written ✅ |
 | Tripoli city | [##########] 10/10 fields written ✅ |
-| Batroun city | [########--] 8/10 fields written |
+| Batroun city | [##########] 10/10 fields written ✅ |
 
 ## Key ObjectIds
 
