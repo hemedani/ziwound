@@ -249,4 +249,5 @@ After EACH micro-step (2 fields), update these files **before** reporting:
 - ❌ **Fabricating or recycling content** — every entry MUST be based on internet research
 - ❌ **Generic/vague paragraphs** — all content must be detailed with specific dates, names, numbers
 - ❌ **Skipping internet research** — always search before writing
+- ❌ **Using Persian names for countries whose native language uses Arabic script** (e.g. use Arabic "فلسطين" not Persian "فلسطین" for Palestine)
 - ❌ **Omitting `ensure_ascii=False` in `json.dumps()`** — causes permanent mojibake corruption of all non-ASCII text

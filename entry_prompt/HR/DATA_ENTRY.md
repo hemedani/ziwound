@@ -100,8 +100,8 @@ api({
     "service": "main", "model": "province", "act": "add",
     "details": {
         "set": {
-            "name": "Native name",
-            "english_name": "English name",
+            "name": "Ime pokrajine",        # ⚠️ Native-language name (plain string) — for Croatia this is Croatian, e.g. "Grad Zagreb", NOT Persian!
+            "english_name": "Province Name", # English translation for int'l use
             "countryId": "6a12a0a084ffe580f176d0ef",
             "isCapital": False
         },
@@ -110,14 +110,16 @@ api({
 })
 ```
 
+> **`name` vs `english_name`:** `name` holds the entity's name in its native/local language (e.g. "Zagreb" for Zagreb in Croatian). `english_name` holds the English translation for international use (e.g. "Zagreb"). Both are plain strings — NOT multi-language objects.
+
 ### Create City
 ```python
 api({
     "service": "main", "model": "city", "act": "add",
     "details": {
         "set": {
-            "name": "City name",
-            "english_name": "City name",
+            "name": "Ime grada",            # ⚠️ Native-language name (plain string) — for Croatia this is Croatian, e.g. "Zagreb", NOT Persian!
+            "english_name": "City Name",     # English translation for int'l use (plain string)
             "provinceId": "<province_oid>",
             "countryId": "6a12a0a084ffe580f176d0ef",
             "isCapital": False

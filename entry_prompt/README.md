@@ -35,6 +35,17 @@ It updates `CONTINUE.md`, `TODO.md`, and `RESULT.md` after every microstep — a
 - The root `entry_prompt/README.md` and `entry_prompt/TODO.md` are static — set up once by an admin
 - No shared `CONTINUE.md` — each country tracks its own position independently
 
+## ⚠️ `name` vs `english_name` Rule (ALL countries)
+
+**`name`** = the entity's name in its native/local language/script.  
+**`english_name`** = the English translation for international use.
+
+- For **Iran/Lebanon/Iraq/Yemen/Palestine**: `name` is in Arabic/Persian script (e.g. "لبنان" for Lebanon)
+- For **USA/Croatia/Bosnia**: `name` is in Latin script (e.g. "United States", "Hrvatska")
+- **NEVER** use Persian names for non-Persian-speaking countries (e.g. don't use "کرواسی" for Croatia — use "Hrvatska")
+
+Both are plain strings — NOT multi-language objects.
+
 ## ⚠️ Character Encoding Rule (ALL countries)
 
 Non-ASCII content (Persian, Arabic, Chinese, Cyrillic, etc.) **will corrupt** into mojibake if encoding is mishandled. Every country's DATA_ENTRY.md must include encoding guidance. The critical rule:

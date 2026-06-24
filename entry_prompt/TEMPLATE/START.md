@@ -76,8 +76,8 @@ api({
     "service": "main", "model": "province", "act": "add",
     "details": {
         "set": {
-            "name": "نام استان",           # Native-language name (plain string)
-            "english_name": "State Name",   # English translation
+            "name": "Native Name",          # ⚠️ Native-language name (plain string) — use the country's native language/script, NOT Persian. E.g. for Croatia: "Hrvatska", for Lebanon: "لبنان", for US: "United States"
+            "english_name": "English Name", # English translation for int'l use
             "countryId": "{COUNTRY_OID}",
             "isCapital": False              # Boolean, REQUIRED
         },
@@ -92,8 +92,8 @@ api({
     "service": "main", "model": "city", "act": "add",
     "details": {
         "set": {
-            "name": "نام شهر",             # Native-language name (plain string)
-            "english_name": "City Name",    # English translation
+            "name": "City Name",            # ⚠️ Native-language name (plain string) — use the country's native language/script. E.g. for Croatia: "Zagreb", for Lebanon: "بيروت", for US: "Los Angeles"
+            "english_name": "City Name",    # English translation for int'l use
             "provinceId": "<province_oid>",
             "countryId": "{COUNTRY_OID}",
             "isCapital": False              # Boolean, REQUIRED
@@ -184,7 +184,8 @@ Output summary → ask **"Continue to next microstep?"** → **WAIT** for user.
 | 7 | **Verify HTML tag parity** across ALL 9 languages | Structural mismatch causes rendering bugs |
 | 8 | **If DB data is missing/bad, STOP and argue** | Never silently proceed with poor data |
 | 9 | **Never reuse content** from another city | Each location has a unique history |
-| 10 | **Always `ensure_ascii=False`** in `json.dumps()` | Omitting it corrupts all non-ASCII text into `\uXXXX` escape sequences — irreversible |
+| 10 | **Use native language for `name`** | `name` = entity's name in its native language/script (e.g. Croatian "Hrvatska" for Croatia, Arabic "لبنان" for Lebanon, English "United States" for USA). `english_name` = English translation. DO NOT put Persian names for non-Persian countries. |
+| 11 | **Always `ensure_ascii=False`** in `json.dumps()` | Omitting it corrupts all non-ASCII text into `\uXXXX` escape sequences — irreversible |
 
 ---
 

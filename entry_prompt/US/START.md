@@ -81,10 +81,10 @@ api({
     "service": "main", "model": "province", "act": "add",
     "details": {
         "set": {
-            "name": "نام استان",            # Native-language name (plain string)
-            "english_name": "State Name",    # English translation
+            "name": "State Name",           # ⚠️ Native-language name (plain string) — for US this is English, e.g. "California", NOT Persian!
+            "english_name": "State Name",   # English translation for int'l use
             "countryId": "6a1f01ccc1b216fc5349f8fa",
-            "isCapital": False               # Boolean, REQUIRED
+            "isCapital": False              # Boolean, REQUIRED
         },
         "get": {"_id": 1, "name": 1}
     }
@@ -97,11 +97,11 @@ api({
     "service": "main", "model": "city", "act": "add",
     "details": {
         "set": {
-            "name": "نام شهر",              # Native-language name (plain string)
-            "english_name": "City Name",     # English translation
+            "name": "City Name",            # ⚠️ Native-language name (plain string) — for US this is English, e.g. "Los Angeles", NOT Persian!
+            "english_name": "City Name",    # English translation for int'l use
             "provinceId": "<province_oid>",
             "countryId": "6a1f01ccc1b216fc5349f8fa",
-            "isCapital": False               # Boolean, REQUIRED
+            "isCapital": False              # Boolean, REQUIRED
         },
         "get": {"_id": 1, "name": 1}
     }

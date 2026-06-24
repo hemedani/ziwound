@@ -176,8 +176,8 @@ api({
     "service": "main", "model": "province", "act": "add",
     "details": {
         "set": {
-            "name": "نام استان",            # Native-language name (plain string ONLY)
-            "english_name": "State Name",    # English translation for int'l use
+            "name": "California",            # Native-language name (plain string ONLY — for US this is English, e.g. "California")
+            "english_name": "California",    # English translation for int'l use (plain string)
             "countryId": "6a1f01ccc1b216fc5349f8fa",
             "isCapital": False               # Boolean, REQUIRED
         },
@@ -187,23 +187,24 @@ api({
 ```
 > **Province schema:** Same 10 RTE fields as City. Provinces can be created without RTE data initially, then updated later with 2 fields per micro-step.
 
+> **`name` vs `english_name`:** `name` holds the entity's name in its native/local language. For US entities, this is English (e.g. "Los Angeles"). For countries like Iran, this would be Persian (e.g. "تهران"). `english_name` always holds the English name for international use (e.g. "Los Angeles"). Both are plain strings — NOT multi-language objects.
+
 ### Create City (uses `api()` from Query Helper)
 ```python
 api({
     "service": "main", "model": "city", "act": "add",
     "details": {
         "set": {
-            "name": "نام شهر",            # Native-language name (plain string ONLY)
-            "english_name": "City Name",  # English translation for int'l use (plain string)
+            "name": "Los Angeles",           # Native-language name (plain string — for US this is English)
+            "english_name": "Los Angeles",   # English translation for int'l use (plain string)
             "provinceId": "<province_oid>",
             "countryId": "6a1f01ccc1b216fc5349f8fa",
-            "isCapital": False            # Boolean, REQUIRED
+            "isCapital": False               # Boolean, REQUIRED
         },
         "get": {"_id": 1, "name": 1}
     }
 })
 ```
-> **`name` vs `english_name`:** `name` holds the entity's name in its native/local language (e.g. "واشنگتن" for Washington in Persian data). `english_name` holds the English translation for international use. Both are plain strings — NOT multi-language objects.
 
 ### Update 2 RTE Fields (uses `api()` from Query Helper)
 ```python
@@ -298,4 +299,5 @@ After EACH micro-step (2 fields), update these files **before** reporting:
 - ❌ **Fabricating or recycling content** — every entry MUST be based on internet research
 - ❌ **Generic/vague paragraphs** — all content must be detailed with specific dates, names, numbers
 - ❌ **Skipping internet research** — always search before writing
+- ❌ **Using Persian/Arabic names for countries whose native language uses Latin script** (e.g. don't use "کالیفرنیا" for California — use "California"; don't use "شیکاگو" for Chicago — use "Chicago")
 - ❌ **Omitting `ensure_ascii=False` in `json.dumps()`** — causes permanent mojibake corruption of all non-ASCII text
