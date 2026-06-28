@@ -14,9 +14,12 @@
 | North Lebanon | `6a365e3501497993907c8561` | — | — | Province **10/10** ✅ ALL FIELDS DONE |
 | North Lebanon | `6a365e3501497993907c8561` | Tripoli | `6a366dbc01497993907c8562` | City **10/10** ✅ ALL FIELDS COMPLETE |
 | North Lebanon | `6a365e3501497993907c8561` | Batroun | `6a3680dd01497993907c8563` | City **10/10** ✅ ALL FIELDS COMPLETE |
+| North Lebanon | `6a365e3501497993907c8561` | Bcharre | `6a3e7d9ae7f6b703f2d1b098` | City **10/10** ✅ ALL FIELDS COMPLETE |
+| Beqaa | `6a3e8cbbe7f6b703f2d1b099` | Zahle | `6a3e8cbbe7f6b703f2d1b09a` | Province **10/10** ✅ ALL FIELDS COMPLETE, City **10/10** ✅ ALL FIELDS COMPLETE |
+| Nabatieh | `6a3e91fee7f6b703f2d1b09b` | Nabatieh | `6a3e9270e7f6b703f2d1b09c` | Province **10/10** ✅ **ALL 10 FIELDS COMPLETE!** 🎉; City **10/10** ✅ **COMPLETE** |
 
 ## Progress
 
-- Provinces created: 3/9
-- Cities created: 5/17
-- Total fields entered: 70/260 (Beirut province: 10/10, Beirut city: 10/10 RE, Mount Lebanon province: 10/10, Baabda: 10/10, Aley: 10/10, North Lebanon province: 10/10 ✅, Tripoli: 10/10 ✅, Batroun: 10/10 ✅)
+- Provinces created: 5/9 (Nabatieh ✅)
+- Cities created: 8/17 (Nabatieh ✅ — **ALL 10 FIELDS COMPLETE**)
+- Total fields entered: 140/260 (Beirut province: 10/10, Beirut city: 10/10 RE, Mount Lebanon province: 10/10, Baabda: 10/10, Aley: 10/10, North Lebanon province: 10/10 ✅, Tripoli: 10/10 ✅, Batroun: 10/10 ✅, Bcharre: 10/10 ✅, Beqaa province: 10/10 ✅, Zahle: 10/10 ✅, Nabatieh province: 10/10 ✅ **COMPLETE** 🎉, Nabatieh city: 10/10 ✅ **COMPLETE**)
