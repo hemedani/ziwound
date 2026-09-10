@@ -10,7 +10,7 @@ import Link from "next/link";
 import {
   ArrowLeft, User, Building2, Calendar, MapPin, Briefcase, Shield,
   AlertTriangle, Clock, FileText, Tag, Trash2, Edit, ExternalLink,
-  Users, CalendarDays, Globe,
+  Users, CalendarDays, Globe, Home,
 } from "lucide-react";
 import Image from "next/image";
 import { getImageUploadUrl } from "@/utils/imageUrl";
@@ -19,6 +19,7 @@ import { notFound, redirect } from "next/navigation";
 import { revalidatePath } from "next/cache";
 import { DeleteWarCriminalButton } from "./delete-button";
 import { CopyLinkButton } from "./copy-link-button";
+import { resolvePlaceLabel } from "@/utils/place";
 
 const statusColors: Record<string, string> = {
   Accused: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
@@ -131,6 +132,10 @@ export default async function AdminWarCriminalDetailPage({
       updatedAt: 1,
       photo: { _id: 1, name: 1, mimeType: 1, size: 1, type: 1 },
       tags: { _id: 1, name: 1, color: 1, icon: 1 },
+      birthCountry: { _id: 1, name: 1, english_name: 1 },
+      birthCity: { _id: 1, name: 1, english_name: 1 },
+      residenceCountry: { _id: 1, name: 1, english_name: 1 },
+      residenceCity: { _id: 1, name: 1, english_name: 1 },
       reports: {
         _id: 1,
         title: 1,
@@ -151,6 +156,11 @@ export default async function AdminWarCriminalDetailPage({
   const StatusIcon = statusIcons[wc.status] || Globe;
   const statusLabel = t(statusTranslationKeys[wc.status] || wc.status);
   const affiliationLabel = wc.affiliation ? getAffiliationTranslation(t, wc.affiliation) : "";
+
+  const [birthPlaceLabel, residencePlaceLabel] = await Promise.all([
+    resolvePlaceLabel({ country: wc.birthCountry, city: wc.birthCity }),
+    resolvePlaceLabel({ country: wc.residenceCountry, city: wc.residenceCity }),
+  ]);
 
   const reportCount = wc.reports?.length || 0;
   const highPriorityReports = wc.reports?.filter((r) => r.priority === "High").length || 0;
@@ -578,6 +588,38 @@ export default async function AdminWarCriminalDetailPage({
                     <div className="flex-1 min-w-0">
                       <p className="text-xs text-slate-body mb-1">{t("nationality")}</p>
                       <p className="text-sm font-medium text-offwhite">{wc.nationality.join(", ")}</p>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {/* Place of Birth */}
+              {birthPlaceLabel && (
+                <>
+                  <Separator className="bg-white/10" />
+                  <div className="flex items-start gap-3">
+                    <div className="rounded-lg bg-white/5 p-2 shrink-0">
+                      <MapPin className="h-4 w-4 text-gold" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs text-slate-body mb-1">{t("placeOfBirth") || "Place of Birth"}</p>
+                      <p className="text-sm font-medium text-offwhite">{birthPlaceLabel}</p>
+                    </div>
+                  </div>
+                </>
+              )}
+
+              {/* Place of Residence */}
+              {residencePlaceLabel && (
+                <>
+                  <Separator className="bg-white/10" />
+                  <div className="flex items-start gap-3">
+                    <div className="rounded-lg bg-white/5 p-2 shrink-0">
+                      <Home className="h-4 w-4 text-gold" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs text-slate-body mb-1">{t("placeOfResidence") || "Place of Residence"}</p>
+                      <p className="text-sm font-medium text-offwhite">{residencePlaceLabel}</p>
                     </div>
                   </div>
                 </>

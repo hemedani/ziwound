@@ -29,6 +29,10 @@ export default async function AdminWarCriminalEditPage({
       isEntity: 1,
       photo: { _id: 1, name: 1 },
       tags: { _id: 1, name: 1 },
+      birthCountry: { _id: 1, name: 1, english_name: 1 },
+      birthCity: { _id: 1, name: 1, english_name: 1 },
+      residenceCountry: { _id: 1, name: 1, english_name: 1 },
+      residenceCity: { _id: 1, name: 1, english_name: 1 },
     },
   );
 

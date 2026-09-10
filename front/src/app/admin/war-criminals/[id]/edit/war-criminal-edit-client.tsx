@@ -12,13 +12,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { ImagePicker } from "@/components/form/image-picker";
 import { TagSelector } from "@/components/form/tag-selector";
+import { PlaceSelector, type PlaceValue } from "@/components/form/place-selector";
 import { RichTextEditor } from "@/components/form/rich-text-editor";
 import { DatePickerField } from "@/components/form/date-picker-field";
 import { useToast } from "@/components/ui/use-toast";
 import { update } from "@/app/actions/warCriminal/update";
 import { updateRelations } from "@/app/actions/warCriminal/updateRelations";
 import { gets as getTags } from "@/app/actions/tag/gets";
-import { Hash, ImageIcon, ArrowLeft, ArrowRight, Save, Loader2, BookOpen, Link2 } from "lucide-react";
+import { Hash, ImageIcon, ArrowLeft, ArrowRight, Save, Loader2, BookOpen, Link2, MapPin } from "lucide-react";
 import Link from "next/link";
 
 const LANGUAGES = [
@@ -49,6 +50,10 @@ interface WarCriminalData {
   isEntity: boolean;
   photo?: { _id: string; name?: string };
   tags?: Array<{ _id: string; name: string }>;
+  birthCountry?: { _id?: string; name?: string; english_name?: string };
+  birthCity?: { _id?: string; name?: string; english_name?: string };
+  residenceCountry?: { _id?: string; name?: string; english_name?: string };
+  residenceCity?: { _id?: string; name?: string; english_name?: string };
 }
 
 interface WarCriminalEditClientProps {
@@ -433,6 +438,14 @@ function TabRelations({ wc }: { wc: WarCriminalData }) {
     wc.tags?.map((tag) => tag._id).filter(Boolean) as string[] || [],
   );
   const [availableTags, setAvailableTags] = useState<{ _id: string; name: string }[]>([]);
+  const [birthPlace, setBirthPlace] = useState<PlaceValue>({
+    countryId: wc.birthCountry?._id,
+    cityId: wc.birthCity?._id,
+  });
+  const [residencePlace, setResidencePlace] = useState<PlaceValue>({
+    countryId: wc.residenceCountry?._id,
+    cityId: wc.residenceCity?._id,
+  });
 
   useEffect(() => {
     async function fetchTags() {
@@ -458,7 +471,29 @@ function TabRelations({ wc }: { wc: WarCriminalData }) {
       const tagsToRemove = initialTagIds.filter((id) => !selectedTagIds.includes(id));
       const photoChanged = photoId !== (wc.photo?._id || "");
 
-      if (!photoChanged && tagsToAdd.length === 0 && tagsToRemove.length === 0) {
+      const initialBirthCountry = wc.birthCountry?._id || "";
+      const initialBirthCity = wc.birthCity?._id || "";
+      const initialResidenceCountry = wc.residenceCountry?._id || "";
+      const initialResidenceCity = wc.residenceCity?._id || "";
+
+      const currentBirthCountry = birthPlace.countryId || "";
+      const currentBirthCity = birthPlace.cityId || "";
+      const currentResidenceCountry = residencePlace.countryId || "";
+      const currentResidenceCity = residencePlace.cityId || "";
+
+      const birthChanged =
+        currentBirthCountry !== initialBirthCountry || currentBirthCity !== initialBirthCity;
+      const residenceChanged =
+        currentResidenceCountry !== initialResidenceCountry ||
+        currentResidenceCity !== initialResidenceCity;
+
+      if (
+        !photoChanged &&
+        tagsToAdd.length === 0 &&
+        tagsToRemove.length === 0 &&
+        !birthChanged &&
+        !residenceChanged
+      ) {
         toast({
           title: t("success") || "Success",
           description: t("noChanges") || "No changes",
@@ -471,10 +506,26 @@ function TabRelations({ wc }: { wc: WarCriminalData }) {
         tagIds?: string[];
         tagIdsToRemove?: string[];
         photoId?: string;
+        birthCountryId?: string;
+        birthCityId?: string;
+        removeBirth?: boolean;
+        residenceCountryId?: string;
+        residenceCityId?: string;
+        removeResidence?: boolean;
       } = { _id: wc._id };
       if (photoChanged) payload.photoId = photoId || undefined;
       if (tagsToAdd.length > 0) payload.tagIds = tagsToAdd;
       if (tagsToRemove.length > 0) payload.tagIdsToRemove = tagsToRemove;
+      if (birthChanged) {
+        if (currentBirthCountry) payload.birthCountryId = currentBirthCountry;
+        else if (currentBirthCity) payload.birthCityId = currentBirthCity;
+        else payload.removeBirth = true;
+      }
+      if (residenceChanged) {
+        if (currentResidenceCountry) payload.residenceCountryId = currentResidenceCountry;
+        else if (currentResidenceCity) payload.residenceCityId = currentResidenceCity;
+        else payload.removeResidence = true;
+      }
 
       const res = await updateRelations(payload, {
         _id: 1,
@@ -556,6 +607,28 @@ function TabRelations({ wc }: { wc: WarCriminalData }) {
             .map((t) => ({ id: t._id, name: t.name }))}
           onChange={(tags) => setSelectedTagIds(tags.map((t) => t.id))}
         />
+      </div>
+
+      {/* Places */}
+      <div className="rounded-2xl glass-strong p-5 border border-white/[0.06] space-y-5">
+        <h3 className="text-xs font-semibold uppercase tracking-[0.1em] text-gold flex items-center gap-1.5">
+          <MapPin className="h-3.5 w-3.5" />
+          {t("places") || "Places"}
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <PlaceSelector
+            label={t("placeOfBirth") || "Place of Birth"}
+            value={birthPlace}
+            onChange={(val) => setBirthPlace(val || {})}
+            initialLabel={wc.birthCity?.name || wc.birthCountry?.name}
+          />
+          <PlaceSelector
+            label={t("placeOfResidence") || "Place of Residence"}
+            value={residencePlace}
+            onChange={(val) => setResidencePlace(val || {})}
+            initialLabel={wc.residenceCity?.name || wc.residenceCountry?.name}
+          />
+        </div>
       </div>
 
       {/* Save */}

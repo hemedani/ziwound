@@ -9,12 +9,13 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import {
   User, Building2, Calendar, MapPin, Briefcase,
-  FileText, Tag, AlertTriangle, Shield, ExternalLink, Scale,
+  FileText, Tag, AlertTriangle, Shield, ExternalLink, Scale, Home,
 } from "lucide-react";
 import Image from "next/image";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 import { warCriminalSchema } from "@/types/declarations";
 import { ShareButton } from "@/components/war-criminals/share-button";
+import { resolvePlaceLabel } from "@/utils/place";
 
 const statusColors: Record<string, string> = {
   Accused: "bg-yellow-500/20 text-yellow-400 border-yellow-500/30",
@@ -128,6 +129,10 @@ export default async function WarCriminalDetailPage({
       updatedAt: 1,
       photo: { _id: 1, name: 1, mimeType: 1, size: 1, type: 1 },
       tags: { _id: 1, name: 1, color: 1, icon: 1 },
+      birthCountry: { _id: 1, name: 1, english_name: 1 },
+      birthCity: { _id: 1, name: 1, english_name: 1 },
+      residenceCountry: { _id: 1, name: 1, english_name: 1 },
+      residenceCity: { _id: 1, name: 1, english_name: 1 },
       reports: {
         _id: 1,
         title: 1,
@@ -147,6 +152,11 @@ export default async function WarCriminalDetailPage({
   const wc: warCriminalSchema = response.body[0];
   const statusLabel = getStatusTranslation(t, wc.status);
   const affiliationLabel = wc.affiliation ? getAffiliationTranslation(t, wc.affiliation) : "";
+
+  const [birthPlaceLabel, residencePlaceLabel] = await Promise.all([
+    resolvePlaceLabel({ country: wc.birthCountry, city: wc.birthCity }),
+    resolvePlaceLabel({ country: wc.residenceCountry, city: wc.residenceCity }),
+  ]);
 
   const reportCount = wc.reports?.length || 0;
   const highPriorityReports = wc.reports?.filter((r) => r.priority === "High").length || 0;
@@ -245,6 +255,26 @@ export default async function WarCriminalDetailPage({
                     <Calendar className="h-3.5 w-3.5 text-gold/80" />
                   </div>
                   <span>{formatDate(wc.dateOfBirth)}</span>
+                </div>
+              )}
+              {birthPlaceLabel && (
+                <div className="flex items-center gap-2">
+                  <div className="rounded-lg bg-white/[0.04] p-1.5">
+                    <MapPin className="h-3.5 w-3.5 text-gold/80" />
+                  </div>
+                  <span>
+                    {t("warCriminals.placeOfBirth") || "Place of Birth"}: {birthPlaceLabel}
+                  </span>
+                </div>
+              )}
+              {residencePlaceLabel && (
+                <div className="flex items-center gap-2">
+                  <div className="rounded-lg bg-white/[0.04] p-1.5">
+                    <Home className="h-3.5 w-3.5 text-gold/80" />
+                  </div>
+                  <span>
+                    {t("warCriminals.placeOfResidence") || "Place of Residence"}: {residencePlaceLabel}
+                  </span>
                 </div>
               )}
             </div>
@@ -516,6 +546,32 @@ export default async function WarCriminalDetailPage({
                     <div>
                       <p className="text-xs text-slate-body/70 mb-1.5">{t("admin.nationality")}</p>
                       <p className="text-sm text-offwhite">{wc.nationality.join(", ")}</p>
+                    </div>
+                  </>
+                )}
+
+                {/* Place of Birth */}
+                {birthPlaceLabel && (
+                  <>
+                    <Separator className="bg-white/[0.06]" />
+                    <div>
+                      <p className="text-xs text-slate-body/70 mb-1.5">
+                        {t("warCriminals.placeOfBirth") || "Place of Birth"}
+                      </p>
+                      <p className="text-sm text-offwhite">{birthPlaceLabel}</p>
+                    </div>
+                  </>
+                )}
+
+                {/* Place of Residence */}
+                {residencePlaceLabel && (
+                  <>
+                    <Separator className="bg-white/[0.06]" />
+                    <div>
+                      <p className="text-xs text-slate-body/70 mb-1.5">
+                        {t("warCriminals.placeOfResidence") || "Place of Residence"}
+                      </p>
+                      <p className="text-sm text-offwhite">{residencePlaceLabel}</p>
                     </div>
                   </>
                 )}

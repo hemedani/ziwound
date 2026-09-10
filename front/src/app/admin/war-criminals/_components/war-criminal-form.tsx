@@ -14,6 +14,7 @@ import { Loader2 } from "lucide-react";
 import { warCriminalSchema } from "@/types/declarations";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { DatePickerField } from "@/components/form/date-picker-field";
+import { PlaceSelector, type PlaceValue } from "@/components/form/place-selector";
 
 import { RichTextEditor } from "@/components/form/rich-text-editor";
 
@@ -48,6 +49,10 @@ const warCriminalFormSchema = z.object({
   convictionDetails: localizedFieldSchema,
   isEntity: z.boolean().default(false),
   photoId: z.string().optional(),
+  birthCountryId: z.string().optional(),
+  birthCityId: z.string().optional(),
+  residenceCountryId: z.string().optional(),
+  residenceCityId: z.string().optional(),
 });
 
 export type WarCriminalFormValues = z.infer<typeof warCriminalFormSchema>;
@@ -140,8 +145,22 @@ export function WarCriminalForm({ initialData, onSubmit, onCancel, isEditing = f
       convictionDetails: (initialData?.convictionDetails as Record<string, string> | undefined) ? { fa: initialData?.convictionDetails?.fa || "", en: initialData?.convictionDetails?.en || "", ar: initialData?.convictionDetails?.ar || "", zh: initialData?.convictionDetails?.zh || "", pt: initialData?.convictionDetails?.pt || "", es: initialData?.convictionDetails?.es || "", nl: initialData?.convictionDetails?.nl || "", tr: initialData?.convictionDetails?.tr || "", ru: initialData?.convictionDetails?.ru || "" } : emptyLocalized,
       isEntity: initialData?.isEntity || false,
       photoId: initialData?.photoId || "",
+      birthCountryId: initialData?.birthCountry?._id || "",
+      birthCityId: initialData?.birthCity?._id || "",
+      residenceCountryId: initialData?.residenceCountry?._id || "",
+      residenceCityId: initialData?.residenceCity?._id || "",
     },
   });
+
+  const handlePlaceChange = (field: "birth" | "residence", value: PlaceValue | null) => {
+    if (field === "birth") {
+      form.setValue("birthCountryId", value?.countryId || "");
+      form.setValue("birthCityId", value?.cityId || "");
+    } else {
+      form.setValue("residenceCountryId", value?.countryId || "");
+      form.setValue("residenceCityId", value?.cityId || "");
+    }
+  };
 
   const handleSubmit = (values: WarCriminalFormValues) => {
     startTransition(async () => {
@@ -303,6 +322,22 @@ export function WarCriminalForm({ initialData, onSubmit, onCancel, isEditing = f
             </FormItem>
           )}
         />
+
+        <div className="space-y-4">
+          <h4 className="text-sm font-semibold text-offwhite">{t("places") || "Places"}</h4>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <PlaceSelector
+              label={t("placeOfBirth") || "Place of Birth"}
+              value={{ countryId: form.watch("birthCountryId"), cityId: form.watch("birthCityId") }}
+              onChange={(val) => handlePlaceChange("birth", val)}
+            />
+            <PlaceSelector
+              label={t("placeOfResidence") || "Place of Residence"}
+              value={{ countryId: form.watch("residenceCountryId"), cityId: form.watch("residenceCityId") }}
+              onChange={(val) => handlePlaceChange("residence", val)}
+            />
+          </div>
+        </div>
 
         <div className="space-y-4">
           <h4 className="text-sm font-semibold text-offwhite">{t("photo") || "Photo"}</h4>

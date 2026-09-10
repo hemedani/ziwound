@@ -40,6 +40,10 @@ export default async function AdminWarCriminalNewPage() {
         status: data.status,
         convictionDetails: buildLocalized(data.convictionDetails),
         isEntity: data.isEntity,
+        birthCountryId: data.birthCountryId || undefined,
+        birthCityId: data.birthCityId || undefined,
+        residenceCountryId: data.residenceCountryId || undefined,
+        residenceCityId: data.residenceCityId || undefined,
       },
       { _id: 1, fullName: 1 },
     );
