@@ -209,6 +209,11 @@ export function Header() {
                       <Link href="/admin/dashboard">{t("adminPanel")}</Link>
                     </DropdownMenuItem>
                   )}
+                {user?.isRegionalManager && (
+                  <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                    <Link href={`/${locale}/regional`}>{t("regionalManager")}</Link>
+                  </DropdownMenuItem>
+                )}
                 <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
                   <Link href={`/${locale}/profile`}>{t("profile")}</Link>
                 </DropdownMenuItem>
@@ -293,6 +298,11 @@ export function Header() {
                       {(user?.level === "Ghost" ? 4 : user?.level === "Manager" ? 3 : user?.level === "Editor" ? 2 : 1) >= 3 && (
                         <MobileLink onClick={() => setMobileMenuOpen(false)} href="/admin/users" icon={<Users className="h-4 w-4" />}>
                           {tAdmin("users")}
+                        </MobileLink>
+                      )}
+                      {(user?.level === "Ghost" ? 4 : user?.level === "Manager" ? 3 : user?.level === "Editor" ? 2 : 1) >= 3 && (
+                        <MobileLink onClick={() => setMobileMenuOpen(false)} href="/admin/regional-requests" icon={<Shield className="h-4 w-4" />}>
+                          {tAdmin("regionalRequests")}
                         </MobileLink>
                       )}
                       <MobileLink onClick={() => setMobileMenuOpen(false)} href="/admin/tags" icon={<Tags className="h-4 w-4" />}>

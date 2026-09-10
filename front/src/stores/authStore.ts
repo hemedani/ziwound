@@ -6,6 +6,7 @@ interface User {
   last_name: string;
   email: string;
   level: "Ghost" | "Manager" | "Editor" | "Ordinary";
+  isRegionalManager?: boolean;
   avatar?: {
     _id: string;
     name: string;

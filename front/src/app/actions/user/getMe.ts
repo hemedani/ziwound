@@ -23,6 +23,7 @@ export const getMe = async (
       email: 1,
       level: 1,
       is_verified: 1,
+      isRegionalManager: 1,
     };
 
     const finalGetSelection = getSelection || defaultGet;

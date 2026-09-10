@@ -16,6 +16,7 @@ interface BreadcrumbItem {
 export function Breadcrumbs() {
   const t = useTranslations("breadcrumbs");
   const tHeader = useTranslations("header");
+  const tRegional = useTranslations("regional");
   const pathname = usePathname();
   const locale = useLocale();
 
@@ -63,6 +64,33 @@ export function Breadcrumbs() {
         case "reports":
           label = tHeader("myReports");
           break;
+        case "login":
+          label = tHeader("login");
+          break;
+        case "register":
+          label = tHeader("register");
+          break;
+        case "regional":
+          label = tRegional("title");
+          break;
+        case "profile":
+          label = tHeader("profile");
+          break;
+        case "help":
+          label = tHeader("help");
+          break;
+        case "privacy":
+          label = tHeader("privacy");
+          break;
+        case "terms":
+          label = tHeader("terms");
+          break;
+        case "reporters":
+          label = tHeader("reporters");
+          break;
+        case "war-criminals":
+          label = tHeader("warCriminals");
+          break;
         case "new":
           label = t("newReport");
           break;
@@ -98,7 +126,7 @@ export function Breadcrumbs() {
     });
 
     return items;
-  }, [pathname, locale, t, tHeader]);
+  }, [pathname, locale, t, tHeader, tRegional]);
 
   // Don't show breadcrumbs on home page
   if (breadcrumbs.length <= 1) {

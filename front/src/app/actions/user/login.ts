@@ -19,6 +19,7 @@ export const login = async (
         last_name: 1,
         email: 1,
         level: 1,
+        isRegionalManager: 1,
       },
     };
 

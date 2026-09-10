@@ -79,6 +79,7 @@ export default function MyReportsPage() {
             description: 1,
             status: 1,
             priority: 1,
+            reviewNote: 1,
             location: 1,
             address: 1,
             crime_occurred_at: 1,
@@ -262,6 +263,13 @@ export default function MyReportsPage() {
                       className="group relative"
                     >
                       <ReportCard report={report} locale={locale} />
+
+                      {report.status === "Rejected" && report.reviewNote && (
+                        <div className="mt-2 rounded-lg border border-crimson/20 bg-crimson/[0.06] p-3 text-xs text-slate-body/80">
+                          <span className="font-medium text-crimson-light">{t("reviewNote")}: </span>
+                          {report.reviewNote}
+                        </div>
+                      )}
 
                       {/* Quick Actions Overlay */}
                       <div className="absolute end-2 top-2 z-10 flex gap-1 opacity-0 transition-opacity duration-200 group-hover:opacity-100">

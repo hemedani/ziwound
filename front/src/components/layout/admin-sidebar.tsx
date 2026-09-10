@@ -81,6 +81,7 @@ const navSections: NavSection[] = [
   {
     labelKey: "system",
     items: [
+      { nameKey: "regionalRequests", href: "/admin/regional-requests", icon: Shield, requiresLevel: 3 },
       { nameKey: "users", href: "/admin/users", icon: Users, requiresLevel: 3 },
       { nameKey: "files", href: "/admin/files", icon: HardDrive },
     ],
