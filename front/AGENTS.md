@@ -1,3 +1,9 @@
+<!-- BEGIN:nextjs-agent-rules -->
+# This is NOT the Next.js you know
+
+This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
+<!-- END:nextjs-agent-rules -->
+
 # ZiWound Frontend - Next.js Application
 
 ## Project Overview
@@ -649,6 +655,7 @@ The following fields were removed from the user model and should NOT be used:
 
 You are a front-end expert in Next.js 16, Tailwind v4, and shadcn/ui. Always prioritize **clean, beautiful, intuitive, and accessible** UIs. The report submission page must feel simple and welcoming; the admin panel must be powerful yet well-organized.
 
+- **STRICT RULE FOR AI AGENTS**: Work **only inside this frontend** (`front/`). Never modify, run, or inspect the `back/` (Deno/Lesan) backend code, and **never run git commands** (commit, push, merge, reset, etc.) unless the user explicitly asks for them.
 - **STRICT RULE FOR AI AGENTS**: Use **pnpm** for all `npm` like commands.
 - Use **Server Actions** in `src/app/actions/<model>/` for all backend communication (preferred pattern: `add`, `get`, `gets`, `update`, `remove`, etc.).
 - Backend responses follow: `{ success: boolean, body: data }`. Always access data via `response.body`.
@@ -2484,3 +2491,18 @@ export default function EntityLoading() {
 }
 ```
 ```
+
+---
+
+## Quick Agent Checklist
+
+1. **pnpm only** — never npm/yarn.
+2. Next.js 16 has breaking changes — when in doubt, read the relevant guide in `node_modules/next/dist/docs/`.
+3. **Server Actions only** for backend communication; never fetch the backend directly from client components.
+4. Type with `ReqType` / `DeepPartial` from `/src/types/declarations`; **never use `any`**.
+5. When adding translations, add keys to **all** 9 files in `/messages` and always pass `locale` explicitly to `getTranslations()` in Server Components.
+6. Use shadcn/ui components as the foundation; new forms use React Hook Form + Zod; wrap every Server Action in `try…catch` returning `{ success: false, body: { message } }`.
+7. For file/image URLs always use `file.name` (never `file._id`); proxy via `/api/image-proxy`; on proxied `next/image`, pass `unoptimized` and `sizes` (plus `fill` only with `sizes`).
+8. RTL/LTR: prefer logical CSS properties (`ps-`/`pe-`/`ms-`/`me-`/`start-`/`end-`) and explicitly pass `dir={isRTL ? "rtl" : "ltr"}` to Radix primitives (Tabs, Select, Dialog, etc.).
+9. Guard dynamic `t(\`prefix_${value}\`)` calls against empty/undefined values to avoid `MISSING_MESSAGE`; use `Skeleton`/`SkeletonTable`/`EmptyState`/`ErrorState` for standard states.
+10. Test thoroughly in both fa (RTL) and en (LTR).

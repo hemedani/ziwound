@@ -50,6 +50,7 @@ The backend defines the following core models:
 - **BlogPost** - Blog articles (title, slug unique, content, selected_language, isPublished, isFeatured, publishedAt, author, coverImage, tags)
 - **HeroSlide** - Landing page slider (title, subtitle, gradient, ctaText, ctaLink, secondaryCtaText, secondaryCtaLink, selected_language, order, isActive, image)
 - **WarCriminal** - Individuals/entities accused of war crimes (fullName, aliases, dateOfBirth, nationality, affiliation, rankOrPosition, knownFor, biography, description, status, convictionDetails, isEntity, photo, tags - uses localizedWarInfo for rich text, no selected_language)
+- **RegionalManagerRequest** - Regional manager applications (status: Pending/Approved/Rejected, areaType: Country/Province/City, justification, reviewNote, decidedAt, relations: user, country, province, city, reviewedBy)
 
 ## Recent Implementation Notes
 
@@ -127,6 +128,47 @@ This section documents key features and implementations added in recent developm
   - `gets` filters: status, affiliation, isEntity, tagIds, nationality, date range, full-text search
   - Link WarCriminals to Reports via `warCriminalIds` in `report.add` and `report.updateRelations`
   - Seed data: 3 entries (Slobodan Milosevic, Wagner Group, Radovan Karadzic)
+
+### Regional Manager Feature Implementation
+
+Regional managers are users who are granted management rights over a specific geographical area (a city, province, or country). Anyone can volunteer via an application that is reviewed by a Manager.
+
+- **New Model: `regionalManagerRequest`**
+  - Pure fields: `status` (defaulted `Pending`, enum `Pending/Approved/Rejected`), `areaType` (enum `Country/Province/City`, required), `justification` (applicant's reason), `reviewNote` (admin decision note / rejection reason), `decidedAt`
+  - Relations: `user` (single, required → reverse `regionalManagerRequests` on User), `country`/`province`/`city` (single, optional, exactly one must match `areaType`), `reviewedBy` (single, optional User)
+  - Index on `status`
+  - Acts: `add` (self-apply, blocks if a `Pending`/`Approved` request already exists; re-apply allowed after `Rejected`), `get` (owner or Manager), `gets` (Manager only, filters: status/areaType/userIds/search), `decide` (Manager only), `remove` (Manager only, full revoke cleanup), `count` (Manager only)
+
+- **User Model Additions**
+  - Pure field: `isRegionalManager: defaulted(boolean(), false)`
+  - Relations: `managesCountry`, `managesProvince`, `managesCity` (single, optional) — each creates a reverse `regionalManagers` (multiple) on the location model
+  - Assignment is **one active area per user**; approving a new request replaces the previous assignment (removes the other `manages*` relations first)
+  - `isRegionalManager` and `manages*` are **not** exposed in `addUser`/`updateUser`/`updateUserRelations` validators — only settable through `regionalManagerRequest.decide` / `remove`
+
+- **Report Model Additions**
+  - Pure fields: `reviewNote`, `reviewedAt`
+  - Relation: `reviewedBy` (single, optional User → reverse `reviewedReports`)
+  - New act `report.updateStatus`: `{ _id, status, reviewNote? }` — verifies the report is in the caller's managed area (or caller is Ghost/Manager/Editor), then sets `status` + `reviewedBy` + `reviewedAt` + `reviewNote`. Used for the review/audit trail on every status change.
+  - New act `report.getsMyArea`: returns reports scoped to the caller's managed area (admin → unscoped)
+
+- **Area Scoping Helpers** (`utils/regionalAccess.ts`)
+  - `isAdminLevel(user)` — true for `Ghost`/`Manager`/`Editor`
+  - `getManagedAreaOfUser(userId)` — reads the user's `manages*` relations
+  - `getReportAreaScope(userId)` — resolves the downward-closed set of `{ countryIds, provinceIds, cityIds }`; a country manager inherits its provinces and cities, a province manager inherits its cities, a city manager only its city. Sub-area resolution queries `province`/`city` collections via embedded `"country._id"` / `"province._id"` fields.
+  - `assertAreaAccess(user, areaType, targetId)` — throws unless admin **or** the target `_id` equals the user's managed area of that type. Called at the top of `country`/`province`/`city` `update` and `updateRelations` fns.
+  - `assertReportInArea(user, reportId)` — throws unless admin **or** the report's `attackedCountries`/`attackedProvinces`/`attackedCities` intersect the user's scope
+
+- **Location Update Gating Change**
+  - `country`/`province`/`city` `update` and `updateRelations` preActs were relaxed from `grantAccess({ levels: ["Manager"] })` to just `[setTokens, setUser]`; the real authorization now lives in the fn-level `assertAreaAccess` (allows Ghost/Manager/Editor **or** the area's regional manager). This is what lets an `Ordinary`-level regional manager edit their own area without opening it up to everyone.
+
+- **Registration Flow**
+  - `user.registerUser` accepts fuller profile fields (gender, birth_date, address, bio, avatarId) plus optional regional application fields: `regionalAreaType`, `regionalCountryId`, `regionalProvinceId`, `regionalCityId`, `regionalJustification`
+  - When the application fields are present, the fn validates exactly one area matching `areaType` and creates a `regionalManagerRequest` with status `Pending` linked to the new user
+
+- **Review Workflow**
+  - Admin approves → request set to `Approved` + `decidedAt`/`reviewedBy`; target user gets `isRegionalManager: true` and the `manages*` relation assigned (existing assignments of other types removed first)
+  - Admin rejects → request set to `Rejected` + `reviewNote`; user can re-apply
+  - Removing an `Approved` request revokes the assignment (clears `manages*` and sets `isRegionalManager: false`)
 
 ### Important Lessons Learned
 
@@ -215,15 +257,16 @@ export const model_pure = {
 | **City** | add, get, gets, update, updateRelations, remove, count | - | Yes |
 | **Category** | add, get, gets, update, remove, count | - | Yes |
 | **Tag** | add, get, gets, update, remove, count | - | Yes |
-| **Report** | add, get, gets, update, updateRelations, remove, count | statistics, exportCSV, exportPDF | Yes |
+| **Report** | add, get, gets, update, updateRelations, remove, count | statistics, exportCSV, exportPDF, getsMyArea, updateStatus | Yes |
 | **Document** | add, get, gets, update, updateRelations, remove, count | - | Yes |
 | **BlogPost** | add, get, gets, update, updateRelations, remove, count | publish, unpublish, getBySlug, getRelated | Mixed |
 | **HeroSlide** | add, get, gets, update, remove, count | - | gets=public, others=admin |
 | **WarCriminal** | add, get, gets, update, updateRelations, remove, count | - | Yes |
+| **RegionalManagerRequest** | add, get, gets, decide, remove, count | - | Mixed (add/get=user, gets/decide/remove/count=Manager) |
 
 ### User Model Details
 
-**Schema**: first_name, last_name, gender (Male/Female), birth_date (optional, ISO string), summary (optional), address (optional), level (Ghost/Manager/Editor/Reporter/Artist/Diplomat/Researcher/Ordinary), email (unique), password, is_verified, bio (localizedWarInfo), expertise (string[]), verified, verificationBadge, isPublic, avatar (File), national_card (File), province (Province), city (City)
+**Schema**: first_name, last_name, gender (Male/Female), birth_date (optional, ISO string), summary (optional), address (optional), level (Ghost/Manager/Editor/Reporter/Artist/Diplomat/Researcher/Ordinary), email (unique), password, is_verified, bio (localizedWarInfo), expertise (string[]), verified, verificationBadge, isPublic, isRegionalManager, avatar (File), national_card (File), province (Province), city (City), country (Country), managesCountry (Country), managesProvince (Province), managesCity (City)
 
 **Endpoints**:
 - `user.login` - Authenticate with email/password, returns JWT token
@@ -315,6 +358,8 @@ export const model_pure = {
 - `report.updateRelations` - Update report relations (tags, category, documents, hostileCountries, attackedCountries, attackedProvinces, attackedCities, warCriminals)
 - `report.remove` - Delete report
 - `report.count` - Count reports with filters
+- `report.updateStatus` - Set status with review trail (set: `{ _id, status, reviewNote? }`); area-scoped for regional managers, unscoped for admins
+- `report.getsMyArea` - List reports in the caller's managed area (regional managers); admin → unscoped
 - `report.statistics` - Get analytics (counts by status, category, priority, monthly timeline, geographic distribution)
 - `report.exportCSV` - Export reports to CSV
 - `report.exportPDF` - Export single report to PDF
@@ -398,6 +443,20 @@ export const model_pure = {
 **`gets` Filters**: search, status, affiliation, isEntity, tagIds, nationality, dateOfBirthFrom, dateOfBirthTo
 
 **Note**: Uses `localizedWarInfo` for rich text fields, NO `selected_language`. Report owns the warCriminals relation.
+
+### RegionalManagerRequest Model Details
+
+**Schema**: status (Pending/Approved/Rejected), areaType (Country/Province/City), justification, reviewNote, decidedAt, user (User), country (Country), province (Province), city (City), reviewedBy (User)
+
+**Endpoints**:
+- `regionalManagerRequest.add` - Self-apply to become a regional manager (authenticated). Blocks if the user already has a `Pending`/`Approved` request; re-apply allowed after `Rejected`. Exactly one of `countryId`/`provinceId`/`cityId` must match `areaType`.
+- `regionalManagerRequest.get` - Get a single request (owner or Manager)
+- `regionalManagerRequest.gets` - List requests (Manager). Filters: status, areaType, userIds, search, createdAtFrom/To
+- `regionalManagerRequest.decide` - Approve/reject a request (Manager). set: `{ _id, decision: Approved|Rejected, reviewNote? }`. Approving assigns `isRegionalManager` + the `manages*` relation on the user.
+- `regionalManagerRequest.remove` - Delete a request (Manager). Deleting an `Approved` request revokes the assignment.
+- `regionalManagerRequest.count` - Count requests (Manager)
+
+**Index**: status
 
 ## Project Structure
 
@@ -1311,6 +1370,16 @@ attachments: {
 3. **Use `replace: true` carefully** - Deletes existing relations before adding new ones
 4. **Separate pure updates from relation updates** - Use `findOneAndUpdate` for fields, `addRelation` for relations
 
+#### Single Relations Are Embedded (No Performance Penalty)
+
+Lesan **embeds** `type: "single"` relations directly in the parent document as an inline sub-document containing the full related object (all pure fields + `_id`). This means:
+
+- Reading a single relation requires **zero additional queries or joins** — it is just a nested object in the same document.
+- Relation sub-fields (e.g. `category._id`, `category.name`) are fully indexable, just like top-level fields.
+- Storing a redundant `categoryId` / `categoryName` as separate pure fields provides **no query or speed advantage** over a Lesan single relation.
+
+Use Lesan single relations by default for model references. Only fall back to pure-field IDs/names when the referenced record may be deleted and the reference must survive deletion (orphan resilience), or when the value must be an immutable snapshot that should not track source-of-truth updates.
+
 ---
 
 ## API Route Structure
@@ -1882,6 +1951,33 @@ export const removeFn: ActFn = async (body) => {
 **Key rules:**
 - `hardCascade: true` recursively deletes related documents
 - Lesan prevents deletion if related documents would become orphaned (unless hardCascade)
+
+#### `hardCascade` Behavior — Delete Order & Safety
+
+Understanding Lesan's `deleteOne` + `hardCascade` semantics is critical for correct deletion order (E2E tests, admin removes, cascading cleanup):
+
+**Without `hardCascade` (default — safe):**
+- Deleting a **child** removes it from the parent's embedded reverse array **automatically**. No manual cleanup needed.
+- Deleting a **parent** is **blocked** if children still reference it via a reverse relation — Lesan returns an error telling you to handle the children first.
+- This guarantees data integrity: you can always delete children safely, but you can never accidentally orphan them.
+
+**With `hardCascade: true` (dangerous):**
+- Deleting a **parent** **cascade-deletes all children** that reference it via the reverse relation.
+- Use only when you are certain you want to delete an entire tree of data. Never rely on it for routine cleanup — a wrong `hardCascade` can silently wipe large amounts of related data.
+
+**Correct remove function pattern (this codebase):**
+```typescript
+export const removeFn: ActFn = async (body) => {
+  const { set: { _id, hardCascade } } = body.details;
+
+  return await model.deleteOne({
+    filter: { _id: new ObjectId(_id) },
+    hardCascade: hardCascade || false, // explicit default: safe mode
+  });
+};
+```
+
+**Bottom line:** Always delete children (leaf nodes) before parents — order E2E/manual test removals from leaf → root. Never change `hardCascade: false` to a conditional that only passes it when true; `false` and omitting it are semantically identical ("default safe mode").
 
 ---
 
