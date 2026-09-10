@@ -12,7 +12,7 @@ import {
 } from "lesan";
 import { coreApp } from "../mod.ts";
 import { createUpdateAt } from "@lib";
-import { shared_relation_excludes } from "./excludes.ts";
+import { location_excludes, shared_relation_excludes } from "./excludes.ts";
 import { localizedWarInfo } from "./utils/localizedFields.ts";
 
 export const warCriminal_status_array = [
@@ -92,6 +92,34 @@ export const warCriminal_relations = {
     type: "single" as RelationDataType,
     optional: true,
     excludes: shared_relation_excludes,
+    relatedRelations: {},
+  },
+  birthCountry: {
+    schemaName: "country",
+    type: "single" as RelationDataType,
+    optional: true,
+    excludes: location_excludes,
+    relatedRelations: {},
+  },
+  birthCity: {
+    schemaName: "city",
+    type: "single" as RelationDataType,
+    optional: true,
+    excludes: location_excludes,
+    relatedRelations: {},
+  },
+  residenceCountry: {
+    schemaName: "country",
+    type: "single" as RelationDataType,
+    optional: true,
+    excludes: location_excludes,
+    relatedRelations: {},
+  },
+  residenceCity: {
+    schemaName: "city",
+    type: "single" as RelationDataType,
+    optional: true,
+    excludes: location_excludes,
     relatedRelations: {},
   },
 };

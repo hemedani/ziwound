@@ -14,6 +14,10 @@ export const getsFn: ActFn = async (body) => {
       isEntity,
       tagIds,
       nationality,
+      birthCountryId,
+      birthCityId,
+      residenceCountryId,
+      residenceCityId,
       createdAtFrom,
       createdAtTo,
       sortBy,
@@ -53,6 +57,30 @@ export const getsFn: ActFn = async (body) => {
   if (nationality) {
     pipeline.push({
       $match: { nationality },
+    });
+  }
+
+  if (birthCountryId) {
+    pipeline.push({
+      $match: { "birthCountry._id": new ObjectId(birthCountryId) },
+    });
+  }
+
+  if (birthCityId) {
+    pipeline.push({
+      $match: { "birthCity._id": new ObjectId(birthCityId) },
+    });
+  }
+
+  if (residenceCountryId) {
+    pipeline.push({
+      $match: { "residenceCountry._id": new ObjectId(residenceCountryId) },
+    });
+  }
+
+  if (residenceCityId) {
+    pipeline.push({
+      $match: { "residenceCity._id": new ObjectId(residenceCityId) },
     });
   }
 

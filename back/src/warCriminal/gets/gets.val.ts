@@ -25,6 +25,10 @@ export const getsValidator = () => {
       isEntity: optional(boolean()),
       tagIds: optional(array(objectIdValidation)),
       nationality: optional(string()),
+      birthCountryId: optional(objectIdValidation),
+      birthCityId: optional(objectIdValidation),
+      residenceCountryId: optional(objectIdValidation),
+      residenceCityId: optional(objectIdValidation),
       createdAtFrom: optional(date()),
       createdAtTo: optional(date()),
       sortBy: optional(
