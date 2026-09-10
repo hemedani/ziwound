@@ -55,6 +55,8 @@ export const report_pure = {
     (value) => value as LanguageCode,
   ),
   crime_occurred_at: coerce(date(), string(), (value) => new Date(value)),
+  reviewNote: optional(string()),
+  reviewedAt: optional(date()),
   ...createUpdateAt,
 };
 
@@ -66,6 +68,23 @@ export const report_relations = {
     excludes: user_excludes,
     relatedRelations: {
       reports: {
+        type: "multiple" as RelationDataType,
+        limit: 100,
+        excludes: report_excludes,
+        sort: {
+          field: "_id",
+          order: "desc" as RelationSortOrderType,
+        },
+      },
+    },
+  },
+  reviewedBy: {
+    schemaName: "user",
+    type: "single" as RelationDataType,
+    optional: true,
+    excludes: user_excludes,
+    relatedRelations: {
+      reviewedReports: {
         type: "multiple" as RelationDataType,
         limit: 100,
         excludes: report_excludes,
