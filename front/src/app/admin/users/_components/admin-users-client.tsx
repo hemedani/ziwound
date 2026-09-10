@@ -22,6 +22,8 @@ interface AdminUsersClientProps {
   search: string;
   prevPageUrl: string;
   nextPageUrl: string;
+  regionalAreas: Record<string, { areaType?: string; areaName?: string }>;
+  canManageRegional: boolean;
 }
 
 export function AdminUsersClient({
@@ -31,6 +33,8 @@ export function AdminUsersClient({
   search,
   prevPageUrl,
   nextPageUrl,
+  regionalAreas,
+  canManageRegional,
 }: AdminUsersClientProps) {
   const t = useTranslations("admin");
   const locale = useLocale();
@@ -207,12 +211,24 @@ export function AdminUsersClient({
       ) : viewMode === "grid" ? (
         <div className="grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
           {users.map((user, i) => (
-            <UserCard key={user._id} user={user} onDelete={handleDelete} index={i} />
+            <UserCard
+              key={user._id}
+              user={user}
+              onDelete={handleDelete}
+              index={i}
+              area={regionalAreas[user._id as string]}
+              canManageRegional={canManageRegional}
+            />
           ))}
         </div>
       ) : (
         <div className="rounded-2xl glass-light border border-white/[0.06] overflow-hidden">
-          <UsersTable users={users} onDelete={handleDelete} />
+          <UsersTable
+            users={users}
+            onDelete={handleDelete}
+            regionalAreas={regionalAreas}
+            canManageRegional={canManageRegional}
+          />
         </div>
       )}
 

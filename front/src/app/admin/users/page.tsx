@@ -1,6 +1,8 @@
 import { getTranslations } from "next-intl/server";
 import { getUsers } from "@/app/actions/user/getUsers";
+import { getMe } from "@/app/actions/user/getMe";
 import { countUsers } from "@/app/actions/user/countUsers";
+import { gets as getRegionalRequests } from "@/app/actions/regionalManagerRequest/gets";
 import { Button } from "@/components/ui/button";
 import { Search } from "lucide-react";
 import { Input } from "@/components/ui/input";
@@ -8,6 +10,11 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import Link from "next/link";
 import { AdminUsersClient } from "./_components/admin-users-client";
 import { ReqType, userSchema } from "@/types/declarations";
+
+type RegionalAreaInfo = {
+  areaType?: string;
+  areaName?: string;
+};
 
 interface SearchParams {
   page?: string;
@@ -54,6 +61,7 @@ export default async function AdminUsersPage({
     level: 1,
     is_verified: 1,
     verified: 1,
+    isRegionalManager: 1,
     createdAt: 1,
     avatar: { _id: 1, name: 1 },
   });
@@ -66,6 +74,43 @@ export default async function AdminUsersPage({
     users = response.body || [];
   } else {
     error = response?.error || response?.body?.message || "Failed to fetch users";
+  }
+
+  const meRes = await getMe({ _id: 1, level: 1 });
+  const currentLevel = meRes.success ? (meRes.body as { level?: string } | null)?.level : undefined;
+  const canManageRegional = currentLevel === "Ghost" || currentLevel === "Manager";
+
+  const regionalAreas: Record<string, RegionalAreaInfo> = {};
+  const managerIds = users
+    .filter((u) => u.isRegionalManager && u._id)
+    .map((u) => u._id as string);
+  if (canManageRegional && managerIds.length > 0) {
+    const areaRes = await getRegionalRequests(
+      { page: 1, limit: managerIds.length, status: "Approved", userIds: managerIds },
+      {
+        user: { _id: 1 },
+        areaType: 1,
+        country: { _id: 1, name: 1 },
+        province: { _id: 1, name: 1 },
+        city: { _id: 1, name: 1 },
+      },
+    );
+    if (areaRes?.success && Array.isArray(areaRes.body)) {
+      for (const item of areaRes.body as Array<{
+        user?: { _id?: string };
+        areaType?: string;
+        country?: { name?: string };
+        province?: { name?: string };
+        city?: { name?: string };
+      }>) {
+        const uid = item.user?._id;
+        if (!uid) continue;
+        regionalAreas[uid] = {
+          areaType: item.areaType,
+          areaName: item.country?.name || item.province?.name || item.city?.name,
+        };
+      }
+    }
   }
 
   const totalCount =
@@ -160,6 +205,8 @@ export default async function AdminUsersPage({
         search={search}
         prevPageUrl={prevPageUrl}
         nextPageUrl={nextPageUrl}
+        regionalAreas={regionalAreas}
+        canManageRegional={canManageRegional}
       />
     </div>
   );

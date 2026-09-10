@@ -7,7 +7,7 @@ import { userSchema } from "@/types/declarations";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Button } from "@/components/ui/button";
-import { MoreHorizontal, Trash2, Pencil, ImageUp } from "lucide-react";
+import { MoreHorizontal, Trash2, Pencil, ImageUp, ShieldCheck } from "lucide-react";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -46,9 +46,13 @@ function LevelBadge({ level }: { level: string }) {
 export function UsersTable({
   users,
   onDelete,
+  regionalAreas,
+  canManageRegional,
 }: {
   users: userSchema[];
   onDelete: (id: string) => void;
+  regionalAreas: Record<string, { areaType?: string; areaName?: string }>;
+  canManageRegional: boolean;
 }) {
   const t = useTranslations("admin");
 
@@ -68,6 +72,7 @@ export function UsersTable({
           <TableHead className="text-slate-body">{t("name")}</TableHead>
           <TableHead className="text-slate-body">{t("email") || "Email"}</TableHead>
           <TableHead className="text-slate-body">{t("level")}</TableHead>
+          <TableHead className="text-slate-body hidden lg:table-cell">{t("managedArea") || "Managed Area"}</TableHead>
           <TableHead className="text-slate-body hidden md:table-cell">{t("date")}</TableHead>
           <TableHead className="text-end pe-4 text-slate-body">{t("actions")}</TableHead>
         </TableRow>
@@ -96,6 +101,27 @@ export function UsersTable({
             </TableCell>
             <TableCell className="text-slate-body">{user.email}</TableCell>
             <TableCell><LevelBadge level={user.level} /></TableCell>
+            <TableCell className="hidden lg:table-cell">
+              {user.isRegionalManager ? (
+                <div className="flex flex-col items-start gap-1">
+                  <span className="inline-flex items-center rounded-full border border-emerald-500/20 bg-emerald-500/10 px-2 py-0.5 text-xs font-medium text-emerald-400">
+                    {t("regionalManagerBadge") || "Regional"}
+                  </span>
+                  {(() => {
+                    const area = regionalAreas[user._id as string];
+                    return area?.areaName ? (
+                      <span className="text-xs text-slate-body/80">
+                        {area.areaType
+                          ? `${t(`areaType_${area.areaType}`) || area.areaType}: ${area.areaName}`
+                          : area.areaName}
+                      </span>
+                    ) : null;
+                  })()}
+                </div>
+              ) : (
+                <span className="text-slate-body/40">&mdash;</span>
+              )}
+            </TableCell>
             <TableCell className="text-slate-body hidden md:table-cell">
               {user.createdAt ? new Date(user.createdAt).toLocaleDateString() : "-"}
             </TableCell>
@@ -121,6 +147,17 @@ export function UsersTable({
                       {t("updateRelations") || "Update Relations"}
                     </Link>
                   </DropdownMenuItem>
+                  {user.isRegionalManager && canManageRegional && (
+                    <>
+                      <DropdownMenuSeparator className="bg-white/10" />
+                      <DropdownMenuItem asChild className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer">
+                        <Link href={`/admin/regional-requests?status=Approved&userId=${user._id}`}>
+                          <ShieldCheck className="me-2 h-4 w-4" />
+                          {t("regionalAccess") || "Regional Access"}
+                        </Link>
+                      </DropdownMenuItem>
+                    </>
+                  )}
                   <DropdownMenuSeparator className="bg-white/10" />
                   <DropdownMenuItem
                     className="text-offwhite focus:bg-white/10 focus:text-offwhite cursor-pointer"

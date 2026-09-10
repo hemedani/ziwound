@@ -7,15 +7,7 @@ import { motion } from "framer-motion";
 import { userSchema } from "@/types/declarations";
 import { Button } from "@/components/ui/button";
 import { getImageUploadUrl } from "@/utils/imageUrl";
-import { MoreHorizontal, Pencil, Trash2, ImageUp, User, ShieldCheck, MailCheck } from "lucide-react";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+import { Pencil, Trash2, ImageUp, User, ShieldCheck, MailCheck, MapPin } from "lucide-react";
 
 function getLevelStyles(level: string) {
   switch (level) {
@@ -34,9 +26,11 @@ interface UserCardProps {
   user: userSchema;
   onDelete: (id: string) => void;
   index?: number;
+  area?: { areaType?: string; areaName?: string };
+  canManageRegional: boolean;
 }
 
-export function UserCard({ user, onDelete, index = 0 }: UserCardProps) {
+export function UserCard({ user, onDelete, index = 0, area, canManageRegional }: UserCardProps) {
   const t = useTranslations("admin");
   const levelStyles = getLevelStyles(user.level);
   const levelLabelKey = user.level === "Reporter" || user.level === "Artist" || user.level === "Diplomat" || user.level === "Researcher"
@@ -93,7 +87,19 @@ export function UserCard({ user, onDelete, index = 0 }: UserCardProps) {
               {t("roleVerified") || "Role Verified"}
             </span>
           )}
+          {user.isRegionalManager && (
+            <span className="inline-flex items-center gap-1 text-xs text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/20">
+              <MapPin className="h-3 w-3" />
+              {t("regionalManagerBadge") || "Regional"}
+            </span>
+          )}
         </div>
+
+        {user.isRegionalManager && area?.areaName && (
+          <div className="mb-3 text-xs text-slate-body/80">
+            {area.areaType ? `${t(`areaType_${area.areaType}`) || area.areaType}: ${area.areaName}` : area.areaName}
+          </div>
+        )}
 
         {/* Actions */}
         <div className="flex items-center gap-1 pt-2 border-t border-white/[0.06]">
@@ -109,6 +115,14 @@ export function UserCard({ user, onDelete, index = 0 }: UserCardProps) {
               {t("photo") || "Photo"}
             </Link>
           </Button>
+          {user.isRegionalManager && canManageRegional && (
+            <Button variant="ghost" size="sm" asChild className="text-slate-body hover:text-offwhite hover:bg-white/5 h-8 px-2">
+              <Link href={`/admin/regional-requests?status=Approved&userId=${user._id}`}>
+                <ShieldCheck className="h-3.5 w-3.5 me-1" />
+                {t("regionalAccess") || "Regional Access"}
+              </Link>
+            </Button>
+          )}
           <Button
             variant="ghost"
             size="sm"
