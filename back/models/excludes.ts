@@ -87,3 +87,10 @@ export const confirmation_excludes: (string)[] = [
   "createdAt",
   "updatedAt",
 ];
+
+// Regional manager request model excludes
+export const regionalManagerRequest_excludes: (string)[] = [
+  "createdAt",
+  "updatedAt",
+  "justification",
+];

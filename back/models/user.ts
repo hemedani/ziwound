@@ -97,6 +97,7 @@ export const user_pure = {
   verified: defaulted(boolean(), false),
   verificationBadge: optional(string()),
   isPublic: defaulted(boolean(), true),
+  isRegionalManager: defaulted(boolean(), false),
   ...createUpdateAt,
 };
 
@@ -156,6 +157,57 @@ export const user_relations = {
     excludes: location_excludes,
     relatedRelations: {
       users: {
+        type: "multiple" as RelationDataType,
+        excludes: user_excludes,
+        limit: 50,
+        sort: {
+          field: "_id",
+          order: "desc" as RelationSortOrderType,
+        },
+      },
+    },
+  },
+  managesCountry: {
+    schemaName: "country",
+    type: "single" as RelationDataType,
+    optional: true,
+    excludes: location_excludes,
+    relatedRelations: {
+      regionalManagers: {
+        type: "multiple" as RelationDataType,
+        excludes: user_excludes,
+        limit: 50,
+        sort: {
+          field: "_id",
+          order: "desc" as RelationSortOrderType,
+        },
+      },
+    },
+  },
+  managesProvince: {
+    schemaName: "province",
+    type: "single" as RelationDataType,
+    optional: true,
+    excludes: location_excludes,
+    relatedRelations: {
+      regionalManagers: {
+        type: "multiple" as RelationDataType,
+        excludes: user_excludes,
+        limit: 50,
+        sort: {
+          field: "_id",
+          order: "desc" as RelationSortOrderType,
+        },
+      },
+    },
+  },
+  managesCity: {
+    schemaName: "city",
+    type: "single" as RelationDataType,
+    optional: true,
+    excludes: location_excludes,
+    relatedRelations: {
+      regionalManagers: {
         type: "multiple" as RelationDataType,
         excludes: user_excludes,
         limit: 50,

@@ -1,4 +1,4 @@
-import { grantAccess, setTokens, setUser } from "@lib";
+import { setTokens, setUser } from "@lib";
 import { coreApp } from "../../../mod.ts";
 import { updateRelationsFn } from "./updateRelations.fn.ts";
 import { updateRelationsValidator } from "./updateRelations.val.ts";
@@ -11,9 +11,6 @@ export const updateRelationsSetup = () =>
 		preAct: [
 			setTokens,
 			setUser,
-			grantAccess({
-				levels: ["Manager", "Editor"],
-			}),
 		],
 		validator: updateRelationsValidator(),
 		validationRunType: "create",

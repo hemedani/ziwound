@@ -16,3 +16,4 @@ export * from "./blogPost.ts";
 export * from "./heroSlide.ts";
 export * from "./warCriminal.ts";
 export * from "./confirmation.ts";
+export * from "./regionalManagerRequest.ts";

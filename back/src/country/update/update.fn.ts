@@ -1,6 +1,8 @@
 import { type ActFn, type Infer, object, ObjectId } from "lesan";
-import { country } from "../../../mod.ts";
+import { coreApp, country } from "../../../mod.ts";
 import { country_pure } from "@model";
+import { assertAreaAccess } from "@lib";
+import type { MyContext } from "@lib";
 
 export const updateFn: ActFn = async (body) => {
 	const {
@@ -23,6 +25,11 @@ export const updateFn: ActFn = async (body) => {
 		},
 		get,
 	} = body.details;
+
+	const { user }: MyContext = coreApp.contextFns
+		.getContextModel() as unknown as MyContext;
+
+	await assertAreaAccess(user, "Country", _id as string);
 
 	const pureStruct = object(country_pure);
 	const updateObj: Partial<Infer<typeof pureStruct>> = {

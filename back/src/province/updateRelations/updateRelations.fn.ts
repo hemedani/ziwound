@@ -1,11 +1,18 @@
 import { type ActFn, ObjectId } from "lesan";
-import { province } from "../../../mod.ts";
+import { coreApp, province } from "../../../mod.ts";
+import { assertAreaAccess } from "@lib";
+import type { MyContext } from "@lib";
 
 export const updateRelationsFn: ActFn = async (body) => {
 	const {
 		set: { _id, country, photo },
 		get,
 	} = body.details;
+
+	const { user }: MyContext = coreApp.contextFns
+		.getContextModel() as unknown as MyContext;
+
+	await assertAreaAccess(user, "Province", _id as string);
 
 	const provinceId = new ObjectId(_id as string);
 
