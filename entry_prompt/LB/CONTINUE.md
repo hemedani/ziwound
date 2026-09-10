@@ -5,9 +5,20 @@
 ## Current Position
 
 - **Country:** Lebanon (`6a0ed07e67c85d8ba0c217ab`)
-- **Status:** Writing new content for North Lebanon province with pro-Iran/pro-resistance axis stance
-- **Phase:** Batroun city — war_crimes_events + liberation_info ✅ (10/10 fields — COMPLETE!)
-- **Next:** Bcharre city — create city + wars_history + conflict_timeline
+- **Status:** Nabatieh province created — ready for content
+- **Phase:** Beqaa province — ALL 10 FIELDS ✅ **COMPLETE**
+- **Phase:** Zahle city — ALL 10 FIELDS ✅ **COMPLETE**
+- **Phase:** Nabatieh province — created ✅ (0/10 fields)
+- **Phase:** Tripoli city — REPAIRED ⚠️ (tracking claimed 10/10 but DB was 8/10 — missing occupation_info + destruction_level. Now fixed and verified 10/10 ✅)
+- **Phase:** Nabatieh city — ALL 10 FIELDS ✅ **COMPLETE** (wars_history, conflict_timeline, casualties_info, notable_battles, occupation_info, destruction_level, civilian_impact, mass_graves_info, war_crimes_events, liberation_info)
+- **Phase:** Nabatieh province — wars_history + conflict_timeline ✅ (2/10)
+- **Phase:** Nabatieh province — casualties_info + notable_battles ✅ (4/10)
+- **Phase:** Nabatieh province — occupation_info + destruction_level ✅ (6/10)
+- **Phase:** Nabatieh province — civilian_impact + mass_graves_info ✅ (8/10, parity-fixed with full retranslation)
+- **Phase:** Nabatieh province — war_crimes_events + liberation_info ✅ (10/10 — **COMPLETE!** 🎉)
+- **Phase:** Bint Jbeil city — created ✅ (0/10)
+- **Phase:** Bint Jbeil city — wars_history + conflict_timeline ✅ (2/10)
+- **Next:** Bint Jbeil city — casualties_info + notable_battles (fields 3-4/10)
 
 ## Rewrite Progress
 
@@ -21,6 +32,11 @@
 | North Lebanon province | [##########] 10/10 fields written ✅ |
 | Tripoli city | [##########] 10/10 fields written ✅ |
 | Batroun city | [##########] 10/10 fields written ✅ |
+| Bcharre city | [##########] 10/10 fields written ✅ **COMPLETE** |
+| Beqaa province | [##########] 10/10 fields written ✅ |
+| Zahle city | [##########] 10/10 fields written ✅ **COMPLETE** |
+| Nabatieh province | [##########] 10/10 fields ✅ **COMPLETE!** 🎉 |
+| Nabatieh city | [##########] 10/10 fields ✅ **COMPLETE** |
 
 ## Key ObjectIds
 
@@ -34,5 +50,9 @@
 | Aley (city) | `6a36502b01497993907c8560` |
 | Tripoli (city) | `6a366dbc01497993907c8562` |
 | Batroun (city) | `6a3680dd01497993907c8563` |
+| Beqaa (province) | `6a3e8cbbe7f6b703f2d1b099` |
+| Zahle (city) | `6a3e8cbbe7f6b703f2d1b09a` |
+| Nabatieh (province) | `6a3e91fee7f6b703f2d1b09b` |
+| Nabatieh (city) | `6a3e9270e7f6b703f2d1b09c` |
 
 > **Update this file after every microstep.**

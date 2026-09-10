@@ -78,14 +78,39 @@
 - [x] Batroun — occupation_info, destruction_level ✅ (6/10)
 - [x] Batroun — civilian_impact, mass_graves_info ✅
 - [x] Batroun — war_crimes_events, liberation_info ✅ (10/10 COMPLETE)
-- [ ] Bcharre ❌ needs city creation
+- [x] Bcharre ✅ city created (`6a3e7d9ae7f6b703f2d1b098`)
+- [x] Bcharre — wars_history, conflict_timeline ✅ (2/10)
+- [x] Bcharre — casualties_info, notable_battles ✅ (4/10)
+- [x] Bcharre — occupation_info, destruction_level ✅ (6/10)
+- [x] Bcharre — civilian_impact, mass_graves_info ✅ (8/10)
+- [x] Bcharre — war_crimes_events, liberation_info ✅ (10/10 **COMPLETE!**)
 
-### Beqaa ❌ needs province creation
-- [ ] Zahle ❌ needs city creation
+### Beqaa `6a3e8cbbe7f6b703f2d1b099`
+- [x] Province created ✅
+- [x] wars_history, conflict_timeline ✅ (2/10)
+- [x] casualties_info, notable_battles ✅ (4/10)
+- [x] occupation_info, destruction_level ✅ (6/10)
+- [x] civilian_impact, mass_graves_info ✅ (8/10)
+- [x] war_crimes_events, liberation_info ✅ (10/10 **COMPLETE!**)
+- [x] Zahle `6a3e8cbbe7f6b703f2d1b09a` created ✅
+- [x] Zahle — wars_history, conflict_timeline ✅ (2/10)
+- [x] Zahle — casualties_info, notable_battles ✅ (4/10)
+- [x] Zahle — occupation_info, destruction_level ✅ (6/10)
+- [x] Zahle — civilian_impact, mass_graves_info ✅ (8/10)
+- [x] Zahle — war_crimes_events, liberation_info ✅ (10/10 **COMPLETE!**)
 
-### Nabatieh ❌ needs province creation
-- [ ] Nabatieh ❌ needs city creation
-- [ ] Bint Jbeil ❌ needs city creation
+### Nabatieh `6a3e91fee7f6b703f2d1b09b`
+- [x] Province created ✅
+- [x] Nabatieh city created ✅ (`6a3e9270e7f6b703f2d1b09c`)
+- [x] Nabatieh city — ALL 10 FIELDS ✅ **COMPLETE**
+- [x] wars_history, conflict_timeline ✅ (2/10)
+- [x] casualties_info, notable_battles ✅ (4/10)
+- [x] occupation_info, destruction_level ✅ (6/10)
+- [x] occupation_info, destruction_level ✅
+- [x] civilian_impact, mass_graves_info ✅ (8/10 — parity-fixed, all 9 languages)
+- [x] war_crimes_events, liberation_info ✅ (10/10 — **COMPLETE!** 🎉)
+- [x] Bint Jbeil ✅ city created (`6a3ee12ce7f6b703f2d1b09d`)
+- [x] Bint Jbeil — wars_history, conflict_timeline ✅ (2/10)
 
 ### South Lebanon ❌ needs province creation
 - [ ] Sidon ❌ needs city creation
