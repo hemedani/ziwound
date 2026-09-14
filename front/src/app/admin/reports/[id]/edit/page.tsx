@@ -3,8 +3,6 @@ import { get as getReport } from "@/app/actions/report/get";
 import { gets as getTags } from "@/app/actions/tag/gets";
 import { gets as getCategories } from "@/app/actions/category/gets";
 import { gets as getCountries } from "@/app/actions/country/gets";
-import { gets as getProvinces } from "@/app/actions/province/gets";
-import { gets as getCities } from "@/app/actions/city/gets";
 import { gets as getWarCriminals } from "@/app/actions/warCriminal/gets";
 import { gets as getDocuments } from "@/app/actions/document/gets";
 import { notFound } from "next/navigation";
@@ -52,13 +50,11 @@ export default async function AdminReportEditPage({
 
   const report = res.body[0] as Record<string, unknown>;
 
-  const [tagsRes, categoriesRes, countriesRes, provincesRes, citiesRes, warCriminalsRes, docsRes] =
+  const [tagsRes, categoriesRes, countriesRes, warCriminalsRes, docsRes] =
     await Promise.all([
       getTags({ page: 1, limit: 500 }, { _id: 1, name: 1 }),
       getCategories({ page: 1, limit: 500 }, { _id: 1, name: 1 }),
       getCountries({ page: 1, limit: 500 }, { _id: 1, name: 1 }),
-      getProvinces({ page: 1, limit: 500 }, { _id: 1, name: 1 }),
-      getCities({ page: 1, limit: 500 }, { _id: 1, name: 1 }),
       getWarCriminals({ page: 1, limit: 500 }, { _id: 1, fullName: 1, status: 1 }),
       getDocuments({ page: 1, limit: 500 }, { _id: 1, title: 1, description: 1, selected_language: 1 }),
     ]);
@@ -73,8 +69,6 @@ export default async function AdminReportEditPage({
       allTags={extractList(tagsRes) as any}
       allCategories={extractList(categoriesRes) as any}
       allCountries={extractList(countriesRes) as any}
-      allProvinces={extractList(provincesRes) as any}
-      allCities={extractList(citiesRes) as any}
       allWarCriminals={extractList(warCriminalsRes) as any}
       allDocuments={extractList(docsRes) as any}
     />

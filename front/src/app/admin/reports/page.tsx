@@ -2,9 +2,9 @@ import { getTranslations, getLocale } from "next-intl/server";
 import { gets as getReports } from "@/app/actions/report/gets";
 import { count as countReports } from "@/app/actions/report/count";
 import { gets as getCategories } from "@/app/actions/category/gets";
-import { gets as getCountries } from "@/app/actions/country/gets";
-import { gets as getProvinces } from "@/app/actions/province/gets";
-import { gets as getCities } from "@/app/actions/city/gets";
+import { get as getCountry } from "@/app/actions/country/get";
+import { get as getProvince } from "@/app/actions/province/get";
+import { get as getCity } from "@/app/actions/city/get";
 import { gets as getTags } from "@/app/actions/tag/gets";
 import { AdminReportsClient } from "./reports-client";
 import { ReqType } from "@/types/declarations";
@@ -121,9 +121,6 @@ export default async function AdminReportsPage({
     reportsResponse,
     categoriesResponse,
     tagsResponse,
-    countriesResponse,
-    provincesResponse,
-    citiesResponse,
     pendingCountRes,
     approvedCountRes,
     rejectedCountRes,
@@ -132,14 +129,31 @@ export default async function AdminReportsPage({
     getReports(setQuery, reportsProjection),
     getCategories({ page: 1, limit: 200 }, { _id: 1, name: 1 }),
     getTags({ page: 1, limit: 200 }, { _id: 1, name: 1 }),
-    getCountries({ page: 1, limit: 200 }, { _id: 1, name: 1 }),
-    getProvinces({ page: 1, limit: 200 }, { _id: 1, name: 1 }),
-    getCities({ page: 1, limit: 200 }, { _id: 1, name: 1 }),
     countReports({ status: "Pending" }, { qty: 1 }),
     countReports({ status: "Approved" }, { qty: 1 }),
     countReports({ status: "Rejected" }, { qty: 1 }),
     countReports({ priority: "High" }, { qty: 1 }),
   ]);
+
+  // The location filters are now searchable selects that query on demand, so
+  // the only labels the page still needs are the ones currently applied.
+  const locationProjection = { _id: 1, name: 1, english_name: 1 } as const;
+  const firstId = (value: string) => (value ? value.split(",")[0] : "");
+  const [hostileCountryRes, attackedCountryRes, attackedProvinceRes, attackedCityRes] =
+    await Promise.all([
+      hostileCountryIds ? getCountry({ _id: firstId(hostileCountryIds) }, locationProjection) : null,
+      attackedCountryIds ? getCountry({ _id: firstId(attackedCountryIds) }, locationProjection) : null,
+      attackedProvinceIds ? getProvince({ _id: firstId(attackedProvinceIds) }, locationProjection) : null,
+      attackedCityIds ? getCity({ _id: firstId(attackedCityIds) }, locationProjection) : null,
+    ]);
+
+  const firstRow = (res: unknown) => {
+    const body = (res as { body?: unknown } | null)?.body;
+    if (!Array.isArray(body) || body.length === 0) return undefined;
+    const row = body[0] as { _id?: string; name?: string; english_name?: string };
+    if (!row._id) return undefined;
+    return { _id: row._id, name: row.name || row.english_name || row._id };
+  };
 
   const extractList = (res: any) =>
     res?.success
@@ -151,9 +165,6 @@ export default async function AdminReportsPage({
   const reports = extractList(reportsResponse);
   const categories = extractList(categoriesResponse);
   const tags = extractList(tagsResponse);
-  const countries = extractList(countriesResponse);
-  const provinces = extractList(provincesResponse);
-  const cities = extractList(citiesResponse);
 
   const getCount = (res: any) =>
     res?.success && typeof res.body === "object"
@@ -176,9 +187,13 @@ export default async function AdminReportsPage({
   const filterOptions = {
     categories,
     tags,
-    countries,
-    provinces,
-    cities,
+  };
+
+  const selectedLocationLabels = {
+    hostileCountry: firstRow(hostileCountryRes),
+    attackedCountry: firstRow(attackedCountryRes),
+    attackedProvince: firstRow(attackedProvinceRes),
+    attackedCity: firstRow(attackedCityRes),
   };
 
   // Build query string for pagination URLs
@@ -222,6 +237,7 @@ export default async function AdminReportsPage({
       reports={reports}
       statsCounts={statsCounts}
       filterOptions={filterOptions}
+      selectedLocationLabels={selectedLocationLabels}
       error={error}
       prevPageUrl={prevPageUrl}
       nextPageUrl={nextPageUrl}

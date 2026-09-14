@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState, useTransition, useCallback } from "react";
+import React, { useEffect, useState, useTransition, useCallback, useMemo } from "react";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
@@ -43,6 +43,13 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { AsyncSelect } from "@/components/form/async-select";
+import {
+  searchCountries,
+  searchProvinces,
+  searchCities,
+  seededLocationOption,
+} from "@/components/form/location-search";
 import {
   Table,
   TableBody,
@@ -114,9 +121,14 @@ interface FilterOption {
 interface FilterOptions {
   categories: FilterOption[];
   tags: FilterOption[];
-  countries: FilterOption[];
-  provinces: FilterOption[];
-  cities: FilterOption[];
+}
+
+/** Label for the currently-applied location filters, resolved on the server. */
+interface SelectedLocationLabels {
+  hostileCountry?: FilterOption;
+  attackedCountry?: FilterOption;
+  attackedProvince?: FilterOption;
+  attackedCity?: FilterOption;
 }
 
 interface StatsCounts {
@@ -151,6 +163,7 @@ interface AdminReportsClientProps {
   reports: ReportItem[];
   statsCounts: StatsCounts;
   filterOptions: FilterOptions;
+  selectedLocationLabels: SelectedLocationLabels;
   error: string | null;
   prevPageUrl: string;
   nextPageUrl: string;
@@ -452,6 +465,7 @@ export function AdminReportsClient({
   reports,
   statsCounts,
   filterOptions,
+  selectedLocationLabels,
   error: initialError,
   prevPageUrl,
   nextPageUrl,
@@ -461,6 +475,42 @@ export function AdminReportsClient({
   const { toast } = useToast();
   const router = useRouter();
   const searchParams = useSearchParams();
+
+  // Location filters query the backend on demand — with ~153k cities the lists
+  // can no longer be preloaded. Stable identities keep the AsyncSelect effect
+  // from re-fetching on every render.
+  const loadCountries = useMemo(() => searchCountries, []);
+  const loadAllProvinces = useMemo(() => searchProvinces(), []);
+  const loadAllCities = useMemo(() => searchCities(), []);
+
+  const seededHostileCountries = useMemo(
+    () => seededLocationOption(
+      selectedLocationLabels.hostileCountry?._id,
+      selectedLocationLabels.hostileCountry?.name,
+    ),
+    [selectedLocationLabels.hostileCountry],
+  );
+  const seededAttackedCountries = useMemo(
+    () => seededLocationOption(
+      selectedLocationLabels.attackedCountry?._id,
+      selectedLocationLabels.attackedCountry?.name,
+    ),
+    [selectedLocationLabels.attackedCountry],
+  );
+  const seededAttackedProvinces = useMemo(
+    () => seededLocationOption(
+      selectedLocationLabels.attackedProvince?._id,
+      selectedLocationLabels.attackedProvince?.name,
+    ),
+    [selectedLocationLabels.attackedProvince],
+  );
+  const seededAttackedCities = useMemo(
+    () => seededLocationOption(
+      selectedLocationLabels.attackedCity?._id,
+      selectedLocationLabels.attackedCity?.name,
+    ),
+    [selectedLocationLabels.attackedCity],
+  );
   const [isPending, startTransition] = useTransition();
   const [selectedIds, setSelectedIds] = useState<string[]>([]);
   const [confirmDeleteOpen, setConfirmDeleteOpen] = useState(false);
@@ -1018,126 +1068,92 @@ export function AdminReportsClient({
                         <label className="block text-xs font-medium text-slate-body mb-1.5">
                           {t("hostileCountries") || "Hostile Countries"}
                         </label>
-                        <Select
-                          value={
-                            params.hostileCountryIds || "all"
-                          }
-                          onValueChange={(v) =>
+                        <AsyncSelect
+                          async
+                          isClearable
+                          value={params.hostileCountryIds || null}
+                          onChange={(v) =>
                             applyFilter(
                               "hostileCountryIds",
-                              v === "all" ? "" : v,
+                              typeof v === "string" ? v : "",
                             )
                           }
-                        >
-                          <SelectTrigger className="bg-white/5 border-white/10 text-offwhite h-9">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent className="glass-strong border-white/10 max-h-60">
-                            <SelectItem value="all">
-                              {t("allHostileCountries") ||
-                                "All Hostile Countries"}
-                            </SelectItem>
-                            {filterOptions.countries.map((c) => (
-                              <SelectItem key={c._id} value={c._id}>
-                                {c.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                          loadOptions={loadCountries}
+                          options={seededHostileCountries}
+                          placeholder={t("allHostileCountries") || "All Hostile Countries"}
+                          searchPlaceholder="Search countries..."
+                          emptyText="No country found."
+                          className="bg-white/5 border-white/10 text-offwhite h-9"
+                        />
                       </div>
 
                       <div>
                         <label className="block text-xs font-medium text-slate-body mb-1.5">
                           {t("attackedCountries") || "Attacked Countries"}
                         </label>
-                        <Select
-                          value={
-                            params.attackedCountryIds || "all"
-                          }
-                          onValueChange={(v) =>
+                        <AsyncSelect
+                          async
+                          isClearable
+                          value={params.attackedCountryIds || null}
+                          onChange={(v) =>
                             applyFilter(
                               "attackedCountryIds",
-                              v === "all" ? "" : v,
+                              typeof v === "string" ? v : "",
                             )
                           }
-                        >
-                          <SelectTrigger className="bg-white/5 border-white/10 text-offwhite h-9">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent className="glass-strong border-white/10 max-h-60">
-                            <SelectItem value="all">
-                              {t("allAttackedCountries") ||
-                                "All Attacked Countries"}
-                            </SelectItem>
-                            {filterOptions.countries.map((c) => (
-                              <SelectItem key={c._id} value={c._id}>
-                                {c.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                          loadOptions={loadCountries}
+                          options={seededAttackedCountries}
+                          placeholder={t("allAttackedCountries") || "All Attacked Countries"}
+                          searchPlaceholder="Search countries..."
+                          emptyText="No country found."
+                          className="bg-white/5 border-white/10 text-offwhite h-9"
+                        />
                       </div>
 
                       <div>
                         <label className="block text-xs font-medium text-slate-body mb-1.5">
                           {t("attackedProvinces") || "Attacked Provinces"}
                         </label>
-                        <Select
-                          value={
-                            params.attackedProvinceIds || "all"
-                          }
-                          onValueChange={(v) =>
+                        <AsyncSelect
+                          async
+                          isClearable
+                          value={params.attackedProvinceIds || null}
+                          onChange={(v) =>
                             applyFilter(
                               "attackedProvinceIds",
-                              v === "all" ? "" : v,
+                              typeof v === "string" ? v : "",
                             )
                           }
-                        >
-                          <SelectTrigger className="bg-white/5 border-white/10 text-offwhite h-9">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent className="glass-strong border-white/10 max-h-60">
-                            <SelectItem value="all">
-                              {t("allAttackedProvinces") ||
-                                "All Attacked Provinces"}
-                            </SelectItem>
-                            {filterOptions.provinces.map((p) => (
-                              <SelectItem key={p._id} value={p._id}>
-                                {p.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                          loadOptions={loadAllProvinces}
+                          options={seededAttackedProvinces}
+                          placeholder={t("allAttackedProvinces") || "All Attacked Provinces"}
+                          searchPlaceholder="Search provinces..."
+                          emptyText="No province found."
+                          className="bg-white/5 border-white/10 text-offwhite h-9"
+                        />
                       </div>
 
                       <div>
                         <label className="block text-xs font-medium text-slate-body mb-1.5">
                           {t("attackedCities") || "Attacked Cities"}
                         </label>
-                        <Select
-                          value={params.attackedCityIds || "all"}
-                          onValueChange={(v) =>
+                        <AsyncSelect
+                          async
+                          isClearable
+                          value={params.attackedCityIds || null}
+                          onChange={(v) =>
                             applyFilter(
                               "attackedCityIds",
-                              v === "all" ? "" : v,
+                              typeof v === "string" ? v : "",
                             )
                           }
-                        >
-                          <SelectTrigger className="bg-white/5 border-white/10 text-offwhite h-9">
-                            <SelectValue />
-                          </SelectTrigger>
-                          <SelectContent className="glass-strong border-white/10 max-h-60">
-                            <SelectItem value="all">
-                              {t("allAttackedCities") ||
-                                "All Attacked Cities"}
-                            </SelectItem>
-                            {filterOptions.cities.map((c) => (
-                              <SelectItem key={c._id} value={c._id}>
-                                {c.name}
-                              </SelectItem>
-                            ))}
-                          </SelectContent>
-                        </Select>
+                          loadOptions={loadAllCities}
+                          options={seededAttackedCities}
+                          placeholder={t("allAttackedCities") || "All Attacked Cities"}
+                          searchPlaceholder="Search cities..."
+                          emptyText="No city found."
+                          className="bg-white/5 border-white/10 text-offwhite h-9"
+                        />
                       </div>
                     </div>
                   </div>

@@ -12,7 +12,6 @@ import {
   Save,
   Loader2,
   Plus,
-  X,
   Trash2,
   Check,
   FileText,
@@ -64,6 +63,8 @@ import { updateRelations as updateReportRelations } from "@/app/actions/report/u
 import { add as addDocument } from "@/app/actions/document/add";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { AsyncSelect } from "@/components/form/async-select";
+import { MultiSelectChips } from "@/components/form/multi-select-chips";
+import { searchProvinces, searchCities } from "@/components/form/location-search";
 import { DatePickerField } from "@/components/form/date-picker-field";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 import {
@@ -97,8 +98,6 @@ interface Props {
   allTags: SelectOption[];
   allCategories: SelectOption[];
   allCountries: SelectOption[];
-  allProvinces: SelectOption[];
-  allCities: SelectOption[];
   allWarCriminals: WarCriminalOption[];
   allDocuments: SelectOption[];
 }
@@ -344,8 +343,6 @@ function TabRelations({
   allTags,
   allCategories,
   allCountries,
-  allProvinces,
-  allCities,
   allWarCriminals,
 }: {
   report: ReportData;
@@ -353,8 +350,6 @@ function TabRelations({
   allTags: SelectOption[];
   allCategories: SelectOption[];
   allCountries: SelectOption[];
-  allProvinces: SelectOption[];
-  allCities: SelectOption[];
   allWarCriminals: WarCriminalOption[];
 }) {
   const t = useTranslations("admin");
@@ -377,6 +372,28 @@ function TabRelations({
   const [attackedProvinceIds, setAttackedProvinceIds] = useState<string[]>(currentAttackedProvinceIds);
   const [attackedCityIds, setAttackedCityIds] = useState<string[]>(currentAttackedCityIds);
   const [warCriminalIds, setWarCriminalIds] = useState<string[]>(currentWarCriminalIds);
+
+  // Provinces (5,308) and cities (152,970) can no longer be preloaded — the
+  // world import made those lists far too large — so they are searched on the
+  // server. Countries still fit in one page and stay a local list.
+  const loadProvinces = useMemo(() => searchProvinces(), []);
+  const loadCities = useMemo(() => searchCities(), []);
+
+  const namedChips = (
+    rows: { _id?: string; name?: string }[] | undefined,
+  ): { _id: string; name: string }[] =>
+    (rows ?? [])
+      .filter((r): r is { _id: string; name: string } => !!r._id && !!r.name)
+      .map((r) => ({ _id: r._id, name: r.name }));
+
+  const knownProvinces = useMemo(
+    () => namedChips(report.attackedProvinces),
+    [report.attackedProvinces],
+  );
+  const knownCities = useMemo(
+    () => namedChips(report.attackedCities),
+    [report.attackedCities],
+  );
 
   const hasChanges =
     categoryId !== currentCategoryId ||
@@ -419,78 +436,6 @@ function TabRelations({
         description: res?.body?.message || t("failedToSave") || "Failed to save",
       });
     }
-  };
-
-  const MultiSelectChips = ({
-    label,
-    items,
-    selectedIds,
-    onChange,
-    placeholder,
-  }: {
-    label: string;
-    items: { _id: string; name: string }[];
-    selectedIds: string[];
-    onChange: (ids: string[]) => void;
-    placeholder: string;
-  }) => {
-    const [search, setSearch] = useState("");
-    const filtered = items.filter(
-      (i) => i.name.toLowerCase().includes(search.toLowerCase()) && !selectedIds.includes(i._id),
-    );
-    const selected = items.filter((i) => selectedIds.includes(i._id));
-
-    return (
-      <div>
-        <label className="block text-xs font-medium text-slate-body mb-1.5">{label}</label>
-        {selected.length > 0 && (
-          <div className="flex flex-wrap gap-1.5 mb-2">
-            {selected.map((item) => (
-              <span
-                key={item._id}
-                className="inline-flex items-center gap-1 rounded-full bg-crimson/10 px-2.5 py-1 text-xs font-medium text-crimson-light border border-crimson/20"
-              >
-                {item.name}
-                <button
-                  onClick={() => onChange(selectedIds.filter((id) => id !== item._id))}
-                  className="hover:bg-crimson/20 rounded-full p-0.5 transition-colors"
-                >
-                  <X className="h-3 w-3" />
-                </button>
-              </span>
-            ))}
-          </div>
-        )}
-        <div className="relative">
-          <Search className="absolute start-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-slate-body/40" />
-          <Input
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder={placeholder}
-            className="ps-9 bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/40 h-9 text-xs"
-          />
-        </div>
-        {search && filtered.length > 0 && (
-          <div className="mt-1.5 max-h-36 overflow-y-auto rounded-lg border border-white/[0.06] bg-[#0a0a0a]/95 p-1 space-y-0.5">
-            {filtered.map((item) => (
-              <button
-                key={item._id}
-                onClick={() => {
-                  onChange([...selectedIds, item._id]);
-                  setSearch("");
-                }}
-                className="w-full text-start px-2.5 py-1.5 text-xs text-offwhite hover:bg-white/5 rounded-md transition-colors"
-              >
-                {item.name}
-              </button>
-            ))}
-          </div>
-        )}
-        {!search && selected.length === 0 && (
-          <p className="text-xs text-slate-body/40 py-2">{t("noneSelected") || "None selected"}</p>
-        )}
-      </div>
-    );
   };
 
   return (
@@ -551,14 +496,16 @@ function TabRelations({
           />
           <MultiSelectChips
             label={t("attackedProvinces") || "Attacked Provinces"}
-            items={allProvinces}
+            items={knownProvinces}
+            loadOptions={loadProvinces}
             selectedIds={attackedProvinceIds}
             onChange={setAttackedProvinceIds}
             placeholder={t("searchProvinces") || "Search provinces..."}
           />
           <MultiSelectChips
             label={t("attackedCities") || "Attacked Cities"}
-            items={allCities}
+            items={knownCities}
+            loadOptions={loadCities}
             selectedIds={attackedCityIds}
             onChange={setAttackedCityIds}
             placeholder={t("searchCities") || "Search cities..."}
@@ -928,8 +875,6 @@ function ReportEditClientInner({
   allTags,
   allCategories,
   allCountries,
-  allProvinces,
-  allCities,
   allWarCriminals,
   allDocuments,
 }: Props & { defaultTab: string }) {
@@ -1000,8 +945,6 @@ function ReportEditClientInner({
               allTags={allTags}
               allCategories={allCategories}
               allCountries={allCountries}
-              allProvinces={allProvinces}
-              allCities={allCities}
               allWarCriminals={allWarCriminals}
             />
           </TabsContent>
