@@ -1,5 +1,6 @@
 "use client";
 
+import { useMemo } from "react";
 import { useTranslations } from "next-intl";
 import { Control, UseFormRegister, FieldErrors, UseFormSetValue, UseFormWatch } from "react-hook-form";
 import { z } from "zod";
@@ -25,9 +26,11 @@ import { REPORT_LANGUAGES, REPORT_PRIORITY, LANGUAGE_MAP } from "@/types/report-
 import { getFieldMetadata } from "@/lib/declaration-parser";
 import type { reportFormSchema } from "@/types/report-schema";
 import { ReqType } from "@/types/declarations";
-import { gets as getCountries } from "@/app/actions/country/gets";
-import { gets as getProvinces } from "@/app/actions/province/gets";
-import { gets as getCities } from "@/app/actions/city/gets";
+import {
+  searchCountries,
+  searchProvinces,
+  searchCities,
+} from "@/components/form/location-search";
 import { gets as getWarCriminals } from "@/app/actions/warCriminal/gets";
 
 const LocationPicker = dynamic(
@@ -62,90 +65,42 @@ export function StepRenderer({
 }: StepRendererProps) {
   const t = useTranslations();
 
-  // Async load functions for countries, provinces, and cities
-  const loadCountries = async (inputValue: string): Promise<AsyncSelectLoadResult> => {
-    const query: ReqType["main"]["country"]["gets"]["set"] = {
-      page: 1,
-      limit: 50,
-    };
-    if (inputValue) {
-      query.search = inputValue;
-    }
-    const result = await getCountries(query, { _id: 1, name: 1 });
-    if (result.success && result.body) {
-      return {
-        options: result.body.map((c: { _id: string; name: string }) => ({
-          id: c._id,
-          label: c.name,
-        })),
-        hasMore: false,
-      };
-    }
-    return { options: [], hasMore: false };
-  };
+  // Location search is shared with the admin pickers. It uses the `name` filter
+  // — a partial, case-insensitive match on the native or English name — rather
+  // than `search`, a $text query that only matches whole words (so "Teh" never
+  // found Tehran) and, for provinces, failed outright.
+  //
+  // The identities must be stable: AsyncSelect refetches whenever `loadOptions`
+  // changes, so defining these inline re-ran the request on every render while
+  // the dropdown was open.
+  const loadCountries = useMemo(() => searchCountries, []);
+  const loadProvinces = useMemo(() => searchProvinces(), []);
+  const loadCities = useMemo(() => searchCities(), []);
 
-  const loadProvinces = async (inputValue: string): Promise<AsyncSelectLoadResult> => {
-    const query: ReqType["main"]["province"]["gets"]["set"] = {
-      page: 1,
-      limit: 50,
-    };
-    if (inputValue) {
-      query.search = inputValue;
-    }
-    const result = await getProvinces(query, { _id: 1, name: 1 });
-    if (result.success && result.body) {
-      return {
-        options: result.body.map((p: { _id: string; name: string }) => ({
-          id: p._id,
-          label: p.name,
-        })),
-        hasMore: false,
-      };
-    }
-    return { options: [], hasMore: false };
-  };
-
-  const loadCities = async (inputValue: string): Promise<AsyncSelectLoadResult> => {
-    const query: ReqType["main"]["city"]["gets"]["set"] = {
-      page: 1,
-      limit: 50,
-    };
-    if (inputValue) {
-      query.search = inputValue;
-    }
-    const result = await getCities(query, { _id: 1, name: 1 });
-    if (result.success && result.body) {
-      return {
-        options: result.body.map((c: { _id: string; name: string }) => ({
-          id: c._id,
-          label: c.name,
-        })),
-        hasMore: false,
-      };
-    }
-    return { options: [], hasMore: false };
-  };
-
-  const loadWarCriminals = async (inputValue: string): Promise<AsyncSelectLoadResult> => {
-    const query: ReqType["main"]["warCriminal"]["gets"]["set"] = {
-      page: 1,
-      limit: 50,
-    };
-    if (inputValue) {
-      query.search = inputValue;
-    }
-    const result = await getWarCriminals(query, { _id: 1, fullName: 1 });
-    if (result.success && result.body) {
-      return {
-        options: result.body.map((c: { _id: string; fullName: string }) => ({
-          id: c._id,
-          label: c.fullName,
-        })),
-        hasMore: false,
-      };
-    }
-    return { options: [], hasMore: false };
-  };
+  const loadWarCriminals = useMemo(
+    () =>
+      async (inputValue: string): Promise<AsyncSelectLoadResult> => {
+        const query: ReqType["main"]["warCriminal"]["gets"]["set"] = {
+          page: 1,
+          limit: 50,
+        };
+        if (inputValue) {
+          query.search = inputValue;
+        }
+        const result = await getWarCriminals(query, { _id: 1, fullName: 1 });
+        if (result.success && result.body) {
+          return {
+            options: result.body.map((c: { _id: string; fullName: string }) => ({
+              id: c._id,
+              label: c.fullName,
+            })),
+            hasMore: false,
+          };
+        }
+        return { options: [], hasMore: false };
+      },
+    [],
+  );
   const fieldComponents: Record<number, string[]> = {
     1: ["title", "description", "selected_language"],
     2: ["crime_occurred_at", "priority", "tags", "category"],

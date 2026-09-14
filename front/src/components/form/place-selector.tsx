@@ -1,17 +1,18 @@
 "use client";
 
-import { useCallback, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import { useTranslations } from "next-intl";
 import { Building2, Globe } from "lucide-react";
 import { cn } from "@/lib/utils";
 import {
   AsyncSelect,
-  type AsyncSelectLoadResult,
   type AsyncSelectOption,
   type AsyncSelectValue,
 } from "@/components/form/async-select";
-import { gets as getCountries } from "@/app/actions/country/gets";
-import { gets as getCities } from "@/app/actions/city/gets";
+import {
+  searchCountries,
+  searchCities,
+} from "@/components/form/location-search";
 
 export type PlaceGranularity = "country" | "city";
 
@@ -46,45 +47,11 @@ export function PlaceSelector({
   const [granularityOverride, setGranularityOverride] = useState<PlaceGranularity | null>(null);
   const granularity: PlaceGranularity = granularityOverride ?? (cityId ? "city" : "country");
 
-  const loadCountryOptions = useCallback(
-    async (inputValue: string): Promise<AsyncSelectLoadResult> => {
-      const query = { page: 1, limit: 50 } as { page: number; limit: number; search?: string };
-      if (inputValue) query.search = inputValue;
-      const result = await getCountries(query, { _id: 1, name: 1, english_name: 1 });
-      if (result?.success && Array.isArray(result.body)) {
-        const options: AsyncSelectOption[] = result.body.map(
-          (c: { _id: string; name: string; english_name?: string }) => ({
-            id: c._id,
-            label: c.name,
-            subLabel: c.english_name && c.english_name !== c.name ? c.english_name : undefined,
-          }),
-        );
-        return { options, hasMore: false };
-      }
-      return { options: [], hasMore: false };
-    },
-    [],
-  );
-
-  const loadCityOptions = useCallback(
-    async (inputValue: string): Promise<AsyncSelectLoadResult> => {
-      const query = { page: 1, limit: 50 } as { page: number; limit: number; search?: string };
-      if (inputValue) query.search = inputValue;
-      const result = await getCities(query, { _id: 1, name: 1, english_name: 1 });
-      if (result?.success && Array.isArray(result.body)) {
-        const options: AsyncSelectOption[] = result.body.map(
-          (c: { _id: string; name: string; english_name?: string }) => ({
-            id: c._id,
-            label: c.name,
-            subLabel: c.english_name && c.english_name !== c.name ? c.english_name : undefined,
-          }),
-        );
-        return { options, hasMore: false };
-      }
-      return { options: [], hasMore: false };
-    },
-    [],
-  );
+  // Shared with the admin pickers. Uses the `name` filter — a partial,
+  // case-insensitive match on the native or English name — rather than `search`,
+  // a $text query that only matches whole words.
+  const loadCountryOptions = useMemo(() => searchCountries, []);
+  const loadCityOptions = useMemo(() => searchCities(), []);
 
   const seededOption = useMemo<AsyncSelectOption[]>(() => {
     if (selectedId && initialLabel) return [{ id: selectedId, label: initialLabel }];

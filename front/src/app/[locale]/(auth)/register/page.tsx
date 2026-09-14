@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { PageContainer } from "@/components/layout/page-container";
 import { PageHero } from "@/components/layout/page-hero";
@@ -8,9 +8,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 import { registerUser } from "@/app/actions/user/registerUser";
-import { gets as getCountries } from "@/app/actions/country/gets";
-import { gets as getProvinces } from "@/app/actions/province/gets";
-import { gets as getCities } from "@/app/actions/city/gets";
+import { LocationCombobox } from "@/components/regional/location-combobox";
 import { Link, useRouter } from "@/i18n/routing";
 import { DatePickerField } from "@/components/form/date-picker-field";
 import { Loader2, Shield, ArrowRight, X, ChevronDown } from "lucide-react";
@@ -29,7 +27,6 @@ import { FileUploadField } from "@/components/form/file-upload-field";
 import { useToast } from "@/components/ui/use-toast";
 import { useAuthStore } from "@/stores/authStore";
 import { cn } from "@/lib/utils";
-import type { DeepPartial, countrySchema, provinceSchema, citySchema } from "@/types/declarations";
 
 const registerSchema = z
   .object({
@@ -70,10 +67,6 @@ const registerSchema = z
 
 type RegisterFormData = z.infer<typeof registerSchema>;
 
-type CountryItem = DeepPartial<countrySchema>;
-type ProvinceItem = DeepPartial<provinceSchema>;
-type CityItem = DeepPartial<citySchema>;
-
 export default function RegisterPage() {
   const t = useTranslations();
   const tRegional = useTranslations("regional");
@@ -83,9 +76,6 @@ export default function RegisterPage() {
   const [loading, setLoading] = useState(false);
   const { isAuthenticated } = useAuthStore();
 
-  const [countries, setCountries] = useState<CountryItem[]>([]);
-  const [provinces, setProvinces] = useState<ProvinceItem[]>([]);
-  const [cities, setCities] = useState<CityItem[]>([]);
   const [countryScope, setCountryScope] = useState<string>("");
   const [provinceScope, setProvinceScope] = useState<string>("");
   const [avatarId, setAvatarId] = useState<string>("");
@@ -96,34 +86,6 @@ export default function RegisterPage() {
       router.push("/");
     }
   }, [isAuthenticated, router]);
-
-  const loadLocations = useCallback(async () => {
-    try {
-      const [countryRes, provinceRes, cityRes] = await Promise.all([
-        getCountries({ page: 1, limit: 200 }, { _id: 1, name: 1 }),
-        getProvinces({ page: 1, limit: 500 }, { _id: 1, name: 1, country: { _id: 1 } }),
-        getCities({ page: 1, limit: 1000 }, { _id: 1, name: 1, province: { _id: 1 } }),
-      ]);
-      if (countryRes.success) {
-        const body = countryRes.body as { list?: CountryItem[] };
-        setCountries(Array.isArray(body) ? body : (body.list || []));
-      }
-      if (provinceRes.success) {
-        const body = provinceRes.body as { list?: ProvinceItem[] };
-        setProvinces(Array.isArray(body) ? body : (body.list || []));
-      }
-      if (cityRes.success) {
-        const body = cityRes.body as { list?: CityItem[] };
-        setCities(Array.isArray(body) ? body : (body.list || []));
-      }
-    } catch {
-      // locations are optional in the form
-    }
-  }, []);
-
-  useEffect(() => {
-    loadLocations();
-  }, [loadLocations]);
 
   const form = useForm<RegisterFormData>({
     resolver: zodResolver(registerSchema),
@@ -143,9 +105,6 @@ export default function RegisterPage() {
   const applyRegional = form.watch("applyRegional");
   const regionalAreaType = form.watch("regionalAreaType");
   const expertise = form.watch("expertise") || [];
-
-  const scopedProvinces = provinces.filter((p) => p.country?._id === countryScope);
-  const scopedCities = cities.filter((c) => c.province?._id === provinceScope);
 
   const addExpertise = () => {
     const value = newExpertise.trim();
@@ -499,27 +458,18 @@ export default function RegisterPage() {
                             render={({ field }) => (
                               <FormItem>
                                 <FormLabel className="text-offwhite text-sm">{tRegional("areaTypeCountry")}</FormLabel>
-                                <Select
-                                  onValueChange={(value) => {
-                                    field.onChange(value);
-                                    form.setValue("regionalProvinceId", undefined);
-                                    form.setValue("regionalCityId", undefined);
-                                  }}
-                                  value={field.value}
-                                >
-                                  <FormControl>
-                                    <SelectTrigger disabled={loading} className="bg-white/5 border-white/10 text-offwhite h-11">
-                                      <SelectValue placeholder={tRegional("selectCountry")} />
-                                    </SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent className="glass-strong border-white/10">
-                                    {countries.map((c) => (
-                                      <SelectItem key={c._id} value={c._id || ""}>
-                                        {c.name}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
+                                <FormControl>
+                                  <LocationCombobox
+                                    kind="country"
+                                    value={field.value}
+                                    onChange={(id) => {
+                                      field.onChange(id);
+                                      form.setValue("regionalProvinceId", undefined);
+                                      form.setValue("regionalCityId", undefined);
+                                    }}
+                                    disabled={loading}
+                                  />
+                                </FormControl>
                                 <FormMessage />
                               </FormItem>
                             )}
@@ -529,28 +479,17 @@ export default function RegisterPage() {
                         {(regionalAreaType === "Province" || regionalAreaType === "City") && (
                           <FormItem>
                             <FormLabel className="text-offwhite text-sm">{tRegional("areaTypeCountry")}</FormLabel>
-                            <Select
-                              onValueChange={(value) => {
-                                setCountryScope(value);
+                            <LocationCombobox
+                              kind="country"
+                              value={countryScope}
+                              onChange={(id) => {
+                                setCountryScope(id);
                                 form.setValue("regionalProvinceId", undefined);
                                 form.setValue("regionalCityId", undefined);
                                 setProvinceScope("");
                               }}
-                              value={countryScope}
-                            >
-                              <FormControl>
-                                <SelectTrigger disabled={loading} className="bg-white/5 border-white/10 text-offwhite h-11">
-                                  <SelectValue placeholder={tRegional("selectCountry")} />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent className="glass-strong border-white/10">
-                                {countries.map((c) => (
-                                  <SelectItem key={c._id} value={c._id || ""}>
-                                    {c.name}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
+                              disabled={loading}
+                            />
                           </FormItem>
                         )}
 
@@ -561,26 +500,18 @@ export default function RegisterPage() {
                             render={({ field }) => (
                               <FormItem>
                                 <FormLabel className="text-offwhite text-sm">{tRegional("areaTypeProvince")}</FormLabel>
-                                <Select
-                                  onValueChange={(value) => {
-                                    field.onChange(value);
-                                    form.setValue("regionalCityId", undefined);
-                                  }}
-                                  value={field.value}
-                                >
-                                  <FormControl>
-                                    <SelectTrigger disabled={loading} className="bg-white/5 border-white/10 text-offwhite h-11">
-                                      <SelectValue placeholder={tRegional("selectProvince")} />
-                                    </SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent className="glass-strong border-white/10">
-                                    {scopedProvinces.map((p) => (
-                                      <SelectItem key={p._id} value={p._id || ""}>
-                                        {p.name}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
+                                <FormControl>
+                                  <LocationCombobox
+                                    kind="province"
+                                    countryId={countryScope}
+                                    value={field.value}
+                                    onChange={(id) => {
+                                      field.onChange(id);
+                                      form.setValue("regionalCityId", undefined);
+                                    }}
+                                    disabled={loading}
+                                  />
+                                </FormControl>
                                 <FormMessage />
                               </FormItem>
                             )}
@@ -590,26 +521,16 @@ export default function RegisterPage() {
                         {regionalAreaType === "City" && (
                           <FormItem>
                             <FormLabel className="text-offwhite text-sm">{tRegional("areaTypeProvince")}</FormLabel>
-                            <Select
-                              onValueChange={(value) => {
-                                setProvinceScope(value);
+                            <LocationCombobox
+                              kind="province"
+                              countryId={countryScope}
+                              value={provinceScope}
+                              onChange={(id) => {
+                                setProvinceScope(id);
                                 form.setValue("regionalCityId", undefined);
                               }}
-                              value={provinceScope}
-                            >
-                              <FormControl>
-                                <SelectTrigger disabled={loading} className="bg-white/5 border-white/10 text-offwhite h-11">
-                                  <SelectValue placeholder={tRegional("selectProvince")} />
-                                </SelectTrigger>
-                              </FormControl>
-                              <SelectContent className="glass-strong border-white/10">
-                                {scopedProvinces.map((p) => (
-                                  <SelectItem key={p._id} value={p._id || ""}>
-                                    {p.name}
-                                  </SelectItem>
-                                ))}
-                              </SelectContent>
-                            </Select>
+                              disabled={loading}
+                            />
                           </FormItem>
                         )}
 
@@ -620,20 +541,16 @@ export default function RegisterPage() {
                             render={({ field }) => (
                               <FormItem>
                                 <FormLabel className="text-offwhite text-sm">{tRegional("areaTypeCity")}</FormLabel>
-                                <Select onValueChange={field.onChange} value={field.value}>
-                                  <FormControl>
-                                    <SelectTrigger disabled={loading} className="bg-white/5 border-white/10 text-offwhite h-11">
-                                      <SelectValue placeholder={tRegional("selectCity")} />
-                                    </SelectTrigger>
-                                  </FormControl>
-                                  <SelectContent className="glass-strong border-white/10">
-                                    {scopedCities.map((c) => (
-                                      <SelectItem key={c._id} value={c._id || ""}>
-                                        {c.name}
-                                      </SelectItem>
-                                    ))}
-                                  </SelectContent>
-                                </Select>
+                                <FormControl>
+                                  <LocationCombobox
+                                    kind="city"
+                                    countryId={countryScope}
+                                    provinceId={provinceScope}
+                                    value={field.value}
+                                    onChange={(id) => field.onChange(id)}
+                                    disabled={loading}
+                                  />
+                                </FormControl>
                                 <FormMessage />
                               </FormItem>
                             )}

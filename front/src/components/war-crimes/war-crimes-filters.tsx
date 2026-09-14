@@ -2,7 +2,7 @@
 
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { useState, useCallback } from "react";
+import { useState, useMemo } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -10,10 +10,12 @@ import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { DatePickerField } from "@/components/form/date-picker-field";
 import type { DeepPartial, categorySchema, tagSchema, ReqType } from "@/types/declarations";
-import { AsyncSelect, AsyncSelectOption, AsyncSelectLoadResult, AsyncSelectValue } from "@/components/form/async-select";
-import { gets as getCountries } from "@/app/actions/country/gets";
-import { gets as getProvinces } from "@/app/actions/province/gets";
-import { gets as getCities } from "@/app/actions/city/gets";
+import { AsyncSelect, AsyncSelectOption, AsyncSelectValue } from "@/components/form/async-select";
+import {
+  searchCountries,
+  searchProvinces,
+  searchCities,
+} from "@/components/form/location-search";
 import { Filter, X, ChevronDown, ChevronUp } from "lucide-react";
 
 interface WarCrimesFiltersProps {
@@ -207,56 +209,13 @@ export function WarCrimesFilters({
     router.push(pathname);
   };
 
-  const loadCountryOptions = useCallback(async (inputValue: string): Promise<AsyncSelectLoadResult> => {
-    const result = await getCountries(
-      { search: inputValue, page: 1, limit: 50 },
-      { _id: 1, name: 1 }
-    );
-
-    if (result.success && result.body && Array.isArray(result.body)) {
-      const options: AsyncSelectOption[] = result.body.map((country: { _id: string; name?: string }) => ({
-        id: country._id,
-        label: country.name || "",
-      }));
-      return { options, hasMore: false };
-    }
-
-    return { options: [], hasMore: false };
-  }, []);
-
-  const loadProvinceOptions = useCallback(async (inputValue: string): Promise<AsyncSelectLoadResult> => {
-    const result = await getProvinces(
-      { search: inputValue, page: 1, limit: 50 },
-      { _id: 1, name: 1 }
-    );
-
-    if (result.success && result.body && Array.isArray(result.body)) {
-      const options: AsyncSelectOption[] = result.body.map((province: { _id: string; name?: string }) => ({
-        id: province._id,
-        label: province.name || "",
-      }));
-      return { options, hasMore: false };
-    }
-
-    return { options: [], hasMore: false };
-  }, []);
-
-  const loadCityOptions = useCallback(async (inputValue: string): Promise<AsyncSelectLoadResult> => {
-    const result = await getCities(
-      { search: inputValue, page: 1, limit: 50 },
-      { _id: 1, name: 1 }
-    );
-
-    if (result.success && result.body && Array.isArray(result.body)) {
-      const options: AsyncSelectOption[] = result.body.map((city: { _id: string; name?: string }) => ({
-        id: city._id,
-        label: city.name || "",
-      }));
-      return { options, hasMore: false };
-    }
-
-    return { options: [], hasMore: false };
-  }, []);
+  // Location search is shared with the admin pickers. These use the `name`
+  // filter — a partial, case-insensitive match on the native or English name —
+  // rather than `search`, which is a $text query that only matches whole words
+  // (so "Teh" never found Tehran) and, for provinces, failed outright.
+  const loadCountryOptions = useMemo(() => searchCountries, []);
+  const loadProvinceOptions = useMemo(() => searchProvinces(), []);
+  const loadCityOptions = useMemo(() => searchCities(), []);
 
   const statusOptions: AsyncSelectOption[] = [
     { id: "all", label: t("status.all") },
