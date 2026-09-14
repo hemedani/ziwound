@@ -85,3 +85,32 @@ export const cities = () =>
       },
     },
   });
+
+/**
+ * The world import seeds ~153k cities, and the location pickers always narrow a
+ * name search down to one province. Without an index on the embedded parent
+ * relation that is a full collection scan per keystroke.
+ *
+ * The model's single `createIndex` slot is already taken by the text index, so
+ * these are created here — same pattern as `createUserTextIndex` — and are
+ * idempotent, so they are safe to run on every boot.
+ */
+export const createCityParentIndexes = async () => {
+  const collection = coreApp.odm.getCollection("city");
+  try {
+    await collection.createIndex({ "province._id": 1 }, { name: "province_id_1" });
+  } catch (error) {
+    console.log(
+      "city index province_id_1 already exists or creation failed:",
+      (error as Error).message,
+    );
+  }
+  try {
+    await collection.createIndex({ "country._id": 1 }, { name: "country_id_1" });
+  } catch (error) {
+    console.log(
+      "city index country_id_1 already exists or creation failed:",
+      (error as Error).message,
+    );
+  }
+};

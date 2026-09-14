@@ -50,5 +50,40 @@ export const province_relations = {
   },
 };
 
+/**
+ * `country` and `city` both declare a text index over `name` / `english_name`
+ * plus the main war-info fields; `province` was created with an empty options
+ * object and so had none. Any `province.gets` call passing `search` therefore
+ * failed outright with "text index required for $text query", which silently
+ * emptied the province dropdown in the war-crimes filter and the report form.
+ * The spec below mirrors `cities()`.
+ */
 export const provinces = () =>
-  coreApp.odm.newModel("province", province_pure, province_relations, {});
+  coreApp.odm.newModel("province", province_pure, province_relations, {
+    createIndex: {
+      indexSpec: {
+        name: "text",
+        english_name: "text",
+        wars_history: "text",
+        conflict_timeline: "text",
+        war_crimes_events: "text",
+        notable_battles: "text",
+      },
+    },
+  });
+
+/**
+ * Provinces are always listed for one country, so index the embedded parent
+ * relation. Idempotent — safe to run on every boot. See `createCityParentIndexes`.
+ */
+export const createProvinceParentIndex = async () => {
+  const collection = coreApp.odm.getCollection("province");
+  try {
+    await collection.createIndex({ "country._id": 1 }, { name: "country_id_1" });
+  } catch (error) {
+    console.log(
+      "province index country_id_1 already exists or creation failed:",
+      (error as Error).message,
+    );
+  }
+};

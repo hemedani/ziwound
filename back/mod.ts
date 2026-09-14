@@ -6,6 +6,8 @@ import {
   confirmations,
   countries,
   createBlogPostTextIndex,
+  createCityParentIndexes,
+  createProvinceParentIndex,
   createUserTextIndex,
   documents,
   files,
@@ -57,6 +59,12 @@ createUserTextIndex();
 
 // Create text index for blog post search
 createBlogPostTextIndex();
+
+// Parent-relation indexes so the searchable location pickers stay fast once the
+// world dataset (~153k cities) is loaded.
+createCityParentIndexes();
+
+createProvinceParentIndex();
 
 coreApp.runServer({
   port: Number(APP_PORT),
