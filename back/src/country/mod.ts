@@ -1,4 +1,5 @@
 import { addSetup } from "./add/mod.ts";
+import { addManySetup } from "./addMany/mod.ts";
 import { getSetup } from "./get/mod.ts";
 import { getsSetup } from "./gets/mod.ts";
 import { updateSetup } from "./update/mod.ts";
@@ -8,6 +9,7 @@ import { countSetup } from "./count/mod.ts";
 
 export const countrySetup = () => {
 	addSetup();
+	addManySetup();
 	updateSetup();
 	updateRelationsSetup();
 	getSetup();
