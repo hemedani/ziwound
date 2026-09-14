@@ -1,5 +1,6 @@
 import type { ActFn, Document } from "lesan";
-import { city } from "../../../mod.ts";
+import { escapeRegex } from "@lib";
+import { province } from "../../../mod.ts";
 
 export const countFn: ActFn = async (body) => {
 	const {
@@ -9,12 +10,16 @@ export const countFn: ActFn = async (body) => {
 
 	const filters: Document = {};
 
-	name &&
-		(filters["name"] = {
-			$regex: new RegExp(name, "i"),
-		});
+	// Match the native name OR the English name (mirrors province.gets).
+	if (name) {
+		const nameRegex = new RegExp(escapeRegex(name), "i");
+		filters["$or"] = [
+			{ name: { $regex: nameRegex } },
+			{ english_name: { $regex: nameRegex } },
+		];
+	}
 
-	const foundedItemsLength = await city.countDocument({
+	const foundedItemsLength = await province.countDocument({
 		filter: filters,
 	});
 

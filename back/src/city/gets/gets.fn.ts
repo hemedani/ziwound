@@ -1,4 +1,5 @@
 import { type ActFn, ObjectId } from "lesan";
+import { escapeRegex } from "@lib";
 import { city } from "../../../mod.ts";
 
 export const getsFn: ActFn = async (body) => {
@@ -26,11 +27,15 @@ export const getsFn: ActFn = async (body) => {
 		});
 	}
 
-	// Name filter (regex search)
+	// Name filter (regex search on native name OR english name)
 	if (name) {
+		const nameRegex = new RegExp(escapeRegex(name), "i");
 		pipeline.push({
 			$match: {
-				name: { $regex: new RegExp(name, "i") },
+				$or: [
+					{ name: { $regex: nameRegex } },
+					{ english_name: { $regex: nameRegex } },
+				],
 			},
 		});
 	}
