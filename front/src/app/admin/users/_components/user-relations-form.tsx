@@ -9,20 +9,25 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImagePicker } from "@/components/form/image-picker";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { AsyncSelect } from "@/components/form/async-select";
+import {
+  searchCountries,
+  searchProvinces,
+  searchCities,
+  seededLocationOption,
+} from "@/components/form/location-search";
 import { Loader2, Trash2 } from "lucide-react";
 import Image from "next/image";
 import { updateUserRelations } from "@/app/actions/user/updateUserRelations";
 import { getImageUploadUrl } from "@/utils/imageUrl";
 import { userSchema } from "@/types/declarations";
 
+type LocationRef = { _id?: string; name?: string; english_name?: string };
+
 interface UserRelationsFormProps {
-  user: userSchema & { province?: { _id?: string }; city?: { _id?: string }; country?: { _id?: string; name?: string; english_name?: string } };
-  countries: Array<{ _id: string; name: string; english_name: string }>;
-  provinces: Array<{ _id: string; name: string; english_name: string; country?: { _id?: string } }>;
-  cities: Array<{ _id: string; name: string; english_name: string; province?: { _id?: string } }>;
+  user: userSchema & { province?: LocationRef; city?: LocationRef; country?: LocationRef };
 }
 
-export function UserRelationsForm({ user, countries, provinces, cities }: UserRelationsFormProps) {
+export function UserRelationsForm({ user }: UserRelationsFormProps) {
   const t = useTranslations("admin");
   const { toast } = useToast();
   const router = useRouter();
@@ -34,25 +39,27 @@ export function UserRelationsForm({ user, countries, provinces, cities }: UserRe
   const [cityId, setCityId] = useState<string | string[] | null>(user.city?._id || null);
   const [isLoading, setIsLoading] = useState(false);
 
-  const filteredProvinces = useMemo(() => {
-    if (!countryId || typeof countryId !== "string") return [];
-    const filtered = provinces.filter((p) => p.country?._id === countryId);
-    if (user.province?._id && !filtered.some((p) => p._id === user.province!._id)) {
-      const current = provinces.find((p) => p._id === user.province!._id);
-      if (current) filtered.push(current);
-    }
-    return filtered;
-  }, [provinces, countryId, user.province]);
+  // Location lists are fetched on demand — with ~153k cities they can no longer
+  // be preloaded into the page.
+  const selectedCountry = typeof countryId === "string" ? countryId : undefined;
+  const selectedProvince = typeof provinceId === "string" ? provinceId : undefined;
 
-  const filteredCities = useMemo(() => {
-    if (!provinceId || typeof provinceId !== "string") return [];
-    const filtered = cities.filter((c) => c.province?._id === provinceId);
-    if (user.city?._id && !filtered.some((c) => c._id === user.city!._id)) {
-      const current = cities.find((c) => c._id === user.city!._id);
-      if (current) filtered.push(current);
-    }
-    return filtered;
-  }, [cities, provinceId, user.city]);
+  const loadProvinces = useMemo(() => searchProvinces(selectedCountry), [selectedCountry]);
+  const loadCities = useMemo(() => searchCities(selectedProvince), [selectedProvince]);
+
+  // Seed the current relations so their names show on the triggers.
+  const seededCountries = useMemo(
+    () => seededLocationOption(user.country?._id, user.country?.name, user.country?.english_name),
+    [user.country?._id, user.country?.name, user.country?.english_name],
+  );
+  const seededProvinces = useMemo(
+    () => seededLocationOption(user.province?._id, user.province?.name, user.province?.english_name),
+    [user.province?._id, user.province?.name, user.province?.english_name],
+  );
+  const seededCities = useMemo(
+    () => seededLocationOption(user.city?._id, user.city?.name, user.city?.english_name),
+    [user.city?._id, user.city?.name, user.city?.english_name],
+  );
 
   const handleSave = async () => {
     if (!user._id) return;
@@ -196,13 +203,15 @@ export function UserRelationsForm({ user, countries, provinces, cities }: UserRe
         <div className="space-y-2">
           <p className="text-sm text-slate-body">{t("country") || "Country"}</p>
           <AsyncSelect
+            async
             value={countryId}
             onChange={(val) => {
               setCountryId(val);
               setProvinceId(null);
               setCityId(null);
             }}
-            options={countries.map((c) => ({ id: c._id, label: c.name, subLabel: c.english_name }))}
+            loadOptions={searchCountries}
+            options={seededCountries}
             placeholder={t("selectCountry") || "Select a country"}
             searchPlaceholder="Search countries..."
             emptyText="No country found."
@@ -212,12 +221,14 @@ export function UserRelationsForm({ user, countries, provinces, cities }: UserRe
         <div className="space-y-2">
           <p className="text-sm text-slate-body">{t("province") || "Province"}</p>
           <AsyncSelect
+            async
             value={provinceId}
             onChange={(val) => {
               setProvinceId(val);
               setCityId(null);
             }}
-            options={filteredProvinces.map((p) => ({ id: p._id, label: p.name, subLabel: p.english_name }))}
+            loadOptions={loadProvinces}
+            options={seededProvinces}
             placeholder={t("selectProvince") || "Select a province"}
             searchPlaceholder="Search provinces..."
             emptyText="No province found."
@@ -228,9 +239,11 @@ export function UserRelationsForm({ user, countries, provinces, cities }: UserRe
         <div className="space-y-2">
           <p className="text-sm text-slate-body">{t("city") || "City"}</p>
           <AsyncSelect
+            async
             value={cityId}
             onChange={(val) => setCityId(val)}
-            options={filteredCities.map((c) => ({ id: c._id, label: c.name, subLabel: c.english_name }))}
+            loadOptions={loadCities}
+            options={seededCities}
             placeholder={t("selectCity") || "Select a city"}
             searchPlaceholder="Search cities..."
             emptyText="No city found."

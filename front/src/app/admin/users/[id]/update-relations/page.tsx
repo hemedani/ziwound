@@ -1,8 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { getUser } from "@/app/actions/user/getUser";
-import { gets as getCountries } from "@/app/actions/country/gets";
-import { gets as getProvinces } from "@/app/actions/province/gets";
-import { gets as getCities } from "@/app/actions/city/gets";
 import { UserRelationsForm } from "../../_components/user-relations-form";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
@@ -37,16 +34,6 @@ export default async function UpdateRelationsPage({ params }: UpdateRelationsPag
 
   const user = response.body;
 
-  const [countriesResponse, provincesResponse, citiesResponse] = await Promise.all([
-    getCountries({ page: 1, limit: 1000 }, { _id: 1, name: 1, english_name: 1 }),
-    getProvinces({ page: 1, limit: 1000 }, { _id: 1, name: 1, english_name: 1, country: { _id: 1 } }),
-    getCities({ page: 1, limit: 2000 }, { _id: 1, name: 1, english_name: 1, province: { _id: 1 } }),
-  ]);
-
-  const countries = (countriesResponse?.success && Array.isArray(countriesResponse.body)) ? countriesResponse.body : [];
-  const provinces = (provincesResponse?.success && Array.isArray(provincesResponse.body)) ? provincesResponse.body : [];
-  const cities = (citiesResponse?.success && Array.isArray(citiesResponse.body)) ? citiesResponse.body : [];
-
   return (
     <div className="p-6 md:p-8 max-w-5xl mx-auto space-y-6">
       <div className="relative overflow-hidden rounded-2xl glass-light border border-white/[0.06] p-6 md:p-8">
@@ -73,7 +60,7 @@ export default async function UpdateRelationsPage({ params }: UpdateRelationsPag
         </div>
       </div>
 
-      <UserRelationsForm user={user} countries={countries} provinces={provinces} cities={cities} />
+      <UserRelationsForm user={user} />
     </div>
   );
 }
