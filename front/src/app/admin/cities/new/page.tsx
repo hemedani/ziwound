@@ -1,25 +1,10 @@
 import { redirect } from "next/navigation";
 import { add } from "@/app/actions/city/add";
-import { gets as getCountries } from "@/app/actions/country/gets";
-import { gets as getProvinces } from "@/app/actions/province/gets";
 import { getTranslations } from "next-intl/server";
 import { CityCreateClient } from "../_components/city-create-client";
 
 export default async function AdminCityNewPage() {
   const t = await getTranslations("admin");
-
-  const [countriesResponse, provincesResponse] = await Promise.all([
-    getCountries({ page: 1, limit: 1000 }, { _id: 1, name: 1, english_name: 1 }),
-    getProvinces({ page: 1, limit: 1000 }, { _id: 1, name: 1, english_name: 1, country: { _id: 1 } }),
-  ]);
-
-  const countries = countriesResponse?.success && Array.isArray(countriesResponse.body)
-    ? countriesResponse.body
-    : [];
-
-  const provinces = provincesResponse?.success && Array.isArray(provincesResponse.body)
-    ? provincesResponse.body
-    : [];
 
   async function handleCreate(formData: FormData) {
     "use server";
@@ -66,5 +51,5 @@ export default async function AdminCityNewPage() {
     return res;
   }
 
-  return <CityCreateClient onSubmit={handleCreate} countries={countries} provinces={provinces} />;
+  return <CityCreateClient onSubmit={handleCreate} />;
 }

@@ -9,6 +9,11 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { ImagePicker } from "@/components/form/image-picker";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import { AsyncSelect } from "@/components/form/async-select";
+import {
+  searchCountries,
+  searchProvinces,
+  seededLocationOption,
+} from "@/components/form/location-search";
 import { Loader2, Trash2, ImageIcon, Globe } from "lucide-react";
 import Image from "next/image";
 import { updateRelations } from "@/app/actions/city/updateRelations";
@@ -17,11 +22,9 @@ import { citySchema } from "@/types/declarations";
 
 interface CityRelationsFormProps {
   city: citySchema & { province?: { _id?: string; name?: string; english_name?: string }; country?: { _id?: string; name?: string; english_name?: string } };
-  countries: Array<{ _id: string; name: string; english_name: string }>;
-  provinces: Array<{ _id: string; name: string; english_name: string; country?: { _id?: string } }>;
 }
 
-export function CityRelationsForm({ city, countries, provinces }: CityRelationsFormProps) {
+export function CityRelationsForm({ city }: CityRelationsFormProps) {
   const t = useTranslations("admin");
   const { toast } = useToast();
   const router = useRouter();
@@ -32,10 +35,23 @@ export function CityRelationsForm({ city, countries, provinces }: CityRelationsF
 
   const hasExistingPhoto = !!city.photo?._id;
 
-  const filteredProvinces = useMemo(() => {
-    if (!countryId || typeof countryId !== "string") return provinces;
-    return provinces.filter((p) => p.country?._id === countryId);
-  }, [provinces, countryId]);
+  const selectedCountry = typeof countryId === "string" ? countryId : undefined;
+
+  const loadProvinces = useMemo(
+    () => searchProvinces(selectedCountry),
+    [selectedCountry],
+  );
+
+  // Keep the current country/province names on the triggers — the option lists
+  // are now fetched on demand, so the labels have to be seeded explicitly.
+  const seededCountries = useMemo(
+    () => seededLocationOption(city.country?._id, city.country?.name, city.country?.english_name),
+    [city.country?._id, city.country?.name, city.country?.english_name],
+  );
+  const seededProvinces = useMemo(
+    () => seededLocationOption(city.province?._id, city.province?.name, city.province?.english_name),
+    [city.province?._id, city.province?.name, city.province?.english_name],
+  );
 
   const handleSave = async () => {
     if (!city._id) return;
@@ -96,17 +112,15 @@ export function CityRelationsForm({ city, countries, provinces }: CityRelationsF
         <div className="space-y-2">
           <label className="text-sm font-medium text-offwhite">{t("country") || "Country"}</label>
           <AsyncSelect
+            async
             value={countryId}
             onChange={(val) => {
               setCountryId(val);
               setProvinceId(null);
             }}
             isClearable={false}
-            options={countries.map((c) => ({
-              id: c._id,
-              label: c.name,
-              subLabel: c.english_name,
-            }))}
+            loadOptions={searchCountries}
+            options={seededCountries}
             placeholder={t("selectCountry") || "Select a country"}
             searchPlaceholder="Search countries..."
             emptyText="No country found."
@@ -116,14 +130,12 @@ export function CityRelationsForm({ city, countries, provinces }: CityRelationsF
         <div className="space-y-2">
           <label className="text-sm font-medium text-offwhite">{t("province") || "Province"}</label>
           <AsyncSelect
+            async
             value={provinceId}
             onChange={(val) => setProvinceId(val)}
             isClearable={false}
-            options={filteredProvinces.map((p) => ({
-              id: p._id,
-              label: p.name,
-              subLabel: p.english_name,
-            }))}
+            loadOptions={loadProvinces}
+            options={seededProvinces}
             placeholder={t("selectProvince") || "Select a province"}
             searchPlaceholder="Search provinces..."
             emptyText="No province found."

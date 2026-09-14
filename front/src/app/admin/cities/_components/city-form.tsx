@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { useTranslations } from "next-intl";
-import { useState, useTransition } from "react";
+import { useState, useTransition, useMemo } from "react";
 import { Loader2, ImageIcon } from "lucide-react";
 import { citySchema } from "@/types/declarations";
 import { Button } from "@/components/ui/button";
@@ -20,6 +20,11 @@ import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { RichTextEditor } from "@/components/form/rich-text-editor";
 import { AsyncSelect } from "@/components/form/async-select";
+import {
+  searchCountries,
+  searchProvinces,
+  seededLocationOption,
+} from "@/components/form/location-search";
 import { ImagePicker } from "@/components/form/image-picker";
 import { FileUploadField } from "@/components/form/file-upload-field";
 import {
@@ -156,11 +161,9 @@ interface CityFormProps {
   onSubmit: (data: CityFormSubmitData) => Promise<void>;
   onCancel: () => void;
   isEditing?: boolean;
-  countries?: Array<{ _id: string; name: string; english_name: string }>;
-  provinces?: Array<{ _id: string; name: string; english_name: string; country?: { _id?: string } }>;
 }
 
-export function CityForm({ initialData, onSubmit, onCancel, isEditing = false, countries = [], provinces = [] }: CityFormProps) {
+export function CityForm({ initialData, onSubmit, onCancel, isEditing = false }: CityFormProps) {
   const t = useTranslations("admin");
   const [isPending, startTransition] = useTransition();
   const [selectedCountryId, setSelectedCountryId] = useState<string | string[] | null>(
@@ -173,10 +176,19 @@ export function CityForm({ initialData, onSubmit, onCancel, isEditing = false, c
     (initialData as Record<string, { _id?: string }> | undefined)?.photo?._id || ""
   );
 
-  const filteredProvinces = provinces.filter((p) => {
-    if (!selectedCountryId || typeof selectedCountryId !== "string") return true;
-    return p.country?._id === selectedCountryId;
-  });
+  // The location lists are fetched on demand — the world import means they can
+  // no longer be preloaded into the page.
+  const selectedCountry = typeof selectedCountryId === "string" ? selectedCountryId : undefined;
+  const loadProvinces = useMemo(() => searchProvinces(selectedCountry), [selectedCountry]);
+
+  const seededCountries = useMemo(() => {
+    const country = (initialData as Record<string, { _id?: string; name?: string; english_name?: string }> | undefined)?.country;
+    return seededLocationOption(country?._id, country?.name, country?.english_name);
+  }, [initialData]);
+  const seededProvinces = useMemo(() => {
+    const province = (initialData as Record<string, { _id?: string; name?: string; english_name?: string }> | undefined)?.province;
+    return seededLocationOption(province?._id, province?.name, province?.english_name);
+  }, [initialData]);
 
   const extractFieldValue = (field: Record<string, string> | string | undefined, langCode: string): string => {
     if (typeof field === "object" && field !== null) return field[langCode] || "";
@@ -238,16 +250,14 @@ export function CityForm({ initialData, onSubmit, onCancel, isEditing = false, c
                   <div className="space-y-2">
                     <label className="text-offwhite text-sm font-medium">{t("country") || "Country"}</label>
                     <AsyncSelect
+                      async
                       value={selectedCountryId}
                       onChange={(val) => {
                         setSelectedCountryId(val);
                         setSelectedProvinceId(null);
                       }}
-                      options={countries.map((c) => ({
-                        id: c._id,
-                        label: c.name,
-                        subLabel: c.english_name,
-                      }))}
+                      loadOptions={searchCountries}
+                      options={seededCountries}
                       placeholder={t("selectCountry") || "Select a country"}
                       searchPlaceholder="Search countries..."
                       emptyText="No country found."
@@ -256,13 +266,11 @@ export function CityForm({ initialData, onSubmit, onCancel, isEditing = false, c
                   <div className="space-y-2">
                     <label className="text-offwhite text-sm font-medium">{t("province") || "Province"}</label>
                     <AsyncSelect
+                      async
                       value={selectedProvinceId}
                       onChange={(val) => setSelectedProvinceId(val)}
-                      options={filteredProvinces.map((p) => ({
-                        id: p._id,
-                        label: p.name,
-                        subLabel: p.english_name,
-                      }))}
+                      loadOptions={loadProvinces}
+                      options={seededProvinces}
                       placeholder={t("selectProvince") || "Select a province"}
                       searchPlaceholder="Search provinces..."
                       emptyText="No province found."

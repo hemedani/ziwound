@@ -9,12 +9,8 @@ import { useToast } from "@/components/ui/use-toast";
 
 export function CityCreateClient({
   onSubmit,
-  countries,
-  provinces,
 }: {
   onSubmit: (formData: FormData) => Promise<unknown>;
-  countries: Array<{ _id: string; name: string; english_name: string }>;
-  provinces: Array<{ _id: string; name: string; english_name: string; country?: { _id?: string } }>;
 }) {
   const t = useTranslations("admin");
   const locale = useLocale();
@@ -75,8 +71,6 @@ export function CityCreateClient({
       <CityForm
         onSubmit={handleSubmit}
         onCancel={() => router.push("/admin/cities")}
-        countries={countries}
-        provinces={provinces}
       />
     </div>
   );

@@ -1,7 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { get } from "@/app/actions/city/get";
-import { gets as getCountries } from "@/app/actions/country/gets";
-import { gets as getProvinces } from "@/app/actions/province/gets";
 import { CityRelationsForm } from "../../_components/city-relations-form";
 import { notFound } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
@@ -33,19 +31,6 @@ export default async function UpdateRelationsPage({ params }: UpdateRelationsPag
 
   const city = response.body[0];
 
-  const [countriesResponse, provincesResponse] = await Promise.all([
-    getCountries({ page: 1, limit: 1000 }, { _id: 1, name: 1, english_name: 1 }),
-    getProvinces({ page: 1, limit: 1000 }, { _id: 1, name: 1, english_name: 1, country: { _id: 1 } }),
-  ]);
-
-  const countries = (countriesResponse?.success && Array.isArray(countriesResponse.body))
-    ? countriesResponse.body
-    : [];
-
-  const provinces = (provincesResponse?.success && Array.isArray(provincesResponse.body))
-    ? provincesResponse.body
-    : [];
-
   return (
     <div className="p-6 md:p-8 max-w-5xl mx-auto space-y-6">
       <div className="relative overflow-hidden rounded-2xl glass-light border border-white/[0.06] p-6 md:p-8">
@@ -72,7 +57,7 @@ export default async function UpdateRelationsPage({ params }: UpdateRelationsPag
         </div>
       </div>
 
-      <CityRelationsForm city={city} countries={countries} provinces={provinces} />
+      <CityRelationsForm city={city} />
     </div>
   );
 }
