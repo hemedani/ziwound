@@ -238,7 +238,8 @@
     "none": "Hiçbiri",
     "noneSelected": "Hiçbiri seçilmedi",
     "relationsManagement": "İlişki Yönetimi",
-    "searchDocuments": "Belgeleri ara..."
+    "searchDocuments": "Belgeleri ara...",
+    "selectProvinceFirst": "Önce bir il seçin"
   },
   "myReports": {
     "title": "Raporlarım",
@@ -1291,7 +1292,8 @@
     "searchCountry": "Ülke ara...",
     "searchCity": "Şehir ara...",
     "noCountryFound": "Ülke bulunamadı.",
-    "noCityFound": "Şehir bulunamadı."
+    "noCityFound": "Şehir bulunamadı.",
+    "selectProvinceFirst": "Önce bir il seçin"
   },
   "notFound": {
     "backHome": "Ana Sayfaya Dön",
@@ -1447,7 +1449,8 @@
     "topReporters": "Top Reporters",
     "weeklyTimeline": "Weekly Created",
     "dailyTimeline": "Daily Created",
-    "totalReporter": "Reporters"
+    "totalReporter": "Reporters",
+    "selectProvinceFirst": "Önce bir il seçin"
   },
   "about": {
     "title": "Hakkımızda",

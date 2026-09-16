@@ -238,7 +238,8 @@
     "none": "Ninguno",
     "noneSelected": "Ninguno seleccionado",
     "relationsManagement": "Gestión de Relaciones",
-    "searchDocuments": "Buscar documentos..."
+    "searchDocuments": "Buscar documentos...",
+    "selectProvinceFirst": "Selecciona primero una provincia"
   },
   "myReports": {
     "title": "Mis Reportes",
@@ -1348,7 +1349,8 @@
     "searchCountry": "Buscar país...",
     "searchCity": "Buscar ciudad...",
     "noCountryFound": "No se encontró ningún país.",
-    "noCityFound": "No se encontró ninguna ciudad."
+    "noCityFound": "No se encontró ninguna ciudad.",
+    "selectProvinceFirst": "Selecciona primero una provincia"
   },
   "notFound": {
     "backHome": "Volver al inicio",
@@ -1504,7 +1506,8 @@
     "topReporters": "Top Reporters",
     "weeklyTimeline": "Weekly Created",
     "dailyTimeline": "Daily Created",
-    "totalReporter": "Reporters"
+    "totalReporter": "Reporters",
+    "selectProvinceFirst": "Selecciona primero una provincia"
   },
   "about": {
     "title": "Sobre Nosotros",

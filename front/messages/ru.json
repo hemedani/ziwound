@@ -238,7 +238,8 @@
     "none": "Нет",
     "noneSelected": "Ничего не выбрано",
     "relationsManagement": "Управление связями",
-    "searchDocuments": "Поиск документов..."
+    "searchDocuments": "Поиск документов...",
+    "selectProvinceFirst": "Сначала выберите провинцию"
   },
   "myReports": {
     "title": "Мои отчеты",
@@ -1348,7 +1349,8 @@
     "searchCountry": "Поиск страны...",
     "searchCity": "Поиск города...",
     "noCountryFound": "Страна не найдена.",
-    "noCityFound": "Город не найден."
+    "noCityFound": "Город не найден.",
+    "selectProvinceFirst": "Сначала выберите провинцию"
   },
   "notFound": {
     "backHome": "Вернуться на главную",
@@ -1504,7 +1506,8 @@
     "topReporters": "Top Reporters",
     "weeklyTimeline": "Weekly Created",
     "dailyTimeline": "Daily Created",
-    "totalReporter": "Reporters"
+    "totalReporter": "Reporters",
+    "selectProvinceFirst": "Сначала выберите провинцию"
   },
   "about": {
     "title": "О нас",

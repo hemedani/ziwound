@@ -238,7 +238,8 @@
     "none": "Nenhum",
     "noneSelected": "Nenhum selecionado",
     "relationsManagement": "Gerenciamento de Relações",
-    "searchDocuments": "Pesquisar documentos..."
+    "searchDocuments": "Pesquisar documentos...",
+    "selectProvinceFirst": "Selecione primeiro uma província"
   },
   "myReports": {
     "title": "Meus Relatos",
@@ -1291,7 +1292,8 @@
     "searchCountry": "Pesquisar país...",
     "searchCity": "Pesquisar cidade...",
     "noCountryFound": "Nenhum país encontrado.",
-    "noCityFound": "Nenhuma cidade encontrada."
+    "noCityFound": "Nenhuma cidade encontrada.",
+    "selectProvinceFirst": "Selecione primeiro uma província"
   },
   "notFound": {
     "backHome": "Voltar ao início",
@@ -1447,7 +1449,8 @@
     "topReporters": "Top Reporters",
     "weeklyTimeline": "Weekly Created",
     "dailyTimeline": "Daily Created",
-    "totalReporter": "Reporters"
+    "totalReporter": "Reporters",
+    "selectProvinceFirst": "Selecione primeiro uma província"
   },
   "about": {
     "title": "Sobre Nós",

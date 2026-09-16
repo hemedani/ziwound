@@ -238,7 +238,8 @@
     "none": "无",
     "noneSelected": "未选择",
     "relationsManagement": "关系管理",
-    "searchDocuments": "搜索文档..."
+    "searchDocuments": "搜索文档...",
+    "selectProvinceFirst": "请先选择省份"
   },
   "myReports": {
     "title": "我的报告",
@@ -1292,7 +1293,8 @@
     "searchCountry": "搜索国家...",
     "searchCity": "搜索城市...",
     "noCountryFound": "未找到国家。",
-    "noCityFound": "未找到城市。"
+    "noCityFound": "未找到城市。",
+    "selectProvinceFirst": "请先选择省份"
   },
   "notFound": {
     "backHome": "返回首页",
@@ -1448,7 +1450,8 @@
     "topReporters": "Top Reporters",
     "weeklyTimeline": "Weekly Created",
     "dailyTimeline": "Daily Created",
-    "totalReporter": "Reporters"
+    "totalReporter": "Reporters",
+    "selectProvinceFirst": "请先选择省份"
   },
   "about": {
     "title": "关于我们",

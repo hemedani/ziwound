@@ -238,7 +238,8 @@
     "none": "لا شيء",
     "noneSelected": "لم يتم تحديد أي شيء",
     "relationsManagement": "إدارة العلاقات",
-    "searchDocuments": "البحث عن مستندات..."
+    "searchDocuments": "البحث عن مستندات...",
+    "selectProvinceFirst": "اختر المحافظة أولاً"
   },
   "myReports": {
     "title": "تقاريري",
@@ -1292,7 +1293,8 @@
     "searchCountry": "ابحث عن دولة...",
     "searchCity": "ابحث عن مدينة...",
     "noCountryFound": "لم يتم العثور على دولة.",
-    "noCityFound": "لم يتم العثور على مدينة."
+    "noCityFound": "لم يتم العثور على مدينة.",
+    "selectProvinceFirst": "اختر المحافظة أولاً"
   },
   "notFound": {
     "backHome": "العودة إلى الصفحة الرئيسية",
@@ -1442,7 +1444,8 @@
     "topReporters": "Top Reporters",
     "weeklyTimeline": "Weekly Created",
     "dailyTimeline": "Daily Created",
-    "totalReporter": "Reporters"
+    "totalReporter": "Reporters",
+    "selectProvinceFirst": "اختر المحافظة أولاً"
   },
   "about": {
     "title": "معلومات عنا",

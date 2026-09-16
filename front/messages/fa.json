@@ -264,7 +264,8 @@
     "relationsManagement": "مدیریت روابط",
     "searchDocuments": "جستجوی اسناد...",
     "itemsShown": "مورد نمایش داده شده",
-    "totalWarCriminals": "کل جنایتکاران جنگی"
+    "totalWarCriminals": "کل جنایتکاران جنگی",
+    "selectProvinceFirst": "ابتدا استان را انتخاب کنید"
   },
   "myReports": {
     "title": "گزارش‌های من",
@@ -1317,7 +1318,8 @@
     "searchCountry": "جستجوی کشور...",
     "searchCity": "جستجوی شهر...",
     "noCountryFound": "کشوری یافت نشد.",
-    "noCityFound": "شهری یافت نشد."
+    "noCityFound": "شهری یافت نشد.",
+    "selectProvinceFirst": "ابتدا استان را انتخاب کنید"
   },
   "reporters": {
     "pageTitle": "خبرنگاران و مشارکت‌کنندگان - زی‌ووند",
@@ -1514,7 +1516,8 @@
     "topReporters": "گزارش‌دهندگان برتر",
     "weeklyTimeline": "ایجاد شده هفتگی",
     "dailyTimeline": "ایجاد شده روزانه",
-    "totalReporter": "گزارش‌دهندگان"
+    "totalReporter": "گزارش‌دهندگان",
+    "selectProvinceFirst": "ابتدا استان را انتخاب کنید"
   },
   "about": {
     "title": "درباره ما",

@@ -238,7 +238,8 @@
     "none": "Geen",
     "noneSelected": "Geen geselecteerd",
     "relationsManagement": "Relatiebeheer",
-    "searchDocuments": "Documenten zoeken..."
+    "searchDocuments": "Documenten zoeken...",
+    "selectProvinceFirst": "Selecteer eerst een provincie"
   },
   "myReports": {
     "title": "Mijn Rapporten",
@@ -1348,7 +1349,8 @@
     "searchCountry": "Zoek land...",
     "searchCity": "Zoek stad...",
     "noCountryFound": "Geen land gevonden.",
-    "noCityFound": "Geen stad gevonden."
+    "noCityFound": "Geen stad gevonden.",
+    "selectProvinceFirst": "Selecteer eerst een provincie"
   },
   "notFound": {
     "backHome": "Terug naar startpagina",
@@ -1504,7 +1506,8 @@
     "topReporters": "Top Reporters",
     "weeklyTimeline": "Weekly Created",
     "dailyTimeline": "Daily Created",
-    "totalReporter": "Reporters"
+    "totalReporter": "Reporters",
+    "selectProvinceFirst": "Selecteer eerst een provincie"
   },
   "about": {
     "title": "Over Ons",

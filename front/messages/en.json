@@ -262,7 +262,8 @@
     "none": "None",
     "noneSelected": "None selected",
     "relationsManagement": "Relations Management",
-    "searchDocuments": "Search documents..."
+    "searchDocuments": "Search documents...",
+    "selectProvinceFirst": "Select a province first"
   },
   "myReports": {
     "title": "My Reports",
@@ -1361,7 +1362,8 @@
     "searchCountry": "Search country...",
     "searchCity": "Search city...",
     "noCountryFound": "No country found.",
-    "noCityFound": "No city found."
+    "noCityFound": "No city found.",
+    "selectProvinceFirst": "Select a province first"
   },
   "notFound": {
     "backHome": "Back to Home",
@@ -1511,7 +1513,8 @@
     "topReporters": "Top Reporters",
     "weeklyTimeline": "Weekly Created",
     "dailyTimeline": "Daily Created",
-    "totalReporter": "Reporters"
+    "totalReporter": "Reporters",
+    "selectProvinceFirst": "Select a province first"
   },
   "about": {
     "title": "About Us",
