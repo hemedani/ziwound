@@ -25,6 +25,13 @@ interface MultiSelectChipsProps {
   selectedIds: string[];
   onChange: (ids: string[]) => void;
   placeholder: string;
+  /**
+   * Disables the search box only. Selected chips stay removable, so a value
+   * scoped to a parent that is no longer selected can still be cleared.
+   */
+  disabled?: boolean;
+  /** Shown instead of `placeholder` while `disabled`. */
+  disabledPlaceholder?: string;
 }
 
 /**
@@ -40,6 +47,8 @@ export function MultiSelectChips({
   selectedIds,
   onChange,
   placeholder,
+  disabled = false,
+  disabledPlaceholder,
 }: MultiSelectChipsProps) {
   const t = useTranslations("admin");
   const [search, setSearch] = useState("");
@@ -48,7 +57,7 @@ export function MultiSelectChips({
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    if (!loadOptions) return;
+    if (!loadOptions || disabled) return;
     const query = debouncedSearch.trim();
     // Nothing to fetch on an empty query. We deliberately leave `results`
     // untouched: the dropdown is hidden anyway (`showResults` requires a
@@ -76,7 +85,7 @@ export function MultiSelectChips({
     return () => {
       cancelled = true;
     };
-  }, [loadOptions, debouncedSearch]);
+  }, [loadOptions, debouncedSearch, disabled]);
 
   // Every name we know about, so a chip keeps its label after the search clears.
   const known = useMemo(() => {
@@ -103,7 +112,7 @@ export function MultiSelectChips({
     );
   }, [loadOptions, results, items, search, selectedIds]);
 
-  const showResults = !!search.trim() && (available.length > 0 || loading);
+  const showResults = !disabled && !!search.trim() && (available.length > 0 || loading);
 
   return (
     <div>
@@ -134,8 +143,9 @@ export function MultiSelectChips({
         <Input
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-          placeholder={placeholder}
-          className="ps-9 bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/40 h-9 text-xs"
+          placeholder={disabled ? (disabledPlaceholder ?? placeholder) : placeholder}
+          disabled={disabled}
+          className="ps-9 bg-white/5 border-white/10 text-offwhite placeholder:text-slate-body/40 h-9 text-xs disabled:opacity-60 disabled:cursor-not-allowed"
         />
         {loading && (
           <Loader2 className="absolute end-3 top-1/2 -translate-y-1/2 h-3.5 w-3.5 animate-spin text-slate-body/60" />

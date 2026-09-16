@@ -74,8 +74,29 @@ export function StepRenderer({
   // changes, so defining these inline re-ran the request on every render while
   // the dropdown was open.
   const loadCountries = useMemo(() => searchCountries, []);
-  const loadProvinces = useMemo(() => searchProvinces(), []);
-  const loadCities = useMemo(() => searchCities(), []);
+
+  // Scope the province and city searches by the parent already chosen in this
+  // step. An unscoped city search is a full scan of ~153k rows, which is slow
+  // enough to time out on a cold cache; scoped, it is an index lookup.
+  //
+  // The deps are the primitive ids, not the watched arrays, so the loader
+  // identity only changes when the actual selection changes.
+  const firstId = (value: unknown): string | undefined =>
+    Array.isArray(value) && typeof value[0] === "string" ? value[0] : undefined;
+  const attackedCountryId = firstId(watch("attackedCountryIds"));
+  const attackedProvinceId = firstId(watch("attackedProvinceIds"));
+
+  const loadProvinces = useMemo(
+    () => searchProvinces(attackedCountryId),
+    [attackedCountryId],
+  );
+  const loadCities = useMemo(
+    () => searchCities(attackedProvinceId, attackedCountryId),
+    [attackedProvinceId, attackedCountryId],
+  );
+  // A city search has to be scoped by a parent, otherwise it scans every city,
+  // so the picker stays disabled until a country or province is chosen above.
+  const cityParentSelected = Boolean(attackedProvinceId || attackedCountryId);
 
   const loadWarCriminals = useMemo(
     () =>
@@ -374,7 +395,19 @@ export function StepRenderer({
                 <FormControl>
                   <AsyncSelect
                     value={field.value || []}
-                    onChange={(value) => field.onChange(value)}
+                    onChange={(value) => {
+                      // The province and city pickers below are scoped by the
+                      // first country, and a disabled AsyncSelect hides its
+                      // clear button — so drop the children when the scoping
+                      // parent changes, or they become stale and unremovable.
+                      const prevFirst = firstId(field.value);
+                      const nextFirst = firstId(value);
+                      field.onChange(value);
+                      if (prevFirst !== nextFirst) {
+                        setValue("attackedProvinceIds", []);
+                        setValue("attackedCityIds", []);
+                      }
+                    }}
                     isMulti
                     async
                     loadOptions={loadCountries}
@@ -404,7 +437,17 @@ export function StepRenderer({
                 <FormControl>
                   <AsyncSelect
                     value={field.value || []}
-                    onChange={(value) => field.onChange(value)}
+                    onChange={(value) => {
+                      // Same reasoning as the country picker: the city list is
+                      // scoped by the first province, so clear it when that
+                      // parent changes.
+                      const prevFirst = firstId(field.value);
+                      const nextFirst = firstId(value);
+                      field.onChange(value);
+                      if (prevFirst !== nextFirst) {
+                        setValue("attackedCityIds", []);
+                      }
+                    }}
                     isMulti
                     async
                     loadOptions={loadProvinces}
@@ -438,10 +481,14 @@ export function StepRenderer({
                     isMulti
                     async
                     loadOptions={loadCities}
-                    placeholder={t("report.selectAttackedCities") || "Select attacked cities..."}
+                    placeholder={
+                      cityParentSelected
+                        ? t("report.selectAttackedCities") || "Select attacked cities..."
+                        : t("report.selectProvinceFirst")
+                    }
                     searchPlaceholder={t("report.searchCities") || "Search cities..."}
                     emptyText={t("report.noCitiesFound") || "No cities found."}
-                    disabled={disabled}
+                    disabled={disabled || !cityParentSelected}
                   />
                 </FormControl>
                 <FormMessage />

@@ -479,9 +479,28 @@ export function AdminReportsClient({
   // Location filters query the backend on demand — with ~153k cities the lists
   // can no longer be preloaded. Stable identities keep the AsyncSelect effect
   // from re-fetching on every render.
+  //
+  // Provinces and cities are scoped by whatever parent the filter already has.
+  // An unscoped city search is a full scan of ~153k rows, which is slow enough
+  // to time out on a cold cache; scoped, it is an index lookup.
   const loadCountries = useMemo(() => searchCountries, []);
-  const loadAllProvinces = useMemo(() => searchProvinces(), []);
-  const loadAllCities = useMemo(() => searchCities(), []);
+  const loadProvinces = useMemo(
+    () => searchProvinces(currentParams.attackedCountryIds || undefined),
+    [currentParams.attackedCountryIds],
+  );
+  const loadCities = useMemo(
+    () =>
+      searchCities(
+        currentParams.attackedProvinceIds || undefined,
+        currentParams.attackedCountryIds || undefined,
+      ),
+    [currentParams.attackedProvinceIds, currentParams.attackedCountryIds],
+  );
+  // A city search has to be scoped by a parent, otherwise it scans every city,
+  // so the picker stays disabled until a country or province is chosen.
+  const cityParentSelected = Boolean(
+    currentParams.attackedProvinceIds || currentParams.attackedCountryIds,
+  );
 
   const seededHostileCountries = useMemo(
     () => seededLocationOption(
@@ -715,6 +734,35 @@ export function AdminReportsClient({
   /* ── Filter change handlers ── */
   const applyFilter = (key: string, value: string) => {
     navigate({ [key]: value, page: 1 } as any);
+  };
+
+  // The province and city pickers are scoped by the parent above them, so
+  // replacing that parent invalidates whatever was chosen below it — and a
+  // disabled AsyncSelect hides its clear button, which would leave the stale
+  // value impossible to remove. Clear the whole subtree in one navigation.
+  const applyAttackedCountryFilter = (value: string) => {
+    if (value !== (params.attackedCountryIds || "")) {
+      navigate({
+        attackedCountryIds: value,
+        attackedProvinceIds: "",
+        attackedCityIds: "",
+        page: 1,
+      });
+      return;
+    }
+    applyFilter("attackedCountryIds", value);
+  };
+
+  const applyAttackedProvinceFilter = (value: string) => {
+    if (value !== (params.attackedProvinceIds || "")) {
+      navigate({
+        attackedProvinceIds: value,
+        attackedCityIds: "",
+        page: 1,
+      });
+      return;
+    }
+    applyFilter("attackedProvinceIds", value);
   };
 
   const clearFilter = (key: keyof CurrentParams) => {
@@ -1096,8 +1144,7 @@ export function AdminReportsClient({
                           isClearable
                           value={params.attackedCountryIds || null}
                           onChange={(v) =>
-                            applyFilter(
-                              "attackedCountryIds",
+                            applyAttackedCountryFilter(
                               typeof v === "string" ? v : "",
                             )
                           }
@@ -1119,12 +1166,11 @@ export function AdminReportsClient({
                           isClearable
                           value={params.attackedProvinceIds || null}
                           onChange={(v) =>
-                            applyFilter(
-                              "attackedProvinceIds",
+                            applyAttackedProvinceFilter(
                               typeof v === "string" ? v : "",
                             )
                           }
-                          loadOptions={loadAllProvinces}
+                          loadOptions={loadProvinces}
                           options={seededAttackedProvinces}
                           placeholder={t("allAttackedProvinces") || "All Attacked Provinces"}
                           searchPlaceholder="Search provinces..."
@@ -1147,9 +1193,14 @@ export function AdminReportsClient({
                               typeof v === "string" ? v : "",
                             )
                           }
-                          loadOptions={loadAllCities}
+                          loadOptions={loadCities}
                           options={seededAttackedCities}
-                          placeholder={t("allAttackedCities") || "All Attacked Cities"}
+                          disabled={!cityParentSelected}
+                          placeholder={
+                            cityParentSelected
+                              ? t("allAttackedCities") || "All Attacked Cities"
+                              : t("selectProvinceFirst")
+                          }
                           searchPlaceholder="Search cities..."
                           emptyText="No city found."
                           className="bg-white/5 border-white/10 text-offwhite h-9"

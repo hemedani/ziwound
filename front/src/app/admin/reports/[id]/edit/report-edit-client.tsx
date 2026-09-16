@@ -376,8 +376,40 @@ function TabRelations({
   // Provinces (5,308) and cities (152,970) can no longer be preloaded — the
   // world import made those lists far too large — so they are searched on the
   // server. Countries still fit in one page and stay a local list.
-  const loadProvinces = useMemo(() => searchProvinces(), []);
-  const loadCities = useMemo(() => searchCities(), []);
+  //
+  // The search is scoped by whatever parent is already selected: an unscoped
+  // city search is a full scan of ~153k rows and is slow on a cold cache,
+  // whereas a scoped one is an index lookup.
+  const loadProvinces = useMemo(
+    () => searchProvinces(attackedCountryIds[0]),
+    [attackedCountryIds],
+  );
+  const loadCities = useMemo(
+    () => searchCities(attackedProvinceIds[0], attackedCountryIds[0]),
+    [attackedProvinceIds, attackedCountryIds],
+  );
+
+  // The loaders above scope on the *first* selected parent, so replacing that
+  // parent invalidates everything below it. Drop the children together instead
+  // of leaving a city attached to a province that no longer contains it.
+  const handleAttackedCountryIdsChange = (ids: string[]) => {
+    if (ids[0] !== attackedCountryIds[0]) {
+      setAttackedProvinceIds([]);
+      setAttackedCityIds([]);
+    }
+    setAttackedCountryIds(ids);
+  };
+
+  const handleAttackedProvinceIdsChange = (ids: string[]) => {
+    if (ids[0] !== attackedProvinceIds[0]) {
+      setAttackedCityIds([]);
+    }
+    setAttackedProvinceIds(ids);
+  };
+
+  // A city search must be scoped by a province or country, so the city picker
+  // stays disabled until one is chosen.
+  const cityParentSelected = Boolean(attackedProvinceIds.length || attackedCountryIds.length);
 
   const namedChips = (
     rows: { _id?: string; name?: string }[] | undefined,
@@ -491,7 +523,7 @@ function TabRelations({
             label={t("attackedCountries") || "Attacked Countries"}
             items={allCountries}
             selectedIds={attackedCountryIds}
-            onChange={setAttackedCountryIds}
+            onChange={handleAttackedCountryIdsChange}
             placeholder={t("searchCountries") || "Search countries..."}
           />
           <MultiSelectChips
@@ -499,7 +531,7 @@ function TabRelations({
             items={knownProvinces}
             loadOptions={loadProvinces}
             selectedIds={attackedProvinceIds}
-            onChange={setAttackedProvinceIds}
+            onChange={handleAttackedProvinceIdsChange}
             placeholder={t("searchProvinces") || "Search provinces..."}
           />
           <MultiSelectChips
@@ -509,6 +541,8 @@ function TabRelations({
             selectedIds={attackedCityIds}
             onChange={setAttackedCityIds}
             placeholder={t("searchCities") || "Search cities..."}
+            disabled={!cityParentSelected}
+            disabledPlaceholder={t("selectProvinceFirst")}
           />
         </div>
       </GlassCard>

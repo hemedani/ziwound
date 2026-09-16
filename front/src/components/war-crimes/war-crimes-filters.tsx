@@ -157,16 +157,37 @@ export function WarCrimesFilters({
     updateParams({ hostileCountryIds: newValue || undefined });
   };
 
+  // The province and city filters below are scoped by their parent, and a
+  // disabled AsyncSelect hides its clear button — so a value left over from a
+  // previous parent would become both wrong and impossible to remove. Drop the
+  // children whenever the parent actually changes.
   const handleAttackedCountryChange = (value: AsyncSelectValue) => {
     const newValue = typeof value === "string" ? value : "";
+    const changed = newValue !== attackedCountryIds;
     setAttackedCountryIds(newValue);
-    updateParams({ attackedCountryIds: newValue || undefined });
+    if (changed) {
+      setAttackedProvinceIds("");
+      setAttackedCityIds("");
+    }
+    updateParams({
+      attackedCountryIds: newValue || undefined,
+      ...(changed
+        ? { attackedProvinceIds: undefined, attackedCityIds: undefined }
+        : {}),
+    });
   };
 
   const handleAttackedProvinceChange = (value: AsyncSelectValue) => {
     const newValue = typeof value === "string" ? value : "";
+    const changed = newValue !== attackedProvinceIds;
     setAttackedProvinceIds(newValue);
-    updateParams({ attackedProvinceIds: newValue || undefined });
+    if (changed) {
+      setAttackedCityIds("");
+    }
+    updateParams({
+      attackedProvinceIds: newValue || undefined,
+      ...(changed ? { attackedCityIds: undefined } : {}),
+    });
   };
 
   const handleAttackedCityChange = (value: AsyncSelectValue) => {
@@ -213,9 +234,21 @@ export function WarCrimesFilters({
   // filter — a partial, case-insensitive match on the native or English name —
   // rather than `search`, which is a $text query that only matches whole words
   // (so "Teh" never found Tehran) and, for provinces, failed outright.
+  //
+  // Provinces and cities are scoped by the parent already chosen above them. An
+  // unscoped city search scans ~153k rows and is slow on a cold cache; scoped,
+  // it is an index lookup.
   const loadCountryOptions = useMemo(() => searchCountries, []);
-  const loadProvinceOptions = useMemo(() => searchProvinces(), []);
-  const loadCityOptions = useMemo(() => searchCities(), []);
+  const loadProvinceOptions = useMemo(
+    () => searchProvinces(attackedCountryIds || undefined),
+    [attackedCountryIds],
+  );
+  const loadCityOptions = useMemo(
+    () =>
+      searchCities(attackedProvinceIds || undefined, attackedCountryIds || undefined),
+    [attackedProvinceIds, attackedCountryIds],
+  );
+  const cityParentSelected = Boolean(attackedProvinceIds || attackedCountryIds);
 
   const statusOptions: AsyncSelectOption[] = [
     { id: "all", label: t("status.all") },
@@ -458,7 +491,12 @@ export function WarCrimesFilters({
                 onChange={handleAttackedCityChange}
                 async
                 loadOptions={loadCityOptions}
-                placeholder={tFilter("allAttackedCities")}
+                disabled={!cityParentSelected}
+                placeholder={
+                  cityParentSelected
+                    ? tFilter("allAttackedCities")
+                    : t("selectProvinceFirst")
+                }
                 searchPlaceholder={tCommon("search")}
                 emptyText={t("noResults")}
                 isClearable

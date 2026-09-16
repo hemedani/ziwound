@@ -77,16 +77,22 @@ export const searchProvinces = (
   };
 };
 
-/** Search cities by name, optionally narrowed to one province. */
+/** Search cities by name, optionally narrowed to one province or country. */
 export const searchCities = (
   provinceId?: string,
+  countryId?: string,
 ): ((inputValue: string) => Promise<AsyncSelectLoadResult>) => {
   return async (inputValue: string) => {
     const response = await getCities(
       {
         page: 1,
         limit: LIMIT,
+        // A city search with no parent scope is a full collection scan over
+        // ~153k rows, which is slow enough to time out on a cold cache. The
+        // parent relation indexes make a scoped search an index lookup, so
+        // callers should always pass whichever of these they have.
         ...(provinceId ? { provinceIds: [provinceId] } : {}),
+        ...(!provinceId && countryId ? { countriesId: [countryId] } : {}),
         ...(inputValue ? { name: inputValue } : {}),
       },
       { _id: 1, name: 1, english_name: 1 },

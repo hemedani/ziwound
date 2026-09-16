@@ -11,6 +11,7 @@ import {
 } from "@/components/form/async-select";
 import {
   searchCountries,
+  searchProvinces,
   searchCities,
 } from "@/components/form/location-search";
 
@@ -47,11 +48,20 @@ export function PlaceSelector({
   const [granularityOverride, setGranularityOverride] = useState<PlaceGranularity | null>(null);
   const granularity: PlaceGranularity = granularityOverride ?? (cityId ? "city" : "country");
 
+  // Cities number ~153k, so a city search has to be narrowed by its province or
+  // it becomes a full collection scan (slow enough to time out on a cold cache).
+  // The province below is scoping state only — it is not part of the value.
+  const [scopedProvinceId, setScopedProvinceId] = useState<string | null>(null);
+
   // Shared with the admin pickers. Uses the `name` filter — a partial,
   // case-insensitive match on the native or English name — rather than `search`,
   // a $text query that only matches whole words.
   const loadCountryOptions = useMemo(() => searchCountries, []);
-  const loadCityOptions = useMemo(() => searchCities(), []);
+  const loadProvinceOptions = useMemo(() => searchProvinces(), []);
+  const loadCityOptions = useMemo(
+    () => searchCities(scopedProvinceId ?? undefined),
+    [scopedProvinceId],
+  );
 
   const seededOption = useMemo<AsyncSelectOption[]>(() => {
     if (selectedId && initialLabel) return [{ id: selectedId, label: initialLabel }];
@@ -61,7 +71,17 @@ export function PlaceSelector({
   const handleGranularityChange = (next: PlaceGranularity) => {
     if (next === granularity) return;
     setGranularityOverride(next);
+    setScopedProvinceId(null);
     onChange(null);
+  };
+
+  const handleProvinceChange = (val: AsyncSelectValue) => {
+    const next = typeof val === "string" ? val : null;
+    // The city list is scoped by this province, so a city picked under the
+    // previous province would be stale — and misleading, since it would then
+    // be reported against a province that no longer contains it.
+    if (next !== scopedProvinceId && cityId) onChange(null);
+    setScopedProvinceId(next);
   };
 
   const handleSelect = (val: AsyncSelectValue) => {
@@ -123,18 +143,32 @@ export function PlaceSelector({
             className="bg-white/5 border-white/10 text-offwhite hover:bg-white/10"
           />
         ) : (
-          <AsyncSelect
-            async
-            value={cityId || null}
-            onChange={handleSelect}
-            loadOptions={loadCityOptions}
-            options={seededOption}
-            disabled={disabled}
-            placeholder={t("selectCity")}
-            searchPlaceholder={t("searchCity")}
-            emptyText={t("noCityFound")}
-            className="bg-white/5 border-white/10 text-offwhite hover:bg-white/10"
-          />
+          <>
+            <AsyncSelect
+              async
+              isClearable
+              value={scopedProvinceId}
+              onChange={handleProvinceChange}
+              loadOptions={loadProvinceOptions}
+              disabled={disabled}
+              placeholder={t("province")}
+              searchPlaceholder={t("searchProvinces")}
+              emptyText={t("noProvinces")}
+              className="bg-white/5 border-white/10 text-offwhite hover:bg-white/10"
+            />
+            <AsyncSelect
+              async
+              value={cityId || null}
+              onChange={handleSelect}
+              loadOptions={loadCityOptions}
+              options={seededOption}
+              disabled={disabled || !scopedProvinceId}
+              placeholder={scopedProvinceId ? t("selectCity") : t("selectProvinceFirst")}
+              searchPlaceholder={t("searchCity")}
+              emptyText={t("noCityFound")}
+              className="bg-white/5 border-white/10 text-offwhite hover:bg-white/10"
+            />
+          </>
         )}
       </div>
     </div>
