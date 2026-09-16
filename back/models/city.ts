@@ -87,30 +87,43 @@ export const cities = () =>
   });
 
 /**
- * The world import seeds ~153k cities, and the location pickers always narrow a
- * name search down to one province. Without an index on the embedded parent
- * relation that is a full collection scan per keystroke.
+ * The world import seeds ~153k cities, which makes two query shapes expensive
+ * without help:
+ *
+ *   1. A name search narrowed to one province. Without an index on the embedded
+ *      parent relation that is a full collection scan on every keystroke.
+ *   2. Browsing cities sorted by name — what the public explore page does when
+ *      no filter is set. Sorting 153k documents is a blocking in-memory sort
+ *      that does not finish inside the request timeout; with an index on `name`
+ *      MongoDB walks it in order and stops after the page size, so the cost is
+ *      O(limit) instead of O(n log n).
  *
  * The model's single `createIndex` slot is already taken by the text index, so
  * these are created here — same pattern as `createUserTextIndex` — and are
  * idempotent, so they are safe to run on every boot.
+ *
+ * The compound keys also cover their single-field prefix, and let a
+ * province-scoped, name-sorted search skip the sort step entirely.
  */
-export const createCityParentIndexes = async () => {
+export const createCityIndexes = async () => {
   const collection = coreApp.odm.getCollection("city");
-  try {
-    await collection.createIndex({ "province._id": 1 }, { name: "province_id_1" });
-  } catch (error) {
-    console.log(
-      "city index province_id_1 already exists or creation failed:",
-      (error as Error).message,
-    );
-  }
-  try {
-    await collection.createIndex({ "country._id": 1 }, { name: "country_id_1" });
-  } catch (error) {
-    console.log(
-      "city index country_id_1 already exists or creation failed:",
-      (error as Error).message,
-    );
+
+  const indexes: { spec: Record<string, 1>; name: string }[] = [
+    { spec: { "province._id": 1 }, name: "province_id_1" },
+    { spec: { "country._id": 1 }, name: "country_id_1" },
+    { spec: { name: 1 }, name: "name_1" },
+    { spec: { "province._id": 1, name: 1 }, name: "province_id_1_name_1" },
+    { spec: { "country._id": 1, name: 1 }, name: "country_id_1_name_1" },
+  ];
+
+  for (const { spec, name } of indexes) {
+    try {
+      await collection.createIndex(spec, { name });
+    } catch (error) {
+      console.log(
+        `city index ${name} already exists or creation failed:`,
+        (error as Error).message,
+      );
+    }
   }
 };

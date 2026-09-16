@@ -6,7 +6,7 @@ import {
   confirmations,
   countries,
   createBlogPostTextIndex,
-  createCityParentIndexes,
+  createCityIndexes,
   createProvinceParentIndex,
   createUserTextIndex,
   documents,
@@ -60,9 +60,9 @@ createUserTextIndex();
 // Create text index for blog post search
 createBlogPostTextIndex();
 
-// Parent-relation indexes so the searchable location pickers stay fast once the
-// world dataset (~153k cities) is loaded.
-createCityParentIndexes();
+// Parent-relation and sort indexes so the location pickers and the public
+// explore pages stay fast once the world dataset (~153k cities) is loaded.
+createCityIndexes();
 
 createProvinceParentIndex();
 
