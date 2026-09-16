@@ -21,6 +21,7 @@ import {
 } from "@model";
 import { functionsSetup } from "./src/mod.ts";
 import { RateLimiter } from "./utils/rateLimiter.ts";
+import { withLandingInvalidation, missingLandingActs } from "./utils/landingCache.ts";
 
 const MONGO_URI = Deno.env.get("MONGO_URI") || "mongodb://127.0.0.1:27017/";
 const APP_PORT = Deno.env.get("APP_PORT") || 1406;
@@ -48,11 +49,41 @@ export const regionalManagerRequest = regionalManagerRequests();
 
 export const rateLimiter = new RateLimiter(100, 60 * 1000); // 100 requests per minute
 
+/**
+ * Landing-page cache invalidation is applied by intercepting act registration
+ * rather than by editing each mutation act.
+ *
+ * There are ~27 acts that can change what the landing page renders, and a new
+ * mutation act would otherwise silently leave a stale page behind. Every setup
+ * registers through this single object — most via the imported `coreApp`, a few
+ * via the re-exported `setAct` below — so patching it here covers all of them,
+ * including acts added later. See `utils/landingCache.ts` for the act list.
+ */
+const registerAct = coreApp.acts.setAct;
+coreApp.acts.setAct = (actInp) => registerAct(withLandingInvalidation(actInp));
+
 export const { setAct, setService, getAtcsWithServices } = coreApp.acts;
 
 export const { selectStruct, getSchemas } = coreApp.schemas;
 
 functionsSetup();
+
+// Catch a typo'd act name in the landing-cache invalidation list at boot rather
+// than discovering a silently stale landing page later.
+const unregisteredLandingActs = missingLandingActs((schema, actName) => {
+  try {
+    return Boolean(coreApp.acts.getMainAct(schema, actName));
+  } catch {
+    return false;
+  }
+});
+if (unregisteredLandingActs.length > 0) {
+  console.warn(
+    `[cache] these acts are listed as landing-affecting but are not registered, ` +
+      `so changing them will NOT invalidate the landing page: ` +
+      `${unregisteredLandingActs.join(", ")}`,
+  );
+}
 
 // Create text index for user search
 createUserTextIndex();

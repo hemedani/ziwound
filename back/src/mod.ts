@@ -12,6 +12,7 @@ import { heroSlideSetup } from "./heroSlide/mod.ts";
 import { warCriminalSetup } from "./warCriminal/mod.ts";
 import { confirmationSetup } from "./confirmation/mod.ts";
 import { regionalManagerRequestSetup } from "./regionalManagerRequest/mod.ts";
+import { landingPageSetup } from "./landingPage/mod.ts";
 
 export const functionsSetup = () => {
   countrySetup();
@@ -28,4 +29,5 @@ export const functionsSetup = () => {
   warCriminalSetup();
   confirmationSetup();
   regionalManagerRequestSetup();
+  landingPageSetup();
 };
