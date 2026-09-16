@@ -12,6 +12,26 @@ services:
     env_file:
       - .env.backend
 
+  # Redis — cache for the public landing page. Optional: the backend falls back
+  # to an in-process cache when REDIS_URL is unset or Redis is unreachable, so
+  # this service can be removed without breaking anything.
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    # Pure cache: no persistence, and evict rather than run out of memory.
+    command:
+      - redis-server
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+      - --maxmemory
+      - 128mb
+      - --maxmemory-policy
+      - allkeys-lru
+    networks:
+      - gozarish
+
   # Backend (Deno)
   backend:
     build:
@@ -20,12 +40,14 @@ services:
     restart: unless-stopped
     environment:
       - MONGO_URI=mongodb://mongo:27017/gozarish
+      - REDIS_URL=redis://redis:6379
       - ENV=production
       - APP_PORT=1405
     ports:
       - "1405:1405"
     depends_on:
       - mongo
+      - redis
     networks:
       - gozarish
 

@@ -11,6 +11,25 @@ services:
     networks:
       - gozarish-dev
 
+  # Redis — cache for the public landing page. Optional: the backend falls back
+  # to an in-process cache when REDIS_URL is unset or Redis is unreachable.
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    command:
+      - redis-server
+      - --save
+      - ""
+      - --appendonly
+      - "no"
+      - --maxmemory
+      - 128mb
+      - --maxmemory-policy
+      - allkeys-lru
+    networks:
+      - gozarish-dev
+
   # Backend (Deno)
   backend:
     build:
@@ -23,10 +42,12 @@ services:
       - /app/deps
     environment:
       - MONGO_URI=mongodb://mongo:27017/gozarish
+      - REDIS_URL=redis://redis:6379
       - ENV=development
       - APP_PORT=1405
     depends_on:
       - mongo
+      - redis
     networks:
       - gozarish-dev
 
