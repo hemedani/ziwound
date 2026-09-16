@@ -20,6 +20,7 @@
   "imports": {
     "@da/bcrypt": "jsr:@da/bcrypt@^1.0.1",
     "lesan": "jsr:@hemedani/lesan@^0.2.3",
+    "@db/redis": "jsr:@db/redis@^0.42.0",
     "@std/fs/ensure-dir": "jsr:@std/fs@0.223/ensure-dir",
     "djwt": "https://deno.land/x/djwt@v2.8/mod.ts",
     "@lib": "./utils/mod.ts",
