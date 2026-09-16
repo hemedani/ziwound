@@ -1,18 +1,40 @@
 import type { ActFn } from "lesan";
 import {
   blogPost,
-  category,
-  city,
-  country,
-  document,
+  coreApp,
   file,
   heroSlide,
-  province,
   report,
-  tag,
   user,
   warCriminal,
 } from "../../../mod.ts";
+
+/**
+ * Unfiltered counts are read with `estimatedDocumentCount()` instead of
+ * `model.countDocument({})`.
+ *
+ * `countDocument` compiles to MongoDB `countDocuments`, which runs a full
+ * aggregation scan even when there is no filter. On the production dataset the
+ * `city` collection alone (153k documents) took ~30s, and the public landing
+ * page awaits this act. `estimatedDocumentCount` reads collection metadata, so
+ * it is O(1) and the act now answers in milliseconds.
+ *
+ * The two are equivalent here because none of these counts is filtered.
+ */
+const SIMPLE_COUNTS: readonly (readonly [key: string, collection: string])[] = [
+  ["categories", "category"],
+  ["cities", "city"],
+  ["provinces", "province"],
+  ["tags", "tag"],
+  ["users", "user"],
+  ["reports", "report"],
+  ["documents", "document"],
+  ["blogPosts", "blogPost"],
+  ["heroSlides", "heroSlide"],
+  ["countries", "country"],
+  ["files", "file"],
+  ["warCriminals", "warCriminal"],
+];
 
 export const dashboardStatisticFn: ActFn = async (body) => {
   const { get } = body.details;
@@ -20,29 +42,19 @@ export const dashboardStatisticFn: ActFn = async (body) => {
 
   const tasks: Promise<void>[] = [];
 
-  const simpleCounts: [string, any][] = [
-    ["categories", category],
-    ["cities", city],
-    ["provinces", province],
-    ["tags", tag],
-    ["users", user],
-    ["reports", report],
-    ["documents", document],
-    ["blogPosts", blogPost],
-    ["heroSlides", heroSlide],
-    ["countries", country],
-    ["files", file],
-    ["warCriminals", warCriminal],
-  ];
-
-  for (const [key, model] of simpleCounts) {
-    if (get[key] === 1) {
-      tasks.push(
-        model.countDocument({}).then((v: number) => {
-          result[key] = v;
+  for (const [key, collection] of SIMPLE_COUNTS) {
+    if (get[key] !== 1) continue;
+    tasks.push(
+      coreApp.odm.getCollection(collection)
+        .estimatedDocumentCount()
+        .then((value: number) => {
+          result[key] = value;
+        })
+        // One failing count must not reject the whole dashboard.
+        .catch(() => {
+          result[key] = 0;
         }),
-      );
-    }
+    );
   }
 
   if (
