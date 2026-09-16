@@ -9,14 +9,8 @@ import { ImpactCounters } from "@/components/landing/impact-counters";
 import { HowItWorks } from "@/components/landing/how-it-works";
 import { FinalCTA } from "@/components/landing/final-cta";
 import type { HeroSlide } from "@/components/landing/HeroSlider";
-import { gets as getReports } from "@/app/actions/report/gets";
-import { gets as getBlogPosts } from "@/app/actions/blogPost/gets";
-import { gets as getHeroSlides } from "@/app/actions/heroSlide/gets";
-import { gets as getCountries } from "@/app/actions/country/gets";
-import { statistics as reportStatistics } from "@/app/actions/report/statistics";
-import { dashboardStatistic } from "@/app/actions/user/dashboardStatistic";
+import { landingPage } from "@/app/actions/heroSlide/landingPage";
 import { getImageUploadUrl } from "@/utils/imageUrl";
-import { ReqType } from "@/types/declarations";
 import { Globe, Shield, Users, FileText } from "lucide-react";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }): Promise<Metadata> {
@@ -41,87 +35,14 @@ export default async function Home({ params }: HomePageProps) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "home" });
 
-  // Fetch all data in parallel
-  const [dashRes, reportsRes, blogRes, heroSlidesRes, statsRes, countriesRes] = await Promise.all([
-    dashboardStatistic(
-      {},
-      {
-        reports: 1, documents: 1, countries: 1, cities: 1, provinces: 1,
-        warCriminals: 1, users: 1,
-      }
-    ).catch(() => ({ success: false, body: {} })),
-    getReports(
-      {
-        page: 1, limit: 4, status: "Approved",
-        selected_language: (locale as ReqType["main"]["report"]["gets"]["set"]["selected_language"]),
-      },
-      {
-        _id: 1,
-        title: 1,
-        description: 1,
-        createdAt: 1,
-        crime_occurred_at: 1,
-        location: 1,
-        address: 1,
-        category: { _id: 1, name: 1 },
-        documents: {
-          _id: 1,
-          title: 1,
-          documentFiles: { _id: 1, name: 1, mimeType: 1, type: 1, alt_text: 1 },
-        },
-      }
-    ).catch(() => ({ success: false, body: [] })),
-    getBlogPosts(
-      {
-        page: 1, limit: 4,
-        selected_language: (locale as ReqType["main"]["blogPost"]["gets"]["set"]["selected_language"]),
-      },
-      {
-        _id: 1,
-        title: 1,
-        content: 1,
-        createdAt: 1,
-        coverImage: { _id: 1, name: 1 },
-        slug: 1,
-      }
-    ).catch(() => ({ success: false, body: [] })),
-    getHeroSlides(
-      {
-        page: 1, limit: 10, sortBy: "order", sortOrder: "asc",
-        selected_language: (locale as ReqType["main"]["heroSlide"]["gets"]["set"]["selected_language"]),
-      },
-      {
-        _id: 1,
-        title: 1,
-        subtitle: 1,
-        gradient: 1,
-        ctaText: 1,
-        ctaLink: 1,
-        secondaryCtaText: 1,
-        secondaryCtaLink: 1,
-        order: 1,
-        isActive: 1,
-        selected_language: 1,
-        image: { _id: 1, name: 1 },
-      }
-    ).catch(() => ({ success: false, body: [] })),
-    reportStatistics({}, {}).catch(() => ({ success: false, body: {} })),
-    getCountries(
-      { page: 1, limit: 8 },
-      {
-        _id: 1,
-        name: 1,
-        english_name: 1,
-        photo: { _id: 1, name: 1 },
-        provinces: { _id: 1, name: 1 },
-        cities: { _id: 1, name: 1 },
-      }
-    ).catch(() => ({ success: false, body: [] })),
-  ]);
+  // One cached backend request for the whole page — impact counters, hero
+  // slides, the featured reports and posts, and the explore countries — instead
+  // of six parallel ones. Returns null if the backend is unreachable, in which
+  // case the page renders empty data and falls back to the built-in hero slides.
+  const landing = await landingPage(locale);
 
-  const dashBody = dashRes.success && typeof dashRes.body === "object" ? (dashRes.body as Record<string, number>) : {};
+  const dashBody = landing?.dashboard ?? {};
   const reportCount = dashBody.reports ?? 0;
-  const docCount = dashBody.documents ?? 0;
   const countryCount = dashBody.countries ?? 0;
   const warCriminalCount = dashBody.warCriminals ?? 0;
   const userCount = dashBody.users ?? 0;
@@ -130,13 +51,9 @@ export default async function Home({ params }: HomePageProps) {
 
   const rteFieldsCount = (countryCount * 12 * 9) + (provinceCount * 10 * 9) + (cityCount * 10 * 9);
 
-  const statsBody = statsRes.success && typeof statsRes.body === "object" ? statsRes.body : {};
-  const geographicCounts = Array.isArray(statsBody.geographicCounts) ? statsBody.geographicCounts : [];
-  const locationCount = geographicCounts.length;
-
   // Featured items
-  const rawReports = reportsRes.success ? (reportsRes.body ?? []) : [];
-  const rawBlogs = blogRes.success ? (blogRes.body ?? []) : [];
+  const rawReports = landing?.reports ?? [];
+  const rawBlogs = landing?.blogPosts ?? [];
 
   const reportItems = Array.isArray(rawReports)
     ? rawReports.slice(0, 4).map((r: any) => {
@@ -205,7 +122,7 @@ export default async function Home({ params }: HomePageProps) {
   const featuredItems = [...reportItems, ...blogItems].slice(0, 4);
 
   // Build hero slides
-  const rawHeroSlides = heroSlidesRes.success ? (heroSlidesRes.body ?? []) : [];
+  const rawHeroSlides = landing?.heroSlides ?? [];
   const backendSlides = Array.isArray(rawHeroSlides)
     ? rawHeroSlides
         .filter((s: any) => s.isActive)
@@ -263,7 +180,7 @@ export default async function Home({ params }: HomePageProps) {
         ];
 
   // Build explore locations from countries
-  const rawCountries = countriesRes.success ? (countriesRes.body ?? []) : [];
+  const rawCountries = landing?.countries ?? [];
   const countryItems = Array.isArray(rawCountries)
     ? rawCountries.slice(0, 8).map((c: any) => ({
         _id: c._id,
